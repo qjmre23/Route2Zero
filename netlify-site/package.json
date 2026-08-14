@@ -1,0 +1,9 @@
+{
+  "name": "route2zero-netlify-site",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node scripts/build-netlify.mjs"
+  }
+}

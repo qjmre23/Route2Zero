@@ -49,11 +49,12 @@ The processed outputs are already included for a fast demo. Re-running the pipel
 
 ## Netlify deployment
 
-This project now includes a Netlify-ready static dashboard in `public/` plus a Netlify Function for optional AI answers. Netlify does not run the Streamlit server directly; the deployed site uses the same processed route data from `data/processed/`.
+This project now includes a Netlify-ready static dashboard in `netlify-site/public/` plus a Netlify Function for optional AI answers. Netlify does not run the Streamlit server directly; the deployed site uses the same processed route data from `data/processed/`.
 
 Use these Netlify settings:
 
 ```text
+Base directory: netlify-site
 Build command: npm run build
 Publish directory: public
 Functions directory: netlify/functions
@@ -68,7 +69,7 @@ MODEL=your_model_name_here
 AI_EXPLANATIONS_ENABLED=true
 ```
 
-`ABSK_KEY` is the variable that holds the API key. Do not add the key to browser JavaScript, `.env.example`, `netlify.toml`, or `public/`. The Netlify Function reads it with `process.env.ABSK_KEY`, so the key stays server-side. Redeploy after changing Netlify environment variables.
+`ABSK_KEY` is the variable that holds the API key. Do not add the key to browser JavaScript, `.env.example`, `netlify.toml`, or `netlify-site/public/`. The Netlify Function reads it with `process.env.ABSK_KEY`, so the key stays server-side. Redeploy after changing Netlify environment variables.
 
 ## Optional AI explanation layer
 
