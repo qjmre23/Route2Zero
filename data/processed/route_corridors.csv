@@ -1,0 +1,894 @@
+agency_id,route_long_name,representative_route_id,route_ids,direction_count,route_desc,bidirectional_pair_flag
+FORT,Fort Central,FORT_CENT,FORT_CENT,1,,False
+FORT,Fort West,FORT_WEST,FORT_WEST,1,,False
+LRTA,Baclaran - Roosevelt,ROUTE_880747,ROUTE_880747,1,Urban railway line serving 20 stations between Balaran and Roosevelt,False
+LRTA,Recto - Santolan,ROUTE_880801,ROUTE_880801,1,Light rail line serving 11 stations between Recto and Santolan,False
+LTFRB,(Alabang) Pacita Complex - Sucat,LTFRB_PUJ1035,LTFRB_PUJ1035|LTFRB_PUJ1036,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - South Luzon Expressway, Muntinlupa City, Manila",True
+LTFRB,A RIVERA - STA CRUZ,LTFRB_PUJ1826,LTFRB_PUJ1826|LTFRB_PUJ2137|LTFRB_PUJ2138,3,"Antonio Rivera, Manila - A F. Torres, Manila",True
+LTFRB,A Rivera Plaza Dela Barca via J Santo,LTFRB_PUJ2448,LTFRB_PUJ2448|LTFRB_PUJ2449,2,"Reina Regente / Dadivas Intersection, Manila - Jose Abad Santos Ave./ Villaruel Street Villaruel Intersection, Manila",True
+LTFRB,A. Bonifacio - A. Mabini via 10th Avenue,LTFRB_PUJ1003,LTFRB_PUJ1003|LTFRB_PUJ1004,2,"Kamantigue / 11th Avenue, Caloocan City - Mercury Drug, A. Mabini Avenue, Caloocan City",True
+LTFRB,A. Bonifacio - E. Rodriguez via D. Tuazon,LTFRB_PUJ1005,LTFRB_PUJ1005|LTFRB_PUJ1006,2,"D. Tuazon / Eulogio Rodriguez Sr Ave Intersection, Manila - Tangali / Tinagan Intersection, Quezon City",True
+LTFRB,A. Luna - Libertad,LTFRB_PUJ1007,LTFRB_PUJ1007|LTFRB_PUJ1008,2,"Leveriza, Manila - Antonio Arnaiz Ave / F.B. Harrison St Intersection",True
+LTFRB,A. Rivera - Raon via Tomas Mapua,LTFRB_PUJ1011,LTFRB_PUJ1011|LTFRB_PUJ1012,2,"Jose Abad Santos Avenue / Tayuman Road, Quezon City - A F. Torres, Manila",True
+LTFRB,AFP/PNP Housing (Taguig) - Guadalupe (ABC) via Bayani Road,LTFRB_PUJ1372,LTFRB_PUJ1372|LTFRB_PUJ1373,2,"Libingan ng mga Bayani, Bayani Road, Taguig City, Manila - Epifanio de los Santos Avenue, Makati City, Manila",True
+LTFRB,ALABANG - BALIBAGO,LTFRB_PUJ1827,LTFRB_PUJ1827|LTFRB_PUJ2135,2,"Yellow Station, South Station Complex Spectrum Midway Extension,  Muntinlupa City, Manila - South Luzon Expressway, Biñan City, Manila",True
+LTFRB,ALABANG - CALAMBA via EXPRESSWAY,LTFRB_PUJ2133,LTFRB_PUJ2133|LTFRB_PUJ2134,2,"South Luzon Expressway, Biñan City, Manila - National Hwy, Muntinlupa City, Manila",True
+LTFRB,ALABANG - KATARUNGAN VILLAGE via MUNTINLUPA NBP,LTFRB_PUJ1828,LTFRB_PUJ1828|LTFRB_PUJ2131|LTFRB_PUJ2132,3,"C Arellano St / G Araneta St Intersection, Muntinlupa City, Manila - Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila",True
+LTFRB,ALABANG - LANGGAM SAN PEDRO,LTFRB_PUJ2129,LTFRB_PUJ2129|LTFRB_PUJ2130,2,"BBL Trans San Pedro Terminal, National Hwy, San Pedro, Manila - National Hwy, Muntinlupa City, Manila",True
+LTFRB,ALABANG - LAS PINAS,LTFRB_PUJ1830,LTFRB_PUJ1830|LTFRB_PUJ1831|LTFRB_PUJ2127,3,"Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila - Emilio Aguinaldo Hwy, Bacoor City, Manila",True
+LTFRB,ALABANG - MUNTINLUPA,LTFRB_PUJ1833,LTFRB_PUJ1833|LTFRB_PUJ2125|LTFRB_PUJ2126,3,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - BBL Trans San Pedro Terminal, National Hwy, San Pedro, Manila",True
+LTFRB,ALABANG - SIGNAL VILLAGE via SERVICE ROAD,LTFRB_PUJ1834,LTFRB_PUJ1834|LTFRB_PUJ2123|LTFRB_PUJ2124,3,"National Hwy, Muntinlupa City, Manila - DBP Ave, Taguig City, Manila, Manila",True
+LTFRB,ALABANG - STA ROSA via EXPRESSWAY,LTFRB_PUJ2121,LTFRB_PUJ2121|LTFRB_PUJ2122,2,"National Hwy, Santa Rosa City, Manila - Yellow Station, South Station Complex Spectrum Midway Extension,  Muntinlupa City, Manila",True
+LTFRB,ALMAR ZABARTE - WELCOME RTDA via REGALADO QA,LTFRB_PUJ2119,LTFRB_PUJ2119|LTFRB_PUJ2120,2,"Apo / Quezon Avenue Intersection, Quezon City - Zabarte Road / Camarin Road Intersection, Caloocan City",True
+LTFRB,AMPARO - NOVALICHES,LTFRB_PUJ2117,LTFRB_PUJ2117|LTFRB_PUJ2118,2,"General Luis / Gold Intersection, Caloocan City - Makabud / Quirino Highway Intersection, Calcoocan City",True
+LTFRB,ANGONO - TROPICAL STA LUCIA,LTFRB_PUJ2115,LTFRB_PUJ2115|LTFRB_PUJ2116,2,"Quezon Ave, Angono, Manila - Metro East, un-named road near Felix Road, Cainta, Manila",True
+LTFRB,ANTIPOLO - CUBAO via IMELDA AVE,LTFRB_PUJ2113,LTFRB_PUJ2113|LTFRB_PUJ2114,2,"L. Sumulong Memorial Cir, Antipolo City, Manila - 8th Ave, Quezon City, Manila",True
+LTFRB,ANTIPOLO - JRU ROSARIO,LTFRB_PUJ2111,LTFRB_PUJ2111|LTFRB_PUJ2112,2,"Lawson / Shaw Blvd Intersection, Mandaluyong City, Manila - P. Oliveros St / A. Bonifacio St Intersection, Antipolo City, Manila",True
+LTFRB,ANTIPOLO BAYAN - SM TAYTAY ANTIPOLO HILLS,LTFRB_PUJ2109,LTFRB_PUJ2109|LTFRB_PUJ2110,2,"Lawson / Shaw Blvd Intersection, Mandaluyong City, Manila - P. Oliveros St / A. Bonifacio St Intersection, Antipolo City, Manila",True
+LTFRB,ARROCEROS - CUBAO YALE,LTFRB_PUJ2105,LTFRB_PUJ2105|LTFRB_PUJ2106,2,"Globo de Oro, Manila - Aurora Blvd / Epifanio de los Santos Avenue Intersection, Quezon City, Manila",True
+LTFRB,ARROCEROS - DAPITAN,LTFRB_PUJ2104,LTFRB_PUJ2104,1,"Community Centre, San Isidro Labrador, Quezon City - Globo de Oro, Manila",False
+LTFRB,ARROCEROS - FAIRVIEW MARKET,LTFRB_PUJ2101,LTFRB_PUJ2101|LTFRB_PUJ2102,2,"Quezon Blvd, Manila - Quirino Highway / Maligaya Intersection, Caloocan City",True
+LTFRB,ARROCEROS - PROJ 2&3 via ESPANA E RODRIGUEZ,LTFRB_PUJ2099,LTFRB_PUJ2099|LTFRB_PUJ2100,2,"Quezon Blvd, Manila - Anonas / Tampoy Intersection, Quezon City, Manila",True
+LTFRB,ARROCEROS - PROJ 8 via ESPANA,LTFRB_PUJ2097,LTFRB_PUJ2097|LTFRB_PUJ2098,2,"Quezon Blvd, Manila - General Avenue / Gsisea Street Intersection, Quezon City",True
+LTFRB,AURORA - LAWAN QMC,LTFRB_PUJ2095,LTFRB_PUJ2095|LTFRB_PUJ2096,2,"Molave, Quezon City, Manila - Kalayaan Ave / Elliptical Rd Intersection, Quezon City, Manila",True
+LTFRB,AYALA - ZAPOTE RD,LTFRB_PUJ2093,LTFRB_PUJ2093|LTFRB_PUJ2094,2,"Makati Ave / A. Arnaiz Ave, Makati City, Manila - Zapote / Kalayaan Ave, Makati City, Manila",True
+LTFRB,AYALA LANDMARK - PUREGOLD,LTFRB_PUJ2091,LTFRB_PUJ2091|LTFRB_PUJ2092,2,"South Dr / A. Arnaiz Ave Intersection, Makati City, Manila - J.P. Rizal Ave, Makati City, Manila",True
+LTFRB,Alabang (Starmall) Lagro,LTFRB_PUB1001,LTFRB_PUB1001|LTFRB_PUB1002,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Quirino Highway / La Mesa Road Intersection, Calcoocan City",True
+LTFRB,Alabang - Baclaran via Ninoy Aquino,LTFRB_PUJ1013,LTFRB_PUJ1013|LTFRB_PUJ1014,2,"Dr A. Santos Ave, Parañaque City, Manila - Redemptorist Road, Parañaque City, Manila",True
+LTFRB,"Alabang - Baclaran via San Dionisio, Zapote",LTFRB_PUJ1015,LTFRB_PUJ1015|LTFRB_PUJ1016,2,"Pinaglabanan / Quirino Avenue, Parañaque City, Manila - South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila",True
+LTFRB,Alabang - Carmona,LTFRB_PUJ1017,LTFRB_PUJ1017|LTFRB_PUJ1018,2,"Governor's Drive, Carmona, Manila - Civic Dr, Muntinlupa City, Manila",True
+LTFRB,Alabang - FTI via South Super Highway,LTFRB_PUJ1023,LTFRB_PUJ1023|LTFRB_PUJ1024,2,"DBP Ave, Taguig City, Manila, Manila - National Hwy / UP St Intersection, Muntinlupa City, Manila",True
+LTFRB,Alabang - GMA via Carmona National Rd.,LTFRB_PUJ1019,LTFRB_PUJ1019|LTFRB_PUJ1020,2,"National Hwy, Biñan City, Manila - Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila",True
+LTFRB,"Alabang - GMA via South Expressway, Carmona Exit",LTFRB_PUJ1021,LTFRB_PUJ1021|LTFRB_PUJ1022,2,"Biyaya Polytechnic Academy, Congressional Road, General Mariano Alvarez, Manila - South Luzon Expressway, Muntinlupa City, Manila",True
+LTFRB,"Alabang - Malanday via EDSA, McArthur",LTFRB_PUB1092,LTFRB_PUB1092|LTFRB_PUB1093,2,"MRT-3 Magallanes Station, EDSA, Makati City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",True
+LTFRB,Alabang - Muntinlupa Bilibid Prison via Katarungan Village,LTFRB_PUJ1028,LTFRB_PUJ1028,1,"Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila - C Arellano St / G Araneta St Intersection, Muntinlupa City, Manila",False
+LTFRB,"Alabang - Muntinlupa via National Rd. up to Bayan-bayanan, San Pedro",LTFRB_PUJ1025,LTFRB_PUJ1025|LTFRB_PUJ1026,2,"BBL Trans San Pedro Terminal, National Hwy, San Pedro, Manila - National Hwy / Visayas St Intersection, Muntinlupa City, Manila",True
+LTFRB,Alabang - Navotas Terminal via EDSA,LTFRB_PUB1095,LTFRB_PUB1095|LTFRB_PUB1119,2,"MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila - South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila",True
+LTFRB,"Alabang - Novaliches via EDSA, NLEX",LTFRB_PUB1096,LTFRB_PUB1096|LTFRB_PUB1097,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - North Luzon Expressway / Santiago Street Intersection, Valenzuela City",True
+LTFRB,Alabang - Pasay RTDA. Via FTI Service Rd.,LTFRB_PUJ1029,LTFRB_PUJ1029|LTFRB_PUJ1030,2,"DBP Ave, Taguig City, Manila, Manila - Epifanio de los Santos Avenue, Lungsod ng Pasay",True
+LTFRB,Alabang - Pasay RTDA. Via South Super Highway,LTFRB_PUJ1031,LTFRB_PUJ1031,1,"DBP Ave, Taguig City, Manila, Manila - Epifanio de los Santos Avenue, Diosdado Macapagal Blvd, Lungsod ng Pasay",False
+LTFRB,Alabang - Plaza Lawton,LTFRB_PUB1098,LTFRB_PUB1098|LTFRB_PUB1099,2,"Alabang-Zapote Road, Muntinlupa City, Manila - Plaza Santa Cruz, Manila City",True
+LTFRB,Alabang - Signal Village via South Expressway Service Road,LTFRB_PUJ1033,LTFRB_PUJ1033|LTFRB_PUJ1034,2,"DBP Ave, Taguig City, Manila, Manila - National Hwy / UP St Intersection, Muntinlupa City, Manila",True
+LTFRB,Alabang - Sucat via Cupang (East Service Rd.),LTFRB_PUJ1037,LTFRB_PUJ1037|LTFRB_PUJ1038,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Dr A. Santos Ave, Parañaque City, Manila",True
+LTFRB,Alabang - Zapote (Las Piñas),LTFRB_PUJ1040,LTFRB_PUJ1040,1,"Quirino Ave, Bacoor City, Manila - Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila",False
+LTFRB,Alabang Almanza,LTFRB_PUJ2454,LTFRB_PUJ2454|LTFRB_PUJ2455,2,"Spectrum Midway Extension, Muntinlupa City, Manila - Alabang-Zapote Road, Muntinlupa City, Manila",True
+LTFRB,Alabang Baclaran via Coastal,LTFRB_PUJ2456,LTFRB_PUJ2456|LTFRB_PUJ2457,2,"Spectrum Midway Extension, Montinlupa City - Manila-Cavite Expressway, Parañaque City, Manila",True
+LTFRB,Alabang Binan via National Road,LTFRB_PUJ2458,LTFRB_PUJ2458|LTFRB_PUJ2459,2,"Jac Liner Bus Terminal, Binan City - Spectrum Midway Extension, Montinlupa City",True
+LTFRB,Alabang Fairview,LTFRB_PUB1003,LTFRB_PUB1003|LTFRB_PUB1004,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",True
+LTFRB,Alabang Lawton via Sucat,LTFRB_PUB1005,LTFRB_PUB1005,1,"Progreso 2, Makati City, Manila - Tejeron, Makati City, Manila",False
+LTFRB,Alabang Lawton via Zapote Coastal Rd,LTFRB_PUB1007,LTFRB_PUB1007|LTFRB_PUB1008,2,"Alabang-Zapote Road, Muntinlupa City, Manila - Taft Ave, Manila",True
+LTFRB,Alabang Malabon (Letre) via EDSA,LTFRB_PUB1009,LTFRB_PUB1009|LTFRB_PUB1010,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",True
+LTFRB,Alabang Malanday,LTFRB_PUB1011,LTFRB_PUB1011|LTFRB_PUB1012,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - ET Pacific, MacArthur Highway, City of Meycauayan",True
+LTFRB,Alabang Monumento via EDSA,LTFRB_PUB1061,LTFRB_PUB1061|LTFRB_PUB1062,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City",True
+LTFRB,Alabang Muntinlupa-Lawton via SSH Taft Ave,LTFRB_PUB1104,LTFRB_PUB1104|LTFRB_PUB1105,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Magallanes Dr, Manila",True
+LTFRB,Alabang Navotas,LTFRB_PUB1063,LTFRB_PUB1063,1,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",False
+LTFRB,Alabang Pasay Rtda,LTFRB_PUJ2452,LTFRB_PUJ2452|LTFRB_PUJ2453,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Epifanio de los Santos Avenue, Lungsod ng Pasay",True
+LTFRB,Alabang-Bbayan via Bicutan,LTFRB_PUJ2450,LTFRB_PUJ2450|LTFRB_PUJ2451,2,"Montillano St, Muntinlupa City, Manila - Manuel L. Quezon / St Martin Ave Intersection, Taguig City, Manila",True
+LTFRB,"Alabang-Novaliches via EDSA, MindanaoAve",LTFRB_PUB1100,LTFRB_PUB1100|LTFRB_PUB1101,2,"National Hwy, Muntinlupa City, Manila - Quirino Highway, Quezon City",True
+LTFRB,Alabang-SM Fairview via Lagro Commonwealth,LTFRB_PUB1102,LTFRB_PUB1102|LTFRB_PUB1103,2,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Belfast / Bulalakaw Intersection, Quezon City",True
+LTFRB,Almanza ( Las Piñas ) - Baclaran,LTFRB_PUJ1041,LTFRB_PUJ1041|LTFRB_PUJ1042,2,"F.B. Harrison Street / Taft Avenue Extension Intersection, Lungsod ng Pasay, Manila - Alabang-Zapote Road, Muntinlupa City, Manila",True
+LTFRB,Amparo - Novaliches via Sanana,LTFRB_PUJ1653,LTFRB_PUJ1653|LTFRB_PUJ1654,2,"WL Food Products, Genteral Luis, Caloocan City - St Mary Goretti School, Katmon, Calcoocan City",True
+LTFRB,Angono EDSA Shaw Blvd,LTFRB_PUJ2597,LTFRB_PUJ2597|LTFRB_PUJ2598,2,"Quezon Ave / R. Tolentino Intersection, Angono, Manila - Epifanio de los Santos Avenue /  Shaw Blvd Intersection, Mandaluyong City, Manila",True
+LTFRB,Angono NCC Market via Felix Ave,LTFRB_PUJ2273,LTFRB_PUJ2273|LTFRB_PUJ2274|LTFRB_PUJ2275|LTFRB_PUJ2276,4,"Quezon Ave / E Rodriguez St Intersection, Angono, Manila - Manila East Rd, Angono, Manila",True
+LTFRB,Angono Rosario,LTFRB_PUJ2466,LTFRB_PUJ2466|LTFRB_PUJ2467,2,"Col Guido St, Angono - Ortigas Ave / Dr Sixto Antonio Ave Intersection, Pasig City, Manila",True
+LTFRB,Angono-Cainta Junction via Taytay,LTFRB_PUJ2462,LTFRB_PUJ2462|LTFRB_PUJ2463,2,"Quezon Ave, Angono, Manila - Ortigas Ave, Pagis City, Manila",True
+LTFRB,Angono-Pasig,LTFRB_PUJ2464,LTFRB_PUJ2464|LTFRB_PUJ2465,2,"Quezon Ave, Angono, Manila - Caruncho Ave / F. Manalo Intersection, Pasig City, Manila",True
+LTFRB,Angono-Rosario via Manggahan Floodway,LTFRB_PUJ2159,LTFRB_PUJ2159|LTFRB_PUJ2160,2,"Ortigas Ave, Pasig City, Manila - Manila East Rd, Angono, Manila",True
+LTFRB,Angono-agora market,LTFRB_PUJ2460,LTFRB_PUJ2460|LTFRB_PUJ2461,2,"Manila East Rd, Angono, Manila - Manila Road East, Taytay, Manila",True
+LTFRB,Anonas via vluna,LTFRB_PUJ2468,LTFRB_PUJ2468|LTFRB_PUJ2469,2,"Anonas / Tampoy Intersection, Quezon City, Manila - Victoriano Luna Ave, Quezon City, Manila",True
+LTFRB,Anonas/Aurora - Lagro via Don Mariano Marcos Ave.,LTFRB_PUJ1053,LTFRB_PUJ1053|LTFRB_PUJ1054,2,"Anonas / Molave Intersection, Quezon City, Manila - Ascencion Avenue / Caridad Intersection, Quezon City",True
+LTFRB,Antipolo (Cogeo) - Marikina via Sumulong,LTFRB_PUJ1051,LTFRB_PUJ1051,1,"Martinez St / R. De Jesus Intersection, Antipolo City, Manila - Shoe Ave, Marikina City, Manila",False
+LTFRB,Antipolo - Cubao via Marcos Highway,LTFRB_PUJ1043,LTFRB_PUJ1043|LTFRB_PUJ1044,2,"Martinez St / R. De Jesus Intersection, Antipolo City, Manila - 8th Ave, Quezon City, Manila",True
+LTFRB,Antipolo - Cubao via Sumulong,LTFRB_PUJ1045,LTFRB_PUJ1045|LTFRB_PUJ1046,2,"Martinez St / R. De Jesus Intersection, Antipolo City, Manila - 8th Ave, Quezon City, Manila",True
+LTFRB,Antipolo - EDSA/Shaw Blvd.,LTFRB_PUJ1047,LTFRB_PUJ1047|LTFRB_PUJ1048,2,"Ortigas Avenue Extension / L. Sumulong Memorial Cir Intersection, Antipolo City, Manila - Sheridan / United Street, Mandaluyong City, Manila",True
+LTFRB,Antipolo - JRC Ortigas/Shaw,LTFRB_PUJ1049,LTFRB_PUJ1049|LTFRB_PUJ1050,2,"P. Oliveros St / A. Bonifacio St Intersection, Antipolo City, Manila - Lawson / Shaw Blvd Intersection, Mandaluyong City, Manila",True
+LTFRB,Antipolo-Divisoria via Shaw Blvd,LTFRB_PUB1106,LTFRB_PUB1106|LTFRB_PUB1107,2,"P. Oliveros St, Antipolo City, Manila - Sto. Cristo / Claro M. Recto Ave Intersection, Manila",True
+LTFRB,Antipolo-Pasig,LTFRB_PUJ2470,LTFRB_PUJ2470|LTFRB_PUJ2471,2,"Caruncho Ave / F. Manalo Intersection, Pasig City, Manila - Santo Nino Street, Antipolo",True
+LTFRB,Arroceros - Blumentritt via Dimasalang,LTFRB_PUJ2107,LTFRB_PUJ2107|LTFRB_PUJ2108,2,"Globo de Oro, Manila - Dimasalang / Aurora Boulevard Intersection, Quezon City",True
+LTFRB,Arroceros - Proj. 2 & 3 via Kamuning E. Rodriguez,LTFRB_PUJ1055,LTFRB_PUJ1055|LTFRB_PUJ1056,2,"Molave, Quezon City, Manila - Padre Burgos St, Manila",True
+LTFRB,Arroceros - Roxas Dist. Via Espana,LTFRB_PUJ1057,LTFRB_PUJ1057|LTFRB_PUJ1058,2,"Mayor Antonio J. Villegas Rd, Manilla - Halcon / Espana Boulevard Intersection, Manila",True
+LTFRB,Arroceros Frisco,LTFRB_PUJ2599,LTFRB_PUJ2599|LTFRB_PUJ2600,2,"Taft Ave, Manila - 7/11 Del Monte Avenue, Quezon City",True
+LTFRB,Arroceros Pagasa via Espana QAve,LTFRB_PUJ2277,LTFRB_PUJ2277|LTFRB_PUJ2278|LTFRB_PUJ2279,3,"Taft Ave, Manila - Road 10, Quezon City",True
+LTFRB,Arroceros Philcoa via Quezon Ave,LTFRB_PUJ2601,LTFRB_PUJ2601|LTFRB_PUJ2602,2,"Taft Ave, Manila - Philippine Coconut Authority, Commonwealth Avenue, Quezon City",True
+LTFRB,Arroceros Proj 2&3 via Timog Q ave,LTFRB_PUJ2603,LTFRB_PUJ2603|LTFRB_PUJ2604,2,"Taft Ave, Manila - Tomas Morato Ave, Quezon City, Manila",True
+LTFRB,Arroceros Proj 6 via Quezon Ave,LTFRB_PUJ2605,LTFRB_PUJ2605|LTFRB_PUJ2606,2,"Taft Ave, Manila - West Avenue, Quezon City",True
+LTFRB,Arroceros Proj 7 via Espana,LTFRB_PUJ2607,LTFRB_PUJ2607|LTFRB_PUJ2608,2,"Taft Ave, Manila - FHELSEN, Epifanio de los Santos Avenue, Quezon City",True
+LTFRB,Arroceros Retiro via Dimasalang,LTFRB_PUJ2609,LTFRB_PUJ2609|LTFRB_PUJ2610,2,"Taft Ave, Manila - Dimasalang / Aurora Boulevard Intersection, Quezon City",True
+LTFRB,"Asturias-Ayala via Buendia Ave, Taft Ave",LTFRB_PUB1108,LTFRB_PUB1108|LTFRB_PUB1109,2,"Makati Ave / Ayala Avenue Intersection, Makati City, Manila - President Quirino Ave / Angel Linao Intersection, Manila",True
+LTFRB,Ayala - Mantrade via Pasong Tamo,LTFRB_PUJ1061,LTFRB_PUJ1061|LTFRB_PUJ1062,2,"Sabio St / Chino Roces Ave Intersection, Makati City, Manila - Paseo de Roxas / Ayala Avenue Intersection, Makati City, Manila",True
+LTFRB,Ayala - Pateros via J.P. Rizal,LTFRB_PUJ1059,LTFRB_PUJ1059|LTFRB_PUJ1060,2,"M. Almeda, Pateros, Manila - Makati Ave / A. Arnaiz Ave, Makati City, Manila",True
+LTFRB,Ayala - Washington,LTFRB_PUJ1063,LTFRB_PUJ1063|LTFRB_PUJ1064,2,"Epifanio de los Santos Avenue / McKinley Rd Intersection, Makati City, Manila - Senator Gil Puyat Ave / Washington Intersection, Makati City",True
+LTFRB,Ayala Ave-Ft Boni StaffHouse via Mckinly,LTFRB_PUB1110,LTFRB_PUB1110,1,"McKinley Pkwy / 9th Ave Intersection, Taguig City, Manila - Epifanio de los Santos Avenue / McKinley Rd Intersection, Makati City, Manila",False
+LTFRB,Ayala Balintawak,LTFRB_PUB1065,LTFRB_PUB1065|LTFRB_PUB1066,2,"MRT-3 Ayala Station, Makati City, Manila - Balintawak LRT 1, Epifanio de los Santos Ave, Quezon City, Manila",True
+LTFRB,Ayala Dasmarinas (Cavite) via Coastal Rd,LTFRB_PUB1013,LTFRB_PUB1013|LTFRB_PUB1014,2,"Governor's Dv, Dasmariñas City, Manila - MRT-3 Ayala Station, Makati City, Manila",True
+LTFRB,Ayala Fairview via EDSA,LTFRB_PUB1067,LTFRB_PUB1067|LTFRB_PUB1068,2,"Epifanio de los Santos Av, Makati City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",True
+LTFRB,Ayala Grotto (SJDM) via Leveriza,LTFRB_PUB1015,LTFRB_PUB1015|LTFRB_PUB1016,2,"Senator Gil Puyat Ave, Makati City - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",True
+LTFRB,Ayala Grotto via EDSA,LTFRB_PUB1069,LTFRB_PUB1069|LTFRB_PUB1070,2,"Epifanio de los Santos Av, Makati City, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",True
+LTFRB,Ayala Guadalupe Ibabaw via JP Rizal,LTFRB_PUJ2280,LTFRB_PUJ2280|LTFRB_PUJ2281,2,"Makati Ave / Ayala Avenue Intersection, Makati City, Manila - Dr Jose P. Rizal Ave, Makati City, Manila",True
+LTFRB,Ayala Lagro via EDSA,LTFRB_PUB1071,LTFRB_PUB1071|LTFRB_PUB1072,2,"Epifanio de los Santos Av, Makati City, Manila - Polytechnic School, Quirino Highway, Quezon City",True
+LTFRB,Ayala Malabon via EDSA,LTFRB_PUB1017,LTFRB_PUB1017|LTFRB_PUB1018,2,"MRT-3 Ayala Station, Makati City, Manila - Circimferential Road 4, Malabon City",True
+LTFRB,Ayala Malanday via EDSA,LTFRB_PUB1073,LTFRB_PUB1073|LTFRB_PUB1074,2,"Epifanio de los Santos Avenue / McKinley Rd Intersection, Makati City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",True
+LTFRB,Ayala Monumento via EDSA,LTFRB_PUB1019,LTFRB_PUB1019|LTFRB_PUB1020,2,"MRT-3 Ayala Station, Makati City, Manila - Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City",True
+LTFRB,Ayala NAIA,LTFRB_PUB1021,LTFRB_PUB1021|LTFRB_PUB1022,2,"Natalia, Parañaque City, Manila - MRT-3 Ayala Station, Makati City, Manila",True
+LTFRB,Ayala Novaliches via EDSA Buendia,LTFRB_PUB1023,LTFRB_PUB1023|LTFRB_PUB1024,2,"MRT-3 Ayala Station, Makati City, Manila - Ramirez / Quirino Highway, Caloocan City",True
+LTFRB,Ayala Quiapo via Kamagong Taft,LTFRB_PUB1025,LTFRB_PUB1025|LTFRB_PUB1026,2,"Paseo de Roxas / Ayala Avenue Intersection, Makati City, Manila - Quezon Blvd, Manila",True
+LTFRB,Ayala UE Caloocan via EDSA,LTFRB_PUB1027,LTFRB_PUB1027|LTFRB_PUB1028,2,"MRT-3 Ayala Station, Makati City, Manila - Circimferential Road 4, Malabon City",True
+LTFRB,BACLARAN - ALABANG via N AQUINO AVE,LTFRB_PUJ2089,LTFRB_PUJ2089|LTFRB_PUJ2090,2,"Yellow Station, South Station Complex Spectrum Midway Extension,  Muntinlupa City, Manila - Roxas Blvd, Parañaque City, Manila",True
+LTFRB,BACLARAN - ALABANG via SAN DIONISIO,LTFRB_PUJ2087,LTFRB_PUJ2087|LTFRB_PUJ2088,2,"Yellow Station, South Station Complex Spectrum Midway Extension,  Muntinlupa City, Manila - Roxas Blvd / Redemptorist Road Intersection, Parañaque City, Manila",True
+LTFRB,BACLARAN - DAPITAN via TAFT,LTFRB_PUJ2085,LTFRB_PUJ2085|LTFRB_PUJ2086,2,"Epifanio de los Santos Avenue, Lungsod ng Makati, Manila - Dr.Alejos, Nicanor Roxas Intersection, Manila",True
+LTFRB,BACLARAN - DASMARINAS B BAYAN,LTFRB_PUJ2083,LTFRB_PUJ2083|LTFRB_PUJ2084,2,"Block-B Internal Rd, Lungsod ng Dasmariñas, Manila - Roxas Blvd / C. Rivera Intersection, Parañaque City, Manila",True
+LTFRB,BACLARAN - DIVISORIA,LTFRB_PUJ2081,LTFRB_PUJ2081|LTFRB_PUJ2082,2,"Roxas Blvd, Parañaque City, Manila - Juan Luna, Manila",True
+LTFRB,BACLARAN - HARRISON BUENDIA,LTFRB_PUJ2079,LTFRB_PUJ2079|LTFRB_PUJ2080,2,"Roxas Blvd, Parañaque City, Manila - Hospital, A.Mabini, Manila",True
+LTFRB,BACLARAN - MCU via MABINI,LTFRB_PUJ2077,LTFRB_PUJ2077|LTFRB_PUJ2078,2,"Epifanio de los Santos Avenue / F.B. Harrison St Intersection, Lungsod ng Pasay - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",True
+LTFRB,BACLARAN - QUIAPO,LTFRB_PUJ2075,LTFRB_PUJ2075|LTFRB_PUJ2076,2,"Roxas Blvd, Parañaque City, Manila - Quezon Blvd / P.Paredes Intersection, Manila",True
+LTFRB,BACLARAN - SUCAT SSH via NINOY AQUINO AVE,LTFRB_PUJ2073,LTFRB_PUJ2073|LTFRB_PUJ2074,2,"Dr A. Santos Ave, Parañaque City, Manila - Pinaglabanan / Quirino Avenue, Parañaque City, Manila",True
+LTFRB,BACLARAN - ZAPOTE BACOOR,LTFRB_PUJ2071,LTFRB_PUJ2071|LTFRB_PUJ2072,2,"Quirino Ave, Bacoor City, Manila - Quirino Ave / 12 de Junio Intersection, Parañaque City, Manila",True
+LTFRB,BAGONG SILANG - NOVALICHES,LTFRB_PUJ2069,LTFRB_PUJ2069|LTFRB_PUJ2070,2,"General Luis / Gold Intersection, Caloocan City - Barugo, Caloocan City",True
+LTFRB,BAGONG SILANG - SM FAIRVIEW via MALIGAYA PARK,LTFRB_PUJ2067,LTFRB_PUJ2067|LTFRB_PUJ2068,2,"Mindanao Avenue / Belfast Intersection, Quezon City - Sto. Nino Parish, Old Zabarte, Caloocan City",True
+LTFRB,BAGONG SILANG KALIWA - ROBINSONS FAIRVIEW via ZABARTE,LTFRB_PUJ2065,LTFRB_PUJ2065|LTFRB_PUJ2066,2,"Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila - Un named Road near Langit Road, Caloocan City",True
+LTFRB,BALINTAWAK - GREENFIELDS,LTFRB_PUJ1817,LTFRB_PUJ1817|LTFRB_PUJ1818,2,"Andreas Bonifacio, Quezon City - Bestlink Institute of Information Technology, 121.041724",True
+LTFRB,BALUT - DIVISORIA,LTFRB_PUJ2064,LTFRB_PUJ2064,1,"Timoteo Paez Integrated School, Rodriguez, Manila - Ylayay, Manila",False
+LTFRB,BBB Malolos via McArthur Hway,LTFRB_PUJ2484,LTFRB_PUJ2484|LTFRB_PUJ2485,2,"Calalang General Hospital, MacArthur Highway, Malabon City - Ang Dating Daan, Balagtas",True
+LTFRB,BBB Tullahan Recto via F Huertas Oroqueta,LTFRB_PUJ2480,LTFRB_PUJ2480|LTFRB_PUJ2481,2,"LRT Doroteo Jose-Recto Station Walkway / Rizal Avenue Intersection, Manila - Calalang General Hospital, MacArthur Highway, Malabon City",True
+LTFRB,BBB Tullahan Sta Cruz,LTFRB_PUJ2482,LTFRB_PUJ2482|LTFRB_PUJ2483,2,"Rizal Avenue, Manila - Calalang General Hospital, MacArthur Highway, Malabon City",True
+LTFRB,BEL AIR - WASHINGTON,LTFRB_PUJ2061,LTFRB_PUJ2061|LTFRB_PUJ2062,2,"Epifanio de los Santos Avenue / Senator Gil Puyat Ave, Makati City, Manila - Senator Gil Puyat Ave / Washington Intersection, Makati City",True
+LTFRB,BERNARDINO - DELPAN,LTFRB_PUJ2059,LTFRB_PUJ2059|LTFRB_PUJ2060,2,"Progreso 2, Makati City, Manila - Tejeron, Makati City, Manila",True
+LTFRB,BF Homes Paranaque Sucat SSH,LTFRB_PUJ2611,LTFRB_PUJ2611|LTFRB_PUJ2612,2,"Dr A. Santos Ave, Parañaque City, Manila - Dr A. Santos Ave / President's Ave Intersection, Parañaque City, Manila",True
+LTFRB,BINANGONAN - ANGONO MARKET,LTFRB_PUJ1816,LTFRB_PUJ1816,1,"Quezon Ave, Angono, Manila - Osmena, Binangonan, Manila",False
+LTFRB,BINANGONAN - STA. LUCIA-TROPICAL,LTFRB_PUJ1814,LTFRB_PUJ1814|LTFRB_PUJ1815,2,"M.H. Del Pilar / Osmena Intersection, Binangonan, Manila - Metro East, un-named road near Felix Road, Cainta, Manila",True
+LTFRB,BINANGONAN-CAINTAviaTAYTAY-ANGONO,LTFRB_PUJ1812,LTFRB_PUJ1812|LTFRB_PUJ1813,2,"J.P. Rizal Ave / Baltazar Intersection, Binangonan, Manila - Bonifacio Ave, Cainta, Manila",True
+LTFRB,BLUMENTRIT - BALUT,LTFRB_PUJ2057,LTFRB_PUJ2057|LTFRB_PUJ2058,2,"Jose Abad Santos Avenue, Quezon City - North Bay Boulevard / Rodriguez Intersection, Tondo",True
+LTFRB,BLUMENTRITT - LIBERTAD via MABINI,LTFRB_PUJ2055,LTFRB_PUJ2055|LTFRB_PUJ2056,2,"Antonio Arnaiz Ave / F.B. Harrison St Intersection - Light Rail Transportation 1, Manila",True
+LTFRB,BLUMENTRITT - NOVALICHES,LTFRB_PUJ2053,LTFRB_PUJ2053|LTFRB_PUJ2054,2,"Dimasalang / Aurora Boulevard Intersection, Quezon City - Mindanao Avenue, Quezon City",True
+LTFRB,BLUMENTRITT - P CAMPA via DIMASALANG DELOS REYES,LTFRB_PUJ2051,LTFRB_PUJ2051|LTFRB_PUJ2052,2,"España Blvd / Nicanor Reyes St Intersection, Manila - Dimasalang / Aurora Boulevard Intersection, Quezon City",True
+LTFRB,BLUMENTRITT - PASAY RTDA via MABINI,LTFRB_PUJ2049,LTFRB_PUJ2049|LTFRB_PUJ2050,2,"Epifanio de los Santos Avenue / F.B. Harrison St Intersection, Lungsod ng Pasay - Light Rail Transportation / New Antipolo, Quezon City",True
+LTFRB,BLUMENTRITT - PASAY RTDA via QUIAPO,LTFRB_PUJ2047,LTFRB_PUJ2047|LTFRB_PUJ2048,2,"Taft Ave, Lungsod ng Pasay - Dimasalang / Aurora Boulevard Intersection, Quezon City",True
+LTFRB,BLUMENTRITT - PASAY RTDA via STA CRUZ L GUINTO,LTFRB_PUJ2045,LTFRB_PUJ2045|LTFRB_PUJ2046,2,"Taft Ave, Lungsod ng Pasay - Light Rail Transportation / New Antipolo, Quezon City",True
+LTFRB,BLUMENTRITT - PIER SOUTH via STA CRUZ,LTFRB_PUJ2043,LTFRB_PUJ2043|LTFRB_PUJ2044,2,"Padre Burgos St / Padre Burgos Street Intersection, Manila - Light Rail Transportation / New Antipolo, Quezon City",True
+LTFRB,BLUMENTRITT - PUC,LTFRB_PUJ2041,LTFRB_PUJ2041|LTFRB_PUJ2042,2,"Dimasalang / Aurora Boulevard Intersection, Quezon City - St Francis of Assisi Parish Church, Roxas, Quirino Highway, Quezon City",True
+LTFRB,BLUMENTRITT - QUIAPO,LTFRB_PUJ2039,LTFRB_PUJ2039|LTFRB_PUJ2040,2,"Quezon Blvd, Manila - Dimasalang / Aurora Boulevard Intersection, Quezon City",True
+LTFRB,BLUMENTRITT - REMEDIOS via QUIAPO,LTFRB_PUJ2037,LTFRB_PUJ2037|LTFRB_PUJ2038,2,"Taft Ave, Manila - Andres Bonifacio / Ferdinand Blumentritt Intersection, Quezon City",True
+LTFRB,BONI - KALENTONG,LTFRB_PUJ2035,LTFRB_PUJ2035|LTFRB_PUJ2036,2,"MRT-3 Boni Ave Station , Epifanio de los Santos Ave / Pinatubo, Makati City, Manila - Daang Bakal / New Panaderos Extension Intersection, Manila",True
+LTFRB,BONI - STOP N SHOP,LTFRB_PUJ2033,LTFRB_PUJ2033|LTFRB_PUJ2034,2,"Boni Ave / Epifanio de los Santos Avenue Intersection, Mandaluyong City, Manila - Paltok / Ramon Magsaysay Blvd Intersection, Manila",True
+LTFRB,BUENDIA KALAYAAN - F BONIFACIO,LTFRB_PUJ2031,LTFRB_PUJ2031|LTFRB_PUJ2032,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Kalayaan Ave, Makati City, Manila",True
+LTFRB,BUENDIA LRT - SM MOA,LTFRB_PUJ2029,LTFRB_PUJ2029|LTFRB_PUJ2030,2,"Jose Diokno Blvd, Lungsod ng Pasay - Senator Gil Puyat Ave, Lungsod ng Pasay, Manila",True
+LTFRB,BUENDIA LRT TAFT - GUADALUPE,LTFRB_PUJ2027,LTFRB_PUJ2027|LTFRB_PUJ2028,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Dr Jose P. Rizal Extension, Makati City, Manila",True
+LTFRB,BUENDIA LRT TAFT - MALL OF ASIA,LTFRB_PUJ2025,LTFRB_PUJ2025|LTFRB_PUJ2026,2,"Marina Way, Lungsod ng Pasay - Senator Gil Puyat Ave, Lungsod ng Pasay, Manila",True
+LTFRB,Baclaran - Bacoor,LTFRB_PUJ1065,LTFRB_PUJ1065|LTFRB_PUJ1066,2,"Emilio Aguinaldo Hwy / Tirona Hwy Intersection, Bacoor City, Manila - Roxas Blvd / Redemptorist Road Intersection, Parañaque City, Manila",True
+LTFRB,Baclaran - Bahayang PAG-ASA Subd.,LTFRB_PUJ1101,LTFRB_PUJ1101|LTFRB_PUJ1102,2,"Avenida Rizal / Humabon Street Intersection, Bacoor City, Manila - F.B. Harrison Street / Russel Avenue Intersection, Lungsod ng Pasay, Manila",True
+LTFRB,"Baclaran - Blumentritt via L. Guinto, Quiapo",LTFRB_PUJ1071,LTFRB_PUJ1071|LTFRB_PUJ1072,2,"F.B. Harrison Street / Taft Avenue Extension Intersection, Lungsod ng Pasay, Manila - Ferdinand Blumentritt / Aurora Boulevard Intersection, Quezon City",True
+LTFRB,"Baclaran - Blumentritt via L. Guinto, Sta. Cruz",LTFRB_PUJ1075,LTFRB_PUJ1075|LTFRB_PUJ1076,2,"F.B. Harrison Street / Taft Avenue Extension Intersection, Lungsod ng Pasay, Manila - Pampanga / Light Rail Transit Line, Quezon City",True
+LTFRB,"Baclaran - Blumentritt via Mabini, Quiapo",LTFRB_PUJ1073,LTFRB_PUJ1073|LTFRB_PUJ1074,2,"F.B. Harrison Street / Russel Avenue Intersection, Lungsod ng Pasay, Manila - Dimasalang Birdge / New Antipolo Intersection, Quezon City",True
+LTFRB,"Baclaran - Blumentritt via Mabini, Sta. Cruz",LTFRB_PUJ1077,LTFRB_PUJ1077|LTFRB_PUJ1078,2,"Cuneta Avenue, Lungsod ng Pasay, Manila - New Antipolo / Oroquieta Intersection, Quezon City",True
+LTFRB,Baclaran - Dapitan via Mabini,LTFRB_PUJ1079,LTFRB_PUJ1079|LTFRB_PUJ1080,2,"Roxas Blvd, Parañaque City, Manila - Community Centre, San Isidro Labrador, Quezon City",True
+LTFRB,Baclaran - Divisoria via Mabini,LTFRB_PUJ1081,LTFRB_PUJ1081,1,"Roxas Blvd, Parañaque City, Manila - Juan Luna / Veronica Intersection, Manila",False
+LTFRB,Baclaran - Grotto via Commonwealth Ave,LTFRB_PUB1111,LTFRB_PUB1111|LTFRB_PUB1112,2,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",True
+LTFRB,Baclaran - MIA/Baltao,LTFRB_PUJ1067,LTFRB_PUJ1067|LTFRB_PUJ1068,2,"Ninoy Aquino International Airport, Departures Ramp, Lungsod ng Pasay, Manila - Airport Rd / Domestic Rd Intersection, Parañaque City, Manila",True
+LTFRB,Baclaran - Minuyan via Commonwealth Ave,LTFRB_PUB1113,LTFRB_PUB1113|LTFRB_PUB1114,2,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Quirino Highway, City of San Jose del Monte",True
+LTFRB,Baclaran - Montalban via EDSA,LTFRB_PUB1116,LTFRB_PUB1116,1,"MALTC Bus Station, Gen. A Luna, San Mateo - Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila",False
+LTFRB,Baclaran - Moonwalk via Quirino,LTFRB_PUJ1083,LTFRB_PUJ1083|LTFRB_PUJ1084,2,"Pinaglabanan / Quirino Avenue, Parañaque City, Manila - Alabang-Zapote Road / L. Hernandez Avene Intersection, Muntinlupa City, Manila",True
+LTFRB,Baclaran - Nichols via CAA,LTFRB_PUJ1069,LTFRB_PUJ1069|LTFRB_PUJ1070,2,"Andrews Ave / Sales Road Intersection, Lungsod ng Pasay, Manila - Airport Rd / Domestic Rd Intersection, Parañaque City, Manila",True
+LTFRB,Baclaran - P. Campa via L. Guinto,LTFRB_PUJ1085,LTFRB_PUJ1085|LTFRB_PUJ1086,2,"F.B. Harrison Street / Taft Avenue Extension Intersection, Lungsod ng Pasay, Manila - Quezon Blvd / P.Paredes Intersection, Manila",True
+LTFRB,Baclaran - P. Campa via Mabini,LTFRB_PUJ1087,LTFRB_PUJ1087|LTFRB_PUJ1088,2,"Pinaglabanan / Quirino Avenue, Parañaque City, Manila - P.Paredes / España Blvd Intersection, Manila",True
+LTFRB,Baclaran - Q.I.via Mabini,LTFRB_PUJ1089,LTFRB_PUJ1089|LTFRB_PUJ1090,2,"F.B. Harrison Street / Russel Avenue Intersection, Lungsod ng Pasay, Manila - Lopez Jaena / Eulogio Rodriguez Sr Ave Intersection, Manila",True
+LTFRB,"Baclaran - Retiro via L. Guinto, Quiapo",LTFRB_PUJ1091,LTFRB_PUJ1091,1,"F.B. Harrison Street / Taft Avenue Extension Intersection, Lungsod ng Pasay, Manila - Ferdinand Blumentritt / Aurora Boulevard Intersection, Quezon City",False
+LTFRB,"Baclaran - Retiro via Mabini, Sta. Cruz",LTFRB_PUJ1094,LTFRB_PUJ1094,1,"Pampanga / Pedro Guevarra Intersection, Quezon City - F.B. Harrison Street / Russel Avenue Intersection, Lungsod ng Pasay, Manila",False
+LTFRB,Baclaran - SM Fairview via Lagro C'wealth,LTFRB_PUB1131,LTFRB_PUB1131|LTFRB_PUB1132,2,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Belfast / Bulalakaw Intersection, Quezon City",True
+LTFRB,"Baclaran - SM Fairview via Lagro, Ayala",LTFRB_PUB1133,LTFRB_PUB1133|LTFRB_PUB1134,2,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Belfast / Bulalakaw Intersection, Quezon City",True
+LTFRB,"Baclaran - Sucat/SSH via Imelda Ave.,",LTFRB_PUJ1095,LTFRB_PUJ1095|LTFRB_PUJ1096,2,"Roxas Blvd, Parañaque City, Manila - Dr A. Santos Ave, Parañaque City, Manila",True
+LTFRB,Baclaran - Sucat/SSH via Quirino Ave.,LTFRB_PUJ1097,LTFRB_PUJ1097|LTFRB_PUJ1098,2,"Dr A. Santos Ave, Parañaque City, Manila - Roxas Blvd / Redemptorist Road Intersection, Parañaque City, Manila",True
+LTFRB,Baclaran - Zapote (Las Pinas),LTFRB_PUJ1099,LTFRB_PUJ1099|LTFRB_PUJ1100,2,"Quirino Ave, Bacoor City, Manila - Redemptorist Road, Parañaque City, Manila",True
+LTFRB,Baclaran Dapitan via L Guinto,LTFRB_PUJ2163,LTFRB_PUJ2163|LTFRB_PUJ2164,2,"Taft Avenue Extension / Narra Street Intersection, Lungsod ng Pasay, Manila - Dr.Alejos, Nicanor Roxas Intersection, Manila",True
+LTFRB,Baclaran Divisoria via L Guinto,LTFRB_PUJ2472,LTFRB_PUJ2472|LTFRB_PUJ2473,2,"Taft Avenue Extension / Epifanio de los Santos Avenue, Lungsod ng Pasay, Manila - Sto Cristo, Manila City",True
+LTFRB,Baclaran Escolta via Jones,LTFRB_PUJ2165,LTFRB_PUJ2165|LTFRB_PUJ2166,2,"Cuneta Avenue, Lungsod ng Pasay, Manila - Quintin Paredes, Manila",True
+LTFRB,Baclaran Malabon (Letre) via EDSA,LTFRB_PUB1029,LTFRB_PUB1029|LTFRB_PUB1030,2,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Circimferential Road 4, Malabon City",True
+LTFRB,Baclaran Malanday via EDSA,LTFRB_PUB1031,LTFRB_PUB1031|LTFRB_PUB1032,2,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",True
+LTFRB,Baclaran Monumento via EDSA,LTFRB_PUB1033,LTFRB_PUB1033|LTFRB_PUB1034,2,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",True
+LTFRB,Baclaran Navotas via Ayala,LTFRB_PUB1035,LTFRB_PUB1035|LTFRB_PUB1036,2,"Roxas Blvd / Redemptorist Road Intersection, Parañaque City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",True
+LTFRB,Baclaran Nichols,LTFRB_PUJ2282,LTFRB_PUJ2282|LTFRB_PUJ2283,2,"Villamor Health Center, Andrews Avenue, Pasay City, Manila - Roxas Blvd / Redemptorist Road Intersection, Parañaque City, Manila",True
+LTFRB,Baclaran Novaliches via EDSA Quirino,LTFRB_PUB1037,LTFRB_PUB1037|LTFRB_PUB1038,2,"Natalia, Parañaque City, Manila - SM Cinema,Quirino Highway, Quezon City",True
+LTFRB,Baclaran SJDM via Commonwealth EDSA,LTFRB_PUB1039,LTFRB_PUB1039|LTFRB_PUB1040,2,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Dr Eduardo V. Roquero Sr. Rd, City of San Jose del Monte, Manila",True
+LTFRB,Baclaran SM Fairview via Lagro,LTFRB_PUB1041,LTFRB_PUB1041|LTFRB_PUB1042,2,"Maria, Parañaque City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",True
+LTFRB,Baclaran Zapote via Redemptorist,LTFRB_PUJ2167,LTFRB_PUJ2167|LTFRB_PUJ2168,2,"Quirino Ave, Bacoor City, Manila - F.B. Harrison Street / Taft Avenue Extension Intersection, Lungsod ng Pasay, Manila",True
+LTFRB,Baclaran-BgSilang via Edsa Commonwealth,LTFRB_PUB1117,LTFRB_PUB1117|LTFRB_PUB1118,2,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Green Construction Supply, Langit Road, Caloocan City",True
+LTFRB,"Baclaran-Malanday via Edsa, McArthur",LTFRB_PUB1120,LTFRB_PUB1120|LTFRB_PUB1121,2,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",True
+LTFRB,"Baclaran-Malanday viaEDSA, McArthur, Ayala",LTFRB_PUB1122,LTFRB_PUB1122|LTFRB_PUB1123,2,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - C.P. Enerton Fuel Station, MacArthur Highway, Valenzuela City, Philippines",True
+LTFRB,Baclaran-Navotas Terminal via EDSA,LTFRB_PUB1124,LTFRB_PUB1124|LTFRB_PUB1125,2,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",True
+LTFRB,Baclaran-Navotas Terminal via Edsa Ayala,LTFRB_PUB1126,LTFRB_PUB1126|LTFRB_PUB1127,2,"San Juan De Dios Educational Foundation, Incorporated, Pasay City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",True
+LTFRB,Baclaran-Novaliches via EDSA Mindanao Ave,LTFRB_PUB1128,LTFRB_PUB1128,1,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Quirino Highway, Quezon City",False
+LTFRB,Baclaran-Nvaliches via EDSA Mind AveAyala,LTFRB_PUB1129,LTFRB_PUB1129|LTFRB_PUB1130,2,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Quirino Highway, Quezon City",True
+LTFRB,Baclaran-SM Fairview via Quezon Ave,LTFRB_PUB1135,LTFRB_PUB1135|LTFRB_PUB1136,2,"Taft Ave / Josefa Llanes Escoda Intersection, Manila - Belfast / Bulalakaw Intersection, Quezon City",True
+LTFRB,Bacood - R. Magsaysay/Old Sta. Mesa,LTFRB_PUJ1103,LTFRB_PUJ1103|LTFRB_PUJ1104,2,"Bacood / Dalisay Intersection, Manila - Ramon Magsaysay Blvd / Altura Intersection, Manila",True
+LTFRB,Bacood Quiapo (Barbosa) via R Magsaysay,LTFRB_PUJ2284,LTFRB_PUJ2284|LTFRB_PUJ2285|LTFRB_PUJ2286,3,"Bacood / Dalisay Intersection, Manila - Legarda, Manila",True
+LTFRB,Bagong Barrio - G. De Jesus/EDSA,LTFRB_PUJ1105,LTFRB_PUJ1105|LTFRB_PUJ1106,2,"Malabon / Milagrosa Intersection, Caloocan City - Epifanio de los Santos Avenue, Caloocan City",True
+LTFRB,Bagong Nayon II - Marikina Town,LTFRB_PUJ1107,LTFRB_PUJ1107|LTFRB_PUJ1108,2,"Un-named road near Marcos Hwy, Antipolo City, Manila - Shoe Ave, Marikina City, Manila",True
+LTFRB,Bagong Silang - Ever Gotesco extended to Philcoa,LTFRB_PUJ1400,LTFRB_PUJ1400|LTFRB_PUJ1401|LTFRB_PUJ1402,3,"Kalayaan Ave / Elliptical Rd Intersection, Quezon City, Manila - Old Zabarte / Langit Road Intersection, Caloocan City",True
+LTFRB,"Bagong Silang - NAIA via Maligaya Park, EDSA",LTFRB_PUB1139,LTFRB_PUB1139|LTFRB_PUB1140,2,"Maria, Parañaque City, Manila - Green Construction Supply, Langit Road, Caloocan City",True
+LTFRB,Bagong Silang - Novaliches (TP) via Susano,LTFRB_PUJ1116,LTFRB_PUJ1116,1,"Un named Road near Langit Road, Caloocan City - General Luis / Gold Intersection, Caloocan City",False
+LTFRB,"Bagong Silang - Philcoa via Commonwealth Ave., Maligaya Park",LTFRB_PUJ1405,LTFRB_PUJ1405,1,"Sto. Nino Parish, Old Zabarte, Caloocan City - Philippine Coconut Authority, Commonwealth Avenue, Quezon City",False
+LTFRB,Bagong Silang - Robinson's Fairview via Zabarte Rd.,LTFRB_PUJ1117,LTFRB_PUJ1117|LTFRB_PUJ1118,2,"Quirino Highway / Maligaya Intersection, Caloocan City - Un named Road near Langit Road, Caloocan City",True
+LTFRB,Bagong Silang - Sta. Cruz via Malinta Exit,LTFRB_PUB1137,LTFRB_PUB1137|LTFRB_PUB1138,2,"T. Mapua, Manila - Langit Road, Caloocan City",True
+LTFRB,Bagong Silang Ever Gotesco via Zabarte,LTFRB_PUJ2287,LTFRB_PUJ2287|LTFRB_PUJ2288|LTFRB_PUJ2289,3,"Commonwealth Avenue / Capitol Homes Drive Intersection, Quezon City - Commonwealth Avenue / Kalayaan A Intersection, Quezon City",True
+LTFRB,Bagong Silang SM Fairview via Maligaya Park,LTFRB_PUJ2293,LTFRB_PUJ2293,1,"Rhexan Academy, Langit Road, Caloocan City - Mindanao Avenue / Belfast Intersection, Quezon City",False
+LTFRB,Bagong Silang SM Fairview via Zabarte Road,LTFRB_PUJ2290,LTFRB_PUJ2290,1,"Mindanao Avenue / Belfast Intersection, Quezon City - Rhexan Academy, Langit Road, Caloocan City",False
+LTFRB,Bagumbayan (Taguig) - Pasig (TP) via San Joaquin,LTFRB_PUJ1109,LTFRB_PUJ1109|LTFRB_PUJ1110,2,"Manuel L. Quezon, Muntinlupa City, Manila - Caruncho Ave / Market Ave Intersection, Pasig City, Manila",True
+LTFRB,Bagumbayan (Taguig) - Sucat,LTFRB_PUJ1113,LTFRB_PUJ1113|LTFRB_PUJ1114,2,"Manuel L. Quezon, Muntinlupa City, Manila - Manuel L. Quezon, Muntinlupa City, Manila",True
+LTFRB,Bagumbayan Palengke (Pasig),LTFRB_PUJ2294,LTFRB_PUJ2294|LTFRB_PUJ2295,2,"Manuel L. Quezon, Muntinlupa City, Manila - Balderama, Pasig City, Manila",True
+LTFRB,Balete Drive/E. Rodriguez Loop Service,LTFRB_PUJ1129,LTFRB_PUJ1129,1,"Eulogio Rodriguez Sr. Ave / Balete Dr Intersection, Quezon City, Manila - Balete Dr / Sampaguita Intersection, Quezon City, Manila",False
+LTFRB,Balic - Balic (Galas) - Quiapo (Barbosa) via Lepanto,LTFRB_PUJ1128,LTFRB_PUJ1128,1,"R Hidalgo, Manila - Unang Hakbang / Luzon Ave",False
+LTFRB,Balic - Balic - Bustillos via G. Tuazon,LTFRB_PUJ1121,LTFRB_PUJ1121|LTFRB_PUJ1122,2,"Jollibee Figueras Legarda / Bustillos Intersection, Manila - Unang Hakbang / Luzon Ave",True
+LTFRB,Balic - Balic - Espana/M. Dela Fuente,LTFRB_PUJ1123,LTFRB_PUJ1123|LTFRB_PUJ1124,2,"Unang Hakbang / Luzon Ave - Vicente G Cruz / Florentino Intersection, Manila",True
+LTFRB,Balic - Balic - Quiapo (Barbosa) via Lepanto,LTFRB_PUJ1125,LTFRB_PUJ1125,1,"Unang Hakbang / Luzon Ave - R Hidalgo, Manila",False
+LTFRB,Balintawak - Blumentritt,LTFRB_PUJ1130,LTFRB_PUJ1130|LTFRB_PUJ1131,2,"Ferdinand Blumentritt / Aurora Boulevard Intersection, Quezon City - Andreas Bonifacio, Quezon City",True
+LTFRB,Balintawak - Camarin via Susano,LTFRB_PUJ1132,LTFRB_PUJ1132|LTFRB_PUJ1133,2,"Quirino Highway, Quezon City - Zabarte Road / Camarin Road Intersection, Caloocan City",True
+LTFRB,Balintawak - Frisco,LTFRB_PUJ1134,LTFRB_PUJ1134|LTFRB_PUJ1135,2,"San Pedro Bautisa / Bernardo Intersection, Quezon City - Old Samson Road, Quezon City",True
+LTFRB,Balintawak - Lagro via Novaliches,LTFRB_PUJ1136,LTFRB_PUJ1136|LTFRB_PUJ1137,2,"North Luzon Expressway near Bonifacio Memorial Elementary School, Caloocan City - Ascencion Avenue / Zagala Intersection, Quezon City",True
+LTFRB,Balintawak - Monumento via A. Bonifacio,LTFRB_PUJ1138,LTFRB_PUJ1138|LTFRB_PUJ1139,2,"Andreas Bonifacio, Quezon City - Bonifacio Market, MacArthur Highway, Caloocan City",True
+LTFRB,Balintawak - Novaliches via Quirino Hi-way,LTFRB_PUJ1140,LTFRB_PUJ1140|LTFRB_PUJ1141,2,"Andreas Bonifacio, Quezon City - Susano / General Luis Intersection, Caloocan City",True
+LTFRB,Balintawak - PUC via BAESA,LTFRB_PUJ1142,LTFRB_PUJ1142|LTFRB_PUJ1143,2,"Andreas Bonifacio, Quezon City - St Francis of Assisi Parish Church, Roxas, Quirino Highway, Quezon City",True
+LTFRB,Balintawak Blumentritt via Bonifacio,LTFRB_PUJ2169,LTFRB_PUJ2169|LTFRB_PUJ2170,2,"Dimasalang / Aurora Boulevard Intersection, Quezon City - Susano / General Luis Intersection, Caloocan City",True
+LTFRB,Balintawak De la Costa,LTFRB_PUJ2171,LTFRB_PUJ2171|LTFRB_PUJ2172,2,"Andreas Bonifacio, Quezon City - Bestlink Institute of Information Technology, 121.041724",True
+LTFRB,Balintawak Monumento via Balong Bato,LTFRB_PUJ2173,LTFRB_PUJ2173|LTFRB_PUJ2174,2,"Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City - Epifanio de los Santos Avenue, Caloocan City",True
+LTFRB,Balintawak Novaliches via Quirino highway,LTFRB_PUJ2296,LTFRB_PUJ2296|LTFRB_PUJ2297,2,"Andreas Bonifacio, Quezon City - Dumalay, Quezon City",True
+LTFRB,Balintawak Sta Quiteria,LTFRB_PUJ2175,LTFRB_PUJ2175|LTFRB_PUJ2176,2,"Andreas Bonifacio, Quezon City - Baesa Road / Roxas Intersection, Quirino Highway, Quezon City",True
+LTFRB,Baliwag Bocaue,LTFRB_PUJ2474,LTFRB_PUJ2474|LTFRB_PUJ2475,2,"Bocaue Public Market, MacArthur Highway, Bocaue, Bulacan - Ang Dating Daan, Balagtas",True
+LTFRB,Baliwag Malinta,LTFRB_PUJ2476,LTFRB_PUJ2476|LTFRB_PUJ2477,2,"MacDonalds, MacArthur Highway, City of Meycauayan - Ang Dating Daan, Balagtas",True
+LTFRB,Balut - Divisoria,LTFRB_PUJ1144,LTFRB_PUJ1144|LTFRB_PUJ1145,2,"Ylayay, Manila - Timoteo Paez Integrated School, Rodriguez, Manila",True
+LTFRB,Bangkusay Divisoria,LTFRB_PUJ2298,LTFRB_PUJ2298|LTFRB_PUJ2299,2,"Wet Market, Juan Luma, Manila - Velasquez, Manila City",True
+LTFRB,Bel-Air-Washington,LTFRB_PUJ1148,LTFRB_PUJ1148|LTFRB_PUJ1149,2,"Washington / E.Jacinto Intersection, Makati City - Canopus / Jupiter Intersection, Makati City, Manila",True
+LTFRB,Bicutan (Taguig) - Pasig (TP) via Pateros,LTFRB_PUJ1150,LTFRB_PUJ1150|LTFRB_PUJ1151,2,"Adia Bagumbayan Manuel L. Quezon, Taguig City, Manila - Balderama, Pasig City, Manila",True
+LTFRB,Bicutan Pasay RTDA,LTFRB_PUJ2300,LTFRB_PUJ2300|LTFRB_PUJ2301|LTFRB_PUJ2302,3,"South Luzon Expressway, Muntinlupa City, Manila - Epifanio de los Santos Avenue, Lungsod ng Pasay",True
+LTFRB,Binan Bicutan(Taguig) via Alabang,LTFRB_PUJ2303,LTFRB_PUJ2303|LTFRB_PUJ2304,2,"A Mabini Street, Binan City - Centennial Road, Montinlupa City",True
+LTFRB,Binan Bicutan(Taguig) via Sucat SSH,LTFRB_PUJ2305,LTFRB_PUJ2305|LTFRB_PUJ2306,2,"Jac Liner Bus Terminal, Binan City - South Luzon Expressway, Parañaque City, Manila",True
+LTFRB,Binangonan - JRC via Angono,LTFRB_PUJ1152,LTFRB_PUJ1152|LTFRB_PUJ1153,2,"Quezon Ext. Binangonan, Manila - Shaw Blvd, Mandaluyong City, Manila",True
+LTFRB,Binangonan - Marcos Highway via Manila East Road,LTFRB_PUJ1154,LTFRB_PUJ1154|LTFRB_PUJ1155,2,"Felix Ave, Cainta, Manila - Osmena, Binangonan, Manila",True
+LTFRB,Binangonan - Pasig (TP),LTFRB_PUJ1156,LTFRB_PUJ1156|LTFRB_PUJ1157,2,"Quezon Ext. Binangonan, Manila - Market Ave, Pasig City, Manila",True
+LTFRB,Binangonan-Cainta,LTFRB_PUJ2486,LTFRB_PUJ2486|LTFRB_PUJ2487,2,"Manila East Rd, Binangonan, Manila - Elementary School, Cainta, Manila",True
+LTFRB,Binangonan-EDSA Shaw via Angono,LTFRB_PUJ2488,LTFRB_PUJ2488|LTFRB_PUJ2489,2,"Manila East Rd, Binangonan, Manila - Ortigas Ave, Pagis City, Manila",True
+LTFRB,Binangonan-Rosario,LTFRB_PUJ2490,LTFRB_PUJ2490|LTFRB_PUJ2491,2,"Manila East Rd, Binangonan, Manila - W Bank Rd / Ortigas Ave Intersection, Pasig City, Manila",True
+LTFRB,Binangonan-Shaw Blvd,LTFRB_PUJ2492,LTFRB_PUJ2492|LTFRB_PUJ2493,2,"Manila East Rd, Binangonan, Manila - Meralco Ave, Pasig City, Manila",True
+LTFRB,Binangonan-Taytay via Angono,LTFRB_PUJ2494,LTFRB_PUJ2494|LTFRB_PUJ2495,2,"Manila East Rd, Binangonan, Manila - Rodriguez Ave, Taytay, Manila",True
+LTFRB,Blumentrit Mabini via Quiapo,LTFRB_PUJ2177,LTFRB_PUJ2177|LTFRB_PUJ2178,2,"Hospital, A.Mabini, Manila - Ferdinand Blumentritt / Aurora Boulevard Intersection, Quezon City",True
+LTFRB,Blumentrit Rtda v Sta Cruz,LTFRB_PUJ2179,LTFRB_PUJ2179|LTFRB_PUJ2180,2,"Rizal Avenue, Manila - Light Rail Transit Line / Bulacan Intersection, Quezon City",True
+LTFRB,Blumentrit Vito Cruz via L Guinto Sta C,LTFRB_PUJ2181,LTFRB_PUJ2181|LTFRB_PUJ2182,2,"HP Village Square, Pablo Ocampo Sr., Manila - Light Rail Transportation 1, Manila",True
+LTFRB,Blumentrit Vito Cruz via Quiapo Mabini,LTFRB_PUJ2183,LTFRB_PUJ2183|LTFRB_PUJ2184,2,"HP Village Square, Pablo Ocampo Sr., Manila - Dimasalang / Aurora Boulevard Intersection, Quezon City",True
+LTFRB,Blumentritt - Divisoria,LTFRB_PUJ1159,LTFRB_PUJ1159,1,"Light Rail Transportation / New Antipolo, Quezon City - Claro M. Recto Ave / Jose Abad Santos Ave. Intersection, Manila",False
+LTFRB,Blumentritt - Frisco,LTFRB_PUJ1160,LTFRB_PUJ1160|LTFRB_PUJ1161,2,"Light Rail Transportation / New Antipolo, Quezon City - Del Monte Avenue / Roosevelt Avenue Intersection, Quezon City",True
+LTFRB,Blumentritt - I. Delos Reyes/P. Campa via Dimasalang,LTFRB_PUJ1162,LTFRB_PUJ1162|LTFRB_PUJ1163,2,"Alfonso Mendoza, Manila - Light Rail Transportation / New Antipolo, Quezon City",True
+LTFRB,"Blumentritt - Libertad via Quiapo, L. Guinto",LTFRB_PUJ1164,LTFRB_PUJ1164|LTFRB_PUJ1165,2,"Dimasalang / Aurora Boulevard Intersection, Quezon City - Taft Avenue Extension / Epifanio de los Santos Avenue, Lungsod ng Pasay, Manila",True
+LTFRB,"Blumentritt - Libertad via Quiapo, Mabini",LTFRB_PUJ1166,LTFRB_PUJ1166|LTFRB_PUJ1167,2,"Cuneta Avenue, Lungsod ng Pasay, Manila - Dimasalang / Aurora Boulevard Intersection, Quezon City",True
+LTFRB,"Blumentritt - Libertad via Sta. Cruz, L. Guinto",LTFRB_PUJ1168,LTFRB_PUJ1168|LTFRB_PUJ1169,2,"Antonio Arnaiz Ave / F.B. Harrison St Intersection - Light Rail Transit Line / Bulacan Intersection, Quezon City",True
+LTFRB,"Blumentritt - Libertad via Sta. Cruz, Mabini",LTFRB_PUJ1170,LTFRB_PUJ1170|LTFRB_PUJ1171,2,"Antonio Arnaiz Ave / F.B. Harrison St Intersection - Old Antipolo / Felix Huetas Intersection, Quezon City",True
+LTFRB,Blumentritt - North Harbor via Divisoria,LTFRB_PUJ1172,LTFRB_PUJ1172|LTFRB_PUJ1173,2,"Antonio Rivera, Manila - Light Rail Transportation / New Antipolo, Quezon City",True
+LTFRB,"Blumentritt - Pasay RTDA via Sta. Cruz, L. Guinto",LTFRB_PUJ1176,LTFRB_PUJ1176|LTFRB_PUJ1177,2,"New Antipolo / Oroquieta Intersection, Quezon City - Epifanio de los Santos Avenue, Lungsod ng Pasay",True
+LTFRB,"Blumentritt - Pasay RTDA. via Quiapo, L. Guinto",LTFRB_PUJ1174,LTFRB_PUJ1174|LTFRB_PUJ1175,2,"Light Rail Transportation / New Antipolo, Quezon City - Taft Avenue Extension / Epifanio de los Santos Avenue, Lungsod ng Pasay, Manila",True
+LTFRB,"Blumentritt - Pasay RTDA. via Sta. Cruz, Mabini",LTFRB_PUJ1178,LTFRB_PUJ1178|LTFRB_PUJ1179,2,"Old Antipolo / Felix Huetas Intersection, Quezon City - Epifanio de los Santos Avenue, Lungsod ng Pasay",True
+LTFRB,"Blumentritt - Remedios via Quiapo, L. Guinto",LTFRB_PUJ1180,LTFRB_PUJ1180|LTFRB_PUJ1181,2,"Light Rail Transportation / New Antipolo, Quezon City - Leon Guinto Sr., Manila",True
+LTFRB,Blumentritt - Retiro,LTFRB_PUJ1182,LTFRB_PUJ1182|LTFRB_PUJ1183,2,"Light Rail Transportation / New Antipolo, Quezon City - N. S. Amoranto Sr. Avenue / Banawe Avenue Intersection, Quezon City",True
+LTFRB,Blumentritt - Sta. Quiteria,LTFRB_PUJ1184,LTFRB_PUJ1184|LTFRB_PUJ1185,2,"Ferdinand Blumentritt / Felix Huertas Intersection, Quezon City - Roxas, Quirino Highway, Quezon City",True
+LTFRB,"Blumentritt - Vito Cruz via Quiapo, Mabini",LTFRB_PUJ1186,LTFRB_PUJ1186|LTFRB_PUJ1187,2,"Light Rail Transportation / New Antipolo, Quezon City - HP Village Square, Pablo Ocampo Sr., Manila",True
+LTFRB,Blumentritt Recto via F Huertas Oroquit,LTFRB_PUJ2185,LTFRB_PUJ2185|LTFRB_PUJ2186,2,"LRT Doroteo Jose-Recto Station Walkway / Rizal Avenue Intersection, Manila - T. Mapua / Laguna Intersection, Quezon City",True
+LTFRB,Blumentritt Vito Cruz L Guinto,LTFRB_PUJ2187,LTFRB_PUJ2187|LTFRB_PUJ2188,2,"President Quirino Ave / Taft Ave Intersection, Manila - Light Rail Transportation / New Antipolo, Quezon City",True
+LTFRB,Boni (Robinson's Complex) - Kalentong/JRC,LTFRB_PUJ1192,LTFRB_PUJ1192|LTFRB_PUJ1193,2,"Pioneer Studios, Pioneer, Pasig City, Manila - New Panaderos Extension / 34 Rte Rev. G. Aglipay Intersection, Mandaluyong City",True
+LTFRB,Boni - Kalentong/JRC via Boni Ave.,LTFRB_PUJ1190,LTFRB_PUJ1190|LTFRB_PUJ1191,2,"Arayat, Mandaluyong City, Manila - New Panaderos Extension / 34 Rte Rev. G. Aglipay Intersection, Mandaluyong City",True
+LTFRB,Boni Pinatubo Kalentong JRU,LTFRB_PUJ2307,LTFRB_PUJ2307|LTFRB_PUJ2308,2,"Sierra Madre, Makati City, Manila - New Panaderos / Castañeda Intersection, Manila",True
+LTFRB,Boni Pinatubo StopnShop via Pinagtipunan,LTFRB_PUJ2309,LTFRB_PUJ2309|LTFRB_PUJ2310,2,"Sierra Madre, Makati City, Manila - Ramon Magsaysay Blvd / Altura Intersection, Manila",True
+LTFRB,Boni/Pinatubo - Kalentong/JRC,LTFRB_PUJ1188,LTFRB_PUJ1188|LTFRB_PUJ1189,2,"Arayat, Mandaluyong City, Manila - Daang Bakal / New Panaderos Extension Intersection, Manila",True
+LTFRB,Boni/Pinatubo - Stop & Shop,LTFRB_PUJ1194,LTFRB_PUJ1194|LTFRB_PUJ1195,2,"Arayat, Mandaluyong City, Manila - Ramon Magsaysay Blvd / Altura Intersection, Manila",True
+LTFRB,Brgy Ayala Alabang Alabang Market,LTFRB_PUJ2613,LTFRB_PUJ2613|LTFRB_PUJ2614,2,"Spectrum Midway Extension, Montinlupa City - Avacia Avenue, Montinlupa City",True
+LTFRB,Brgy Bagong Silangan Sampaguita via Marcos Ave,LTFRB_PUJ2311,LTFRB_PUJ2311|LTFRB_PUJ2312,2,"Department of Social Welfare and Development, J.P Rizal, Quezon City - J.P Rizal / Macabulos Intersection, Quezon City",True
+LTFRB,Brgy. Bagong Silangan - Marcos Rd. via Sampaguita Road,LTFRB_PUJ1111,LTFRB_PUJ1111|LTFRB_PUJ1112,2,"J.P Rizal / Gen. Villamor Intersection, Quezon City - Commonwealth Avenue / Capitol Homes Drive Intersection, Quezon City",True
+LTFRB,"Brgy. San Rafael (Rodriguez) - Quezon City Hall via Maly (San Mateo, Rizal*",LTFRB_PUJ1146,LTFRB_PUJ1146|LTFRB_PUJ1147,2,"Kalayaan Ave / Elliptical Rd Intersection, Quezon City, Manila - MH del Pilar Street near Pig Farm, Rodriguez",True
+LTFRB,Buendia (Crispa) - PRC via P. Tamo,LTFRB_PUJ1196,LTFRB_PUJ1196|LTFRB_PUJ1197,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - A. Reyes Ave, Makati City, Manila",True
+LTFRB,CAINTA - ANGONO (ONE WAY ONLY),LTFRB_PUJ2024,LTFRB_PUJ2024,1,"Quezon Ave, Angono, Manila - Bonifacio Ave / ML Quezon St, Cainta, Manila",False
+LTFRB,CAINTA - ANGONO via BINANGONAN,LTFRB_PUJ2022,LTFRB_PUJ2022|LTFRB_PUJ2023,2,"Quezon Ave, Angono, Manila - Bonifacio Ave, Cainta, Manila",True
+LTFRB,CAINTA - CUBAO,LTFRB_PUJ2020,LTFRB_PUJ2020|LTFRB_PUJ2021,2,"Elementary School, Cainta, Manila - APAC Customer Services, Inc., P. Tuazon Blvd, Quezon City, Manila",True
+LTFRB,CALUMPANG - KATIPUNAN,LTFRB_PUJ2018,LTFRB_PUJ2018|LTFRB_PUJ2019,2,"J. P. Rizal St, Marikina City, Manila - St. Bridget School, Quezon City, Manila",True
+LTFRB,CAMARIN - NOVALICHES BAYAN,LTFRB_PUJ2016,LTFRB_PUJ2016|LTFRB_PUJ2017,2,"Topaz, Caloocan City - Camarin Road / Ilang - Ilang Intersection, Caloocan City",True
+LTFRB,CAMARIN - QMC PHILCOA,LTFRB_PUJ2014,LTFRB_PUJ2014|LTFRB_PUJ2015,2,"Quezon Avenue, Quezon City - Camarin Road / Ilang - Ilang Intersection, Caloocan City",True
+LTFRB,CAMARIN - SM FAIRVIEW MALIGAYA,LTFRB_PUJ2012,LTFRB_PUJ2012|LTFRB_PUJ2013,2,"Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila - Camarin Road / Ilang - Ilang Intersection, Caloocan City",True
+LTFRB,CCP Complex - Taft Ave. via Vito Cruz,LTFRB_PUJ1214,LTFRB_PUJ1214|LTFRB_PUJ1215,2,"Jose Diokno Blvd, Lungsod ng Pasay, Manila - Taft Avenue / Pablo Ocampo Sreet, Avenue, Manila",True
+LTFRB,COMMONWEALTH MARKET - PABAHAY NI ERAP,LTFRB_PUJ2010,LTFRB_PUJ2010|LTFRB_PUJ2011,2,"Commonwealth Avenue, Quezon City - Un- named Road, Rodriguez",True
+LTFRB,COMMONWEALTH MARKET STA LUCIA Q PLAZA,LTFRB_PUJ2189,LTFRB_PUJ2189|LTFRB_PUJ2190,2,"Marcos Hwy / Gunting St Intersection, Antipolo City, Manila - Commonwealth Avenue, Quezon City",True
+LTFRB,CRAME - SAN JUAN via PINAGLABANAN,LTFRB_PUJ2008,LTFRB_PUJ2008|LTFRB_PUJ2009,2,"N.Domingo,  San Juan, Manila - Santolan Rd, Quezon City, Manila",True
+LTFRB,CUBAO (MERCURY) ROCES SUPER PALENGKE,LTFRB_PUJ2193,LTFRB_PUJ2193|LTFRB_PUJ2194,2,"Eulogio Rodriguez Sr. Ave, Quezon City, Manila - Don Alejandro Roces Ave / Scout Reyes Intersection, Quezon City, Manila",True
+LTFRB,CUBAO - CALUMPANG via H ROXAS,LTFRB_PUJ2006,LTFRB_PUJ2006,1,"General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila - J. P. Rizal St, Marikina City, Manila",False
+LTFRB,CUBAO - KALUMPANG,LTFRB_PUJ2004,LTFRB_PUJ2004|LTFRB_PUJ2005,2,"J. P. Rizal St, Marikina City, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",True
+LTFRB,CUBAO - MONTALBAN,LTFRB_PUJ2002,LTFRB_PUJ2002|LTFRB_PUJ2003,2,"Aurora Blvd, Quezon City, Manila - MH del Pilar Street, Rodriguez",True
+LTFRB,CUBAO - PADILLA,LTFRB_PUJ2000,LTFRB_PUJ2000|LTFRB_PUJ2001,2,"Un-named road near Marcos Hwy, Antipolo City, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",True
+LTFRB,CUBAO - PARANG,LTFRB_PUJ1999,LTFRB_PUJ1999,1,"Gen. B. G. Molina St, Marikina City, Manila - Aurora Blvd / General Aguinaldo Ave Intersection, Quezon City, Manila",False
+LTFRB,CUBAO - QUIAPO,LTFRB_PUJ1996,LTFRB_PUJ1996,1,"Quezon Blvd, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",False
+LTFRB,CUBAO - REMEDIOS,LTFRB_PUJ1994,LTFRB_PUJ1994|LTFRB_PUJ1995,2,"Taft Ave, Manila - Aurora Blvd, Quezon City, Manila",True
+LTFRB,CUBAO - SAN JUAN,LTFRB_PUJ1811,LTFRB_PUJ1811,1,"P. A. Bernardo, Quezon City, Manila - F. Blumentritt / N.Domingo Intersection, Manila",False
+LTFRB,CUBAO - SILANGANAN,LTFRB_PUJ1992,LTFRB_PUJ1992|LTFRB_PUJ1993,2,"Aurora Blvd, Quezon City, Manila - Fortune Tobacco Corporation, Marikina City, Manila",True
+LTFRB,CUBAO - SSS VILLAGE,LTFRB_PUJ1990,LTFRB_PUJ1990|LTFRB_PUJ1991,2,"General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila - Horizon St, Marikina City, Manila",True
+LTFRB,CUBAO - V CRUZ,LTFRB_PUJ1988,LTFRB_PUJ1988|LTFRB_PUJ1989,2,"Century Park, Un-named road near A.Mabini, Manila - Aurora Blvd, Quezon City, Manila",True
+LTFRB,CUBAO - V.LUNA,LTFRB_PUJ1821,LTFRB_PUJ1821|LTFRB_PUJ1822,2,"P. A. Bernardo, Quezon City, Manila - V. Luna Hospital, V. Luna Ave, Quezon City, Manila",True
+LTFRB,CUBAO - WELCOME ROTONDA,LTFRB_PUJ1986,LTFRB_PUJ1986|LTFRB_PUJ1987,2,"Halcon / Espana Boulevard Intersection, Manila - Aurora Blvd / Epifanio de los Santos Avenue Intersection, Quezon City, Manila",True
+LTFRB,CUBAO ARAYAT - QMC,LTFRB_PUJ1809,LTFRB_PUJ1809,1,"Elliptical Rd / Commonwealth Avenue Intersection, Quezon City - P. A. Bernardo, Quezon City, Manila",False
+LTFRB,CUBAO DIVISORIA,LTFRB_PUJ2197,LTFRB_PUJ2197|LTFRB_PUJ2198,2,"Claro M. Recto Ave / Jose Abad Santos Ave. Intersection, Manila - Aurora Blvd / Epifanio de los Santos Avenue Intersection, Quezon City, Manila",True
+LTFRB,CUBAO KALAYAAN - FAIRVIEW,LTFRB_PUJ1984,LTFRB_PUJ1984|LTFRB_PUJ1985,2,"13th Ave / P. Tuazon Blvd, Quezon City, Manila - Commonwealth Avenue, Quezon City",True
+LTFRB,CUBAO KALAYAAN - SM LAGRO,LTFRB_PUJ1982,LTFRB_PUJ1982|LTFRB_PUJ1983,2,"13th Ave / P. Tuazon Blvd, Quezon City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",True
+LTFRB,CUBAO PADILLA via MARCOS HIWAY,LTFRB_PUJ2199,LTFRB_PUJ2199|LTFRB_PUJ2200,2,"Aurora Blvd / Epifanio de los Santos Avenue Intersection, Quezon City, Manila - Marcos Hwy, Antipolo City, Manila",True
+LTFRB,CUBAO SILANGAN (SAN MATEO) via AURORA,LTFRB_PUJ2201,LTFRB_PUJ2201|LTFRB_PUJ2202,2,"Aurora Blvd / General Aguinaldo Ave Intersection, Quezon City, Manila - Barangay Silagan Road, Marikina City",True
+LTFRB,CUBAO TAYTAY,LTFRB_PUJ2203,LTFRB_PUJ2203|LTFRB_PUJ2204,2,"Francisco / Bonifacio Ave Intersection, Cainta, Manila - 15th Ave / P. Tuazon Blvd, Quezon City, Manila",True
+LTFRB,CUBAO-ARAYAT-FAIRVIEW,LTFRB_PUJ1776,LTFRB_PUJ1776|LTFRB_PUJ1777,2,"P. A. Bernardo, Quezon City, Manila - Regalado / Dahlia Intersection, Quezon City",True
+LTFRB,CUBAO-B.BAYAN,LTFRB_PUJ1775,LTFRB_PUJ1775,1,"Eulogio Rodriguez Jr. Ave, Quezon City, Manila - General Romulo Ave ,Quezon City, Manila",False
+LTFRB,CUBAO-LIBIS,LTFRB_PUJ1772,LTFRB_PUJ1772|LTFRB_PUJ1773,2,"FVR Rd, Quezon City, Manila - General Romulo Ave ,Quezon City, Manila",True
+LTFRB,CUBAO-PROJ 4,LTFRB_PUJ1768,LTFRB_PUJ1768|LTFRB_PUJ1769,2,"13th Ave / P. Tuazon Blvd, Quezon City, Manila - Asian College of Science and Technology, Aurora Blvd, Quezon City, Manila",True
+LTFRB,CUBAO-PROJ2-3,LTFRB_PUJ1770,LTFRB_PUJ1770|LTFRB_PUJ1771,2,"General Romulo Ave ,Quezon City, Manila - Don Quintin Paredes High School, Anonas, Quezon City, Manila",True
+LTFRB,CUBAO-ROCES,LTFRB_PUJ1766,LTFRB_PUJ1766|LTFRB_PUJ1767,2,"Aurora Blvd / Epifanio de los Santos Avenue Intersection, Quezon City, Manila - Don Alejandro Roces Ave / S AA Intersection, Quezon City, Manila",True
+LTFRB,CUBAO-ROSARIO,LTFRB_PUJ1764,LTFRB_PUJ1764|LTFRB_PUJ1765,2,"Ortigas Ave, Pasig City, Manila - General Romulo Ave ,Quezon City, Manila",True
+LTFRB,CUBAO-STA.LUCIA,LTFRB_PUJ1762,LTFRB_PUJ1762|LTFRB_PUJ1763,2,"Ortigas Ave, Pagis City, Manila - General Romulo Ave ,Quezon City, Manila",True
+LTFRB,CUBAO-STOPnSHOP,LTFRB_PUJ1760,LTFRB_PUJ1760|LTFRB_PUJ1761,2,"Internet Cafe, Old Sta. Mesa, Manila - Aurora Blvd / General Aguinaldo Ave Intersection, Quezon City, Manila",True
+LTFRB,CUBAO-TM KALAW,LTFRB_PUJ1758,LTFRB_PUJ1758|LTFRB_PUJ1759,2,"T.M. Kalaw, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",True
+LTFRB,Cabrera - Libertad,LTFRB_PUJ1198,LTFRB_PUJ1198|LTFRB_PUJ1199,2,"P.Zamora, Lungsod ng Pasay - Antonio Arnaiz Ave / P.Zamora Intersection, Manila",True
+LTFRB,"Cainta - Quiapo via Ortigas Ave, Magsaysay Blvd",LTFRB_PUB1141,LTFRB_PUB1141|LTFRB_PUB1142,2,"Marketplace, Cainta, Manila - Quezon Blvd, Manila",True
+LTFRB,Cainta Junction - Cubao via Ortigas Ave. Ext.,LTFRB_PUJ1200,LTFRB_PUJ1200|LTFRB_PUJ1201,2,"Rosario Ocampo Elementary School, Rosario Ocampo Elementary School - 15th Ave / P. Tuazon Blvd, Quezon City, Manila",True
+LTFRB,Cainta Junction Cubao via Imelda Avenue,LTFRB_PUJ2496,LTFRB_PUJ2496|LTFRB_PUJ2497,2,"Bonifacio Ave, Cainta, Manila - 8th Ave, Quezon City, Manila",True
+LTFRB,"Calamba (TP) - San Pedro, Pacita via Carmona Exit.",LTFRB_PUJ1632,LTFRB_PUJ1632|LTFRB_PUJ1633,2,"National Hwy, San Pedro, Manila - South Luzon Expressway, Biñan City, Manila",True
+LTFRB,Calamba (TP) -San Pedro National Road,LTFRB_PUJ1630,LTFRB_PUJ1630|LTFRB_PUJ1631,2,"National Hwy, San Pedro, Manila - National Hwy, Santa Rosa City, Manila",True
+LTFRB,"Calumpang - Cubao via 20th Ave., P. Tuazon",LTFRB_PUJ1202,LTFRB_PUJ1202|LTFRB_PUJ1203,2,"General Romulo Ave ,Quezon City, Manila - Nicanor Roxas St, Marikina City, Manila",True
+LTFRB,Calumpang - Stop & Shop via Aurora Blvd.,LTFRB_PUJ1204,LTFRB_PUJ1204|LTFRB_PUJ1205,2,"Internet Cafe, Old Sta. Mesa, Manila - J. P. Rizal St, Marikina City, Manila",True
+LTFRB,Camarin - Novaliches (TP),LTFRB_PUJ1206,LTFRB_PUJ1206|LTFRB_PUJ1207,2,"Topaz, Caloocan City - Ipil / Camarin Road Intersection, Caloocan City",True
+LTFRB,Camarin-Trinoma,LTFRB_PUJ1604,LTFRB_PUJ1604|LTFRB_PUJ1605,2,"Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City - Old Zabarte, Caloocan City",True
+LTFRB,Camella (Gawaran) - Lozada Market via Marcos Alvarez,LTFRB_PUJ1210,LTFRB_PUJ1210|LTFRB_PUJ1211,2,"M Gawaran Ave, Bacoor City, Manila - Alabang-Zapote Road, Las Piñas City, Manila",True
+LTFRB,Camella Homes Springville Subd.-Talon Las Pinas,LTFRB_PUJ1208,LTFRB_PUJ1208|LTFRB_PUJ1209,2,"Everlasting St, Bacoor City, Manila - Alabang-Zapote Road / Southmall Access Rd Intersection, Muntinlupa City, Manila",True
+LTFRB,Cartimar - EDSA/Buendia via Bel Air,LTFRB_PUJ1212,LTFRB_PUJ1212|LTFRB_PUJ1213,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue, Makati City, Manila",True
+LTFRB,Cash & Carry Buendia LRT,LTFRB_PUJ2313,LTFRB_PUJ2313|LTFRB_PUJ2314,2,"Marina Way, Lungsod ng Pasay - Senator Gil Puyat Ave, Lungsod ng Pasay, Manila",True
+LTFRB,Cielito Homes - Novaliches (TP) via Old Camarin Rd.,LTFRB_PUJ1216,LTFRB_PUJ1216|LTFRB_PUJ1217,2,"Our Lady Mercy Church, Quirino Highway, Caloocan City - Mahogany / Castle Spring Avenue, Caloocan City",True
+LTFRB,Cogeo - Cubao via Marcos Hi-way,LTFRB_PUJ1218,LTFRB_PUJ1218|LTFRB_PUJ1219,2,"Mayor Ignacio Santos Diaz / N.Domingo Intersection, San Juan, Manila - Marcos Hwy, Antipolo City, Manila",True
+LTFRB,"Cogeo - Paenaan via Padilla, Marcos Hi-way",LTFRB_PUJ1634,LTFRB_PUJ1634|LTFRB_PUJ1635,2,"Marcos Hwy, Antipolo City, Manila - Marcos Hwy, Antipolo City, Manila",True
+LTFRB,Crame - Cubao via Murphy,LTFRB_PUJ1220,LTFRB_PUJ1220|LTFRB_PUJ1221,2,"Road 6, San Juan, Manila - APAC Customer Services, Inc., P. Tuazon Blvd, Quezon City, Manila",True
+LTFRB,"Crame - Q-Mart via P. Tuazon, E. Garcia",LTFRB_PUJ1222,LTFRB_PUJ1222|LTFRB_PUJ1223,2,"Road 6, San Juan, Manila - Ermin Garcia Ave, Quezon City, Manila",True
+LTFRB,Crame San Juan via N Domingo,LTFRB_PUJ2192,LTFRB_PUJ2192,1,"Santolan Rd, Quezon City, Manila - N.Domingo,  San Juan, Manila",False
+LTFRB,Cubao (Arayat) - V. Luna via Ybardolaza,LTFRB_PUJ1236,LTFRB_PUJ1236|LTFRB_PUJ1237,2,"P. A. Bernardo, Quezon City, Manila - V. Luna Hospital, V. Luna Ave, Quezon City, Manila",True
+LTFRB,Cubao - Lagro via Kalayaan,LTFRB_PUJ1234,LTFRB_PUJ1234|LTFRB_PUJ1235,2,"13th Ave / P. Tuazon Blvd, Quezon City, Manila - Quirino Highway / St James Intersection, Calcoocan City",True
+LTFRB,Cubao - Pier South via Espana,LTFRB_PUJ1226,LTFRB_PUJ1226|LTFRB_PUJ1227,2,"25th St / Antonio C. Delgado Intersection, Manila - Columbia / Yale Intersection, Quezon City, Manila",True
+LTFRB,Cubao - Proj. 4 via P. Tuazon,LTFRB_PUJ1228,LTFRB_PUJ1228|LTFRB_PUJ1229,2,"P. Tuazon Blvd / 21st Ave Intersection, Quezon City, Manila - J.P. Rizal Street / C. Aguinaldo Intersection, Quezon City, Manila",True
+LTFRB,Cubao - Recto via Espana,LTFRB_PUJ1232,LTFRB_PUJ1232|LTFRB_PUJ1233,2,"España Blvd / Nicanor Reyes St Intersection, Manila - Aurora Blvd / Epifanio de los Santos Avenue Intersection, Quezon City, Manila",True
+LTFRB,"Cubao - Remedios via Quiapo, L. Guinto",LTFRB_PUJ1230,LTFRB_PUJ1230,1,"Taft Ave, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",False
+LTFRB,Cubao Crame via Murphy,LTFRB_PUJ2195,LTFRB_PUJ2195|LTFRB_PUJ2196,2,"Santolan Rd, Quezon City, Manila - APAC Customer Services, Inc., P. Tuazon Blvd, Quezon City, Manila",True
+LTFRB,"Cubao-Divisoria via Sta.Mesa,Aurora Blvd.",LTFRB_PUJ1224,LTFRB_PUJ1224|LTFRB_PUJ1225,2,"Claro M. Recto Ave / Jose Abad Santos Ave. Intersection, Manila - Aurora Blvd / General Aguinaldo Ave Intersection, Quezon City, Manila",True
+LTFRB,DAPITAN - P CAMPA ANDALUCIA,LTFRB_PUJ1980,LTFRB_PUJ1980|LTFRB_PUJ1981,2,"Quezon Blvd, Manila - Community Centre, San Isidro Labrador, Quezon City",True
+LTFRB,DAPITAN - PIER SOUTH,LTFRB_PUJ1978,LTFRB_PUJ1978|LTFRB_PUJ1979,2,"25th St / Antonio C. Delgado Intersection, Manila - Community Centre, San Isidro Labrador, Quezon City",True
+LTFRB,DIVISORIA - CUBAO via YALE,LTFRB_PUJ1974,LTFRB_PUJ1974|LTFRB_PUJ1975,2,"Narra, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",True
+LTFRB,DIVISORIA - KALAW via JONES BR,LTFRB_PUJ1972,LTFRB_PUJ1972|LTFRB_PUJ1973,2,"Juan Luna Monument, Padre Burgos St / General Luna St, Manila - Juan Luna, Manila",True
+LTFRB,DIVISORIA - NORTH PIER via MORIONES,LTFRB_PUJ1970,LTFRB_PUJ1970|LTFRB_PUJ1971,2,"Sto. Cristo / Claro M. Recto Ave Intersection, Manila - Manila Film Centre, President Ferdinand E. Marcos Highway, Tondo",True
+LTFRB,DIVISORIA - QUIAPO via EVANGELISTA,LTFRB_PUJ1968,LTFRB_PUJ1968|LTFRB_PUJ1969,2,"Quezon Blvd, Manila - Dagupan, Manila",True
+LTFRB,DIVISORIA - SAN JUAN via CM RECTO,LTFRB_PUJ1966,LTFRB_PUJ1966|LTFRB_PUJ1967,2,"Antonio Rivera, Manila - Corazon De Jesus / N.Domingo, Manila",True
+LTFRB,DIVISORIA - SANGANDAAN,LTFRB_PUJ1964,LTFRB_PUJ1964|LTFRB_PUJ1965,2,"Dagupan, Manila - Jollibee, Samson Road, Caloocan City",True
+LTFRB,DIVISORIA - STA CRUZ,LTFRB_PUJ1962,LTFRB_PUJ1962|LTFRB_PUJ1963,2,"Camba / Clavel Intersection, Manila - A F. Torres / Ronquillo Intersection, Manila",True
+LTFRB,DIVISORIA - STA CRUZ via NICHOLAS,LTFRB_PUJ1960,LTFRB_PUJ1960|LTFRB_PUJ1961,2,"Lara / Madrid Intersection, Manila - A F. Torres / Ronquillo Intersection, Manila",True
+LTFRB,DIVISORIA - STA MESA via CM RECTO,LTFRB_PUJ1958,LTFRB_PUJ1958|LTFRB_PUJ1959,2,"Narra, Manila - Internet Cafe, Old Sta. Mesa, Manila",True
+LTFRB,Dagat - Dagatan - del Pan via Rotonda,LTFRB_PUJ1238,LTFRB_PUJ1238|LTFRB_PUJ1239,2,"Sto. Nino Church, Nicolas Zamora, Manila - ADC Batching Point, North Bay Boulevard, City of Navotas",True
+LTFRB,DagatDagatan Delpan via Divisoria,LTFRB_PUJ2615,LTFRB_PUJ2615|LTFRB_PUJ2616,2,"Sto. Nino Church, Nicolas Zamora, Manila - President Ferdinand E. Marcos Highway, Tondo",True
+LTFRB,Dampalit Hulo Palengke,LTFRB_PUJ2617,LTFRB_PUJ2617|LTFRB_PUJ2618,2,"Kamias Rd / Kasing-Kasing Intersection, Quezon City, Manila - Sto Rosario Parish, Don Bastilio Bautista Boulevard, Malabon City",True
+LTFRB,Dapitan - I. Delos Reyes/P. Campa via Laon Laan,LTFRB_PUJ1243,LTFRB_PUJ1243,1,"Community Centre, San Isidro Labrador, Quezon City - España Blvd / Nicanor Reyes St Intersection, Manila",False
+LTFRB,Dapitan - Libertad via Mabini,LTFRB_PUJ1244,LTFRB_PUJ1244|LTFRB_PUJ1245,2,"Antonio Arnaiz Ave / F.B. Harrison St Intersection - Community Centre, San Isidro Labrador, Quezon City",True
+LTFRB,Dapitan - Pasay RTDA. Via L. Guinto,LTFRB_PUJ1246,LTFRB_PUJ1246|LTFRB_PUJ1247,2,"Taft Avenue Extension / Epifanio de los Santos Avenue, Lungsod ng Pasay, Manila - Community Centre, San Isidro Labrador, Quezon City",True
+LTFRB,Dapitan Libertad via L Guinto,LTFRB_PUJ2315,LTFRB_PUJ2315|LTFRB_PUJ2316,2,"Taft Ave / College Rd Intersection, Lungsod ng Pasay - Taft Ave / Padre Faura Intersection, Manila",True
+LTFRB,"Dasmarinas - Plaza Lawton via E. Aguinaldo Highway, Roxas Blvd",LTFRB_PUB1143,LTFRB_PUB1143|LTFRB_PUB1144,2,"San Agustin Bus Terminal, Emilio Aguinaldo Hwy, Lungsod ng Dasmariñas, Manila - Leon Guinto Sr., Manila",True
+LTFRB,Dasmarinas Resettlement Area - Baclaran via Coastal Rd.,LTFRB_PUJ1240,LTFRB_PUJ1240|LTFRB_PUJ1241,2,"Block-B Internal Rd, Lungsod ng Dasmariñas, Manila - F.B. Harrison Street / Taft Avenue Extension Intersection, Lungsod ng Pasay, Manila",True
+LTFRB,Del Monte - Kanloan via Mayon,LTFRB_PUJ1628,LTFRB_PUJ1628|LTFRB_PUJ1629,2,"Del Monte Avenue / A. Bonifacio Intersection, Quezon City - Apo / Quezon Avenue Intersection, Quezon City",True
+LTFRB,Del Monte - Quezon Ave. via Banaue,LTFRB_PUJ1250,LTFRB_PUJ1250|LTFRB_PUJ1251,2,"Banawe Avenue / P. Florentino Intersection, Quezon City - Banawe Avenue, Quezon City",True
+LTFRB,Del Pan Guadalupe (Ibabaw),LTFRB_PUJ1252,LTFRB_PUJ1252|LTFRB_PUJ1253,2,"Epifanio de los Santos Avenue, Makati City, Manila - Tejeron, Makati City, Manila",True
+LTFRB,Dian - Libertad,LTFRB_PUJ1254,LTFRB_PUJ1254|LTFRB_PUJ1255,2,"A. Arnaiz Ave / Hidalgo, Lungsod ng Pasay, Manila - Dian / Pablo Ocampo Sr. Intersection, Manila",True
+LTFRB,"Divisoria - Don Bosco via Moriones, Dagupan, Juan Luna",LTFRB_PUJ1256,LTFRB_PUJ1256|LTFRB_PUJ1257,2,"Union Bank of Philippines, Juan Luca, Manila - d E. Marcos Highway / Herbosa Intersection, Velasquez, Tondo",True
+LTFRB,Divisoria - Gasak via H. Lopez,LTFRB_PUJ1258,LTFRB_PUJ1258|LTFRB_PUJ1259,2,"P. Rada / Carman Planas Intersection, Manila - General Luma Street / Ilang Ilang Intersection, Malabon City",True
+LTFRB,Divisoria - Gastambide via Morayta,LTFRB_PUJ1290,LTFRB_PUJ1290|LTFRB_PUJ1291,2,"Jose Abad Santos Ave., Manila - España Blvd / Nicanor Reyes St Intersection, Manila",True
+LTFRB,Divisoria - Libertad via L. Guinto,LTFRB_PUJ1260,LTFRB_PUJ1260|LTFRB_PUJ1261,2,"Juan Luna, Manila - Antonio Arnaiz Ave / P.Zamora Intersection, Manila",True
+LTFRB,Divisoria - Libertad via Mabini,LTFRB_PUJ1262,LTFRB_PUJ1262|LTFRB_PUJ1263,2,"Juan Luna, Manila - Park Ave, Lungsod ng Pasay",True
+LTFRB,"Divisoria - MCU via Del Mundo, J.A. Santos",LTFRB_PUJ1268,LTFRB_PUJ1268|LTFRB_PUJ1269,2,"Antonio Rivera, Manila - Epifanio de los Santos Avenue / Gen Malvar Intersection , Caloocan City",True
+LTFRB,Divisoria - Magpajo via A. Mabini,LTFRB_PUJ1266,LTFRB_PUJ1266|LTFRB_PUJ1267,2,"Dagupan, Manila - Matrinez Memorial College, A. Mabini Avenue, Juan Luna, Caloocan City",True
+LTFRB,Divisoria - Malinta via J.A. Santos,LTFRB_PUJ1264,LTFRB_PUJ1264|LTFRB_PUJ1265,2,"Antonio Rivera, Manila - MacArthur Highway / San Miguel Interchange, Dalandanan, Valenzuela City",True
+LTFRB,"Divisoria - Murphy via Legarda, Aurora Blvd.",LTFRB_PUJ1270,LTFRB_PUJ1270|LTFRB_PUJ1271,2,"Antonio Rivera, Manila - W Point / Columbia Intersection, Quezon City, Manila",True
+LTFRB,Divisoria - Navotas via H. Lopez,LTFRB_PUJ1272,LTFRB_PUJ1272|LTFRB_PUJ1273,2,"Ylayay, Manila - M. Naval, City of Navotas",True
+LTFRB,Divisoria - Pasay RTDA. Via L. Guinto,LTFRB_PUJ1274,LTFRB_PUJ1274|LTFRB_PUJ1275,2,"Soler St / Roman Intersection, Manila - Tramo, Lungsod ng Pasay",True
+LTFRB,Divisoria - Pier North via Del Pan,LTFRB_PUJ1276,LTFRB_PUJ1276|LTFRB_PUJ1277,2,"Del Pan Flyover, Manila - Moriones / Sta. Maria Intersection, Manila",True
+LTFRB,Divisoria - Punta via Sta. Mesa,LTFRB_PUJ1278,LTFRB_PUJ1278|LTFRB_PUJ1279,2,"Claro M. Recto Ave / Jose Abad Santos Ave. Intersection, Manila - F Y Manalo, Manila",True
+LTFRB,Divisoria - Retiro via J. A. Santos,LTFRB_PUJ1280,LTFRB_PUJ1280|LTFRB_PUJ1281,2,"Narra, Manila - N. S. Amoranto Sr. Avenue / Don Jose Intersection, Quezon City",True
+LTFRB,Divisoria - San Juan,LTFRB_PUJ1284,LTFRB_PUJ1284|LTFRB_PUJ1285,2,"Claro M. Recto Ave, Manila - Corazon De Jesus / N.Domingo, Manila",True
+LTFRB,Divisoria - Sangandaan via Maypajo,LTFRB_PUJ1282,LTFRB_PUJ1282|LTFRB_PUJ1283,2,"Dagupan, Manila - Jollibee, Samson Road, Caloocan City",True
+LTFRB,Divisoria - Sta. Cruz via Madrid,LTFRB_PUJ1286,LTFRB_PUJ1286,1,"Dasmariñas, Manila - Camba / Clavel Intersection, Manila",False
+LTFRB,Divisoria - Sta. Mesa via R. Magsaysay,LTFRB_PUJ1288,LTFRB_PUJ1288|LTFRB_PUJ1289,2,"Claro M. Recto Ave, Manila - Aurora Blvd / General Aguinaldo Ave Intersection, Quezon City, Manila",True
+LTFRB,Divisoria - Tayuman via Dagupan,LTFRB_PUJ1294,LTFRB_PUJ1294|LTFRB_PUJ1295,2,"Dagupan, Manila - Dagupan / Arqueros Intersection, Manila",True
+LTFRB,Divisoria - Velasquez,LTFRB_PUJ1296,LTFRB_PUJ1296|LTFRB_PUJ1297,2,"Union Bank of Philippines, Juan Luca, Manila - Vitas, Velasquez, Tondo",True
+LTFRB,Divisoria T.M. Kalaw via Jones Br.,LTFRB_PUJ1292,LTFRB_PUJ1292|LTFRB_PUJ1293,2,"T.M. Kalaw / Maria Y. Orosa St - Juan Luna, Manila",True
+LTFRB,Domestic Grotto via EDSA,LTFRB_PUB1043,LTFRB_PUB1043|LTFRB_PUB1044,2,"Natalia, Parañaque City, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",True
+LTFRB,Dominga - Libertad,LTFRB_PUJ1298,LTFRB_PUJ1298|LTFRB_PUJ1299,2,"Taft Avenue / Pablo Ocampo Sreet, Avenue, Manila - Antonio Arnaiz Ave / F.B. Harrison St Intersection",True
+LTFRB,Don Mariano Marcos Ave Quirino Highway via Tsora,LTFRB_PUJ2317,LTFRB_PUJ2317|LTFRB_PUJ2318,2,"Tandang Sora / Demetria Reynaldo Intersection, Quezon City - Tanding Sora Avenue, Quezon City",True
+LTFRB,EDSA - Shaw - Ortigas Complex,LTFRB_PUJ1316,LTFRB_PUJ1316|LTFRB_PUJ1317,2,"Firefly / Green Meadows Ave Intersection, Pasig City, Manila - Shaw Blvd, Shaw Blvd, Manila",True
+LTFRB,EDSA CENTR - SAN JOAQUIN,LTFRB_PUJ1956,LTFRB_PUJ1956|LTFRB_PUJ1957,2,"M. Almeda, Pateros, Manila - Mayflower, Mandaluyong City, Manila",True
+LTFRB,EDSA CENTRAL - GUADALUPE via PIONEER,LTFRB_PUJ1954,LTFRB_PUJ1954|LTFRB_PUJ1955,2,"Kalayaan Ave / Gen. Jacinto St Intersection, Taguig City, Manila - Mayflower, Mandaluyong City, Manila",True
+LTFRB,EDSA NORTH AVE - PAGASA,LTFRB_PUJ1952,LTFRB_PUJ1952|LTFRB_PUJ1953,2,"Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City - Mindanao Avenue, Quezon City",True
+LTFRB,EDSA NORTH AVE - PROJ 6,LTFRB_PUJ1950,LTFRB_PUJ1950|LTFRB_PUJ1951,2,"Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City - Emensto Rondon High School, Road 3, Quezon City",True
+LTFRB,EDSA NORTH AVE - QC HALL,LTFRB_PUJ1948,LTFRB_PUJ1948|LTFRB_PUJ1949,2,"Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City - Kalayaan Ave / Elliptical Rd Intersection, Quezon City, Manila",True
+LTFRB,EDSA NORTH AVE - QUIRINO HIGHWAY via MINDANAO AVE,LTFRB_PUJ1947,LTFRB_PUJ1947,1,"Quirino Highway / Mindanao Avenue Intersection, Quezon City - Epifanio de los Santos Avenue, Quezon City",False
+LTFRB,EDSA SHAW Guadalupe via S MAdre,LTFRB_PUJ2209,LTFRB_PUJ2209|LTFRB_PUJ2210,2,"Sgt. Fabian Yabut Circle, Makati City, Manila - Mayflower, Mandaluyong City, Manila",True
+LTFRB,EDSA Shaw Angono,LTFRB_PUJ2205,LTFRB_PUJ2205|LTFRB_PUJ2206,2,"Manila East Rd, Angono, Manila - Epifanio de los Santos Avenue /  Shaw Blvd Intersection, Mandaluyong City, Manila",True
+LTFRB,EDSA Shaw Central San Joaquin,LTFRB_PUJ2213,LTFRB_PUJ2213|LTFRB_PUJ2214,2,"M. Almeda, Pateros, Manila - Shaw Blvd, Shaw Blvd, Manila",True
+LTFRB,EDSA Shaw E Rodriguez Ortigas Ave,LTFRB_PUJ2207,LTFRB_PUJ2207|LTFRB_PUJ2208,2,"Mayflower, Mandaluyong City, Manila - Lanuza Ave / C-5 Intersection , Pasig City, Manila",True
+LTFRB,EDSA Shaw Quiapo via Sta Mesa,LTFRB_PUJ2211,LTFRB_PUJ2211|LTFRB_PUJ2212,2,"Balderama / Caruncho Ave, Pasig City, Manila - Legarda, Manila",True
+LTFRB,EDSA/North Ave. - Tandang Sora/Mindanao Ave.,LTFRB_PUJ1300,LTFRB_PUJ1300|LTFRB_PUJ1301,2,"Pacific Global Hospital, Mindanao Avenue, Quezon City - Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City",True
+LTFRB,"EDSA/North Ave. - UP via North Ave., Marcos Ave.",LTFRB_PUJ1304,LTFRB_PUJ1304|LTFRB_PUJ1305,2,"Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City - E. Ma. Guerrero / Osmeña Ave, Quezon City, Manila",True
+LTFRB,EDSA/Pioneer - Pateros via Pasig,LTFRB_PUJ1306,LTFRB_PUJ1306|LTFRB_PUJ1307,2,"M. Almeda, Pateros, Manila - Epifanio de los Santos Avenue / United Intersection, Mandaluyong City, Manila",True
+LTFRB,EDSA/SSH - Sucat via SSH,LTFRB_PUJ1308,LTFRB_PUJ1308|LTFRB_PUJ1309,2,"South Luzon Expressway, Muntinlupa City, Manila - Epifanio de los Santos Avenue / Skyway , Lungsod ng Makati, Manila",True
+LTFRB,EDSA/Shaw - E. Rodriguez (Ugong) via J. Vargas Ave.,LTFRB_PUJ1310,LTFRB_PUJ1310|LTFRB_PUJ1311,2,"Mayflower, Mandaluyong City, Manila - Lanuza Ave / C-5 Intersection , Pasig City, Manila",True
+LTFRB,EDSA/Shaw Central - Kalentong/JRC,LTFRB_PUJ1312,LTFRB_PUJ1312|LTFRB_PUJ1313,2,"Epifanio de los Santos Avenue /  Shaw Blvd Intersection, Mandaluyong City, Manila - Shaw Blvd, Mandaluyong City, Manila",True
+LTFRB,EDSA/Shaw Central - Morong,LTFRB_PUJ1636,LTFRB_PUJ1636|LTFRB_PUJ1637,2,"Epifanio de los Santos Avenue /  Shaw Blvd Intersection, Mandaluyong City, Manila - Quezon Ave, Teresa, Manila",True
+LTFRB,"EDSA/Shaw Central - Morong via Antipolo, Theresa",LTFRB_PUJ1638,LTFRB_PUJ1638|LTFRB_PUJ1639,2,"Epifanio de los Santos Avenue /  Shaw Blvd Intersection, Mandaluyong City, Manila - Un- named road near J. Sumulong Rd, Teresa, Manila",True
+LTFRB,"EDSA/Shaw Central - Morong via Binangonan, Cardona",LTFRB_PUJ1314,LTFRB_PUJ1314|LTFRB_PUJ1315,2,"Manila East Rd, Binangonan, Manila - Epifanio de los Santos Avenue /  Shaw Blvd Intersection, Mandaluyong City, Manila",True
+LTFRB,EDSA/Shaw Central - Pasig (TP),LTFRB_PUJ1318,LTFRB_PUJ1318|LTFRB_PUJ1319,2,"Epifanio de los Santos Avenue / United Intersection, Mandaluyong City, Manila - Balderama, Pasig City, Manila",True
+LTFRB,EDSA/Shaw Central - Tanay via Antipolo,LTFRB_PUJ1640,LTFRB_PUJ1640,1,"Epifanio de los Santos Avenue /  Shaw Blvd Intersection, Mandaluyong City, Manila - Quezon Ave, Teresa, Manila",False
+LTFRB,EDSA/Shaw Central - Taytay,LTFRB_PUJ1321,LTFRB_PUJ1321,1,"Ortigas Ave / 5th Avenue Intersection, Pagis City, Manila - Epifanio de los Santos Avenue / United Intersection, Mandaluyong City, Manila",False
+LTFRB,EDSA/West Ave. - Panay Ave.,LTFRB_PUJ1324,LTFRB_PUJ1324|LTFRB_PUJ1325,2,"Quezon Avenue, Quezon City - Epifanio de los Santos Avenue / Bulacan Intersection, Quezon City",True
+LTFRB,Eastwood Libis - Marriot Terminal via Acropolis,LTFRB_PUB1145,LTFRB_PUB1145|LTFRB_PUB1146,2,"Newport Blvd, Pasay City, Manila - Pheonix Sun Business Park, Quezon City, Manila",True
+LTFRB,Edsa/Shaw.Central -Tipas (Taguig) via San Joaquin,LTFRB_PUJ1322,LTFRB_PUJ1322|LTFRB_PUJ1323,2,"M. Almeda, Pateros, Manila - Mayflower, Mandaluyong City, Manila",True
+LTFRB,Escolta - Libertad via L. Guinto,LTFRB_PUJ1326,LTFRB_PUJ1326|LTFRB_PUJ1327,2,"Antonio Arnaiz Ave / F.B. Harrison St Intersection - T. Pinpin Street / Escolta Intersection, Manila",True
+LTFRB,"Escolta - Monumento via G. del Mundo, Dasmarinas, Nueva",LTFRB_PUJ1330,LTFRB_PUJ1330|LTFRB_PUJ1331,2,"Rizal Avenue, Manila - Bonifacio Market, MacArthur Highway, Caloocan City",True
+LTFRB,Escolta-Libertad via Mabini,LTFRB_PUJ2498,LTFRB_PUJ2498|LTFRB_PUJ2499,2,"Epifanio de los Santos Avenue / F.B. Harrison St Intersection, Lungsod ng Pasay - Rizal Avenue, Manila",True
+LTFRB,Escolta-MCU via GDelMundo,LTFRB_PUJ2500,LTFRB_PUJ2500|LTFRB_PUJ2501,2,"Taft Avenue Extension / Narra Street Intersection, Lungsod ng Pasay, Manila - Rizal Avenue, Manila",True
+LTFRB,Espana - Rizal Ave. via Blumentritt,LTFRB_PUJ1336,LTFRB_PUJ1336|LTFRB_PUJ1337,2,"Blumentritt, Manila - Cavitie / Leonor Rivera Intersection, Quezon City",True
+LTFRB,Espana Rotonda - Proj. 2 & 3 via Timog,LTFRB_PUJ1334,LTFRB_PUJ1334|LTFRB_PUJ1335,2,"Quezon Avenue / D Tuazon Intersection, Quezon City - Molave, Quezon City, Manila",True
+LTFRB,Espana-Rtda-Pier,LTFRB_PUJ2502,LTFRB_PUJ2502|LTFRB_PUJ2503,2,"Padre Burgos St, Manila - Instruccion / Espana Boulevard Intersection, Manila",True
+LTFRB,Evangelista - Libertad,LTFRB_PUJ1338,LTFRB_PUJ1338|LTFRB_PUJ1339,2,"Gen.J.Cailles / Evangelista Intersection, Makati City - Antonio Arnaiz Ave / F.B. Harrison St Intersection",True
+LTFRB,Ever - Bagong Silangan via Violago Homes,LTFRB_PUJ1620,LTFRB_PUJ1620|LTFRB_PUJ1621,2,"J.P Rizal / Gen. Villamor Intersection, Quezon City - Mary The Queen College, Commonwealth Avenue, Quezon City",True
+LTFRB,Ever Gotesco Almar Subd,LTFRB_PUJ2319,LTFRB_PUJ2319|LTFRB_PUJ2320,2,"Commonwealth Avenue / Capitol Homes Drive Intersection, Quezon City - St Claire College of Caloocan, Zabarte Road, Caloocan City",True
+LTFRB,Ever Gotesco Camarin via Zapote,LTFRB_PUJ2321,LTFRB_PUJ2321|LTFRB_PUJ2322,2,"Commonwealth Avenue / Capitol Homes Drive Intersection, Quezon City - National Mental Hospital, Barugo, Caloocan City",True
+LTFRB,FAIRVIEW (WET MARKET) - TM KALAW via Q AVE,LTFRB_PUJ1944,LTFRB_PUJ1944,1,"Padre Burgos St, Manila - Regalado / Dahlia Intersection, Quezon City",False
+LTFRB,FAIRVIEW - PHILCOA,LTFRB_PUJ1942,LTFRB_PUJ1942|LTFRB_PUJ1943,2,"Kalayaan Ave / Elliptical Rd Intersection, Quezon City, Manila - Commonwealth Avenue, Quezon City",True
+LTFRB,FAIRVIEW - QUIAPO,LTFRB_PUJ1940,LTFRB_PUJ1940|LTFRB_PUJ1941,2,"Quezon Blvd, Manila - Regalado / Dahlia Intersection, Quezon City",True
+LTFRB,FAIRVIEW WET MARKET - PIER SOUTH via QUEZON AVE,LTFRB_PUJ1936,LTFRB_PUJ1936|LTFRB_PUJ1937,2,"25th St / Antonio C. Delgado Intersection, Manila - Regalado / Dahlia Intersection, Quezon City",True
+LTFRB,FRISCO-REMEDIOS,LTFRB_PUJ1756,LTFRB_PUJ1756|LTFRB_PUJ1757,2,"Remedios / Antonio Vasquez Intersection, Manila - 7/11 Del Monte Avenue, Quezon City",True
+LTFRB,FRISCO-VITO CRUZvia MABINI,LTFRB_PUJ1754,LTFRB_PUJ1754|LTFRB_PUJ1755,2,"HP Village Square, Pablo Ocampo Sr., Manila - 7/11 Del Monte Avenue, Quezon City",True
+LTFRB,FTI - Kayaman C,LTFRB_PUJ1344,LTFRB_PUJ1344|LTFRB_PUJ1345,2,"A. Arnaiz Ave / Don Chino Roces Avenue Intersection, Makati City - DBP Ave, Taguig City, Manila, Manila",True
+LTFRB,FTI - Navotas Terminal via EDSA,LTFRB_PUB1147,LTFRB_PUB1147|LTFRB_PUB1148,2,"DBP Ave, Taguig City, Manila, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",True
+LTFRB,FTI - SM Fairview via Lagro Commonwealth,LTFRB_PUB1149,LTFRB_PUB1149|LTFRB_PUB1150,2,"DBP Ave, Taguig City, Manila, Manila - Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila",True
+LTFRB,"FTI - Tungko, SJDM via Lagro, C'wealth Ave EDSA",LTFRB_PUB1151,LTFRB_PUB1151|LTFRB_PUB1152,2,"DBP Ave, Taguig City, Manila, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",True
+LTFRB,"FTI - Uniwide Coastal Mall via VAB, NAB",LTFRB_PUJ1490,LTFRB_PUJ1490|LTFRB_PUJ1491,2,"Diosdado Macapagal Blvd / Pacific Avenue Intersection, Parañaque City, Manila - DBP Ave, Taguig City, Manila, Manila",True
+LTFRB,FTI-Monumento via EDSA,LTFRB_PUB1077,LTFRB_PUB1077|LTFRB_PUB1078,2,"DBP Ave, Taguig City, Manila, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",True
+LTFRB,Fairview (Dahlia) - Cubao (Arayat),LTFRB_PUJ1340,LTFRB_PUJ1340|LTFRB_PUJ1341,2,"P. A. Bernardo, Quezon City, Manila - Fairlane / Dahlia Intersection, Quezon City",True
+LTFRB,Fairview Wet Market TM Kalaw,LTFRB_PUJ2323,LTFRB_PUJ2323|LTFRB_PUJ2324,2,"Maria Y. Orosa St, Manila - Commonwealth Avenue / Dona Carmen Intersection, Quezon City",True
+LTFRB,Forbes Park - Pasay Rd. via Ayala Ave.,LTFRB_PUJ1342,LTFRB_PUJ1342|LTFRB_PUJ1343,2,"McKinley Pkwy, Taguig City, Manila - McKinley Rd, Makati City, Manila",True
+LTFRB,Fort Bonifacio (Gate III) - Guadalupe,LTFRB_PUJ1346,LTFRB_PUJ1346|LTFRB_PUJ1347,2,"Bayani Road, Taguig City, Manila - Epifanio de los Santos Avenue, Makati City, Manila",True
+LTFRB,Francisco Homes - Cubao,LTFRB_PUJ1352,LTFRB_PUJ1352|LTFRB_PUJ1353,2,"General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila - Most Scared Heart of Jesus Parish, Un-named Road, City of San Jose del Monte",True
+LTFRB,Francisco Homes - Philcoa,LTFRB_PUJ1350,LTFRB_PUJ1350|LTFRB_PUJ1351,2,"San Jose Water District, Un-named Road, City of San Jose del Monte - Kalayaan Ave / Elliptical Rd Intersection, Quezon City, Manila",True
+LTFRB,Frisco - Pier South via Sta. Cruz,LTFRB_PUJ1354,LTFRB_PUJ1354|LTFRB_PUJ1355,2,"25th St / Antonio C. Delgado Intersection, Manila - Del Monte Avenue / Roosevelt Avenue Intersection, Quezon City",True
+LTFRB,Frisco-Sta Cruz,LTFRB_PUJ2504,LTFRB_PUJ2504|LTFRB_PUJ2505,2,"Leon Guinto Sr., Manila - Roosevelt Avenue / Adams Intersection, Quezon City",True
+LTFRB,GATE 5 - GREENHILLS SHOPPING CENTER,LTFRB_PUJ1752,LTFRB_PUJ1752|LTFRB_PUJ1753,2,"N. Western St / Service Rd, San Juan, Manila - Connecticut St / Colombia St, San Juan, Manila",True
+LTFRB,"GMA - Plaza Lawton via Ayala, Carmona, SSH",LTFRB_PUB1153,LTFRB_PUB1153|LTFRB_PUB1154,2,"Congressional Rd,  General Mariano Alvarez, Manila - Andres Soriano Jr Ave / Muralla Intersection, Manila",True
+LTFRB,GREENFIELDS - SANGANGDAAN,LTFRB_PUJ1806,LTFRB_PUJ1806|LTFRB_PUJ1807,2,"Quirino Highway / Rodriguez Drive Intersection, Quezon City - Bestlink Institute of Information Technology, 121.041724",True
+LTFRB,GUADALUPE IBABAW - AYALA,LTFRB_PUJ2157,LTFRB_PUJ2157|LTFRB_PUJ2158,2,"Epifanio de los Santos Avenue, Makati City, Manila - Makati Ave / Ayala Avenue Intersection, Makati City, Manila",True
+LTFRB,GUADALUPE-BUTING,LTFRB_PUJ1750,LTFRB_PUJ1750,1,"F. Flores / M. Concepcion Ave Intersection, Pateros, Manila - Sgt. Fabian Yabut Circle / P.Burgos Intersection, Makati City, Manila",False
+LTFRB,GUADALUPE-PATEROS via JP RIZAL,LTFRB_PUJ1748,LTFRB_PUJ1748|LTFRB_PUJ1749,2,"J.P. Rizal Extension / Lanzones Intersection, Pateros, Manila - Sgt. Fabian Yabut Circle / P.Burgos Intersection, Makati City, Manila",True
+LTFRB,GUDALUPE-FTI via J.P.RIZAL Ext. C5,LTFRB_PUJ1746,LTFRB_PUJ1746|LTFRB_PUJ1747,2,"DBP Ave, Taguig City, Manila, Manila - Epifanio de los Santos Avenue, Makati City, Manila",True
+LTFRB,Galas-Barbosa,LTFRB_PUJ2506,LTFRB_PUJ2506|LTFRB_PUJ2507,2,"Vicente G Cruz, Manila - Unang Hakbang / Luzon Ave",True
+LTFRB,"Gasak - Recto via Dagat-dagatan, C-3",LTFRB_PUJ1356,LTFRB_PUJ1356|LTFRB_PUJ1357,2,"Quezon Blvd, Manila - Don Bastilio Bautista Boulevard / Gov. W. Pascual Avenue, Malabon City",True
+LTFRB,Gasak-Sta Cruz via,LTFRB_PUJ2508,LTFRB_PUJ2508|LTFRB_PUJ2509,2,"Oroquieta, Manila - Heath Centre, Don Bastilio Bautista Boulevard, Malabon City",True
+LTFRB,Gate5-Unimart,LTFRB_PUJ2510,LTFRB_PUJ2510|LTFRB_PUJ2511,2,"N. Western St / Service Rd, San Juan, Manila - Anapolis, San Juan, Manila",True
+LTFRB,"Golden City Subd. - Molino Market via Talon, Molino Rd.",LTFRB_PUJ1598,LTFRB_PUJ1598|LTFRB_PUJ1599,2,"Paliparan Rd, Lungsod ng Dasmariñas, Manila - Alabang-Zapote Road / Southmall Access Rd Intersection, Muntinlupa City, Manila",True
+LTFRB,"Grotto - Baclaran via Commonwealth Ave, Ayala",LTFRB_PUB1155,LTFRB_PUB1155|LTFRB_PUB1156,2,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",True
+LTFRB,"Grotto - NAIA via EDSA, Ayala, Buendia Extn",LTFRB_PUB1159,LTFRB_PUB1159|LTFRB_PUB1160,2,"Maria, Parañaque City, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",True
+LTFRB,"Grotto - NAIA via EDSA, Fairview",LTFRB_PUB1158,LTFRB_PUB1158,1,"Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte - Ninoy Aquino Ave, Lungsod ng Pasay, Manila",False
+LTFRB,"Guadalupe (ABC) - Brgy. Buting, East Rembo via Kalayaan Ave.",LTFRB_PUJ1362,LTFRB_PUJ1362|LTFRB_PUJ1363,2,"Sgt. Fabian Yabut Circle / P.Burgos Intersection, Makati City, Manila - F. Flores / M. Concepcion Ave Intersection, Pateros, Manila",True
+LTFRB,Guadalupe (ABC) - FTI via J.P. Rizal Extension,LTFRB_PUJ1370,LTFRB_PUJ1370|LTFRB_PUJ1371,2,"DBP Ave, Taguig City, Manila, Manila - Dr Jose P. Rizal Extension, Makati City, Manila",True
+LTFRB,Guadalupe (ABC) - Pateros,LTFRB_PUJ1366,LTFRB_PUJ1366|LTFRB_PUJ1367,2,"B. Morcilla St, Pateros, Manila - Epifanio de los Santos Avenue, Makati City, Manila",True
+LTFRB,Guadalupe (ABC) - Taguig via Tipas,LTFRB_PUJ1368,LTFRB_PUJ1368|LTFRB_PUJ1369,2,"Artemio Natividad Elementary School, M. Almeda, Taguig City, Manila - Epifanio de los Santos Avenue, Makati City, Manila",True
+LTFRB,Guadalupe - Cartimar,LTFRB_PUJ1618,LTFRB_PUJ1618|LTFRB_PUJ1619,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue, Makati City, Manila",True
+LTFRB,Guadalupe Cartimar GilPuyat Buendia,LTFRB_PUJ2215,LTFRB_PUJ2215,1,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue, Makati City, Manila",False
+LTFRB,Guadalupe Cartimar via Roxas Blvd,LTFRB_PUJ2325,LTFRB_PUJ2325|LTFRB_PUJ2326,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue, Makati City, Manila",True
+LTFRB,Guadalupe Delpan MRT,LTFRB_PUJ2327,LTFRB_PUJ2327,1,"Epifanio de los Santos Avenue, Makati City, Manila - Tejeron, Makati City, Manila",False
+LTFRB,Guadalupe FTI v JP Rizal,LTFRB_PUJ2217,LTFRB_PUJ2217|LTFRB_PUJ2218,2,"DBP Ave, Taguig City, Manila, Manila - P.Burgos, Makati City, Manila",True
+LTFRB,Guadalupe Mkt. - L. Guinto via P. Gil,LTFRB_PUJ1360,LTFRB_PUJ1360|LTFRB_PUJ1361,2,"Leon Guinto Sr. / Pedro Gil Intersection, Manila - Epifanio de los Santos Avenue, Makati City, Manila",True
+LTFRB,Guadalupe Mkt. - L. Guinto via Pasig Line,LTFRB_PUJ1358,LTFRB_PUJ1358|LTFRB_PUJ1359,2,"Angel Linao / Pedro Gil - Tejeron, Makati City, Manila",True
+LTFRB,Guadalupe Pateros,LTFRB_PUJ2219,LTFRB_PUJ2219|LTFRB_PUJ2220,2,"P Rosales, Pasig City - San Jose Street, Makati City, Manila",True
+LTFRB,Guadalupe-Makati,LTFRB_PUJ1612,LTFRB_PUJ1612|LTFRB_PUJ1613,2,"Epifanio de los Santos Avenue, Makati City, Manila - Makati Ave / Ayala Avenue Intersection, Makati City, Manila",True
+LTFRB,Gumaok (SJDM) - Novaliches TP,LTFRB_PUJ1364,LTFRB_PUJ1364|LTFRB_PUJ1365,2,"Dumalay, Quezon City - Sta. Maria - Tungkong Mangga Rd, City of San Jose del Monte",True
+LTFRB,H. Dela Costa II - SM Fairview via Quirino Highway,LTFRB_PUJ1248,LTFRB_PUJ1248|LTFRB_PUJ1249,2,"Quirino Highway, Quezon City - Dela Costa Avenue, Calcoocan City",True
+LTFRB,HULO (MALABON) - DAANG BANGKO NAVOTAS,LTFRB_PUJ1934,LTFRB_PUJ1934|LTFRB_PUJ1935,2,"Navotas Shipyard, M. Naval, City of Navotas - Heath Centre, Don Bastilio Bautista Boulevard, Malabon City",True
+LTFRB,HULO - P. VICTORINO/KALENTONG,LTFRB_PUJ1001,LTFRB_PUJ1001|LTFRB_PUJ1002,2,"Alchan, Mandaluyong City, Manila - Jose Rizal University, J Fabella St, Mandaluyong City, Manila",True
+LTFRB,Heritage Homes - Monumento via NLEX,LTFRB_PUJ1374,LTFRB_PUJ1374|LTFRB_PUJ1375,2,"Lapu-lapu / Samson Road Intersection, Malabon City - Metrogate Market, Un named Road, Marilao",True
+LTFRB,IBF Road/Litex Road - Lupang Pangako (Payatas) via Gravel Pit Road,LTFRB_PUJ1376,LTFRB_PUJ1376|LTFRB_PUJ1377,2,"Commonwealth Avenue / IBP Road Intersection, Quezon City - Payatas Road, Quezon City",True
+LTFRB,IBP ROAD - LUPANG PANGAKO GRAVEL FIT ROAD,LTFRB_PUJ1932,LTFRB_PUJ1932|LTFRB_PUJ1933,2,"Batasan Road, Katarungan Street, Manila Gravel Pit Road, Quezon City - Payatas Road, Quezon City",True
+LTFRB,IBP ROAD - LUPANG PANGAKO via LITEX ROAD,LTFRB_PUJ1930,LTFRB_PUJ1930|LTFRB_PUJ1931,2,"Commonwealth Avenue / IBP Road Intersection, Quezon City - Payatas Road, Quezon City",True
+LTFRB,Imus Zapote,LTFRB_PUJ2329,LTFRB_PUJ2329|LTFRB_PUJ2330,2,"Emilio Aguinaldo Hwy / Holiday Ave Intersection, Imus, Manila - Roxas Blvd / C. Rivera Intersection, Parañaque City, Manila",True
+LTFRB,"Jordan Plains - Philcoa via Marcos Ave., Welcome Rotonda",LTFRB_PUJ1378,LTFRB_PUJ1378|LTFRB_PUJ1379,2,"Kalayaan Ave / Elliptical Rd Intersection, Quezon City, Manila - Jordon Subd, Quezon City",True
+LTFRB,KALENTONG JRC - P. VICTORINO via P CRUZ,LTFRB_PUJ1928,LTFRB_PUJ1928|LTFRB_PUJ1929,2,"Alchan, Mandaluyong City, Manila - Daang Bakal / New Panaderos Extension Intersection, Manila",True
+LTFRB,KAMUNING PIER SOUTH via RODRIGUEZ,LTFRB_PUJ2223,LTFRB_PUJ2223|LTFRB_PUJ2224,2,"Padre Burgos St, Manila - Kamuning Rd / Scout Rallos Extension Intersection, Quezon City, Manila",True
+LTFRB,KATIPUNAN - QUIRINO HIGHWAY,LTFRB_PUJ1744,LTFRB_PUJ1744|LTFRB_PUJ1745,2,"Katipunan Ave, Quezon City, Manila - Chowking, Quirino Highway, Quezon City",True
+LTFRB,KATIPUNAN - UP CAMPUS,LTFRB_PUJ1742,LTFRB_PUJ1742|LTFRB_PUJ1743,2,"Katipunan Ave, Quezon City, Manila - UP College of Education, A. Ma. Regidor St / Roxas Ave Intersection, Quezon City, Manila",True
+LTFRB,KATIPUNAN - UP GATE,LTFRB_PUJ1740,LTFRB_PUJ1740|LTFRB_PUJ1741,2,"Katipunan Ave, Quezon City, Manila - Katipunan Ave, Quezon City, Manila",True
+LTFRB,Kabihasnan Road - Sucat/SSH,LTFRB_PUJ1380,LTFRB_PUJ1380|LTFRB_PUJ1381,2,"Dr A. Santos Ave, Parañaque City, Manila - Quirino Ave, Parañaque City, Manila",True
+LTFRB,Kalentong JRC-Namayan via P Martinez,LTFRB_PUJ2516,LTFRB_PUJ2516|LTFRB_PUJ2517,2,"New Panaderos / Castañeda Intersection, Manila - Jose Rizal University, J Fabella St, Mandaluyong City, Manila",True
+LTFRB,Kalentong-Malinao,LTFRB_PUJ2512,LTFRB_PUJ2512|LTFRB_PUJ2513,2,"Mariveles Street, Mandaluyong City - Jose Rizal University, J Fabella St, Mandaluyong City, Manila",True
+LTFRB,Kalentong-Sierra Madre via 9dePebrero,LTFRB_PUJ2514,LTFRB_PUJ2514|LTFRB_PUJ2515,2,"Domingo M Guevara, Mandaluyong City - New Panaderos Extension / 34 Rte Rev. G. Aglipay Intersection, Mandaluyong City",True
+LTFRB,Kamagong - Malugay Ave.,LTFRB_PUJ1650,LTFRB_PUJ1650,1,"Don Chino Roces Avenue / Pryce Center, Makati City - Ayala Ave / B Yakal Intersection, Makati City, Manila",False
+LTFRB,"Kamuning - Vito Cruz via E. Rodriguez, Mabini",LTFRB_PUJ1382,LTFRB_PUJ1382|LTFRB_PUJ1383,2,"HP Village Square, Pablo Ocampo Sr., Manila - Kamuning Rd / Scout Rallos Extension Intersection, Quezon City, Manila",True
+LTFRB,Kamuning Remedios v Guinto,LTFRB_PUJ2221,LTFRB_PUJ2221|LTFRB_PUJ2222,2,"Leon Guinto Sr., Manila - Kamuning Rd / L. Siangio, Quezon City, Manila",True
+LTFRB,Kanlaon-Del Monte via Mayon,LTFRB_PUJ2518,LTFRB_PUJ2518|LTFRB_PUJ2519,2,"Kanlaon, Quezon City - N. S. Amoranto, Quezon City",True
+LTFRB,Karuhatan Monumento,LTFRB_PUJ2520,LTFRB_PUJ2520|LTFRB_PUJ2521,2,"Bonifacio Market, MacArthur Highway, Caloocan City - Bureau of Telecom Training Institute, MacArthur Highway, Valenzuela City",True
+LTFRB,Karuhatan Sta Cruz via Fuentes,LTFRB_PUJ2331,LTFRB_PUJ2331|LTFRB_PUJ2332,2,"Rizal Avenue, Manila - Jolibee, MacArthur Highway, Malinta, Valenzuela City",True
+LTFRB,Karuhatan Ugong,LTFRB_PUJ2333,LTFRB_PUJ2333|LTFRB_PUJ2334,2,"Que Grande, Valenzuela City - Glen T de Leon, Valenzuela City",True
+LTFRB,Kayamanan C - PRC via P. Tamo,LTFRB_PUJ1384,LTFRB_PUJ1384|LTFRB_PUJ1385,2,"Sabio St / Chino Roces Ave Intersection, Makati City, Manila - A. Reyes Ave / J.P. Rizal Ave Intersection, Makati City, Manila",True
+LTFRB,Kiko Camarin SM Fairview via Maligaya Park,LTFRB_PUJ2335,LTFRB_PUJ2335|LTFRB_PUJ2336,2,"Quirino Highway / Maligaya Intersection, Caloocan City - Camarin Road, Sampaloc Intersection, Caloocan City",True
+LTFRB,L GUINTO - MAKATI via SAN ANDRES,LTFRB_PUJ2155,LTFRB_PUJ2155|LTFRB_PUJ2156,2,"Sgt. Fabian Yabut Circle, Makati City, Manila - Angel Linao / Pedro Gil",True
+LTFRB,L GUINTO - PANDACAN,LTFRB_PUJ1926,LTFRB_PUJ1926,1,"Josefa Llanes Escoda / Felipe Agoncillo Intersection, Manila - Lorenzo Dela Paz, Manila",False
+LTFRB,L GUINTO - STA ANA,LTFRB_PUJ1924,LTFRB_PUJ1924|LTFRB_PUJ1925,2,"Leon Guinto Sr. / Pedro Gil Intersection, Manila - New Panaderos / Castañeda Intersection, Manila",True
+LTFRB,L. Guinto - Pandacan,LTFRB_PUJ1386,LTFRB_PUJ1386|LTFRB_PUJ1387,2,"Josefa Llanes Escoda / Felipe Agoncillo Intersection, Manila - Lorenzo Dela Paz, Manila",True
+LTFRB,L. Guinto - Zobel Roxas via Paco,LTFRB_PUJ1390,LTFRB_PUJ1390|LTFRB_PUJ1391,2,"Caton / Zobel Roxas Ave Intersection, Manila - Taft Avenue / Pablo Ocampo Sreet, Avenue, Manila",True
+LTFRB,LAGRO - NOVALICHES via QUIRINO HIGHWAY,LTFRB_PUJ1922,LTFRB_PUJ1922|LTFRB_PUJ1923,2,"Dumulay  / Quirino Highway, Quezon City, Manila - Quirino Highway / St James Intersection, Calcoocan City",True
+LTFRB,LAGRO - RIZAL AVE via A. BONIFACIO,LTFRB_PUJ1804,LTFRB_PUJ1804|LTFRB_PUJ1805,2,"Cavitie / Leonor Rivera Intersection, Quezon City - Susano / General Luis Intersection, Caloocan City",True
+LTFRB,LAGRO-ANONAS,LTFRB_PUJ1738,LTFRB_PUJ1738|LTFRB_PUJ1739,2,"Anonas / Tampoy Intersection, Quezon City, Manila - Quirino Highway / St James Intersection, Calcoocan City",True
+LTFRB,LAGRO-CITY HALL,LTFRB_PUJ1736,LTFRB_PUJ1736|LTFRB_PUJ1737,2,"Kalayaan Ave / Mayaman Intersection, Quezon City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",True
+LTFRB,LAGRO-CUBAO,LTFRB_PUJ1734,LTFRB_PUJ1734|LTFRB_PUJ1735,2,"13th Ave / P. Tuazon Blvd, Quezon City, Manila - Quirino Highway / St James Intersection, Calcoocan City",True
+LTFRB,LAGRO-NOVALICHES,LTFRB_PUJ1732,LTFRB_PUJ1732,1,"Dumulay  / Quirino Highway, Quezon City, Manila - Quirino Highway / St James Intersection, Calcoocan City",False
+LTFRB,LAGRO-PHILCOA,LTFRB_PUJ1730,LTFRB_PUJ1730|LTFRB_PUJ1731,2,"Philippine Coconut Authority, Commonwealth Avenue, Quezon City - Quirino Highway / St James Intersection, Calcoocan City",True
+LTFRB,LIBERTAD - PASAY ROTUNDA,LTFRB_PUJ1802,LTFRB_PUJ1802|LTFRB_PUJ1803,2,"Epifanio de los Santos Avenue, Lungsod ng Pasay - Taft Ave, Lungsod ng Pasay",True
+LTFRB,LIBERTAD - PINAGBARILAN,LTFRB_PUJ1800,LTFRB_PUJ1800|LTFRB_PUJ1801,2,"Epifanio de los Santos Avenue / Skyway , Lungsod ng Makati, Manila - P. Villanueva, Lungsod ng Pasay",True
+LTFRB,LIBERTAD - PRC,LTFRB_PUJ1798,LTFRB_PUJ1798|LTFRB_PUJ1799,2,"Burgos Street, Lungsod ng Pasay - A. Reyes Ave, Makati City, Manila",True
+LTFRB,LIBERTAD - WASHINGTON,LTFRB_PUJ1796,LTFRB_PUJ1796|LTFRB_PUJ1797,2,"Antonio Arnaiz Ave / P.Zamora Intersection, Manila - J.Victor, Makati City, Manila",True
+LTFRB,LIBERTAD-DIAN,LTFRB_PUJ1729,LTFRB_PUJ1729,1,"Dian / Pablo Ocampo Sr. Intersection, Manila - Antonio Arnaiz Ave / P.Zamora Intersection, Manila",False
+LTFRB,LIBERTAD-EVANGELISTA,LTFRB_PUJ1726,LTFRB_PUJ1726|LTFRB_PUJ1727,2,"Gen.J.Cailles / Evangelista Intersection, Makati City - P. Villanueva, Lungsod ng Pasay",True
+LTFRB,LIBERTAD-PIER SOUTH,LTFRB_PUJ1724,LTFRB_PUJ1724|LTFRB_PUJ1725,2,"P. Villanueva, Lungsod ng Pasay - Railroad Dr / 13th St Intersection, Manila",True
+LTFRB,LRT TAFT - SM MOA,LTFRB_PUJ1920,LTFRB_PUJ1920,1,"Epifanio de los Santos Avenue, Lungsod ng Pasay - Epifanio de los Santos Avenue, Lungsod ng Pasay",False
+LTFRB,Lagro - NAIA via Fairview,LTFRB_PUB1161,LTFRB_PUB1161|LTFRB_PUB1162,2,"Maria, Parañaque City, Manila - Quirino Highway / Maligaya Intersection, Caloocan City",True
+LTFRB,Lagro - Novaliches,LTFRB_PUJ1392,LTFRB_PUJ1392|LTFRB_PUJ1393,2,"Dumalay, Quezon City - Lagro Dulo Park, Ascencion Avenue, Quezon City",True
+LTFRB,Lagro - Panay Ave. via Quezon Ave.,LTFRB_PUJ1394,LTFRB_PUJ1394|LTFRB_PUJ1395,2,"Quezon Avenue, Quezon City - Quirino Highway / St James Intersection, Calcoocan City",True
+LTFRB,Lagro - SM Fairview Loop,LTFRB_PUJ1406,LTFRB_PUJ1406|LTFRB_PUJ1407,2,"Bristol Street / Bronson Street Intersection, Quezon City - Quirino Highway, Quezon City",True
+LTFRB,Lagro - Welcome Rotonda via Quezon Ave.,LTFRB_PUJ1396,LTFRB_PUJ1396|LTFRB_PUJ1397,2,"Apo / Quezon Avenue Intersection, Quezon City - Quirino Highway / St James Intersection, Calcoocan City",True
+LTFRB,Lagro Don Antonio Heights,LTFRB_PUJ2225,LTFRB_PUJ2225|LTFRB_PUJ2226|LTFRB_PUJ2227,3,"Commonwealth Avenue / Capitol Homes Drive Intersection, Quezon City - Bristol Street / Bronson Street Intersection, Quezon City",True
+LTFRB,Lagro Panay welcome,LTFRB_PUJ2228,LTFRB_PUJ2228,1,"Bristol Street / Bronson Street Intersection, Quezon City - Philippine Coconut Authority, Commonwealth Avenue, Quezon City",False
+LTFRB,Lagro Philcoa,LTFRB_PUJ2229,LTFRB_PUJ2229|LTFRB_PUJ2230,2,"Commonwealth Avenue / University Avenue Intersection, Quezon City - Bristol Street / Bronson Street Intersection, Quezon City",True
+LTFRB,Lagro SM North,LTFRB_PUJ2231,LTFRB_PUJ2231|LTFRB_PUJ2232,2,"Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City - Ascencion Avenue / Caridad Intersection, Quezon City",True
+LTFRB,Lagro V Luna Anonas,LTFRB_PUJ2233,LTFRB_PUJ2233|LTFRB_PUJ2234,2,"V. Luna Hospital, V. Luna Ave, Quezon City, Manila - Ascencion Avenue / Caridad Intersection, Quezon City",True
+LTFRB,Lagro-SM Fairview,LTFRB_PUJ2522,LTFRB_PUJ2522|LTFRB_PUJ2523,2,"Ascencion Avenue / Bristol Street Intersection, Quezon City - Quirino Highway / Maligaya Intersection, Caloocan City",True
+LTFRB,Landmark Puregold Loop,LTFRB_PUJ2337,LTFRB_PUJ2337|LTFRB_PUJ2338,2,"Makati Ave / North Dr Intersection, Makati City, Manila - J.P. Rizal Ave, Makati City, Manila",True
+LTFRB,Lardizabal - Rizal Ave. via M. dela Fuente,LTFRB_PUJ1408,LTFRB_PUJ1408|LTFRB_PUJ1409,2,"Lardizabal, Manila - Camarines, Manila",True
+LTFRB,Lealtad P Miranda,LTFRB_PUJ2339,LTFRB_PUJ2339|LTFRB_PUJ2340,2,"R Hidalgo, Manila - Matimyas, Manila City",True
+LTFRB,Leveriza Monumento,LTFRB_PUB1045,LTFRB_PUB1045|LTFRB_PUB1046,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",True
+LTFRB,Libertad - M. Reyes,LTFRB_PUJ1651,LTFRB_PUJ1651,1,"Taft Ave, Lungsod ng Pasay - Taft Ave, Lungsod ng Pasay",False
+LTFRB,Libertad - M. dela Cruz,LTFRB_PUJ1410,LTFRB_PUJ1410|LTFRB_PUJ1411,2,"Antonio Arnaiz Ave / P.Zamora Intersection, Manila - M. dela Cruz St, Lungsod ng Pasay, Manila",True
+LTFRB,Libertad - Malibay,LTFRB_PUJ1412,LTFRB_PUJ1412|LTFRB_PUJ1413,2,"Jose Diokno Blvd, Lungsod ng Pasay - Epifanio de los Santos Avenue / Skyway , Lungsod ng Makati, Manila",True
+LTFRB,Libertad - Pasay Rd.,LTFRB_PUJ1414,LTFRB_PUJ1414|LTFRB_PUJ1415,2,"Antonio Arnaiz Ave / P.Zamora Intersection, Manila - South Dr / A. Arnaiz Ave Intersection, Makati City, Manila",True
+LTFRB,"Libertad - Retiro via Mabini, Sta. Cruz",LTFRB_PUJ1416,LTFRB_PUJ1416|LTFRB_PUJ1417,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - N. S. Amoranto Sr. Avenue / Biak an Bato Intersection, Quezon City",True
+LTFRB,Libertad MCU via Mabini,LTFRB_PUJ2235,LTFRB_PUJ2235|LTFRB_PUJ2236,2,"Harrison St, Manila - Monumento, Rizal Avenue, Caloocan City",True
+LTFRB,Libertad MCU viia Taft Ave,LTFRB_PUJ2341,LTFRB_PUJ2341|LTFRB_PUJ2342,2,"F.B. Harrison St, Lungsod ng Pasay - Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City",True
+LTFRB,Libertad Monumento via Mabini,LTFRB_PUJ2238,LTFRB_PUJ2238,1,"Rizal Ave / 8th Ave West, Caloocan City, Manila - Harrison St, Manila",False
+LTFRB,Libertad Pinagbarilan via EDSA,LTFRB_PUJ2239,LTFRB_PUJ2239|LTFRB_PUJ2240,2,"Epifanio de los Santos Avenue / Skyway , Lungsod ng Makati, Manila - Antonio Arnaiz Ave / F.B. Harrison St Intersection",True
+LTFRB,Libertad QI via LGuinto,LTFRB_PUJ2241,LTFRB_PUJ2241|LTFRB_PUJ2242,2,"Taft Ave / College Rd Intersection, Lungsod ng Pasay - Quezon Institute, Eulogio Rodriguez Sr Ave, Quezon City, Manila",True
+LTFRB,Libertad QI via Mabini,LTFRB_PUJ2243,LTFRB_PUJ2243|LTFRB_PUJ2244,2,"P. Villanueva, Lungsod ng Pasay - Gregorio Araneta Ave / Eulogio Rodriguez Sr Ave Intersection, Quezon City, Manila",True
+LTFRB,Libertad Retiro via Sta Cruz,LTFRB_PUJ2245,LTFRB_PUJ2245|LTFRB_PUJ2246,2,"P. Villanueva, Lungsod ng Pasay - Andres Bonifacio / Ferdinand Blumentritt Intersection, Quezon City",True
+LTFRB,Libertad Vito Cruz via FB Harrizon,LTFRB_PUJ2247,LTFRB_PUJ2247|LTFRB_PUJ2248,2,"Harrison St, Manila - HP Village Square, Pablo Ocampo Sr., Manila",True
+LTFRB,Libertad-PCampa,LTFRB_PUJ2524,LTFRB_PUJ2524|LTFRB_PUJ2525,2,"Taft Ave / College Rd Intersection, Lungsod ng Pasay - Claro M. Recto Ave / Quezon Blvd Intersection, Manila",True
+LTFRB,MAKATI P BURGOS - L GUINTO,LTFRB_PUJ1918,LTFRB_PUJ1918|LTFRB_PUJ1919,2,"Guerrero / Makati Ave Intersection, Makati City, Manila - Leon Guinto Sr., Manila",True
+LTFRB,MALABON - MONUMENTO via ACACIA,LTFRB_PUJ2153,LTFRB_PUJ2153|LTFRB_PUJ2154,2,"Lapu-lapu / Samson Road Intersection, Malabon City - Heath Centre, Don Bastilio Bautista Boulevard, Malabon City",True
+LTFRB,MALABON - PANGHULO,LTFRB_PUJ1916,LTFRB_PUJ1916|LTFRB_PUJ1917,2,"Malabon National High School, Don Bastilio Bautista Boulevard, Malabon City - J. P Rizal, Obando",True
+LTFRB,MALINTA - KAYBIGA,LTFRB_PUJ1914,LTFRB_PUJ1914|LTFRB_PUJ1915,2,"Maysan Road / Llenado Compound Intersection Valenzuela City - Genteral Luis, Caloocan City",True
+LTFRB,MALINTA - MALOLOS,LTFRB_PUJ1912,LTFRB_PUJ1912|LTFRB_PUJ1913,2,"Flying V Gas, MacArthur Highway, Valenzuela City - Bocaue Public Market, MacArthur Highway, Bocaue, Bulacan",True
+LTFRB,MALINTA - STA MARIA,LTFRB_PUJ1910,LTFRB_PUJ1910|LTFRB_PUJ1911,2,"Flying V Gas, MacArthur Highway, Valenzuela City - Santa Maria General Hospital, JC De Jesus Street, Santa Maria",True
+LTFRB,MARIKINA - ANTIPOLO via MARCOS HIGHWAY,LTFRB_PUJ2151,LTFRB_PUJ2151|LTFRB_PUJ2152,2,"P. Oliveros St, Antipolo City, Manila - Shoe Ave, Marikina City, Manila",True
+LTFRB,MARIKINA - MAMBUGAN,LTFRB_PUJ1908,LTFRB_PUJ1908|LTFRB_PUJ1909,2,"Sumulong Hwy, Marikina City, Manila - Sumulong Hwy, Antipolo City, Manila",True
+LTFRB,MARIKINA - MONTALBAN,LTFRB_PUJ1906,LTFRB_PUJ1906|LTFRB_PUJ1907,2,"J. P. Rizal St, Marikina City, Manila - Montalban Highway / R Reyes Street Intersection near Montalban Town Centre, Rodriguez",True
+LTFRB,MARIKINA - PARANG,LTFRB_PUJ1904,LTFRB_PUJ1904|LTFRB_PUJ1905,2,"W Paz, Marikina City, Manila - Fortune Tobacco Corporation, Marikina City, Manila",True
+LTFRB,MARIKINA - PATEROS SAN JOAQUIN via PASIG,LTFRB_PUJ1902,LTFRB_PUJ1902|LTFRB_PUJ1903,2,"M. Almeda, Pateros, Manila - Sumulong Hwy, Marikina City, Manila",True
+LTFRB,MARKET MARKET - GUADALUPE,LTFRB_PUJ1900,LTFRB_PUJ1900|LTFRB_PUJ1901,2,"Carlos P. Garcia Ave, Taguig City, Manila - Maranatha Christian Academy, Sgt. Fabian Yabut Circle, Makati City, Manila",True
+LTFRB,MARKET MARKET - NASCOR,LTFRB_PUJ1898,LTFRB_PUJ1898|LTFRB_PUJ1899,2,"Carlos P. Garcia Ave, Makati City, Manila - F. Flores / M. Concepcion Ave Intersection, Pateros, Manila",True
+LTFRB,MCU - PASAY RTDA,LTFRB_PUJ1896,LTFRB_PUJ1896|LTFRB_PUJ1897,2,"Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City - Taft Avenue Extension / Epifanio de los Santos Avenue, Lungsod ng Pasay, Manila",True
+LTFRB,"MCU - Pasay Rotonda via Rizal Ave., Mabini",LTFRB_PUJ1460,LTFRB_PUJ1460,1,"Cuneta Avenue, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City",False
+LTFRB,"MCU - Pasay Rotonda via Rizal Ave., Taft Ave.",LTFRB_PUJ1462,LTFRB_PUJ1462|LTFRB_PUJ1463,2,"Taft Avenue Extension / Epifanio de los Santos Avenue, Lungsod ng Pasay, Manila - Bonifacio Market, MacArthur Highway, Caloocan City",True
+LTFRB,"MCU - Recto via F. Huertas, Oroquieta",LTFRB_PUJ1464,LTFRB_PUJ1464|LTFRB_PUJ1465,2,"Claro M. Recto Ave / Quezon Blvd Intersection, Manila - Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City",True
+LTFRB,MCU - Sangandaan,LTFRB_PUJ1466,LTFRB_PUJ1466|LTFRB_PUJ1467,2,"Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City - A. Mabini Avenue / Geronimo Intersection, Caloocan City",True
+LTFRB,"MCU - Vito Cruz via Rizal Ave., Taft Ave.",LTFRB_PUJ1328,LTFRB_PUJ1328,1,"Rizal Memorial Track and Football Stadium, M Adriatico, Manila - Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City",False
+LTFRB,MCU LIBERTADvi MABINIF HARRISON,LTFRB_PUJ1794,LTFRB_PUJ1794|LTFRB_PUJ1795,2,"Antonio Arnaiz Ave / F.B. Harrison St Intersection - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",True
+LTFRB,MCU-LIBERTAD,LTFRB_PUJ1722,LTFRB_PUJ1722|LTFRB_PUJ1723,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City",True
+LTFRB,"MCU-PASAY RTDA, MABINI",LTFRB_PUJ1720,LTFRB_PUJ1720|LTFRB_PUJ1721,2,"Epifanio de los Santos Avenue / F.B. Harrison St Intersection, Lungsod ng Pasay - Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City",True
+LTFRB,MONTALBAN - MARCOS AVE via LITEX,LTFRB_PUJ1894,LTFRB_PUJ1894|LTFRB_PUJ1895,2,"Payatas Road, Quezon City - Montalban Church, Daang Hari Streeet Intersection, Rodriguez",True
+LTFRB,MONUMENTO - MEYCAUAYAN via EXPRESSWAY,LTFRB_PUJ1892,LTFRB_PUJ1892|LTFRB_PUJ1893|LTFRB_PUJ2149|LTFRB_PUJ2150,4,"North Luzon Expressway, Marilao, Manila - Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City",True
+LTFRB,MONUMENTO - STA MARIA via EXPRESSWAY,LTFRB_PUJ1890,LTFRB_PUJ1890|LTFRB_PUJ1891,2,"L Bustamante / Benin Intersection, Caloocan City - Santa Maria Municipal Hall, JC De Jesus Street, Santa Maria",True
+LTFRB,MONUMENTO-MALABON via LETRE,LTFRB_PUJ1718,LTFRB_PUJ1718|LTFRB_PUJ1719,2,"Bonifacio Market, MacArthur Highway, Caloocan City - Rizal Avenue / Leono Street Intersection, Malabon City",True
+LTFRB,MONUMENTO-MUNOZ via BALINTAWAK,LTFRB_PUJ1716,LTFRB_PUJ1716|LTFRB_PUJ1717,2,"Epifanio de los Santos Avenue near Walter Mart Service Road, Quezon City - Areneta Square Mall, Samson Road, Caloocan City",True
+LTFRB,MONUMENTO-PIER,LTFRB_PUJ1715,LTFRB_PUJ1715,1,"Ever Gotesco Grand Central, Rizal Avenue, Caloocan City - 25th St / Antonio C. Delgado Intersection, Manila",False
+LTFRB,"MONUMENTO-TAFTAVE.,PASA ROTUNDA",LTFRB_PUJ1792,LTFRB_PUJ1792|LTFRB_PUJ1793,2,"F.B. Harrison Street, Lungsod ng Pasay, Manila - Areneta Square Mall, Samson Road, Caloocan City",True
+LTFRB,MONUMNTO-LIBERTADvTAFTAVENUE,LTFRB_PUJ1790,LTFRB_PUJ1790|LTFRB_PUJ1791,2,"P. Villanueva, Lungsod ng Pasay - Monumento, Rizal Avenue, Caloocan City",True
+LTFRB,MRT - Quirino via C-5,LTFRB_PUJ1624,LTFRB_PUJ1624|LTFRB_PUJ1625,2,"Epifanio de los Santos Avenue, Quezon City - Quirino Highway / Mindanao Avenue Intersection, Quezon City",True
+LTFRB,MUNOZ-PANTRANCO,LTFRB_PUJ1712,LTFRB_PUJ1712|LTFRB_PUJ1713,2,"Hayundai, Quezon Avenue, Quezon City - Dangay, Quezon City",True
+LTFRB,MUNOZ-PROJ8,LTFRB_PUJ1710,LTFRB_PUJ1710|LTFRB_PUJ1711,2,"Epifanio de los Santos Avenue / Congressional Avenue Intersection, Quezon City - Jetti Petrol Station, Tanding Sora Avenue, Quezon City",True
+LTFRB,MUNOZ-VISAYAS AVE,LTFRB_PUJ1708,LTFRB_PUJ1708|LTFRB_PUJ1709,2,"Congressional Avenue / Abra Intersection Quezon City - Visayas Avenue / Congressional Avenue Extension, Quezon City",True
+LTFRB,MUNOZ-VITO CRUZvia MABINI,LTFRB_PUJ1706,LTFRB_PUJ1706|LTFRB_PUJ1707,2,"HP Village Square, Pablo Ocampo Sr., Manila - Roosevelt Avenue / Road B Intersection, Quezon City",True
+LTFRB,MURPHY - CUBAO,LTFRB_PUJ2147,LTFRB_PUJ2147|LTFRB_PUJ2148,2,"15th Ave / Col. Bonny Serrano Intersection, Quezon City, Manila - P. Tuazon Blvd / 9th Ave Intersection, Quezon City, Manila",True
+LTFRB,MURPHY - QMART,LTFRB_PUJ1888,LTFRB_PUJ1888|LTFRB_PUJ1889,2,"15th Ave / Col. Bonny Serrano Intersection, Quezon City, Manila - Ermin Garcia Ave, Quezon City, Manila",True
+LTFRB,MURPHY 15TH AVE - STOP N SHOP,LTFRB_PUJ1886,LTFRB_PUJ1886|LTFRB_PUJ1887,2,"Internet Cafe, Old Sta. Mesa, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",True
+LTFRB,Malabon (TP) - Navotas (TP),LTFRB_PUJ1420,LTFRB_PUJ1420|LTFRB_PUJ1421,2,"Tangos Elementary School, M. Naval, City of Navotas - General Luma Street, Malabon City",True
+LTFRB,Malabon (TP) - Obando,LTFRB_PUJ1422,LTFRB_PUJ1422|LTFRB_PUJ1423,2,"Malabon Elementary School, N Naval, Malabon City - Paliwas Road / Pedro B Jacinto Street Intersection, Obando",True
+LTFRB,Malabon - Monumento via Letre,LTFRB_PUJ1418,LTFRB_PUJ1418|LTFRB_PUJ1419,2,"Lapu-lapu / Samson Road Intersection, Malabon City - Rizal Avenue / Leono Street Intersection, Malabon City",True
+LTFRB,Malabon Paco (Obando),LTFRB_PUJ2526,LTFRB_PUJ2526|LTFRB_PUJ2527,2,"United Evangelical Church of Malabon, Gov. W. Pascual Avenue, Malabon City - Paliwas Road / Pedro B Jacinto Street Intersection, Obando",True
+LTFRB,Malanday - Bulacan,LTFRB_PUJ1424,LTFRB_PUJ1424|LTFRB_PUJ1425,2,"A. Fernando Elementary School, M H Del Pilar, Malanday, Valenzuela City - F. Balagtas, Obando",True
+LTFRB,"Malanday - Muntinlupa via Edsa, Monumento",LTFRB_PUB1163,LTFRB_PUB1163|LTFRB_PUB1164,2,"National Hwy, Muntinlupa City, Manila - MacArthur Highway, Dalandanan, Valenzuela City",True
+LTFRB,"Malanday - Pier South via Rizal Ave., P. Burgos",LTFRB_PUJ1428,LTFRB_PUJ1428|LTFRB_PUJ1429,2,"Antonio C. Delgado / 13th St Intersection, Manila - ET Pacific, MacArthur Highway, City of Meycauayan",True
+LTFRB,"Malanday - Recto via F. Huertas, Oroquieta",LTFRB_PUJ1426,LTFRB_PUJ1426|LTFRB_PUJ1427,2,"LRT Doroteo Jose-Recto Station Walkway / Rizal Avenue Intersection, Manila - MacArthur Highway / Woodlands Drive Intersection, Valenzuela City, Philippines",True
+LTFRB,Malanday MIA via Pasay Rtda MOA Coastal Road,LTFRB_PUB1079,LTFRB_PUB1079|LTFRB_PUB1080,2,"Natalia, Parañaque City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",True
+LTFRB,Malanday Sucat via EDSA,LTFRB_PUB1082,LTFRB_PUB1082|LTFRB_PUB1083,2,"South Luzon Expressway, Muntinlupa City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",True
+LTFRB,"Malanday Term - NAIA viaEDSA, Buendia, Ayala",LTFRB_PUB1165,LTFRB_PUB1165|LTFRB_PUB1166,2,"Maria, Parañaque City, Manila - MacArthur Highway, Dalandanan, Valenzuela City",True
+LTFRB,Malanday-Sta Cruz,LTFRB_PUJ1614,LTFRB_PUJ1614|LTFRB_PUJ1615,2,"McArthur Bridge , Manila - C.P. Enerton Fuel Station, MacArthur Highway, Valenzuela City, Philippines",True
+LTFRB,Malinta - Bocaue via McArthur Hi-way,LTFRB_PUJ1430,LTFRB_PUJ1430|LTFRB_PUJ1431,2,"Flying V Gas, MacArthur Highway, Valenzuela City - MacArthur Highway Cemetary, MacArthur Highway, Marilao",True
+LTFRB,Malinta - Malolos via McArthur Hi-way,LTFRB_PUJ1645,LTFRB_PUJ1645,1,"Flying V Gas, MacArthur Highway, Valenzuela City - Ang Dating Daan, Balagtas",False
+LTFRB,Malinta - Meycauayan via McArthur,LTFRB_PUJ1432,LTFRB_PUJ1432,1,"Flying V Gas, MacArthur Highway, Valenzuela City - St Mary's College, MacArthur Highway, City of Meycauayan",False
+LTFRB,Malinta - Monumento via McArthur Hi-way,LTFRB_PUJ1433,LTFRB_PUJ1433,1,"Bonifacio Market, MacArthur Highway, Caloocan City - Parish Church or Isidro Labarador, MacArthur Highway, Malinta, Valenzuela City",False
+LTFRB,Malinta - Novaliches (TP),LTFRB_PUJ1434,LTFRB_PUJ1434|LTFRB_PUJ1435,2,"MacArthur Highway / Maysan Road Intersection, Malinta, Valenzuela City - General Luis / Emerald Intersection, Caloocan City",True
+LTFRB,Malinta - Sta. Maria via McArthur Hi-way,LTFRB_PUJ1436,LTFRB_PUJ1436|LTFRB_PUJ1437,2,"Flying V Gas, MacArthur Highway, Valenzuela City - Santa Maria Municipal Hall, JC De Jesus Street, Santa Maria",True
+LTFRB,Malinta Bagbaguin,LTFRB_PUJ2343,LTFRB_PUJ2343|LTFRB_PUJ2344,2,"Our Lady of Fatima College, Maysan Road, Valenzuela City - Bagbaguin Family Hospital, Genteral Luis, Caloocan City",True
+LTFRB,Malinta Exit - McArthur Highway via T. Santiago,LTFRB_PUJ1438,LTFRB_PUJ1438|LTFRB_PUJ1439,2,"MacArthur Highway / Maysan Road Intersection, Malinta, Valenzuela City - Bagabaguin Road, Caloocan City",True
+LTFRB,Malinta Hagonoy via MacArthur Highway,LTFRB_PUJ2532,LTFRB_PUJ2532|LTFRB_PUJ2533,2,"Flying V Gas, MacArthur Highway, Valenzuela City - Ang Dating Daan, Balagtas",True
+LTFRB,Malinta Hagonoy via Meycauayan,LTFRB_PUJ2535,LTFRB_PUJ2535,1,"Ang Dating Daan, Balagtas - South supermarket, MacArthur Highway, Valenzuela City",False
+LTFRB,Malinta Meycauayan v F De Leon,LTFRB_PUJ2536,LTFRB_PUJ2536|LTFRB_PUJ2537,2,"Flying V Gas, MacArthur Highway, Valenzuela City - MacArthur Highway / Malhacan Road Intersection, City of Meycauayan",True
+LTFRB,Malinta Pier via Monumento,LTFRB_PUJ2538,LTFRB_PUJ2538|LTFRB_PUJ2539,2,"Museum of Philippine History, Rizal Park, T.M. Kalaw, Manila - Flying V Gas, MacArthur Highway, Valenzuela City",True
+LTFRB,Malinta Recto via F Huertas,LTFRB_PUJ2540,LTFRB_PUJ2540|LTFRB_PUJ2541,2,"Oroquieta, Manila - Jolibee, MacArthur Highway, Malinta, Valenzuela City",True
+LTFRB,Malinta Sta. Maria via McArthur,LTFRB_PUJ2543,LTFRB_PUJ2543,1,"C de Guzman Street, Santa Maria - Flying V Gas, MacArthur Highway, Valenzuela City",False
+LTFRB,Malinta-Rizal Ave via Banal,LTFRB_PUJ2528,LTFRB_PUJ2528|LTFRB_PUJ2529,2,"Rizal Avenue, Manila - Flying V Gas, MacArthur Highway, Valenzuela City",True
+LTFRB,Malinta-Sta Cruz,LTFRB_PUJ2530,LTFRB_PUJ2530|LTFRB_PUJ2531,2,"Rizal Avenue, Manila - Flying V Gas, MacArthur Highway, Valenzuela City",True
+LTFRB,Malolos BBB (Val) via MacArthur Highway,LTFRB_PUJ2345,LTFRB_PUJ2345|LTFRB_PUJ2346,2,"MacArthur Highway / Del Monte Intersection, Malabon City - Ang Dating Daan, Balagtas",True
+LTFRB,Marcos Ave Tandang Sora Balintawak,LTFRB_PUJ2249,LTFRB_PUJ2249|LTFRB_PUJ2250,2,"Social Science Institute, Commonwealth Avenue, Quezon City - Tanding Sora Avenue, Quezon City",True
+LTFRB,Marcos Ave. - Quirino Hi-way via T. Sora,LTFRB_PUJ1440,LTFRB_PUJ1440|LTFRB_PUJ1441,2,"Katipunan Ave, Quezon City, Manila - Tanding Sora Avenue, Quezon City",True
+LTFRB,Marikina - Paenaan (Antipolo),LTFRB_PUJ1446,LTFRB_PUJ1446|LTFRB_PUJ1447,2,"Shoe Ave, Marikina City, Manila - Marcos Hwy, Antipolo City, Manila",True
+LTFRB,Marikina - Parang via Fortune,LTFRB_PUJ1450,LTFRB_PUJ1450|LTFRB_PUJ1451,2,"Shoe Ave / W Paz Intersection, Marikina City, Manila - Fortune Tobacco Corporation, Marikina City, Manila",True
+LTFRB,Marikina - Pasig,LTFRB_PUJ1448,LTFRB_PUJ1448|LTFRB_PUJ1449,2,"Caruncho Ave / Market Ave Intersection, Pasig City, Manila - Shoe Ave / W Paz Intersection, Marikina City, Manila",True
+LTFRB,Marikina - Pateros via Pasig,LTFRB_PUJ1453,LTFRB_PUJ1453,1,"Shoe Ave, Marikina City, Manila - M. Almeda, Pateros, Manila",False
+LTFRB,Marikina - Pinugay (Philcomsat),LTFRB_PUJ1454,LTFRB_PUJ1454|LTFRB_PUJ1455,2,"J. Chanyungco St, Marikina City, Manila - Un-named road near Marcos Hwy, Antipolo City, Manila",True
+LTFRB,Marikina - SM Fairview,LTFRB_PUJ1458,LTFRB_PUJ1458|LTFRB_PUJ1459,2,"Felix Ave, Cainta, Manila - Novastop, Quirino Highway, Caloocan City",True
+LTFRB,Marikina - San Mateo,LTFRB_PUJ1456,LTFRB_PUJ1456|LTFRB_PUJ1457,2,"Shoe Ave / W Paz Intersection, Marikina City, Manila - J. P. Rizal St / BMW Drive Intersection, San Mateo, Manila",True
+LTFRB,Marikina City SM Santolan LRT,LTFRB_PUJ2347,LTFRB_PUJ2347|LTFRB_PUJ2348,2,"Amang Rodriguez Ave, Pasig City, Manila - Sumulong Hwy, Marikina City, Manila",True
+LTFRB,Mayhaligue - Plaza dela Barca via J.A.,LTFRB_PUJ1009,LTFRB_PUJ1009|LTFRB_PUJ1010,2,"Jose Abad Santos Ave., Manila - Juan Luna / Veronica Intersection, Manila",True
+LTFRB,Meycauayan - Monumento via McArthur Hi-way,LTFRB_PUJ1468,LTFRB_PUJ1468|LTFRB_PUJ1469,2,"Monumento, Rizal Avenue, Caloocan City - PWRHAUZ Ministries Inc., Malhacan Road, City of Meycauayan",True
+LTFRB,Meycauayan Malolos,LTFRB_PUJ2544,LTFRB_PUJ2544|LTFRB_PUJ2545,2,"MacArthur Highway / Malhacan Road Intersection, City of Meycauayan - Ang Dating Daan, Balagtas",True
+LTFRB,Meycauayan Plaridel,LTFRB_PUJ2546,LTFRB_PUJ2546|LTFRB_PUJ2547,2,"Banga Baranggay Hal, MacArthur Highway, City of Meycauayan - Ang Dating Daan, Balagtas",True
+LTFRB,Meycauayan Recto via BBB Monumento,LTFRB_PUJ2548,LTFRB_PUJ2548|LTFRB_PUJ2549,2,"Valariano Fugoso, Manila - Meycauayan College, MacArthur Highway, City of Meycauayan",True
+LTFRB,Molino-Soldiers Hills,LTFRB_PUJ2550,LTFRB_PUJ2550,1,"Alvarez Extension / Magdiwang Rd Intersection, Las Piñas City, Manila - Magdiwang Rd, Las Piñas City, Manila",False
+LTFRB,Molino-Zapote,LTFRB_PUJ2551,LTFRB_PUJ2551|LTFRB_PUJ2552,2,"Mariche Apartelle, Mariche Apartelle - Molino Rd, Bacoor City, Manila",True
+LTFRB,Montalban San Rafael,LTFRB_PUJ2349,LTFRB_PUJ2349|LTFRB_PUJ2350,2,"Gen. A Luna, San Mateo - MH del Pilar Street, Rodriguez",True
+LTFRB,Montalban Wawa,LTFRB_PUJ2351,LTFRB_PUJ2351|LTFRB_PUJ2352,2,"MH del Pilar Street, Rodriguez - M H del Pilar Street, Rodriguez",True
+LTFRB,Monumento - Navotas via Letre,LTFRB_PUJ1470,LTFRB_PUJ1470|LTFRB_PUJ1471,2,"Bonifacio Market, MacArthur Highway, Caloocan City - Tangos Elementary School, M. Naval, City of Navotas",True
+LTFRB,Monumento - Paco (Obando) via M.H. del Pilar,LTFRB_PUJ1472,LTFRB_PUJ1472|LTFRB_PUJ1473,2,"Lapu-lapu / Samson Road Intersection, Malabon City - Tawiran Elementary School, Obando",True
+LTFRB,"Monumento - Pasay Rotonda via Rizal Ave., Mabini",LTFRB_PUJ1474,LTFRB_PUJ1474|LTFRB_PUJ1475,2,"Epifanio de los Santos Avenue / F.B. Harrison St Intersection, Lungsod ng Pasay - Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City",True
+LTFRB,Monumento - Pier South via Rizal Ave.,LTFRB_PUJ1332,LTFRB_PUJ1332|LTFRB_PUJ1333,2,"Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City - Railroad Dr / 13th St Intersection, Manila",True
+LTFRB,"Monumento - Polo via Acacia, M.H. del Pilar",LTFRB_PUJ1657,LTFRB_PUJ1657|LTFRB_PUJ1658,2,"San Diego de Alcala Parish, Palassan Road, Kapitan Viilila, Valenzuela City - Lapu-lapu / Samson Road Intersection, Malabon City",True
+LTFRB,Monumento - Sto. Nino via Expressway,LTFRB_PUJ1476,LTFRB_PUJ1476|LTFRB_PUJ1477,2,"Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City - El- Camino, City of Meycauayan",True
+LTFRB,"Monumento - Vito C ruz via Rizal Ave., Mabini",LTFRB_PUJ1480,LTFRB_PUJ1480,1,"HP Village Square, Pablo Ocampo Sr., Manila - Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City",False
+LTFRB,"Monumento - Vito Cruz via Rizal Ave., Taft Ave.",LTFRB_PUJ1478,LTFRB_PUJ1478,1,"Pablo Ocampo Sreet Avenue, Manila - Epifanio de los Santos Avenue / 8th Street Intersection , Caloocan City",False
+LTFRB,Monumento Bocaue,LTFRB_PUJ2553,LTFRB_PUJ2553|LTFRB_PUJ2554,2,"Bonifacio Market, MacArthur Highway, Caloocan City - Sto. Nino Academy, MacArthur Highway, Bocaue, Bulacan",True
+LTFRB,Monumento Divisoria via A Santos,LTFRB_PUJ2555,LTFRB_PUJ2555|LTFRB_PUJ2556,2,"Antonio Rivera, Manila - Monumento, Rizal Avenue, Caloocan City",True
+LTFRB,Monumento Malanday,LTFRB_PUJ2557,LTFRB_PUJ2557|LTFRB_PUJ2558,2,"Bonifacio Market, MacArthur Highway, Caloocan City - Mananday Tricycle and Pedicab Terminal, MacArthur Highway, Malanday, Valenzuela City",True
+LTFRB,Monumento Malolos,LTFRB_PUJ2559,LTFRB_PUJ2559|LTFRB_PUJ2560,2,"Bonifacio Market, MacArthur Highway, Caloocan City - Ang Dating Daan, Balagtas",True
+LTFRB,Monumento NAIA via EDSA Coastal Rd,LTFRB_PUB1084,LTFRB_PUB1084|LTFRB_PUB1085,2,"Natalia, Parañaque City, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",True
+LTFRB,Monumento Philcite via Ayala EDSA,LTFRB_PUB1086,LTFRB_PUB1086|LTFRB_PUB1087,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",True
+LTFRB,Monumento Polo,LTFRB_PUJ2561,LTFRB_PUJ2561|LTFRB_PUJ2562,2,"Floresco North Mortuary, MacArthur Highway, Caloocan City - San Diego de Alcala Parish, Palassan Road, Kapitan Viilila, Valenzuela City",True
+LTFRB,Monumento Sucat via EDSA,LTFRB_PUB1088,LTFRB_PUB1088|LTFRB_PUB1089,2,"South Luzon Expressway, Muntinlupa City, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",True
+LTFRB,Moonwalk - Plaza Lawton,LTFRB_PUB1167,LTFRB_PUB1167|LTFRB_PUB1168,2,"Alabang-Zapote Road, Las Piñas City, Manila - Andres Soriano Jr Ave / Muralla Intersection, Manila",True
+LTFRB,Multinational Vill Gate along Imelda Ave,LTFRB_PUJ2563,LTFRB_PUJ2563|LTFRB_PUJ2564,2,"Multinational Avenue, Paranaque City - Multinational Avenue, Paranaque City",True
+LTFRB,Munoz - Luzon,LTFRB_PUJ1616,LTFRB_PUJ1616|LTFRB_PUJ1617,2,"Congressional Avenue / Abra Intersection Quezon City - Congressional Avenue Extension, Quezon City",True
+LTFRB,"Munoz - Remedios via Quiapo, L. Guinto",LTFRB_PUJ1482,LTFRB_PUJ1482|LTFRB_PUJ1483,2,"Rizal Memorial Track and Football Stadium, M Adriatico, Manila - Epifanio de los Santos Avenue / Congressional Avenue Intersection, Quezon City",True
+LTFRB,Munoz Market Pantranco,LTFRB_PUJ2565,LTFRB_PUJ2565|LTFRB_PUJ2566|LTFRB_PUJ2567,3,"Philipine Maritime Institute, Roosevelt Avenue, Quezon City - Dangay, Quezon City",True
+LTFRB,Munoz Market V Cruz Mabini via San Joaquin,LTFRB_PUJ2568,LTFRB_PUJ2568|LTFRB_PUJ2569|LTFRB_PUJ2570,3,"HP Village Square, Pablo Ocampo Sr., Manila - T.M. Kalaw / Maria Y. Orosa St",True
+LTFRB,Munoz-Remedios via Sta Cruz,LTFRB_PUJ2571,LTFRB_PUJ2571|LTFRB_PUJ2572,2,"Leon Guinto Sr., Manila - Roosevelt Avenue / Adams Intersection, Quezon City",True
+LTFRB,"Murphy - North Harbor via Divisoria, Sta. Mesa",LTFRB_PUJ1484,LTFRB_PUJ1484|LTFRB_PUJ1485,2,"Radial Road 10 / Moriones Intersection, Manila - Aurora Blvd, Quezon City, Manila",True
+LTFRB,NAIA - Malanday via EDSA,LTFRB_PUB1169,LTFRB_PUB1169|LTFRB_PUB1170,2,"Maria, Parañaque City, Manila - MacArthur Highway, Dalandanan, Valenzuela City",True
+LTFRB,NAIA SM Fairview,LTFRB_PUB1090,LTFRB_PUB1090|LTFRB_PUB1091,2,"Natalia, Parañaque City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",True
+LTFRB,NAVOTAS - DIVISORIA via H LOPEZ,LTFRB_PUJ1884,LTFRB_PUJ1884|LTFRB_PUJ1885,2,"Isabelo delos Reyes Elementary School, Nicolas Zamora, Manila - Navotas City Hall, M. Naval, City of Navotas",True
+LTFRB,NAVOTAS - RECTO via DAGAT_DAGATAN C3_C4,LTFRB_PUJ1882,LTFRB_PUJ1882|LTFRB_PUJ1883,2,"Claro M. Recto Ave / Quezon Blvd Intersection, Manila - Navotas City Hall, M. Naval, City of Navotas",True
+LTFRB,NICHOLS-IKOT,LTFRB_PUJ1704,LTFRB_PUJ1704|LTFRB_PUJ1705,2,"Villamor Health Center, Andrews Ave, Lungsod ng Pasay, Manila - Sales Road, Pasay City, Manila",True
+LTFRB,NICHOLS-MRT TRAMO,LTFRB_PUJ1702,LTFRB_PUJ1702|LTFRB_PUJ1703,2,"Andrews Ave, Lungsod ng Pasay, Manila - Legaspi, Manila",True
+LTFRB,NOVA-CAMARIN,LTFRB_PUJ1700,LTFRB_PUJ1700|LTFRB_PUJ1701,2,"Susano / General Luis Intersection, Caloocan City - San Vicente / Camarin Road Intersection, Caloocan City",True
+LTFRB,NOVA-DEPARO,LTFRB_PUJ1880,LTFRB_PUJ1880|LTFRB_PUJ1881,2,"Susano / General Luis Intersection, Caloocan City - Kabatuhan, Caloocan City",True
+LTFRB,NOVA-PANGARAP VILL,LTFRB_PUJ1878,LTFRB_PUJ1878|LTFRB_PUJ1879|LTFRB_PUJ2145|LTFRB_PUJ2146,4,"Dumulay  / Quirino Highway, Quezon City, Manila - Quirino Highway, Calcoocan City",True
+LTFRB,NOVA-TALA,LTFRB_PUJ1876,LTFRB_PUJ1876|LTFRB_PUJ1877,2,"Dumulay  / Quirino Highway, Quezon City, Manila - Dr Uyguanco Avenue, City of San Jose del Monte",True
+LTFRB,NOVALICHES - RIZAL AVE. via BANAL,LTFRB_PUJ1788,LTFRB_PUJ1788|LTFRB_PUJ1789|LTFRB_PUJ1823|LTFRB_PUJ1824,4,"Dimasalang / Aurora Boulevard Intersection, Quezon City - Our Lady Mercy Church, Quirino Highway, Caloocan City",True
+LTFRB,NOVALICHES-BAGONG SILANG KALIWA PH5,LTFRB_PUJ1698,LTFRB_PUJ1698|LTFRB_PUJ1699,2,"General Luis / Gold Intersection, Caloocan City - Rhexan Academy, Langit Road, Caloocan City",True
+LTFRB,NOVALICHES-BAGONG SILANG KANAN PH9,LTFRB_PUJ1696,LTFRB_PUJ1696|LTFRB_PUJ1697,2,"General Luis / Gold Intersection, Caloocan City - Un named Road near Langit Road, Caloocan City",True
+LTFRB,NOVALICHES-SHELTERVILLE,LTFRB_PUJ1694,LTFRB_PUJ1694|LTFRB_PUJ1695,2,"Susano / Austria Intersection, Caloocan City - Olympic Ave, Caloocan City, Manila",True
+LTFRB,NPC - NIA via CONGRESSIONAL MINDANAO AVE,LTFRB_PUJ1874,LTFRB_PUJ1874|LTFRB_PUJ1875,2,"Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City - NIA Chapel, Chico, Quezon City",True
+LTFRB,NPasig-Crossing via Taytay,LTFRB_PUJ2577,LTFRB_PUJ2577|LTFRB_PUJ2578,2,"Rizal Ave / B.A. Cruz Intersection, Taytay, Manila - Mayflower, Mandaluyong City, Manila",True
+LTFRB,Nagtahan RTDA Pandacan,LTFRB_PUJ2353,LTFRB_PUJ2353|LTFRB_PUJ2354,2,"Nagtahan Bridge, Manila - Ramon Magsaysay Blvd, Manila",True
+LTFRB,Namayan Vergara,LTFRB_PUJ2355,LTFRB_PUJ2355|LTFRB_PUJ2356,2,"J P Rizal, Mandaluyong City - Shaw Blvd, Mandaluyong City, Manila",True
+LTFRB,Napindan-Pasig via Nascor,LTFRB_PUJ2573,LTFRB_PUJ2573|LTFRB_PUJ2574,2,"Labao, Pasig City - M Concepcion Ave, Pasig City",True
+LTFRB,Napindan-Pasig via Pateros,LTFRB_PUJ2575,LTFRB_PUJ2575|LTFRB_PUJ2576,2,"F.Manalo / L.Labao Intersection, Taguig City, Manila - M. Almeda, Pateros, Manila",True
+LTFRB,Napocor Vill NIA Vill Tandang Sora,LTFRB_PUJ2357,LTFRB_PUJ2357|LTFRB_PUJ2358,2,"Childrens Medical Center, Quezon Avenue, Quezon City - St Peter Chapels, Commonwealth Avenue, Quezon City",True
+LTFRB,Napocor/Niaville - Mindanao Ave. via Congressional Ave.,LTFRB_PUJ1486,LTFRB_PUJ1486|LTFRB_PUJ1487,2,"Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City - Sauyo High School Extension, Pantabangan, Quezon City",True
+LTFRB,Navotas - Recto via Heroes del 96,LTFRB_PUJ1488,LTFRB_PUJ1488|LTFRB_PUJ1489,2,"Claro M. Recto Ave / Quezon Blvd Intersection, Manila - M. Naval, City of Navotas",True
+LTFRB,Navotas Recto,LTFRB_PUJ2359,LTFRB_PUJ2359|LTFRB_PUJ2360,2,"Oroquieta, Manila - Navotas City Hall, M. Naval, City of Navotas",True
+LTFRB,Navotas Terminal Pacita Complex via EDSA,LTFRB_PUB1047,LTFRB_PUB1047|LTFRB_PUB1048,2,"National Highway / Unnamed Rd, San Pedro, Manila - Circimferential Road 4, Malabon City",True
+LTFRB,Nichols - Vito Cruz via Park Ave.,LTFRB_PUJ1492,LTFRB_PUJ1492|LTFRB_PUJ1493,2,"Villamor Health Center, Andrews Ave, Lungsod ng Pasay, Manila - Taft Ave, Lungsod ng Pasay",True
+LTFRB,North Harbor Sta Mesa via Magsaysay,LTFRB_PUJ2361,LTFRB_PUJ2361|LTFRB_PUJ2362,2,"Ramon Magsaysay Blvd, Manila - LRT Doroteo Jose-Recto Station Walkway / Rizal Avenue Intersection, Manila",True
+LTFRB,Norzagaray - Baclaran Via Commonwealth Ave,LTFRB_PUB1171,LTFRB_PUB1171|LTFRB_PUB1172,2,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - VFR Phase 2 Elementary School, City of San Jose del Monte, Manila",True
+LTFRB,Norzgry / Spalay-NAIA / Baclrn Via Comm Fairv Ed,LTFRB_PUB1173,LTFRB_PUB1173|LTFRB_PUB1174,2,"Maria, Parañaque City, Manila - VFR Phase 2 Elementary School, City of San Jose del Monte, Manila",True
+LTFRB,"Novaliches (TP) - Bigte (Norzagaray, Bulacan) via Quirino Highway",LTFRB_PUJ1506,LTFRB_PUJ1506|LTFRB_PUJ1507,2,"Buenmar Drive, Quezon City - Quirino Highway, City of San Jose del Monte",True
+LTFRB,Novaliches (TP) - Brgy. Deparo,LTFRB_PUJ1496,LTFRB_PUJ1496|LTFRB_PUJ1497,2,"Ramirez / Quirino Highway, Caloocan City - Kabatuhan, Caloocan City",True
+LTFRB,"Novaliches - Shelter Ville via Camarin Rd., Bagon Silang",LTFRB_PUJ1498,LTFRB_PUJ1498|LTFRB_PUJ1499,2,"Susano / General Luis Intersection, Caloocan City - Kalayaan Elementary School, Langit Road, Caloocan City",True
+LTFRB,"Novaliches - Tala via Camarin, Susano Rd.",LTFRB_PUJ1502,LTFRB_PUJ1502,1,"Ramirez / Quirino Highway, Caloocan City - San Vicente / Camarin Road Intersection, Caloocan City",False
+LTFRB,Novaliches - Tala via Quirino,LTFRB_PUJ1500,LTFRB_PUJ1500|LTFRB_PUJ1501,2,"Our Lady Mercy Church, Quirino Highway, Caloocan City - City of San Jose del Monte",True
+LTFRB,Novaliches - Urduja,LTFRB_PUJ1504,LTFRB_PUJ1504|LTFRB_PUJ1505,2,"Susano / General Luis Intersection, Caloocan City - Sikatuna Avenue, Caloocan City",True
+LTFRB,Novaliches BF Homes,LTFRB_PUJ2363,LTFRB_PUJ2363|LTFRB_PUJ2364,2,"Susano, Caloocan City - Teofilo Samson Road, Caloocan City",True
+LTFRB,Novaliches Baclaran via EDSA Mindanao Ave,LTFRB_PUB1049,LTFRB_PUB1049|LTFRB_PUB1050,2,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Ramirez / Quirino Highway, Caloocan City",True
+LTFRB,Novaliches Bignay vice versa,LTFRB_PUJ2365,LTFRB_PUJ2365|LTFRB_PUJ2366,2,"General Luis / Emerald Intersection, Caloocan City - Llano Road, Caloocan City",True
+LTFRB,Novaliches Grotto (SJDM),LTFRB_PUJ2367,LTFRB_PUJ2367|LTFRB_PUJ2368,2,"Buenmar Drive, Quezon City - Sta. Maria - Tungkong Mangga Rd, City of San Jose del Monte",True
+LTFRB,Novaliches Pacita San Pedro via Malinta,LTFRB_PUB1051,LTFRB_PUB1051|LTFRB_PUB1052,2,"San Pedro College of Business Administration, National Hwy, San Pedro, Manila - Genteral Luis / Reynaldo Road Intersection, Caloocan City",True
+LTFRB,Novaliches Palmera (SJDM),LTFRB_PUJ2369,LTFRB_PUJ2369|LTFRB_PUJ2370,2,"Buenmar Drive, Quezon City - Starmall San Jose de Monte, Quirino Highway, City of San Jose del Monte",True
+LTFRB,Novaliches TP - Gumaoc - Palmera Subd. (SJDM),LTFRB_PUJ1494,LTFRB_PUJ1494|LTFRB_PUJ1495,2,"Quirino Highway, Quezon City - Un-named Road, City of San Jose del Monte",True
+LTFRB,Old Pque Bldg San Antonio Valley,LTFRB_PUJ2371,LTFRB_PUJ2371|LTFRB_PUJ2372,2,"Dr A. Santos Ave, Parañaque City, Manila - Dr A. Santos Ave / Vitalez Intersection, Parañaque City, Manila",True
+LTFRB,Ortigas Complex Robinsons Galleria,LTFRB_PUJ2373,LTFRB_PUJ2373,1,"E.Abello / Ortigas Ave Intersection, Pasig City, Manila - Ortigas Ave, Quezon City, Manila",False
+LTFRB,P. Faura - San Andres,LTFRB_PUJ1508,LTFRB_PUJ1508|LTFRB_PUJ1509,2,"Agusto Francisco, Manila - Padre Faura / M Adriatico Intersection, Manila",True
+LTFRB,PASAY ROTUNDA - ALABANG (KANAN) via NICHOLS SERVICE RD,LTFRB_PUJ1786,LTFRB_PUJ1786|LTFRB_PUJ1787,2,"Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila - Epifanio de los Santos Avenue, Lungsod ng Pasay",True
+LTFRB,PASAY ROTUNDA - ALABANG via SKYWAY,LTFRB_PUJ1784,LTFRB_PUJ1784|LTFRB_PUJ1785,2,"Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila - Epifanio de los Santos Avenue / F.B. Harrison St Intersection, Lungsod ng Pasay",True
+LTFRB,PASAY ROTUNDA - FTI via SIGNAL VILLAGE,LTFRB_PUJ1782,LTFRB_PUJ1782|LTFRB_PUJ1783,2,"DBP Ave, Taguig City, Manila, Manila - Epifanio de los Santos Avenue, Diosdado Macapagal Blvd, Lungsod ng Pasay",True
+LTFRB,PASAYRTDA-SCATALABNGvFTISERVICERD,LTFRB_PUJ1693,LTFRB_PUJ1693,1,"Epifanio de los Santos Avenue, Lungsod ng Pasay - Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila",False
+LTFRB,PASIG CITY-MARIKINA CITY,LTFRB_PUJ1691,LTFRB_PUJ1691,1,"Shoe Ave / W Paz Intersection, Marikina City, Manila - Caruncho Ave / Market Ave Intersection, Pasig City, Manila",False
+LTFRB,PASIG PALENGKE-BAGONG BAYAN BICUTAN,LTFRB_PUJ1688,LTFRB_PUJ1688|LTFRB_PUJ1689,2,"Manuel L. Quezon, Muntinlupa City, Manila - Balderama, Pasig City, Manila",True
+LTFRB,PASIGPALENGKE-TIPASTAGUIGVI PATEROS,LTFRB_PUJ1686,LTFRB_PUJ1686|LTFRB_PUJ1687,2,"F.Manalo / L.Labao Intersection, Taguig City, Manila - Balderama, Pasig City, Manila",True
+LTFRB,PATEROS - AYALA,LTFRB_PUJ1872,LTFRB_PUJ1872|LTFRB_PUJ1873,2,"Epifanio de los Santos Av, Makati City, Manila - M. Almeda, Pateros, Manila",True
+LTFRB,PATEROS - MARKET MARKET,LTFRB_PUJ1870,LTFRB_PUJ1870|LTFRB_PUJ1871,2,"B. Morcilla St, Pateros, Manila - Carlos P. Garcia Ave, Makati City, Manila",True
+LTFRB,PHILCOA - FAIRVIEW DAHLIA,LTFRB_PUJ1868,LTFRB_PUJ1868|LTFRB_PUJ1869,2,"Elliptical Rd / Commonwealth Avenue Intersection, Quezon City - Regalado / Dahlia Intersection, Quezon City",True
+LTFRB,PHILCOA - PIER SOUTH,LTFRB_PUJ1684,LTFRB_PUJ1684|LTFRB_PUJ1685,2,"25th St / Antonio C. Delgado Intersection, Manila - University of The Phillippines - Ayala Land Technohub, Commonwealth Avenue, Quezon City",True
+LTFRB,PHILCOA - RECTO,LTFRB_PUJ1682,LTFRB_PUJ1682|LTFRB_PUJ1683,2,"P. Noval / España Blvd Intersection, Manila - University of The Phillippines - Ayala Land Technohub, Commonwealth Avenue, Quezon City",True
+LTFRB,PIER SOUTH-FAIRVIEW DAHLIA-PHILCOA,LTFRB_PUJ1680,LTFRB_PUJ1680,1,"25th St / Antonio C. Delgado Intersection, Manila - Regalado / Dahlia Intersection, Quezon City",False
+LTFRB,PIER SOUTH-PACO PALENGKE,LTFRB_PUJ1677,LTFRB_PUJ1677|LTFRB_PUJ1678,2,"Railroad Dr / 13th St Intersection, Manila - Angel Linao / Pedro Gil",True
+LTFRB,PIER SOUTH-PROJ 6,LTFRB_PUJ1675,LTFRB_PUJ1675|LTFRB_PUJ1676,2,"25th St / Antonio C. Delgado Intersection, Manila - Road 3, Quezon City",True
+LTFRB,PIER-DELPAN ZARAGOSA,LTFRB_PUJ1673,LTFRB_PUJ1673|LTFRB_PUJ1674,2,"Railroad Dr, Manila - E. Almario Elementary School, Kagitingan, Manila",True
+LTFRB,PIER-MALANDAY,LTFRB_PUJ1671,LTFRB_PUJ1671|LTFRB_PUJ1672,2,"25th St / Antonio C. Delgado Intersection, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",True
+LTFRB,PIER-PASAY LIBERTAD,LTFRB_PUJ1670,LTFRB_PUJ1670,1,"Railroad Dr / 13th St Intersection, Manila - P. Villanueva, Lungsod ng Pasay",False
+LTFRB,PROJ 2&3 ESPANA,LTFRB_PUJ2253,LTFRB_PUJ2253|LTFRB_PUJ2254,2,"España Blvd / Nicanor Reyes St Intersection, Manila - Molave, Quezon City, Manila",True
+LTFRB,PROJ 2&3 KALAW via RODRIGUEZ,LTFRB_PUJ2255,LTFRB_PUJ2255|LTFRB_PUJ2256,2,"Maria Y. Orosa St, Manila - Molave, Quezon City, Manila",True
+LTFRB,PROJ 2&3 TM KALAW via E RODRIGUEZ,LTFRB_PUJ2257,LTFRB_PUJ2257|LTFRB_PUJ2258,2,"T.M. Kalaw / Maria Y. Orosa St - Molave, Quezon City, Manila",True
+LTFRB,PROJ 2&3-KALAW ESPANA,LTFRB_PUJ1866,LTFRB_PUJ1866|LTFRB_PUJ1867,2,"T.M. Kalaw / Maria Y. Orosa St - Molave, Quezon City, Manila",True
+LTFRB,PROJ 2&3-QMART,LTFRB_PUJ1865,LTFRB_PUJ1865,1,"Molave, Quezon City, Manila - Kamias Rd / Colonel Salgado Intersection, Quezon City, Manila",False
+LTFRB,PROJ 2&3-VITO CRUZ MABINI,LTFRB_PUJ1863,LTFRB_PUJ1863|LTFRB_PUJ2141|LTFRB_PUJ2142,3,"HP Village Square, Pablo Ocampo Sr., Manila - Molave, Quezon City, Manila",True
+LTFRB,PROJ 4 (AURORA) - MORAYTA RECTO,LTFRB_PUJ1862,LTFRB_PUJ1862,1,"General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila - España Blvd / Nicanor Reyes St Intersection, Manila",False
+LTFRB,PROJ 4 (YALE) - STOP N SHOP,LTFRB_PUJ1859,LTFRB_PUJ1859|LTFRB_PUJ1860,2,"Ramon Magsaysay Blvd / Altura Intersection, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",True
+LTFRB,PROJECT 2 and 3 - QUIAPO,LTFRB_PUJ1857,LTFRB_PUJ1857,1,"Molave, Quezon City, Manila - Quezon Blvd, Manila",False
+LTFRB,PROJECT 2 and 3 - TAFT REMEDIOS via E RODRIGUEZy,LTFRB_PUJ1855,LTFRB_PUJ1855|LTFRB_PUJ1856,2,"Remedios / Antonio Vasquez Intersection, Manila - Kamias Rd / Kalayaan Ave Intersection, Quezon City, Manila",True
+LTFRB,PROJECT 2 and 3 - WELCOME RTDA via E RODRIGUEZ,LTFRB_PUJ1853,LTFRB_PUJ1853|LTFRB_PUJ1854,2,"Halcon / Espana Boulevard Intersection, Manila - Anonas / Molave Intersection, Quezon City, Manila",True
+LTFRB,Pabahay ni Erap (Sub-urban) - Commonwealth Market,LTFRB_PUJ1444,LTFRB_PUJ1444|LTFRB_PUJ1445,2,"Batasan Road / Commonwealth Avenue Intersection, Quezon City - Un- named Road, Rodriguez",True
+LTFRB,"Pacita - Novaliches Term via Malinta Ex, EDSA",LTFRB_PUB1181,LTFRB_PUB1181|LTFRB_PUB1182,2,"National Highway / Unnamed Rd, San Pedro, Manila - Genteral Luis / East Street Intersection, Caloocan City",True
+LTFRB,"Pacita Complex (SP, Lag) - Letre via EDSA",LTFRB_PUB1175,LTFRB_PUB1175|LTFRB_PUB1176,2,"Pacita Bus Terminal,  Pacita Av, San Pedro, Manila - Circimferential Road 4, Malabon City",True
+LTFRB,Pacita Complex - Navotas Term via EDSA,LTFRB_PUB1180,LTFRB_PUB1180,1,"MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila - Pacita Bus Terminal,  Pacita Av, San Pedro, Manila",False
+LTFRB,Pacita Complex - SM Fairview via EDSA,LTFRB_PUB1177,LTFRB_PUB1177|LTFRB_PUB1178,2,"Plaza Pacita Bus Terminal, National Highway / Pacita Av, San Pedro, Manila - Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila",True
+LTFRB,Paco - Pier South,LTFRB_PUJ1510,LTFRB_PUJ1510|LTFRB_PUJ1511,2,"Angel Linao / Pedro Gil - Railroad Dr / 13th St Intersection, Manila",True
+LTFRB,Paco - Sta. Mesa Rotonda via Nagtahan,LTFRB_PUJ1512,LTFRB_PUJ1512|LTFRB_PUJ1513,2,"San Gregorio / Paz St, Manila - Nagtahan Flyover / Duhat Intersection, Manila",True
+LTFRB,Padre Faura - Sta Ana,LTFRB_PUJ1388,LTFRB_PUJ1388|LTFRB_PUJ1389,2,"Marcelo H. del Pilar / Salas Intersection, Manila - New Panaderos / Castañeda Intersection, Manila",True
+LTFRB,PagAsa Pier South via Qave,LTFRB_PUJ2376,LTFRB_PUJ2376|LTFRB_PUJ2377,2,"Padre Burgos St, Manila - Mindanao Avenue, Quezon City",True
+LTFRB,Pala - pala Dasmarinas Cavite - Navotas Terminal via Edsa,LTFRB_PUB1183,LTFRB_PUB1183|LTFRB_PUB1184,2,"Governor's Dv, Dasmariñas City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",True
+LTFRB,Pandacan (Beata) - Quiapo via C. Palanca,LTFRB_PUB1185,LTFRB_PUB1185|LTFRB_PUB1186,2,"Lorenzo Dela Paz / Baretto Intersection, Manila - Padre Burgos St, Manila",True
+LTFRB,Pandacan Pier South,LTFRB_PUJ2378,LTFRB_PUJ2378|LTFRB_PUJ2379,2,Angel Linao / Pedro Gil - Bonifacio Dr Manila,True
+LTFRB,Pandacan Quiapo,LTFRB_PUB1053,LTFRB_PUB1053|LTFRB_PUB1054,2,"Beata, Manila - McArthur Bridge , Manila",True
+LTFRB,Pandacan Sta Cruz via Quiapo,LTFRB_PUB1055,LTFRB_PUB1055|LTFRB_PUB1056,2,"Beata, Manila - McArthur Bridge , Manila",True
+LTFRB,"Pantranco - Proj. 2 & 3 via Timog, Kamuning",LTFRB_PUJ1514,LTFRB_PUJ1514|LTFRB_PUJ1515,2,"Hayundai, Quezon Avenue, Quezon City - Molave, Quezon City, Manila",True
+LTFRB,Pantranco - Proj. 8 via Roosevelt,LTFRB_PUJ1516,LTFRB_PUJ1516|LTFRB_PUJ1517,2,"Philipine Maritime Institute, Roosevelt Avenue, Quezon City - General Avenue / Assistant Branchesntersection, Quezon City",True
+LTFRB,Pantranco - U.P.,LTFRB_PUJ1518,LTFRB_PUJ1518|LTFRB_PUJ1519,2,"Fisher Mall, Quezon Avenue, Quezon City - UP College of Education, A. Ma. Regidor St / Roxas Ave Intersection, Quezon City, Manila",True
+LTFRB,Parang - Recto,LTFRB_PUJ1520,LTFRB_PUJ1520|LTFRB_PUJ1521,2,"Eulogio Rodriguez Sr. Ave, Quezon City, Manila - Fortune Tobacco Corporation, Marikina City, Manila",True
+LTFRB,Parang - Stop & Shop via Aurora Blvd.,LTFRB_PUJ1522,LTFRB_PUJ1522|LTFRB_PUJ1523,2,"Internet Cafe, Old Sta. Mesa, Manila - Fortune Tobacco Corporation, Marikina City, Manila",True
+LTFRB,Pasay RTDA Monumento via Taft Ave JA Santos,LTFRB_PUJ2380,LTFRB_PUJ2380|LTFRB_PUJ2381,2,"Taft Ave, Lungsod ng Pasay - Light Rail Transportation / New Antipolo, Quezon City",True
+LTFRB,Pasay RTDA QI via L Guinto,LTFRB_PUJ2382,LTFRB_PUJ2382|LTFRB_PUJ2383,2,"Taft Ave, Lungsod ng Pasay - Taft Ave, Manila",True
+LTFRB,Pasay RTDA Sucat via SSH,LTFRB_PUJ2384,LTFRB_PUJ2384|LTFRB_PUJ2385,2,"E Service Rd,  Taguig City, Manila - Epifanio de los Santos Avenue, Lungsod ng Pasay",True
+LTFRB,Pasay Rotonda - Signal Village,LTFRB_PUJ1524,LTFRB_PUJ1524|LTFRB_PUJ1525,2,"DBP Ave, Taguig City, Manila, Manila - Epifanio de los Santos Avenue, Lungsod ng Pasay",True
+LTFRB,Pasay Rtda v Sta Cruz Blumentrit,LTFRB_PUJ2251,LTFRB_PUJ2251|LTFRB_PUJ2252,2,"Hospital, A.Mabini, Manila - Light Rail Transportation / New Antipolo, Quezon City",True
+LTFRB,"Pasig (TP) - Quiapo (Echague) via Sta. Mesa, C. Palanca",LTFRB_PUJ1526,LTFRB_PUJ1526|LTFRB_PUJ1527,2,"M. Almeda, Pateros, Manila - Carlos Palanca Sr, Manila",True
+LTFRB,"Pasig - Taguig via Maestrang Pinang, Tipas",LTFRB_PUJ1528,LTFRB_PUJ1528|LTFRB_PUJ1529,2,"F.Manalo / Gen. A Luna St Intersection, Taguig City, Manila - Caruncho Ave, Pasig City, Manila",True
+LTFRB,Pasig-Cubao,LTFRB_PUJ2579,LTFRB_PUJ2579,1,"Ortigas Ave, Pagis City, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",False
+LTFRB,Pasig-Quiapo via Sta Mesa,LTFRB_PUJ2581,LTFRB_PUJ2581|LTFRB_PUJ2582,2,"Balderama / Caruncho Ave, Pasig City, Manila - Quezon Blvd, Manila",True
+LTFRB,Pasig-Stop Shop,LTFRB_PUJ2583,LTFRB_PUJ2583|LTFRB_PUJ2584,2,"Balderama / Caruncho Ave, Pasig City, Manila - P. Casal, Manila",True
+LTFRB,Pasig-Taytay,LTFRB_PUJ2585,LTFRB_PUJ2585|LTFRB_PUJ2586,2,"Rizal Avenue, Taytay, Manila - Caruncho Ave / Market Ave Intersection, Pasig City, Manila",True
+LTFRB,Pasig-Ugong via Rodriguez,LTFRB_PUJ2588,LTFRB_PUJ2588,1,"JP Raceway, Pasig City, Manila - Caruncho Ave, Pasig City, Manila",False
+LTFRB,Pfaura San Andres via M Adriatico,LTFRB_PUJ2386,LTFRB_PUJ2386|LTFRB_PUJ2387,2,"Agusto Francisco, Manila - Padre Faura / M Adriatico Intersection, Manila",True
+LTFRB,"Philcoa - Rodriguez Town (Montalban) via Commonwealth Ave., Kalayaan Ave.",LTFRB_PUJ1530,LTFRB_PUJ1530|LTFRB_PUJ1531,2,"Philippine Coconut Authority, Commonwealth Avenue, Quezon City - MH del Pilar Street near Pig Farm, Rodriguez",True
+LTFRB,Philcoa - T.M. Kalaw via Quezon Ave.,LTFRB_PUJ1532,LTFRB_PUJ1532|LTFRB_PUJ1533,2,"University of The Phillippines - Ayala Land Technohub, Commonwealth Avenue, Quezon City - T.M. Kalaw / Maria Y. Orosa St",True
+LTFRB,Pier South - Proj. 2 & 3 via E. Rodriguez,LTFRB_PUJ1534,LTFRB_PUJ1534|LTFRB_PUJ1535,2,"Railroad Dr / 13th St Intersection, Manila - Aurora Blvd, Quezon City, Manila",True
+LTFRB,Pier South - Proj. 2 & 3 via Timog,LTFRB_PUJ1536,LTFRB_PUJ1536|LTFRB_PUJ1537,2,"Railroad Dr / 13th St Intersection, Manila - Mayon Avenue / Florentino Intersection, Manila",True
+LTFRB,Pier South - Proj. 4 via Espana,LTFRB_PUJ1538,LTFRB_PUJ1538|LTFRB_PUJ1539,2,"Railroad Dr / 13th St Intersection, Manila - Stella Maris College, Columbia, Quezon City, Manila",True
+LTFRB,Pier South - Proj. 6 via Espana,LTFRB_PUJ1540,LTFRB_PUJ1540,1,"Antonio C. Delgado / 13th St Intersection, Manila - Emensto Rondon High School, Road 3, Quezon City",False
+LTFRB,"Pier South - Proj. 7 via Espana, Roosevelt",LTFRB_PUJ1542,LTFRB_PUJ1542|LTFRB_PUJ1543,2,"25th St / Antonio C. Delgado Intersection, Manila - Dangay, Quezon City",True
+LTFRB,Pier South - Proj. 8 via Quezon Ave.,LTFRB_PUJ1544,LTFRB_PUJ1544|LTFRB_PUJ1545,2,"Antonio C. Delgado / 13th St Intersection, Manila - Jetti Petrol Station, Tanding Sora Avenue, Quezon City",True
+LTFRB,Pier South - Retiro via Sta. Cruz,LTFRB_PUJ1547,LTFRB_PUJ1547,1,"N. S. Amoranto Sr. Avenue / Banawe Avenue Intersection, Quezon City - 25th St / Antonio C. Delgado Intersection, Manila",False
+LTFRB,Pier South - Sta. Ana via Padre Faura,LTFRB_PUJ1548,LTFRB_PUJ1548|LTFRB_PUJ1549,2,"Angel Linao / Pedro Gil - Railroad Dr / 13th St Intersection, Manila",True
+LTFRB,Pier South via Road 10,LTFRB_PUJ2388,LTFRB_PUJ2388|LTFRB_PUJ2389|LTFRB_PUJ2390,3,"Sto. Nino Church, Nicolas Zamora, Manila - President Ferdinand E. Marcos Highway, Tondo",True
+LTFRB,Plaridel BBB (Val) via MacArthur Highway,LTFRB_PUJ2392,LTFRB_PUJ2392,1,"Ang Dating Daan, Balagtas - Banga Baranggay Hal, MacArthur Highway, City of Meycauayan",False
+LTFRB,Plaza Miranda OPiers via Vitas,LTFRB_PUJ2393,LTFRB_PUJ2393|LTFRB_PUJ2394,2,"Padre Burgos St, Manila - Quezon Blvd, Manila",True
+LTFRB,Polo Sangandaan via Tenejeros,LTFRB_PUJ2395,LTFRB_PUJ2395|LTFRB_PUJ2396,2,"Caloocan City Police Station, Samson Road, Malabon City - San Diego de Alcala Parish, Palassan Road, Kapitan Viilila, Valenzuela City",True
+LTFRB,Prenza (Marilao) - Monumento via McArthur Hi-way,LTFRB_PUJ1626,LTFRB_PUJ1626|LTFRB_PUJ1627,2,"Monumento, Rizal Avenue, Caloocan City - Ministop Marlao, MacArthur Highway, Marilao",True
+LTFRB,Proj 2 3 Welcome Rtda,LTFRB_PUJ2259,LTFRB_PUJ2259|LTFRB_PUJ2260,2,"Quezon Avenue / D Tuazon Intersection, Quezon City - Narra, Quezon City, Manila",True
+LTFRB,Proj 6 - Vito cruz via Quezon Avenue,LTFRB_PUJ1608,LTFRB_PUJ1608|LTFRB_PUJ1609,2,"Taft Ave, Lungsod ng Pasay - Emensto Rondon High School, Road 3, Quezon City",True
+LTFRB,Proj 6 Recto via Espana QAve,LTFRB_PUJ2397,LTFRB_PUJ2397|LTFRB_PUJ2398,2,"Quezon Blvd, Manila - Road 1 / A8A Intersection Quezon City",True
+LTFRB,Proj 7 - Quiapo,LTFRB_PUJ1606,LTFRB_PUJ1606|LTFRB_PUJ1607,2,"Quezon Blvd, Manila - Dangay / Bansalangin Intersection, Quezon City",True
+LTFRB,"Proj. 2 & 3 - Q. Mart via Anonas, Kamias",LTFRB_PUJ1554,LTFRB_PUJ1554|LTFRB_PUJ1555,2,"Kamias Rd / Colonel Salgado Intersection, Quezon City, Manila - Molave, Quezon City, Manila",True
+LTFRB,"Proj. 2 & 3 - Recto via Kamuning, E. Rodriguez",LTFRB_PUJ1550,LTFRB_PUJ1550|LTFRB_PUJ1551,2,"Claro M. Recto Ave / Nicanor Reyes Street Intersection, Manila - Molave, Quezon City, Manila",True
+LTFRB,Proj. 2 & 3 - T. M. Kalaw via E. Rodriguez,LTFRB_PUJ1552,LTFRB_PUJ1552,1,"T.M. Kalaw / Maria Y. Orosa St - Molave, Quezon City, Manila",False
+LTFRB,Proj. 6 - T.M. Kalaw via Quezon Ave.,LTFRB_PUJ1557,LTFRB_PUJ1557,1,"Emensto Rondon High School, Road 3, Quezon City - Taft Ave / T.M. Kalaw Intersection, Manila",False
+LTFRB,"Proj. 7 - T.M. Kalaw via Roosevelt, Quezon Ave.",LTFRB_PUJ1558,LTFRB_PUJ1558|LTFRB_PUJ1559,2,"T.M. Kalaw / Maria Y. Orosa St - Dangay / Bansalangin Intersection, Quezon City",True
+LTFRB,Proj. 8 - T.M. Kalaw via Quezon Ave.,LTFRB_PUJ1560,LTFRB_PUJ1560|LTFRB_PUJ1561,2,"T.M. Kalaw / Maria Y. Orosa St - Jetti Petrol Station, Tanding Sora Avenue, Quezon City",True
+LTFRB,Punta - Pier via Manila City Hall,LTFRB_PUJ1564,LTFRB_PUJ1564|LTFRB_PUJ1565,2,"Mendiola / Legarda Intersection, Manila - F Y Manalo, Manila",True
+LTFRB,Punta - Quiapo (Barbosa) via Sta. Mesa,LTFRB_PUJ1562,LTFRB_PUJ1562|LTFRB_PUJ1563,2,"Quezon Blvd, Manila - F Y Manalo, Manila",True
+LTFRB,QI Kalaw,LTFRB_PUJ2399,LTFRB_PUJ2399|LTFRB_PUJ2400,2,"Taft Ave, Manila - Quezon Institute, Eulogio Rodriguez Sr Ave, Quezon City, Manila",True
+LTFRB,QUIAPO - BACOOD,LTFRB_PUJ1851,LTFRB_PUJ1851|LTFRB_PUJ1852,2,"R Hidalgo, Manila - Bacood / Dalisay Intersection, Manila",True
+LTFRB,QUIRINO HIGHWAY STA LUCIA,LTFRB_PUJ2263,LTFRB_PUJ2263|LTFRB_PUJ2264,2,"Jose Abad Santos, Quezon City - Susana, Quezon City",True
+LTFRB,QUIRINO HIGHWAY ZABARTE PANAY AVENUE,LTFRB_PUJ2261,LTFRB_PUJ2261|LTFRB_PUJ2262,2,"Kalayaan Ave / Elliptical Rd Intersection, Quezon City, Manila - St Claire College of Caloocan, Zabarte Road, Caloocan City",True
+LTFRB,Queens Row Vill. - Talon via Marcos Alvarez,LTFRB_PUJ1566,LTFRB_PUJ1566|LTFRB_PUJ1567,2,"Marcos Alvarez Ave / Alvarez Extension Intersection, Las Piñas City, Manila - Alabang-Zapote Road, Las Piñas City, Manila",True
+LTFRB,Quezon Ave LRT 5th Avenue Caloocan,LTFRB_PUJ2401,LTFRB_PUJ2401,1,"Gregorio Araneta Ave, Quezon City - Circumferential Road 3 / M.H. Del Pilar St, Caloocan City, Manila",False
+LTFRB,Quezon Ave. - Sta. Mesa Mkt. via Araneta Ave.,LTFRB_PUJ1568,LTFRB_PUJ1568|LTFRB_PUJ1569,2,"Kapiligan / Guirayan, Quezon City - Gregorio Araneta Ave, Quezon City, Manila",True
+LTFRB,Quezon Ave./Sct. Chuatoco - Roxas Dist.,LTFRB_PUJ1570,LTFRB_PUJ1570|LTFRB_PUJ1571,2,"Quezon Avenue / Scout Chuatoco Intersection, Quezon City - Don Alejandro Roces Ave / Scout Reyes Intersection, Quezon City, Manila",True
+LTFRB,Quiapo (Barbosa) - San Juan via Legarda,LTFRB_PUJ1572,LTFRB_PUJ1572|LTFRB_PUJ1573,2,"Quezon Blvd, Manila - N.Domingo, San Juan, Manila",True
+LTFRB,Quiapo (Barbosa) - Santol via Sta. Mesa,LTFRB_PUJ1655,LTFRB_PUJ1655|LTFRB_PUJ1656,2,"Arlegui, Manila - Bayani, Quezon City",True
+LTFRB,Quiapo (Barbosa) San Juan via Legarda,LTFRB_PUJ2403,LTFRB_PUJ2403|LTFRB_PUJ2404,2,"P. Sanchez St, Manila - Arlegui, Manila",True
+LTFRB,Quiapo - San Miguel via Palanca,LTFRB_PUJ1652,LTFRB_PUJ1652,1,"Arlegui, Manila - Arlegui, Manila",False
+LTFRB,Quiapo Sangandaan via Evangelista,LTFRB_PUJ2405,LTFRB_PUJ2405|LTFRB_PUJ2406,2,"Evangelista Street, Manila City - Tutuban Cluster Mall, CM Recto Avenue, Manila",True
+LTFRB,"Quirino Hi-way/Zabarte - Almar Subdivision -  Panay Ave. via Regalado, Que*",LTFRB_PUJ1398,LTFRB_PUJ1398|LTFRB_PUJ1399,2,"Quezon Avenue / Epifanio de los Santos Avenue Intersection, Quezon City - St Claire College of Caloocan, Zabarte Road, Caloocan City",True
+LTFRB,RECTO - GASAK,LTFRB_PUJ1849,LTFRB_PUJ1849|LTFRB_PUJ1850,2,"Oroquieta, Manila - Heath Centre, Don Bastilio Bautista Boulevard, Malabon City",True
+LTFRB,"Recto - Roxas Dist. via Quezon Ave., Espana",LTFRB_PUJ1574,LTFRB_PUJ1574|LTFRB_PUJ1575,2,"España Blvd / Nicanor Reyes St Intersection, Manila - Don Alejandro Roces Ave / Scout Reyes Intersection, Quezon City, Manila",True
+LTFRB,"Recto - SSS Village via Aurora Blvd., Espana",LTFRB_PUJ1576,LTFRB_PUJ1576|LTFRB_PUJ1577,2,"Quezon Blvd / P.Paredes Intersection, Manila - Horizon St, Marikina City, Manila",True
+LTFRB,Resettlement Zapote (DBB),LTFRB_PUJ2407,LTFRB_PUJ2407|LTFRB_PUJ2408,2,"Un-named Road, Lungsod ng Dasmariñas, Manila - Quirino Ave, Bacoor City, Manila",True
+LTFRB,Rivera Raon via Severino Reyes,LTFRB_PUJ2161,LTFRB_PUJ2161,1,"A F. Torres, Manila - Jose Abad Santos Avenue / Tayuman Road, Quezon City",False
+LTFRB,Rodriguez (Rizal) - Litex Market via Litex Rd.,LTFRB_PUJ1442,LTFRB_PUJ1442|LTFRB_PUJ1443,2,"Commonwealth Avenue / IBP Road Intersection, Quezon City - Montalban Highway / D. Marcelo Street Intersection near Montalban Town Centre, Rodriguez",True
+LTFRB,Rosario Jct-San Juan via Pinaglabanan,LTFRB_PUJ2591,LTFRB_PUJ2591|LTFRB_PUJ2592,2,"Ortigas Ave / Dr Sixto Antonio Ave Intersection, Pasig City, Manila - N.Domingo,  San Juan, Manila",True
+LTFRB,"Rosario Jct. - San Juan via Pinaglabanan, Ortigas",LTFRB_PUJ1578,LTFRB_PUJ1578,1,"N.Domingo,  San Juan, Manila - Ortigas Ave / Dr Sixto Antonio Ave Intersection, Pasig City, Manila",False
+LTFRB,Rosario-San Juan Taytay,LTFRB_PUJ2589,LTFRB_PUJ2589|LTFRB_PUJ2590,2,"Manila Road East, Taytay, Manila - Ortigas Ave, Pasig City, Manila",True
+LTFRB,SAN JOAQUIN MARKET-HYPERMART PASIG,LTFRB_PUJ1667,LTFRB_PUJ1667|LTFRB_PUJ1668,2,"Rizal Medical Centre, Pasig Blvd, Pasig City, Manila - JP Raceway, Pasig City, Manila",True
+LTFRB,SAN JUAN - CUBAO via N DOMINGO,LTFRB_PUJ1847,LTFRB_PUJ1847,1,"F. Blumentritt / N.Domingo Intersection, Manila - P. A. Bernardo, Quezon City, Manila",False
+LTFRB,SAN JUAN UNIMART - ROSARIO JUNCTION (DE CASTRO),LTFRB_PUJ1845,LTFRB_PUJ1845|LTFRB_PUJ1846,2,"N.Domingo,  San Juan, Manila - E Bank Rd / SE Approach Intersection, Pasig City, Manila",True
+LTFRB,SHAW BLVD - GUADALUPE,LTFRB_PUJ1780,LTFRB_PUJ1780|LTFRB_PUJ1781,2,"Kalayaan Ave / Gen. Jacinto St Intersection, Taguig City, Manila - Epifanio de los Santos Avenue /  Shaw Blvd Intersection, Mandaluyong City, Manila",True
+LTFRB,SHAW BLVD - ORTIGAS,LTFRB_PUJ1778,LTFRB_PUJ1778|LTFRB_PUJ1779,2,"Mayflower, Mandaluyong City, Manila - ADB Ave / Garnet Rd Intersection, Pasig City, Manila",True
+LTFRB,SHAW BLVD CENTRAL - TAYTAY,LTFRB_PUJ1819,LTFRB_PUJ1819|LTFRB_PUJ1820,2,"Mayflower, Mandaluyong City, Manila - Rosario Ocampo Elementary School, Rosario Ocampo Elementary School",True
+LTFRB,SM FAIRVIEW LAGRO SUBDIVISION LOOP,LTFRB_PUJ2265,LTFRB_PUJ2265|LTFRB_PUJ2266,2,"Ascencion Avenue / Tatlong Hari Street Intersection, Quezon City - SM Public Transport Terminal, Regalado Highway, Quezon City",True
+LTFRB,SM Fairview Ayala Leveriza via EDSA,LTFRB_PUB1057,LTFRB_PUB1057|LTFRB_PUB1058,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",True
+LTFRB,SM Fairview Capitol Homes,LTFRB_PUJ2419,LTFRB_PUJ2419|LTFRB_PUJ2420,2,"Belfast / Bulalakaw Intersection, Quezon City - Prime Rose Street, Quezon City",True
+LTFRB,SM MALL OF ASIA-MRT,LTFRB_PUJ1665,LTFRB_PUJ1665|LTFRB_PUJ1666,2,"Taft Avenue Extension / Epifanio de los Santos Avenue, Lungsod ng Pasay, Manila - Jose Diokno Blvd, Lungsod ng Pasay",True
+LTFRB,SM MOA NAIA,LTFRB_PUJ2421,LTFRB_PUJ2421|LTFRB_PUJ2422,2,"Maria, Parañaque City, Manila - Airport Rd / Domestic Rd Intersection, Parañaque City, Manila",True
+LTFRB,SM NORTH - LITEX,LTFRB_PUJ1843,LTFRB_PUJ1843|LTFRB_PUJ1844,2,"Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City - Commonwealth Avenue / IBP Road Intersection, Quezon City",True
+LTFRB,SM NORTH LAGRO,LTFRB_PUJ2267,LTFRB_PUJ2267|LTFRB_PUJ2268,2,"Philippine Coconut Authority, Commonwealth Avenue, Quezon City - Our Lady of Mercy School, 14.680409, 121.084434",True
+LTFRB,SSS Village - Stop & Shop via Aurora Blvd.,LTFRB_PUJ1588,LTFRB_PUJ1588|LTFRB_PUJ1589,2,"Ramon Magsaysay Blvd / Altura Intersection, Manila - Horizon St, Marikina City, Manila",True
+LTFRB,STOP N SHOP - BACOOD,LTFRB_PUJ1841,LTFRB_PUJ1841|LTFRB_PUJ1842,2,"Bacood / Dalisay Intersection, Manila - Internet Cafe, Old Sta. Mesa, Manila",True
+LTFRB,Salcedo Amorsolo LegaspiVill Landmark,LTFRB_PUJ2409,LTFRB_PUJ2409|LTFRB_PUJ2410,2,"Esperanza Street, Makati City - Del Rosa Street, Makati City",True
+LTFRB,Sampol Meycauayan via San Jose,LTFRB_PUJ2411,LTFRB_PUJ2411|LTFRB_PUJ2412,2,"Sta Maria Public Market, Santa Maria - Matiyaga St, City of San Jose del Monte, Manila",True
+LTFRB,"San Andres Mkt. - Sta. Ana via P. Faura, P. Gil",LTFRB_PUJ1582,LTFRB_PUJ1582|LTFRB_PUJ1583,2,"Philipine General Hospital, Pedro Gil, Manila - New Panaderos Extension / 34 Rte Rev. G. Aglipay Intersection, Mandaluyong City",True
+LTFRB,San Andres via P Faura,LTFRB_PUJ2413,LTFRB_PUJ2413|LTFRB_PUJ2414,2,"Agusto Francisco, Manila - Josefa Llanes Escoda / Felipe Agoncillo Intersection, Manila",True
+LTFRB,"San Juan (Pinaglabanan) - San Juan, Taytay (Resettlement Area)",LTFRB_PUJ1580,LTFRB_PUJ1580|LTFRB_PUJ1581,2,"N.Domingo,  San Juan, Manila - Ejercito Ave, Pasig City, Manila",True
+LTFRB,"San Mateo - Baclaran via EDSA, Ayala, Commonwealth Ave",LTFRB_PUB1187,LTFRB_PUB1187|LTFRB_PUB1188,2,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - MALTC Bus Station, Gen. A Luna, San Mateo",True
+LTFRB,San Miguel - Ikot,LTFRB_PUJ1584,LTFRB_PUJ1584|LTFRB_PUJ1585,2,"Mayor Antonio J. Villegas Rd, Manilla - Manuel Quezon University, R Hidalgo, Manila",True
+LTFRB,Santol - Pina Ave. via Buenos Aires,LTFRB_PUJ1587,LTFRB_PUJ1587,1,"Blak na Bato, Quezon City - Ramon Magsaysay Blvd / Altura Intersection, Manila",False
+LTFRB,Sapang Palay - Sta Cruz (DJose) Sta Maria NE,LTFRB_PUB1191,LTFRB_PUB1191|LTFRB_PUB1192,2,"T. Mapua, Manila - Iglesia ni Cristo, City of San Jose del Monte, Manila",True
+LTFRB,Sapang Palay - Sta. Cruz via Marilao Exit,LTFRB_PUB1189,LTFRB_PUB1189|LTFRB_PUB1190,2,"T. Mapua, Manila - VFR Phase 2 Elementary School, City of San Jose del Monte, Manila",True
+LTFRB,Sapang Palay Jordan Plains via Quirino Highway,LTFRB_PUJ2415,LTFRB_PUJ2415|LTFRB_PUJ2416|LTFRB_PUJ2417|LTFRB_PUJ2418,4,"Buenmar Drive, Quezon City - Quirino Highway, Quezon City",True
+LTFRB,Silang - Zapote (Las Pinas),LTFRB_PUJ1648,LTFRB_PUJ1648|LTFRB_PUJ1649,2,"Alabang-Zapote Road / Fruto Santos Ave Intersection, Las Piñas City, Manila - Emilio Aguinaldo Hwy, Silang, Manila",True
+LTFRB,Soldier Hills II Talon (Las Pinas),LTFRB_PUJ2423,LTFRB_PUJ2423|LTFRB_PUJ2424,2,"Bayabus Avenue, Bacoor City - Alabang-Zapote Road, Las Piñas City, Manila",True
+LTFRB,Soldier Hills Ph IV Talon via Alvarez,LTFRB_PUJ2425,LTFRB_PUJ2425|LTFRB_PUJ2426|LTFRB_PUJ2427,3,"Soldiers Hills IV, Bacoor City - Alvarez Extension, Las Piñas City, Manila",True
+LTFRB,Sta Ana P Faura,LTFRB_PUJ2428,LTFRB_PUJ2428|LTFRB_PUJ2429,2,"Philipine General Hospital, Pedro Gil, Manila - Lamayan / New Panaderos Intersection, Manila",True
+LTFRB,Sta Maria - Baclaran NLEX EDSA,LTFRB_PUB1193,LTFRB_PUB1193|LTFRB_PUB1194,2,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Norzagaray-Santa Maria Bulacan, Santa Maria, Manila",True
+LTFRB,Sta Maria Malinta via McArthur,LTFRB_PUJ2431,LTFRB_PUJ2431,1,"C de Guzman Street, Santa Maria - Flying V Gas, MacArthur Highway, Valenzuela City",False
+LTFRB,Sucat - Market-Market,LTFRB_PUJ1592,LTFRB_PUJ1592|LTFRB_PUJ1593,2,"South Luzon Expressway / E Service Rd Intersection, Muntinlupa City, Manila - 26th Street / McKinley Pkwy Intersection, Taguig City, Manila",True
+LTFRB,Sucat Hi-way - Bagumbayan,LTFRB_PUJ1590,LTFRB_PUJ1590|LTFRB_PUJ1591,2,"Dr A. Santos Ave, Parañaque City, Manila - Manuel L. Quezon, Manila",True
+LTFRB,Sucat-SM MOA,LTFRB_PUJ2593,LTFRB_PUJ2593|LTFRB_PUJ2594,2,"Dr A. Santos Ave, Parañaque City, Manila - Epifanio de los Santos Avenue, Lungsod ng Pasay",True
+LTFRB,T.M. Kalaw - Balara via Katipunan,LTFRB_PUJ1594,LTFRB_PUJ1594|LTFRB_PUJ1595,2,"Quezon Blvd, Manila - St Peter Chapels, Commonwealth Avenue, Quezon City",True
+LTFRB,T.M. Kalaw - West Ave. via Quiapo,LTFRB_PUJ1659,LTFRB_PUJ1659|LTFRB_PUJ1660,2,"West Avenue, Quezon City - T.M. Kalaw / Maria Y. Orosa St",True
+LTFRB,TALA NOVALICHES via QUIRINO AVENUE,LTFRB_PUJ2269,LTFRB_PUJ2269|LTFRB_PUJ2270,2,"Quirino Highway / Maligaya Intersection, Caloocan City - Dr Uyguanco Avenue, City of San Jose del Monte",True
+LTFRB,TANDANG SORA PALENGKE  - NIA_NPC,LTFRB_PUJ1839,LTFRB_PUJ1839|LTFRB_PUJ1840,2,"Visayas Avenue Wet and Dry Market, Visayas Avenue Quezon City - NIA Chapel, Chico, Quezon City",True
+LTFRB,TAYTAY-PASIG PALENGKE,LTFRB_PUJ2140,LTFRB_PUJ2140,1,"Market Ave, Pasig City, Manila - Rizal Ave / Gonzaga Intersection, Taytay, Manila",False
+LTFRB,Taguig - SM Fairview via Lagro Ayala Buendia EDSA,LTFRB_PUB1195,LTFRB_PUB1195|LTFRB_PUB1196,2,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila",True
+LTFRB,Taguig City Navotas,LTFRB_PUB1059,LTFRB_PUB1059|LTFRB_PUB1060,2,"DBP Ave, Taguig City, Manila, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",True
+LTFRB,Talayan Vill A Bonifacio 5th Ave,LTFRB_PUJ2432,LTFRB_PUJ2432|LTFRB_PUJ2433,2,"Gregorio Araneta Ave, Quezon City, Manila - Circumferential Road 3 / M.H. Del Pilar St, Caloocan City, Manila",True
+LTFRB,"Talon - Pailiparan (Dasmarinas, Cavite) via Molino Rd.",LTFRB_PUJ1596,LTFRB_PUJ1596|LTFRB_PUJ1597,2,"Mabuhay Commercial / Paliparan Rd, Lungsod ng Dasmariñas, Manila - Alabang-Zapote Road, Muntinlupa City, Manila",True
+LTFRB,Tanay - Robinson Galleria via Antipolo San Miguel,LTFRB_PUJ1643,LTFRB_PUJ1643,1,"Quezon Ave, Teresa, Manila - Epifanio de los Santos Avenue /  Shaw Blvd Intersection, Mandaluyong City, Manila",False
+LTFRB,Tanay Pasig (Palengke),LTFRB_PUJ2436,LTFRB_PUJ2436|LTFRB_PUJ2437,2,"Quezon Ave, Teresa, Manila - W Bank Rd / Ortigas Ave Intersection, Pasig City, Manila",True
+LTFRB,Tandang Sora - Visayas Ave. via Q.C. Hall,LTFRB_PUJ1602,LTFRB_PUJ1602|LTFRB_PUJ1603,2,"Kalayaan Ave / Elliptical Rd Intersection, Quezon City, Manila - Visayas Avenue Wet and Dry Market, Visayas Avenue Quezon City",True
+LTFRB,Tandang Sora Mindanao Ave,LTFRB_PUJ2438,LTFRB_PUJ2438|LTFRB_PUJ2439,2,"Tandang Sora / Demetria Reynaldo Intersection, Quezon City - Life Value Clinic, Congressional Avenue, Quezon City",True
+LTFRB,Tanza - Zapote (Las Pinas) via Aguinaldo Hi-way,LTFRB_PUJ1600,LTFRB_PUJ1600|LTFRB_PUJ1601,2,"Tirona Hwy, Bacoor City, Manila - Quirino Ave, Bacoor City, Manila",True
+LTFRB,Taytay  - Quiapo via Manila East Road,LTFRB_PUB1197,LTFRB_PUB1197|LTFRB_PUB1198,2,"Manila Road East, Taytay, Manila - Nicanor Reyes Street, Manila",True
+LTFRB,Taytay-Rosario,LTFRB_PUJ2595,LTFRB_PUJ2595|LTFRB_PUJ2596,2,"Manila Road East, Taytay, Manila - N.Domingo,  San Juan, Manila",True
+LTFRB,Tayuman LRT Pilapil,LTFRB_PUJ2440,LTFRB_PUJ2440|LTFRB_PUJ2441,2,"Jose Corazon de Jesus Elementary School, Juan Luma, Manila - Tayuman Road / Serverino Reyes, Manila",True
+LTFRB,Treze Martirez Zapote (Las Pinas),LTFRB_PUJ2442,LTFRB_PUJ2442|LTFRB_PUJ2443,2,"Governer's Drive,Dasmarinas City - Quirino Ave, Bacoor City, Manila",True
+LTFRB,UP - IKOT,LTFRB_PUJ1663,LTFRB_PUJ1663|LTFRB_PUJ1664,2,"UP College of Education, A. Ma. Regidor St / Roxas Ave Intersection, Quezon City, Manila - C.P. Garcia Av Quezon City, Manila",True
+LTFRB,UP - MRT,LTFRB_PUJ1661,LTFRB_PUJ1661|LTFRB_PUJ1662,2,"UP College of Education, A. Ma. Regidor St / Roxas Ave Intersection, Quezon City, Manila - MRT-3 Quezon Avenue Station EDSA,Quezon City, Manila",True
+LTFRB,UP - SM NORTH AVE,LTFRB_PUJ1836,LTFRB_PUJ1836|LTFRB_PUJ1837,2,"UP College of Education, A. Ma. Regidor St / Roxas Ave Intersection, Quezon City, Manila - Epifanio de los Santos Avenue / North Avenue Intersection, Quezon City",True
+LTFRB,UP Highway - Sangandaan,LTFRB_PUJ1622,LTFRB_PUJ1622|LTFRB_PUJ1623,2,"Tandang Sora / Demetria Reynaldo Intersection, Quezon City - Chowking, Quirino Highway, Quezon City",True
+LTFRB,Ugong Pasig via Pasig Market,LTFRB_PUJ2444,LTFRB_PUJ2444|LTFRB_PUJ2445,2,"Caruncho Ave / Market Ave Intersection, Pasig City, Manila - JP Raceway, Pasig City, Manila",True
+LTFRB,Victoria Homes Subd Alabang Terminal via DH,LTFRB_PUJ2446,LTFRB_PUJ2446|LTFRB_PUJ2447,2,"Don P. Reyes Ave, Montinlupa City - Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila",True
+LTFRB,YALE CM RECTO,LTFRB_PUJ2271,LTFRB_PUJ2271|LTFRB_PUJ2272,2,"Mendiola / Legarda Intersection, Manila - General Romulo Ave / Aurora Blvd Intersection, Quezon City, Manila",True
+LTFRB,bagui,LTFRB_PUJ1838,LTFRB_PUJ1838,1,"Rizal Ave / Gonzaga Intersection, Taytay, Manila - Market Ave, Pasig City, Manila",False
+LTFRB,proj. 8 - Quiapo,LTFRB_PUJ1610,LTFRB_PUJ1610|LTFRB_PUJ1611,2,"Quezon Blvd, Manila - Jetti Petrol Station, Tanding Sora Avenue, Quezon City",True
+LTFRB,rancisco Homes - Novaliches (TP) via Quirino Hi-way,LTFRB_PUJ1348,LTFRB_PUJ1348|LTFRB_PUJ1349,2,"Dumalay, Quezon City - Francisco Homes Elementary School, Un-named Road, City of San Jose del Monte",True
+MRTC,Taft Ave - North Ave,ROUTE_880854,ROUTE_880854,1,MRT3 line from Taft Avenue to North Avenue,False
+PNR,Metro Commuter,ROUTE_880872,ROUTE_880872,1,"PNT Metro South Commuter connects the cities of Manila, Pasay and Muntinlupa",False

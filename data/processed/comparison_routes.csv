@@ -1,0 +1,196 @@
+agency_id,route_short_name,route_long_name,route_desc,route_type,route_url,route_color,route_text_color,route_id,mode_context
+LRTA,LRT 1,Baclaran - Roosevelt,Urban railway line serving 20 stations between Balaran and Roosevelt,2,http://www.lrta.gov.ph/train_operating_schedules.php,fdff00,,ROUTE_880747,rail_or_other
+LRTA,LRT 2,Recto - Santolan,Light rail line serving 11 stations between Recto and Santolan,2,http://www.lrta.gov.ph/train_operating_schedules.php,a520a1,,ROUTE_880801,rail_or_other
+LTFRB,,Alabang (Starmall) Lagro,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Quirino Highway / La Mesa Road Intersection, Calcoocan City",3,,,,LTFRB_PUB1001,bus
+LTFRB,,Alabang (Starmall) Lagro,"Quirino Highway / La Mesa Road Intersection, Calcoocan City - Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila",3,,,,LTFRB_PUB1002,bus
+LTFRB,,Alabang Fairview,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",3,,,,LTFRB_PUB1003,bus
+LTFRB,,Alabang Fairview,"Robinsons Nova Market, Quirino Highway, Caloocan City - Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila",3,,,,LTFRB_PUB1004,bus
+LTFRB,,Alabang Lawton via Sucat,"Progreso 2, Makati City, Manila - Tejeron, Makati City, Manila",3,,,,LTFRB_PUB1005,bus
+LTFRB,,Alabang Lawton via Zapote Coastal Rd,"Alabang-Zapote Road, Muntinlupa City, Manila - Taft Ave, Manila",3,,,,LTFRB_PUB1007,bus
+LTFRB,,Alabang Lawton via Zapote Coastal Rd,"Taft Ave, Manila - Alabang-Zapote Road, Muntinlupa City, Manila",3,,,,LTFRB_PUB1008,bus
+LTFRB,,Alabang Malabon (Letre) via EDSA,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",3,,FFFFFF,,LTFRB_PUB1009,bus
+LTFRB,,Alabang Malabon (Letre) via EDSA,"Circimferential Road 4, Malabon City - Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila",3,,FFFFFF,,LTFRB_PUB1010,bus
+LTFRB,,Alabang Malanday,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - ET Pacific, MacArthur Highway, City of Meycauayan",3,,,,LTFRB_PUB1011,bus
+LTFRB,,Alabang Malanday,"YU Laundry Shop, MacArthur Highway, City of Meycauayan - South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila",3,,,,LTFRB_PUB1012,bus
+LTFRB,,Ayala Dasmarinas (Cavite) via Coastal Rd,"Governor's Dv, Dasmariñas City, Manila - MRT-3 Ayala Station, Makati City, Manila",3,,,,LTFRB_PUB1013,bus
+LTFRB,,Ayala Dasmarinas (Cavite) via Coastal Rd,"MRT-3 Ayala Station, Makati City, Manila - Emilio Aguinaldo Hwy, Lungsod ng Dasmariñas, Manila",3,,,,LTFRB_PUB1014,bus
+LTFRB,,Ayala Grotto (SJDM) via Leveriza,"Senator Gil Puyat Ave, Makati City - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",3,,,,LTFRB_PUB1015,bus
+LTFRB,,Ayala Grotto (SJDM) via Leveriza,"Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte - Senator Gil Puyat Ave, Lungsod ng Pasay, Manila",3,,,,LTFRB_PUB1016,bus
+LTFRB,,Ayala Malabon via EDSA,"MRT-3 Ayala Station, Makati City, Manila - Circimferential Road 4, Malabon City",3,,FFFFFF,,LTFRB_PUB1017,bus
+LTFRB,,Ayala Malabon via EDSA,"Pagamutang Bayan Ng Malabon, Dagat- Dagatan Avenue, Caloocan City - MRT-3 Ayala Station, Makati City, Manila",3,,FFFFFF,,LTFRB_PUB1018,bus
+LTFRB,,Ayala Monumento via EDSA,"MRT-3 Ayala Station, Makati City, Manila - Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City",3,,FFFFFF,,LTFRB_PUB1019,bus
+LTFRB,,Ayala Monumento via EDSA,"Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City - MRT-3 Ayala Station, Makati City, Manila",3,,FFFFFF,,LTFRB_PUB1020,bus
+LTFRB,,Ayala NAIA,"Natalia, Parañaque City, Manila - MRT-3 Ayala Station, Makati City, Manila",3,,,,LTFRB_PUB1021,bus
+LTFRB,,Ayala NAIA,"MRT-3 Ayala Station, Makati City, Manila - NAIA Rd, Parañaque City, Manila",3,,,,LTFRB_PUB1022,bus
+LTFRB,,Ayala Novaliches via EDSA Buendia,"MRT-3 Ayala Station, Makati City, Manila - Ramirez / Quirino Highway, Caloocan City",3,,FFFFFF,,LTFRB_PUB1023,bus
+LTFRB,,Ayala Novaliches via EDSA Buendia,"Ramirez / Quirino Highway, Caloocan City - MRT-3 Ayala Station, Makati City, Manila",3,,FFFFFF,,LTFRB_PUB1024,bus
+LTFRB,,Ayala Quiapo via Kamagong Taft,"Paseo de Roxas / Ayala Avenue Intersection, Makati City, Manila - Quezon Blvd, Manila",3,,,,LTFRB_PUB1025,bus
+LTFRB,,Ayala Quiapo via Kamagong Taft,"Quezon Blvd, Manila - Makati Ave / Ayala Avenue Intersection, Makati City, Manila",3,,,,LTFRB_PUB1026,bus
+LTFRB,,Ayala UE Caloocan via EDSA,"MRT-3 Ayala Station, Makati City, Manila - Circimferential Road 4, Malabon City",3,,FFFFFF,,LTFRB_PUB1027,bus
+LTFRB,,Ayala UE Caloocan via EDSA,"Pagamutang Bayan Ng Malabon, Dagat- Dagatan Avenue, Caloocan City - MRT-3 Ayala Station, Makati City, Manila",3,,FFFFFF,,LTFRB_PUB1028,bus
+LTFRB,,Baclaran Malabon (Letre) via EDSA,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Circimferential Road 4, Malabon City",3,,FFFFFF,,LTFRB_PUB1029,bus
+LTFRB,,Baclaran Malabon (Letre) via EDSA,"Pagamutang Bayan Ng Malabon, Dagat- Dagatan Avenue, Caloocan City - Uniwide Coastal Mall, Diosdado Macapagal Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1030,bus
+LTFRB,,Baclaran Malanday via EDSA,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",3,,FFFFFF,,LTFRB_PUB1031,bus
+LTFRB,,Baclaran Malanday via EDSA,"Mananday Tricycle and Pedicab Terminal, MacArthur Highway, Malanday, Valenzuela City - Uniwide Coastal Mall, Diosdado Macapagal Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1032,bus
+LTFRB,,Baclaran Monumento via EDSA,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",3,,FFFFFF,,LTFRB_PUB1033,bus
+LTFRB,,Baclaran Monumento via EDSA,"Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City - Uniwide Coastal Mall, Diosdado Macapagal Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1034,bus
+LTFRB,,Baclaran Navotas via Ayala,"Roxas Blvd / Redemptorist Road Intersection, Parañaque City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",3,,,,LTFRB_PUB1035,bus
+LTFRB,,Baclaran Navotas via Ayala,"Circimferential Road 4, Malabon City - Roxas Blvd / Redemptorist Road Intersection, Parañaque City, Manila",3,,,,LTFRB_PUB1036,bus
+LTFRB,,Baclaran Novaliches via EDSA Quirino,"Natalia, Parañaque City, Manila - SM Cinema,Quirino Highway, Quezon City",3,,,,LTFRB_PUB1037,bus
+LTFRB,,Baclaran Novaliches via EDSA Quirino,"SM Cinema,Quirino Highway, Quezon City - NAIA Rd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1038,bus
+LTFRB,,Baclaran SJDM via Commonwealth EDSA,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Dr Eduardo V. Roquero Sr. Rd, City of San Jose del Monte, Manila",3,,FFFFFF,,LTFRB_PUB1039,bus
+LTFRB,,Baclaran SJDM via Commonwealth EDSA,"Dr Eduardo V. Roquero Sr. Rd, City of San Jose del Monte, Manila - Uniwide Coastal Mall, Diosdado Macapagal Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1040,bus
+LTFRB,,Baclaran SM Fairview via Lagro,"Maria, Parañaque City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",3,,,,LTFRB_PUB1041,bus
+LTFRB,,Baclaran SM Fairview via Lagro,"Quirino Highway / Maligaya Intersection, Caloocan City - NAIA Rd, Parañaque City, Manila",3,,,,LTFRB_PUB1042,bus
+LTFRB,,Domestic Grotto via EDSA,"Natalia, Parañaque City, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",3,,FFFFFF,,LTFRB_PUB1043,bus
+LTFRB,,Domestic Grotto via EDSA,"Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte - NAIA Rd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1044,bus
+LTFRB,,Leveriza Monumento,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",3,,,,LTFRB_PUB1045,bus
+LTFRB,,Leveriza Monumento,"Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City - Senator Gil Puyat Ave, Lungsod ng Pasay, Manila",3,,,,LTFRB_PUB1046,bus
+LTFRB,,Navotas Terminal Pacita Complex via EDSA,"National Highway / Unnamed Rd, San Pedro, Manila - Circimferential Road 4, Malabon City",3,,FFFFFF,,LTFRB_PUB1047,bus
+LTFRB,,Navotas Terminal Pacita Complex via EDSA,"Circimferential Road 4, Malabon City - Plaza Pacita Bus Terminal, National Highway / Pacita Av, San Pedro, Manila",3,,FFFFFF,,LTFRB_PUB1048,bus
+LTFRB,,Novaliches Baclaran via EDSA Mindanao Ave,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Ramirez / Quirino Highway, Caloocan City",3,,FFFFFF,,LTFRB_PUB1049,bus
+LTFRB,,Novaliches Baclaran via EDSA Mindanao Ave,"Ramirez / Quirino Highway, Caloocan City - Uniwide Coastal Mall, Diosdado Macapagal Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1050,bus
+LTFRB,,Novaliches Pacita San Pedro via Malinta,"San Pedro College of Business Administration, National Hwy, San Pedro, Manila - Genteral Luis / Reynaldo Road Intersection, Caloocan City",3,,,,LTFRB_PUB1051,bus
+LTFRB,,Novaliches Pacita San Pedro via Malinta,"Genteral Luis / Reynaldo Road Intersection, Caloocan City - San Pedro College of Business Administration, National Hwy, San Pedro, Manila",3,,,,LTFRB_PUB1052,bus
+LTFRB,,Pandacan Quiapo,"Beata, Manila - McArthur Bridge , Manila",3,,,,LTFRB_PUB1053,bus
+LTFRB,,Pandacan Quiapo,"Carlos Palanca Sr, Manila - Beata, Manila",3,,,,LTFRB_PUB1054,bus
+LTFRB,,Pandacan Sta Cruz via Quiapo,"Beata, Manila - McArthur Bridge , Manila",3,,,,LTFRB_PUB1055,bus
+LTFRB,,Pandacan Sta Cruz via Quiapo,"Carlos Palanca Sr, Manila - Beata, Manila",3,,,,LTFRB_PUB1056,bus
+LTFRB,,SM Fairview Ayala Leveriza via EDSA,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",3,,FFFFFF,,LTFRB_PUB1057,bus
+LTFRB,,SM Fairview Ayala Leveriza via EDSA,"Quirino Highway / Maligaya Intersection, Caloocan City - Senator Gil Puyat Ave, Lungsod ng Pasay, Manila",3,,FFFFFF,,LTFRB_PUB1058,bus
+LTFRB,,Taguig City Navotas,"DBP Ave, Taguig City, Manila, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",3,,,,LTFRB_PUB1059,bus
+LTFRB,,Taguig City Navotas,"Circimferential Road 4, Malabon City - Food Terminal Incorporated, DBP Ave, Taguig City, Manila, Manila",3,,,,LTFRB_PUB1060,bus
+LTFRB,,Alabang Monumento via EDSA,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City",3,,FFFFFF,,LTFRB_PUB1061,bus
+LTFRB,,Alabang Monumento via EDSA,"Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City - Starmall Footbridge, Starmall Starmall Service Rd, Muntinlupa City, Manila",3,,FFFFFF,,LTFRB_PUB1062,bus
+LTFRB,,Alabang Navotas,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",3,,,,LTFRB_PUB1063,bus
+LTFRB,,Ayala Balintawak,"MRT-3 Ayala Station, Makati City, Manila - Balintawak LRT 1, Epifanio de los Santos Ave, Quezon City, Manila",3,,,,LTFRB_PUB1065,bus
+LTFRB,,Ayala Balintawak,"Balintawak LRT 1, Epifanio de los Santos Ave, Quezon City, Manila - Ayala Ave, Makati City, Manila",3,,,,LTFRB_PUB1066,bus
+LTFRB,,Ayala Fairview via EDSA,"Epifanio de los Santos Av, Makati City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",3,,FFFFFF,,LTFRB_PUB1067,bus
+LTFRB,,Ayala Fairview via EDSA,"Quirino Highway / Maligaya Intersection, Caloocan City - MRT-3 Ayala Station, Makati City, Manila",3,,FFFFFF,,LTFRB_PUB1068,bus
+LTFRB,,Ayala Grotto via EDSA,"Epifanio de los Santos Av, Makati City, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",3,,FFFFFF,,LTFRB_PUB1069,bus
+LTFRB,,Ayala Grotto via EDSA,"Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte - MRT-3 Ayala Station, Makati City, Manila",3,,FFFFFF,,LTFRB_PUB1070,bus
+LTFRB,,Ayala Lagro via EDSA,"Epifanio de los Santos Av, Makati City, Manila - Polytechnic School, Quirino Highway, Quezon City",3,,FFFFFF,,LTFRB_PUB1071,bus
+LTFRB,,Ayala Lagro via EDSA,"Polytechnic School, Quirino Highway, Quezon City - MRT-3 Ayala Station, Makati City, Manila",3,,FFFFFF,,LTFRB_PUB1072,bus
+LTFRB,,Ayala Malanday via EDSA,"Epifanio de los Santos Avenue / McKinley Rd Intersection, Makati City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",3,,FFFFFF,,LTFRB_PUB1073,bus
+LTFRB,,Ayala Malanday via EDSA,"Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City - MRT-3 Buendia Station, Makati City, Manila",3,,FFFFFF,,LTFRB_PUB1074,bus
+LTFRB,,FTI-Monumento via EDSA,"DBP Ave, Taguig City, Manila, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",3,,,,LTFRB_PUB1077,bus
+LTFRB,,FTI-Monumento via EDSA,"Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City - Food Terminal Incorporated, DBP Ave, Taguig City, Manila, Manila",3,,FFFFFF,,LTFRB_PUB1078,bus
+LTFRB,,Malanday MIA via Pasay Rtda MOA Coastal Road,"Natalia, Parañaque City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",3,,,,LTFRB_PUB1079,bus
+LTFRB,,Malanday MIA via Pasay Rtda MOA Coastal Road,"Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City - NAIA Rd, Parañaque City, Manila",3,,,,LTFRB_PUB1080,bus
+LTFRB,,Malanday Sucat via EDSA,"South Luzon Expressway, Muntinlupa City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",3,,FFFFFF,,LTFRB_PUB1082,bus
+LTFRB,,Malanday Sucat via EDSA,"Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City - South Luzon Expressway, Muntinlupa City, Manila",3,,FFFFFF,,LTFRB_PUB1083,bus
+LTFRB,,Monumento NAIA via EDSA Coastal Rd,"Natalia, Parañaque City, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",3,,FFFFFF,,LTFRB_PUB1084,bus
+LTFRB,,Monumento NAIA via EDSA Coastal Rd,"Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City - NAIA Rd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1085,bus
+LTFRB,,Monumento Philcite via Ayala EDSA,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",3,,FFFFFF,,LTFRB_PUB1086,bus
+LTFRB,,Monumento Philcite via Ayala EDSA,"Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City - Senator Gil Puyat Ave, Lungsod ng Pasay, Manila",3,,FFFFFF,,LTFRB_PUB1087,bus
+LTFRB,,Monumento Sucat via EDSA,"South Luzon Expressway, Muntinlupa City, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",3,,FFFFFF,,LTFRB_PUB1088,bus
+LTFRB,,Monumento Sucat via EDSA,"Epifanio de los Santos Avenue / General Rosendo Simon Intersection , Caloocan City - South Luzon Expressway, Muntinlupa City, Manila",3,,FFFFFF,,LTFRB_PUB1089,bus
+LTFRB,,NAIA SM Fairview,"Natalia, Parañaque City, Manila - SM Public Transport Terminal, Regalado Highway, Quezon City",3,,,,LTFRB_PUB1090,bus
+LTFRB,,NAIA SM Fairview,"Quirino Highway / Maligaya Intersection, Caloocan City - NAIA Rd, Parañaque City, Manila",3,,,,LTFRB_PUB1091,bus
+LTFRB,,"Alabang - Malanday via EDSA, McArthur","MRT-3 Magallanes Station, EDSA, Makati City, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",3,,FFFFFF,,LTFRB_PUB1092,bus
+LTFRB,,"Alabang - Malanday via EDSA, McArthur","Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City - South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila",3,,FFFFFF,,LTFRB_PUB1093,bus
+LTFRB,,Alabang - Navotas Terminal via EDSA,"MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila - South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila",3,,FFFFFF,,LTFRB_PUB1095,bus
+LTFRB,,"Alabang - Novaliches via EDSA, NLEX","South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - North Luzon Expressway / Santiago Street Intersection, Valenzuela City",3,,FFFFFF,,LTFRB_PUB1096,bus
+LTFRB,,"Alabang - Novaliches via EDSA, NLEX","North Luzon Expressway, Valenzuela City - South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila",3,,FFFFFF,,LTFRB_PUB1097,bus
+LTFRB,,Alabang - Plaza Lawton,"Alabang-Zapote Road, Muntinlupa City, Manila - Plaza Santa Cruz, Manila City",3,,,,LTFRB_PUB1098,bus
+LTFRB,,Alabang - Plaza Lawton,"Plaza Santa Cruz, Manila City - Alabang-Zapote Road, Muntinlupa City, Manila",3,,,,LTFRB_PUB1099,bus
+LTFRB,,"Alabang-Novaliches via EDSA, MindanaoAve","National Hwy, Muntinlupa City, Manila - Quirino Highway, Quezon City",3,,FFFFFF,,LTFRB_PUB1100,bus
+LTFRB,,"Alabang-Novaliches via EDSA, MindanaoAve","Quirino Highway, Quezon City - National Hwy, Muntinlupa City, Manila",3,,FFFFFF,,LTFRB_PUB1101,bus
+LTFRB,,Alabang-SM Fairview via Lagro Commonwealth,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Belfast / Bulalakaw Intersection, Quezon City",3,,,,LTFRB_PUB1102,bus
+LTFRB,,Alabang-SM Fairview via Lagro Commonwealth,"Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila - South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila",3,,,,LTFRB_PUB1103,bus
+LTFRB,,Alabang Muntinlupa-Lawton via SSH Taft Ave,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Magallanes Dr, Manila",3,,,,LTFRB_PUB1104,bus
+LTFRB,,Alabang Muntinlupa-Lawton via SSH Taft Ave,"Taft Ave, Manila - South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila",3,,,,LTFRB_PUB1105,bus
+LTFRB,,Antipolo-Divisoria via Shaw Blvd,"P. Oliveros St, Antipolo City, Manila - Sto. Cristo / Claro M. Recto Ave Intersection, Manila",3,,,,LTFRB_PUB1106,bus
+LTFRB,,Antipolo-Divisoria via Shaw Blvd,"Sto. Cristo / Claro M. Recto Ave Intersection, Manila - P. Oliveros St, Antipolo City, Manila",3,,,,LTFRB_PUB1107,bus
+LTFRB,,"Asturias-Ayala via Buendia Ave, Taft Ave","Makati Ave / Ayala Avenue Intersection, Makati City, Manila - President Quirino Ave / Angel Linao Intersection, Manila",3,,,,LTFRB_PUB1108,bus
+LTFRB,,"Asturias-Ayala via Buendia Ave, Taft Ave","South Luzon Expressway, Makati City, Manila - Makati Ave / Ayala Avenue Intersection, Makati City, Manila",3,,,,LTFRB_PUB1109,bus
+LTFRB,,Ayala Ave-Ft Boni StaffHouse via Mckinly,"McKinley Pkwy / 9th Ave Intersection, Taguig City, Manila - Epifanio de los Santos Avenue / McKinley Rd Intersection, Makati City, Manila",3,,,,LTFRB_PUB1110,bus
+LTFRB,,Baclaran - Grotto via Commonwealth Ave,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",3,,,,LTFRB_PUB1111,bus
+LTFRB,,Baclaran - Grotto via Commonwealth Ave,"Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte - Roxas Blvd, Parañaque City, Manila",3,,,,LTFRB_PUB1112,bus
+LTFRB,,Baclaran - Minuyan via Commonwealth Ave,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Quirino Highway, City of San Jose del Monte",3,,,,LTFRB_PUB1113,bus
+LTFRB,,Baclaran - Minuyan via Commonwealth Ave,"Quirino Highway, City of San Jose del Monte - Roxas Blvd, Parañaque City, Manila",3,,,,LTFRB_PUB1114,bus
+LTFRB,,Baclaran - Montalban via EDSA,"MALTC Bus Station, Gen. A Luna, San Mateo - Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1116,bus
+LTFRB,,Baclaran-BgSilang via Edsa Commonwealth,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Green Construction Supply, Langit Road, Caloocan City",3,,FFFFFF,,LTFRB_PUB1117,bus
+LTFRB,,Baclaran-BgSilang via Edsa Commonwealth,"Green Construction Supply, Langit Road, Caloocan City - Roxas Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1118,bus
+LTFRB,,Alabang - Navotas Terminal via EDSA,"South Luzon Expressway / Montillano St Intersection, Muntinlupa City, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",3,,FFFFFF,,LTFRB_PUB1119,bus
+LTFRB,,"Baclaran-Malanday via Edsa, McArthur","Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City",3,,FFFFFF,,LTFRB_PUB1120,bus
+LTFRB,,"Baclaran-Malanday via Edsa, McArthur","Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City - Roxas Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1121,bus
+LTFRB,,"Baclaran-Malanday viaEDSA, McArthur, Ayala","Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - C.P. Enerton Fuel Station, MacArthur Highway, Valenzuela City, Philippines",3,,FFFFFF,,LTFRB_PUB1122,bus
+LTFRB,,"Baclaran-Malanday viaEDSA, McArthur, Ayala","Mercury Drug Store, MacArthur Highway, Malanday, Valenzuela City - Roxas Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1123,bus
+LTFRB,,Baclaran-Navotas Terminal via EDSA,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Epifanio de los Santos Avenue / 5th Street Intersection , Caloocan City",3,,FFFFFF,,LTFRB_PUB1124,bus
+LTFRB,,Baclaran-Navotas Terminal via EDSA,"Roxas Blvd, Parañaque City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",3,,FFFFFF,,LTFRB_PUB1125,bus
+LTFRB,,Baclaran-Navotas Terminal via Edsa Ayala,"San Juan De Dios Educational Foundation, Incorporated, Pasay City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",3,,FFFFFF,,LTFRB_PUB1126,bus
+LTFRB,,Baclaran-Navotas Terminal via Edsa Ayala,"MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila - Roxas Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1127,bus
+LTFRB,,Baclaran-Novaliches via EDSA Mindanao Ave,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Quirino Highway, Quezon City",3,,FFFFFF,,LTFRB_PUB1128,bus
+LTFRB,,Baclaran-Nvaliches via EDSA Mind AveAyala,"Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Quirino Highway, Quezon City",3,,FFFFFF,,LTFRB_PUB1129,bus
+LTFRB,,Baclaran-Nvaliches via EDSA Mind AveAyala,"Quirino Highway, Quezon City - Roxas Blvd, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1130,bus
+LTFRB,,Baclaran - SM Fairview via Lagro C'wealth,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Belfast / Bulalakaw Intersection, Quezon City",3,,,,LTFRB_PUB1131,bus
+LTFRB,,Baclaran - SM Fairview via Lagro C'wealth,"Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila - Roxas Blvd, Parañaque City, Manila",3,,,,LTFRB_PUB1132,bus
+LTFRB,,"Baclaran - SM Fairview via Lagro, Ayala","Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Belfast / Bulalakaw Intersection, Quezon City",3,,,,LTFRB_PUB1133,bus
+LTFRB,,"Baclaran - SM Fairview via Lagro, Ayala","Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila - Roxas Blvd, Parañaque City, Manila",3,,,,LTFRB_PUB1134,bus
+LTFRB,,Baclaran-SM Fairview via Quezon Ave,"Taft Ave / Josefa Llanes Escoda Intersection, Manila - Belfast / Bulalakaw Intersection, Quezon City",3,,,,LTFRB_PUB1135,bus
+LTFRB,,Baclaran-SM Fairview via Quezon Ave,"Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila - Taft Ave / Josefa Llanes Escoda Intersection, Manila",3,,,,LTFRB_PUB1136,bus
+LTFRB,,Bagong Silang - Sta. Cruz via Malinta Exit,"T. Mapua, Manila - Langit Road, Caloocan City",3,,,,LTFRB_PUB1137,bus
+LTFRB,,Bagong Silang - Sta. Cruz via Malinta Exit,"Un named Road near Tatak Kubo, Caloocan City - Valariano Fugoso, Manila",3,,,,LTFRB_PUB1138,bus
+LTFRB,,"Bagong Silang - NAIA via Maligaya Park, EDSA","Maria, Parañaque City, Manila - Green Construction Supply, Langit Road, Caloocan City",3,,FFFFFF,,LTFRB_PUB1139,bus
+LTFRB,,"Bagong Silang - NAIA via Maligaya Park, EDSA","Green Construction Supply, Langit Road, Caloocan City - Terminal 1 Arrivals Area Rd, Ninoy Aquino International Airport,  Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1140,bus
+LTFRB,,"Cainta - Quiapo via Ortigas Ave, Magsaysay Blvd","Marketplace, Cainta, Manila - Quezon Blvd, Manila",3,,,,LTFRB_PUB1141,bus
+LTFRB,,"Cainta - Quiapo via Ortigas Ave, Magsaysay Blvd","Claro M. Recto Ave / Quezon Blvd Intersection, Manila - Marketplace, Cainta, Manila",3,,,,LTFRB_PUB1142,bus
+LTFRB,,"Dasmarinas - Plaza Lawton via E. Aguinaldo Highway, Roxas Blvd","San Agustin Bus Terminal, Emilio Aguinaldo Hwy, Lungsod ng Dasmariñas, Manila - Leon Guinto Sr., Manila",3,,,,LTFRB_PUB1143,bus
+LTFRB,,"Dasmarinas - Plaza Lawton via E. Aguinaldo Highway, Roxas Blvd","President Quirino Ave / Taft Ave Intersection, Manila - San Agustin Bus Terminal, Emilio Aguinaldo Hwy, Lungsod ng Dasmariñas, Manila",3,,,,LTFRB_PUB1144,bus
+LTFRB,,Eastwood Libis - Marriot Terminal via Acropolis,"Newport Blvd, Pasay City, Manila - Pheonix Sun Business Park, Quezon City, Manila",3,,,,LTFRB_PUB1145,bus
+LTFRB,,Eastwood Libis - Marriot Terminal via Acropolis,"Pheonix Sun Business Park, Quezon City, Manila - Newport Blvd, Pasay City, Manila",3,,,,LTFRB_PUB1146,bus
+LTFRB,,FTI - Navotas Terminal via EDSA,"DBP Ave, Taguig City, Manila, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",3,,FFFFFF,,LTFRB_PUB1147,bus
+LTFRB,,FTI - Navotas Terminal via EDSA,"MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila - DBP Ave, Taguig City, Manila, Manila",3,,,,LTFRB_PUB1148,bus
+LTFRB,,FTI - SM Fairview via Lagro Commonwealth,"DBP Ave, Taguig City, Manila, Manila - Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila",3,,,,LTFRB_PUB1149,bus
+LTFRB,,FTI - SM Fairview via Lagro Commonwealth,"Belfast / Bulalakaw Intersection, Quezon City - DBP Ave, Taguig City, Manila, Manila",3,,,,LTFRB_PUB1150,bus
+LTFRB,,"FTI - Tungko, SJDM via Lagro, C'wealth Ave EDSA","DBP Ave, Taguig City, Manila, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",3,,FFFFFF,,LTFRB_PUB1151,bus
+LTFRB,,"FTI - Tungko, SJDM via Lagro, C'wealth Ave EDSA","Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte - DBP Ave, Taguig City, Manila, Manila",3,,,,LTFRB_PUB1152,bus
+LTFRB,,"GMA - Plaza Lawton via Ayala, Carmona, SSH","Congressional Rd,  General Mariano Alvarez, Manila - Andres Soriano Jr Ave / Muralla Intersection, Manila",3,,,,LTFRB_PUB1153,bus
+LTFRB,,"GMA - Plaza Lawton via Ayala, Carmona, SSH","Taft Ave, Manila - Congressional Rd,  General Mariano Alvarez, Manila",3,,,,LTFRB_PUB1154,bus
+LTFRB,,"Grotto - Baclaran via Commonwealth Ave, Ayala","Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",3,,,,LTFRB_PUB1155,bus
+LTFRB,,"Grotto - Baclaran via Commonwealth Ave, Ayala","Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte - Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila",3,,,,LTFRB_PUB1156,bus
+LTFRB,,"Grotto - NAIA via EDSA, Fairview","Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte - Ninoy Aquino Ave, Lungsod ng Pasay, Manila",3,,FFFFFF,,LTFRB_PUB1158,bus
+LTFRB,,"Grotto - NAIA via EDSA, Ayala, Buendia Extn","Maria, Parañaque City, Manila - Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte",3,,FFFFFF,,LTFRB_PUB1159,bus
+LTFRB,,"Grotto - NAIA via EDSA, Ayala, Buendia Extn","Sta. Maria - Tungkong Mangga Rd / Quirino Highway Intersection, City of San Jose del Monte - Ninoy Aquino Ave, Lungsod ng Pasay, Manila",3,,FFFFFF,,LTFRB_PUB1160,bus
+LTFRB,,Lagro - NAIA via Fairview,"Maria, Parañaque City, Manila - Quirino Highway / Maligaya Intersection, Caloocan City",3,,,,LTFRB_PUB1161,bus
+LTFRB,,Lagro - NAIA via Fairview,"Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila - Terminal 1 Arrivals Area Rd, Ninoy Aquino International Airport,  Parañaque City, Manila",3,,,,LTFRB_PUB1162,bus
+LTFRB,,"Malanday - Muntinlupa via Edsa, Monumento","National Hwy, Muntinlupa City, Manila - MacArthur Highway, Dalandanan, Valenzuela City",3,,FFFFFF,,LTFRB_PUB1163,bus
+LTFRB,,"Malanday - Muntinlupa via Edsa, Monumento","MacArthur Highway, Dalandanan, Valenzuela City - National Hwy, Muntinlupa City, Manila",3,,FFFFFF,,LTFRB_PUB1164,bus
+LTFRB,,"Malanday Term - NAIA viaEDSA, Buendia, Ayala","Maria, Parañaque City, Manila - MacArthur Highway, Dalandanan, Valenzuela City",3,,FFFFFF,,LTFRB_PUB1165,bus
+LTFRB,,"Malanday Term - NAIA viaEDSA, Buendia, Ayala","MacArthur Highway, Dalandanan, Valenzuela City - Ninoy Aquino Ave, Lungsod ng Pasay, Manila",3,,FFFFFF,,LTFRB_PUB1166,bus
+LTFRB,,Moonwalk - Plaza Lawton,"Alabang-Zapote Road, Las Piñas City, Manila - Andres Soriano Jr Ave / Muralla Intersection, Manila",3,,,,LTFRB_PUB1167,bus
+LTFRB,,Moonwalk - Plaza Lawton,"Taft Ave, Manila - Alabang-Zapote Road, Las Piñas City, Manila",3,,,,LTFRB_PUB1168,bus
+LTFRB,,NAIA - Malanday via EDSA,"Maria, Parañaque City, Manila - MacArthur Highway, Dalandanan, Valenzuela City",3,,FFFFFF,,LTFRB_PUB1169,bus
+LTFRB,,NAIA - Malanday via EDSA,"MacArthur Highway, Dalandanan, Valenzuela City - Ninoy Aquino Ave, Lungsod ng Pasay, Manila",3,,FFFFFF,,LTFRB_PUB1170,bus
+LTFRB,,Norzagaray - Baclaran Via Commonwealth Ave,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - VFR Phase 2 Elementary School, City of San Jose del Monte, Manila",3,,,,LTFRB_PUB1171,bus
+LTFRB,,Norzagaray - Baclaran Via Commonwealth Ave,"VFR Phase 2 Elementary School, City of San Jose del Monte, Manila - Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila",3,,,,LTFRB_PUB1172,bus
+LTFRB,,Norzgry / Spalay-NAIA / Baclrn Via Comm Fairv Ed,"Maria, Parañaque City, Manila - VFR Phase 2 Elementary School, City of San Jose del Monte, Manila",3,,,,LTFRB_PUB1173,bus
+LTFRB,,Norzgry / Spalay-NAIA / Baclrn Via Comm Fairv Ed,"VFR Phase 2 Elementary School, City of San Jose del Monte, Manila - Ninoy Aquino Ave, Lungsod ng Pasay, Manila",3,,,,LTFRB_PUB1174,bus
+LTFRB,,"Pacita Complex (SP, Lag) - Letre via EDSA","Pacita Bus Terminal,  Pacita Av, San Pedro, Manila - Circimferential Road 4, Malabon City",3,,FFFFFF,,LTFRB_PUB1175,bus
+LTFRB,,"Pacita Complex (SP, Lag) - Letre via EDSA","Pagamutang Bayan Ng Malabon, Dagat- Dagatan Avenue, Caloocan City - Pacita Bus Terminal,  Pacita Av, San Pedro, Manila",3,,FFFFFF,,LTFRB_PUB1176,bus
+LTFRB,,Pacita Complex - SM Fairview via EDSA,"Plaza Pacita Bus Terminal, National Highway / Pacita Av, San Pedro, Manila - Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila",3,,FFFFFF,,LTFRB_PUB1177,bus
+LTFRB,,Pacita Complex - SM Fairview via EDSA,"Belfast / Bulalakaw Intersection, Quezon City - PNR Pacita Station, Pine Rd, San Pedro, Manila",3,,FFFFFF,,LTFRB_PUB1178,bus
+LTFRB,,Pacita Complex - Navotas Term via EDSA,"MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila - Pacita Bus Terminal,  Pacita Av, San Pedro, Manila",3,,FFFFFF,,LTFRB_PUB1180,bus
+LTFRB,,"Pacita - Novaliches Term via Malinta Ex, EDSA","National Highway / Unnamed Rd, San Pedro, Manila - Genteral Luis / East Street Intersection, Caloocan City",3,,FFFFFF,,LTFRB_PUB1181,bus
+LTFRB,,"Pacita - Novaliches Term via Malinta Ex, EDSA","Genteral Luis / East Street Intersection, Caloocan City - National Highway / Unnamed Rd, San Pedro, Manila",3,,FFFFFF,,LTFRB_PUB1182,bus
+LTFRB,,Pala - pala Dasmarinas Cavite - Navotas Terminal via Edsa,"Governor's Dv, Dasmariñas City, Manila - MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila",3,,FFFFFF,,LTFRB_PUB1183,bus
+LTFRB,,Pala - pala Dasmarinas Cavite - Navotas Terminal via Edsa,"MMDA Navotos Bus Terminal, Circumferential Road 4, Navotas City, Manila - Governor's Dv, Dasmariñas City, Manila",3,,FFFFFF,,LTFRB_PUB1184,bus
+LTFRB,,Pandacan (Beata) - Quiapo via C. Palanca,"Lorenzo Dela Paz / Baretto Intersection, Manila - Padre Burgos St, Manila",3,,,,LTFRB_PUB1185,bus
+LTFRB,,Pandacan (Beata) - Quiapo via C. Palanca,"Philippine Normal University, San Marcelino / Ayala Blvd, Manila - Lorenzo Dela Paz / Baretto Intersection, Manila",3,,,,LTFRB_PUB1186,bus
+LTFRB,,"San Mateo - Baclaran via EDSA, Ayala, Commonwealth Ave","Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila - MALTC Bus Station, Gen. A Luna, San Mateo",3,,FFFFFF,,LTFRB_PUB1187,bus
+LTFRB,,"San Mateo - Baclaran via EDSA, Ayala, Commonwealth Ave","Gen. A Luna / Curayao Intersection, San Mateo - Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1188,bus
+LTFRB,,Sapang Palay - Sta. Cruz via Marilao Exit,"T. Mapua, Manila - VFR Phase 2 Elementary School, City of San Jose del Monte, Manila",3,,,,LTFRB_PUB1189,bus
+LTFRB,,Sapang Palay - Sta. Cruz via Marilao Exit,"Sapang Palay, City of San Jose del Monte, Manila - Oroquieta, Manila",3,,,,LTFRB_PUB1190,bus
+LTFRB,,Sapang Palay - Sta Cruz (DJose) Sta Maria NE,"T. Mapua, Manila - Iglesia ni Cristo, City of San Jose del Monte, Manila",3,,,,LTFRB_PUB1191,bus
+LTFRB,,Sapang Palay - Sta Cruz (DJose) Sta Maria NE,"Bagong Buhay H Elementary School, City of San Jose del Monte, Manila - Oroquieta, Manila",3,,,,LTFRB_PUB1192,bus
+LTFRB,,Sta Maria - Baclaran NLEX EDSA,"Diosdado Macapagal Blvd, Lungsod ng Pasay, Manila - Norzagaray-Santa Maria Bulacan, Santa Maria, Manila",3,,FFFFFF,,LTFRB_PUB1193,bus
+LTFRB,,Sta Maria - Baclaran NLEX EDSA,"Norzagaray-Santa Maria Bulacan, Santa Maria, Manila - Roxas Blvd / T. Claudio Intersection, Parañaque City, Manila",3,,FFFFFF,,LTFRB_PUB1194,bus
+LTFRB,,Taguig - SM Fairview via Lagro Ayala Buendia EDSA,"Senator Gil Puyat Ave, Lungsod ng Pasay, Manila - Robinsons Nova Supermarket, Quirino Highway, Caloocan City, Manila",3,,FFFFFF,,LTFRB_PUB1195,bus
+LTFRB,,Taguig - SM Fairview via Lagro Ayala Buendia EDSA,"Belfast / Bishop Avenue Intersection, Quezon City - Senator Gil Puyat Ave, Lungsod ng Pasay, Manila",3,,FFFFFF,,LTFRB_PUB1196,bus
+LTFRB,,Taytay  - Quiapo via Manila East Road,"Manila Road East, Taytay, Manila - Nicanor Reyes Street, Manila",3,,,,LTFRB_PUB1197,bus
+LTFRB,,Taytay  - Quiapo via Manila East Road,"Philippine Normal University, San Marcelino / Ayala Blvd, Manila - Manila Road East, Taytay, Manila",3,,,,LTFRB_PUB1198,bus
+MRTC,MRT-3,Taft Ave - North Ave,MRT3 line from Taft Avenue to North Avenue,2,http://dotcmrt3.gov.ph/,ffd80a,,ROUTE_880854,rail_or_other
+PNR,PNR MC,Metro Commuter,"PNT Metro South Commuter connects the cities of Manila, Pasay and Muntinlupa",2,http://www.pnr.gov.ph/metro_commuter.htm,e58e11,,ROUTE_880872,rail_or_other
+FORT,,Fort Central,,3,,,,FORT_CENT,rail_or_other
+FORT,,Fort West,,3,,,,FORT_WEST,rail_or_other

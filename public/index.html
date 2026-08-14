@@ -1,0 +1,147 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Route2Zero ranks Metro Manila e-jeepney corridors by climate impact, equity, grid context, and operator readiness.">
+    <title>Route2Zero | Netlify Dashboard</title>
+    <link rel="icon" href="data:,">
+    <link rel="preconnect" href="https://unpkg.com">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="stylesheet" href="/styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <aside class="sidebar" aria-label="Dashboard controls">
+        <div>
+          <p class="eyebrow">Route2Zero</p>
+          <h2>Controls</h2>
+          <p class="muted">Adjust the view and deterministic score weights. AI never changes the ranking.</p>
+        </div>
+
+        <label class="control-label" for="cityFilter">City / LGU lens</label>
+        <select id="cityFilter"></select>
+
+        <label class="toggle-row">
+          <input id="includeUnverified" type="checkbox">
+          <span>Include unverified equity routes</span>
+        </label>
+
+        <section class="weight-stack" aria-label="Live score weights">
+          <h3>Live Score Weights</h3>
+          <label>Emissions potential <output id="emissionsValue">35</output></label>
+          <input id="emissionsWeight" type="range" min="0" max="100" step="5" value="35">
+          <label>Equity density proxy <output id="equityValue">35</output></label>
+          <input id="equityWeight" type="range" min="0" max="100" step="5" value="35">
+          <label>Grid feasibility <output id="gridValue">15</output></label>
+          <input id="gridWeight" type="range" min="0" max="100" step="5" value="15">
+          <label>Operator readiness <output id="operatorValue">15</output></label>
+          <input id="operatorWeight" type="range" min="0" max="100" step="5" value="15">
+        </section>
+
+        <button id="downloadCsv" type="button">Download CSV</button>
+      </aside>
+
+      <section class="content">
+        <header class="hero">
+          <p class="eyebrow">Metro Manila route electrification intelligence</p>
+          <h1>Route2Zero</h1>
+          <p>Rank e-jeepney corridors by climate impact, equitable service, grid context, and operator readiness, with every proxy and placeholder visible before anyone asks.</p>
+        </header>
+
+        <section class="confidence">
+          <strong>Data confidence is part of the product.</strong>
+          GTFS service dates span 2013-2020; most geometries connect ordered stops rather than road-snapped shapes. Equity uses 2020 WorldPop density, grid is one Luzon baseline, and operator readiness defaults to 50 pending cooperative workshops.
+        </section>
+
+        <section class="metrics" aria-label="Summary metrics">
+          <article><span>Routes in view</span><strong id="routesMetric">0</strong></article>
+          <article><span>Complete scores</span><strong id="completeMetric">0</strong></article>
+          <article><span>Top priority score</span><strong id="topMetric">N/A</strong></article>
+          <article><span>Equity source</span><strong>WorldPop 2020</strong></article>
+        </section>
+
+        <section class="panel">
+          <div class="panel-heading">
+            <div>
+              <h2>Explore Priority Corridors</h2>
+              <p>Color moves from red through amber to green as priority rises. Lighter lines are approximate stop-sequence geometries.</p>
+            </div>
+            <select id="routeFinder" aria-label="Route finder"></select>
+          </div>
+          <div id="map" aria-label="Route map"></div>
+        </section>
+
+        <section class="detail-grid">
+          <article class="panel route-detail">
+            <p class="eyebrow">Selected Route</p>
+            <h2 id="routeName">Loading route...</h2>
+            <p id="routeMeta" class="muted"></p>
+            <div class="mini-metrics">
+              <span><b id="rankValue">-</b> Live rank</span>
+              <span><b id="scoreValue">-</b> Priority</span>
+              <span><b id="lengthValue">-</b> Length km</span>
+            </div>
+            <span id="sourcePill" class="pill">Offline deterministic explanation</span>
+            <p id="routeRationale"></p>
+          </article>
+
+          <article class="panel">
+            <h2>Score Breakdown</h2>
+            <div id="breakdownBars" class="bars"></div>
+          </article>
+        </section>
+
+        <section class="panel">
+          <h2>Priority Leaderboard</h2>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Rank</th>
+                  <th>Route</th>
+                  <th>Primary city</th>
+                  <th>Priority</th>
+                  <th>Emissions</th>
+                  <th>Equity</th>
+                  <th>Grid</th>
+                  <th>Operator</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboardBody"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="panel">
+          <h2>Compare Impact and Equity</h2>
+          <canvas id="scatter" width="960" height="420" aria-label="Emissions and equity scatter plot"></canvas>
+        </section>
+
+        <section class="panel ask-panel">
+          <h2>Ask About Route Priorities</h2>
+          <div class="ask-row">
+            <input id="questionInput" type="text" placeholder="Which Marikina routes should we examine first?">
+            <button id="askButton" type="button">Generate</button>
+          </div>
+          <span id="answerSource" class="pill hidden">Offline deterministic answer</span>
+          <p id="answerText" class="answer"></p>
+        </section>
+
+        <section class="panel method">
+          <h2>Method And Limits</h2>
+          <ul>
+            <li>Emissions: route kilometres times estimated weekday trips. This is activity volume, not measured tailpipe emissions.</li>
+            <li>Equity: population-weighted exposure to high-density 2020 WorldPop cells within a 300 m catchment.</li>
+            <li>Grid: 2024 Luzon renewable generation share for every route, not local charger or substation capacity.</li>
+            <li>Operator: neutral 50/100 placeholder until cooperative financing workshops provide route-level evidence.</li>
+            <li>AI boundary: optional text explains scores after ranking. No model output enters any score or rank.</li>
+          </ul>
+        </section>
+      </section>
+    </main>
+
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,105 @@
+ROUTE2ZERO DEMONSTRATION SCRIPT
+20-slide companion to Route2Zero_Demonstration_Deck.pptx
+Prepared for the AI x City Climate Action Hackathon 2026
+
+SLIDE 01 — Route2Zero
+Say: Route2Zero is a transparent corridor-intelligence MVP for a just e-jeepney transition. It helps city teams decide which corridors deserve deeper electrification planning first while keeping every proxy, placeholder, and data limitation visible.
+Emphasize: This is decision support, not an automated investment decision.
+Transition: We begin with the city problem the product is designed to solve.
+
+SLIDE 02 — Cities need a shortlist they can challenge
+Say: Cities do not only need another map or ranking. They need a shortlist they can question. Route2Zero brings climate activity, density exposure, grid context, and operator readiness into one visible decision conversation.
+Emphasize: A useful rank must show its sources, missing fields, and adjustable assumptions.
+Transition: That transparency matters because the MVP is only the beginning of a city-owned pilot.
+
+SLIDE 03 — Metro Manila to accountable ownership
+Say: The current screen covers 1,522 jeepney route-direction records in Metro Manila. The proposed six-month pilot selects three spotlight LGUs and ends with one city-validated shortlist, not merely a higher-resolution model.
+Emphasize: LGUs, operators, drivers, riders, utilities, and financing partners all have a role.
+Transition: The product brings that conversation into one screen.
+
+SLIDE 04 — Product at a glance
+Say: On the left, a user chooses a city lens and changes four score weights. In the center, the dashboard states the historic-data warning before showing any ranking. The map leads to a selected route, where the score, evidence, and explanation are visible together.
+Demo cue: If the live app is available, open http://localhost:8501 and point to the city selector, four weight sliders, network map, and route finder.
+Transition: Before trusting the interface, inspect what the source data can actually prove.
+
+SLIDE 05 — GTFS audit and historic boundary
+Say: The canonical Sakay master feed contains 1,717 routes, including 1,522 PUJ route-direction records. The pipeline found zero broken foreign-key references. However, its service calendar ends in 2020, so Route2Zero presents this as a reproducible screening baseline rather than current operations.
+Emphasize: Data confidence is part of the product, not a footnote.
+Transition: Geometry is the first major confidence constraint.
+
+SLIDE 06 — Geometry confidence
+Say: Only two jeepney records have usable GTFS shapes. For the remaining 1,520 records, the pipeline selects a representative trip, orders its stops, and connects them into an approximate line. Every output retains the label stop_sequence_approx.
+Emphasize: Route order is useful for screening, but corridors must be ground-checked before investment.
+Transition: With that boundary visible, the MVP combines four interpretable signals.
+
+SLIDE 07 — Four-signal score
+Say: The default score weights are 35 percent emissions activity, 35 percent equity density, 15 percent grid feasibility, and 15 percent operator readiness. The dashboard normalizes the weights whenever a user changes them.
+Demo cue: Move one slider and show that the leaderboard updates without changing the underlying evidence fields.
+Transition: Each signal has a precise meaning and an equally important limit.
+
+SLIDE 08 — Emissions activity proxy
+Say: Emissions potential is an activity proxy. The pipeline multiplies route length by estimated daily trips and converts the result to a zero-to-one-hundred percentile score. The leading route scores 98.2 on this dimension.
+Emphasize: This does not claim verified fuel savings or avoided carbon dioxide. It identifies high-activity corridors to investigate.
+Transition: The second signal asks where high-density populations overlap those corridors.
+
+SLIDE 09 — WorldPop density proxy
+Say: In the absence of a corridor-level informal-settlement layer, Route2Zero uses the documented WorldPop fallback. Each route receives a 300-metre catchment, and the score reflects exposure to the densest quarter of positive NCR raster cells.
+Emphasize: The safe claim is density exposure. The unsafe claim is informal-settlement status, poverty, or tenure.
+Transition: The grid signal is intentionally just as conservative.
+
+SLIDE 10 — Shared Luzon grid baseline
+Say: The current grid score is 16.1 for every route, derived from 14,550 gigawatt-hours of renewable generation divided by 90,269 gigawatt-hours of total Luzon generation in the Philippine DOE 2024 statistics.
+Emphasize: It is not local charger capacity. Depot, feeder, interconnection, tariff, resiliency, and solar-or-storage evidence are required before investment.
+Transition: Operator readiness also begins as an explicit missing-data state.
+
+SLIDE 11 — Operator placeholder and overrides
+Say: Every route starts at a neutral 50 out of 100 because the MVP does not have cooperative readiness evidence. The override workflow is ready for structured inputs covering fleet and depot, finance, operations, and governance.
+Emphasize: Any replacement must retain notes, source, date, and reviewer.
+Transition: These four values feed a public formula, and the AI layer comes later.
+
+SLIDE 12 — Formula and AI boundary
+Say: The composite formula is 0.35 times emissions, plus 0.35 times equity, plus 0.15 times grid, plus 0.15 times operator readiness. Deterministic code calculates scores and rank order first. The AI narrative only explains the completed result.
+Emphasize: AI never scores, never reorders, and never silently fills missing evidence. Offline explanations remain available if the API fails.
+Transition: Now we can move from method to the user experience.
+
+SLIDE 13 — Network map
+Say: The map encodes priority from red through amber to green. Geometry confidence remains visible through line treatment. A user can click a route or use the route finder to open its evidence.
+Demo cue: Pan across Metro Manila and select a route if the live environment is available.
+Transition: The selected-route view turns a map line into a defensible story.
+
+SLIDE 14 — Selected corridor evidence
+Say: The leading route is Francisco Homes–Cubao. Its live rank is number one and its composite score is 71.4. The page keeps route identity and city tags, the rank and score, the length, the four component bars, and a plain-language explanation in one view.
+Emphasize: The strong emissions and density values sit beside the low shared grid proxy and neutral operator placeholder.
+Transition: City filters change the shortlist while preserving those same assumptions.
+
+SLIDE 15 — Marikina lens
+Say: Filtering to Marikina returns 53 tagged route records. The leading filtered result scores 60.6. The evidence model and weights are unchanged; only the local lens changes.
+Demo cue: Choose Marikina in the city selector and note the filtered route finder and updated live rank.
+Emphasize: City tags are screening tags and should be validated with the LGU.
+Transition: The leaderboard is therefore a validation queue, not a funding decision.
+
+SLIDE 16 — Priority leaderboard
+Say: Under the default weights, the top five scores range from 68.18 to 71.38. Similar corridor names may represent opposite GTFS directions, so the route-level rank is paired with a de-duplicated corridor comparison export.
+Emphasize: The next actions are to refresh the route, confirm the operator, screen the depot, ask riders, and re-run scenarios.
+Transition: Each candidate can also leave the dashboard as a policy-ready artifact.
+
+SLIDE 17 — Policy brief and exports
+Say: Route2Zero generated eight route policy briefs for the leading records. Each brief packages the rank and score, why the route surfaces, what remains unknown, and what evidence should be requested next. The ranked CSV and explanation JSON remain available for further analysis.
+Emphasize: The dashboard is not the only product; the decision package is portable.
+Transition: The Pilot Plan converts these artifacts into a six-month work programme.
+
+SLIDE 18 — Six-month pilot
+Say: Months one and two mobilize partners and refresh the baseline. Month three co-designs the evidence model. Month four validates routes and charging feasibility. Month five calibrates and packages decisions. Month six hands over the tool and makes the scale decision.
+Emphasize: Three gates prevent the pilot from scaling on weak evidence.
+Transition: Clear ownership is what makes those gates real.
+
+SLIDE 19 — Team and governance
+Say: Eight named leads cover policy, data engineering, transport analytics, product, climate and grid research, equity and community engagement, operator partnerships, and quality assurance. The operating cadence is a weekly delivery review, a biweekly partner clinic, and a monthly decision gate.
+Emphasize: Every workstream, decision gate, and published artifact keeps one accountable owner.
+Transition: The final ask is deliberately concrete.
+
+SLIDE 20 — The ask
+Say: Route2Zero is ready to screen. To move from screening to a defensible pilot, choose three spotlight LGUs, name city owners, confirm access to current route and operator evidence, and schedule the first partner clinic.
+Close: The goal is not a perfect score. The goal is a city-owned process that makes evidence gaps visible and closes them before investment.
+
+END OF 20-SLIDE SCRIPT

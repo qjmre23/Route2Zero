@@ -1,0 +1,62 @@
+2026-08-14 20:01:00.164 Uvicorn server started on :::8501
+2026-08-14 20:05:39.031 Uncaught app execution
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\exec_code.py", line 136, in exec_func_with_error_handling
+    result = func()
+             ^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\streamlit\runtime\scriptrunner\script_runner.py", line 816, in code_to_exec
+    exec(code, module.__dict__)  # noqa: S102
+    ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\app\dashboard.py", line 295, in <module>
+    st.dataframe(
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\streamlit\runtime\metrics_util.py", line 596, in wrapped_func
+    result = non_optional_func(*args, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\streamlit\elements\arrow.py", line 1115, in dataframe
+    marshall_styler(proto.arrow_data, data, default_uuid)
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\streamlit\elements\lib\pandas_styler_utils.py", line 65, in marshall_styler
+    styler._compute()  # type: ignore
+    ^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\pandas\io\formats\style_render.py", line 256, in _compute
+    r = func(self)(*args, **kwargs)
+        ^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\pandas\io\formats\style.py", line 1726, in _apply
+    result = data.apply(func, axis=0, **kwargs)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\pandas\core\frame.py", line 10401, in apply
+    return op.apply().__finalize__(self, method="apply")
+           ^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\pandas\core\apply.py", line 916, in apply
+    return self.apply_standard()
+           ^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\pandas\core\apply.py", line 1063, in apply_standard
+    results, res_index = self.apply_series_generator()
+                         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\pandas\core\apply.py", line 1081, in apply_series_generator
+    results[i] = self.func(v, *self.args, **self.kwargs)
+                 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\pandas\io\formats\style.py", line 3806, in _background_gradient
+    with _mpl(Styler.background_gradient) as (_, _matplotlib):
+         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\contextlib.py", line 137, in __enter__
+    return next(self.gen)
+           ^^^^^^^^^^^^^^
+  File "C:\Users\LENOVO\Documents\Innovative_Cities\.venv\Lib\site-packages\pandas\io\formats\style.py", line 98, in _mpl
+    raise ImportError(f"{func.__name__} requires matplotlib.")
+ImportError: background_gradient requires matplotlib.
+Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\LENOVO\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host
+Exception in callback _ProactorBasePipeTransport._call_connection_lost(None)
+handle: <Handle _ProactorBasePipeTransport._call_connection_lost(None)>
+Traceback (most recent call last):
+  File "C:\Users\LENOVO\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\events.py", line 88, in _run
+    self._context.run(self._callback, *self._args)
+  File "C:\Users\LENOVO\.cache\codex-runtimes\codex-primary-runtime\dependencies\python\Lib\asyncio\proactor_events.py", line 165, in _call_connection_lost
+    self._sock.shutdown(socket.SHUT_RDWR)
+ConnectionResetError: [WinError 10054] An existing connection was forcibly closed by the remote host

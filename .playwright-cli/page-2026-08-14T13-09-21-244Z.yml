@@ -1,0 +1,108 @@
+- main [ref=e2]:
+  - complementary "Dashboard controls" [ref=e3]:
+    - generic [ref=e4]:
+      - paragraph [ref=e5]: Route2Zero
+      - heading "Controls" [level=2] [ref=e6]
+      - paragraph [ref=e7]: Adjust the view and deterministic score weights. AI never changes the ranking.
+    - generic [ref=e8]: City / LGU lens
+    - combobox "City / LGU lens" [ref=e9]
+    - generic [ref=e10]:
+      - checkbox "Include unverified equity routes" [ref=e11]
+      - generic [ref=e12]: Include unverified equity routes
+    - region "Live score weights" [ref=e13]:
+      - heading "Live Score Weights" [level=3] [ref=e14]
+      - generic [ref=e15]:
+        - text: Emissions potential
+        - status "Emissions potential" [ref=e16]: "35"
+      - slider [ref=e17]: "35"
+      - generic [ref=e18]:
+        - text: Equity density proxy
+        - status "Equity density proxy" [ref=e19]: "35"
+      - slider [ref=e20]: "35"
+      - generic [ref=e21]:
+        - text: Grid feasibility
+        - status "Grid feasibility" [ref=e22]: "15"
+      - slider [ref=e23]: "15"
+      - generic [ref=e24]:
+        - text: Operator readiness
+        - status "Operator readiness" [ref=e25]: "15"
+      - slider [ref=e26]: "15"
+    - button "Download CSV" [ref=e27] [cursor=pointer]
+  - generic [ref=e28]:
+    - generic [ref=e29]:
+      - paragraph [ref=e30]: Metro Manila route electrification intelligence
+      - heading "Route2Zero" [level=1] [ref=e31]
+      - paragraph [ref=e32]: Rank e-jeepney corridors by climate impact, equitable service, grid context, and operator readiness, with every proxy and placeholder visible before anyone asks.
+    - generic [ref=e33]:
+      - strong [ref=e34]: Data confidence is part of the product.
+      - text: GTFS service dates span 2013-2020; most geometries connect ordered stops rather than road-snapped shapes. Equity uses 2020 WorldPop density, grid is one Luzon baseline, and operator readiness defaults to 50 pending cooperative workshops.
+    - region "Summary metrics" [ref=e35]:
+      - article [ref=e36]:
+        - text: Routes in view
+        - strong [ref=e37]: "0"
+      - article [ref=e38]:
+        - text: Complete scores
+        - strong [ref=e39]: "0"
+      - article [ref=e40]:
+        - text: Top priority score
+        - strong [ref=e41]: N/A
+      - article [ref=e42]:
+        - text: Equity source
+        - strong [ref=e43]: WorldPop 2020
+    - generic [ref=e44]:
+      - generic [ref=e45]:
+        - generic [ref=e46]:
+          - heading "Explore Priority Corridors" [level=2] [ref=e47]
+          - paragraph [ref=e48]: Color moves from red through amber to green as priority rises. Lighter lines are approximate stop-sequence geometries.
+        - combobox "Route finder" [ref=e49]
+      - generic "Route map" [ref=e50]
+    - generic [ref=e51]:
+      - article [ref=e52]:
+        - paragraph [ref=e53]: Selected Route
+        - heading "Loading route..." [level=2] [ref=e54]
+        - paragraph
+        - generic [ref=e55]:
+          - generic [ref=e56]:
+            - generic [ref=e57]: "-"
+            - text: Live rank
+          - generic [ref=e58]:
+            - generic [ref=e59]: "-"
+            - text: Priority
+          - generic [ref=e60]:
+            - generic [ref=e61]: "-"
+            - text: Length km
+        - generic [ref=e62]: Offline deterministic explanation
+        - paragraph
+      - article [ref=e63]:
+        - heading "Score Breakdown" [level=2] [ref=e64]
+    - generic [ref=e65]:
+      - heading "Priority Leaderboard" [level=2] [ref=e66]
+      - table [ref=e68]:
+        - rowgroup [ref=e69]:
+          - row [ref=e70]:
+            - columnheader "Rank" [ref=e71]
+            - columnheader "Route" [ref=e72]
+            - columnheader "Primary city" [ref=e73]
+            - columnheader "Priority" [ref=e74]
+            - columnheader "Emissions" [ref=e75]
+            - columnheader "Equity" [ref=e76]
+            - columnheader "Grid" [ref=e77]
+            - columnheader "Operator" [ref=e78]
+        - rowgroup
+    - generic [ref=e79]:
+      - heading "Compare Impact and Equity" [level=2] [ref=e80]
+      - generic "Emissions and equity scatter plot" [ref=e81]
+    - generic [ref=e82]:
+      - heading "Ask About Route Priorities" [level=2] [ref=e83]
+      - generic [ref=e84]:
+        - textbox "Which Marikina routes should we examine first?" [ref=e85]
+        - button "Generate" [ref=e86] [cursor=pointer]
+      - paragraph [ref=e87]
+    - generic [ref=e88]:
+      - heading "Method And Limits" [level=2] [ref=e89]
+      - list [ref=e90]:
+        - listitem [ref=e91]: "Emissions: route kilometres times estimated weekday trips. This is activity volume, not measured tailpipe emissions."
+        - listitem [ref=e92]: "Equity: population-weighted exposure to high-density 2020 WorldPop cells within a 300 m catchment."
+        - listitem [ref=e93]: "Grid: 2024 Luzon renewable generation share for every route, not local charger or substation capacity."
+        - listitem [ref=e94]: "Operator: neutral 50/100 placeholder until cooperative financing workshops provide route-level evidence."
+        - listitem [ref=e95]: "AI boundary: optional text explains scores after ranking. No model output enters any score or rank."

@@ -1,0 +1,264 @@
+- generic:
+  - generic [ref=f1e370]:
+    - log [ref=f1e371]:
+      - generic [ref=f1e577]: 1 option available.
+    - log
+  - generic [ref=f1e2]:
+    - generic [ref=f1e7]:
+      - button "keyboard_double_arrow_left" [ref=f1e578] [cursor=pointer]
+      - generic [ref=f1e11]:
+        - heading "Route2Zero" [level=2] [ref=f1e579]
+        - paragraph [ref=f1e21]: Decision support for a just e-jeepney transition
+        - generic [ref=f1e23]:
+          - paragraph [ref=f1e27]: City / LGU lens
+          - group [ref=f1e29]:
+            - combobox "City / LGU lens" [active] [ref=f1e30]: Marikina
+            - button "Open" [ref=f1e580] [cursor=pointer]
+        - generic [ref=f1e37] [cursor=pointer]:
+          - switch "Include unverified equity routes" [ref=f1e581]
+          - paragraph [ref=f1e44]: Include unverified equity routes
+        - heading "Live score weights" [level=3] [ref=f1e582]
+        - generic [ref=f1e52]:
+          - paragraph [ref=f1e56]: Emissions potential
+          - group "Emissions potential" [ref=f1e583]:
+            - generic [ref=f1e58]:
+              - generic [ref=f1e59]:
+                - slider "Emissions potential Emissions potential" [ref=f1e584]: "35"
+                - generic:
+                  - generic:
+                    - paragraph: "35"
+              - generic:
+                - generic:
+                  - paragraph: "0"
+                - generic:
+                  - paragraph: "100"
+        - generic [ref=f1e64]:
+          - paragraph [ref=f1e68]: Equity density proxy
+          - group "Equity density proxy" [ref=f1e585]:
+            - generic [ref=f1e70]:
+              - generic [ref=f1e71]:
+                - slider "Equity density proxy Equity density proxy" [ref=f1e586]: "35"
+                - generic:
+                  - generic:
+                    - paragraph: "35"
+              - generic:
+                - generic:
+                  - paragraph: "0"
+                - generic:
+                  - paragraph: "100"
+        - generic [ref=f1e76]:
+          - paragraph [ref=f1e80]: Grid feasibility
+          - group "Grid feasibility" [ref=f1e587]:
+            - generic [ref=f1e82]:
+              - generic [ref=f1e83]:
+                - slider "Grid feasibility Grid feasibility" [ref=f1e588]: "15"
+                - generic:
+                  - generic:
+                    - paragraph: "15"
+              - generic:
+                - generic:
+                  - paragraph: "0"
+                - generic:
+                  - paragraph: "100"
+        - generic [ref=f1e88]:
+          - paragraph [ref=f1e92]: Operator readiness
+          - group "Operator readiness" [ref=f1e589]:
+            - generic [ref=f1e94]:
+              - generic [ref=f1e95]:
+                - slider "Operator readiness Operator readiness" [ref=f1e590]: "15"
+                - generic:
+                  - generic:
+                    - paragraph: "15"
+              - generic:
+                - generic:
+                  - paragraph: "0"
+                - generic:
+                  - paragraph: "100"
+        - paragraph [ref=f1e102]: Weights are normalized automatically. AI never changes these numbers.
+    - generic [ref=f1e3]:
+      - banner [ref=f1e105]:
+        - generic [ref=f1e108]:
+          - button "Deploy" [ref=f1e591] [cursor=pointer]
+          - button "Main menu" [ref=f1e592] [cursor=pointer]
+      - generic [ref=f1e126]:
+        - generic [ref=f1e131]:
+          - generic [ref=f1e132]: Metro Manila · Route electrification intelligence
+          - heading "Route2Zero" [level=1] [ref=f1e593]:
+            - text: Route2Zero
+            - generic [ref=f1e135]:
+              - link "Link to heading":
+                - /url: "#route2-zero"
+          - paragraph [ref=f1e136]: Rank e-jeepney corridors by climate impact, equitable service, grid context, and operator readiness — with every proxy and placeholder visible before anyone asks.
+        - generic [ref=f1e141]:
+          - strong [ref=f1e142]: Data confidence is part of the product.
+          - text: GTFS service dates span 2013–2020; 1,520 of 1,522 geometries connect ordered stops rather than road-snapped shapes. Emissions are an activity proxy, equity uses 2020 WorldPop density rather than settlement boundaries, grid is one Luzon baseline, and operator readiness defaults to 50 pending cooperative workshops.
+        - generic [ref=f1e144]:
+          - generic [ref=f1e149]:
+            - paragraph [ref=f1e153]: Routes in view
+            - paragraph [ref=f1e156]: "53"
+          - generic [ref=f1e161]:
+            - paragraph [ref=f1e165]: Complete scores
+            - paragraph [ref=f1e168]: "53"
+          - generic [ref=f1e173]:
+            - paragraph [ref=f1e177]: Top priority score
+            - paragraph [ref=f1e180]: "60.6"
+          - generic [ref=f1e185]:
+            - generic [ref=f1e186]:
+              - paragraph [ref=f1e189]: Equity source
+              - button "Help for Equity source" [ref=f1e594] [cursor=pointer]
+            - paragraph [ref=f1e199]: WorldPop 2020
+        - heading "Explore priority corridors" [level=2] [ref=f1e595]:
+          - text: Explore priority corridors
+          - generic [ref=f1e206]:
+            - link "Link to heading":
+              - /url: "#explore-priority-corridors"
+        - paragraph [ref=f1e211]: Select a line on the map or use the route finder. Color moves from red (lower priority) through amber to green (higher priority); lighter lines are stop-sequence approximations.
+        - generic [ref=f1e214]:
+          - button "Fullscreen" [ref=f1e596] [cursor=pointer]
+          - generic [ref=f1e399]:
+            - generic [ref=f1e401]:
+              - region "Map" [ref=f1e597]
+              - list [ref=f1e404]:
+                - text: ©
+                - link "CARTO" [ref=f1e598] [cursor=pointer]:
+                  - /url: https://carto.com/about-carto/
+                - text: ", ©"
+                - link "OpenStreetMap" [ref=f1e599] [cursor=pointer]:
+                  - /url: http://www.openstreetmap.org/about/
+                - text: contributors
+            - generic [ref=f1e409]:
+              - button "Zoom In" [ref=f1e600] [cursor=pointer]
+              - button "Zoom Out" [ref=f1e601] [cursor=pointer]
+        - generic [ref=f1e603]:
+          - paragraph [ref=f1e607]: Route finder
+          - group [ref=f1e609]:
+            - combobox "Route finder" [ref=f1e610]: "#41 · Recto - SSS Village via Aurora Blvd., Espana · LTFRB_PUJ1577"
+            - button "Open" [ref=f1e611] [cursor=pointer]
+        - generic [ref=f1e237]:
+          - generic [ref=f1e239]:
+            - heading "Recto - SSS Village via Aurora Blvd., Espana" [level=3] [ref=f1e615]:
+              - text: Recto - SSS Village via Aurora Blvd., Espana
+              - generic [ref=f1e246]:
+                - link "Link to heading":
+                  - /url: "#francisco-homes-cubao"
+            - paragraph [ref=f1e251]: LTFRB_PUJ1577 · Marikina · Manila
+            - generic [ref=f1e253]:
+              - generic [ref=f1e258]:
+                - paragraph [ref=f1e262]: Live rank
+                - paragraph [ref=f1e265]: "#41"
+              - generic [ref=f1e270]:
+                - paragraph [ref=f1e274]: Priority score
+                - paragraph [ref=f1e277]: "60.6"
+              - generic [ref=f1e282]:
+                - paragraph [ref=f1e286]: Route length
+                - paragraph [ref=f1e289]: 19.1 km
+            - paragraph [ref=f1e294]:
+              - generic [ref=f1e295]: Deterministic explanation · offline-safe
+            - paragraph [ref=f1e300]: This route ranks here because its strongest signal is high-density corridor exposure (85/100); the 16/100 grid value is a shared Luzon proxy and the 50/100 operator value remains a neutral placeholder pending cooperative data.
+            - paragraph [ref=f1e305]: "Estimated 1020.0 trips/day at 1.0-minute average headway. Geometry: stop_sequence_approx."
+          - generic [ref=f1e621]:
+            - img:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "60.1"
+                            - generic: "84.7"
+                            - generic: "16.1"
+                            - generic: "50.0"
+                  - generic:
+                    - generic: "0"
+                    - generic: "50"
+                    - generic: "100"
+                  - generic:
+                    - generic: Emissions activity
+                    - generic: Equity density
+                    - generic: Grid proxy
+                    - generic: Operator readiness
+            - img:
+              - generic:
+                - generic: Score
+                - generic: Dimension
+            - toolbar [ref=f1e635]:
+              - button "Download plot as a PNG" [ref=f1e637] [cursor=pointer]
+              - generic [ref=f1e640]:
+                - button "Zoom" [ref=f1e641] [cursor=pointer]
+                - button "Pan" [ref=f1e644] [cursor=pointer]
+              - generic [ref=f1e647]:
+                - button "Zoom in" [ref=f1e648] [cursor=pointer]
+                - button "Zoom out" [ref=f1e651] [cursor=pointer]
+                - button "Autoscale" [ref=f1e654] [cursor=pointer]
+                - button "Reset axes" [ref=f1e657] [cursor=pointer]
+              - button "Fullscreen" [ref=f1e661] [cursor=pointer]
+        - heading "Priority leaderboard" [level=2] [ref=f1e664]:
+          - text: Priority leaderboard
+          - generic [ref=f1e316]:
+            - link "Link to heading":
+              - /url: "#priority-leaderboard"
+        - generic [ref=f1e321]:
+          - button "Show/hide columns" [ref=f1e665] [cursor=pointer]
+          - button "Download as CSV" [ref=f1e666] [cursor=pointer]
+          - button "Search" [ref=f1e667] [cursor=pointer]
+          - button "Fullscreen" [ref=f1e668] [cursor=pointer]
+        - button [ref=f1e671] [cursor=pointer]:
+          - paragraph [ref=f1e675]: Download filtered rankings (CSV)
+        - heading "Compare impact and equity" [level=2] [ref=f1e676]:
+          - text: Compare impact and equity
+          - generic [ref=f1e364]:
+            - link "Link to heading":
+              - /url: "#compare-impact-and-equity"
+        - generic [ref=f1e682]:
+          - img:
+            - generic:
+              - generic:
+                - generic:
+                  - generic: "10"
+                  - generic: "20"
+                  - generic: "30"
+                  - generic: "40"
+                  - generic: "50"
+                  - generic: "60"
+                - generic:
+                  - generic: "0"
+                  - generic: "20"
+                  - generic: "40"
+                  - generic: "60"
+                  - generic: "80"
+          - img:
+            - generic:
+              - generic:
+                - generic:
+                  - generic: "20"
+                  - generic: "30"
+                  - generic: "40"
+                  - generic: "50"
+                  - generic: "60"
+                - generic: Priority
+              - generic: Emissions activity proxy
+              - generic: Equity density proxy
+          - toolbar [ref=f1e696]:
+            - button "Download plot as a PNG" [ref=f1e698] [cursor=pointer]
+            - generic [ref=f1e701]:
+              - button "Zoom" [ref=f1e702] [cursor=pointer]
+              - button "Pan" [ref=f1e705] [cursor=pointer]
+            - generic [ref=f1e708]:
+              - button "Zoom in" [ref=f1e709] [cursor=pointer]
+              - button "Zoom out" [ref=f1e712] [cursor=pointer]
+              - button "Autoscale" [ref=f1e715] [cursor=pointer]
+              - button "Reset axes" [ref=f1e718] [cursor=pointer]
+            - button "Fullscreen" [ref=f1e722] [cursor=pointer]
+        - group [ref=f1e522]:
+          - generic "keyboard_arrow_right Ask about route priorities (optional AI explanation)" [ref=f1e725] [cursor=pointer]:
+            - generic [ref=f1e524]:
+              - generic [ref=f1e525]: keyboard_arrow_right
+              - paragraph [ref=f1e529]: Ask about route priorities (optional AI explanation)
+        - group [ref=f1e532]:
+          - generic "keyboard_arrow_right Method, provenance, and honest limitations" [ref=f1e726] [cursor=pointer]:
+            - generic [ref=f1e534]:
+              - generic [ref=f1e535]: keyboard_arrow_right
+              - paragraph [ref=f1e539]: Method, provenance, and honest limitations
+        - separator [ref=f1e544]
+        - paragraph [ref=f1e549]: Route2Zero · AI x City Climate Action Hackathon 2026 · Prepared 14 August 2026

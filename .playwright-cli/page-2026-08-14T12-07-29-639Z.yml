@@ -1,0 +1,283 @@
+- generic:
+  - generic [ref=f1e370]:
+    - log [ref=f1e371]:
+      - generic [ref=f1e372]: 25 options available.
+    - log
+  - generic [ref=f1e2]:
+    - generic [ref=f1e7]:
+      - button [ref=f1e374] [cursor=pointer]:
+        - generic [ref=f1e375]: keyboard_double_arrow_left
+      - generic [ref=f1e11]:
+        - heading [level=2] [ref=f1e377]: Route2Zero
+        - paragraph [ref=f1e21]: Decision support for a just e-jeepney transition
+        - generic [ref=f1e23]:
+          - paragraph [ref=f1e27]: City / LGU lens
+          - group [ref=f1e29]:
+            - combobox "City / LGU lens" [expanded] [active] [ref=f1e30]: All Metro Manila
+            - button [expanded] [ref=f1e378] [cursor=pointer]
+        - generic [ref=f1e37] [cursor=pointer]:
+          - switch [ref=f1e379]
+          - paragraph [ref=f1e44]: Include unverified equity routes
+        - heading [level=3] [ref=f1e380]: Live score weights
+        - generic [ref=f1e52]:
+          - paragraph [ref=f1e56]: Emissions potential
+          - group [ref=f1e381]:
+            - generic [ref=f1e58]:
+              - generic [ref=f1e59]:
+                - slider [ref=f1e382]: "35"
+                - generic:
+                  - generic:
+                    - paragraph: "35"
+              - generic:
+                - generic:
+                  - paragraph: "0"
+                - generic:
+                  - paragraph: "100"
+        - generic [ref=f1e64]:
+          - paragraph [ref=f1e68]: Equity density proxy
+          - group [ref=f1e383]:
+            - generic [ref=f1e70]:
+              - generic [ref=f1e71]:
+                - slider [ref=f1e384]: "35"
+                - generic:
+                  - generic:
+                    - paragraph: "35"
+              - generic:
+                - generic:
+                  - paragraph: "0"
+                - generic:
+                  - paragraph: "100"
+        - generic [ref=f1e76]:
+          - paragraph [ref=f1e80]: Grid feasibility
+          - group [ref=f1e385]:
+            - generic [ref=f1e82]:
+              - generic [ref=f1e83]:
+                - slider [ref=f1e386]: "15"
+                - generic:
+                  - generic:
+                    - paragraph: "15"
+              - generic:
+                - generic:
+                  - paragraph: "0"
+                - generic:
+                  - paragraph: "100"
+        - generic [ref=f1e88]:
+          - paragraph [ref=f1e92]: Operator readiness
+          - group [ref=f1e387]:
+            - generic [ref=f1e94]:
+              - generic [ref=f1e95]:
+                - slider [ref=f1e388]: "15"
+                - generic:
+                  - generic:
+                    - paragraph: "15"
+              - generic:
+                - generic:
+                  - paragraph: "0"
+                - generic:
+                  - paragraph: "100"
+        - paragraph [ref=f1e102]: Weights are normalized automatically. AI never changes these numbers.
+    - generic [ref=f1e3]:
+      - banner [ref=f1e105]:
+        - generic [ref=f1e108]:
+          - button [ref=f1e389] [cursor=pointer]:
+            - generic [ref=f1e119]: Deploy
+          - button [ref=f1e390] [cursor=pointer]
+      - generic [ref=f1e126]:
+        - generic [ref=f1e131]:
+          - generic [ref=f1e132]: Metro Manila · Route electrification intelligence
+          - heading [level=1] [ref=f1e391]:
+            - text: Route2Zero
+            - generic [ref=f1e135]:
+              - link:
+                - /url: "#route2-zero"
+          - paragraph [ref=f1e136]: Rank e-jeepney corridors by climate impact, equitable service, grid context, and operator readiness — with every proxy and placeholder visible before anyone asks.
+        - generic [ref=f1e141]:
+          - strong [ref=f1e142]: Data confidence is part of the product.
+          - text: GTFS service dates span 2013–2020; 1,520 of 1,522 geometries connect ordered stops rather than road-snapped shapes. Emissions are an activity proxy, equity uses 2020 WorldPop density rather than settlement boundaries, grid is one Luzon baseline, and operator readiness defaults to 50 pending cooperative workshops.
+        - generic [ref=f1e144]:
+          - generic [ref=f1e149]:
+            - paragraph [ref=f1e153]: Routes in view
+            - paragraph [ref=f1e156]: 1,522
+          - generic [ref=f1e161]:
+            - paragraph [ref=f1e165]: Complete scores
+            - paragraph [ref=f1e168]: 1,521
+          - generic [ref=f1e173]:
+            - paragraph [ref=f1e177]: Top priority score
+            - paragraph [ref=f1e180]: "71.4"
+          - generic [ref=f1e185]:
+            - generic [ref=f1e186]:
+              - paragraph [ref=f1e189]: Equity source
+              - button [ref=f1e392] [cursor=pointer]
+            - paragraph [ref=f1e199]: WorldPop 2020
+        - heading [level=2] [ref=f1e393]:
+          - text: Explore priority corridors
+          - generic [ref=f1e206]:
+            - link:
+              - /url: "#explore-priority-corridors"
+        - paragraph [ref=f1e211]: Select a line on the map or use the route finder. Color moves from red (lower priority) through amber to green (higher priority); lighter lines are stop-sequence approximations.
+        - generic [ref=f1e214]:
+          - button [ref=f1e394] [cursor=pointer]
+          - generic [ref=f1e399]:
+            - generic [ref=f1e401]:
+              - region [ref=f1e402]
+              - list [ref=f1e404]:
+                - text: ©
+                - link [ref=f1e405] [cursor=pointer]:
+                  - /url: https://carto.com/about-carto/
+                  - text: CARTO
+                - text: ", ©"
+                - link [ref=f1e406] [cursor=pointer]:
+                  - /url: http://www.openstreetmap.org/about/
+                  - text: OpenStreetMap
+                - text: contributors
+            - generic [ref=f1e409]:
+              - button [ref=f1e410] [cursor=pointer]
+              - button [ref=f1e412] [cursor=pointer]
+        - generic [ref=f1e224]:
+          - paragraph [ref=f1e228]: Route finder
+          - group [ref=f1e230]:
+            - combobox [ref=f1e414]: "#1 · Francisco Homes - Cubao · LTFRB_PUJ1353"
+            - button [ref=f1e415] [cursor=pointer]
+        - generic [ref=f1e237]:
+          - generic [ref=f1e239]:
+            - heading [level=3] [ref=f1e416]:
+              - text: Francisco Homes - Cubao
+              - generic [ref=f1e246]:
+                - link:
+                  - /url: "#francisco-homes-cubao"
+            - paragraph [ref=f1e251]: LTFRB_PUJ1353 · San Jose del Monte · Quezon City
+            - generic [ref=f1e253]:
+              - generic [ref=f1e258]:
+                - paragraph [ref=f1e262]: Live rank
+                - paragraph [ref=f1e265]: "#1"
+              - generic [ref=f1e270]:
+                - paragraph [ref=f1e274]: Priority score
+                - paragraph [ref=f1e277]: "71.4"
+              - generic [ref=f1e282]:
+                - paragraph [ref=f1e286]: Route length
+                - paragraph [ref=f1e289]: 31.0 km
+            - paragraph [ref=f1e294]:
+              - generic [ref=f1e295]: AI-generated summary
+            - paragraph [ref=f1e300]: This route ranks moderately high due to its strong emissions reduction potential and decent equity density, but is dragged down by very low grid feasibility and only moderate operator readiness, resulting in a composite score of 71.4 despite its length and moderate daily trip volume.
+            - paragraph [ref=f1e305]: "Estimated 1020.0 trips/day at 1.0-minute average headway. Geometry: stop_sequence_approx."
+          - generic [ref=f1e421]:
+            - img:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic:
+                          - generic:
+                            - generic: "98.2"
+                            - generic: "77.4"
+                            - generic: "16.1"
+                            - generic: "50.0"
+                  - generic:
+                    - generic: "0"
+                    - generic: "50"
+                    - generic: "100"
+                  - generic:
+                    - generic: Emissions activity
+                    - generic: Equity density
+                    - generic: Grid proxy
+                    - generic: Operator readiness
+            - img:
+              - generic:
+                - generic: Score
+                - generic: Dimension
+            - toolbar [ref=f1e435]:
+              - button [ref=f1e437] [cursor=pointer]
+              - generic [ref=f1e440]:
+                - button [ref=f1e441] [cursor=pointer]
+                - button [ref=f1e444] [cursor=pointer]
+              - generic [ref=f1e447]:
+                - button [ref=f1e448] [cursor=pointer]
+                - button [ref=f1e451] [cursor=pointer]
+                - button [ref=f1e454] [cursor=pointer]
+                - button [ref=f1e457] [cursor=pointer]
+              - button [ref=f1e461] [cursor=pointer]
+        - heading [level=2] [ref=f1e464]:
+          - text: Priority leaderboard
+          - generic [ref=f1e316]:
+            - link:
+              - /url: "#priority-leaderboard"
+        - generic [ref=f1e321]:
+          - button [ref=f1e465] [cursor=pointer]
+          - button [ref=f1e466] [cursor=pointer]
+          - button [ref=f1e467] [cursor=pointer]
+          - button [ref=f1e468] [cursor=pointer]
+        - button [ref=f1e473] [cursor=pointer]:
+          - paragraph [ref=f1e357]: Download filtered rankings (CSV)
+        - heading [level=2] [ref=f1e474]:
+          - text: Compare impact and equity
+          - generic [ref=f1e364]:
+            - link:
+              - /url: "#compare-impact-and-equity"
+        - generic [ref=f1e477]:
+          - img:
+            - generic:
+              - generic:
+                - generic:
+                  - generic: "0"
+                  - generic: "20"
+                  - generic: "40"
+                  - generic: "60"
+                  - generic: "80"
+                  - generic: "100"
+                - generic:
+                  - generic: "0"
+                  - generic: "20"
+                  - generic: "40"
+                  - generic: "60"
+                  - generic: "80"
+                  - generic: "100"
+          - img:
+            - generic:
+              - generic:
+                - generic:
+                  - generic: "10"
+                  - generic: "20"
+                  - generic: "30"
+                  - generic: "40"
+                  - generic: "50"
+                  - generic: "60"
+                  - generic: "70"
+                - generic: Priority
+              - generic: Emissions activity proxy
+              - generic: Equity density proxy
+          - toolbar [ref=f1e491]:
+            - button [ref=f1e493] [cursor=pointer]
+            - generic [ref=f1e496]:
+              - button [ref=f1e497] [cursor=pointer]
+              - button [ref=f1e500] [cursor=pointer]
+            - generic [ref=f1e503]:
+              - button [ref=f1e504] [cursor=pointer]
+              - button [ref=f1e507] [cursor=pointer]
+              - button [ref=f1e510] [cursor=pointer]
+              - button [ref=f1e513] [cursor=pointer]
+            - button [ref=f1e517] [cursor=pointer]
+        - group [ref=f1e522]:
+          - generic [ref=f1e524] [cursor=pointer]:
+            - generic [ref=f1e525]: keyboard_arrow_right
+            - paragraph [ref=f1e529]: Ask about route priorities (optional AI explanation)
+        - group [ref=f1e532]:
+          - generic [ref=f1e534] [cursor=pointer]:
+            - generic [ref=f1e535]: keyboard_arrow_right
+            - paragraph [ref=f1e539]: Method, provenance, and honest limitations
+        - separator [ref=f1e544]
+        - paragraph [ref=f1e549]: Route2Zero · AI x City Climate Action Hackathon 2026 · Prepared 14 August 2026
+  - generic [ref=f1e551]:
+    - listbox "City / LGU lens Open" [ref=f1e552]:
+      - option "All Metro Manila" [selected] [ref=f1e553] [cursor=pointer]
+      - option "Antipolo" [ref=f1e555] [cursor=pointer]
+      - option "Bacoor" [ref=f1e557] [cursor=pointer]
+      - option "Biñan" [ref=f1e559] [cursor=pointer]
+      - option "Caloocan" [ref=f1e561] [cursor=pointer]
+      - option "Carmona" [ref=f1e563] [cursor=pointer]
+      - option "Dasmariñas" [ref=f1e565] [cursor=pointer]
+      - option "General Mariano Alvarez" [ref=f1e567] [cursor=pointer]
+      - option "Las Piñas" [ref=f1e569] [cursor=pointer]
+      - option "Makati" [ref=f1e571] [cursor=pointer]
+      - option "Malabon" [ref=f1e573] [cursor=pointer]
+    - button "Dismiss" [ref=f1e576] [cursor=pointer]
