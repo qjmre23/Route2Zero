@@ -1,0 +1,16 @@
+[submodule "GTFS/dotc"]
+	path = GTFS/dotc
+	url = https://github.com/sakayph/gtfs.git
+	branch = dotc
+[submodule "GTFS/master"]
+	path = GTFS/master
+	url = https://github.com/sakayph/gtfs.git
+	branch = master
+[submodule "data/raw/gtfs_dotc"]
+	path = data/raw/gtfs_dotc
+	url = https://github.com/sakayph/gtfs.git
+	branch = dotc
+[submodule "data/raw/gtfs_master"]
+	path = data/raw/gtfs_master
+	url = https://github.com/sakayph/gtfs.git
+	branch = master
