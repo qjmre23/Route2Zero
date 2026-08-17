@@ -243,6 +243,15 @@ Route2Zero/
 
 ## Submission artifacts
 
+### Submission-form upload pack
+
+- `output/submission/Route2Zero_Concept_Deck_20_Slides.pdf` — 20-slide Concept PDF (form maximum met)
+- `output/submission/Route2Zero_Prototype_Demonstration.pdf` — prototype Demonstration PDF with live dashboard captures
+- `output/submission/Route2Zero_Prototype_Demonstration.pptx` — editable alternative for the Demonstration field
+- `output/submission/Route2Zero_Team_Larpers_Pilot_Plan.pdf` — two-page Pilot Plan following the official sample layout
+
+All submission files identify **Team Larpers**, list all eight team members, and display clickable GitHub and hosted-demo links at the top.
+
 - `output/documents/Route2Zero_Pilot_Plan.docx` — editable, accessible 24-page formal Pilot Plan
 - `output/pdf/Route2Zero_Pilot_Plan.pdf` — visually verified 24-page Pilot Plan
 - `output/presentation/Route2Zero_Demonstration_Deck.pptx` — editable 24-slide 2026 demonstration deck with source notes

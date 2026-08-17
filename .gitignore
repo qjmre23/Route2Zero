@@ -8,3 +8,5 @@ tmp/
 output/playwright/.playwright-cli/
 data/processed/*.tmp
 netlify-site/public/config.js
+*.inspect.ndjson
+2026 AI x CCA Hackathon Pilot Plan_Sample (1).pdf
