@@ -7,4 +7,4 @@ __pycache__/
 tmp/
 output/playwright/.playwright-cli/
 data/processed/*.tmp
-
+netlify-site/public/config.js

@@ -10,10 +10,11 @@ The MVP is built for the **AI x City Climate Action Hackathon 2026**. Its pilot 
 
 ## What is included
 
-- A responsive Streamlit dashboard with a clickable route map
+- A responsive Streamlit dashboard and a Netlify-ready 2026 web experience
+- Interactive Mapbox map with clustered priorities and on-demand street-following routes
 - Live score-weight controls and city filters
 - A route detail view with four-factor score breakdown
-- A top-10 leaderboard and CSV export
+- A ranked action queue plus PDF, Word, and CSV decision-pack exports
 - An impact-versus-equity comparison chart
 - A visible data-confidence banner
 - Optional AI explanations that never affect ranking
@@ -51,6 +52,8 @@ The processed outputs are already included for a fast demo. Re-running the pipel
 
 This project now includes a Netlify-ready static dashboard in `netlify-site/public/` plus a Netlify Function for optional AI answers. Netlify does not run the Streamlit server directly; the deployed site uses the same processed route data from `data/processed/`.
 
+The web dashboard uses Mapbox GL JS with the project style `mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs`. When a route is selected, its ordered GTFS coordinates are sent to the Mapbox Directions API in groups of at most 25 waypoints and the returned full GeoJSON geometry is drawn along drivable streets. The site deliberately shows no fallback straight line when Mapbox cannot return a reliable road path. Results are cached for the current browser session.
+
 Use these Netlify settings:
 
 ```text
@@ -60,9 +63,10 @@ Publish directory: public
 Functions directory: netlify/functions
 ```
 
-Add these environment variables in Netlify under Site configuration > Environment variables. If your plan lets you choose scopes, include the Functions scope for all four values:
+Add these environment variables in Netlify under Site configuration > Environment variables. The Mapbox value needs **Builds** scope. The four AI values need **Functions** scope (and may also include Builds):
 
 ```text
+MAPBOX_TOKEN=your_public_pk_mapbox_token_here
 ABSK_KEY=your_api_key_here
 BASE_URL=your_openai_compatible_base_url_here
 MODEL=your_model_name_here
@@ -70,6 +74,8 @@ AI_EXPLANATIONS_ENABLED=true
 ```
 
 `ABSK_KEY` is the variable that holds the API key. Do not add the key to browser JavaScript, `.env.example`, `netlify.toml`, or `netlify-site/public/`. The Netlify Function reads it with `process.env.ABSK_KEY`, so the key stays server-side. Redeploy after changing Netlify environment variables.
+
+The Mapbox token begins with `pk.` and is intentionally a public browser token. GitHub push protection still treats Mapbox token patterns as secrets, so the build reads `MAPBOX_TOKEN` and generates an ignored `public/config.js` file. Do not mark `MAPBOX_TOKEN` as containing secret values in Netlify because it must be delivered to the browser. If Netlify's smart scanner reports this deliberate public value as a false positive, set `SECRETS_SCAN_OMIT_KEYS=MAPBOX_TOKEN` in Netlify rather than disabling secret scanning for the project. Restrict the token to the production Netlify domain in the Mapbox account after the final site URL is known. Mapbox Directions requests are made only for the selected route and may count toward the account's Mapbox usage.
 
 ## Optional AI explanation layer
 

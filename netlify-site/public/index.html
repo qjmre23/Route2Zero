@@ -2,146 +2,95 @@
 <html lang="en">
   <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Route2Zero ranks Metro Manila e-jeepney corridors by climate impact, equity, grid context, and operator readiness.">
-    <title>Route2Zero | Netlify Dashboard</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+    <meta name="theme-color" content="#071a20">
+    <meta name="description" content="Route2Zero is a transparent decision-support dashboard for prioritising Metro Manila jeepney routes for electrification.">
+    <title>Route2Zero | Electrification Intelligence</title>
     <link rel="icon" href="data:,">
-    <link rel="preconnect" href="https://unpkg.com">
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" crossorigin="">
+    <link rel="preconnect" href="https://api.mapbox.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@600;700;800&display=swap" rel="stylesheet">
+    <link href="https://api.mapbox.com/mapbox-gl-js/v3.25.0/mapbox-gl.css" rel="stylesheet">
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
-    <main class="app-shell">
-      <aside class="sidebar" aria-label="Dashboard controls">
-        <div>
-          <p class="eyebrow">Route2Zero</p>
-          <h2>Controls</h2>
-          <p class="muted">Adjust the view and deterministic score weights. AI never changes the ranking.</p>
-        </div>
+    <div class="ambient ambient-one" aria-hidden="true"></div>
+    <div class="ambient ambient-two" aria-hidden="true"></div>
 
+    <header class="topbar">
+      <a class="brand" href="#top" aria-label="Route2Zero home">
+        <span class="brand-mark" aria-hidden="true">R<span>2</span>Z</span>
+        <span><b>Route2Zero</b><small>Electrification intelligence</small></span>
+      </a>
+      <nav aria-label="Dashboard navigation"><a href="#map-section">Map</a><a href="#rankings">Rankings</a><a href="#judge-guide">Judge guide</a></nav>
+      <button class="mobile-controls-button" id="mobileControlsButton" type="button" aria-controls="controls" aria-expanded="false">Filters</button>
+    </header>
+
+    <main id="top" class="page-shell">
+      <aside id="controls" class="sidebar" aria-label="Dashboard controls">
+        <div class="sidebar-heading"><span class="live-dot"><i></i> Scenario controls</span><button id="closeControls" class="icon-button" type="button" aria-label="Close controls">×</button></div>
         <label class="control-label" for="cityFilter">City / LGU lens</label>
         <select id="cityFilter"></select>
-
-        <label class="toggle-row">
-          <input id="includeUnverified" type="checkbox">
-          <span>Include unverified equity routes</span>
-        </label>
-
+        <label class="toggle-row"><input id="includeUnverified" type="checkbox"><span><b>Include reduced-confidence routes</b><small>Routes with an unavailable equity proxy</small></span></label>
         <section class="weight-stack" aria-label="Live score weights">
-          <h3>Live Score Weights</h3>
-          <label>Emissions potential <output id="emissionsValue">35</output></label>
-          <input id="emissionsWeight" type="range" min="0" max="100" step="5" value="35">
-          <label>Equity density proxy <output id="equityValue">35</output></label>
-          <input id="equityWeight" type="range" min="0" max="100" step="5" value="35">
-          <label>Grid feasibility <output id="gridValue">15</output></label>
-          <input id="gridWeight" type="range" min="0" max="100" step="5" value="15">
-          <label>Operator readiness <output id="operatorValue">15</output></label>
-          <input id="operatorWeight" type="range" min="0" max="100" step="5" value="15">
+          <div class="section-kicker"><span>Priority model</span><span id="weightTotal">100%</span></div>
+          <p>Move the weights to test policy scenarios. Values are normalised automatically.</p>
+          <label>Emissions potential <output id="emissionsValue">35</output></label><input id="emissionsWeight" type="range" min="0" max="100" step="5" value="35">
+          <label>Equity density proxy <output id="equityValue">35</output></label><input id="equityWeight" type="range" min="0" max="100" step="5" value="35">
+          <label>Grid feasibility <output id="gridValue">15</output></label><input id="gridWeight" type="range" min="0" max="100" step="5" value="15">
+          <label>Operator readiness <output id="operatorValue">15</output></label><input id="operatorWeight" type="range" min="0" max="100" step="5" value="15">
         </section>
-
-        <button id="downloadCsv" type="button">Download CSV</button>
+        <section class="export-card" aria-label="Export reports">
+          <div class="section-kicker"><span>Decision pack</span><span>3 formats</span></div>
+          <p>Export the current city lens, live weights and ranked recommendations.</p>
+          <div class="export-grid"><button id="exportPdf" class="button-primary" type="button"><span>PDF</span> Print report</button><button id="exportWord" type="button"><span>DOC</span> Word report</button><button id="downloadCsv" type="button"><span>CSV</span> Ranking data</button></div>
+        </section>
       </aside>
 
       <section class="content">
-        <header class="hero">
-          <p class="eyebrow">Metro Manila route electrification intelligence</p>
-          <h1>Route2Zero</h1>
-          <p>Rank e-jeepney corridors by climate impact, equitable service, grid context, and operator readiness, with every proxy and placeholder visible before anyone asks.</p>
-        </header>
-
-        <section class="confidence">
-          <strong>Data confidence is part of the product.</strong>
-          GTFS service dates span 2013-2020; most geometries connect ordered stops rather than road-snapped shapes. Equity uses 2020 WorldPop density, grid is one Luzon baseline, and operator readiness defaults to 50 pending cooperative workshops.
+        <section class="hero" aria-labelledby="hero-title">
+          <div class="hero-copy"><p class="eyebrow">AI × City Climate Action Hackathon 2026</p><h1 id="hero-title">Turn route data into an <em>electrification roadmap.</em></h1><p class="hero-lede">Route2Zero helps Metro Manila decision-makers identify jeepney corridors where electrification can deliver the strongest climate and equity value—without hiding uncertainty.</p><div class="hero-actions"><a class="button-primary" href="#map-section">Explore the live map</a><a class="button-quiet" href="#judge-guide">How it works</a></div></div>
+          <div class="hero-signal" aria-label="Route2Zero decision flow"><p>Decision signal</p><div class="signal-ring"><span id="heroTopScore">—</span><small>top priority</small></div><div class="signal-flow"><span>Route activity</span><i></i><span>Equity</span><i></i><span>Feasibility</span></div><small>Transparent weighted scoring · AI explains, never ranks</small></div>
         </section>
 
-        <section class="metrics" aria-label="Summary metrics">
-          <article><span>Routes in view</span><strong id="routesMetric">0</strong></article>
-          <article><span>Complete scores</span><strong id="completeMetric">0</strong></article>
-          <article><span>Top priority score</span><strong id="topMetric">N/A</strong></article>
-          <article><span>Equity source</span><strong>WorldPop 2020</strong></article>
-        </section>
+        <section class="trust-strip" aria-label="Data confidence notice"><div class="trust-icon">i</div><div><strong>Decision-grade transparency</strong><span>Every proxy, placeholder and data limitation stays visible in the interface and exported reports.</span></div><button id="openMethod" type="button">View assumptions</button></section>
+        <section class="metrics" aria-label="Summary metrics"><article><span>Routes in view</span><strong id="routesMetric">0</strong><small>Current policy lens</small></article><article><span>Complete scores</span><strong id="completeMetric">0</strong><small>All four dimensions</small></article><article><span>Top priority</span><strong id="topMetric">—</strong><small>Live weighted score</small></article><article><span>Road geometry</span><strong>Mapbox</strong><small>Selected route follows streets</small></article></section>
 
-        <section class="panel">
-          <div class="panel-heading">
-            <div>
-              <h2>Explore Priority Corridors</h2>
-              <p>Color moves from red through amber to green as priority rises. Lighter lines are approximate stop-sequence geometries.</p>
-            </div>
-            <select id="routeFinder" aria-label="Route finder"></select>
-          </div>
-          <div id="map" aria-label="Route map"></div>
+        <section id="map-section" class="panel map-panel">
+          <div class="panel-heading"><div><p class="eyebrow dark">Interactive corridor intelligence</p><h2>Explore priority routes on the street network</h2><p>Select a route to request a detailed Mapbox road path. Clustered points keep the regional view readable.</p></div><div class="route-search"><label for="routeFinder">Find a route</label><select id="routeFinder" aria-label="Route finder"></select></div></div>
+          <div class="map-frame"><div id="map" aria-label="Interactive Mapbox route map"></div><div class="map-legend" aria-label="Map legend"><span><i class="legend-low"></i>Lower</span><span><i class="legend-mid"></i>Mid</span><span><i class="legend-high"></i>Higher priority</span></div><div id="roadStatus" class="road-status" role="status"><i></i><span>Preparing road-matched route…</span></div></div>
         </section>
 
         <section class="detail-grid">
-          <article class="panel route-detail">
-            <p class="eyebrow">Selected Route</p>
-            <h2 id="routeName">Loading route...</h2>
-            <p id="routeMeta" class="muted"></p>
-            <div class="mini-metrics">
-              <span><b id="rankValue">-</b> Live rank</span>
-              <span><b id="scoreValue">-</b> Priority</span>
-              <span><b id="lengthValue">-</b> Length km</span>
-            </div>
-            <span id="sourcePill" class="pill">Offline deterministic explanation</span>
-            <p id="routeRationale"></p>
-          </article>
-
-          <article class="panel">
-            <h2>Score Breakdown</h2>
-            <div id="breakdownBars" class="bars"></div>
-          </article>
+          <article class="panel route-detail"><div class="detail-topline"><p class="eyebrow dark">Selected recommendation</p><span id="sourcePill" class="pill">Deterministic explanation</span></div><h2 id="routeName">Loading route…</h2><p id="routeMeta" class="muted"></p><div class="mini-metrics"><span><b id="rankValue">—</b>Live rank</span><span><b id="scoreValue">—</b>Priority / 100</span><span><b id="lengthValue">—</b>Route length km</span></div><p id="routeRationale" class="rationale"></p></article>
+          <article class="panel score-panel"><p class="eyebrow dark">What drives the score</p><h2>Score breakdown</h2><div id="breakdownBars" class="bars"></div></article>
         </section>
 
-        <section class="panel">
-          <h2>Priority Leaderboard</h2>
-          <div class="table-wrap">
-            <table>
-              <thead>
-                <tr>
-                  <th>Rank</th>
-                  <th>Route</th>
-                  <th>Primary city</th>
-                  <th>Priority</th>
-                  <th>Emissions</th>
-                  <th>Equity</th>
-                  <th>Grid</th>
-                  <th>Operator</th>
-                </tr>
-              </thead>
-              <tbody id="leaderboardBody"></tbody>
-            </table>
+        <section id="rankings" class="panel"><div class="panel-heading compact"><div><p class="eyebrow dark">Action queue</p><h2>Top routes for deeper feasibility work</h2></div><span class="pill">Click a row to map it</span></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>Route</th><th>Primary city</th><th>Priority</th><th>Emissions</th><th>Equity</th><th>Grid</th><th>Operator</th></tr></thead><tbody id="leaderboardBody"></tbody></table></div></section>
+
+        <section class="insight-grid">
+          <article class="panel chart-panel"><div><p class="eyebrow dark">Portfolio view</p><h2>Climate potential × equity</h2><p>Bubble size represents estimated weekday service activity.</p></div><canvas id="scatter" width="960" height="420" aria-label="Emissions and equity scatter plot"></canvas></article>
+          <article class="panel ask-panel"><p class="eyebrow dark">Evidence assistant</p><h2>Ask about the rankings</h2><p>Get a concise explanation grounded only in the current filtered scores.</p><label for="questionInput">Your question</label><textarea id="questionInput" rows="4" placeholder="Which Marikina routes should we examine first?"></textarea><button id="askButton" class="button-primary" type="button">Generate evidence brief</button><span id="answerSource" class="pill hidden">Offline deterministic answer</span><p id="answerText" class="answer"></p></article>
+        </section>
+
+        <section id="judge-guide" class="judge-guide">
+          <div class="guide-intro"><p class="eyebrow dark">For judges and city partners</p><h2>Understand the decision logic in minutes.</h2><p>These sections are collapsed by default so the dashboard stays focused during a live demonstration.</p></div>
+          <div class="accordion-stack">
+            <details><summary><span><b>01</b> How to use Route2Zero</span><i>+</i></summary><div class="accordion-content"><ol><li>Choose a city or keep the Metro Manila view.</li><li>Adjust the four weights to reflect a policy scenario.</li><li>Select a route or click a priority point on the map.</li><li>Review its street-following corridor, score drivers and known limitations.</li><li>Export the current evidence pack as PDF, Word or CSV.</li></ol></div></details>
+            <details><summary><span><b>02</b> Why this matters</span><i>+</i></summary><div class="accordion-content"><p>Electrification resources are limited, while Metro Manila has a large and diverse jeepney network. Route2Zero creates a transparent first-pass shortlist so city teams can focus expensive field validation, grid studies and cooperative engagement where potential public value is strongest.</p></div></details>
+            <details id="methodDetails"><summary><span><b>03</b> Method, assumptions and limitations</span><i>+</i></summary><div class="accordion-content method-grid"><p><strong>Emissions potential</strong>Route kilometres × estimated weekday trips. This is an activity proxy, not measured tailpipe emissions.</p><p><strong>Equity</strong>Population-weighted exposure to high-density 2020 WorldPop cells within a 300 m corridor catchment.</p><p><strong>Grid feasibility</strong>2024 Luzon renewable generation share. It is not local charger or substation capacity.</p><p><strong>Operator readiness</strong>Neutral 50/100 placeholder until cooperative financing workshops provide route-level evidence.</p><p><strong>Geometry</strong>Mapbox builds a drivable street path for the selected route from ordered GTFS coordinates. It is a planning visualisation, not an official franchise boundary.</p><p><strong>AI boundary</strong>Optional AI writes explanations after deterministic scoring. Model output never changes scores or ranks.</p></div></details>
+            <details><summary><span><b>04</b> Recommended next-step pilot</span><i>+</i></summary><div class="accordion-content"><p>Validate the highest-priority corridors with LGUs and cooperatives; collect fleet age, fuel use, ridership, depot access and financing readiness; conduct distribution-grid screening; then compare a small set of investment scenarios before procurement.</p></div></details>
           </div>
         </section>
-
-        <section class="panel">
-          <h2>Compare Impact and Equity</h2>
-          <canvas id="scatter" width="960" height="420" aria-label="Emissions and equity scatter plot"></canvas>
-        </section>
-
-        <section class="panel ask-panel">
-          <h2>Ask About Route Priorities</h2>
-          <div class="ask-row">
-            <input id="questionInput" type="text" placeholder="Which Marikina routes should we examine first?">
-            <button id="askButton" type="button">Generate</button>
-          </div>
-          <span id="answerSource" class="pill hidden">Offline deterministic answer</span>
-          <p id="answerText" class="answer"></p>
-        </section>
-
-        <section class="panel method">
-          <h2>Method And Limits</h2>
-          <ul>
-            <li>Emissions: route kilometres times estimated weekday trips. This is activity volume, not measured tailpipe emissions.</li>
-            <li>Equity: population-weighted exposure to high-density 2020 WorldPop cells within a 300 m catchment.</li>
-            <li>Grid: 2024 Luzon renewable generation share for every route, not local charger or substation capacity.</li>
-            <li>Operator: neutral 50/100 placeholder until cooperative financing workshops provide route-level evidence.</li>
-            <li>AI boundary: optional text explains scores after ranking. No model output enters any score or rank.</li>
-          </ul>
-        </section>
+        <footer><div class="brand footer-brand"><span class="brand-mark">R<span>2</span>Z</span><span><b>Route2Zero</b><small>From routes to a fair transition.</small></span></div><p>Prototype decision-support tool · Metro Manila · 2026</p></footer>
       </section>
     </main>
-
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js" crossorigin=""></script>
+    <div id="controlsBackdrop" class="controls-backdrop" aria-hidden="true"></div>
+    <script src="/config.js"></script>
+    <script src="https://api.mapbox.com/mapbox-gl-js/v3.25.0/mapbox-gl.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/3.8.4/jspdf.plugin.autotable.min.js"></script>
     <script type="module" src="/app.js"></script>
   </body>
 </html>
