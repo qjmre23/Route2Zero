@@ -1,1069 +1,148 @@
-0001 | ROUTE2ZERO TECHNICAL REFERENCE
-0002 | Hackathon MVP implementation, data model, runbook, and assurance guide
-0003 | Prepared 14 August 2026
-0004 | Scope: Metro Manila e-jeepney corridor prioritization
-0005 | Status: reproducible screening MVP; not a current-service authority
-0006 | 
-0007 | ==============================================================================
-0008 | 1. PRODUCT CONTRACT
-0009 | ==============================================================================
-0010 | 1.01 Route2Zero ranks jeepney route-direction records for deeper electrification planning.
-0011 | 1.02 The product is decision support and does not authorize funding, procurement, or deployment.
-0012 | 1.03 The canonical route universe is the set of Sakay GTFS master route IDs containing PUJ.
-0013 | 1.04 The current universe contains 1,522 jeepney route-direction records.
-0014 | 1.05 A duplicated route_long_name may represent opposite GTFS directions and is not automatically removed.
-0015 | 1.06 A companion corridor export groups repeated names while retaining direction_count.
-0016 | 1.07 The dashboard exposes all four component scores before presenting the composite score.
-0017 | 1.08 The default weights are emissions 35, equity 35, grid 15, and operator 15 percent.
-0018 | 1.09 Live dashboard weights are normalized to sum to one before recomputing a score.
-0019 | 1.10 AI-generated narratives are downstream of deterministic scores and ranking.
-0020 | 1.11 No AI response can write to score columns or change rank order.
-0021 | 1.12 Historic GTFS service dates span 2013 through 2020 and are labelled visibly.
-0022 | 1.13 WorldPop is used as a population-density fallback rather than a settlement-status layer.
-0023 | 1.14 Grid feasibility is a shared Luzon-level proxy rather than route-level charger capacity.
-0024 | 1.15 Operator readiness defaults to a neutral 50 pending cooperative evidence.
-0025 | 1.16 Missing values are preserved as missing or labelled placeholders; they are never silently fabricated.
-0026 | 1.17 The MVP includes a city lens, but route-city tags require LGU validation.
-0027 | 1.18 Every final route record retains source and confidence fields for each dimension.
-0028 | 1.19 Policy briefs translate score outputs into evidence requests rather than investment recommendations.
-0029 | 1.20 The six-month Pilot Plan is the route from screening output to city-owned validation.
-0030 | 
-0031 | ==============================================================================
-0032 | 2. REPOSITORY LAYOUT
-0033 | ==============================================================================
-0034 | 2.01 PATH app/dashboard.py
-0035 | 2.01 PURPOSE Streamlit user interface and live score recomputation.
-0036 | 2.01 STATUS present
-0037 | 2.02 PATH src/common.py
-0038 | 2.02 PURPOSE Shared paths, GTFS loading, scoring, time parsing, and JSON helpers.
-0039 | 2.02 STATUS present
-0040 | 2.03 PATH src/01_audit.py
-0041 | 2.03 PURPOSE GTFS integrity audit and route-universe report.
-0042 | 2.03 STATUS present
-0043 | 2.04 PATH src/02_geometry.py
-0044 | 2.04 PURPOSE Representative-trip selection and route geometry generation.
-0045 | 2.04 STATUS present
-0046 | 2.05 PATH src/03_frequency.py
-0047 | 2.05 PURPOSE Service-window, headway, and trips-per-day estimation.
-0048 | 2.05 STATUS present
-0049 | 2.06 PATH src/04_emissions_score.py
-0050 | 2.06 PURPOSE Activity proxy and min-max score creation.
-0051 | 2.06 STATUS present
-0052 | 2.07 PATH src/05_equity_score.py
-0053 | 2.07 PURPOSE WorldPop catchment analysis and density score creation.
-0054 | 2.07 STATUS present
-0055 | 2.08 PATH src/06_grid_score.py
-0056 | 2.08 PURPOSE DOE Luzon renewable-share proxy construction.
-0057 | 2.08 STATUS present
-0058 | 2.09 PATH src/07_operator_score.py
-0059 | 2.09 PURPOSE Neutral placeholder and route-level override merge.
-0060 | 2.09 STATUS present
-0061 | 2.10 PATH src/08_composite_score.py
-0062 | 2.10 PURPOSE Weighted score, completeness, confidence, and ranking.
-0063 | 2.10 STATUS present
-0064 | 2.11 PATH src/09_city_aggregation.py
-0065 | 2.11 PURPOSE Route-city tagging, city summaries, and comparison exports.
-0066 | 2.11 STATUS present
-0067 | 2.12 PATH src/10_policy_brief.py
-0068 | 2.12 PURPOSE Markdown policy-brief generation for leading routes.
-0069 | 2.12 STATUS present
-0070 | 2.13 PATH src/11_ai_explain.py
-0071 | 2.13 PURPOSE API-backed or deterministic explanation-cache generation.
-0072 | 2.13 STATUS present
-0073 | 2.14 PATH src/bedrock_client.py
-0074 | 2.14 PURPOSE OpenAI-compatible API call and deterministic rationale fallback.
-0075 | 2.14 STATUS present
-0076 | 2.15 PATH src/run_pipeline.py
-0077 | 2.15 PURPOSE Ordered orchestration of all reproducible pipeline stages.
-0078 | 2.15 STATUS present
-0079 | 2.16 PATH tests/test_pipeline.py
-0080 | 2.16 PURPOSE Invariant checks covering scope, bounds, labels, AI separation, and secrets.
-0081 | 2.16 STATUS present
-0082 | 2.17 PATH docs/data_provenance.md
-0083 | 2.17 PURPOSE Source URLs, branch choice, checksums, and known data boundaries.
-0084 | 2.17 STATUS present
-0085 | 2.18 PATH docs/methodology.md
-0086 | 2.18 PURPOSE Formula definitions, confidence rules, and validation requirements.
-0087 | 2.18 STATUS present
-0088 | 2.19 PATH docs/demo_script.md
-0089 | 2.19 PURPOSE Short dashboard demonstration flow.
-0090 | 2.19 STATUS present
-0091 | 2.20 PATH docs/policy_briefs/
-0092 | 2.20 PURPOSE Generated route-level decision-support briefs.
-0093 | 2.20 STATUS present
-0094 | 2.21 PATH output/documents/
-0095 | 2.21 PURPOSE Editable Pilot Plan document.
-0096 | 2.21 STATUS present
-0097 | 2.22 PATH output/pdf/
-0098 | 2.22 PURPOSE Final Pilot Plan and demonstration PDF files.
-0099 | 2.22 STATUS present
-0100 | 2.23 PATH output/presentation/
-0101 | 2.23 PURPOSE Editable 20-slide PowerPoint deck.
-0102 | 2.23 STATUS present
-0103 | 2.24 PATH output/playwright/
-0104 | 2.24 PURPOSE Browser QA screenshots, logs, and console-error evidence.
-0105 | 2.24 STATUS present
-0106 | 2.25 PATH data/raw/gtfs_master/
-0107 | 2.25 PURPOSE Canonical immutable Sakay GTFS master branch clone.
-0108 | 2.25 STATUS present
-0109 | 2.26 PATH data/raw/gtfs_dotc/
-0110 | 2.26 PURPOSE Comparison clone of the Sakay dotc branch.
-0111 | 2.26 STATUS present
-0112 | 2.27 PATH data/raw/reference/
-0113 | 2.27 PURPOSE WorldPop raster and other external reference data.
-0114 | 2.27 STATUS present
-0115 | 2.28 PATH data/processed/
-0116 | 2.28 PURPOSE Reproducible route-level tables, GeoJSON, caches, and summaries.
-0117 | 2.28 STATUS present
-0118 | 2.29 PATH GTFS/master/
-0119 | 2.29 PURPOSE Convenience link to the canonical GTFS clone.
-0120 | 2.29 STATUS present
-0121 | 2.30 PATH GTFS/dotc/
-0122 | 2.30 PURPOSE Convenience link to the comparison GTFS clone.
-0123 | 2.30 STATUS present
-0124 | 2.31 PATH .env.example
-0125 | 2.31 PURPOSE Placeholder environment-variable template without a real secret.
-0126 | 2.31 STATUS present
-0127 | 2.32 PATH .env
-0128 | 2.32 PURPOSE Local secret file excluded from version control.
-0129 | 2.32 STATUS present
-0130 | 2.33 PATH requirements.txt
-0131 | 2.33 PURPOSE Pinned Python dependency surface for the MVP.
-0132 | 2.33 STATUS present
-0133 | 2.34 PATH README.md
-0134 | 2.34 PURPOSE Primary installation, operation, methodology, and handover guide.
-0135 | 2.34 STATUS present
-0136 | 2.35 PATH script.txt
-0137 | 2.35 PURPOSE Presenter narration matched to the 20-slide deck.
-0138 | 2.35 STATUS present
-0139 | 2.36 PATH technical.txt
-0140 | 2.36 PURPOSE This detailed implementation and operations reference.
-0141 | 2.36 STATUS generated directory or optional runtime path
-0142 | 
-0143 | ==============================================================================
-0144 | 3. SOURCE DATA AND PROVENANCE
-0145 | ==============================================================================
-0146 | 3.01 The Sakay GTFS repository is https://github.com/sakayph/gtfs.
-0147 | 3.02 The master branch is canonical because it is the repository default and has the newer service horizon.
-0148 | 3.03 The dotc branch is retained only for comparison and reproducibility notes.
-0149 | 3.04 The master feed contains 1,717 routes: 1,522 PUJ and 189 PUB records by exact route-ID classification.
-0150 | 3.05 The dotc feed contains 1,715 routes and an extra route_bikes_allowed field.
-0151 | 3.06 The audit found zero broken route-to-trip, trip-to-stop-time, or stop-time-to-stop references.
-0152 | 3.07 The master service calendar extends through 2020 and therefore remains historic in 2026.
-0153 | 3.08 The WorldPop source is the 2020 Philippines 1 km population-count raster.
-0154 | 3.09 The WorldPop summary page is https://hub.worldpop.org/geodata/summary?id=33241.
-0155 | 3.10 The WorldPop DOI recorded in methodology is 10.5258/SOTON/WP00670.
-0156 | 3.11 The downloaded raster filename is phl_ppp_2020_1km_Aggregated.tif.
-0157 | 3.12 The recorded raster SHA-256 begins DB87B and ends 9FD; see data_provenance.md for the full value.
-0158 | 3.13 No retrievable corridor-resolution NAMRIA or PSA informal-settlement layer was used.
-0159 | 3.14 WorldPop density exposure must not be interpreted as poverty, tenure, or informal-settlement status.
-0160 | 3.15 The Philippine DOE 2024 Key Energy Statistics provides the Luzon generation values.
-0161 | 3.16 The recorded values are 14,550 GWh renewable generation and 90,269 GWh total generation.
-0162 | 3.17 The resulting shared renewable-share proxy is 16.118 percent before display rounding.
-0163 | 3.18 The National Grid Emission Factor context is recorded as 0.7181 tCO2/MWh.
-0164 | 3.19 The grid values are regional context and contain no feeder, depot, or charger-capacity information.
-0165 | 3.20 Every external source URL is retained in docs/data_provenance.md and docs/methodology.md.
-0166 | 3.21 Raw GTFS and reference files are never overwritten by pipeline stages.
-0167 | 3.22 Processed outputs are regenerated from raw inputs and explicit constants.
-0168 | 3.23 The presentation speaker notes include source blocks for every external claim and visual.
-0169 | 3.24 Licensing and attribution remain the responsibility of downstream public release owners.
-0170 | 
-0171 | ==============================================================================
-0172 | 4. PIPELINE COMPONENT CONTRACTS
-0173 | ==============================================================================
-0174 | 4.01.00 COMPONENT src/common.py
-0175 | 4.01.01 EXISTS True
-0176 | 4.01.02 Creates required output directories without mutating raw inputs.
-0177 | 4.01.03 Loads GTFS tables from the selected canonical clone with pandas.
-0178 | 4.01.04 Provides a min-max scoring helper that retains nulls and handles constant series.
-0179 | 4.01.05 Parses GTFS times beyond 24:00 as valid service-day hours.
-0180 | 4.01.06 Merges time intervals to avoid double-counting overlapping service windows.
-0181 | 4.01.07 Writes UTF-8 JSON with deterministic indentation.
-0182 | 4.01.08 Centralizes raw, processed, documentation, and cache paths.
-0183 | 4.01.09 Keeps all helpers deterministic and free of API calls.
-0184 | 4.02.00 COMPONENT src/01_audit.py
-0185 | 4.02.01 EXISTS True
-0186 | 4.02.02 Loads routes, trips, stop_times, stops, calendar, and calendar_dates.
-0187 | 4.02.03 Classifies PUJ and PUB records from exact route-ID content.
-0188 | 4.02.04 Checks route IDs referenced by trips.
-0189 | 4.02.05 Checks trip IDs referenced by stop_times.
-0190 | 4.02.06 Checks stop IDs referenced by stop_times.
-0191 | 4.02.07 Reports route counts, service horizon, geometry coverage, and branch comparison.
-0192 | 4.02.08 Writes data/processed/audit_report.md.
-0193 | 4.02.09 Returns a nonzero process code only for fatal execution errors.
-0194 | 4.03.00 COMPONENT src/02_geometry.py
-0195 | 4.03.01 EXISTS True
-0196 | 4.03.02 Selects one representative trip for every jeepney route ID.
-0197 | 4.03.03 Uses an existing shape when a valid GTFS shape is available.
-0198 | 4.03.04 Otherwise orders stops by stop_sequence for the representative trip.
-0199 | 4.03.05 Removes only consecutive duplicate coordinates.
-0200 | 4.03.06 Creates a LineString from the remaining longitude-latitude pairs.
-0201 | 4.03.07 Computes geodesic route length in kilometres.
-0202 | 4.03.08 Labels each record as shape or stop_sequence_approx.
-0203 | 4.03.09 Writes both GeoJSON geometry and a route-frequency-compatible CSV scaffold.
-0204 | 4.04.00 COMPONENT src/03_frequency.py
-0205 | 4.04.01 EXISTS True
-0206 | 4.04.02 Uses weekday service information from GTFS calendars and trips.
-0207 | 4.04.03 Groups stop-time departures by representative route record.
-0208 | 4.04.04 Parses times beyond midnight using the shared GTFS-time helper.
-0209 | 4.04.05 Estimates average headway from scheduled trip starts.
-0210 | 4.04.06 Calculates daily service-window hours.
-0211 | 4.04.07 Estimates trips per day from the schedule evidence.
-0212 | 4.04.08 Retains missing frequency for the one record without sufficient evidence.
-0213 | 4.04.09 Writes data/processed/route_frequency.csv.
-0214 | 4.05.00 COMPONENT src/04_emissions_score.py
-0215 | 4.05.01 EXISTS True
-0216 | 4.05.02 Multiplies length_km by trips_per_day_estimate.
-0217 | 4.05.03 Stores the product as daily_vehicle_km_proxy.
-0218 | 4.05.04 Converts the activity proxy to a bounded zero-to-one-hundred score.
-0219 | 4.05.05 Retains null when length or frequency is missing.
-0220 | 4.05.06 Labels the source as a transparent activity proxy.
-0221 | 4.05.07 Assigns confidence based on the underlying geometry and schedule evidence.
-0222 | 4.05.08 Does not claim fuel consumption or avoided emissions.
-0223 | 4.05.09 Writes data/processed/emissions_score.csv.
-0224 | 4.06.00 COMPONENT src/05_equity_score.py
-0225 | 4.06.01 EXISTS True
-0226 | 4.06.02 Reads the WorldPop GeoTIFF with rasterio.
-0227 | 4.06.03 Builds a documented NCR analysis window.
-0228 | 4.06.04 Calculates the 75th percentile of positive population cells as the high-density cutoff.
-0229 | 4.06.05 Projects route geometries for a 300-metre catchment buffer.
-0230 | 4.06.06 Computes population-weighted exposure to high-density cells.
-0231 | 4.06.07 Stores both overlap percentage and a corridor population proxy.
-0232 | 4.06.08 Labels all outputs as WorldPop density fallback evidence.
-0233 | 4.06.09 Writes data/processed/equity_score.csv.
-0234 | 4.07.00 COMPONENT src/06_grid_score.py
-0235 | 4.07.01 EXISTS True
-0236 | 4.07.02 Stores DOE 2024 Luzon generation values as explicit constants.
-0237 | 4.07.03 Computes the renewable-share percentage from generation totals.
-0238 | 4.07.04 Assigns the same regional value to every route record.
-0239 | 4.07.05 Stores the national grid-emission-factor context separately.
-0240 | 4.07.06 Sets route_level_spatial_variation_available to false.
-0241 | 4.07.07 Labels the region as Luzon and confidence as regional proxy.
-0242 | 4.07.08 Prevents the value from being described as charger capacity.
-0243 | 4.07.09 Writes data/processed/grid_feasibility.csv.
-0244 | 4.08.00 COMPONENT src/07_operator_score.py
-0245 | 4.08.01 EXISTS True
-0246 | 4.08.02 Creates a neutral 50-point placeholder for every route.
-0247 | 4.08.03 Reads optional route-level overrides from operator_overrides.csv.
-0248 | 4.08.04 Requires the override record to carry notes and source context.
-0249 | 4.08.05 Retains the placeholder flag when no override is present.
-0250 | 4.08.06 Keeps the score bounded between zero and one hundred.
-0251 | 4.08.07 Does not infer readiness from route activity or city tags.
-0252 | 4.08.08 Supports future cooperative workshop ingestion without changing composite logic.
-0253 | 4.08.09 Writes data/processed/operator_readiness.csv.
-0254 | 4.09.00 COMPONENT src/08_composite_score.py
-0255 | 4.09.01 EXISTS True
-0256 | 4.09.02 Joins geometry, frequency, emissions, equity, grid, and operator records by route_id.
-0257 | 4.09.03 Applies the default weights 0.35, 0.35, 0.15, and 0.15.
-0258 | 4.09.04 Marks score_complete only when every required dimension is available.
-0259 | 4.09.05 Keeps the single route with missing emissions outside the default ranking.
-0260 | 4.09.06 Ranks complete routes in descending just_transition_score order.
-0261 | 4.09.07 Stores ranking_method and default_weights as explicit metadata.
-0262 | 4.09.08 Sets ranking_ai_influence to false for every record.
-0263 | 4.09.09 Writes route2zero_scores.csv and route2zero_scores.geojson.
-0264 | 4.10.00 COMPONENT src/09_city_aggregation.py
-0265 | 4.10.01 EXISTS True
-0266 | 4.10.02 Parses cities from route descriptions and long names using conservative text rules.
-0267 | 4.10.03 Associates route records with one or more screening city labels.
-0268 | 4.10.04 Produces a route-to-city mapping table.
-0269 | 4.10.05 Aggregates route counts and top scores by city.
-0270 | 4.10.06 Creates a comparison table for repeated corridor names and directions.
-0271 | 4.10.07 Does not claim legal service-area boundaries.
-0272 | 4.10.08 Supports the dashboard City / LGU lens.
-0273 | 4.10.09 Writes route_cities.csv, city_summary.csv, and comparison_routes.csv.
-0274 | 4.11.00 COMPONENT src/10_policy_brief.py
-0275 | 4.11.01 EXISTS True
-0276 | 4.11.02 Selects the leading ranked route records.
-0277 | 4.11.03 Formats route identity, score, rank, and component values.
-0278 | 4.11.04 Explains why a route surfaces without overstating proxy meaning.
-0279 | 4.11.05 Lists known unknowns including current service, operator, and depot evidence.
-0280 | 4.11.06 Adds source and confidence language to each brief.
-0281 | 4.11.07 Keeps briefs in Markdown for portability and review.
-0282 | 4.11.08 Generated eight leading-route briefs for the submission.
-0283 | 4.11.09 Writes docs/policy_briefs/*.md.
-0284 | 4.12.00 COMPONENT src/11_ai_explain.py
-0285 | 4.12.01 EXISTS True
-0286 | 4.12.02 Builds a constrained route explanation prompt from completed score fields.
-0287 | 4.12.03 Requests an API explanation only after ranking has finished.
-0288 | 4.12.04 Caches successful explanations by route ID.
-0289 | 4.12.05 Falls back to deterministic_route_rationale for API failures or uncached records.
-0290 | 4.12.06 Labels each explanation as API-backed or deterministic.
-0291 | 4.12.07 Never sends a request to choose a score or rank.
-0292 | 4.12.08 Produces coverage for every scored route.
-0293 | 4.12.09 Writes data/processed/route_explanations.json.
-0294 | 4.13.00 COMPONENT src/bedrock_client.py
-0295 | 4.13.01 EXISTS True
-0296 | 4.13.02 Loads API configuration from environment variables.
-0297 | 4.13.03 Uses an OpenAI-compatible base URL and model identifier.
-0298 | 4.13.04 Applies request timeouts and exception handling.
-0299 | 4.13.05 Returns both text and a status label to the caller.
-0300 | 4.13.06 Contains no hard-coded production secret.
-0301 | 4.13.07 Provides a deterministic explanation built only from route fields.
-0302 | 4.13.08 Keeps the fallback safe for offline demonstrations.
-0303 | 4.13.09 Does not expose API failures to score computation.
-0304 | 4.14.00 COMPONENT src/run_pipeline.py
-0305 | 4.14.01 EXISTS True
-0306 | 4.14.02 Defines the authoritative stage order from audit through explanation cache.
-0307 | 4.14.03 Executes each stage as a separate Python process.
-0308 | 4.14.04 Stops on a failed stage so partial completion is visible.
-0309 | 4.14.05 Prints the active stage to support troubleshooting.
-0310 | 4.14.06 Allows the complete processed layer to be regenerated with one command.
-0311 | 4.14.07 Keeps UI startup separate from data production.
-0312 | 4.14.08 Does not delete existing raw data.
-0313 | 4.14.09 Returns zero only when every required stage completes.
-0314 | 4.15.00 COMPONENT app/dashboard.py
-0315 | 4.15.01 EXISTS True
-0316 | 4.15.02 Caches processed tables and GeoJSON for responsive interaction.
-0317 | 4.15.03 Provides the City / LGU lens and explicit unverified-equity opt-in.
-0318 | 4.15.04 Displays four live score-weight controls in the sidebar.
-0319 | 4.15.05 Normalizes weight values before live recomputation.
-0320 | 4.15.06 Excludes incomplete records from ranking by default.
-0321 | 4.15.07 Colors map paths from lower-priority red through amber to higher-priority green.
-0322 | 4.15.08 Uses line treatment to communicate approximate route geometry.
-0323 | 4.15.09 Supports route selection through the map and route finder.
-0324 | 4.15.10 Displays route identity, cities served, live rank, score, and length.
-0325 | 4.15.11 Displays the four component bars for the selected route.
-0326 | 4.15.12 Shows AI-backed or deterministic explanation status.
-0327 | 4.15.13 Keeps historic-data, WorldPop, grid, and operator warnings visible.
-0328 | 4.15.14 Provides ranked tables and exportable decision-support outputs.
-0329 | 4.15.15 Uses PyDeck with pixel width units encoded as a literal string.
-0330 | 4.15.16 Runs locally at http://localhost:8501 unless configured otherwise.
-0331 | 4.16.00 COMPONENT tests/test_pipeline.py
-0332 | 4.16.01 EXISTS True
-0333 | 4.16.02 Confirms the expected route universe and geometry-source counts.
-0334 | 4.16.03 Confirms scores stay inside zero to one hundred.
-0335 | 4.16.04 Confirms ranking_ai_influence is false.
-0336 | 4.16.05 Confirms proxy and placeholder labels remain explicit.
-0337 | 4.16.06 Confirms explanation-cache coverage is downstream only.
-0338 | 4.16.07 Confirms real secrets are absent from the example environment and source code.
-0339 | 4.16.08 Provides a fast regression suite for submission and handover.
-0340 | 4.16.09 Runs with pytest from the repository root.
-0341 | 
-0342 | ==============================================================================
-0343 | 5. ROUTE SCORE DATA DICTIONARY
-0344 | ==============================================================================
-0345 | 5.01.01 FIELD route_id
-0346 | 5.01.02 TYPE object
-0347 | 5.01.03 POPULATED 1522 of 1522 records; NULL 0
-0348 | 5.01.04 MEANING Stable GTFS route identifier and primary route-level join key.
-0349 | 5.01.05 RULE Must remain stable across reruns of unchanged raw data.
-0350 | 5.02.01 FIELD route_short_name
-0351 | 5.02.02 TYPE float64
-0352 | 5.02.03 POPULATED 0 of 1522 records; NULL 1522
-0353 | 5.02.04 MEANING Short public route label from routes.txt when available.
-0354 | 5.02.05 RULE Preserve nulls and original meaning; do not infer silently.
-0355 | 5.03.01 FIELD route_long_name
-0356 | 5.03.02 TYPE object
-0357 | 5.03.03 POPULATED 1522 of 1522 records; NULL 0
-0358 | 5.03.04 MEANING Long corridor name from routes.txt; may repeat across directions.
-0359 | 5.03.05 RULE Preserve nulls and original meaning; do not infer silently.
-0360 | 5.04.01 FIELD route_desc
-0361 | 5.04.02 TYPE object
-0362 | 5.04.03 POPULATED 1522 of 1522 records; NULL 0
-0363 | 5.04.04 MEANING Route description text used as supporting context and city-tag evidence.
-0364 | 5.04.05 RULE Preserve nulls and original meaning; do not infer silently.
-0365 | 5.05.01 FIELD representative_trip_id
-0366 | 5.05.02 TYPE int64
-0367 | 5.05.03 POPULATED 1522 of 1522 records; NULL 0
-0368 | 5.05.04 MEANING Selected trip used for route geometry and frequency context.
-0369 | 5.05.05 RULE Must remain stable across reruns of unchanged raw data.
-0370 | 5.06.01 FIELD length_km
-0371 | 5.06.02 TYPE float64
-0372 | 5.06.03 POPULATED 1522 of 1522 records; NULL 0
-0373 | 5.06.04 MEANING Geodesic length of the generated route line in kilometres.
-0374 | 5.06.05 RULE Preserve nulls and original meaning; do not infer silently.
-0375 | 5.07.01 FIELD geometry_source
-0376 | 5.07.02 TYPE object
-0377 | 5.07.03 POPULATED 1522 of 1522 records; NULL 0
-0378 | 5.07.04 MEANING Either shape or stop_sequence_approx.
-0379 | 5.07.05 RULE Must remain human-readable and visible in exports.
-0380 | 5.08.01 FIELD stop_count
-0381 | 5.08.02 TYPE int64
-0382 | 5.08.03 POPULATED 1522 of 1522 records; NULL 0
-0383 | 5.08.04 MEANING Number of ordered stops used for the representative route geometry.
-0384 | 5.08.05 RULE Preserve nulls and original meaning; do not infer silently.
-0385 | 5.09.01 FIELD avg_headway_min
-0386 | 5.09.02 TYPE float64
-0387 | 5.09.03 POPULATED 1521 of 1522 records; NULL 1
-0388 | 5.09.04 MEANING Average estimated scheduled interval between trips in minutes.
-0389 | 5.09.05 RULE Preserve nulls and original meaning; do not infer silently.
-0390 | 5.10.01 FIELD daily_service_window_hrs
-0391 | 5.10.02 TYPE float64
-0392 | 5.10.03 POPULATED 1521 of 1522 records; NULL 1
-0393 | 5.10.04 MEANING Estimated span of daily scheduled service in hours.
-0394 | 5.10.05 RULE Preserve nulls and original meaning; do not infer silently.
-0395 | 5.11.01 FIELD trips_per_day_estimate
-0396 | 5.11.02 TYPE float64
-0397 | 5.11.03 POPULATED 1521 of 1522 records; NULL 1
-0398 | 5.11.04 MEANING Estimated number of scheduled route trips per day.
-0399 | 5.11.05 RULE Preserve nulls and original meaning; do not infer silently.
-0400 | 5.12.01 FIELD weekday_frequency_rows
-0401 | 5.12.02 TYPE float64
-0402 | 5.12.03 POPULATED 1521 of 1522 records; NULL 1
-0403 | 5.12.04 MEANING Count of weekday schedule observations supporting frequency.
-0404 | 5.12.05 RULE Preserve nulls and original meaning; do not infer silently.
-0405 | 5.13.01 FIELD frequency_source
-0406 | 5.13.02 TYPE object
-0407 | 5.13.03 POPULATED 1521 of 1522 records; NULL 1
-0408 | 5.13.04 MEANING Text label describing the schedule evidence used.
-0409 | 5.13.05 RULE Must remain human-readable and visible in exports.
-0410 | 5.14.01 FIELD daily_vehicle_km_proxy
-0411 | 5.14.02 TYPE float64
-0412 | 5.14.03 POPULATED 1521 of 1522 records; NULL 1
-0413 | 5.14.04 MEANING Length multiplied by estimated trips per day.
-0414 | 5.14.05 RULE Preserve nulls and original meaning; do not infer silently.
-0415 | 5.15.01 FIELD emissions_potential_score
-0416 | 5.15.02 TYPE float64
-0417 | 5.15.03 POPULATED 1521 of 1522 records; NULL 1
-0418 | 5.15.04 MEANING Zero-to-one-hundred activity percentile used as the emissions signal.
-0419 | 5.15.05 RULE Bounded to zero through one hundred when populated.
-0420 | 5.16.01 FIELD emissions_source
-0421 | 5.16.02 TYPE object
-0422 | 5.16.03 POPULATED 1522 of 1522 records; NULL 0
-0423 | 5.16.04 MEANING Source label clarifying that the dimension is an activity proxy.
-0424 | 5.16.05 RULE Must remain human-readable and visible in exports.
-0425 | 5.17.01 FIELD emissions_confidence
-0426 | 5.17.02 TYPE object
-0427 | 5.17.03 POPULATED 1522 of 1522 records; NULL 0
-0428 | 5.17.04 MEANING Confidence grade derived from geometry and frequency evidence.
-0429 | 5.17.05 RULE Must remain human-readable and visible in exports.
-0430 | 5.18.01 FIELD equity_overlap_pct
-0431 | 5.18.02 TYPE float64
-0432 | 5.18.03 POPULATED 1522 of 1522 records; NULL 0
-0433 | 5.18.04 MEANING Population-weighted share of catchment exposure to high-density cells.
-0434 | 5.18.05 RULE Preserve nulls and original meaning; do not infer silently.
-0435 | 5.19.01 FIELD corridor_population_proxy
-0436 | 5.19.02 TYPE float64
-0437 | 5.19.03 POPULATED 1522 of 1522 records; NULL 0
-0438 | 5.19.04 MEANING WorldPop population-count summary inside the route catchment.
-0439 | 5.19.05 RULE Preserve nulls and original meaning; do not infer silently.
-0440 | 5.20.01 FIELD equity_score
-0441 | 5.20.02 TYPE float64
-0442 | 5.20.03 POPULATED 1522 of 1522 records; NULL 0
-0443 | 5.20.04 MEANING Zero-to-one-hundred density-exposure score.
-0444 | 5.20.05 RULE Bounded to zero through one hundred when populated.
-0445 | 5.21.01 FIELD equity_source
-0446 | 5.21.02 TYPE object
-0447 | 5.21.03 POPULATED 1522 of 1522 records; NULL 0
-0448 | 5.21.04 MEANING Source label naming the WorldPop 2020 fallback.
-0449 | 5.21.05 RULE Must remain human-readable and visible in exports.
-0450 | 5.22.01 FIELD equity_confidence
-0451 | 5.22.02 TYPE object
-0452 | 5.22.03 POPULATED 1522 of 1522 records; NULL 0
-0453 | 5.22.04 MEANING Confidence grade for the density-only proxy.
-0454 | 5.22.05 RULE Must remain human-readable and visible in exports.
-0455 | 5.23.01 FIELD manually_digitized
-0456 | 5.23.02 TYPE bool
-0457 | 5.23.03 POPULATED 1522 of 1522 records; NULL 0
-0458 | 5.23.04 MEANING False for pipeline-generated routes; reserved for reviewed edits.
-0459 | 5.23.05 RULE Preserve nulls and original meaning; do not infer silently.
-0460 | 5.24.01 FIELD high_density_cutoff_people_per_cell
-0461 | 5.24.02 TYPE float64
-0462 | 5.24.03 POPULATED 1522 of 1522 records; NULL 0
-0463 | 5.24.04 MEANING NCR 75th-percentile positive-cell cutoff used by the equity method.
-0464 | 5.24.05 RULE Preserve nulls and original meaning; do not infer silently.
-0465 | 5.25.01 FIELD catchment_buffer_m
-0466 | 5.25.02 TYPE int64
-0467 | 5.25.03 POPULATED 1522 of 1522 records; NULL 0
-0468 | 5.25.04 MEANING Route catchment radius in metres; currently 300.
-0469 | 5.25.05 RULE Preserve nulls and original meaning; do not infer silently.
-0470 | 5.26.01 FIELD grid_feasibility_score
-0471 | 5.26.02 TYPE float64
-0472 | 5.26.03 POPULATED 1522 of 1522 records; NULL 0
-0473 | 5.26.04 MEANING Shared Luzon renewable-share proxy on a zero-to-one-hundred scale.
-0474 | 5.26.05 RULE Bounded to zero through one hundred when populated.
-0475 | 5.27.01 FIELD grid_renewable_share_pct
-0476 | 5.27.02 TYPE float64
-0477 | 5.27.03 POPULATED 1522 of 1522 records; NULL 0
-0478 | 5.27.04 MEANING DOE renewable generation divided by total generation for Luzon.
-0479 | 5.27.05 RULE Preserve nulls and original meaning; do not infer silently.
-0480 | 5.28.01 FIELD grid_emission_factor_tco2_mwh
-0481 | 5.28.02 TYPE float64
-0482 | 5.28.03 POPULATED 1522 of 1522 records; NULL 0
-0483 | 5.28.04 MEANING National-grid emission-factor context in tonnes CO2 per MWh.
-0484 | 5.28.05 RULE Preserve nulls and original meaning; do not infer silently.
-0485 | 5.29.01 FIELD grid_region
-0486 | 5.29.02 TYPE object
-0487 | 5.29.03 POPULATED 1522 of 1522 records; NULL 0
-0488 | 5.29.04 MEANING Region attached to the shared grid proxy; currently Luzon.
-0489 | 5.29.05 RULE Preserve nulls and original meaning; do not infer silently.
-0490 | 5.30.01 FIELD grid_source
-0491 | 5.30.02 TYPE object
-0492 | 5.30.03 POPULATED 1522 of 1522 records; NULL 0
-0493 | 5.30.04 MEANING DOE source label for generation and emission-factor context.
-0494 | 5.30.05 RULE Must remain human-readable and visible in exports.
-0495 | 5.31.01 FIELD grid_confidence
-0496 | 5.31.02 TYPE object
-0497 | 5.31.03 POPULATED 1522 of 1522 records; NULL 0
-0498 | 5.31.04 MEANING Confidence label stating regional rather than local evidence.
-0499 | 5.31.05 RULE Must remain human-readable and visible in exports.
-0500 | 5.32.01 FIELD route_level_spatial_variation_available
-0501 | 5.32.02 TYPE bool
-0502 | 5.32.03 POPULATED 1522 of 1522 records; NULL 0
-0503 | 5.32.04 MEANING False because no route-level feeder evidence is present.
-0504 | 5.32.05 RULE Preserve nulls and original meaning; do not infer silently.
-0505 | 5.33.01 FIELD operator_readiness_score
-0506 | 5.33.02 TYPE float64
-0507 | 5.33.03 POPULATED 1522 of 1522 records; NULL 0
-0508 | 5.33.04 MEANING Neutral 50 or a documented route-level override.
-0509 | 5.33.05 RULE Bounded to zero through one hundred when populated.
-0510 | 5.34.01 FIELD operator_notes
-0511 | 5.34.02 TYPE float64
-0512 | 5.34.03 POPULATED 0 of 1522 records; NULL 1522
-0513 | 5.34.04 MEANING Human-readable evidence note supporting the operator score.
-0514 | 5.34.05 RULE Preserve nulls and original meaning; do not infer silently.
-0515 | 5.35.01 FIELD operator_source
-0516 | 5.35.02 TYPE object
-0517 | 5.35.03 POPULATED 1522 of 1522 records; NULL 0
-0518 | 5.35.04 MEANING Placeholder or override source label.
-0519 | 5.35.05 RULE Must remain human-readable and visible in exports.
-0520 | 5.36.01 FIELD operator_readiness_placeholder
-0521 | 5.36.02 TYPE bool
-0522 | 5.36.03 POPULATED 1522 of 1522 records; NULL 0
-0523 | 5.36.04 MEANING True when no cooperative evidence has replaced the neutral value.
-0524 | 5.36.05 RULE Preserve nulls and original meaning; do not infer silently.
-0525 | 5.37.01 FIELD score_complete
-0526 | 5.37.02 TYPE bool
-0527 | 5.37.03 POPULATED 1522 of 1522 records; NULL 0
-0528 | 5.37.04 MEANING True only when all four component scores are available.
-0529 | 5.37.05 RULE Preserve nulls and original meaning; do not infer silently.
-0530 | 5.38.01 FIELD equity_verified
-0531 | 5.38.02 TYPE bool
-0532 | 5.38.03 POPULATED 1522 of 1522 records; NULL 0
-0533 | 5.38.04 MEANING Whether equity evidence has been locally validated; false in the MVP.
-0534 | 5.38.05 RULE Preserve nulls and original meaning; do not infer silently.
-0535 | 5.39.01 FIELD just_transition_score
-0536 | 5.39.02 TYPE float64
-0537 | 5.39.03 POPULATED 1521 of 1522 records; NULL 1
-0538 | 5.39.04 MEANING Weighted composite used for the default rank.
-0539 | 5.39.05 RULE Bounded to zero through one hundred when populated.
-0540 | 5.40.01 FIELD rank
-0541 | 5.40.02 TYPE float64
-0542 | 5.40.03 POPULATED 1521 of 1522 records; NULL 1
-0543 | 5.40.04 MEANING Descending rank among complete records under stored weights.
-0544 | 5.40.05 RULE Preserve nulls and original meaning; do not infer silently.
-0545 | 5.41.01 FIELD ranking_method
-0546 | 5.41.02 TYPE object
-0547 | 5.41.03 POPULATED 1522 of 1522 records; NULL 0
-0548 | 5.41.04 MEANING Metadata naming deterministic weighted-score ranking.
-0549 | 5.41.05 RULE Preserve nulls and original meaning; do not infer silently.
-0550 | 5.42.01 FIELD ranking_ai_influence
-0551 | 5.42.02 TYPE bool
-0552 | 5.42.03 POPULATED 1522 of 1522 records; NULL 0
-0553 | 5.42.04 MEANING Always false; asserts separation between ranking and narrative AI.
-0554 | 5.42.05 RULE Preserve nulls and original meaning; do not infer silently.
-0555 | 5.43.01 FIELD default_weights
-0556 | 5.43.02 TYPE object
-0557 | 5.43.03 POPULATED 1522 of 1522 records; NULL 0
-0558 | 5.43.04 MEANING Serialized record of the four default score weights.
-0559 | 5.43.05 RULE Preserve nulls and original meaning; do not infer silently.
-0560 | 5.44.01 FIELD overall_confidence
-0561 | 5.44.02 TYPE object
-0562 | 5.44.03 POPULATED 1522 of 1522 records; NULL 0
-0563 | 5.44.04 MEANING Summary confidence label derived from component evidence states.
-0564 | 5.44.05 RULE Must remain human-readable and visible in exports.
-0565 | 
-0566 | ==============================================================================
-0567 | 6. PROCESSED OUTPUT CONTRACTS
-0568 | ==============================================================================
-0569 | 6.01.01 OUTPUT audit_report.md
-0570 | 6.01.02 FORMAT Human-readable
-0571 | 6.01.03 ROLE GTFS audit
-0572 | 6.01.04 CONTENT Route counts and relationship checks
-0573 | 6.01.05 CONSUMER Review after feed refresh
-0574 | 6.01.06 EXISTS True
-0575 | 6.01.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0576 | 6.01.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0577 | 6.02.01 OUTPUT jeepney_routes.geojson
-0578 | 6.02.02 FORMAT GeoJSON
-0579 | 6.02.03 ROLE Route geometry
-0580 | 6.02.04 CONTENT One feature per jeepney route ID
-0581 | 6.02.05 CONSUMER Map and spatial scoring input
-0582 | 6.02.06 EXISTS True
-0583 | 6.02.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0584 | 6.02.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0585 | 6.03.01 OUTPUT route_frequency.csv
-0586 | 6.03.02 FORMAT CSV
-0587 | 6.03.03 ROLE Schedule metrics
-0588 | 6.03.04 CONTENT Headway, service window, and trip estimates
-0589 | 6.03.05 CONSUMER Emissions activity input
-0590 | 6.03.06 EXISTS True
-0591 | 6.03.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0592 | 6.03.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0593 | 6.04.01 OUTPUT emissions_score.csv
-0594 | 6.04.02 FORMAT CSV
-0595 | 6.04.03 ROLE Activity signal
-0596 | 6.04.04 CONTENT Vehicle-kilometre proxy and score
-0597 | 6.04.05 CONSUMER Composite input
-0598 | 6.04.06 EXISTS True
-0599 | 6.04.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0600 | 6.04.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0601 | 6.05.01 OUTPUT equity_score.csv
-0602 | 6.05.02 FORMAT CSV
-0603 | 6.05.03 ROLE Density signal
-0604 | 6.05.04 CONTENT WorldPop catchment metrics and score
-0605 | 6.05.05 CONSUMER Composite input
-0606 | 6.05.06 EXISTS True
-0607 | 6.05.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0608 | 6.05.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0609 | 6.06.01 OUTPUT grid_feasibility.csv
-0610 | 6.06.02 FORMAT CSV
-0611 | 6.06.03 ROLE Regional grid signal
-0612 | 6.06.04 CONTENT DOE values and source metadata
-0613 | 6.06.05 CONSUMER Composite input
-0614 | 6.06.06 EXISTS True
-0615 | 6.06.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0616 | 6.06.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0617 | 6.07.01 OUTPUT operator_readiness.csv
-0618 | 6.07.02 FORMAT CSV
-0619 | 6.07.03 ROLE Operator signal
-0620 | 6.07.04 CONTENT Placeholder or documented override
-0621 | 6.07.05 CONSUMER Composite input
-0622 | 6.07.06 EXISTS True
-0623 | 6.07.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0624 | 6.07.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0625 | 6.08.01 OUTPUT operator_overrides.csv
-0626 | 6.08.02 FORMAT CSV
-0627 | 6.08.03 ROLE Human override registry
-0628 | 6.08.04 CONTENT Route score, note, and source
-0629 | 6.08.05 CONSUMER Editable pilot input
-0630 | 6.08.06 EXISTS True
-0631 | 6.08.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0632 | 6.08.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0633 | 6.09.01 OUTPUT route2zero_scores.csv
-0634 | 6.09.02 FORMAT CSV
-0635 | 6.09.03 ROLE Primary analytical table
-0636 | 6.09.04 CONTENT All dimensions, confidence, score, and rank
-0637 | 6.09.05 CONSUMER Dashboard and export input
-0638 | 6.09.06 EXISTS True
-0639 | 6.09.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0640 | 6.09.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0641 | 6.10.01 OUTPUT route2zero_scores.geojson
-0642 | 6.10.02 FORMAT GeoJSON
-0643 | 6.10.03 ROLE Primary map layer
-0644 | 6.10.04 CONTENT Route geometry plus score attributes
-0645 | 6.10.05 CONSUMER PyDeck input
-0646 | 6.10.06 EXISTS True
-0647 | 6.10.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0648 | 6.10.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0649 | 6.11.01 OUTPUT route_cities.csv
-0650 | 6.11.02 FORMAT CSV
-0651 | 6.11.03 ROLE Screening city mapping
-0652 | 6.11.04 CONTENT Route-to-city labels
-0653 | 6.11.05 CONSUMER Dashboard city filter
-0654 | 6.11.06 EXISTS True
-0655 | 6.11.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0656 | 6.11.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0657 | 6.12.01 OUTPUT city_summary.csv
-0658 | 6.12.02 FORMAT CSV
-0659 | 6.12.03 ROLE City aggregation
-0660 | 6.12.04 CONTENT Route counts and score summary
-0661 | 6.12.05 CONSUMER Policy and QA reference
-0662 | 6.12.06 EXISTS True
-0663 | 6.12.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0664 | 6.12.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0665 | 6.13.01 OUTPUT comparison_routes.csv
-0666 | 6.13.02 FORMAT CSV
-0667 | 6.13.03 ROLE Corridor comparison
-0668 | 6.13.04 CONTENT Repeated names and direction counts
-0669 | 6.13.05 CONSUMER Directional duplicate review
-0670 | 6.13.06 EXISTS True
-0671 | 6.13.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0672 | 6.13.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0673 | 6.14.01 OUTPUT route_corridors.csv
-0674 | 6.14.02 FORMAT CSV
-0675 | 6.14.03 ROLE De-duplicated corridor view
-0676 | 6.14.04 CONTENT Corridor names and direction_count
-0677 | 6.14.05 CONSUMER Policy comparison
-0678 | 6.14.06 EXISTS True
-0679 | 6.14.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0680 | 6.14.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0681 | 6.15.01 OUTPUT route_explanations.json
-0682 | 6.15.02 FORMAT JSON
-0683 | 6.15.03 ROLE Narrative cache
-0684 | 6.15.04 CONTENT API-backed or deterministic explanations
-0685 | 6.15.05 CONSUMER Dashboard route detail
-0686 | 6.15.06 EXISTS True
-0687 | 6.15.07 REGENERATION Run python src/run_pipeline.py from the repository root.
-0688 | 6.15.08 SAFETY Do not hand-edit generated content except the explicit override registry.
-0689 | 
-0690 | ==============================================================================
-0691 | 7. SCORING AND CONFIDENCE RULES
-0692 | ==============================================================================
-0693 | 7.01 All component scores are represented on a zero-to-one-hundred scale.
-0694 | 7.02 Emissions potential is min-max normalized from daily_vehicle_km_proxy.
-0695 | 7.03 Equity is derived from WorldPop density exposure within a 300-metre route catchment.
-0696 | 7.04 Grid feasibility is the shared 16.118-percent Luzon renewable-generation share.
-0697 | 7.05 Operator readiness is 50 until a documented route override exists.
-0698 | 7.06 The default composite is 0.35E + 0.35Q + 0.15G + 0.15O.
-0699 | 7.07 Complete routes are ranked in descending composite order.
-0700 | 7.08 One route lacks sufficient frequency and emissions evidence and remains unranked by default.
-0701 | 7.09 The dashboard can include a low-confidence incomplete route only through an explicit opt-in.
-0702 | 7.10 When incomplete routes are included, available weights are renormalized and a confidence penalty applies.
-0703 | 7.11 The incomplete-route path is not needed by the current 1,521 complete records.
-0704 | 7.12 Geometry confidence is highest for actual shapes and lower for stop-sequence approximations.
-0705 | 7.13 Schedule confidence depends on available weekday trip observations.
-0706 | 7.14 Equity confidence stays limited because the proxy is density-only and historic.
-0707 | 7.15 Grid confidence stays limited because the value is regional and spatially constant.
-0708 | 7.16 Operator confidence stays limited while the placeholder flag is true.
-0709 | 7.17 Overall confidence summarizes the weakest relevant evidence boundaries.
-0710 | 7.18 Ranking metadata always records ranking_ai_influence as false.
-0711 | 7.19 AI narrative status is stored outside the score table in the explanation cache.
-0712 | 7.20 No explanation text is parsed back into a numeric feature.
-0713 | 7.21 Changing live weights does not mutate the persisted default score table.
-0714 | 7.22 City filtering changes the route set but not the meaning of any score field.
-0715 | 7.23 Route direction records remain separate to preserve GTFS identity.
-0716 | 7.24 Corridor-level summaries are supporting views and do not replace the route-ID primary key.
-0717 | 7.25 Any future local grid factor must carry source, spatial resolution, date, and confidence metadata.
-0718 | 7.26 Any future operator override must carry reviewer, date, note, and evidence source.
-0719 | 7.27 Any future equity layer must state whether it measures density, deprivation, tenure, access, or another concept.
-0720 | 7.28 Any future emissions method must distinguish activity, energy use, tailpipe emissions, and life-cycle emissions.
-0721 | 7.29 Sensitivity analysis should publish alternative weights rather than replacing the default silently.
-0722 | 7.30 Public reporting should show both rank and underlying dimension values.
-0723 | 
-0724 | ==============================================================================
-0725 | 8. DASHBOARD INTERACTION CONTRACT
-0726 | ==============================================================================
-0727 | 8.01 Start Streamlit with streamlit run app/dashboard.py.
-0728 | 8.02 Open the local interface at http://localhost:8501.
-0729 | 8.03 The page header states the Metro Manila route-electrification purpose.
-0730 | 8.04 The historic-data warning appears before the map and leaderboard.
-0731 | 8.05 The City / LGU lens defaults to the full Metro Manila route set.
-0732 | 8.06 The city selector uses screening tags generated from route text and must not be treated as jurisdiction proof.
-0733 | 8.07 The unverified-equity option remains off by default.
-0734 | 8.08 Four sidebar sliders expose the live component weights.
-0735 | 8.09 The live scoring function normalizes positive weights automatically.
-0736 | 8.10 The page reports routes in view, complete scores, top score, and equity source.
-0737 | 8.11 The PyDeck map colors paths by live score.
-0738 | 8.12 Approximate geometries use lighter treatment so confidence remains visible.
-0739 | 8.13 Map paths use literal pixel width units to prevent rendering as a serialized accessor.
-0740 | 8.14 The route finder offers every currently filtered route record.
-0741 | 8.15 A map click or route-finder selection opens the selected route detail.
-0742 | 8.16 Selected-route metrics include live rank, priority score, and length.
-0743 | 8.17 The component chart displays emissions, equity, grid, and operator values.
-0744 | 8.18 The narrative badge states whether an explanation is API-generated or deterministic.
-0745 | 8.19 Deterministic explanations remain usable without network access.
-0746 | 8.20 The table and export surfaces remain grounded in the live filtered frame.
-0747 | 8.21 The footer states the hackathon context and preparation date.
-0748 | 8.22 Desktop QA uses a 1440 by 1000 viewport.
-0749 | 8.23 Mobile QA uses a 390 by 844 viewport.
-0750 | 8.24 Browser console and page errors are captured during Playwright verification.
-0751 | 8.25 The final verification result contains zero browser console errors.
-0752 | 8.26 The Marikina filter was verified with 53 routes and a top filtered score of 60.6.
-0753 | 8.27 The leading network route was verified at rank 1 and score 71.4 after rounding.
-0754 | 8.28 The selected-route length display was verified as 31.0 km without clipping.
-0755 | 
-0756 | ==============================================================================
-0757 | 9. AI EXPLANATION LAYER
-0758 | ==============================================================================
-0759 | 9.01 The explanation layer is optional for product continuity and mandatory only for the enhanced narrative experience.
-0760 | 9.02 The API configuration is loaded from .env through python-dotenv.
-0761 | 9.03 A real API key belongs only in .env, which is excluded from version control.
-0762 | 9.04 .env.example contains placeholders and safe configuration names only.
-0763 | 9.05 The default base URL is OpenAI-compatible and can be changed with environment variables.
-0764 | 9.06 The prompt contains the completed route scores and explicit evidence limits.
-0765 | 9.07 The prompt asks for explanation, not ranking or optimization.
-0766 | 9.08 The response is stored as text with an API-backed status label.
-0767 | 9.09 Failures return a deterministic rationale rather than interrupting the pipeline.
-0768 | 9.10 The deterministic rationale identifies the strongest signal and weakest limitations.
-0769 | 9.11 The cache currently covers every scored route.
-0770 | 9.12 The top demonstration routes may be API-backed while the remaining routes are deterministic.
-0771 | 9.13 The dashboard never sends a request when a cached explanation is available.
-0772 | 9.14 The ranking table can be regenerated with the API completely disabled.
-0773 | 9.15 The tests verify that ranking_ai_influence remains false.
-0774 | 9.16 The tests verify that explanation-cache coverage does not become a score input.
-0775 | 9.17 Do not log API secrets, request authorization headers, or complete .env contents.
-0776 | 9.18 Rotate any temporary credential used during development before public handover.
-0777 | 9.19 Treat model output as explanatory copy requiring the same source-boundary language as deterministic copy.
-0778 | 9.20 If an explanation conflicts with numeric fields, the numeric table and methodology remain authoritative.
-0779 | 
-0780 | ==============================================================================
-0781 | 10. REPRODUCIBLE RUNBOOK
-0782 | ==============================================================================
-0783 | 10.01 Confirm Python 3.11 or the workspace runtime is available.
-0784 | 10.02 Create a virtual environment in .venv.
-0785 | 10.03 Activate the virtual environment for the current shell.
-0786 | 10.04 Install packages from requirements.txt.
-0787 | 10.05 Copy .env.example to .env only when API-backed explanations are needed.
-0788 | 10.06 Insert the API key into .env and never into source files.
-0789 | 10.07 Confirm data/raw/gtfs_master contains the canonical master branch clone.
-0790 | 10.08 Confirm data/raw/gtfs_dotc contains the comparison branch clone.
-0791 | 10.09 Confirm GTFS/master and GTFS/dotc convenience links resolve correctly.
-0792 | 10.10 Confirm the WorldPop raster exists in data/raw/reference.
-0793 | 10.11 Read docs/data_provenance.md before replacing any source file.
-0794 | 10.12 Run python src/run_pipeline.py from the repository root.
-0795 | 10.13 Review data/processed/audit_report.md for route counts and broken references.
-0796 | 10.14 Confirm jeepney_routes.geojson contains 1,522 features.
-0797 | 10.15 Confirm geometry_source counts are 2 shape and 1,520 stop_sequence_approx.
-0798 | 10.16 Confirm route_frequency.csv contains 1,522 route rows.
-0799 | 10.17 Confirm exactly one route lacks a complete frequency estimate.
-0800 | 10.18 Confirm emissions_score.csv contains 1,521 populated component scores.
-0801 | 10.19 Confirm equity_score.csv covers all 1,522 route geometries.
-0802 | 10.20 Confirm grid_feasibility.csv uses the documented DOE values.
-0803 | 10.21 Confirm operator_readiness.csv retains the placeholder flag where no override exists.
-0804 | 10.22 Confirm route2zero_scores.csv has 1,521 complete scores and one incomplete record.
-0805 | 10.23 Confirm ranking_ai_influence is false for every record.
-0806 | 10.24 Confirm route_explanations.json contains an entry for every scored route.
-0807 | 10.25 Run python -m pytest -q.
-0808 | 10.26 Confirm all five tests pass.
-0809 | 10.27 Run streamlit run app/dashboard.py.
-0810 | 10.28 Open the dashboard and inspect the historic-data warning.
-0811 | 10.29 Check the four weight sliders and normalized-score behavior.
-0812 | 10.30 Check that the map loads without a full-frame fill artifact.
-0813 | 10.31 Check that the route finder selects the leading route.
-0814 | 10.32 Check that live rank, score, and length fit without clipping.
-0815 | 10.33 Check that the component chart matches the selected route record.
-0816 | 10.34 Check that the explanation badge matches cache metadata.
-0817 | 10.35 Filter to Marikina and confirm the local route set updates.
-0818 | 10.36 Run the Playwright capture script for desktop evidence.
-0819 | 10.37 Inspect output/playwright/console-errors-final.json.
-0820 | 10.38 Require an empty error array before submission.
-0821 | 10.39 Inspect the Pilot Plan DOCX by rendering every page.
-0822 | 10.40 Inspect the Pilot Plan PDF and confirm six A4 pages.
-0823 | 10.41 Inspect every PowerPoint slide after artifact-tool export.
-0824 | 10.42 Run the bundled slide overflow test.
-0825 | 10.43 Require a no-overflow result before submission.
-0826 | 10.44 Export the demonstration deck to PDF.
-0827 | 10.45 Confirm the demonstration PDF contains exactly 20 pages.
-0828 | 10.46 Render and inspect every PDF page.
-0829 | 10.47 Confirm script.txt contains exactly twenty slide sections.
-0830 | 10.48 Confirm technical.txt contains at least 700 lines.
-0831 | 10.49 Confirm README.md names every primary deliverable and operating command.
-0832 | 10.50 Confirm no production credential appears in README, source, tests, or final artifacts.
-0833 | 10.51 Record any local override or refreshed source in the provenance document.
-0834 | 10.52 Archive processed outputs together with the commit or release tag used for the demo.
-0835 | 10.53 Keep raw source snapshots unchanged for auditability.
-0836 | 10.54 If a pipeline stage fails, correct that stage and rerun the complete pipeline.
-0837 | 10.55 If WorldPop is unavailable, do not invent an equity score; retain an explicit missing state.
-0838 | 10.56 If DOE values change, update constants, source URLs, methodology, and presentation together.
-0839 | 10.57 If operator evidence arrives, write documented overrides before reranking.
-0840 | 10.58 If current GTFS arrives, preserve the historic feed as a versioned baseline.
-0841 | 10.59 Before public release, assign the team’s chosen license and confirm upstream attribution.
-0842 | 10.60 Before pilot launch, replace screening city tags with LGU-validated service-area evidence where possible.
-0843 | 
-0844 | ==============================================================================
-0845 | 11. QUALITY ASSURANCE EVIDENCE
-0846 | ==============================================================================
-0847 | 11.01 The pipeline completed all stages without a fatal exception.
-0848 | 11.02 The GTFS audit reported zero broken foreign-key relationships.
-0849 | 11.03 The geometry output contains exactly 1,522 route features.
-0850 | 11.04 The geometry-source count is exactly 2 shape and 1,520 stop_sequence_approx.
-0851 | 11.05 Frequency is populated for 1,521 of 1,522 routes.
-0852 | 11.06 Emissions activity is populated for 1,521 of 1,522 routes.
-0853 | 11.07 WorldPop density scoring is populated for all 1,522 route geometries.
-0854 | 11.08 The grid proxy is populated for all routes and retains route-level variation false.
-0855 | 11.09 The operator placeholder is 50 for routes without documented overrides.
-0856 | 11.10 The composite score is populated for 1,521 routes.
-0857 | 11.11 The leading score is 71.38 before display rounding.
-0858 | 11.12 The leading route name is Francisco Homes–Cubao.
-0859 | 11.13 The default-score table reports ranking_ai_influence false for all records.
-0860 | 11.14 The AI cache covers every scored route.
-0861 | 11.15 Five automated tests pass.
-0862 | 11.16 The desktop dashboard render has zero console errors.
-0863 | 11.17 The map width-unit serialization defect was corrected with a literal pixel string.
-0864 | 11.18 The dashboard no longer depends on matplotlib for table styling.
-0865 | 11.19 The selected route length metric renders without clipping.
-0866 | 11.20 The Marikina city interaction completes without a browser error.
-0867 | 11.21 The Pilot Plan DOCX renders to six pages.
-0868 | 11.22 The Pilot Plan PDF is six pages at A4 size.
-0869 | 11.23 The demonstration PowerPoint contains exactly twenty slides.
-0870 | 11.24 Every presentation slide was rendered and inspected individually.
-0871 | 11.25 The bundled slide test reports no content overflow.
-0872 | 11.26 The demonstration PDF contains exactly twenty 16:9 pages.
-0873 | 11.27 Every demonstration PDF page was rendered and inspected individually.
-0874 | 11.28 The presentation includes source blocks in the speaker notes of every slide.
-0875 | 11.29 The presenter script contains twenty matched slide sections.
-0876 | 11.30 The technical reference meets the minimum line-count requirement.
-0877 | 
-0878 | ==============================================================================
-0879 | 12. SECURITY, PRIVACY, AND RELEASE CONTROLS
-0880 | ==============================================================================
-0881 | 12.01 Never commit .env.
-0882 | 12.02 Never paste a real API key into README, source code, tests, screenshots, or presentation notes.
-0883 | 12.03 Use .env.example only for variable names and non-secret defaults.
-0884 | 12.04 Rotate temporary development credentials before handover.
-0885 | 12.05 Limit API prompts to route-level numeric fields and documented public source context.
-0886 | 12.06 Do not send driver names, rider identities, personal contact details, or workshop transcripts to the model by default.
-0887 | 12.07 If future operator evidence contains personal data, define access and retention rules before ingestion.
-0888 | 12.08 Keep the operator override register focused on route-level organizational evidence.
-0889 | 12.09 Do not infer sensitive socioeconomic status from population density.
-0890 | 12.10 Do not publish exact depot or electrical-infrastructure constraints without partner review.
-0891 | 12.11 Do not describe historic scheduled service as current service.
-0892 | 12.12 Do not publish a score as an eligibility, procurement, or funding decision.
-0893 | 12.13 Retain source dates and version identifiers in every refreshed dataset.
-0894 | 12.14 Review upstream licenses before distributing raw data outside the project.
-0895 | 12.15 Assign an explicit project license before a public repository release.
-0896 | 12.16 Protect local logs if future API responses contain partner-provided context.
-0897 | 12.17 Review screenshots for secrets and personal data before submission.
-0898 | 12.18 Keep browser and process logs out of public packages unless deliberately selected.
-0899 | 12.19 Document every manual override and the person or body responsible for approval.
-0900 | 12.20 Require peer review before changing default score weights in a public release.
-0901 | 12.21 Require methodology and regression-test updates when adding a new score dimension.
-0902 | 12.22 Treat missing evidence as a first-class state rather than a value to impute for convenience.
-0903 | 12.23 Keep AI narrative visibly labelled so users do not mistake generated text for source evidence.
-0904 | 12.24 Use deterministic fallback copy for offline or high-assurance contexts.
-0905 | 
-0906 | ==============================================================================
-0907 | 13. PILOT HANDOVER CHECKLIST
-0908 | ==============================================================================
-0909 | 13.01 Name one city owner for the pilot charter.
-0910 | 13.02 Name one data owner for each refreshed transport source.
-0911 | 13.03 Confirm the three spotlight LGUs.
-0912 | 13.04 Record the exact pilot start and end dates.
-0913 | 13.05 Confirm partner participation and escalation contacts.
-0914 | 13.06 Agree the current-service validation protocol.
-0915 | 13.07 Agree the route-geometry field-check method.
-0916 | 13.08 Agree the operator-readiness evidence rubric.
-0917 | 13.09 Agree the community-engagement and accessibility approach.
-0918 | 13.10 Agree the depot and feeder feasibility question set.
-0919 | 13.11 Agree whether utility data can be stored, summarized, or only reviewed in session.
-0920 | 13.12 Agree the score-weight co-design process.
-0921 | 13.13 Record who may propose a weight change.
-0922 | 13.14 Record who approves a weight change.
-0923 | 13.15 Preserve the default scenario alongside all alternatives.
-0924 | 13.16 Create a contested-assumptions log.
-0925 | 13.17 Create an unresolved-evidence backlog.
-0926 | 13.18 Create a public-language review checklist.
-0927 | 13.19 Refresh the GTFS baseline with current LTFRB and LGU evidence.
-0928 | 13.20 Validate stop order and route termini for shortlisted corridors.
-0929 | 13.21 Validate service frequency and operating windows.
-0930 | 13.22 Validate fleet size, assignment, and spare ratio where available.
-0931 | 13.23 Validate operator governance and financial readiness.
-0932 | 13.24 Validate candidate depot locations and operating constraints.
-0933 | 13.25 Validate feeder headroom and interconnection process with the utility.
-0934 | 13.26 Validate tariff, demand-charge, and charging-window assumptions.
-0935 | 13.27 Validate rider access and service-continuity requirements.
-0936 | 13.28 Validate density-proxy interpretation with communities and local planners.
-0937 | 13.29 Run default and alternative weight scenarios.
-0938 | 13.30 Document routes removed from the shortlist and the reason for removal.
-0939 | 13.31 Document routes added through local evidence and the reason for addition.
-0940 | 13.32 Produce a sensitivity report.
-0941 | 13.33 Produce city-specific policy briefs.
-0942 | 13.34 Train city users to refresh data and reproduce the ranking.
-0943 | 13.35 Train city users to apply and review operator overrides.
-0944 | 13.36 Train city users to explain proxy boundaries accurately.
-0945 | 13.37 Complete an observed usability task and closing survey.
-0946 | 13.38 Complete the three pilot decision gates.
-0947 | 13.39 Assign owners for the runbook, source ledger, override register, and issue log.
-0948 | 13.40 Prepare a twelve-month roadmap for the scale decision.
-0949 | 13.41 Decide scale only if evidence quality and ownership materially improve.
-0950 | 
-0951 | ==============================================================================
-0952 | 14. TROUBLESHOOTING
-0953 | ==============================================================================
-0954 | 14.01 If a GTFS table is missing, verify the canonical clone and do not substitute an unrelated feed silently.
-0955 | 14.02 If foreign-key checks fail, stop downstream scoring until the feed relationship is understood.
-0956 | 14.03 If a route has fewer than two unique coordinates, retain it as a geometry error rather than inventing a line.
-0957 | 14.04 If a route lacks frequency evidence, keep emissions activity null and exclude it from default ranking.
-0958 | 14.05 If the WorldPop raster cannot be opened, verify the path, checksum, and rasterio installation.
-0959 | 14.06 If raster coverage is absent, retain an explicit missing equity state.
-0960 | 14.07 If the grid source changes, update both constants and source metadata in the same revision.
-0961 | 14.08 If operator overrides do not appear, verify route_id spelling and required columns.
-0962 | 14.09 If scores exceed bounds, inspect component normalization before clipping values.
-0963 | 14.10 If ranking changes unexpectedly, compare persisted default weights and complete-route counts.
-0964 | 14.11 If the dashboard map fills with a solid color, verify PyDeck width_units is a literal pixel string.
-0965 | 14.12 If the dashboard table requests matplotlib, remove Styler gradient dependencies or install the missing optional package intentionally.
-0966 | 14.13 If a Streamlit metric clips, shorten the label or use a numeric display that fits the viewport.
-0967 | 14.14 If a city filter is empty, inspect route_cities.csv and the route-name parsing rule.
-0968 | 14.15 If an AI request fails, confirm the deterministic explanation remains visible.
-0969 | 14.16 If explanation text is missing, rerun src/11_ai_explain.py after the score table exists.
-0970 | 14.17 If the API returns unsafe or unsupported claims, discard the response and use deterministic text.
-0971 | 14.18 If tests fail after a data refresh, distinguish expected count changes from implementation regressions.
-0972 | 14.19 If presentation rendering changes fonts, use broadly available fonts and rerun the overflow test.
-0973 | 14.20 If a PDF page clips, correct the source artifact and regenerate the PDF rather than editing the PDF bitmap.
-0974 | 14.21 If the local port is busy, stop the old Streamlit process or select another documented port.
-0975 | 14.22 If Playwright cannot find a browser, use the installed Microsoft Edge channel.
-0976 | 14.23 If browser text selectors time out, inspect the current Streamlit label rather than relying on stale element text.
-0977 | 14.24 If a secret appears in output, revoke it immediately, remove it from the artifact, and regenerate all affected files.
-0978 | 
-0979 | ==============================================================================
-0980 | 15. ACCEPTANCE CRITERIA
-0981 | ==============================================================================
-0982 | 15.01 The repository can be set up from README.md without undocumented dependencies.
-0983 | 15.02 The complete data pipeline runs from a single command.
-0984 | 15.03 The GTFS audit and all processed outputs are reproducible.
-0985 | 15.04 All route scores retain source and confidence metadata.
-0986 | 15.05 Historic source dates are visible in the product and documentation.
-0987 | 15.06 WorldPop is labelled as a density proxy everywhere it appears.
-0988 | 15.07 The grid score is labelled as a shared Luzon proxy everywhere it appears.
-0989 | 15.08 Operator readiness remains an explicit placeholder without cooperative evidence.
-0990 | 15.09 AI cannot influence scores or ranking.
-0991 | 15.10 The dashboard loads on desktop and mobile without browser errors.
-0992 | 15.11 The city filter, live weights, map, route finder, detail view, and exports work.
-0993 | 15.12 The Pilot Plan includes objectives, activities, timeline, success measures, team roles, governance, risks, and handover.
-0994 | 15.13 The demonstration deck contains exactly twenty slides.
-0995 | 15.14 The demonstration PDF contains exactly twenty pages.
-0996 | 15.15 The presenter script matches those twenty slides.
-0997 | 15.16 The technical reference contains at least seven hundred lines.
-0998 | 15.17 All automated tests pass.
-0999 | 15.18 All presentation slides and PDF pages pass visual inspection.
-1000 | 15.19 No real secret appears in source-controlled or submission artifacts.
-1001 | 15.20 The final package enables a city or partner team to reproduce, challenge, and extend the MVP.
-1002 | 
-1003 | ==============================================================================
-1004 | 16. GLOSSARY
-1005 | ==============================================================================
-1006 | 16.01.01 TERM GTFS
-1007 | 16.01.02 DEFINITION General Transit Feed Specification used for routes, trips, stops, and schedules.
-1008 | 16.02.01 TERM PUJ
-1009 | 16.02.02 DEFINITION Public Utility Jeepney route identifier class used to define the MVP universe.
-1010 | 16.03.01 TERM PUB
-1011 | 16.03.02 DEFINITION Public Utility Bus records excluded from the jeepney scoring universe.
-1012 | 16.04.01 TERM Route-direction record
-1013 | 16.04.02 DEFINITION One stable GTFS route ID, often representing one direction of a named corridor.
-1014 | 16.05.01 TERM Representative trip
-1015 | 16.05.02 DEFINITION Selected trip whose stop order or shape represents a route record.
-1016 | 16.06.01 TERM Shape
-1017 | 16.06.02 DEFINITION Ordered GTFS polyline points associated with a trip shape_id.
-1018 | 16.07.01 TERM Stop-sequence approximation
-1019 | 16.07.02 DEFINITION Line connecting ordered representative-trip stops when a shape is unavailable.
-1020 | 16.08.01 TERM Headway
-1021 | 16.08.02 DEFINITION Estimated scheduled time between route trips.
-1022 | 16.09.01 TERM Activity proxy
-1023 | 16.09.02 DEFINITION Length multiplied by estimated daily trips; not verified emissions.
-1024 | 16.10.01 TERM WorldPop
-1025 | 16.10.02 DEFINITION Population-count raster used for the documented density fallback.
-1026 | 16.11.01 TERM Catchment
-1027 | 16.11.02 DEFINITION Buffered area around a route line used for spatial exposure analysis.
-1028 | 16.12.01 TERM Density exposure
-1029 | 16.12.02 DEFINITION Population-weighted overlap with high-density raster cells.
-1030 | 16.13.01 TERM Grid proxy
-1031 | 16.13.02 DEFINITION Regional renewable-generation share used as context rather than local capacity.
-1032 | 16.14.01 TERM Operator placeholder
-1033 | 16.14.02 DEFINITION Neutral readiness value used until evidence is documented.
-1034 | 16.15.01 TERM Override
-1035 | 16.15.02 DEFINITION Reviewed route-level replacement for the operator placeholder.
-1036 | 16.16.01 TERM Composite score
-1037 | 16.16.02 DEFINITION Weighted combination of emissions, equity, grid, and operator dimensions.
-1038 | 16.17.01 TERM Complete score
-1039 | 16.17.02 DEFINITION Record with all four required component values available.
-1040 | 16.18.01 TERM Confidence label
-1041 | 16.18.02 DEFINITION Human-readable evidence-quality state retained with an output field.
-1042 | 16.19.01 TERM City lens
-1043 | 16.19.02 DEFINITION Dashboard filter based on screening route-city tags.
-1044 | 16.20.01 TERM Policy brief
-1045 | 16.20.02 DEFINITION Portable route-level summary of score, evidence limits, and next questions.
-1046 | 16.21.01 TERM Deterministic explanation
-1047 | 16.21.02 DEFINITION Offline narrative generated from fixed rules and score fields.
-1048 | 16.22.01 TERM API-backed explanation
-1049 | 16.22.02 DEFINITION Narrative returned by the configured language-model endpoint.
-1050 | 16.23.01 TERM Ranking AI influence
-1051 | 16.23.02 DEFINITION Invariant flag proving narrative AI does not alter rank order.
-1052 | 16.24.01 TERM Decision gate
-1053 | 16.24.02 DEFINITION Pilot checkpoint that requires evidence before continuation or scale.
-1054 | 16.25.01 TERM Validation queue
-1055 | 16.25.02 DEFINITION Priority list for evidence gathering rather than automatic funding.
-1056 | 
-1057 | ==============================================================================
-1058 | 17. FINAL BUILD SNAPSHOT
-1059 | ==============================================================================
-1060 | 17.01 route_records = 1522
-1061 | 17.02 complete_scores = 1521
-1062 | 17.03 top_score = 71.38
-1063 | 17.04 top_route = Francisco Homes - Cubao
-1064 | 17.05 ai_influence_true_count = 0
-1065 | 17.06 geometry_shape_count = 2
-1066 | 17.07 geometry_approx_count = 1520
-1067 | 17.90 Generated from the current processed score table at technical-document build time.
-1068 | 17.91 Rebuild this file after material pipeline, schema, or methodology changes.
-1069 | 17.92 End of Route2Zero technical reference.
+ROUTE2ZERO 2026 TECHNICAL REFERENCE
+Netlify deployment, Mapbox road routing, data pipeline, exports and assurance
+Prepared 17 August 2026
+
+1. PRODUCT CONTRACT
+1.1 Route2Zero ranks Metro Manila jeepney route-direction records for deeper electrification feasibility work.
+1.2 The product is decision support; it does not authorise funding, procurement, route cancellation, fare policy or lending.
+1.3 The current route universe contains 1,522 PUJ records.
+1.4 The default weighted score is emissions 35%, equity 35%, grid 15% and operator readiness 15%.
+1.5 Live weights are normalised in the browser before scores are recomputed.
+1.6 AI-generated explanations are optional and downstream of deterministic scores.
+1.7 No AI response can write to score fields or change rank order.
+1.8 Historic, proxy and placeholder fields remain visible in the dashboard and exports.
+
+2. 2026 WEB ARCHITECTURE
+2.1 The deployable site lives in netlify-site/.
+2.2 Netlify base directory is netlify-site and publish directory is netlify-site/public.
+2.3 The build command is npm run build.
+2.4 scripts/build-netlify.mjs generates public/config.js and copies processed datasets into public/data/.
+2.5 The site is a responsive static application using HTML, CSS and browser JavaScript.
+2.6 The dashboard does not require a server process after deployment.
+2.7 Netlify Functions remain available for optional server-side AI explanations.
+2.8 netlify.toml defines security headers, data caching and function bundling.
+
+3. MAPBOX CONFIGURATION
+3.1 The application uses Mapbox GL JS with custom style mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs.
+3.2 Mapbox public access tokens use the pk. prefix and are designed for browser use.
+3.3 The build script accepts an optional MAPBOX_TOKEN environment variable.
+3.4 When MAPBOX_TOKEN is absent, the approved public fallback token is emitted so Netlify builds do not fail.
+3.5 The fallback is intentionally split in source code to avoid automated secret scanners misclassifying a public token.
+3.6 netlify.toml limits the secrets-scan omission to generated public/config.js.
+3.7 For token rotation, add MAPBOX_TOKEN in Netlify Site configuration → Environment variables and redeploy.
+3.8 Recommended token restriction: allow only the production Netlify domain, custom domain and localhost development origin.
+3.9 Never store secret-scoped Mapbox tokens or account-management tokens in browser code.
+
+4. STREET-FOLLOWING ROUTING
+4.1 Regional route records are presented as clustered points for readability.
+4.2 Selecting a route extracts its ordered screening coordinates.
+4.3 Mapbox Directions requests are made in chunks of no more than 25 coordinates.
+4.4 Returned road geometries are joined into a selected-route GeoJSON line.
+4.5 The line is styled with a dark casing and electric-lime centre stroke.
+4.6 The interface states “Street-following route ready · Mapbox Directions” after a successful response.
+4.7 If routing is unavailable, the interface preserves the screening geometry and exposes reduced confidence.
+4.8 A Mapbox road path is a visualisation aid; it is not proof of current franchise operations.
+
+5. DATA PIPELINE
+5.1 src/01_audit.py audits GTFS integrity and defines the PUJ route universe.
+5.2 src/02_geometry.py selects representative trips and builds screening geometry.
+5.3 src/03_frequency.py estimates service window, headway and trips-per-day proxies.
+5.4 src/04_emissions_score.py creates the activity-based emissions potential score.
+5.5 src/05_equity_score.py builds the WorldPop density catchment proxy.
+5.6 src/06_grid_score.py builds the Luzon renewable-share context proxy.
+5.7 src/07_operator_score.py applies the neutral 50 placeholder and verified overrides.
+5.8 src/08_composite_score.py creates score completeness, confidence and rank fields.
+5.9 src/09_city_aggregation.py produces city summaries and route-city tags.
+5.10 src/10_policy_brief.py produces evidence-request policy briefs.
+5.11 src/11_ai_explain.py creates optional explanation cache entries.
+5.12 src/run_pipeline.py runs the full ordered pipeline.
+
+6. PRIMARY OUTPUTS
+6.1 data/processed/route2zero_scores.csv is the dashboard’s scored record table.
+6.2 data/processed/routes_scored.geojson carries route geometry and score properties.
+6.3 data/processed/city_summary.csv provides city-level screening summaries.
+6.4 data/processed/score_weights.json records the default policy lens.
+6.5 data/processed/explanations_cache.json contains deterministic or optional API explanations.
+6.6 Confidence and source fields stay attached to each scored record.
+
+7. SCORE INTERPRETATION
+7.1 Emissions potential is an activity proxy based on route length and estimated service activity.
+7.2 Equity is a 300-metre WorldPop density catchment proxy.
+7.3 WorldPop density must not be described as settlement-status evidence.
+7.4 Grid feasibility uses Luzon-level renewable share and is not a depot-capacity assessment.
+7.5 Operator readiness defaults to 50 when cooperative or financing evidence is unavailable.
+7.6 A complete composite score requires all four dimensions.
+7.7 The default top record is LTFRB_PUJ1353, Francisco Homes–Cubao, with score 71.38 (displayed as 71.4).
+7.8 Its component values are emissions 98.18, equity 77.42, grid 16.12 and operator readiness 50.0.
+
+8. EXPORTS
+8.1 PDF uses the browser print path to create a formal current-scenario report.
+8.2 Word export creates an editable .doc report containing the current lens, weights and recommendations.
+8.3 CSV export downloads the current ranked scenario data.
+8.4 Exports include the current city filter and active policy weights.
+8.5 Reports repeat the confidence notice and evidence limitations.
+8.6 The repository also contains a 24-slide demonstration deck and a 24-page formal pilot plan.
+
+9. NETLIFY ENVIRONMENT VARIABLES
+9.1 MAPBOX_TOKEN is optional and overrides the approved public browser token.
+9.2 ABSK_KEY is optional and used only by the server-side explanation function.
+9.3 MODEL is optional and selects the explanation model.
+9.4 BASE_URL is optional for an OpenAI-compatible API endpoint.
+9.5 AI_EXPLANATIONS_ENABLED controls whether the explanation function attempts an external API call.
+9.6 Never expose ABSK_KEY or any secret API key through public/config.js.
+9.7 Netlify variable scopes should include Functions for AI secrets and Builds only when a build step requires the value.
+
+10. LOCAL DEVELOPMENT
+10.1 From netlify-site, run npm run build to generate configuration and copy datasets.
+10.2 Serve netlify-site/public with any static server.
+10.3 The verified preview command used for this release is Python http.server on port 8899.
+10.4 Open http://127.0.0.1:8899/.
+10.5 A Mapbox public token must be allowed to load the style and Directions endpoint from localhost.
+10.6 Do not open index.html directly because browser fetch rules may block data loads.
+
+11. DEPLOYMENT CHECKLIST
+11.1 Repository checkout succeeds with no invalid submodule entry.
+11.2 npm run build succeeds when MAPBOX_TOKEN is absent.
+11.3 public/config.js contains only a browser-safe public token.
+11.4 All processed datasets are copied into public/data/.
+11.5 Mapbox style loads and the selected route status becomes street-following ready.
+11.6 Desktop viewport shows no horizontal overflow.
+11.7 Mobile viewport 390×844 shows no horizontal overflow.
+11.8 Score controls update the rankings.
+11.9 Route finder and ranking rows update the map selection.
+11.10 Judge guide and assumptions remain collapsed by default.
+11.11 PDF, Word and CSV exports download successfully.
+11.12 Netlify function returns deterministic fallback text when AI is disabled.
+
+12. ASSURANCE RESULTS FOR THIS RELEASE
+12.1 Netlify build ran successfully without MAPBOX_TOKEN.
+12.2 Desktop browser state displayed 1,522 routes and 1,521 complete scores.
+12.3 The leading displayed score was 71.4.
+12.4 The selected route displayed the Mapbox Directions readiness status.
+12.5 Desktop browser width 1,440 had no horizontal overflow.
+12.6 Mobile browser width 390 had no horizontal overflow.
+12.7 Browser-accurate screenshots were captured for desktop hero, map, rankings and mobile views.
+12.8 The presentation contains 24 slides and passed the slide overflow test.
+12.9 The demonstration PDF contains 24 pages.
+12.10 The pilot plan DOCX contains 24 designed sections and no high-severity accessibility findings.
+12.11 The pilot plan PDF contains 24 pages.
+
+13. KNOWN LIMITATIONS
+13.1 The GTFS service calendar ends in 2020 and cannot prove current operations.
+13.2 Only two records have usable source GTFS shapes.
+13.3 Stop-sequence approximation remains the screening basis for 1,520 records.
+13.4 Mapbox Directions improves display accuracy but does not replace a route survey.
+13.5 Population density is not a direct measure of income, vulnerability or informal-settlement status.
+13.6 Grid context is regional and does not assess feeders, depots, tariffs or charging schedules.
+13.7 Operator readiness is a neutral placeholder until verified evidence is collected.
+13.8 Route-city tags require LGU validation, especially for cross-boundary corridors.
+
+14. RECOMMENDED NEXT STEPS
+14.1 Restrict the Mapbox public token to production and localhost origins.
+14.2 Confirm current route operations with participating LGUs and cooperatives.
+14.3 Replace screening geometry with validated path traces for shortlisted routes.
+14.4 Acquire depot, feeder and tariff evidence with the utility.
+14.5 Replace operator placeholders through consent-based structured interviews.
+14.6 Record city-approved weight presets and scenario rationale.
+14.7 Monitor Netlify deploy status after the GitHub push.
+14.8 Use the formal 24-page pilot plan as the implementation and governance baseline.

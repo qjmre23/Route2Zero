@@ -1,396 +1,534 @@
-{"kind":"deck","id":"pr/v7xrx4","name":"Deck"}
-{"kind":"layout","layoutId":"c5d84845-8890-4722-b3d0-79ec5c33f1f3","name":"Master","type":"master"}
-{"kind":"layout","layoutId":"c084cce8-643f-422c-bbae-b1400be53db9","name":"Title Slide","type":"title"}
-{"kind":"slide","id":"sl/y1g3sa","slide":1,"title":"Route2Zero","textShapes":4}
-{"kind":"textbox","id":"sh/hc3ah4vm","slide":1,"text":"Route2Zero","textPreview":"Route2Zero","textChars":10,"textLines":1,"bbox":[68,184,680,92]}
-{"kind":"textbox","id":"sh/gbut8ju1","slide":1,"text":"Transparent corridor intelligence for a just e-jeepney transition","textPreview":"Transparent corridor intelligence for a just e-jeepney transition","textChars":65,"textLines":1,"bbox":[72,282,680,86]}
-{"kind":"shape","id":"sh/3elcjets","slide":1,"bbox":[72,395,180,8]}
-{"kind":"textbox","id":"sh/2dcba9c7","slide":1,"text":"MVP demonstration · Metro Manila · 14 August 2026","textPreview":"MVP demonstration · Metro Manila · 14 August 2026","textChars":49,"textLines":1,"bbox":[72,430,700,32]}
-{"kind":"shape","id":"sh/p0nuloby","slide":1,"bbox":[864,228,32,32]}
-{"kind":"shape","id":"sh/4fetcjud","slide":1,"bbox":[1062,302,24,24]}
-{"kind":"shape","id":"sh/r25cnyto","slide":1,"bbox":[946,426,28,28]}
-{"kind":"shape","id":"sh/q1wbetcj","slide":1,"bbox":[1124,506,34,34]}
-{"kind":"shape","id":"sh/gzetw7qd","slide":1,"bbox":[892,242,178,5]}
-{"kind":"shape","id":"sh/h0na5c7y","slide":1,"bbox":[956,436,180,5]}
-{"kind":"shape","id":"sh/udwbux8n","slide":1,"bbox":[876,254,92,5]}
-{"kind":"textbox","id":"sh/fe5s32p8","slide":1,"text":"DATA → EVIDENCE → DECISION","textPreview":"DATA → EVIDENCE → DECISION","textChars":26,"textLines":1,"bbox":[802,590,392,30]}
-{"kind":"image","id":"im/nyx83ip0","slide":1,"name":"","geometry":"rect","alt":"AI x City Climate Action Hackathon 2026 banner","bbox":[0,0,1280,116]}
-{"kind":"notes","id":"nt/y1g3sa","slide":1,"text":"Open with the city decision: which corridors deserve deeper electrification planning first?\n\n[Sources]\n- Local project brief: Route2Zero_Codex_Build_Prompt.md\n- 2026 AI x CCA Hackathon Pilot Plan sample banner\n[/Sources]"}
-{"kind":"slide","id":"sl/aszaaw","slide":2,"title":"ROUTE2ZERO","textShapes":13}
-{"kind":"shape","id":"sh/50butsby","slide":2,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/yxkvydsn","slide":2,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/jytcrits","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/wv2dw3ah","slide":2,"name":"slide-title","text":"Cities need a shortlist they can challenge—not a black box","textPreview":"Cities need a shortlist they can challenge—not a black box","textChars":58,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/xwbup8b2","slide":2,"text":"Route2Zero turns incomplete transport evidence into a transparent decision conversation.","textPreview":"Route2Zero turns incomplete transport evidence into a transparent decision conversation.","textChars":88,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/a90budsb","slide":2,"bbox":[58,226,500,330]}
-{"kind":"textbox","id":"sh/ba9cnytw","slide":2,"text":"The decision","textPreview":"The decision","textChars":12,"textLines":1,"bbox":[88,256,410,34]}
-{"kind":"textbox","id":"sh/grmd87al","slide":2,"text":"Where should cities investigate e-jeepney conversion first?","textPreview":"Where should cities investigate e-jeepney conversion first?","textChars":59,"textLines":1,"bbox":[88,308,400,138]}
-{"kind":"textbox","id":"sh/hsvu1cb6","slide":2,"text":"A ranking is useful only when its sources, proxies, missing fields, and adjustable assumptions stay visible.","textPreview":"A ranking is useful only when its sources, proxies, missing fields, and adjustable assumptions stay visible.","textChars":108,"textLines":1,"bbox":[88,472,410,68]}
-{"kind":"shape","id":"sh/5o7m1cv2","slide":2,"bbox":[640,248,34,34]}
-{"kind":"textbox","id":"sh/4nyl87eh","slide":2,"text":"Climate","textPreview":"Climate","textChars":7,"textLines":1,"bbox":[700,238,360,34]}
-{"kind":"textbox","id":"sh/jmp4zmdc","slide":2,"text":"Surface high-activity corridors","textPreview":"Surface high-activity corridors","textChars":31,"textLines":1,"bbox":[700,277,410,54]}
-{"kind":"shape","id":"sh/i1g36hwr","slide":2,"bbox":[640,366,34,34]}
-{"kind":"textbox","id":"sh/h07mxcv6","slide":2,"text":"Equity","textPreview":"Equity","textChars":6,"textLines":1,"bbox":[700,356,360,34]}
-{"kind":"textbox","id":"sh/wzyl47el","slide":2,"text":"Keep density exposure visible","textPreview":"Keep density exposure visible","textChars":29,"textLines":1,"bbox":[700,395,410,54]}
-{"kind":"shape","id":"sh/vy54v2d0","slide":2,"bbox":[640,484,34,34]}
-{"kind":"textbox","id":"sh/uxw32xwf","slide":2,"text":"Feasibility","textPreview":"Feasibility","textChars":11,"textLines":1,"bbox":[700,474,360,34]}
-{"kind":"textbox","id":"sh/1wrm9wva","slide":2,"text":"Flag grid and operator gaps","textPreview":"Flag grid and operator gaps","textChars":27,"textLines":1,"bbox":[700,513,410,54]}
-{"kind":"notes","id":"nt/aszaaw","slide":2,"text":"Frame Route2Zero as decision support, not an automated investment decision.\n\n[Sources]\n- docs/methodology.md\n- docs/data_provenance.md\n[/Sources]"}
-{"kind":"slide","id":"sl/4qsmcm","slide":3,"title":"ROUTE2ZERO","textShapes":14}
-{"kind":"shape","id":"sh/3u18fe5w","slide":3,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/ovap8j6h","slide":3,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/pwjqhon2","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/qxs7aton","slide":3,"name":"slide-title","text":"The MVP starts with Metro Manila and ends with accountable owners","textPreview":"The MVP starts with Metro Manila and ends with accountable owners","textChars":65,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/by18jy58","slide":3,"text":"A six-month pilot moves from historic-data screening to city-validated evidence.","textPreview":"A six-month pilot moves from historic-data screening to city-validated evidence.","textChars":80,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"textbox","id":"sh/cza9c3mt","slide":3,"text":"1,522","textPreview":"1,522","textChars":5,"textLines":1,"bbox":[70,238,300,96]}
-{"kind":"textbox","id":"sh/d0jql8ny","slide":3,"text":"jeepney route-direction records screened","textPreview":"jeepney route-direction records screened","textChars":40,"textLines":1,"bbox":[74,328,300,54]}
-{"kind":"textbox","id":"sh/y1cred4j","slide":3,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[490,238,300,96]}
-{"kind":"textbox","id":"sh/z2l8ny54","slide":3,"text":"spotlight LGUs proposed for validation","textPreview":"spotlight LGUs proposed for validation","textChars":38,"textLines":1,"bbox":[494,328,300,54]}
-{"kind":"textbox","id":"sh/jexwfqt8","slide":3,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[850,238,300,96]}
-{"kind":"textbox","id":"sh/idofmlsn","slide":3,"text":"city-validated shortlist as the decision output","textPreview":"city-validated shortlist as the decision output","textChars":47,"textLines":1,"bbox":[854,328,300,54]}
-{"kind":"shape","id":"sh/5gfeh0be","slide":3,"bbox":[76,430,1080,3]}
-{"kind":"shape","id":"sh/kf6xovat","slide":3,"bbox":[84,484,16,16]}
-{"kind":"textbox","id":"sh/vaxwb6tc","slide":3,"text":"LGU climate and transport teams","textPreview":"LGU climate and transport teams","textChars":31,"textLines":1,"bbox":[112,472,240,60]}
-{"kind":"shape","id":"sh/a94vilsr","slide":3,"bbox":[370,484,16,16]}
-{"kind":"textbox","id":"sh/xcfedgb2","slide":3,"text":"Operators and drivers","textPreview":"Operators and drivers","textChars":21,"textLines":1,"bbox":[398,472,240,60]}
-{"kind":"shape","id":"sh/wb6xkbax","slide":3,"bbox":[656,484,16,16]}
-{"kind":"textbox","id":"sh/f6hwnatg","slide":3,"text":"Riders and communities","textPreview":"Riders and communities","textChars":22,"textLines":1,"bbox":[684,472,240,60]}
-{"kind":"shape","id":"sh/e58fu5sv","slide":3,"bbox":[942,484,16,16]}
-{"kind":"textbox","id":"sh/q1czm9c3","slide":3,"text":"Utilities and financing partners","textPreview":"Utilities and financing partners","textChars":32,"textLines":1,"bbox":[970,472,240,60]}
-{"kind":"notes","id":"nt/4qsmcm","slide":3,"text":"The hackathon output is an MVP. The pilot’s value comes from refreshing data and assigning ownership for each next action.\n\n[Sources]\n- output/pdf/Route2Zero_Pilot_Plan.pdf\n- data/processed/route2zero_scores.csv\n[/Sources]"}
-{"kind":"slide","id":"sl/45mx6t","slide":4,"title":"ROUTE2ZERO","textShapes":12}
-{"kind":"shape","id":"sh/epgn2tsn","slide":4,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/1sr6xory","slide":4,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/gri54jad","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/r2pore9w","slide":4,"name":"slide-title","text":"One screen connects the network view to a defensible route story","textPreview":"One screen connects the network view to a defensible route story","textChars":64,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/61gny9sb","slide":4,"text":"Filters change the lens; every route keeps its score components and confidence labels.","textPreview":"Filters change the lens; every route keeps its score components and confidence labels.","textChars":86,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/sny50jah","slide":4,"bbox":[924,221,48,48]}
-{"kind":"textbox","id":"sh/jy54nu90","slide":4,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[930,226,38,38]}
-{"kind":"textbox","id":"sh/ixwnu9sf","slide":4,"text":"Choose a city lens","textPreview":"Choose a city lens","textChars":18,"textLines":1,"bbox":[992,224,220,50]}
-{"kind":"shape","id":"sh/wfexg72t","slide":4,"bbox":[924,313,48,48]}
-{"kind":"textbox","id":"sh/x0nepc3y","slide":4,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[930,318,38,38]}
-{"kind":"textbox","id":"sh/adwfexkn","slide":4,"text":"Adjust four weights","textPreview":"Adjust four weights","textChars":19,"textLines":1,"bbox":[992,316,220,50]}
-{"kind":"shape","id":"sh/be5wn2l8","slide":4,"bbox":[924,405,48,48]}
-{"kind":"textbox","id":"sh/obexc72h","slide":4,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[930,410,38,38]}
-{"kind":"textbox","id":"sh/9cnelc32","slide":4,"text":"Explore the network","textPreview":"Explore the network","textChars":19,"textLines":1,"bbox":[992,408,220,50]}
-{"kind":"shape","id":"sh/m9cfaxkb","slide":4,"bbox":[924,497,48,48]}
-{"kind":"textbox","id":"sh/nalwj2lw","slide":4,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[930,502,38,38]}
-{"kind":"textbox","id":"sh/87yxor2l","slide":4,"text":"Open a route explanation","textPreview":"Open a route explanation","textChars":24,"textLines":1,"bbox":[992,500,220,50]}
-{"kind":"image","id":"im/of6tkj2p","slide":4,"name":"","geometry":"roundRect","alt":"Route2Zero dashboard overview","bbox":[54,208,822,456]}
-{"kind":"notes","id":"nt/45mx6t","slide":4,"text":"Walk left to right: city filter, weight controls, map, then route-level evidence.\n\n[Sources]\n- output/playwright/route2zero-desktop-top-final.png\n[/Sources]"}
-{"kind":"slide","id":"sl/ltocyi","slide":5,"title":"ROUTE2ZERO","textShapes":12}
-{"kind":"shape","id":"sh/ep0jeps7","slide":5,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/1cr294ry","slide":5,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/gbi1gzad","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/3e9kbe9o","slide":5,"name":"slide-title","text":"The audit is strict about what the historic GTFS can—and cannot—prove","textPreview":"The audit is strict about what the historic GTFS can—and cannot—prove","textChars":69,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/2d0ji98j","slide":5,"text":"The canonical Sakay master feed is reproducible, but its calendar ends in 2020.","textPreview":"The canonical Sakay master feed is reproducible, but its calendar ends in 2020.","textChars":79,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"textbox","id":"sh/pgr2d4ru","slide":5,"text":"1,717","textPreview":"1,717","textChars":5,"textLines":1,"bbox":[76,228,300,96]}
-{"kind":"textbox","id":"sh/ofi1kzq9","slide":5,"text":"routes in the canonical feed","textPreview":"routes in the canonical feed","textChars":28,"textLines":1,"bbox":[80,318,300,54]}
-{"kind":"textbox","id":"sh/bitkfe90","slide":5,"text":"1,522","textPreview":"1,522","textChars":5,"textLines":1,"bbox":[440,228,300,96]}
-{"kind":"textbox","id":"sh/qhkjm98f","slide":5,"text":"PUJ route-direction records","textPreview":"PUJ route-direction records","textChars":27,"textLines":1,"bbox":[444,318,300,54]}
-{"kind":"textbox","id":"sh/c7alwny1","slide":5,"text":"0","textPreview":"0","textChars":1,"textLines":1,"bbox":[804,228,300,96]}
-{"kind":"textbox","id":"sh/d8j25sz6","slide":5,"text":"broken foreign-key references","textPreview":"broken foreign-key references","textChars":29,"textLines":1,"bbox":[808,318,300,54]}
-{"kind":"shape","id":"sh/q583udgv","slide":5,"bbox":[74,450,1090,118]}
-{"kind":"textbox","id":"sh/r6hk3ihg","slide":5,"text":"Historic-data boundary","textPreview":"Historic-data boundary","textChars":22,"textLines":1,"bbox":[100,474,270,34]}
-{"kind":"textbox","id":"sh/0bal0nyx","slide":5,"text":"Service dates span 2013–2020. Route2Zero is a screening baseline, not a claim about current operations.","textPreview":"Service dates span 2013–2020. Route2Zero is a screening baseline, not a claim about current operations.","textChars":103,"textLines":1,"bbox":[100,516,990,40]}
-{"kind":"notes","id":"nt/ltocyi","slide":5,"text":"Emphasize that data quality is part of the product. The dashboard foregrounds this limitation.\n\n[Sources]\n- https://github.com/sakayph/gtfs\n- data/processed/audit_report.md\n- docs/data_provenance.md\n[/Sources]"}
-{"kind":"slide","id":"sl/b6neff","slide":6,"title":"ROUTE2ZERO","textShapes":12}
-{"kind":"shape","id":"sh/dwzapsvq","slide":6,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/qtorudcz","slide":6,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/ruxsnidk","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/0jq907u1","slide":6,"name":"slide-title","text":"Geometry confidence travels with every route line","textPreview":"Geometry confidence travels with every route line","textChars":49,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/1kzatcvm","slide":6,"text":"Only two jeepney records have GTFS shapes; the fallback connects ordered stops and labels the approximation.","textPreview":"Only two jeepney records have GTFS shapes; the fallback connects ordered stops and labels the approximation.","textChars":108,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"textbox","id":"sh/eh8ryxcv","slide":6,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[90,250,160,80]}
-{"kind":"textbox","id":"sh/zihsr2dg","slide":6,"text":"GTFS shape","textPreview":"GTFS shape","textChars":10,"textLines":1,"bbox":[72,336,200,38]}
-{"kind":"textbox","id":"sh/gnm9o3ux","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[310,272,90,60]}
-{"kind":"shape","id":"sh/hofqh8vi","slide":6,"bbox":[420,220,338,190]}
-{"kind":"textbox","id":"sh/ds7adwva","slide":6,"text":"Representative trip","textPreview":"Representative trip","textChars":19,"textLines":1,"bbox":[452,250,274,36]}
-{"kind":"shape","id":"sh/cryt4ru5","slide":6,"bbox":[486,341,58,4]}
-{"kind":"shape","id":"sh/rqpsbmdk","slide":6,"bbox":[474,330,24,24]}
-{"kind":"shape","id":"sh/qpgb2hcz","slide":6,"bbox":[544,307,66,4]}
-{"kind":"shape","id":"sh/1grahwvm","slide":6,"bbox":[532,296,24,24]}
-{"kind":"shape","id":"sh/0fit8ru1","slide":6,"bbox":[610,351,64,4]}
-{"kind":"shape","id":"sh/zu9sfmdg","slide":6,"bbox":[598,340,24,24]}
-{"kind":"shape","id":"sh/et0b61cv","slide":6,"bbox":[674,315,46,4]}
-{"kind":"shape","id":"sh/9krulgbi","slide":6,"bbox":[662,304,24,24]}
-{"kind":"shape","id":"sh/ojitcbud","slide":6,"bbox":[708,350,24,24]}
-{"kind":"textbox","id":"sh/8nqdof29","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[782,272,90,60]}
-{"kind":"textbox","id":"sh/tozuhkju","slide":6,"text":"1,520","textPreview":"1,520","textChars":5,"textLines":1,"bbox":[930,250,220,80]}
-{"kind":"textbox","id":"sh/618vm5k3","slide":6,"text":"stop-sequence approximations","textPreview":"stop-sequence approximations","textChars":28,"textLines":1,"bbox":[900,336,280,62]}
-{"kind":"textbox","id":"sh/7mhcfa1o","slide":6,"text":"Why it matters: route order is useful for screening, but the corridor must be ground-checked before investment.","textPreview":"Why it matters: route order is useful for screening, but the corridor must be ground-checked before investment.","textChars":111,"textLines":1,"bbox":[170,506,940,72]}
-{"kind":"notes","id":"nt/b6neff","slide":6,"text":"Describe the two-tier geometry method and show why the confidence label is operationally important.\n\n[Sources]\n- docs/data_provenance.md\n- src/02_geometry.py\n[/Sources]"}
-{"kind":"slide","id":"sl/v5aus1","slide":7,"title":"ROUTE2ZERO","textShapes":14}
-{"kind":"shape","id":"sh/b21wfu90","slide":7,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/w3axozal","slide":7,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/x4jeh4r6","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/mxsfipsj","slide":7,"name":"slide-title","text":"Four interpretable signals combine into one adjustable priority score","textPreview":"Four interpretable signals combine into one adjustable priority score","textChars":69,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/ny1wbu94","slide":7,"text":"The default weights are visible and normalized whenever a user changes them.","textPreview":"The default weights are visible and normalized whenever a user changes them.","textChars":76,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/ozaxkzap","slide":7,"bbox":[116,246,76,76]}
-{"kind":"textbox","id":"sh/90jed4ru","slide":7,"text":"35%","textPreview":"35%","textChars":3,"textLines":1,"bbox":[116,266,76,34]}
-{"kind":"textbox","id":"sh/e98fe5s7","slide":7,"text":"Emissions activity","textPreview":"Emissions activity","textChars":18,"textLines":1,"bbox":[212,252,238,64]}
-{"kind":"shape","id":"sh/zahw7a9s","slide":7,"bbox":[116,454,76,76]}
-{"kind":"textbox","id":"sh/vet4v65w","slide":7,"text":"35%","textPreview":"35%","textChars":3,"textLines":1,"bbox":[116,474,76,34]}
-{"kind":"textbox","id":"sh/adknm1ob","slide":7,"text":"Equity density","textPreview":"Equity density","textChars":14,"textLines":1,"bbox":[212,460,238,64]}
-{"kind":"shape","id":"sh/xgvmxgn2","slide":7,"bbox":[890,246,76,76]}
-{"kind":"textbox","id":"sh/wf25obmh","slide":7,"text":"15%","textPreview":"15%","textChars":3,"textLines":1,"bbox":[890,266,76,34]}
-{"kind":"textbox","id":"sh/j2d4zq5s","slide":7,"text":"Grid feasibility","textPreview":"Grid feasibility","textChars":16,"textLines":1,"bbox":[986,252,238,64]}
-{"kind":"shape","id":"sh/ih4nql4n","slide":7,"bbox":[890,454,76,76]}
-{"kind":"textbox","id":"sh/54vm1gny","slide":7,"text":"15%","textPreview":"15%","textChars":3,"textLines":1,"bbox":[890,474,76,34]}
-{"kind":"textbox","id":"sh/k3m5sbmd","slide":7,"text":"Operator readiness","textPreview":"Operator readiness","textChars":18,"textLines":1,"bbox":[986,460,238,64]}
-{"kind":"shape","id":"sh/zm94nm5o","slide":7,"bbox":[468,278,344,208]}
-{"kind":"textbox","id":"sh/yl03eho3","slide":7,"text":"JUST TRANSITION","textPreview":"JUST TRANSITION","textChars":15,"textLines":1,"bbox":[508,325,264,28]}
-{"kind":"textbox","id":"sh/2dszits3","slide":7,"text":"SCORE","textPreview":"SCORE","textChars":5,"textLines":1,"bbox":[508,360,264,68]}
-{"kind":"shape","id":"sh/3e1gbyto","slide":7,"bbox":[192,282,286,4]}
-{"kind":"shape","id":"sh/ofahkjat","slide":7,"bbox":[192,490,286,4]}
-{"kind":"shape","id":"sh/pgjydobe","slide":7,"bbox":[808,282,82,4]}
-{"kind":"shape","id":"sh/e98ze9cr","slide":7,"bbox":[808,490,82,4]}
-{"kind":"notes","id":"nt/v5aus1","slide":7,"text":"The score is an auditable weighted average. Users can challenge weights live.\n\n[Sources]\n- docs/methodology.md\n- src/08_composite_score.py\n[/Sources]"}
-{"kind":"slide","id":"sl/a1dcst","slide":8,"title":"SIGNAL 1 · CLIMATE","textShapes":13}
-{"kind":"shape","id":"sh/qd4vu1g3","slide":8,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/dgvepgze","slide":8,"text":"SIGNAL 1 · CLIMATE","textPreview":"SIGNAL 1 · CLIMATE","textChars":18,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/cfmdwbyt","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/zixwrqhk","slide":8,"name":"slide-title","text":"Emissions potential rewards service activity—not claimed fuel savings","textPreview":"Emissions potential rewards service activity—not claimed fuel savings","textChars":69,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/yhovylgz","slide":8,"text":"Length × estimated daily trips is a transparent activity proxy.","textPreview":"Length × estimated daily trips is a transparent activity proxy.","textChars":63,"textLines":1,"bbox":[84,150,1000,34]}
-{"kind":"textbox","id":"sh/lkfetgfq","slide":8,"text":"98.2","textPreview":"98.2","textChars":4,"textLines":1,"bbox":[68,228,280,90]}
-{"kind":"textbox","id":"sh/0j6d0vy5","slide":8,"text":"Top route activity score","textPreview":"Top route activity score","textChars":24,"textLines":1,"bbox":[72,322,280,34]}
-{"kind":"textbox","id":"sh/fmtcfmhg","slide":8,"text":"length (km)","textPreview":"length (km)","textChars":11,"textLines":1,"bbox":[442,250,190,42]}
-{"kind":"textbox","id":"sh/elkvmhgv","slide":8,"text":"×","textPreview":"×","textChars":1,"textLines":1,"bbox":[632,250,50,42]}
-{"kind":"textbox","id":"sh/sru9gnml","slide":8,"text":"trips/day","textPreview":"trips/day","textChars":9,"textLines":1,"bbox":[688,250,190,42]}
-{"kind":"textbox","id":"sh/ds3a9836","slide":8,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[886,250,70,42]}
-{"kind":"textbox","id":"sh/qpcred4f","slide":8,"text":"percentile","textPreview":"percentile","textChars":10,"textLines":1,"bbox":[960,250,190,42]}
-{"kind":"shape","id":"sh/rql87il0","slide":8,"bbox":[428,324,730,5]}
-{"kind":"textbox","id":"sh/0ve9knmh","slide":8,"text":"Interpretation","textPreview":"Interpretation","textChars":14,"textLines":1,"bbox":[430,364,210,30]}
-{"kind":"textbox","id":"sh/1wnads32","slide":8,"text":"Higher values identify corridors with more transport activity to examine. They do not estimate fleet fuel use, grid losses, or verified CO₂ reductions.","textPreview":"Higher values identify corridors with more transport activity to examine. They do not estimate fleet fuel use, grid losses, or verified C...","textChars":151,"textLines":1,"bbox":[430,407,710,126]}
-{"kind":"notes","id":"nt/a1dcst","slide":8,"text":"Avoid calling this avoided emissions. It is an activity-based prioritization proxy.\n\n[Sources]\n- docs/methodology.md\n- src/04_emissions_score.py\n[/Sources]"}
-{"kind":"slide","id":"sl/jcc8l3","slide":9,"title":"SIGNAL 2 · EQUITY","textShapes":11}
-{"kind":"shape","id":"sh/horep4nu","slide":9,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/u1gvup43","slide":9,"text":"SIGNAL 2 · EQUITY","textPreview":"SIGNAL 2 · EQUITY","textChars":17,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/v2pcnu5o","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/8zydszmd","slide":9,"name":"slide-title","text":"WorldPop shows density exposure, not informal-settlement status","textPreview":"WorldPop shows density exposure, not informal-settlement status","textChars":63,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/907ul4ni","slide":9,"text":"A 300-metre route catchment is scored against the densest quarter of positive NCR raster cells.","textPreview":"A 300-metre route catchment is scored against the densest quarter of positive NCR raster cells.","textChars":95,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/mxgvqp47","slide":9,"bbox":[70,216,392,358]}
-{"kind":"shape","id":"sh/7ypcju5s","slide":9,"bbox":[126,276,30,30]}
-{"kind":"shape","id":"sh/svid4jmh","slide":9,"bbox":[212,338,54,54]}
-{"kind":"shape","id":"sh/dwbexon2","slide":9,"bbox":[322,258,72,72]}
-{"kind":"shape","id":"sh/1k7ex4ne","slide":9,"bbox":[348,420,40,40]}
-{"kind":"shape","id":"sh/0jyxozmt","slide":9,"bbox":[178,458,62,62]}
-{"kind":"shape","id":"sh/zipwvu5o","slide":9,"bbox":[116,382,266,12]}
-{"kind":"textbox","id":"sh/ehgfmp43","slide":9,"text":"300 m catchment","textPreview":"300 m catchment","textChars":15,"textLines":1,"bbox":[130,516,280,30]}
-{"kind":"textbox","id":"sh/dgnet4ni","slide":9,"text":"77.4","textPreview":"77.4","textChars":4,"textLines":1,"bbox":[560,226,300,96]}
-{"kind":"textbox","id":"sh/cfexkz6x","slide":9,"text":"Top route density-exposure score","textPreview":"Top route density-exposure score","textChars":32,"textLines":1,"bbox":[564,316,300,54]}
-{"kind":"textbox","id":"sh/re5wru5c","slide":9,"text":"Safe claim","textPreview":"Safe claim","textChars":10,"textLines":1,"bbox":[564,390,180,30]}
-{"kind":"textbox","id":"sh/qdwfipor","slide":9,"text":"The corridor overlaps high-density population cells.","textPreview":"The corridor overlaps high-density population cells.","textChars":52,"textLines":1,"bbox":[564,428,550,54]}
-{"kind":"textbox","id":"sh/xcry5onm","slide":9,"text":"Unsafe claim","textPreview":"Unsafe claim","textChars":12,"textLines":1,"bbox":[564,514,180,30]}
-{"kind":"textbox","id":"sh/wbixwjm1","slide":9,"text":"The corridor serves an informal settlement.","textPreview":"The corridor serves an informal settlement.","textChars":43,"textLines":1,"bbox":[564,552,550,42]}
-{"kind":"notes","id":"nt/jcc8l3","slide":9,"text":"The visible wording protects against turning a density raster into a socioeconomic label.\n\n[Sources]\n- https://hub.worldpop.org/geodata/summary?id=33241\n- docs/methodology.md\n- src/05_equity_score.py\n[/Sources]"}
-{"kind":"slide","id":"sl/pms0i3","slide":10,"title":"SIGNAL 3 · GRID","textShapes":13}
-{"kind":"shape","id":"sh/a1kjqtgn","slide":10,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/x4vi18fy","slide":10,"text":"SIGNAL 3 · GRID","textPreview":"SIGNAL 3 · GRID","textChars":15,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/w3m1s3yd","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/nyt0vexw","slide":10,"name":"slide-title","text":"The current grid signal is one Luzon baseline—not local charger capacity","textPreview":"The current grid signal is one Luzon baseline—not local charger capacity","textChars":72,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/mxkjmtgb","slide":10,"text":"It is intentionally constant across routes until depot, feeder, tariff, and resiliency evidence arrives.","textPreview":"It is intentionally constant across routes until depot, feeder, tariff, and resiliency evidence arrives.","textChars":104,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"textbox","id":"sh/90bixof2","slide":10,"text":"16.1%","textPreview":"16.1%","textChars":5,"textLines":1,"bbox":[74,242,330,96]}
-{"kind":"textbox","id":"sh/8z21ojyh","slide":10,"text":"2024 Luzon renewable share","textPreview":"2024 Luzon renewable share","textChars":26,"textLines":1,"bbox":[80,344,350,42]}
-{"kind":"textbox","id":"sh/7udk7ix0","slide":10,"text":"14,550 GWh","textPreview":"14,550 GWh","textChars":10,"textLines":1,"bbox":[80,420,240,38]}
-{"kind":"textbox","id":"sh/6t4jydgf","slide":10,"text":"renewable generation","textPreview":"renewable generation","textChars":20,"textLines":1,"bbox":[80,462,240,30]}
-{"kind":"textbox","id":"sh/wzetsvml","slide":10,"text":"÷","textPreview":"÷","textChars":1,"textLines":1,"bbox":[360,420,70,38]}
-{"kind":"textbox","id":"sh/h0nu10n6","slide":10,"text":"90,269 GWh","textPreview":"90,269 GWh","textChars":10,"textLines":1,"bbox":[458,420,250,38]}
-{"kind":"textbox","id":"sh/uxwbq54v","slide":10,"text":"total generation","textPreview":"total generation","textChars":16,"textLines":1,"bbox":[458,462,240,30]}
-{"kind":"shape","id":"sh/vy5szq5g","slide":10,"bbox":[762,236,430,286]}
-{"kind":"textbox","id":"sh/8vetovmp","slide":10,"text":"Required before investment","textPreview":"Required before investment","textChars":26,"textLines":1,"bbox":[796,270,360,34]}
-{"kind":"textbox","id":"sh/9wnax0na","slide":10,"text":"• candidate depot\n• distribution feeder\n• interconnection window\n• tariff and demand charges\n• solar / storage option","textPreview":"• candidate depot | • distribution feeder | • interconnection window | • tariff and demand charges | • solar / storage option","textChars":117,"textLines":5,"bbox":[796,322,348,180]}
-{"kind":"notes","id":"nt/pms0i3","slide":10,"text":"Keep the regional score visibly separate from local electrical feasibility.\n\n[Sources]\n- https://prod-cms.doe.gov.ph/documents/d/guest/-final-11-20-25_doe-key-energy-stat-pocket-size-2024-pdf\n- https://doe.gov.ph/sites/default/files/pdf/pep/PEP_2023-2050_Volume_III.pdf\n- docs/methodology.md\n[/Sources]"}
-{"kind":"slide","id":"sl/cof388","slide":11,"title":"SIGNAL 4 · OPERATORS","textShapes":12}
-{"kind":"shape","id":"sh/l0byx4ja","slide":11,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/ydkfmp0j","slide":11,"text":"SIGNAL 4 · OPERATORS","textPreview":"SIGNAL 4 · OPERATORS","textChars":20,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/zetgvu14","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/832hsjil","slide":11,"name":"slide-title","text":"Operator readiness starts neutral and is designed to be replaced","textPreview":"Operator readiness starts neutral and is designed to be replaced","textChars":64,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/94vy14j6","slide":11,"text":"Every route receives 50/100 until a cooperative workshop produces documented evidence.","textPreview":"Every route receives 50/100 until a cooperative workshop produces documented evidence.","textChars":86,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"textbox","id":"sh/m1kzq90v","slide":11,"text":"50","textPreview":"50","textChars":2,"textLines":1,"bbox":[74,222,300,120]}
-{"kind":"textbox","id":"sh/72tgze1g","slide":11,"text":"neutral placeholder","textPreview":"neutral placeholder","textChars":19,"textLines":1,"bbox":[82,346,290,36]}
-{"kind":"shape","id":"sh/w7mhwjix","slide":11,"bbox":[430,278,680,8]}
-{"kind":"shape","id":"sh/h8vy5oji","slide":11,"bbox":[434,255,54,54]}
-{"kind":"textbox","id":"sh/p03udcnu","slide":11,"text":"Fleet & depot","textPreview":"Fleet & depot","textChars":13,"textLines":1,"bbox":[400,330,120,54]}
-{"kind":"shape","id":"sh/ozutk769","slide":11,"bbox":[654,255,54,54]}
-{"kind":"textbox","id":"sh/3ylcb25o","slide":11,"text":"Finance","textPreview":"Finance","textChars":7,"textLines":1,"bbox":[620,330,120,54]}
-{"kind":"shape","id":"sh/2xcbixo3","slide":11,"bbox":[874,255,54,54]}
-{"kind":"textbox","id":"sh/d4nuhcnq","slide":11,"text":"Operations","textPreview":"Operations","textChars":10,"textLines":1,"bbox":[840,330,120,54]}
-{"kind":"shape","id":"sh/c3eto765","slide":11,"bbox":[1094,255,54,54]}
-{"kind":"textbox","id":"sh/b2lcf25k","slide":11,"text":"Governance","textPreview":"Governance","textChars":10,"textLines":1,"bbox":[1060,330,120,54]}
-{"kind":"shape","id":"sh/q1cbmxoz","slide":11,"bbox":[422,436,720,112]}
-{"kind":"textbox","id":"sh/t8ja5snm","slide":11,"text":"Override workflow","textPreview":"Override workflow","textChars":17,"textLines":1,"bbox":[448,458,210,30]}
-{"kind":"textbox","id":"sh/s7atcn61","slide":11,"text":"Route-level evidence can replace 50 while retaining notes, source, date, and reviewer.","textPreview":"Route-level evidence can replace 50 while retaining notes, source, date, and reviewer.","textChars":86,"textLines":1,"bbox":[448,498,650,42]}
-{"kind":"notes","id":"nt/cof388","slide":11,"text":"This is a deliberate missing-data state, not a readiness claim.\n\n[Sources]\n- data/processed/operator_readiness.csv\n- data/processed/operator_overrides.csv\n- src/07_operator_score.py\n[/Sources]"}
-{"kind":"slide","id":"sl/e8tpab","slide":12,"title":"ROUTE2ZERO","textShapes":11}
-{"kind":"shape","id":"sh/4nmxkzm1","slide":12,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/3mdgbe5g","slide":12,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/2l4fi94v","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/dcfyhony","slide":12,"name":"slide-title","text":"The formula is public; AI only explains the result after ranking","textPreview":"The formula is public; AI only explains the result after ranking","textChars":64,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/crmhojmd","slide":12,"text":"Deterministic scores and rankings remain identical whether the API is available or not.","textPreview":"Deterministic scores and rankings remain identical whether the API is available or not.","textChars":87,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"textbox","id":"sh/rqdgfe5s","slide":12,"text":"0.35E + 0.35Q + 0.15G + 0.15O","textPreview":"0.35E + 0.35Q + 0.15G + 0.15O","textChars":29,"textLines":1,"bbox":[86,220,1110,74]}
-{"kind":"shape","id":"sh/qp4zm947","slide":12,"bbox":[162,322,956,5]}
-{"kind":"shape","id":"sh/1gfylonu","slide":12,"bbox":[170,386,250,94]}
-{"kind":"textbox","id":"sh/0f6hsjm9","slide":12,"text":"Scores","textPreview":"Scores","textChars":6,"textLines":1,"bbox":[188,414,214,38]}
-{"kind":"textbox","id":"sh/ex8rm54n","slide":12,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[438,405,72,52]}
-{"kind":"shape","id":"sh/zyh8fal8","slide":12,"bbox":[530,386,250,94]}
-{"kind":"textbox","id":"sh/0zq9ovmt","slide":12,"text":"Rank","textPreview":"Rank","textChars":4,"textLines":1,"bbox":[548,414,214,38]}
-{"kind":"textbox","id":"sh/1kzqh03e","slide":12,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[798,405,72,52]}
-{"kind":"shape","id":"sh/ml8rq54z","slide":12,"bbox":[890,386,250,94]}
-{"kind":"textbox","id":"sh/nmhsjalk","slide":12,"text":"AI narrative","textPreview":"AI narrative","textChars":12,"textLines":1,"bbox":[908,414,214,38]}
-{"kind":"textbox","id":"sh/ona9sfm5","slide":12,"text":"Never score. Never reorder. Never fill missing evidence silently.","textPreview":"Never score. Never reorder. Never fill missing evidence silently.","textChars":65,"textLines":1,"bbox":[166,542,960,42]}
-{"kind":"notes","id":"nt/e8tpab","slide":12,"text":"The AI layer is downstream of ranking. Offline deterministic explanations cover every scored route.\n\n[Sources]\n- docs/methodology.md\n- src/08_composite_score.py\n- src/11_ai_explain.py\n- src/bedrock_client.py\n[/Sources]"}
-{"kind":"slide","id":"sl/81xeik","slide":13,"title":"ROUTE2ZERO","textShapes":5}
-{"kind":"shape","id":"sh/ut0vilw7","slide":13,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/hwbut0fy","slide":13,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/gvidkved","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/7q9cnqxg","slide":13,"name":"slide-title","text":"The map shows priority and geometry confidence together","textPreview":"The map shows priority and geometry confidence together","textChars":55,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/6p0belwv","slide":13,"text":"Color moves red → amber → green; lighter lines indicate stop-sequence approximation.","textPreview":"Color moves red → amber → green; lighter lines indicate stop-sequence approximation.","textChars":84,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/sritgve1","slide":13,"bbox":[78,590,470,52]}
-{"kind":"textbox","id":"sh/j2pcj6xk","slide":13,"text":"CLICK A LINE → OPEN ROUTE EVIDENCE","textPreview":"CLICK A LINE → OPEN ROUTE EVIDENCE","textChars":34,"textLines":1,"bbox":[102,606,422,24]}
-{"kind":"image","id":"im/kzmd43ax","slide":13,"name":"","geometry":"roundRect","alt":"Route2Zero Metro Manila priority map","bbox":[54,190,1172,478]}
-{"kind":"notes","id":"nt/81xeik","slide":13,"text":"Use the map as the entry point, then immediately move into the selected route’s explanation.\n\n[Sources]\n- output/playwright/route2zero-map-element-fixed.png\n- app/dashboard.py\n[/Sources]"}
-{"kind":"slide","id":"sl/w49vpx","slide":14,"title":"ROUTE2ZERO","textShapes":10}
-{"kind":"shape","id":"sh/uxc3q90z","slide":14,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/h03ml4jq","slide":14,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/wzulszi5","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/j2l4ne1w","slide":14,"name":"slide-title","text":"A selected corridor exposes score, rank, components, and explanation","textPreview":"A selected corridor exposes score, rank, components, and explanation","textChars":68,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/i1c3u90b","slide":14,"text":"The #1 screen also shows exactly where evidence is strong and where it is shared or missing.","textPreview":"The #1 screen also shows exactly where evidence is strong and where it is shared or missing.","textChars":92,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/43ulwjih","slide":14,"bbox":[52,206,298,46]}
-{"kind":"shape","id":"sh/rq54re1s","slide":14,"bbox":[60,213,32,32]}
-{"kind":"textbox","id":"sh/6pw3yt07","slide":14,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[60,218,32,20]}
-{"kind":"textbox","id":"sh/sfax8rqt","slide":14,"text":"Route identity + city tags","textPreview":"Route identity + city tags","textChars":26,"textLines":1,"bbox":[102,217,232,24]}
-{"kind":"shape","id":"sh/tg3e1wre","slide":14,"bbox":[420,206,298,46]}
-{"kind":"shape","id":"sh/6dsf6h8n","slide":14,"bbox":[428,213,32,32]}
-{"kind":"textbox","id":"sh/7e1wzm98","slide":14,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[428,218,32,20]}
-{"kind":"textbox","id":"sh/gjuxwrqp","slide":14,"text":"Rank + composite score","textPreview":"Rank + composite score","textChars":22,"textLines":1,"bbox":[470,217,232,24]}
-{"kind":"shape","id":"sh/hk3e5wra","slide":14,"bbox":[914,206,298,46]}
-{"kind":"shape","id":"sh/uhcfu18j","slide":14,"bbox":[922,213,32,32]}
-{"kind":"textbox","id":"sh/filw3694","slide":14,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[922,218,32,20]}
-{"kind":"textbox","id":"sh/47ex0bq1","slide":14,"text":"Four-factor breakdown","textPreview":"Four-factor breakdown","textChars":21,"textLines":1,"bbox":[964,217,232,24]}
-{"kind":"image","id":"im/kzil0bet","slide":14,"name":"","geometry":"roundRect","alt":"Route2Zero selected-route detail","bbox":[40,188,1200,484]}
-{"kind":"notes","id":"nt/w49vpx","slide":14,"text":"Read the first route as an example: strong emissions activity and density, low shared grid value, neutral operator placeholder.\n\n[Sources]\n- output/playwright/route2zero-route-detail-final.png\n- data/processed/route2zero_scores.csv\n- data/processed/route_explanations.json\n[/Sources]"}
-{"kind":"slide","id":"sl/tibtee","slide":15,"title":"ROUTE2ZERO","textShapes":9}
-{"kind":"shape","id":"sh/fqxkfuhc","slide":15,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/gr6lozyx","slide":15,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/1sf2hkzi","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/614ji5gv","slide":15,"name":"slide-title","text":"A city lens changes the shortlist without hiding the shared assumptions","textPreview":"A city lens changes the shortlist without hiding the shared assumptions","textChars":71,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/r2dkbahg","slide":15,"text":"Marikina returns 53 routes; the leading filtered result scores 60.6.","textPreview":"Marikina returns 53 routes; the leading filtered result scores 60.6.","textChars":68,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"textbox","id":"sh/t4v2dkzm","slide":15,"text":"53","textPreview":"53","textChars":2,"textLines":1,"bbox":[72,252,280,92]}
-{"kind":"textbox","id":"sh/ixkje5gz","slide":15,"text":"routes tagged to Marikina","textPreview":"routes tagged to Marikina","textChars":25,"textLines":1,"bbox":[78,350,300,52]}
-{"kind":"textbox","id":"sh/jydk7ahk","slide":15,"text":"60.6","textPreview":"60.6","textChars":4,"textLines":1,"bbox":[72,442,280,74]}
-{"kind":"textbox","id":"sh/zmlwvuto","slide":15,"text":"top filtered score","textPreview":"top filtered score","textChars":18,"textLines":1,"bbox":[78,522,280,36]}
-{"kind":"textbox","id":"sh/elcvmps3","slide":15,"text":"Same weights. Same provenance. New local lens.","textPreview":"Same weights. Same provenance. New local lens.","textChars":46,"textLines":1,"bbox":[78,590,310,50]}
-{"kind":"image","id":"im/98fqtsru","slide":15,"name":"","geometry":"roundRect","alt":"Route2Zero Marikina filtered route view","bbox":[446,186,780,474]}
-{"kind":"notes","id":"nt/tibtee","slide":15,"text":"City tags are route-stop intersections for screening and need LGU validation.\n\n[Sources]\n- output/playwright/route2zero-marikina-final.png\n- data/processed/route_cities.csv\n- data/processed/city_summary.csv\n[/Sources]"}
-{"kind":"slide","id":"sl/vdx64z","slide":16,"title":"ROUTE2ZERO","textShapes":6}
-{"kind":"shape","id":"sh/4ralwf6x","slide":16,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/jq143apc","slide":16,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/ips3upor","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/hojm1k7m","slide":16,"name":"slide-title","text":"The leaderboard creates a validation queue—not a funding decision","textPreview":"The leaderboard creates a validation queue—not a funding decision","textChars":65,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/wnalsf61","slide":16,"text":"Top five route-direction records under the default 35 / 35 / 15 / 15 weights.","textPreview":"Top five route-direction records under the default 35 / 35 / 15 / 15 weights.","textChars":77,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/uls3q5ov","slide":16,"bbox":[904,236,272,282]}
-{"kind":"textbox","id":"sh/1knmd4nq","slide":16,"text":"Validation queue","textPreview":"Validation queue","textChars":16,"textLines":1,"bbox":[934,266,220,32]}
-{"kind":"textbox","id":"sh/gje54z65","slide":16,"text":"1  Refresh route\n2  Confirm operator\n3  Screen depot\n4  Ask riders\n5  Re-run scenarios","textPreview":"1  Refresh route | 2  Confirm operator | 3  Screen depot | 4  Ask riders | 5  Re-run scenarios","textChars":86,"textLines":5,"bbox":[934,322,220,172]}
-{"kind":"chart","id":"ch/b6p8faxg","slide":16,"name":"","chartType":"bar","bbox":[84,218,760,360]}
-{"kind":"notes","id":"nt/vdx64z","slide":16,"text":"Duplicate corridor names can represent different GTFS directions; the MVP ranks route IDs and also provides a corridor comparison export.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/route_corridors.csv\n- docs/methodology.md\n[/Sources]"}
-{"kind":"slide","id":"sl/1qgw5a","slide":17,"title":"ROUTE2ZERO","textShapes":17}
-{"kind":"shape","id":"sh/oz610jih","slide":17,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/3exk7e1w","slide":17,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/2dojy90b","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/d4z2dozy","slide":17,"name":"slide-title","text":"Every shortlisted route can leave the dashboard as a policy-ready brief","textPreview":"Every shortlisted route can leave the dashboard as a policy-ready brief","textChars":71,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/c3q14jid","slide":17,"text":"The brief packages the score, source boundaries, uncertainties, and next evidence requests.","textPreview":"The brief packages the score, source boundaries, uncertainties, and next evidence requests.","textChars":91,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/b2hkbyh8","slide":17,"bbox":[76,202,630,414]}
-{"kind":"shape","id":"sh/q18j2t0n","slide":17,"bbox":[76,202,630,18]}
-{"kind":"textbox","id":"sh/t8fi14ju","slide":17,"text":"ROUTE2ZERO POLICY BRIEF","textPreview":"ROUTE2ZERO POLICY BRIEF","textChars":23,"textLines":1,"bbox":[112,246,520,24]}
-{"kind":"textbox","id":"sh/s7m1szi9","slide":17,"text":"Francisco Homes–Cubao","textPreview":"Francisco Homes–Cubao","textChars":21,"textLines":1,"bbox":[112,286,520,42]}
-{"kind":"textbox","id":"sh/ex47ux4z","slide":17,"text":"Priority score 71.4 · Live rank #1","textPreview":"Priority score 71.4 · Live rank #1","textChars":34,"textLines":1,"bbox":[112,342,520,30]}
-{"kind":"shape","id":"sh/fid8n25k","slide":17,"bbox":[112,388,520,3]}
-{"kind":"textbox","id":"sh/gjmpw7m5","slide":17,"text":"WHY IT SURFACES","textPreview":"WHY IT SURFACES","textChars":15,"textLines":1,"bbox":[112,414,220,24]}
-{"kind":"textbox","id":"sh/1kvqpcnq","slide":17,"text":"High activity and density exposure","textPreview":"High activity and density exposure","textChars":34,"textLines":1,"bbox":[112,444,520,30]}
-{"kind":"textbox","id":"sh/2l47yh4v","slide":17,"text":"WHAT REMAINS UNKNOWN","textPreview":"WHAT REMAINS UNKNOWN","textChars":20,"textLines":1,"bbox":[112,500,260,24]}
-{"kind":"textbox","id":"sh/3md8rm5g","slide":17,"text":"Current service · operator evidence · depot capacity","textPreview":"Current service · operator evidence · depot capacity","textChars":52,"textLines":1,"bbox":[112,530,520,50]}
-{"kind":"textbox","id":"sh/onmp0rm1","slide":17,"text":"8","textPreview":"8","textChars":1,"textLines":1,"bbox":[820,236,260,56]}
-{"kind":"textbox","id":"sh/povqtcnm","slide":17,"text":"briefs generated","textPreview":"briefs generated","textChars":16,"textLines":1,"bbox":[824,294,260,30]}
-{"kind":"textbox","id":"sh/qpo72h47","slide":17,"text":"CSV","textPreview":"CSV","textChars":3,"textLines":1,"bbox":[820,362,260,56]}
-{"kind":"textbox","id":"sh/bqx8vm5s","slide":17,"text":"rank export","textPreview":"rank export","textChars":11,"textLines":1,"bbox":[824,420,260,30]}
-{"kind":"textbox","id":"sh/7uxojmlk","slide":17,"text":"JSON","textPreview":"JSON","textChars":4,"textLines":1,"bbox":[820,488,260,56]}
-{"kind":"textbox","id":"sh/mto7ahkf","slide":17,"text":"AI cache","textPreview":"AI cache","textChars":8,"textLines":1,"bbox":[824,546,260,30]}
-{"kind":"notes","id":"nt/1qgw5a","slide":17,"text":"Show that the product has an export path for policy and partner conversations, not only a dashboard.\n\n[Sources]\n- docs/policy_briefs/\n- src/10_policy_brief.py\n- data/processed/route_explanations.json\n[/Sources]"}
-{"kind":"slide","id":"sl/7btg7m","slide":18,"title":"ROUTE2ZERO","textShapes":20}
-{"kind":"shape","id":"sh/qt83yxsn","slide":18,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/dwz2tcby","slide":18,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/cvql07ad","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/3qhkn2tw","slide":18,"name":"slide-title","text":"Six months convert a screening model into a city-owned decision process","textPreview":"Six months convert a screening model into a city-owned decision process","textChars":71,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/2po3uxsb","slide":18,"text":"Three decision gates stop the pilot from scaling on weak evidence.","textPreview":"Three decision gates stop the pilot from scaling on weak evidence.","textChars":66,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/psz2psb2","slide":18,"bbox":[98,350,1040,8]}
-{"kind":"shape","id":"sh/orqlw7ah","slide":18,"bbox":[106,326,56,56]}
-{"kind":"textbox","id":"sh/fmxkjit0","slide":18,"text":"M1–2","textPreview":"M1–2","textChars":4,"textLines":1,"bbox":[96,342,76,28]}
-{"kind":"textbox","id":"sh/e1ojqdsf","slide":18,"text":"Mobilize + refresh","textPreview":"Mobilize + refresh","textChars":18,"textLines":1,"bbox":[52,400,166,58]}
-{"kind":"shape","id":"sh/0fudgv6d","slide":18,"bbox":[351,326,56,56]}
-{"kind":"textbox","id":"sh/lg3epgny","slide":18,"text":"M3","textPreview":"M3","textChars":2,"textLines":1,"bbox":[341,342,76,28]}
-{"kind":"textbox","id":"sh/ytcvelo7","slide":18,"text":"Co-design","textPreview":"Co-design","textChars":9,"textLines":1,"bbox":[297,400,166,58]}
-{"kind":"shape","id":"sh/zulwnq5s","slide":18,"bbox":[596,326,56,56]}
-{"kind":"textbox","id":"sh/cradcb61","slide":18,"text":"M4","textPreview":"M4","textChars":2,"textLines":1,"bbox":[586,342,76,28]}
-{"kind":"textbox","id":"sh/ds3ulgnm","slide":18,"text":"Validate routes","textPreview":"Validate routes","textChars":15,"textLines":1,"bbox":[542,400,166,58]}
-{"kind":"shape","id":"sh/qpsva1ob","slide":18,"bbox":[841,326,56,56]}
-{"kind":"textbox","id":"sh/bq1cj65w","slide":18,"text":"M5","textPreview":"M5","textChars":2,"textLines":1,"bbox":[831,342,76,28]}
-{"kind":"textbox","id":"sh/wnedofml","slide":18,"text":"Calibrate + package","textPreview":"Calibrate + package","textChars":19,"textLines":1,"bbox":[787,400,166,58]}
-{"kind":"shape","id":"sh/xonex0n6","slide":18,"bbox":[1086,326,56,56]}
-{"kind":"textbox","id":"sh/5szmlgby","slide":18,"text":"M6","textPreview":"M6","textChars":2,"textLines":1,"bbox":[1076,342,76,28]}
-{"kind":"textbox","id":"sh/krqlsbad","slide":18,"text":"Hand off + decide","textPreview":"Hand off + decide","textChars":17,"textLines":1,"bbox":[1032,400,166,58]}
-{"kind":"textbox","id":"sh/jqh4j6ts","slide":18,"text":"GATE 1","textPreview":"GATE 1","textChars":6,"textLines":1,"bbox":[196,514,170,22]}
-{"kind":"textbox","id":"sh/ip83q1s7","slide":18,"text":"Enough current evidence","textPreview":"Enough current evidence","textChars":23,"textLines":1,"bbox":[158,544,246,56]}
-{"kind":"textbox","id":"sh/xozmhwb2","slide":18,"text":"GATE 2","textPreview":"GATE 2","textChars":6,"textLines":1,"bbox":[532,514,170,22]}
-{"kind":"textbox","id":"sh/w3qlorah","slide":18,"text":"Shortlist survives field review","textPreview":"Shortlist survives field review","textChars":31,"textLines":1,"bbox":[494,544,246,56]}
-{"kind":"textbox","id":"sh/v2h4fmtw","slide":18,"text":"GATE 3","textPreview":"GATE 3","textChars":6,"textLines":1,"bbox":[866,514,170,22]}
-{"kind":"textbox","id":"sh/a183m1sb","slide":18,"text":"Named owners support scale","textPreview":"Named owners support scale","textChars":26,"textLines":1,"bbox":[828,544,246,56]}
-{"kind":"notes","id":"nt/7btg7m","slide":18,"text":"The pilot plan is deliberately gated: refresh, validate, then decide scale.\n\n[Sources]\n- output/pdf/Route2Zero_Pilot_Plan.pdf\n[/Sources]"}
-{"kind":"slide","id":"sl/dqr5mz","slide":19,"title":"ROUTE2ZERO","textShapes":21}
-{"kind":"shape","id":"sh/5wbmxcbq","slide":19,"bbox":[56,36,34,5]}
-{"kind":"textbox","id":"sh/it032hcz","slide":19,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[104,24,400,24]}
-{"kind":"textbox","id":"sh/ju94vmdk","slide":19,"text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1180,666,44,22]}
-{"kind":"textbox","id":"sh/wril07u9","slide":19,"name":"slide-title","text":"Eight leads keep the pilot accountable","textPreview":"Eight leads keep the pilot accountable","textChars":38,"textLines":1,"bbox":[56,72,1168,72]}
-{"kind":"textbox","id":"sh/hsrmtcve","slide":19,"text":"Product, evidence, engagement, and assurance stay cross-functional; every artifact retains one owner.","textPreview":"Product, evidence, engagement, and assurance stay cross-functional; every artifact retains one owner.","textChars":101,"textLines":1,"bbox":[58,146,1120,48]}
-{"kind":"shape","id":"sh/up03yxc3","slide":19,"bbox":[82,218,38,38]}
-{"kind":"textbox","id":"sh/vq94r2do","slide":19,"text":"John Marwin Ebona","textPreview":"John Marwin Ebona","textChars":17,"textLines":1,"bbox":[140,214,280,30]}
-{"kind":"textbox","id":"sh/gnm5cbud","slide":19,"text":"Project Lead · Policy","textPreview":"Project Lead · Policy","textChars":21,"textLines":1,"bbox":[140,248,360,28]}
-{"kind":"shape","id":"sh/1ovm5wby","slide":19,"bbox":[666,218,38,38]}
-{"kind":"textbox","id":"sh/xkrepgvu","slide":19,"text":"Prince Marl","textPreview":"Prince Marl","textChars":11,"textLines":1,"bbox":[724,214,280,30]}
-{"kind":"textbox","id":"sh/cjixwbu9","slide":19,"text":"Data Engineering","textPreview":"Data Engineering","textChars":16,"textLines":1,"bbox":[724,248,360,28]}
-{"kind":"shape","id":"sh/by9wn6do","slide":19,"bbox":[82,310,38,38]}
-{"kind":"textbox","id":"sh/ax0fu1c3","slide":19,"text":"Joaquin Sarmiento","textPreview":"Joaquin Sarmiento","textChars":17,"textLines":1,"bbox":[140,306,280,30]}
-{"kind":"textbox","id":"sh/pw7elwvi","slide":19,"text":"Transport Analytics","textPreview":"Transport Analytics","textChars":19,"textLines":1,"bbox":[140,340,360,28]}
-{"kind":"shape","id":"sh/ovyxsbux","slide":19,"bbox":[666,310,38,38]}
-{"kind":"textbox","id":"sh/nupwj6ds","slide":19,"text":"Isaac Marcus","textPreview":"Isaac Marcus","textChars":12,"textLines":1,"bbox":[724,306,280,30]}
-{"kind":"textbox","id":"sh/2tgfq1c7","slide":19,"text":"Product · Streamlit","textPreview":"Product · Streamlit","textChars":19,"textLines":1,"bbox":[724,340,360,28]}
-{"kind":"shape","id":"sh/9sbyx0v2","slide":19,"bbox":[82,402,38,38]}
-{"kind":"textbox","id":"sh/8r2x4vuh","slide":19,"text":"Andrei Dela Cruz","textPreview":"Andrei Dela Cruz","textChars":16,"textLines":1,"bbox":[140,398,280,30]}
-{"kind":"textbox","id":"sh/s7u9g36p","slide":19,"text":"Climate · Grid","textPreview":"Climate · Grid","textChars":14,"textLines":1,"bbox":[140,432,360,28]}
-{"kind":"shape","id":"sh/d83qp87a","slide":19,"bbox":[666,402,38,38]}
-{"kind":"textbox","id":"sh/q5sretoj","slide":19,"text":"Russel Mendez","textPreview":"Russel Mendez","textChars":13,"textLines":1,"bbox":[724,398,280,30]}
-{"kind":"textbox","id":"sh/r6l8nyp4","slide":19,"text":"Equity · Community","textPreview":"Equity · Community","textChars":18,"textLines":1,"bbox":[724,432,360,28]}
-{"kind":"shape","id":"sh/43apcj6t","slide":19,"bbox":[82,494,38,38]}
-{"kind":"textbox","id":"sh/54jqlo7e","slide":19,"text":"Tj Moreno","textPreview":"Tj Moreno","textChars":9,"textLines":1,"bbox":[140,490,280,30]}
-{"kind":"textbox","id":"sh/i1s7aton","slide":19,"text":"Operator Partnerships","textPreview":"Operator Partnerships","textChars":21,"textLines":1,"bbox":[140,524,360,28]}
-{"kind":"shape","id":"sh/3218jep8","slide":19,"bbox":[666,494,38,38]}
-{"kind":"textbox","id":"sh/wfap8j6h","slide":19,"text":"JM Palaganas","textPreview":"JM Palaganas","textChars":12,"textLines":1,"bbox":[724,490,280,30]}
-{"kind":"textbox","id":"sh/hgjqho72","slide":19,"text":"QA · Docs · Demo","textPreview":"QA · Docs · Demo","textChars":16,"textLines":1,"bbox":[724,524,360,28]}
-{"kind":"shape","id":"sh/zah8re94","slide":19,"bbox":[84,596,1090,52]}
-{"kind":"textbox","id":"sh/y98ri9sj","slide":19,"text":"Weekly delivery review  ·  Biweekly partner clinic  ·  Monthly decision gate","textPreview":"Weekly delivery review  ·  Biweekly partner clinic  ·  Monthly decision gate","textChars":76,"textLines":1,"bbox":[118,612,1020,24]}
-{"kind":"notes","id":"nt/dqr5mz","slide":19,"text":"Role assignments are the team’s pilot accountabilities; biographies can be appended separately if organizers request them.\n\n[Sources]\n- output/documents/Route2Zero_Pilot_Plan.docx\n[/Sources]"}
-{"kind":"slide","id":"sl/isi3v9","slide":20,"title":"THE ASK","textShapes":10}
-{"kind":"shape","id":"sh/9o7ypcza","slide":20,"bbox":[70,74,104,8]}
-{"kind":"textbox","id":"sh/m1gzex0z","slide":20,"text":"THE ASK","textPreview":"THE ASK","textChars":7,"textLines":1,"bbox":[70,112,240,30]}
-{"kind":"textbox","id":"sh/n2pgn2h4","slide":20,"text":"Choose three spotlight LGUs and open the evidence refresh","textPreview":"Choose three spotlight LGUs and open the evidence refresh","textChars":57,"textLines":1,"bbox":[70,178,850,150]}
-{"kind":"textbox","id":"sh/0zehc7it","slide":20,"text":"Route2Zero is ready to screen. The next step is to validate routes, operators, communities, and charging conditions together.","textPreview":"Route2Zero is ready to screen. The next step is to validate routes, operators, communities, and charging conditions together.","textChars":125,"textLines":1,"bbox":[74,360,820,106]}
-{"kind":"shape","id":"sh/107ylcze","slide":20,"bbox":[74,548,46,46]}
-{"kind":"textbox","id":"sh/exwzax0n","slide":20,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[74,560,46,22]}
-{"kind":"textbox","id":"sh/zy5gj2h8","slide":20,"text":"Name city owners","textPreview":"Name city owners","textChars":16,"textLines":1,"bbox":[136,552,240,42]}
-{"kind":"shape","id":"sh/cvex8nih","slide":20,"bbox":[424,548,46,46]}
-{"kind":"textbox","id":"sh/dwnyhsz2","slide":20,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[424,560,46,22]}
-{"kind":"textbox","id":"sh/t0fa1kze","slide":20,"text":"Confirm data access","textPreview":"Confirm data access","textChars":19,"textLines":1,"bbox":[486,552,240,42]}
-{"kind":"shape","id":"sh/szm98zit","slide":20,"bbox":[774,548,46,46]}
-{"kind":"textbox","id":"sh/rydszuh8","slide":20,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[774,560,46,22]}
-{"kind":"textbox","id":"sh/6x4r6p0n","slide":20,"text":"Schedule the first clinic","textPreview":"Schedule the first clinic","textChars":25,"textLines":1,"bbox":[836,552,240,42]}
-{"kind":"textbox","id":"sh/5wvaxkzi","slide":20,"text":"Route2Zero · transparent by design","textPreview":"Route2Zero · transparent by design","textChars":34,"textLines":1,"bbox":[930,660,276,24]}
-{"kind":"notes","id":"nt/isi3v9","slide":20,"text":"Close on a concrete pilot decision, not a generic thank-you.\n\n[Sources]\n- output/pdf/Route2Zero_Pilot_Plan.pdf\n- README.md\n[/Sources]"}
+{"kind":"deck","id":"pr/f6l55y","name":"Deck"}
+{"kind":"layout","layoutId":"980d9052-6d49-4aa7-b854-63d4c72073f3","name":"Master","type":"master"}
+{"kind":"layout","layoutId":"e57d104e-f0c1-4b0a-aa83-9053ad92391e","name":"Title Slide","type":"title"}
+{"kind":"slide","id":"sl/m69zes","slide":1,"title":"R²Z","textShapes":15}
+{"kind":"textbox","id":"sh/6xg3u5c7","slide":1,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/t07m50vy","slide":1,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/szylwfud","slide":1,"text":"OPENING","textPreview":"OPENING","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/f2947ad4","slide":1,"text":"01","textPreview":"01","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/u1g3y5cj","slide":1,"bbox":[54,680,1172,2]}
+{"kind":"shape","id":"sh/hormtkvu","slide":1,"bbox":[800,0,480,720]}
+{"kind":"shape","id":"sh/g3il0fup","slide":1,"bbox":[72,88,320,30]}
+{"kind":"textbox","id":"sh/v65kvqdk","slide":1,"text":"AI × City Climate Action Hackathon 2026","textPreview":"AI × City Climate Action Hackathon 2026","textChars":39,"textLines":1,"bbox":[80,88,304,30]}
+{"kind":"textbox","id":"sh/a5w3mlwf","slide":1,"text":"Route2Zero","textPreview":"Route2Zero","textChars":10,"textLines":1,"bbox":[72,176,720,120]}
+{"kind":"textbox","id":"sh/0ruho72l","slide":1,"text":"Transparent corridor intelligence for a just e-jeepney transition.","textPreview":"Transparent corridor intelligence for a just e-jeepney transition.","textChars":66,"textLines":1,"bbox":[76,306,650,120]}
+{"kind":"textbox","id":"sh/1s3yxc36","slide":1,"text":"A transparent, export-ready decision-support MVP","textPreview":"A transparent, export-ready decision-support MVP","textChars":48,"textLines":1,"bbox":[76,500,560,42]}
+{"kind":"textbox","id":"sh/epczmxkv","slide":1,"text":"METRO MANILA  ·  17 AUGUST 2026","textPreview":"METRO MANILA  ·  17 AUGUST 2026","textChars":31,"textLines":1,"bbox":[76,554,560,34]}
+{"kind":"shape","id":"sh/zqlgv2lg","slide":1,"bbox":[846,146,316,150]}
+{"kind":"shape","id":"sh/ofuhs72x","slide":1,"bbox":[846,146,8,150]}
+{"kind":"textbox","id":"sh/9gni1c3i","slide":1,"text":"1,522","textPreview":"1,522","textChars":5,"textLines":1,"bbox":[874,164,268,54]}
+{"kind":"textbox","id":"sh/mdczqhkr","slide":1,"text":"ROUTES SCREENED","textPreview":"ROUTES SCREENED","textChars":15,"textLines":1,"bbox":[874,219,268,30]}
+{"kind":"textbox","id":"sh/nel0z2lc","slide":1,"text":"GTFS route-direction records","textPreview":"GTFS route-direction records","textChars":28,"textLines":1,"bbox":[874,250,268,34]}
+{"kind":"shape","id":"sh/4jahgn2d","slide":1,"bbox":[846,322,316,150]}
+{"kind":"shape","id":"sh/pkjyps3y","slide":1,"bbox":[846,322,8,150]}
+{"kind":"textbox","id":"sh/5gbet4v2","slide":1,"text":"71.4","textPreview":"71.4","textChars":4,"textLines":1,"bbox":[874,340,268,54]}
+{"kind":"textbox","id":"sh/4f2xkjeh","slide":1,"text":"TOP PRIORITY","textPreview":"TOP PRIORITY","textChars":12,"textLines":1,"bbox":[874,395,268,30]}
+{"kind":"textbox","id":"sh/jetwredw","slide":1,"text":"Default scenario score","textPreview":"Default scenario score","textChars":22,"textLines":1,"bbox":[874,426,268,34]}
+{"kind":"notes","id":"nt/m69zes","slide":1,"text":"Open with the decision problem: Route2Zero is a screening and validation tool, not an automated investment authority.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- README.md"}
+{"kind":"slide","id":"sl/k1gdjq","slide":2,"title":"R²Z","textShapes":10}
+{"kind":"textbox","id":"sh/onep4fqd","slide":2,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/3m58baps","slide":2,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/2lw72587","slide":2,"text":"DECISION","textPreview":"DECISION","textChars":8,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/ds7qhk7u","slide":2,"text":"02","textPreview":"02","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/cryp8fqp","slide":2,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/bqp8fap4","slide":2,"text":"THE DECISION QUESTION","textPreview":"THE DECISION QUESTION","textChars":21,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/qpw76p8j","slide":2,"text":"Which corridors deserve deeper electrification work first?","textPreview":"Which corridors deserve deeper electrification work first?","textChars":58,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"textbox","id":"sh/lg7ql476","slide":2,"text":"Route2Zero turns a fragmented evidence base into a shortlist that city teams can inspect, challenge and validate.","textPreview":"Route2Zero turns a fragmented evidence base into a shortlist that city teams can inspect, challenge and validate.","textChars":113,"textLines":1,"bbox":[72,234,1080,64]}
+{"kind":"shape","id":"sh/0fypcz6l","slide":2,"bbox":[88,310,14,14]}
+{"kind":"textbox","id":"sh/6tofe10n","slide":2,"text":"Screen 1,522 route-direction records consistently.","textPreview":"Screen 1,522 route-direction records consistently.","textChars":50,"textLines":1,"bbox":[118,302,1050,52]}
+{"kind":"shape","id":"sh/ruxw7618","slide":2,"bbox":[88,378,14,14]}
+{"kind":"textbox","id":"sh/sf6xgrit","slide":2,"text":"Balance climate value, equity exposure and feasibility.","textPreview":"Balance climate value, equity exposure and feasibility.","textChars":55,"textLines":1,"bbox":[118,370,1050,52]}
+{"kind":"shape","id":"sh/tgfe9wje","slide":2,"bbox":[88,446,14,14]}
+{"kind":"textbox","id":"sh/ehofi10j","slide":2,"text":"Export the same decision context into formal reports.","textPreview":"Export the same decision context into formal reports.","textChars":53,"textLines":1,"bbox":[118,438,1050,52]}
+{"kind":"notes","id":"nt/k1gdjq","slide":2,"text":"Slide 2: Which corridors deserve deeper electrification work first?. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/ww9gor","slide":3,"title":"R²Z","textShapes":10}
+{"kind":"textbox","id":"sh/f29cf6tg","slide":3,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/g3idobu1","slide":3,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/horuhgbm","slide":3,"text":"PROBLEM","textPreview":"PROBLEM","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/6xgvi1cz","slide":3,"text":"03","textPreview":"03","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/7ypcb6t4","slide":3,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/szydkrup","slide":3,"text":"WHY THIS MATTERS","textPreview":"WHY THIS MATTERS","textChars":16,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/t07udwba","slide":3,"text":"A route ranking without evidence can hard-code the wrong trade-offs.","textPreview":"A route ranking without evidence can hard-code the wrong trade-offs.","textChars":68,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/itgvehcn","slide":3,"bbox":[88,310,14,14]}
+{"kind":"textbox","id":"sh/jupc7mt8","slide":3,"text":"High activity does not automatically mean high readiness.","textPreview":"High activity does not automatically mean high readiness.","textChars":57,"textLines":1,"bbox":[118,302,1050,52]}
+{"kind":"shape","id":"sh/vqhwnap8","slide":3,"bbox":[88,378,14,14]}
+{"kind":"textbox","id":"sh/up8fe58n","slide":3,"text":"Equity proxies must be visible—not treated as ground truth.","textPreview":"Equity proxies must be visible—not treated as ground truth.","textChars":59,"textLines":1,"bbox":[118,370,1050,52]}
+{"kind":"shape","id":"sh/hczepk7e","slide":3,"bbox":[88,446,14,14]}
+{"kind":"textbox","id":"sh/gbqxgfqt","slide":3,"text":"Historic service data cannot stand in for present operations.","textPreview":"Historic service data cannot stand in for present operations.","textChars":61,"textLines":1,"bbox":[118,438,1050,52]}
+{"kind":"shape","id":"sh/3ehwrupk","slide":3,"bbox":[88,514,14,14]}
+{"kind":"textbox","id":"sh/id8fip8z","slide":3,"text":"Operators and riders must be part of validation before investment.","textPreview":"Operators and riders must be part of validation before investment.","textChars":66,"textLines":1,"bbox":[118,506,1050,52]}
+{"kind":"notes","id":"nt/ww9gor","slide":3,"text":"Slide 3: A route ranking without evidence can hard-code the wrong trade-offs.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/noa155","slide":4,"title":"R²Z","textShapes":18}
+{"kind":"textbox","id":"sh/z2t83e9o","slide":4,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/032pcja9","slide":4,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/l4bq5oru","slide":4,"text":"PROBLEM","textPreview":"PROBLEM","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/qd0769s7","slide":4,"text":"04","textPreview":"04","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/be98ze9s","slide":4,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/cfip8zax","slide":4,"text":"CURRENT PLANNING FRICTION","textPreview":"CURRENT PLANNING FRICTION","textChars":25,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/dgrq14ri","slide":4,"text":"The evidence lives in different files, scales and institutions.","textPreview":"The evidence lives in different files, scales and institutions.","textChars":63,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/a9k7it8b","slide":4,"bbox":[72,330,263.5,112]}
+{"kind":"shape","id":"sh/vad8by9w","slide":4,"bbox":[88,346,34,30]}
+{"kind":"textbox","id":"sh/felg3e54","slide":4,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[96,346,18,30]}
+{"kind":"textbox","id":"sh/edcza9oj","slide":4,"text":"GTFS activity","textPreview":"GTFS activity","textChars":13,"textLines":1,"bbox":[88,382,231.5,42]}
+{"kind":"textbox","id":"sh/1gny5ona","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[335.5,362,22,40]}
+{"kind":"shape","id":"sh/gfuhcj6p","slide":4,"bbox":[357.5,330,263.5,112]}
+{"kind":"shape","id":"sh/3i5g7y50","slide":4,"bbox":[373.5,346,34,30]}
+{"kind":"textbox","id":"sh/2hwzetov","slide":4,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[381.5,346,18,30]}
+{"kind":"textbox","id":"sh/pkny98n6","slide":4,"text":"Population density","textPreview":"Population density","textChars":18,"textLines":1,"bbox":[373.5,382,231.5,42]}
+{"kind":"textbox","id":"sh/ojehg36l","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[621,362,22,40]}
+{"kind":"shape","id":"sh/b65gby5c","slide":4,"bbox":[643,330,263.5,112]}
+{"kind":"shape","id":"sh/q5wzitor","slide":4,"bbox":[659,346,34,30]}
+{"kind":"textbox","id":"sh/6dkbq1cb","slide":4,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[667,346,18,30]}
+{"kind":"textbox","id":"sh/7etsz6tw","slide":4,"text":"Grid context","textPreview":"Grid context","textChars":12,"textLines":1,"bbox":[659,382,231.5,42]}
+{"kind":"textbox","id":"sh/8f2tsbuh","slide":4,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[906.5,362,22,40]}
+{"kind":"shape","id":"sh/tgba1wbm","slide":4,"bbox":[928.5,330,263.5,112]}
+{"kind":"shape","id":"sh/yp0rmhcz","slide":4,"bbox":[944.5,346,34,30]}
+{"kind":"textbox","id":"sh/ja9svmtk","slide":4,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[952.5,346,18,30]}
+{"kind":"textbox","id":"sh/kbi9oru5","slide":4,"text":"Operator evidence","textPreview":"Operator evidence","textChars":17,"textLines":1,"bbox":[944.5,382,231.5,42]}
+{"kind":"shape","id":"sh/lcbaxwbq","slide":4,"bbox":[356,510,568,74]}
+{"kind":"textbox","id":"sh/il4bylcj","slide":4,"text":"City-owned shortlist","textPreview":"City-owned shortlist","textChars":20,"textLines":1,"bbox":[380,524,520,44]}
+{"kind":"notes","id":"nt/noa155","slide":4,"text":"Slide 4: The evidence lives in different files, scales and institutions.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/a2e05l","slide":5,"title":"R²Z","textShapes":9}
+{"kind":"textbox","id":"sh/zyd0z6hc","slide":5,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/kzm18bix","slide":5,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/l0vi1gzi","slide":5,"text":"SOLUTION","textPreview":"SOLUTION","textChars":8,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/m1ojal0n","slide":5,"text":"05","textPreview":"05","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/72x03qh8","slide":5,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/8361cvit","slide":5,"text":"PRODUCT PROMISE","textPreview":"PRODUCT PROMISE","textChars":15,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/94fi50ze","slide":5,"text":"One transparent decision surface—without pretending uncertainty is precision.","textPreview":"One transparent decision surface—without pretending uncertainty is precision.","textChars":77,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"textbox","id":"sh/25kzy10j","slide":5,"text":"The rank is deterministic. Scenario controls are visible. AI can explain results, but it cannot change a score.","textPreview":"The rank is deterministic. Scenario controls are visible. AI can explain results, but it cannot change a score.","textChars":111,"textLines":1,"bbox":[72,234,1080,64]}
+{"kind":"shape","id":"sh/n6t0rmh4","slide":5,"bbox":[96,330,1088,188]}
+{"kind":"textbox","id":"sh/zaxofu98","slide":5,"text":"“","textPreview":"“","textChars":1,"textLines":1,"bbox":[126,335,80,90]}
+{"kind":"textbox","id":"sh/y9o7mp8n","slide":5,"text":"Transparent enough to challenge.\nUseful enough to act on.","textPreview":"Transparent enough to challenge. | Useful enough to act on.","textChars":57,"textLines":2,"bbox":[208,360,850,100]}
+{"kind":"notes","id":"nt/a2e05l","slide":5,"text":"Slide 5: One transparent decision surface—without pretending uncertainty is precision.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/zy10z0","slide":6,"title":"R²Z","textShapes":20}
+{"kind":"textbox","id":"sh/gb6hkrqt","slide":6,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/fqx0bm98","slide":6,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/ep4zih8n","slide":6,"text":"SOLUTION","textPreview":"SOLUTION","textChars":8,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/pgfihgra","slide":6,"text":"06","textPreview":"06","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/of61obq5","slide":6,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/3ex0f69k","slide":6,"text":"HOW THE PRODUCT WORKS","textPreview":"HOW THE PRODUCT WORKS","textChars":21,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/2dojm18z","slide":6,"text":"From source evidence to a challengeable action queue","textPreview":"From source evidence to a challengeable action queue","textChars":52,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/dkzilgrm","slide":6,"bbox":[72,330,206.4,112]}
+{"kind":"shape","id":"sh/cjq1sbq1","slide":6,"bbox":[88,346,34,30]}
+{"kind":"textbox","id":"sh/qhw7m9cb","slide":6,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[96,346,18,30]}
+{"kind":"textbox","id":"sh/ri58fetw","slide":6,"text":"Audit","textPreview":"Audit","textChars":5,"textLines":1,"bbox":[88,382,174.4,42]}
+{"kind":"textbox","id":"sh/s3ep8juh","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[278.4,362,22,40]}
+{"kind":"shape","id":"sh/d4nqhobm","slide":6,"bbox":[300.4,330,206.4,112]}
+{"kind":"shape","id":"sh/e5wratc7","slide":6,"bbox":[316.4,346,34,30]}
+{"kind":"textbox","id":"sh/f658jyts","slide":6,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[324.4,346,18,30]}
+{"kind":"textbox","id":"sh/07y9c3ud","slide":6,"text":"Approximate geometry","textPreview":"Approximate geometry","textChars":20,"textLines":1,"bbox":[316.4,382,174.4,42]}
+{"kind":"textbox","id":"sh/187ql8by","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[506.8,362,22,40]}
+{"kind":"shape","id":"sh/u9c7epc3","slide":6,"bbox":[528.8,330,206.4,112]}
+{"kind":"shape","id":"sh/val87udo","slide":6,"bbox":[544.8,346,34,30]}
+{"kind":"textbox","id":"sh/jeh4fqtg","slide":6,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[552.8,346,18,30]}
+{"kind":"textbox","id":"sh/yd8n65sv","slide":6,"text":"Score signals","textPreview":"Score signals","textChars":13,"textLines":1,"bbox":[544.8,382,174.4,42]}
+{"kind":"textbox","id":"sh/lgjmh0r6","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[735.2,362,22,40]}
+{"kind":"shape","id":"sh/kfq58va1","slide":6,"bbox":[757.2,330,206.4,112]}
+{"kind":"shape","id":"sh/bqh4bqt4","slide":6,"bbox":[773.2,346,34,30]}
+{"kind":"textbox","id":"sh/ap8n2lsj","slide":6,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[781.2,346,18,30]}
+{"kind":"textbox","id":"sh/xszmd0ba","slide":6,"text":"Apply weights","textPreview":"Apply weights","textChars":13,"textLines":1,"bbox":[773.2,382,174.4,42]}
+{"kind":"textbox","id":"sh/wrq54vap","slide":6,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[963.6,362,22,40]}
+{"kind":"shape","id":"sh/vm1ona9o","slide":6,"bbox":[985.6,330,206.4,112]}
+{"kind":"shape","id":"sh/ulsneps3","slide":6,"bbox":[1001.6,346,34,30]}
+{"kind":"textbox","id":"sh/sf2tsnm9","slide":6,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1009.6,346,18,30]}
+{"kind":"textbox","id":"sh/tgbalsnu","slide":6,"text":"Rank + export","textPreview":"Rank + export","textChars":13,"textLines":1,"bbox":[1001.6,382,174.4,42]}
+{"kind":"notes","id":"nt/zy10z0","slide":6,"text":"Slide 6: From source evidence to a challengeable action queue. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/8l3tcm","slide":7,"title":"R²Z","textShapes":18}
+{"kind":"textbox","id":"sh/vatcjmpk","slide":7,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/wb2dsr65","slide":7,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/hcbulw7q","slide":7,"text":"METHOD","textPreview":"METHOD","textChars":6,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/ixkvu1ov","slide":7,"text":"07","textPreview":"07","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/jytcnmpg","slide":7,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/4z2dwr61","slide":7,"text":"DEFAULT POLICY LENS","textPreview":"DEFAULT POLICY LENS","textChars":19,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/50bupw7m","slide":7,"text":"Four interpretable signals, normalised to 100%","textPreview":"Four interpretable signals, normalised to 100%","textChars":46,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/y1gbixor","slide":7,"bbox":[72,330,264,150]}
+{"kind":"shape","id":"sh/z29cb2pc","slide":7,"bbox":[72,330,8,150]}
+{"kind":"textbox","id":"sh/n2hovyxc","slide":7,"text":"35%","textPreview":"35%","textChars":3,"textLines":1,"bbox":[100,348,216,54]}
+{"kind":"textbox","id":"sh/m1o7mtgr","slide":7,"text":"Emissions potential","textPreview":"Emissions potential","textChars":19,"textLines":1,"bbox":[100,403,216,30]}
+{"kind":"textbox","id":"sh/94z6x8fi","slide":7,"text":"Route activity proxy","textPreview":"Route activity proxy","textChars":20,"textLines":1,"bbox":[100,434,216,34]}
+{"kind":"shape","id":"sh/83qpo3yx","slide":7,"bbox":[358,330,264,150]}
+{"kind":"shape","id":"sh/zexoryhg","slide":7,"bbox":[358,330,8,150]}
+{"kind":"textbox","id":"sh/ydonitgv","slide":7,"text":"35%","textPreview":"35%","textChars":3,"textLines":1,"bbox":[386,348,216,54]}
+{"kind":"textbox","id":"sh/lgf6tofm","slide":7,"text":"Equity density","textPreview":"Equity density","textChars":14,"textLines":1,"bbox":[386,403,216,30]}
+{"kind":"textbox","id":"sh/0f65k3y1","slide":7,"text":"WorldPop catchment proxy","textPreview":"WorldPop catchment proxy","textChars":24,"textLines":1,"bbox":[386,434,216,34]}
+{"kind":"shape","id":"sh/badoneh4","slide":7,"bbox":[644,330,264,150]}
+{"kind":"shape","id":"sh/q94ne9gj","slide":7,"bbox":[644,330,8,150]}
+{"kind":"textbox","id":"sh/e547q90r","slide":7,"text":"15%","textPreview":"15%","textChars":3,"textLines":1,"bbox":[672,348,216,54]}
+{"kind":"textbox","id":"sh/f6doze1c","slide":7,"text":"Grid feasibility","textPreview":"Grid feasibility","textChars":16,"textLines":1,"bbox":[672,403,216,30]}
+{"kind":"textbox","id":"sh/g7mpsjih","slide":7,"text":"Luzon renewable-share proxy","textPreview":"Luzon renewable-share proxy","textChars":27,"textLines":1,"bbox":[672,434,216,34]}
+{"kind":"shape","id":"sh/18vq1oj2","slide":7,"bbox":[930,330,264,150]}
+{"kind":"shape","id":"sh/2947ut0n","slide":7,"bbox":[930,330,8,150]}
+{"kind":"textbox","id":"sh/3ad83y18","slide":7,"text":"15%","textPreview":"15%","textChars":3,"textLines":1,"bbox":[958,348,216,54]}
+{"kind":"textbox","id":"sh/ob6pwjit","slide":7,"text":"Operator readiness","textPreview":"Operator readiness","textChars":18,"textLines":1,"bbox":[958,403,216,30]}
+{"kind":"textbox","id":"sh/pcfq5oje","slide":7,"text":"Neutral placeholder until verified","textPreview":"Neutral placeholder until verified","textChars":34,"textLines":1,"bbox":[958,434,216,34]}
+{"kind":"notes","id":"nt/8l3tcm","slide":7,"text":"Slide 7: Four interpretable signals, normalised to 100%. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/a2x3vn","slide":8,"title":"R²Z","textShapes":8}
+{"kind":"textbox","id":"sh/8ni98nax","slide":8,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/7m98zi9c","slide":8,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/6lgr6ds7","slide":8,"text":"GOVERNANCE","textPreview":"GOVERNANCE","textChars":10,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/lk7qx8rm","slide":8,"text":"08","textPreview":"08","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/kjy943a1","slide":8,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/zip8vy9g","slide":8,"text":"AI BOUNDARY","textPreview":"AI BOUNDARY","textChars":11,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/yhgr2dsv","slide":8,"text":"AI explains. The scoring pipeline ranks.","textPreview":"AI explains. The scoring pipeline ranks.","textChars":40,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/5gba9crq","slide":8,"bbox":[72,318,538,266]}
+{"kind":"shape","id":"sh/4f29g7q5","slide":8,"bbox":[632,318,576,266]}
+{"kind":"textbox","id":"sh/y9ovixk3","slide":8,"text":"DETERMINISTIC\nActivity proxy\nEquity proxy\nGrid proxy\nOperator placeholder\nWeighted sum","textPreview":"DETERMINISTIC | Activity proxy | Equity proxy | Grid proxy | Operator placeholder | Weighted sum","textChars":86,"textLines":6,"bbox":[108,338,466,220]}
+{"kind":"textbox","id":"sh/zaxcrilo","slide":8,"text":"OPTIONAL AI\nPlain-language rationale\nEvidence request summary\nNever edits score columns\nNever changes rank order","textPreview":"OPTIONAL AI | Plain-language rationale | Evidence request summary | Never edits score columns | Never changes rank order","textChars":112,"textLines":5,"bbox":[668,338,504,220]}
+{"kind":"notes","id":"nt/a2x3vn","slide":8,"text":"Slide 8: AI explains. The scoring pipeline ranks.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/z2erfk","slide":9,"title":"R²Z","textShapes":7}
+{"kind":"textbox","id":"sh/qxcrqdcf","slide":9,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/dknqlsbq","slide":9,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/cje9snul","slide":9,"text":"PRODUCT","textPreview":"PRODUCT","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/3ul8fito","slide":9,"text":"09","textPreview":"09","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/2tcrmdc3","slide":9,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/pw3qh8bu","slide":9,"text":"LIVE DASHBOARD","textPreview":"LIVE DASHBOARD","textChars":14,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/ovu9onu9","slide":9,"text":"A 2026 decision cockpit built for judges and city teams","textPreview":"A 2026 decision cockpit built for judges and city teams","textChars":55,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/epsritc7","slide":9,"bbox":[86,606,620,30]}
+{"kind":"textbox","id":"sh/0z25czux","slide":9,"text":"Live localhost capture · 17 August 2026","textPreview":"Live localhost capture · 17 August 2026","textChars":39,"textLines":1,"bbox":[94,606,604,30]}
+{"kind":"image","id":"im/mhc7ehcb","slide":9,"name":"","geometry":"roundRect","alt":"Live localhost capture · 17 August 2026","bbox":[72,300,1136,338]}
+{"kind":"notes","id":"nt/z2erfk","slide":9,"text":"Slide 9: A 2026 decision cockpit built for judges and city teams. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html\n- output/playwright/route2zero-2026-desktop-hero.png"}
+{"kind":"slide","id":"sl/bxs79v","slide":10,"title":"R²Z","textShapes":7}
+{"kind":"textbox","id":"sh/rm5wza1k","slide":10,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/sned8f25","slide":10,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/to7e10jq","slide":10,"text":"PRODUCT","textPreview":"PRODUCT","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/ixwv2lk3","slide":10,"text":"10","textPreview":"10","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/jy5wvqlo","slide":10,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/4zed4v29","slide":10,"text":"MAPBOX ROAD GEOMETRY","textPreview":"MAPBOX ROAD GEOMETRY","textChars":20,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/50nex03e","slide":10,"text":"Selected routes follow the street network","textPreview":"Selected routes follow the street network","textChars":41,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/vulwrqlc","slide":10,"bbox":[86,606,620,30]}
+{"kind":"textbox","id":"sh/futknul8","slide":10,"text":"Mapbox Directions path for the selected route; clustered points preserve regional readability.","textPreview":"Mapbox Directions path for the selected route; clustered points preserve regional readability.","textChars":94,"textLines":1,"bbox":[94,606,604,30]}
+{"kind":"image","id":"im/ruhgj29g","slide":10,"name":"","geometry":"roundRect","alt":"Mapbox Directions path for the selected route; clustered points preserve regional readability.","bbox":[72,300,1136,338]}
+{"kind":"notes","id":"nt/bxs79v","slide":10,"text":"Slide 10: Selected routes follow the street network. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html\n- output/playwright/route2zero-2026-map.png"}
+{"kind":"slide","id":"sl/yxgenx","slide":11,"title":"R²Z","textShapes":10}
+{"kind":"textbox","id":"sh/nmpwn6l0","slide":11,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/onixgbml","slide":11,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/porypg36","slide":11,"text":"PRODUCT","textPreview":"PRODUCT","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/ehgfah4j","slide":11,"text":"11","textPreview":"11","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/fipwjml4","slide":11,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/0jyxcrmp","slide":11,"text":"SCENARIO TESTING","textPreview":"SCENARIO TESTING","textChars":16,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/1k7elw3a","slide":11,"text":"Weights update the action queue without hiding the policy choice.","textPreview":"Weights update the action queue without hiding the policy choice.","textChars":65,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/yd0fml4n","slide":11,"bbox":[88,310,14,14]}
+{"kind":"textbox","id":"sh/zetgvql8","slide":11,"text":"Move emissions, equity, grid and operator sliders.","textPreview":"Move emissions, equity, grid and operator sliders.","textChars":50,"textLines":1,"bbox":[118,302,1050,52]}
+{"kind":"shape","id":"sh/7654fm1w","slide":11,"bbox":[88,378,14,14]}
+{"kind":"textbox","id":"sh/65w3mhkb","slide":11,"text":"Values are normalised automatically.","textPreview":"Values are normalised automatically.","textChars":36,"textLines":1,"bbox":[118,370,1050,52]}
+{"kind":"shape","id":"sh/t87mhwj2","slide":11,"bbox":[88,446,14,14]}
+{"kind":"textbox","id":"sh/87ylor2h","slide":11,"text":"Every export records the current city lens and weights.","textPreview":"Every export records the current city lens and weights.","textChars":55,"textLines":1,"bbox":[118,438,1050,52]}
+{"kind":"shape","id":"sh/vap4jm18","slide":11,"bbox":[88,514,14,14]}
+{"kind":"textbox","id":"sh/u9g3qhkn","slide":11,"text":"Reduced-confidence routes remain an explicit opt-in.","textPreview":"Reduced-confidence routes remain an explicit opt-in.","textChars":52,"textLines":1,"bbox":[118,506,1050,52]}
+{"kind":"notes","id":"nt/yxgenx","slide":11,"text":"Slide 11: Weights update the action queue without hiding the policy choice.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/cizh3v","slide":12,"title":"R²Z","textShapes":7}
+{"kind":"textbox","id":"sh/bqtsveh0","slide":12,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/wr294jil","slide":12,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/xsbaxoz6","slide":12,"text":"RESULTS","textPreview":"RESULTS","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/ytkr690b","slide":12,"text":"12","textPreview":"12","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/judszehw","slide":12,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/kvm98jih","slide":12,"text":"CURRENT ACTION QUEUE","textPreview":"CURRENT ACTION QUEUE","textChars":20,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/lgva1oz2","slide":12,"text":"Top routes for deeper feasibility work","textPreview":"Top routes for deeper feasibility work","textChars":38,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/fy98nuhs","slide":12,"bbox":[86,606,620,30]}
+{"kind":"textbox","id":"sh/72d0n61s","slide":12,"text":"Top-ranked records under the default 35 / 35 / 15 / 15 policy lens.","textPreview":"Top-ranked records under the default 35 / 35 / 15 / 15 policy lens.","textChars":67,"textLines":1,"bbox":[94,606,604,30]}
+{"kind":"image","id":"im/rq58bipo","slide":12,"name":"","geometry":"roundRect","alt":"Top-ranked records under the default 35 / 35 / 15 / 15 policy lens.","bbox":[72,300,1136,338]}
+{"kind":"notes","id":"nt/cizh3v","slide":12,"text":"Slide 12: Top routes for deeper feasibility work. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html\n- output/playwright/route2zero-2026-rankings.png"}
+{"kind":"slide","id":"sl/byuu8e","slide":13,"title":"R²Z","textShapes":19}
+{"kind":"textbox","id":"sh/uhs32x0j","slide":13,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/hkj2xczu","slide":13,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/wjal47ip","slide":13,"text":"RESULTS","textPreview":"RESULTS","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/jm1kzmh0","slide":13,"text":"13","textPreview":"13","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/ils36h0f","slide":13,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/5o3m1cz6","slide":13,"text":"LEADING SCREENING RESULT","textPreview":"LEADING SCREENING RESULT","textChars":24,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/4nul87il","slide":13,"text":"Francisco Homes – Cubao","textPreview":"Francisco Homes – Cubao","textChars":23,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/zqhknihw","slide":13,"bbox":[72,320,264,150]}
+{"kind":"shape","id":"sh/yp83ud0b","slide":13,"bbox":[72,320,8,150]}
+{"kind":"textbox","id":"sh/snelcfe9","slide":13,"text":"71.4","textPreview":"71.4","textChars":4,"textLines":1,"bbox":[100,338,216,54]}
+{"kind":"textbox","id":"sh/tonmlkvu","slide":13,"text":"PRIORITY","textPreview":"PRIORITY","textChars":8,"textLines":1,"bbox":[100,393,216,30]}
+{"kind":"textbox","id":"sh/61w3a5w3","slide":13,"text":"Rank #1 under defaults","textPreview":"Rank #1 under defaults","textChars":22,"textLines":1,"bbox":[100,424,216,34]}
+{"kind":"shape","id":"sh/7m54jado","slide":13,"bbox":[358,320,264,150]}
+{"kind":"shape","id":"sh/grelgfe5","slide":13,"bbox":[358,320,8,150]}
+{"kind":"textbox","id":"sh/hs7mpkvq","slide":13,"text":"98.2","textPreview":"98.2","textChars":4,"textLines":1,"bbox":[386,338,216,54]}
+{"kind":"textbox","id":"sh/upw3e5wf","slide":13,"text":"EMISSIONS","textPreview":"EMISSIONS","textChars":9,"textLines":1,"bbox":[386,393,216,30]}
+{"kind":"textbox","id":"sh/fq54nadk","slide":13,"text":"Activity proxy","textPreview":"Activity proxy","textChars":14,"textLines":1,"bbox":[386,424,216,34]}
+{"kind":"shape","id":"sh/wvul4ve1","slide":13,"bbox":[644,320,264,150]}
+{"kind":"shape","id":"sh/xw32d0fm","slide":13,"bbox":[644,320,8,150]}
+{"kind":"textbox","id":"sh/dgbals3y","slide":13,"text":"77.4","textPreview":"77.4","textChars":4,"textLines":1,"bbox":[672,338,216,54]}
+{"kind":"textbox","id":"sh/cf2tsn2t","slide":13,"text":"EQUITY","textPreview":"EQUITY","textChars":6,"textLines":1,"bbox":[672,393,216,30]}
+{"kind":"textbox","id":"sh/betsjil8","slide":13,"text":"Density proxy","textPreview":"Density proxy","textChars":13,"textLines":1,"bbox":[672,424,216,34]}
+{"kind":"shape","id":"sh/qdkrqdkn","slide":13,"bbox":[930,320,264,150]}
+{"kind":"shape","id":"sh/l4vaps3a","slide":13,"bbox":[930,320,8,150]}
+{"kind":"textbox","id":"sh/0jmtwn2p","slide":13,"text":"16.1","textPreview":"16.1","textChars":4,"textLines":1,"bbox":[958,338,216,54]}
+{"kind":"textbox","id":"sh/zitsnil4","slide":13,"text":"GRID","textPreview":"GRID","textChars":4,"textLines":1,"bbox":[958,393,216,30]}
+{"kind":"textbox","id":"sh/yhkbuxkj","slide":13,"text":"Regional proxy","textPreview":"Regional proxy","textChars":14,"textLines":1,"bbox":[958,424,216,34]}
+{"kind":"shape","id":"sh/98vatc36","slide":13,"bbox":[380,520,520,30]}
+{"kind":"textbox","id":"sh/87mt072l","slide":13,"text":"Operator readiness = 50.0 neutral placeholder","textPreview":"Operator readiness = 50.0 neutral placeholder","textChars":45,"textLines":1,"bbox":[388,520,504,30]}
+{"kind":"notes","id":"nt/byuu8e","slide":13,"text":"Slide 13: Francisco Homes – Cubao. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/sh1qpv","slide":14,"title":"R²Z","textShapes":12}
+{"kind":"textbox","id":"sh/7qho36xg","slide":14,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/8rq5wry1","slide":14,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/9sj65wfm","slide":14,"text":"PRODUCT","textPreview":"PRODUCT","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/y18nqhgz","slide":14,"text":"14","textPreview":"14","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/z2hozmxk","slide":14,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/k3q5sry5","slide":14,"text":"DECISION PACK","textPreview":"DECISION PACK","textChars":13,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/l4z61wfa","slide":14,"text":"The dashboard exports the live policy context in three formats.","textPreview":"The dashboard exports the live policy context in three formats.","textChars":63,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/axonmhgn","slide":14,"bbox":[112,328,336,220]}
+{"kind":"textbox","id":"sh/byxov2x8","slide":14,"text":"PDF","textPreview":"PDF","textChars":3,"textLines":1,"bbox":[142,354,276,58]}
+{"kind":"textbox","id":"sh/jypsz6x8","slide":14,"text":"Print-ready decision report","textPreview":"Print-ready decision report","textChars":27,"textLines":1,"bbox":[142,428,276,74]}
+{"kind":"shape","id":"sh/idgrq1wn","slide":14,"bbox":[476,328,336,220]}
+{"kind":"textbox","id":"sh/50ra1gfy","slide":14,"text":"DOC","textPreview":"DOC","textChars":3,"textLines":1,"bbox":[506,354,276,58]}
+{"kind":"textbox","id":"sh/kzy9sbet","slide":14,"text":"Editable Word report","textPreview":"Editable Word report","textChars":20,"textLines":1,"bbox":[506,428,276,74]}
+{"kind":"shape","id":"sh/729s3qd4","slide":14,"bbox":[840,328,336,220]}
+{"kind":"textbox","id":"sh/610rulwj","slide":14,"text":"CSV","textPreview":"CSV","textChars":3,"textLines":1,"bbox":[870,354,276,58]}
+{"kind":"textbox","id":"sh/t4ra5gva","slide":14,"text":"Scenario ranking data","textPreview":"Scenario ranking data","textChars":21,"textLines":1,"bbox":[870,428,276,74]}
+{"kind":"notes","id":"nt/sh1qpv","slide":14,"text":"Slide 14: The dashboard exports the live policy context in three formats.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/bdsvun","slide":15,"title":"R²Z","textShapes":8}
+{"kind":"textbox","id":"sh/at87qxwv","slide":15,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/xwj6lsfm","slide":15,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/wvaps7e1","slide":15,"text":"PRODUCT","textPreview":"PRODUCT","textChars":7,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/n6hofixk","slide":15,"text":"15","textPreview":"15","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/m587mdwz","slide":15,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/9sz6hsfa","slide":15,"text":"RESPONSIVE ACCESS","textPreview":"RESPONSIVE ACCESS","textChars":17,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/8rqponep","slide":15,"text":"The same decision story works on mobile","textPreview":"The same decision story works on mobile","textChars":39,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"textbox","id":"sh/ob61knqt","slide":15,"text":"390 × 844 viewport","textPreview":"390 × 844 viewport","textChars":18,"textLines":1,"bbox":[72,394,160,50]}
+{"kind":"textbox","id":"sh/pcf2dsry","slide":15,"text":"No horizontal overflow","textPreview":"No horizontal overflow","textChars":22,"textLines":1,"bbox":[1040,394,180,50]}
+{"kind":"image","id":"im/61k36pgr","slide":15,"name":"","geometry":"roundRect","alt":"Responsive mobile dashboard hero","bbox":[260,286,260,360]}
+{"kind":"image","id":"im/7mtkzuxc","slide":15,"name":"","geometry":"roundRect","alt":"Responsive mobile Mapbox route","bbox":[760,286,260,360]}
+{"kind":"notes","id":"nt/bdsvun","slide":15,"text":"Slide 15: The same decision story works on mobile. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/iy653a","slide":16,"title":"R²Z","textShapes":20}
+{"kind":"textbox","id":"sh/zulwb6pw","slide":16,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/0vud4b6h","slide":16,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/lw3edgn2","slide":16,"text":"ARCHITECTURE","textPreview":"ARCHITECTURE","textChars":12,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/mxcv6lo7","slide":16,"text":"16","textPreview":"16","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/ny5wfq5s","slide":16,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/8zed8v6d","slide":16,"text":"REPRODUCIBLE PIPELINE","textPreview":"REPRODUCIBLE PIPELINE","textChars":21,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/90neh0ny","slide":16,"text":"Evidence stays traceable from source fields to the interface.","textPreview":"Evidence stays traceable from source fields to the interface.","textChars":61,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/a1wva5oj","slide":16,"bbox":[72,330,206.4,112]}
+{"kind":"shape","id":"sh/vm5wja54","slide":16,"bbox":[88,346,34,30]}
+{"kind":"textbox","id":"sh/r2dwrexs","slide":16,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[96,346,18,30]}
+{"kind":"textbox","id":"sh/q14vi9w7","slide":16,"text":"GTFS audit","textPreview":"GTFS audit","textChars":10,"textLines":1,"bbox":[88,382,174.4,42]}
+{"kind":"textbox","id":"sh/d4vetofi","slide":16,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[278.4,362,22,40]}
+{"kind":"shape","id":"sh/s3mdkjed","slide":16,"bbox":[300.4,330,206.4,112]}
+{"kind":"shape","id":"sh/3ytwnexg","slide":16,"bbox":[316.4,346,34,30]}
+{"kind":"textbox","id":"sh/ixkve9wv","slide":16,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[324.4,346,18,30]}
+{"kind":"textbox","id":"sh/50bep4fm","slide":16,"text":"Route activity","textPreview":"Route activity","textChars":14,"textLines":1,"bbox":[316.4,382,174.4,42]}
+{"kind":"textbox","id":"sh/4z2dgze1","slide":16,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[506.8,362,22,40]}
+{"kind":"shape","id":"sh/nuxwzyx0","slide":16,"bbox":[528.8,330,206.4,112]}
+{"kind":"shape","id":"sh/2tofqtwf","slide":16,"bbox":[544.8,346,34,30]}
+{"kind":"textbox","id":"sh/yp8zixgn","slide":16,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[552.8,346,18,30]}
+{"kind":"textbox","id":"sh/zqhgr2h8","slide":16,"text":"WorldPop catchment","textPreview":"WorldPop catchment","textChars":18,"textLines":1,"bbox":[544.8,382,174.4,42]}
+{"kind":"textbox","id":"sh/krqhk7yd","slide":16,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[735.2,362,22,40]}
+{"kind":"shape","id":"sh/lsjytczy","slide":16,"bbox":[757.2,330,206.4,112]}
+{"kind":"shape","id":"sh/mtszmhgj","slide":16,"bbox":[773.2,346,34,30]}
+{"kind":"textbox","id":"sh/7u1gv2h4","slide":16,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[781.2,346,18,30]}
+{"kind":"textbox","id":"sh/8vaho7yp","slide":16,"text":"Luzon grid proxy","textPreview":"Luzon grid proxy","textChars":16,"textLines":1,"bbox":[773.2,382,174.4,42]}
+{"kind":"textbox","id":"sh/9gjixcza","slide":16,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[963.6,362,22,40]}
+{"kind":"shape","id":"sh/2xozadgf","slide":16,"bbox":[985.6,330,206.4,112]}
+{"kind":"shape","id":"sh/nyxgjih0","slide":16,"bbox":[1001.6,346,34,30]}
+{"kind":"textbox","id":"sh/5cn2pgji","slide":16,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1009.6,346,18,30]}
+{"kind":"textbox","id":"sh/4be1wbix","slide":16,"text":"Composite outputs","textPreview":"Composite outputs","textChars":17,"textLines":1,"bbox":[1001.6,382,174.4,42]}
+{"kind":"notes","id":"nt/iy653a","slide":16,"text":"Slide 16: Evidence stays traceable from source fields to the interface.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/qu07oh","slide":17,"title":"R²Z","textShapes":18}
+{"kind":"textbox","id":"sh/ml472hg3","slide":17,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/9ofqxwfu","slide":17,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/8nmp4ry9","slide":17,"text":"EVIDENCE","textPreview":"EVIDENCE","textChars":8,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/zid87mhs","slide":17,"text":"17","textPreview":"17","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/yh47yhg7","slide":17,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/lkvqtcfi","slide":17,"text":"WHAT THE MVP CAN PROVE","textPreview":"WHAT THE MVP CAN PROVE","textChars":22,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/0jmp0ryx","slide":17,"text":"Strong on reproducibility; intentionally cautious on current operations.","textPreview":"Strong on reproducibility; intentionally cautious on current operations.","textChars":72,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/but832hg","slide":17,"bbox":[72,316,1136,56]}
+{"kind":"textbox","id":"sh/qtk7uxgv","slide":17,"text":"Route universe","textPreview":"Route universe","textChars":14,"textLines":1,"bbox":[92,316,270,56]}
+{"kind":"textbox","id":"sh/kbydcja1","slide":17,"text":"1,522 PUJ records","textPreview":"1,522 PUJ records","textChars":17,"textLines":1,"bbox":[370,316,520,56]}
+{"kind":"shape","id":"sh/lcrelobm","slide":17,"bbox":[1000,329,160,30]}
+{"kind":"textbox","id":"sh/y9gva9sv","slide":17,"text":"Reproducible","textPreview":"Reproducible","textChars":12,"textLines":1,"bbox":[1008,329,144,30]}
+{"kind":"shape","id":"sh/zapwjetg","slide":17,"bbox":[72,386,1136,56]}
+{"kind":"textbox","id":"sh/c7yd8zap","slide":17,"text":"Score completeness","textPreview":"Score completeness","textChars":18,"textLines":1,"bbox":[92,386,270,56]}
+{"kind":"textbox","id":"sh/x87eh4ba","slide":17,"text":"1,521 complete","textPreview":"1,521 complete","textChars":14,"textLines":1,"bbox":[370,386,520,56]}
+{"kind":"shape","id":"sh/algv6psz","slide":17,"bbox":[1000,399,160,30]}
+{"kind":"textbox","id":"sh/bmpwfut4","slide":17,"text":"Visible","textPreview":"Visible","textChars":7,"textLines":1,"bbox":[1008,399,144,30]}
+{"kind":"shape","id":"sh/w32xk3a9","slide":17,"bbox":[72,456,1136,56]}
+{"kind":"textbox","id":"sh/h4bed8bu","slide":17,"text":"Geometry","textPreview":"Geometry","textChars":8,"textLines":1,"bbox":[92,456,270,56]}
+{"kind":"textbox","id":"sh/507exo3y","slide":17,"text":"2 GTFS shapes; 1,520 approximated","textPreview":"2 GTFS shapes; 1,520 approximated","textChars":33,"textLines":1,"bbox":[370,456,520,56]}
+{"kind":"shape","id":"sh/4zyd432d","slide":17,"bbox":[1000,469,160,30]}
+{"kind":"textbox","id":"sh/3ypwvyls","slide":17,"text":"Validate","textPreview":"Validate","textChars":8,"textLines":1,"bbox":[1008,469,144,30]}
+{"kind":"shape","id":"sh/ixwv2tk7","slide":17,"bbox":[72,526,1136,56]}
+{"kind":"textbox","id":"sh/hwneto3m","slide":17,"text":"Operator readiness","textPreview":"Operator readiness","textChars":18,"textLines":1,"bbox":[92,526,270,56]}
+{"kind":"textbox","id":"sh/gved0j21","slide":17,"text":"Neutral 50 placeholder","textPreview":"Neutral 50 placeholder","textChars":22,"textLines":1,"bbox":[370,526,520,56]}
+{"kind":"shape","id":"sh/vu5wrelg","slide":17,"bbox":[1000,539,160,30]}
+{"kind":"textbox","id":"sh/utwvy9kb","slide":17,"text":"Acquire","textPreview":"Acquire","textChars":7,"textLines":1,"bbox":[1008,539,144,30]}
+{"kind":"notes","id":"nt/qu07oh","slide":17,"text":"Slide 17: Strong on reproducibility; intentionally cautious on current operations.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/9ditwe","slide":18,"title":"R²Z","textShapes":11}
+{"kind":"textbox","id":"sh/qhkjyhcj","slide":18,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/dkb2twva","slide":18,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/sj210rup","slide":18,"text":"EVIDENCE","textPreview":"EVIDENCE","textChars":8,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/fmtkvmdg","slide":18,"text":"18","textPreview":"18","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/elk32hcv","slide":18,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/1ov2xwv6","slide":18,"text":"VISIBLE LIMITATIONS","textPreview":"VISIBLE LIMITATIONS","textChars":19,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/0nml4rul","slide":18,"text":"Every important approximation becomes a validation task.","textPreview":"Every important approximation becomes a validation task.","textChars":56,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/nadkz6dc","slide":18,"bbox":[88,310,14,14]}
+{"kind":"textbox","id":"sh/m94361cr","slide":18,"text":"GTFS service calendar ends in 2020.","textPreview":"GTFS service calendar ends in 2020.","textChars":35,"textLines":1,"bbox":[118,302,1050,52]}
+{"kind":"shape","id":"sh/ona90rmp","slide":18,"bbox":[88,368,14,14]}
+{"kind":"textbox","id":"sh/9oja9w3a","slide":18,"text":"1,520 route records use stop-sequence geometry approximation.","textPreview":"1,520 route records use stop-sequence geometry approximation.","textChars":61,"textLines":1,"bbox":[118,360,1050,52]}
+{"kind":"shape","id":"sh/m1sry14j","slide":18,"bbox":[88,426,14,14]}
+{"kind":"textbox","id":"sh/nm1s76l4","slide":18,"text":"WorldPop is density—not informal-settlement status.","textPreview":"WorldPop is density—not informal-settlement status.","textChars":51,"textLines":1,"bbox":[118,418,1050,52]}
+{"kind":"shape","id":"sh/wra94bml","slide":18,"bbox":[88,484,14,14]}
+{"kind":"textbox","id":"sh/xs3adg36","slide":18,"text":"Grid feasibility is regional, not depot-specific.","textPreview":"Grid feasibility is regional, not depot-specific.","textChars":49,"textLines":1,"bbox":[118,476,1050,52]}
+{"kind":"shape","id":"sh/apsr214v","slide":18,"bbox":[88,542,14,14]}
+{"kind":"textbox","id":"sh/bq1sb6l0","slide":18,"text":"Operator readiness defaults to 50 until verified.","textPreview":"Operator readiness defaults to 50 until verified.","textChars":49,"textLines":1,"bbox":[118,534,1050,52]}
+{"kind":"notes","id":"nt/9ditwe","slide":18,"text":"Slide 18: Every important approximation becomes a validation task.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/yiemp1","slide":19,"title":"R²Z","textShapes":20}
+{"kind":"textbox","id":"sh/fi9c7adk","slide":19,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/gjit0fe5","slide":19,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/hkru90vq","slide":19,"text":"PILOT","textPreview":"PILOT","textChars":5,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/2l0b25wb","slide":19,"text":"19","textPreview":"19","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/36tcbadw","slide":19,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/472t4fe1","slide":19,"text":"VALIDATION WORKFLOW","textPreview":"VALIDATION WORKFLOW","textChars":19,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/p8budkvm","slide":19,"text":"Convert uncertainty into an evidence-acquisition plan.","textPreview":"Convert uncertainty into an evidence-acquisition plan.","textChars":54,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/q9kb6pw7","slide":19,"bbox":[72,330,206.4,112]}
+{"kind":"shape","id":"sh/ratcfuds","slide":19,"bbox":[88,346,34,30]}
+{"kind":"textbox","id":"sh/b61c3ato","slide":19,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[96,346,18,30]}
+{"kind":"textbox","id":"sh/a5sva5c3","slide":19,"text":"City kickoff","textPreview":"City kickoff","textChars":12,"textLines":1,"bbox":[88,382,174.4,42]}
+{"kind":"textbox","id":"sh/x8ju5kbu","slide":19,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[278.4,362,22,40]}
+{"kind":"shape","id":"sh/w7adcfa9","slide":19,"bbox":[300.4,330,206.4,112]}
+{"kind":"shape","id":"sh/n2hczqts","slide":19,"bbox":[316.4,346,34,30]}
+{"kind":"textbox","id":"sh/m18v6lc7","slide":19,"text":"2","textPreview":"2","textChars":1,"textLines":1,"bbox":[324.4,346,18,30]}
+{"kind":"textbox","id":"sh/94ju10bi","slide":19,"text":"Operator interviews","textPreview":"Operator interviews","textChars":19,"textLines":1,"bbox":[316.4,382,174.4,42]}
+{"kind":"textbox","id":"sh/o3ad8vux","slide":19,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[506.8,362,22,40]}
+{"kind":"shape","id":"sh/7ylcbutw","slide":19,"bbox":[528.8,330,206.4,112]}
+{"kind":"shape","id":"sh/6xcv2psb","slide":19,"bbox":[544.8,346,34,30]}
+{"kind":"textbox","id":"sh/25g7qdgv","slide":19,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[552.8,346,18,30]}
+{"kind":"textbox","id":"sh/36pojihg","slide":19,"text":"Route ground-check","textPreview":"Route ground-check","textChars":18,"textLines":1,"bbox":[544.8,382,174.4,42]}
+{"kind":"textbox","id":"sh/47ipsny1","slide":19,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[735.2,362,22,40]}
+{"kind":"shape","id":"sh/p8r6lsz6","slide":19,"bbox":[757.2,330,206.4,112]}
+{"kind":"shape","id":"sh/q907uxgr","slide":19,"bbox":[773.2,346,34,30]}
+{"kind":"textbox","id":"sh/ra9on2hc","slide":19,"text":"4","textPreview":"4","textChars":1,"textLines":1,"bbox":[781.2,346,18,30]}
+{"kind":"textbox","id":"sh/cbipw7yx","slide":19,"text":"Grid/finance screen","textPreview":"Grid/finance screen","textChars":19,"textLines":1,"bbox":[773.2,382,174.4,42]}
+{"kind":"textbox","id":"sh/dwr6pczi","slide":19,"text":"→","textPreview":"→","textChars":1,"textLines":1,"bbox":[963.6,362,22,40]}
+{"kind":"shape","id":"sh/6dwnit0n","slide":19,"bbox":[985.6,330,206.4,112]}
+{"kind":"shape","id":"sh/7e5oryh8","slide":19,"bbox":[1001.6,346,34,30]}
+{"kind":"textbox","id":"sh/9svaxgjq","slide":19,"text":"5","textPreview":"5","textChars":1,"textLines":1,"bbox":[1009.6,346,18,30]}
+{"kind":"textbox","id":"sh/8rm9obi5","slide":19,"text":"Validated shortlist","textPreview":"Validated shortlist","textChars":19,"textLines":1,"bbox":[1001.6,382,174.4,42]}
+{"kind":"notes","id":"nt/yiemp1","slide":19,"text":"Slide 19: Convert uncertainty into an evidence-acquisition plan.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/2j5zof","slide":20,"title":"R²Z","textShapes":18}
+{"kind":"textbox","id":"sh/sj2lobi9","slide":20,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/rit4f6ho","slide":20,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/qh03m103","slide":20,"text":"PILOT","textPreview":"PILOT","textChars":5,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/18bmlgzq","slide":20,"text":"20","textPreview":"20","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/072lsvil","slide":20,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/f6t4jqh0","slide":20,"text":"SIX-MONTH STRATEGY","textPreview":"SIX-MONTH STRATEGY","textChars":18,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/e5k3ql0f","slide":20,"text":"Five workstreams, three milestone gates, one accountable decision pack.","textPreview":"Five workstreams, three milestone gates, one accountable decision pack.","textChars":71,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/hcr29wzm","slide":20,"bbox":[92,384,1088,8]}
+{"kind":"shape","id":"sh/gbilgri1","slide":20,"bbox":[96,364,46,46]}
+{"kind":"textbox","id":"sh/i5kvqho7","slide":20,"text":"M1","textPreview":"M1","textChars":2,"textLines":1,"bbox":[96,369,46,34]}
+{"kind":"textbox","id":"sh/j6twjm5s","slide":20,"text":"Kickoff + audit","textPreview":"Kickoff + audit","textChars":15,"textLines":1,"bbox":[58,430,122,62]}
+{"kind":"shape","id":"sh/47mdsr6d","slide":20,"bbox":[306,364,46,46]}
+{"kind":"textbox","id":"sh/58velwni","slide":20,"text":"M2","textPreview":"M2","textChars":2,"textLines":1,"bbox":[306,369,46,34]}
+{"kind":"textbox","id":"sh/694vuho3","slide":20,"text":"Field design","textPreview":"Field design","textChars":12,"textLines":1,"bbox":[268,430,122,62]}
+{"kind":"shape","id":"sh/radwnm5o","slide":20,"bbox":[516,364,46,46]}
+{"kind":"textbox","id":"sh/sbmxwr69","slide":20,"text":"M3","textPreview":"M3","textChars":2,"textLines":1,"bbox":[516,369,46,34]}
+{"kind":"textbox","id":"sh/tcvepwnu","slide":20,"text":"Ground-check","textPreview":"Ground-check","textChars":12,"textLines":1,"bbox":[478,430,122,62]}
+{"kind":"shape","id":"sh/ed4fy1of","slide":20,"bbox":[726,364,46,46]}
+{"kind":"textbox","id":"sh/fedwr650","slide":20,"text":"M4","textPreview":"M4","textChars":2,"textLines":1,"bbox":[726,369,46,34]}
+{"kind":"textbox","id":"sh/b2xcf6ls","slide":20,"text":"Grid + finance","textPreview":"Grid + finance","textChars":14,"textLines":1,"bbox":[688,430,122,62]}
+{"kind":"shape","id":"sh/ahovm1k7","slide":20,"bbox":[936,364,46,46]}
+{"kind":"textbox","id":"sh/x4fehg3y","slide":20,"text":"M5","textPreview":"M5","textChars":2,"textLines":1,"bbox":[936,369,46,34]}
+{"kind":"textbox","id":"sh/c36dob2d","slide":20,"text":"Co-design","textPreview":"Co-design","textChars":9,"textLines":1,"bbox":[898,430,122,62]}
+{"kind":"shape","id":"sh/nexcbmlw","slide":20,"bbox":[1146,364,46,46]}
+{"kind":"textbox","id":"sh/2d4vi1kb","slide":20,"text":"M6","textPreview":"M6","textChars":2,"textLines":1,"bbox":[1146,369,46,34]}
+{"kind":"textbox","id":"sh/pgfudw32","slide":20,"text":"Decision pack","textPreview":"Decision pack","textChars":13,"textLines":1,"bbox":[1108,430,122,62]}
+{"kind":"notes","id":"nt/2j5zof","slide":20,"text":"Slide 20: Five workstreams, three milestone gates, one accountable decision pack.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/cho3vg","slide":21,"title":"R²Z","textShapes":15}
+{"kind":"textbox","id":"sh/4zyporux","slide":21,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/3y5ovmtc","slide":21,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/ixw7m1cr","slide":21,"text":"PILOT","textPreview":"PILOT","textChars":5,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/hcn6twb6","slide":21,"text":"21","textPreview":"21","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/gbepkrul","slide":21,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/va5ormt0","slide":21,"text":"MILESTONE GATES","textPreview":"MILESTONE GATES","textChars":15,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/u9w7ihcv","slide":21,"text":"Progress only when the evidence is decision-ready.","textPreview":"Progress only when the evidence is decision-ready.","textChars":50,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/t8n6pcba","slide":21,"bbox":[92,330,344,218]}
+{"kind":"shape","id":"sh/87epg7up","slide":21,"bbox":[120,354,100,30]}
+{"kind":"textbox","id":"sh/u54radk3","slide":21,"text":"GATE 1","textPreview":"GATE 1","textChars":6,"textLines":1,"bbox":[128,354,84,30]}
+{"kind":"textbox","id":"sh/f6dsji1o","slide":21,"text":"Evidence plan approved","textPreview":"Evidence plan approved","textChars":22,"textLines":1,"bbox":[120,400,288,78]}
+{"kind":"textbox","id":"sh/g769c329","slide":21,"text":"End of M2","textPreview":"End of M2","textChars":9,"textLines":1,"bbox":[120,496,288,30]}
+{"kind":"shape","id":"sh/h8fal8ju","slide":21,"bbox":[466,330,344,218]}
+{"kind":"shape","id":"sh/614r6tk7","slide":21,"bbox":[494,354,100,30]}
+{"kind":"textbox","id":"sh/72dsfy1s","slide":21,"text":"GATE 2","textPreview":"GATE 2","textChars":6,"textLines":1,"bbox":[502,354,84,30]}
+{"kind":"textbox","id":"sh/s3m9832d","slide":21,"text":"Routes validated","textPreview":"Routes validated","textChars":16,"textLines":1,"bbox":[494,400,288,78]}
+{"kind":"textbox","id":"sh/t4vah8jy","slide":21,"text":"End of M4","textPreview":"End of M4","textChars":9,"textLines":1,"bbox":[494,496,288,30]}
+{"kind":"shape","id":"sh/idkr2tkb","slide":21,"bbox":[840,330,344,218]}
+{"kind":"shape","id":"sh/jet8bylg","slide":21,"bbox":[868,354,100,30]}
+{"kind":"textbox","id":"sh/ni9o3u18","slide":21,"text":"GATE 3","textPreview":"GATE 3","textChars":6,"textLines":1,"bbox":[876,354,84,30]}
+{"kind":"textbox","id":"sh/mh07ap03","slide":21,"text":"City shortlist accepted","textPreview":"City shortlist accepted","textChars":23,"textLines":1,"bbox":[868,400,288,78]}
+{"kind":"textbox","id":"sh/9kr65kze","slide":21,"text":"End of M6","textPreview":"End of M6","textChars":9,"textLines":1,"bbox":[868,496,288,30]}
+{"kind":"notes","id":"nt/cho3vg","slide":21,"text":"Slide 21: Progress only when the evidence is decision-ready.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/6uanzk","slide":22,"title":"R²Z","textShapes":22}
+{"kind":"textbox","id":"sh/xkf2dkna","slide":22,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/ahoji54j","slide":22,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/bixkba54","slide":22,"text":"TEAM","textPreview":"TEAM","textChars":4,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/knqlofml","slide":22,"text":"22","textPreview":"22","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/loz2hkn6","slide":22,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/ylojmp4f","slide":22,"text":"ACCOUNTABILITY","textPreview":"ACCOUNTABILITY","textChars":14,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/zmhkfu50","slide":22,"text":"A multidisciplinary team with named owners","textPreview":"A multidisciplinary team with named owners","textChars":42,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/8rqlszmx","slide":22,"bbox":[72,320,264,94]}
+{"kind":"textbox","id":"sh/9cz2l4n2","slide":22,"text":"John Marwin Ebona","textPreview":"John Marwin Ebona","textChars":17,"textLines":1,"bbox":[88,334,232,42]}
+{"kind":"textbox","id":"sh/xwz2dkvq","slide":22,"text":"Product lead","textPreview":"Product lead","textChars":12,"textLines":1,"bbox":[88,376,232,26]}
+{"kind":"shape","id":"sh/cvq14zu5","slide":22,"bbox":[358,320,264,94]}
+{"kind":"textbox","id":"sh/buhkbudk","slide":22,"text":"Prince Marl","textPreview":"Prince Marl","textChars":11,"textLines":1,"bbox":[374,334,232,42]}
+{"kind":"textbox","id":"sh/at8j2pcz","slide":22,"text":"Data lead","textPreview":"Data lead","textChars":9,"textLines":1,"bbox":[374,376,232,26]}
+{"kind":"shape","id":"sh/l0z2h4bm","slide":22,"bbox":[644,320,264,94]}
+{"kind":"textbox","id":"sh/kzq18zu1","slide":22,"text":"Joaquin Sarmiento","textPreview":"Joaquin Sarmiento","textChars":17,"textLines":1,"bbox":[660,334,232,42]}
+{"kind":"textbox","id":"sh/zyhkfudg","slide":22,"text":"Mobility lead","textPreview":"Mobility lead","textChars":13,"textLines":1,"bbox":[660,376,232,26]}
+{"kind":"shape","id":"sh/yx8j6pcv","slide":22,"bbox":[930,320,264,94]}
+{"kind":"textbox","id":"sh/14f250vi","slide":22,"text":"Isaac Marcus","textPreview":"Isaac Marcus","textChars":12,"textLines":1,"bbox":[946,334,232,42]}
+{"kind":"textbox","id":"sh/g361wfux","slide":22,"text":"Engineering lead","textPreview":"Engineering lead","textChars":16,"textLines":1,"bbox":[946,376,232,26]}
+{"kind":"shape","id":"sh/sna1cf2t","slide":22,"bbox":[72,442,264,94]}
+{"kind":"textbox","id":"sh/toj2lk3e","slide":22,"text":"Andrei Dela Cruz","textPreview":"Andrei Dela Cruz","textChars":16,"textLines":1,"bbox":[88,456,232,42]}
+{"kind":"textbox","id":"sh/6l8ja5kn","slide":22,"text":"Policy lead","textPreview":"Policy lead","textChars":11,"textLines":1,"bbox":[88,498,232,26]}
+{"kind":"shape","id":"sh/7mhkjal8","slide":22,"bbox":[358,442,264,94]}
+{"kind":"textbox","id":"sh/gba1gf2p","slide":22,"text":"Russel Mendez","textPreview":"Russel Mendez","textChars":13,"textLines":1,"bbox":[374,456,232,42]}
+{"kind":"textbox","id":"sh/1cj2pk3a","slide":22,"text":"Research lead","textPreview":"Research lead","textChars":13,"textLines":1,"bbox":[374,498,232,26]}
+{"kind":"shape","id":"sh/u9sjepkj","slide":22,"bbox":[644,442,264,94]}
+{"kind":"textbox","id":"sh/fa1knal4","slide":22,"text":"Tj Moreno","textPreview":"Tj Moreno","textChars":9,"textLines":1,"bbox":[660,456,232,42]}
+{"kind":"textbox","id":"sh/ofulkz21","slide":22,"text":"Engagement lead","textPreview":"Engagement lead","textChars":15,"textLines":1,"bbox":[660,498,232,26]}
+{"kind":"shape","id":"sh/pg32t436","slide":22,"bbox":[930,442,264,94]}
+{"kind":"textbox","id":"sh/za54jy5o","slide":22,"text":"JM Palaganas","textPreview":"JM Palaganas","textChars":12,"textLines":1,"bbox":[946,456,232,42]}
+{"kind":"textbox","id":"sh/y9wnqt43","slide":22,"text":"QA + documentation","textPreview":"QA + documentation","textChars":18,"textLines":1,"bbox":[946,498,232,26]}
+{"kind":"notes","id":"nt/6uanzk","slide":22,"text":"Slide 22: A multidisciplinary team with named owners. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/3cfv7a","slide":23,"title":"R²Z","textShapes":18}
+{"kind":"textbox","id":"sh/kf6d4b69","slide":23,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/zexwb65o","slide":23,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/ytov2lo3","slide":23,"text":"IMPACT","textPreview":"IMPACT","textChars":6,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/xsfu9gni","slide":23,"text":"23","textPreview":"23","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/cr6d0b6x","slide":23,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/bqxc765c","slide":23,"text":"SUCCESS MEASURES","textPreview":"SUCCESS MEASURES","textChars":16,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/apovy1o7","slide":23,"text":"Judge the pilot by decision quality—not model novelty.","textPreview":"Judge the pilot by decision quality—not model novelty.","textChars":54,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"shape","id":"sh/hoje50nm","slide":23,"bbox":[72,330,264,150]}
+{"kind":"shape","id":"sh/gnqdcvmh","slide":23,"bbox":[72,330,8,150]}
+{"kind":"textbox","id":"sh/ydoneho7","slide":23,"text":"100%","textPreview":"100%","textChars":4,"textLines":1,"bbox":[100,348,216,54]}
+{"kind":"textbox","id":"sh/zexo7m5s","slide":23,"text":"shortlisted routes with evidence cards","textPreview":"shortlisted routes with evidence cards","textChars":38,"textLines":1,"bbox":[100,403,216,30]}
+{"kind":"textbox","id":"sh/kf6pgr6d","slide":23,"text":"Pilot target","textPreview":"Pilot target","textChars":12,"textLines":1,"bbox":[100,434,216,34]}
+{"kind":"shape","id":"sh/lgf69wny","slide":23,"bbox":[358,330,264,150]}
+{"kind":"shape","id":"sh/ap4nahob","slide":23,"bbox":[358,330,8,150]}
+{"kind":"textbox","id":"sh/bqdo3m5g","slide":23,"text":"3","textPreview":"3","textChars":1,"textLines":1,"bbox":[386,348,216,54]}
+{"kind":"textbox","id":"sh/cb65cr61","slide":23,"text":"LGU validation sessions","textPreview":"LGU validation sessions","textChars":23,"textLines":1,"bbox":[386,403,216,30]}
+{"kind":"textbox","id":"sh/xcf65cnm","slide":23,"text":"Pilot target","textPreview":"Pilot target","textChars":12,"textLines":1,"bbox":[386,434,216,34]}
+{"kind":"shape","id":"sh/ul87m14f","slide":23,"bbox":[644,330,264,150]}
+{"kind":"shape","id":"sh/v6hof650","slide":23,"bbox":[644,330,8,150]}
+{"kind":"textbox","id":"sh/rq9k7ylc","slide":23,"text":"≥80%","textPreview":"≥80%","textChars":4,"textLines":1,"bbox":[672,348,216,54]}
+{"kind":"textbox","id":"sh/qp03et4r","slide":23,"text":"priority records ground-checked","textPreview":"priority records ground-checked","textChars":31,"textLines":1,"bbox":[672,403,216,30]}
+{"kind":"textbox","id":"sh/dsbm983i","slide":23,"text":"Pilot target","textPreview":"Pilot target","textChars":12,"textLines":1,"bbox":[672,434,216,34]}
+{"kind":"shape","id":"sh/srilg3mx","slide":23,"bbox":[930,330,264,150]}
+{"kind":"shape","id":"sh/fut4bil8","slide":23,"bbox":[930,330,8,150]}
+{"kind":"textbox","id":"sh/etk3id43","slide":23,"text":"1","textPreview":"1","textChars":1,"textLines":1,"bbox":[958,348,216,54]}
+{"kind":"textbox","id":"sh/1wbmds3e","slide":23,"text":"accepted decision pack","textPreview":"accepted decision pack","textChars":22,"textLines":1,"bbox":[958,403,216,30]}
+{"kind":"textbox","id":"sh/0v2lknmt","slide":23,"text":"Pilot target","textPreview":"Pilot target","textChars":12,"textLines":1,"bbox":[958,434,216,34]}
+{"kind":"notes","id":"nt/3cfv7a","slide":23,"text":"Slide 23: Judge the pilot by decision quality—not model novelty.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}
+{"kind":"slide","id":"sl/moe3kg","slide":24,"title":"R²Z","textShapes":9}
+{"kind":"textbox","id":"sh/8fm1wz6l","slide":24,"text":"R²Z","textPreview":"R²Z","textChars":3,"textLines":1,"bbox":[54,32,48,34]}
+{"kind":"textbox","id":"sh/nudk3u50","slide":24,"text":"ROUTE2ZERO","textPreview":"ROUTE2ZERO","textChars":10,"textLines":1,"bbox":[110,34,150,28]}
+{"kind":"textbox","id":"sh/mt4jupof","slide":24,"text":"CLOSE","textPreview":"CLOSE","textChars":5,"textLines":1,"bbox":[960,35,210,26]}
+{"kind":"textbox","id":"sh/xkf294n2","slide":24,"text":"24","textPreview":"24","textChars":2,"textLines":1,"bbox":[1182,35,44,26]}
+{"kind":"shape","id":"sh/wj610z6x","slide":24,"bbox":[54,680,1172,2]}
+{"kind":"textbox","id":"sh/vixk7u5c","slide":24,"text":"THE ASK","textPreview":"THE ASK","textChars":7,"textLines":1,"bbox":[72,88,1120,28]}
+{"kind":"textbox","id":"sh/ahojypor","slide":24,"text":"Help Route2Zero turn a screening MVP into a city-owned electrification roadmap.","textPreview":"Help Route2Zero turn a screening MVP into a city-owned electrification roadmap.","textChars":79,"textLines":1,"bbox":[72,122,1120,112]}
+{"kind":"textbox","id":"sh/dov2xkny","slide":24,"text":"Pilot with three LGUs · validate with operators and riders · publish a transparent corridor shortlist.","textPreview":"Pilot with three LGUs · validate with operators and riders · publish a transparent corridor shortlist.","textChars":102,"textLines":1,"bbox":[72,234,1080,64]}
+{"kind":"shape","id":"sh/cn21of6d","slide":24,"bbox":[72,344,1136,190]}
+{"kind":"textbox","id":"sh/e9w7udkz","slide":24,"text":"SCREEN  →  VALIDATE  →  CO-DESIGN  →  ACT","textPreview":"SCREEN  →  VALIDATE  →  CO-DESIGN  →  ACT","textChars":41,"textLines":1,"bbox":[116,388,1048,62]}
+{"kind":"textbox","id":"sh/fa58nylk","slide":24,"text":"route2zero · transparent by design","textPreview":"route2zero · transparent by design","textChars":34,"textLines":1,"bbox":[116,466,1048,34]}
+{"kind":"notes","id":"nt/moe3kg","slide":24,"text":"Slide 24: Help Route2Zero turn a screening MVP into a city-owned electrification roadmap.. Keep the explanation focused on what the current evidence supports and what the pilot must validate.\n\n[Sources]\n- data/processed/route2zero_scores.csv\n- data/processed/city_summary.csv\n- netlify-site/public/index.html"}

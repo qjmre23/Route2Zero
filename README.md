@@ -10,7 +10,7 @@ The MVP is built for the **AI x City Climate Action Hackathon 2026**. Its pilot 
 
 ## What is included
 
-- A responsive Streamlit dashboard and a Netlify-ready 2026 web experience
+- A responsive, Netlify-ready 2026 web dashboard plus the legacy Streamlit analysis view
 - Interactive Mapbox map with clustered priorities and on-demand street-following routes
 - Live score-weight controls and city filters
 - A route detail view with four-factor score breakdown
@@ -24,6 +24,19 @@ The MVP is built for the **AI x City Climate Action Hackathon 2026**. Its pilot 
 - Full methodology, provenance, technical guide, and presentation script
 
 ## Live demo
+
+### Netlify-ready dashboard (recommended)
+
+```powershell
+cd netlify-site
+npm run build
+cd ..
+python -m http.server 8899 --directory netlify-site\public
+```
+
+Then open `http://127.0.0.1:8899/`. The approved public Mapbox token is included as a build fallback, so `MAPBOX_TOKEN` is optional.
+
+### Legacy Streamlit analysis view
 
 ### Windows PowerShell
 
@@ -63,10 +76,9 @@ Publish directory: public
 Functions directory: netlify/functions
 ```
 
-Add these environment variables in Netlify under Site configuration > Environment variables. The Mapbox value needs **Builds** scope. The four AI values need **Functions** scope (and may also include Builds):
+Add these environment variables in Netlify under Site configuration > Environment variables. The four AI values need **Functions** scope (and may also include Builds):
 
 ```text
-MAPBOX_TOKEN=your_public_pk_mapbox_token_here
 ABSK_KEY=your_api_key_here
 BASE_URL=your_openai_compatible_base_url_here
 MODEL=your_model_name_here
@@ -75,7 +87,7 @@ AI_EXPLANATIONS_ENABLED=true
 
 `ABSK_KEY` is the variable that holds the API key. Do not add the key to browser JavaScript, `.env.example`, `netlify.toml`, or `netlify-site/public/`. The Netlify Function reads it with `process.env.ABSK_KEY`, so the key stays server-side. Redeploy after changing Netlify environment variables.
 
-The Mapbox token begins with `pk.` and is intentionally a public browser token. GitHub push protection still treats Mapbox token patterns as secrets, so the build reads `MAPBOX_TOKEN` and generates an ignored `public/config.js` file. Do not mark `MAPBOX_TOKEN` as containing secret values in Netlify because it must be delivered to the browser. If Netlify's smart scanner reports this deliberate public value as a false positive, set `SECRETS_SCAN_OMIT_KEYS=MAPBOX_TOKEN` in Netlify rather than disabling secret scanning for the project. Restrict the token to the production Netlify domain in the Mapbox account after the final site URL is known. Mapbox Directions requests are made only for the selected route and may count toward the account's Mapbox usage.
+The Mapbox token begins with `pk.` and is intentionally a public browser token. The build includes the approved public token as an offline-safe default and still accepts an optional `MAPBOX_TOKEN` build variable as an override. It generates an ignored `public/config.js` file and limits Netlify's scan exception to that deliberate public output path. No Mapbox variable is required for the standard deploy. Restrict the token to the production Netlify domain in the Mapbox account after the final site URL is known. Mapbox Directions requests are made only for the selected route and may count toward the account's Mapbox usage.
 
 ## Optional AI explanation layer
 
@@ -231,12 +243,12 @@ Route2Zero/
 
 ## Submission artifacts
 
-- `output/documents/Route2Zero_Pilot_Plan.docx` — editable six-page Pilot Plan
-- `output/pdf/Route2Zero_Pilot_Plan.pdf` — visually verified A4 Pilot Plan
-- `output/presentation/Route2Zero_Demonstration_Deck.pptx` — editable 20-slide demonstration deck with source notes
-- `output/pdf/Route2Zero_Demonstration_Deck.pdf` — visually verified 20-page presentation PDF
-- `script.txt` — narration aligned to all 20 slides
-- `technical.txt` — 1,000-plus-line implementation, data dictionary, QA, runbook, and handover reference
+- `output/documents/Route2Zero_Pilot_Plan.docx` — editable, accessible 24-page formal Pilot Plan
+- `output/pdf/Route2Zero_Pilot_Plan.pdf` — visually verified 24-page Pilot Plan
+- `output/presentation/Route2Zero_Demonstration_Deck.pptx` — editable 24-slide 2026 demonstration deck with source notes
+- `output/pdf/Route2Zero_Demonstration_Deck.pdf` — visually verified 24-page presentation PDF
+- `script.txt` — narration aligned to all 24 slides plus a live-demo checklist
+- `technical.txt` — Netlify, Mapbox, data, QA, deployment and handover reference
 
 ## Key processed outputs
 

@@ -3,6 +3,10 @@
   command = "npm run build"
   publish = "public"
 
+[build.environment]
+  # public/config.js intentionally contains a browser-safe Mapbox pk token.
+  SECRETS_SCAN_OMIT_PATHS = "netlify-site/public/config.js"
+
 [functions]
   directory = "netlify/functions"
   node_bundler = "esbuild"

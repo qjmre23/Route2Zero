@@ -1,34 +1,37 @@
-# Route2Zero three-minute demo script
+# Route2Zero 2026 three-minute live demo
 
-## 0:00-0:25 — Open on the map
+For the full 24-slide narration, use [`script.txt`](../script.txt).
 
-“Route2Zero answers one policy question: which jeepney corridors should Metro Manila validate for electrification first, while keeping the transition fair? This is not a trip planner. It is a transparent shortlist for LGUs, regulators, operators, and financiers.”
+## 0:00–0:30 — State the decision
 
-Point to the persistent confidence banner: “Before I show a score, the product shows what is real, derived, proxied, and still missing.”
+Open the dashboard hero. “Route2Zero answers one planning question: which jeepney corridors deserve deeper electrification feasibility work first? It screens 1,522 Metro Manila route-direction records without hiding the age, proxy status or confidence of the evidence.”
 
-## 0:25-1:10 — Open a high-priority route
+Point to the four headline metrics and the decision-grade transparency notice.
 
-Select the top route in the leaderboard or click its green line. “This corridor ranks highly under the default 35-35-15-15 weights. The chart shows the four components. Emissions is route activity, not measured tailpipe emissions. Equity uses a WorldPop density proxy, not a claimed informal-settlement boundary. Grid is a shared Luzon baseline. Operator readiness is visibly a neutral placeholder.”
+## 0:30–1:10 — Show the street-following route
 
-Point to the explanation badge: “AI explains already-computed facts in plain language. It never changes the score, and the same screen works offline with deterministic text.”
+Choose **Explore the live map**. “The regional records are clustered for readability. When I select a route, Mapbox Directions constructs a detailed road path, so the highlighted line follows streets rather than flying between stops.”
 
-## 1:10-1:45 — Show contrast and live weights
+Point to **Street-following route ready · Mapbox Directions**. Add: “This improves the decision view, but it remains a screening geometry until the corridor is ground-checked with the city and operator.”
 
-Choose a lower-ranked route. “This route has lower activity and/or density exposure, so it falls lower in the current shortlist. That does not mean ‘do not electrify’; it means validate higher-priority candidates first with the evidence currently available.”
+## 1:10–1:50 — Explain the rank
 
-Move the equity weight higher, then restore defaults. “Policy teams can test priorities live. The arithmetic remains auditable and weights normalize automatically.”
+Scroll to the selected recommendation and rankings. “The leading record under the default policy lens is Francisco Homes–Cubao at 71.4. The score is a visible weighted sum: 35% emissions activity, 35% equity density, 15% grid context and 15% operator readiness.”
 
-## 1:45-2:20 — Spotlight a city
+Point out that grid is regional and operator readiness is the neutral 50 placeholder. “A top rank means validate first—not invest automatically.”
 
-Choose Marikina in the city filter. “A city can immediately narrow the route universe and compare its corridors. We also prepared Makati and Malabon spotlight outputs. The city tag comes from GTFS descriptions and is another field to validate during the pilot.”
+## 1:50–2:20 — Test a policy scenario
 
-Scroll to the impact-equity scatterplot. “The upper-right routes combine high service activity and high-density exposure. Bubble size reflects estimated service volume.”
+Open **Filters** on mobile or use the left rail on desktop. Move one slider and show the action queue update. “Policy choices are explicit. Values normalise automatically, and AI never changes the arithmetic or rank.”
 
-## 2:20-2:45 — Export and policy brief
+Restore the defaults before continuing.
 
-Download the filtered CSV. “Every shortlist is exportable.” Open one file under `docs/policy_briefs/`. “The pipeline also creates a one-page brief for the top five routes and the leading route in each spotlight city, including service facts, score breakdown, action request, and confidence notes.”
+## 2:20–2:45 — Export the decision pack
 
-## 2:45-3:00 — Close
+Point to PDF, Word and CSV. “The current city lens, weights, shortlist and limitations travel into every export. PDF is ready for circulation, Word is editable and CSV supports analyst review.”
 
-“Route2Zero does not hide imperfect data. It turns data gaps into a pilot agenda: refresh routes, verify communities, test depot capacity, and collect operator finance readiness. The result is a defensible path from historic open data to a co-designed, investment-ready just transition.”
+## 2:45–3:00 — Close with the pilot
 
+Open the collapsed **Judge guide**. “The next step is a six-month pilot: city kickoff, operator interviews, route ground-checks, grid and finance screening, and a city-owned shortlist.”
+
+Close: “Screen, validate, co-design, act.”
