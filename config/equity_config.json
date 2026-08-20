@@ -1,0 +1,12 @@
+{
+  "version": "equity-v2.0",
+  "weights": {
+    "population_exposure": 1.0,
+    "socioeconomic": 0.0,
+    "accessibility_gap": 0.0,
+    "underserved_overlap": 0.0
+  },
+  "secondary_source_available": false,
+  "underserved_overlap_available": false,
+  "missing_data_policy": "Low evidence is not automatically low need; unavailable dimensions remain null and are not silently inferred."
+}

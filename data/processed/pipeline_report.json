@@ -1,0 +1,16 @@
+{
+  "status": "PASS_WITH_WARNINGS",
+  "pipeline_version": "2.0.0",
+  "build_id": "r2z-16690ccbe328",
+  "build_timestamp_utc": "2026-08-20T05:37:23Z",
+  "rows_processed": 1522,
+  "score_complete_count": 1522,
+  "current_validation_count": 0,
+  "robust_priority_count": 9,
+  "phase1_corridor_count": 8,
+  "warnings": [
+    "No current route validation records have been supplied; all service status remains historic-only.",
+    "No consent-based operator evidence has been supplied; the neutral prior remains active.",
+    "No utility capacity is verified; charging scores use mapped proximity and energy-demand screening only."
+  ]
+}

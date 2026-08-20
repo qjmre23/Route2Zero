@@ -1,0 +1,9 @@
+{
+  "version": "sensitivity-v1.0",
+  "mode": "around_default",
+  "simulations": 5000,
+  "random_seed": 20260820,
+  "dirichlet_concentration": 60,
+  "robust_priority_top10_probability": 0.7,
+  "scenario_dependent_top10_probability": 0.2
+}

@@ -1,0 +1,44 @@
+{
+  "pipeline_version": "2.0.0",
+  "random_seed": 20260820,
+  "service_intensity": {
+    "target": "historic_daily_vehicle_km_proxy",
+    "model_candidates": ["hist_gradient_boosting", "random_forest"],
+    "cv_folds": 5,
+    "minimum_relative_mae_improvement": 0.02,
+    "feature_columns": [
+      "stop_count",
+      "stops_per_km",
+      "mean_stop_spacing_m",
+      "endpoint_distance_km",
+      "geometry_detour_ratio",
+      "corridor_population_proxy",
+      "equity_overlap_pct",
+      "hub_connectivity_count",
+      "geometry_source_is_shape"
+    ],
+    "forbidden_leakage_columns": [
+      "trips_per_day_estimate",
+      "avg_headway_min",
+      "daily_service_window_hrs",
+      "daily_vehicle_km_proxy",
+      "emissions_potential_score",
+      "climate_impact_score",
+      "just_transition_score",
+      "rank"
+    ]
+  },
+  "typology": {
+    "k_min": 3,
+    "k_max": 8,
+    "features": [
+      "length_km",
+      "stop_count",
+      "stops_per_km",
+      "endpoint_distance_km",
+      "geometry_detour_ratio",
+      "corridor_population_proxy",
+      "equity_overlap_pct"
+    ]
+  }
+}

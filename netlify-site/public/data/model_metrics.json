@@ -1,0 +1,123 @@
+{
+  "service_intensity": {
+    "model_version": "service-v1-266e0b1d",
+    "model_name": "hist_gradient_boosting",
+    "target": "historic_daily_vehicle_km_proxy",
+    "target_description": "Historic schedule-based vehicle-kilometres per day proxy; not passenger demand or ridership.",
+    "features": [
+      "stop_count",
+      "stops_per_km",
+      "mean_stop_spacing_m",
+      "endpoint_distance_km",
+      "geometry_detour_ratio",
+      "corridor_population_proxy",
+      "equity_overlap_pct",
+      "hub_connectivity_count",
+      "geometry_source_is_shape"
+    ],
+    "excluded_leakage_features": [
+      "avg_headway_min",
+      "climate_impact_score",
+      "daily_service_window_hrs",
+      "daily_vehicle_km_proxy",
+      "emissions_potential_score",
+      "just_transition_score",
+      "rank",
+      "trips_per_day_estimate"
+    ],
+    "training_rows": 1521,
+    "corridor_groups": 714,
+    "cross_validation": "GroupKFold(5) by normalized_corridor_id",
+    "candidate_metrics": {
+      "hist_gradient_boosting": {
+        "mae": 266.4485,
+        "rmse": 562.799,
+        "r2": 0.9911,
+        "baseline_mae": 4850.0728,
+        "relative_mae_improvement": 0.9451
+      },
+      "random_forest": {
+        "mae": 272.008,
+        "rmse": 578.6314,
+        "r2": 0.9906,
+        "baseline_mae": 4850.0728,
+        "relative_mae_improvement": 0.9439
+      }
+    },
+    "selected_metrics": {
+      "mae": 266.4485,
+      "rmse": 562.799,
+      "r2": 0.9911,
+      "baseline_mae": 4850.0728,
+      "relative_mae_improvement": 0.9451
+    },
+    "meaningful_vs_baseline": true,
+    "influences_climate_when_historic_value_missing": true,
+    "random_seed": 20260820,
+    "trained_at_utc": "2026-08-20T05:36:58Z",
+    "python_version": "3.12.13",
+    "scikit_learn_version": "1.9.0",
+    "limitations": [
+      "The target is derived from a historic 2013-2020 schedule baseline.",
+      "The model estimates service activity, not ridership, passenger demand or 2026 operations.",
+      "Observed or validated current evidence must override the model during a pilot."
+    ]
+  },
+  "corridor_typology": {
+    "model_version": "typology-v1-f9da2ebe",
+    "method": "StandardScaler + KMeans",
+    "feature_columns": [
+      "length_km",
+      "stop_count",
+      "stops_per_km",
+      "endpoint_distance_km",
+      "geometry_detour_ratio",
+      "corridor_population_proxy",
+      "equity_overlap_pct"
+    ],
+    "random_seed": 20260820,
+    "evaluated_cluster_counts": [
+      {
+        "k": 3,
+        "silhouette_score": 0.2438,
+        "minimum_cluster_size": 284
+      },
+      {
+        "k": 4,
+        "silhouette_score": 0.27,
+        "minimum_cluster_size": 134
+      },
+      {
+        "k": 5,
+        "silhouette_score": 0.2762,
+        "minimum_cluster_size": 8
+      },
+      {
+        "k": 6,
+        "silhouette_score": 0.268,
+        "minimum_cluster_size": 6
+      },
+      {
+        "k": 7,
+        "silhouette_score": 0.2735,
+        "minimum_cluster_size": 2
+      },
+      {
+        "k": 8,
+        "silhouette_score": 0.245,
+        "minimum_cluster_size": 2
+      }
+    ],
+    "selected_k": 4,
+    "selected_silhouette_score": 0.27,
+    "cluster_labels": {
+      "2": "Dense Urban Trunk",
+      "0": "Long Regional Connector",
+      "1": "High-Stop-Density Core",
+      "3": "Local Feeder"
+    },
+    "typology_used_for_policy_score": false,
+    "trained_at_utc": "2026-08-20T05:37:02Z",
+    "limitations": "Typology describes structural similarity; it does not infer income, vulnerability or settlement status."
+  }
+}

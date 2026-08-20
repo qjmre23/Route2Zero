@@ -1,0 +1,2276 @@
+{
+  "version": 0.6,
+  "generator": "Overpass API 0.7.62.11 87bfad18",
+  "osm3s": {
+    "timestamp_osm_base": "2026-08-20T04:26:06Z",
+    "copyright": "The data included in this document is from www.openstreetmap.org. The data is made available under ODbL."
+  },
+  "elements": [
+
+{
+  "type": "node",
+  "id": 2126363168,
+  "lat": 14.5964000,
+  "lon": 121.0151468,
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "node",
+  "id": 2126363194,
+  "lat": 14.5922390,
+  "lon": 121.0174640,
+  "tags": {
+    "name": "Manila Sector",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "node",
+  "id": 2153569632,
+  "lat": 14.4275239,
+  "lon": 121.0259915,
+  "tags": {
+    "name": "Ayala Alabang Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "node",
+  "id": 2508927841,
+  "lat": 14.7118444,
+  "lon": 121.0317785,
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "node",
+  "id": 4381582607,
+  "lat": 14.4180605,
+  "lon": 121.0403302,
+  "tags": {
+    "frequency": "60",
+    "man_made": "street_cabinet",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "street_cabinet": "power",
+    "substation": "minor_distribution",
+    "voltage": "35000"
+  }
+},
+{
+  "type": "node",
+  "id": 4414809293,
+  "lat": 14.3946541,
+  "lon": 121.0442355,
+  "tags": {
+    "frequency": "60",
+    "man_made": "street_cabinet",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "rating": "500 kVA",
+    "substation": "minor_distribution",
+    "utility": "power",
+    "voltage": "34500;240"
+  }
+},
+{
+  "type": "node",
+  "id": 4426323848,
+  "lat": 14.3646551,
+  "lon": 121.0418994,
+  "tags": {
+    "frequency": "60",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "voltage": "34500;240"
+  }
+},
+{
+  "type": "node",
+  "id": 4483297735,
+  "lat": 14.3775084,
+  "lon": 121.0448755,
+  "tags": {
+    "frequency": "60",
+    "location": "indoor",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "voltage": "34500"
+  }
+},
+{
+  "type": "node",
+  "id": 4496608833,
+  "lat": 14.3763549,
+  "lon": 121.0125514,
+  "tags": {
+    "frequency": "60",
+    "location": "kiosk",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "rating": "75 kVA",
+    "substation": "minor_distribution",
+    "voltage": "34500"
+  }
+},
+{
+  "type": "node",
+  "id": 4533933869,
+  "lat": 14.4110387,
+  "lon": 121.0470252,
+  "tags": {
+    "frequency": "60",
+    "location": "indoor",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "start_date": "2016-11-29",
+    "substation": "minor_distribution",
+    "voltage": "34500;440;380"
+  }
+},
+{
+  "type": "node",
+  "id": 4548885225,
+  "lat": 14.4002709,
+  "lon": 121.0113750,
+  "tags": {
+    "frequency": "60",
+    "location": "indoor",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "voltage": "34500;440;380"
+  }
+},
+{
+  "type": "node",
+  "id": 4592771042,
+  "lat": 14.4166977,
+  "lon": 121.0440030,
+  "tags": {
+    "frequency": "60",
+    "location": "indoor",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "voltage": "34500"
+  }
+},
+{
+  "type": "node",
+  "id": 4823208932,
+  "lat": 14.5859927,
+  "lon": 120.9807104,
+  "tags": {
+    "man_made": "street_cabinet",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "rating": "1000 kVA",
+    "street_cabinet": "power",
+    "substation": "minor_distribution",
+    "voltage": "34500;240"
+  }
+},
+{
+  "type": "node",
+  "id": 4977761380,
+  "lat": 14.5334319,
+  "lon": 120.9978474,
+  "tags": {
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "34500;240"
+  }
+},
+{
+  "type": "node",
+  "id": 6110400886,
+  "lat": 14.7390509,
+  "lon": 121.0592111,
+  "tags": {
+    "amenity": "charging_station"
+  }
+},
+{
+  "type": "node",
+  "id": 6280454079,
+  "lat": 14.7955935,
+  "lon": 121.0509722,
+  "tags": {
+    "name": "Gaya-gaya Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "node",
+  "id": 6836063735,
+  "lat": 14.5339898,
+  "lon": 120.9833434,
+  "tags": {
+    "access": "customers",
+    "amenity": "charging_station",
+    "covered": "yes",
+    "name": "South Wing Terminal Charging Station",
+    "smoking": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 9462686325,
+  "lat": 14.5593804,
+  "lon": 121.0407271,
+  "tags": {
+    "amenity": "charging_station",
+    "description": "CCS2, CHAdeMO, and Type 2",
+    "mapillary": "373385035459707",
+    "operator": "Unioil",
+    "socket:chademo": "yes",
+    "socket:type2": "yes",
+    "socket:type2_combo": "yes"
+  }
+},
+{
+  "type": "node",
+  "id": 9596306271,
+  "lat": 14.5867094,
+  "lon": 121.0473076,
+  "tags": {
+    "amenity": "charging_station",
+    "bicycle": "yes",
+    "brand": "eSakay",
+    "capacity": "2",
+    "charge": "1 PHP/minute",
+    "fee": "yes",
+    "name": "eSakay",
+    "opening_hours": "24/7",
+    "operator": "eSakay",
+    "parking:fee": "no",
+    "payment:coins": "yes",
+    "scooter": "yes",
+    "socket:multi": "1",
+    "voltage": "230"
+  }
+},
+{
+  "type": "node",
+  "id": 9596306272,
+  "lat": 14.5866971,
+  "lon": 121.0472949,
+  "tags": {
+    "access": "yes",
+    "amenity": "charging_station",
+    "bicycle": "yes",
+    "brand": "eSakay",
+    "capacity": "2",
+    "charge": "1 PHP/minute",
+    "fee": "yes",
+    "network": "eSakay",
+    "opening_hours": "24/7",
+    "operator": "eSakay",
+    "parking:fee": "no",
+    "scooter": "yes",
+    "socket:multi": "1",
+    "voltage": "230"
+  }
+},
+{
+  "type": "node",
+  "id": 9756145409,
+  "lat": 14.5844894,
+  "lon": 121.0450774,
+  "tags": {
+    "addr:street": "Nueve de Pebrero Street",
+    "amenity": "charging_station",
+    "mapillary": "547010533805972",
+    "name": "Shell Recharge",
+    "operator": "Shell Pilipinas",
+    "source": "extrapolation"
+  }
+},
+{
+  "type": "node",
+  "id": 9794449721,
+  "lat": 14.5214072,
+  "lon": 120.9884635,
+  "tags": {
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "node",
+  "id": 10703746877,
+  "lat": 14.6532595,
+  "lon": 121.0354953,
+  "tags": {
+    "addr:street": "Luna Drive",
+    "amenity": "charging_station",
+    "fee": "no",
+    "name": "EV Charging Hub",
+    "operator": "Ayala Land Inc."
+  }
+},
+{
+  "type": "node",
+  "id": 10817230042,
+  "lat": 14.5799026,
+  "lon": 120.9825239,
+  "tags": {
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "34500;440"
+  }
+},
+{
+  "type": "node",
+  "id": 10991144538,
+  "lat": 14.6797972,
+  "lon": 121.0834200,
+  "tags": {
+    "access": "customers",
+    "amenity": "charging_station",
+    "fee": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 11953464116,
+  "lat": 14.5807316,
+  "lon": 121.0985147,
+  "tags": {
+    "addr:street": "East Bank Road",
+    "amenity": "charging_station",
+    "mapillary": "971153327530755",
+    "name": "Pasig City Electric Vehicle Charging Station",
+    "operator": "Pasig City LGU",
+    "operator:type": "government"
+  }
+},
+{
+  "type": "node",
+  "id": 12862848460,
+  "lat": 14.5499203,
+  "lon": 121.0518513,
+  "tags": {
+    "amenity": "charging_station",
+    "fee": "yes",
+    "level": "0",
+    "operator": "AC Mobility Holdings Incorporated"
+  }
+},
+{
+  "type": "node",
+  "id": 12950633881,
+  "lat": 14.5789798,
+  "lon": 121.0768416,
+  "tags": {
+    "amenity": "charging_station",
+    "covered": "yes",
+    "fee": "no",
+    "level": "0",
+    "operator": "Megaworld Corporation"
+  }
+},
+{
+  "type": "node",
+  "id": 12980211308,
+  "lat": 14.4454582,
+  "lon": 120.9497436,
+  "tags": {
+    "amenity": "charging_station",
+    "authentication:none": "yes",
+    "capacity": "2",
+    "covered": "no",
+    "fee": "no",
+    "level": "0",
+    "motorcar": "yes",
+    "motorcycle": "yes",
+    "socket:type2_cable": "2"
+  }
+},
+{
+  "type": "node",
+  "id": 13072158270,
+  "lat": 14.6057569,
+  "lon": 121.0570728,
+  "tags": {
+    "access": "customers",
+    "amenity": "charging_station",
+    "bicycle": "no",
+    "bus": "no",
+    "check_date": "2025-08-15",
+    "hgv": "no",
+    "motorcar": "yes",
+    "name": "MG Super Charge",
+    "operator": "MG",
+    "panoramax": "f96f4ddd-b82b-4d1e-aec2-ce0dc76c3a3a",
+    "scooter": "no"
+  }
+},
+{
+  "type": "node",
+  "id": 13081283218,
+  "lat": 14.6484752,
+  "lon": 121.0747836,
+  "tags": {
+    "amenity": "charging_station",
+    "check_date": "2025-10-05",
+    "fee": "yes",
+    "operator": "ACMobility"
+  }
+},
+{
+  "type": "node",
+  "id": 13081283762,
+  "lat": 14.6369322,
+  "lon": 121.1015417,
+  "tags": {
+    "amenity": "charging_station",
+    "bicycle": "no",
+    "capacity": "2"
+  }
+},
+{
+  "type": "node",
+  "id": 13081283763,
+  "lat": 14.6180977,
+  "lon": 121.0540394,
+  "tags": {
+    "access": "customers",
+    "amenity": "charging_station",
+    "capacity": "2",
+    "level": "-1",
+    "socket:type2": "2"
+  }
+},
+{
+  "type": "node",
+  "id": 13111228298,
+  "lat": 14.6194982,
+  "lon": 121.0934592,
+  "tags": {
+    "access": "customers",
+    "amenity": "charging_station",
+    "level": "5"
+  }
+},
+{
+  "type": "node",
+  "id": 13152399652,
+  "lat": 14.6724974,
+  "lon": 121.0646723,
+  "tags": {
+    "amenity": "charging_station"
+  }
+},
+{
+  "type": "node",
+  "id": 13449410011,
+  "lat": 14.4259908,
+  "lon": 120.8915340,
+  "tags": {
+    "amenity": "charging_station",
+    "capacity": "6",
+    "check_date": "2026-05-03",
+    "operator": "Vinfast",
+    "socket:type1_combo": "6"
+  }
+},
+{
+  "type": "node",
+  "id": 13688427301,
+  "lat": 14.5930943,
+  "lon": 121.0804275,
+  "tags": {
+    "access": "yes",
+    "amenity": "charging_station",
+    "brand": "Tesla Supercharger",
+    "brand:en": "Tesla Supercharger",
+    "brand:website": "https://www.tesla.com/supercharger",
+    "brand:wikidata": "Q17089620",
+    "fee": "yes",
+    "frequency": "0",
+    "motorcar": "designated",
+    "name": "Tesla Supercharger",
+    "network:en": "Supercharger",
+    "network:website": "https://www.tesla.com/supercharger",
+    "network:wikidata": "Q17089620",
+    "opening_hours": "24/7",
+    "operator": "Tesla",
+    "operator:en": "Tesla",
+    "operator:wikidata": "Q478214",
+    "ref:tesla": "450814",
+    "website": "https://www.tesla.com/findus/location/supercharger/450814"
+  }
+},
+{
+  "type": "node",
+  "id": 13895420988,
+  "lat": 14.6285618,
+  "lon": 121.0138546,
+  "tags": {
+    "access": "customers",
+    "amenity": "charging_station",
+    "check_date": "2026-05-30",
+    "operator": "BYD"
+  }
+},
+{
+  "type": "way",
+  "id": 30331256,
+  "center": {
+    "lat": 14.5376499,
+    "lon": 121.0213783
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "Malibay Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 30618817,
+  "center": {
+    "lat": 14.5805419,
+    "lon": 120.9986356
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Paco Substation",
+    "operator": "Meralco",
+    "operator:type": "private",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "230000;115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 30665662,
+  "center": {
+    "lat": 14.8210882,
+    "lon": 121.0477623
+  },
+  "tags": {
+    "addr:city": "San Jose del Monte",
+    "frequency": "60",
+    "location": "outdoor",
+    "name": "San Jose del Monte Substation",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:short": "NGCP",
+    "operator:type": "private",
+    "operator:wikidata": "Q28197109",
+    "operator:wikipedia": "en:National Grid Corporation of the Philippines",
+    "power": "substation",
+    "ref": "SJO",
+    "substation": "transmission",
+    "voltage": "500000;230000;115000"
+  }
+},
+{
+  "type": "way",
+  "id": 30679817,
+  "center": {
+    "lat": 14.6126144,
+    "lon": 120.9904478
+  },
+  "tags": {
+    "name": "Sampaloc Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage-high": "115000",
+    "voltage-low": "34500;4800"
+  }
+},
+{
+  "type": "way",
+  "id": 30755991,
+  "center": {
+    "lat": 14.5880093,
+    "lon": 121.1110240
+  },
+  "tags": {
+    "addr:city": "Cainta",
+    "addr:postcode": "1900",
+    "addr:street": "Ortigas Avenue Extension",
+    "name": "Cainta Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "G",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 31489448,
+  "center": {
+    "lat": 14.6342667,
+    "lon": 121.0749804
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Marikina Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 33302915,
+  "center": {
+    "lat": 14.5515530,
+    "lon": 121.0302488
+  },
+  "tags": {
+    "name": "Urdaneta Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "VL",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 35583874,
+  "center": {
+    "lat": 14.5544155,
+    "lon": 121.0163094
+  },
+  "tags": {
+    "access": "private",
+    "addr:city": "Makati",
+    "gas_insulated": "yes",
+    "name": "Legaspi Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 47570428,
+  "center": {
+    "lat": 14.5494016,
+    "lon": 121.0297487
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "Meralco Forbes Park Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 60193935,
+  "center": {
+    "lat": 14.5823371,
+    "lon": 121.0561430
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "Shangri-La Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 82869523,
+  "center": {
+    "lat": 14.8066833,
+    "lon": 120.9407074
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Santa Maria Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "source": "Yahoo",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 86812178,
+  "center": {
+    "lat": 14.4464811,
+    "lon": 120.9839571
+  },
+  "tags": {
+    "landuse": "industrial",
+    "location": "outdoor",
+    "name": "Pamplona Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "XD",
+    "substation": "transmission",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 90125781,
+  "center": {
+    "lat": 14.5797503,
+    "lon": 120.9808253
+  },
+  "tags": {
+    "name": "Ermita Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "34500;4160"
+  }
+},
+{
+  "type": "way",
+  "id": 90992537,
+  "center": {
+    "lat": 14.3310005,
+    "lon": 121.0760624
+  },
+  "tags": {
+    "addr:city": "Biñan",
+    "addr:street": "General Malvar Street",
+    "name": "Biñan Substation",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:short": "NGCP",
+    "operator:type": "private",
+    "operator:wikidata": "Q28197109",
+    "power": "substation",
+    "ref": "BIN",
+    "source": "Bing",
+    "substation": "transmission",
+    "voltage": "230000;115000",
+    "wikidata": "Q56241638"
+  }
+},
+{
+  "type": "way",
+  "id": 92831296,
+  "center": {
+    "lat": 14.4924957,
+    "lon": 121.0396779
+  },
+  "tags": {
+    "name": "Sun Valley Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "WG",
+    "source": "Yahoo",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 96332510,
+  "center": {
+    "lat": 14.6617630,
+    "lon": 121.0663193
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "U.P. Diliman Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "VU",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 97816397,
+  "center": {
+    "lat": 14.5720658,
+    "lon": 121.1398504
+  },
+  "tags": {
+    "addr:city": "Taytay",
+    "addr:street": "L. Wood Street",
+    "landuse": "industrial",
+    "location": "outdoor",
+    "name": "Dolores Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "source": "bing",
+    "substation": "transmission",
+    "voltage": "230000;115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 98436507,
+  "center": {
+    "lat": 14.7872221,
+    "lon": 120.9525992
+  },
+  "tags": {
+    "alt_name": "Marilao Substation",
+    "name": "Duhat Substation",
+    "operator": "Meralco",
+    "operator:type": "private",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "DUH",
+    "source": "Bing",
+    "substation": "transmission",
+    "voltage": "230000;115000"
+  }
+},
+{
+  "type": "way",
+  "id": 112645695,
+  "center": {
+    "lat": 14.6133514,
+    "lon": 121.0116446
+  },
+  "tags": {
+    "name": "Santa Mesa Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "ref": "F",
+    "source": "Bing",
+    "substation": "distribution",
+    "voltage": "115000;34500;4160"
+  }
+},
+{
+  "type": "way",
+  "id": 116061783,
+  "center": {
+    "lat": 14.6307976,
+    "lon": 121.0830431
+  },
+  "tags": {
+    "addr:city": "Marikina",
+    "building": "yes",
+    "disused": "yes",
+    "power": "substation",
+    "substation": "yes"
+  }
+},
+{
+  "type": "way",
+  "id": 116129627,
+  "center": {
+    "lat": 14.6615392,
+    "lon": 121.1314835
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 116129645,
+  "center": {
+    "lat": 14.6618067,
+    "lon": 121.1279420
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 118685028,
+  "center": {
+    "lat": 14.8717564,
+    "lon": 120.8225431
+  },
+  "tags": {
+    "name": "Malolos Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "voltage": "230000;69000;13800"
+  }
+},
+{
+  "type": "way",
+  "id": 119129012,
+  "center": {
+    "lat": 14.7630755,
+    "lon": 120.9876353
+  },
+  "tags": {
+    "name": "Meycauayan Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "source": "Bing",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 136815994,
+  "center": {
+    "lat": 14.6118611,
+    "lon": 121.0597808
+  },
+  "tags": {
+    "name": "Camp Aguinaldo Substation",
+    "power": "substation",
+    "source": "Bing"
+  }
+},
+{
+  "type": "way",
+  "id": 149967511,
+  "center": {
+    "lat": 14.4774220,
+    "lon": 120.9737890
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Las Piñas Substation",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:short": "NGCP",
+    "operator:wikidata": "Q28197109",
+    "power": "substation",
+    "ref": "LPI",
+    "substation": "transmission",
+    "voltage": "230000;115000"
+  }
+},
+{
+  "type": "way",
+  "id": 161414200,
+  "center": {
+    "lat": 14.6102025,
+    "lon": 120.9737560
+  },
+  "tags": {
+    "addr:city": "Manila",
+    "addr:suburb": "Tondo",
+    "gas_insulated": "yes",
+    "location": "indoor",
+    "name": "Tutuban Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "source": "Bing",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 169517606,
+  "center": {
+    "lat": 14.4025867,
+    "lon": 120.8613409
+  },
+  "tags": {
+    "name": "Rosario Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "source": "Bing",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 182922897,
+  "center": {
+    "lat": 14.6091162,
+    "lon": 120.9750509
+  },
+  "tags": {
+    "addr:city": "Manila",
+    "addr:province": "Metro Manila",
+    "name": "Palomar Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "L",
+    "substation": "distribution",
+    "voltage": "34500;6280"
+  }
+},
+{
+  "type": "way",
+  "id": 193633026,
+  "center": {
+    "lat": 14.6414195,
+    "lon": 121.0183120
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 240100505,
+  "center": {
+    "lat": 14.5134428,
+    "lon": 120.9951809
+  },
+  "tags": {
+    "operator": "MERALCO",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 260934319,
+  "center": {
+    "lat": 14.6351608,
+    "lon": 121.0289877
+  },
+  "tags": {
+    "building": "yes",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 264246780,
+  "center": {
+    "lat": 14.6197842,
+    "lon": 121.0579976
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Cubao Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 291478089,
+  "center": {
+    "lat": 14.5658364,
+    "lon": 120.9943394
+  },
+  "tags": {
+    "addr:city": "Manila",
+    "addr:postcode": "1004",
+    "addr:street": "Dagonoy Street",
+    "name": "Malate Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "34500;4160"
+  }
+},
+{
+  "type": "way",
+  "id": 300425719,
+  "center": {
+    "lat": 14.5253898,
+    "lon": 121.0108771
+  },
+  "tags": {
+    "barrier": "wall",
+    "frequency": "60",
+    "gas_insulated": "yes",
+    "location": "indoor",
+    "name": "NAIA Substation",
+    "name:it": "Sottostazione elettrica NAIA",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "source": "Bing",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 302690814,
+  "center": {
+    "lat": 14.8989715,
+    "lon": 120.7746897
+  },
+  "tags": {
+    "name": "Calumpit Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "YQ",
+    "substation": "distribution",
+    "voltage": "69000;13800"
+  }
+},
+{
+  "type": "way",
+  "id": 318895102,
+  "center": {
+    "lat": 14.5637348,
+    "lon": 121.0155753
+  },
+  "tags": {
+    "name": "Kamagong Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 341383347,
+  "center": {
+    "lat": 14.5521763,
+    "lon": 121.0592497
+  },
+  "tags": {
+    "addr:city": "Taguig",
+    "addr:province": "Metro Manila",
+    "addr:street": "14th Drive",
+    "gas_insulated": "yes",
+    "name": "FBGC GIS Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "RJ",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 406977698,
+  "center": {
+    "lat": 14.5890865,
+    "lon": 121.0650563
+  },
+  "tags": {
+    "name": "Meralco Complex Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 408865831,
+  "center": {
+    "lat": 14.3533164,
+    "lon": 121.0630999
+  },
+  "tags": {
+    "barrier": "wall",
+    "landuse": "industrial",
+    "name": "San Pedro Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "WH",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 412906998,
+  "center": {
+    "lat": 14.5839299,
+    "lon": 121.0549228
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Mandaluyong Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 439436826,
+  "center": {
+    "lat": 14.3204835,
+    "lon": 121.0582206
+  },
+  "tags": {
+    "frequency": "60",
+    "location": "outdoor",
+    "name": "ROHM Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "industrial",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 440474410,
+  "center": {
+    "lat": 14.3484518,
+    "lon": 121.0667151
+  },
+  "tags": {
+    "building": "service",
+    "frequency": "60",
+    "location": "indoor",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "voltage": "20000"
+  }
+},
+{
+  "type": "way",
+  "id": 440588497,
+  "center": {
+    "lat": 14.5658912,
+    "lon": 121.0374343
+  },
+  "tags": {
+    "frequency": "60",
+    "location": "indoor",
+    "name": "Rockwell Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "VV",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 440593524,
+  "center": {
+    "lat": 14.6228991,
+    "lon": 120.9754348
+  },
+  "tags": {
+    "frequency": "60",
+    "location": "outdoor",
+    "name": "Santa Cruz Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 441813417,
+  "center": {
+    "lat": 14.4496154,
+    "lon": 121.0520508
+  },
+  "tags": {
+    "frequency": "60",
+    "location": "outdoor",
+    "name": "Gardner Substation",
+    "operator": "Meralco",
+    "operator:type": "private",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 441813430,
+  "center": {
+    "lat": 14.4451467,
+    "lon": 121.0524744
+  },
+  "tags": {
+    "frequency": "60",
+    "location": "outdoor",
+    "name": "Muntinlupa Substation",
+    "name:it": "Sottostazione elettrica Muntinlupa",
+    "old_name": "Sucat Substation",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:it": "Società nazionale di reti elettriche delle Filippine",
+    "operator:short": "NGCP",
+    "operator:type": "private",
+    "operator:wikidata": "Q28197109",
+    "operator:wikipedia": "en:National Grid Corporation of the Philippines",
+    "power": "substation",
+    "ref": "MUN",
+    "substation": "transmission",
+    "voltage": "230000;115000"
+  }
+},
+{
+  "type": "way",
+  "id": 445259991,
+  "center": {
+    "lat": 14.5304848,
+    "lon": 120.9795793
+  },
+  "tags": {
+    "fixme": "verify:name",
+    "frequency": "60",
+    "location": "indoor",
+    "name": "Central Business Park Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 447794410,
+  "center": {
+    "lat": 14.3030039,
+    "lon": 121.1037776
+  },
+  "tags": {
+    "frequency": "60",
+    "location": "outdoor",
+    "power": "substation",
+    "substation": "industrial",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 448145161,
+  "center": {
+    "lat": 14.4239960,
+    "lon": 121.0365058
+  },
+  "tags": {
+    "frequency": "60",
+    "gas_insulated": "yes",
+    "location": "indoor",
+    "name": "Filinvest Alabang GIS Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 450041326,
+  "center": {
+    "lat": 14.6388968,
+    "lon": 121.0011654
+  },
+  "tags": {
+    "addr:city": "Quezon City",
+    "addr:postcode": "1115",
+    "name": "Banawe Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "BNW",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 456172602,
+  "center": {
+    "lat": 14.3764952,
+    "lon": 121.0118880
+  },
+  "tags": {
+    "frequency": "60",
+    "location": "indoor",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "voltage": "34500;440;380"
+  }
+},
+{
+  "type": "way",
+  "id": 458977340,
+  "center": {
+    "lat": 14.6226888,
+    "lon": 121.1263493
+  },
+  "tags": {
+    "frequency": "60",
+    "location": "outdoor",
+    "name": "Masinag Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 464143008,
+  "center": {
+    "lat": 14.3547629,
+    "lon": 121.0466569
+  },
+  "tags": {
+    "building": "service",
+    "frequency": "60",
+    "location": "indoor",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "minor_distribution",
+    "voltage": "34500"
+  }
+},
+{
+  "type": "way",
+  "id": 489411342,
+  "center": {
+    "lat": 14.5195135,
+    "lon": 120.9844864
+  },
+  "tags": {
+    "description": "Gas insulated substation. Serves City of Dreams Manila, Okada Manila, and other loads formerly served by Mall of Asia GIS.",
+    "fixme": "Map connected 115 kV underground subtransmission lines (connected to Zapote - Mall of Asia Subtransmission Line). Name is the one assigned by Meralco, but please verify it on the ground.",
+    "gas_insulated": "yes",
+    "location": "indoor",
+    "name": "PAGCOR Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 489733574,
+  "center": {
+    "lat": 14.5884040,
+    "lon": 120.9894137
+  },
+  "tags": {
+    "name": "Tegen Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "B",
+    "substation": "distribution",
+    "voltage": "115000;34500;4160"
+  }
+},
+{
+  "type": "way",
+  "id": 508441360,
+  "center": {
+    "lat": 14.4600858,
+    "lon": 120.9711729
+  },
+  "tags": {
+    "name": "Las Piñas Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 520429444,
+  "center": {
+    "lat": 14.8406115,
+    "lon": 120.8497665
+  },
+  "tags": {
+    "name": "Tabang Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "69000;13800"
+  }
+},
+{
+  "type": "way",
+  "id": 530281328,
+  "center": {
+    "lat": 14.7612322,
+    "lon": 121.0424733
+  },
+  "tags": {
+    "landuse": "recreation_ground",
+    "name": "Camarin Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 542408247,
+  "center": {
+    "lat": 14.3207460,
+    "lon": 121.0979784
+  },
+  "tags": {
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 542766319,
+  "center": {
+    "lat": 14.7827490,
+    "lon": 120.9374073
+  },
+  "tags": {
+    "name": "Bocaue Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 542773481,
+  "center": {
+    "lat": 14.7596298,
+    "lon": 120.9505688
+  },
+  "tags": {
+    "name": "Saog Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "SAO",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 549844472,
+  "center": {
+    "lat": 14.3238980,
+    "lon": 121.0202197
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "GMA Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution"
+  }
+},
+{
+  "type": "way",
+  "id": 583632006,
+  "center": {
+    "lat": 14.5461321,
+    "lon": 121.0881912
+  },
+  "tags": {
+    "location": "outdoor",
+    "name": "Taguig Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 617091162,
+  "center": {
+    "lat": 14.6112821,
+    "lon": 121.0349628
+  },
+  "tags": {
+    "gas_insulated": "yes",
+    "name": "Valencia Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "VAL",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 617091970,
+  "center": {
+    "lat": 14.6504305,
+    "lon": 120.9797508
+  },
+  "tags": {
+    "gas_insulated": "yes",
+    "name": "Grace Park Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 617095389,
+  "center": {
+    "lat": 14.5681619,
+    "lon": 121.2008714
+  },
+  "tags": {
+    "name": "New Teresa Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "XP",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 638531784,
+  "center": {
+    "lat": 14.6393533,
+    "lon": 120.9553600
+  },
+  "tags": {
+    "name": "Navotas Substation",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:short": "NGCP",
+    "operator:wikidata": "Q28197109",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "230000"
+  }
+},
+{
+  "type": "way",
+  "id": 658030273,
+  "center": {
+    "lat": 14.5714115,
+    "lon": 121.0664137
+  },
+  "tags": {
+    "frequency": "60",
+    "gas_insulated": "yes",
+    "name": "Hillcrest Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "VZ",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 658285091,
+  "center": {
+    "lat": 14.6576931,
+    "lon": 121.1261606
+  },
+  "tags": {
+    "name": "Parang Substation",
+    "operator": "Meralco",
+    "operator:website": "https://www.meralco.com.ph",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "ref": "YL",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 658601412,
+  "center": {
+    "lat": 14.7169174,
+    "lon": 120.9957401
+  },
+  "tags": {
+    "name": "Bagbaguin Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "YZ",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 658601413,
+  "center": {
+    "lat": 14.7113370,
+    "lon": 121.0104929
+  },
+  "tags": {
+    "name": "Sitio Gitna Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "industrial",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 658650696,
+  "center": {
+    "lat": 14.7140621,
+    "lon": 121.0223236
+  },
+  "tags": {
+    "name": "Kaybiga Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "YX",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 659226728,
+  "center": {
+    "lat": 14.7110278,
+    "lon": 120.9660696
+  },
+  "tags": {
+    "name": "Veinte Reales Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 702116067,
+  "center": {
+    "lat": 14.3365966,
+    "lon": 121.0517831
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Southwoods Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "operator:wikipedia": "en:Meralco",
+    "power": "substation",
+    "start_date": "2019",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 730415727,
+  "center": {
+    "lat": 14.8935929,
+    "lon": 120.8737706
+  },
+  "tags": {
+    "frequency": "60",
+    "location": "outdoor",
+    "name": "Pulilan Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "PUL",
+    "substation": "distribution",
+    "voltage": "69000;13800"
+  }
+},
+{
+  "type": "way",
+  "id": 800186096,
+  "center": {
+    "lat": 14.7087414,
+    "lon": 121.0911702
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Commonwealth GIS Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 838900324,
+  "center": {
+    "lat": 14.5808941,
+    "lon": 121.0090043
+  },
+  "tags": {
+    "name": "Santa Ana Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "34500;4160"
+  }
+},
+{
+  "type": "way",
+  "id": 839789680,
+  "center": {
+    "lat": 14.6290687,
+    "lon": 121.0379654
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Kamuning Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 880523791,
+  "center": {
+    "lat": 14.5251634,
+    "lon": 121.0856717
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Taguig EHV Substation",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:short": "NGCP",
+    "operator:type": "private",
+    "operator:wikidata": "Q28197109",
+    "power": "substation",
+    "voltage": "500000;230000"
+  }
+},
+{
+  "type": "way",
+  "id": 987363495,
+  "center": {
+    "lat": 14.5905156,
+    "lon": 121.0822712
+  },
+  "tags": {
+    "barrier": "wall",
+    "name": "Bridgetowne Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 1060888354,
+  "center": {
+    "lat": 14.6401336,
+    "lon": 121.1767173
+  },
+  "tags": {
+    "addr:city": "Antipolo",
+    "frequency": "60",
+    "name": "Antipolo Substation",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:short": "NGCP",
+    "operator:website": "https://www.ngcp.ph",
+    "operator:wikidata": "Q28197109",
+    "operator:wikipedia": "en:National Grid Corporation of the Philippines",
+    "power": "substation",
+    "voltage": "230000;115000"
+  }
+},
+{
+  "type": "way",
+  "id": 1074804040,
+  "center": {
+    "lat": 14.7894824,
+    "lon": 120.9970559
+  },
+  "tags": {
+    "name": "Marilao Substation",
+    "operator": "National Grid Corporation of the Philippines",
+    "operator:short": "NGCP",
+    "operator:wikidata": "Q28197109",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "500000;230000"
+  }
+},
+{
+  "type": "way",
+  "id": 1087775057,
+  "center": {
+    "lat": 14.5007960,
+    "lon": 121.1712948
+  },
+  "tags": {
+    "frequency": "60",
+    "landuse": "industrial",
+    "name": "Binangonan Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 1161263456,
+  "center": {
+    "lat": 14.3208584,
+    "lon": 120.9622189
+  },
+  "tags": {
+    "addr:city": "Dasmariñas",
+    "addr:country": "PH",
+    "addr:neighbourhood": "De La Salle University - Dasmariñas",
+    "addr:postcode": "4115",
+    "addr:province": "Cavite",
+    "location": "indoor",
+    "name": "Substation 1",
+    "power": "substation",
+    "roof:colour": "red"
+  }
+},
+{
+  "type": "way",
+  "id": 1161606296,
+  "center": {
+    "lat": 14.6404218,
+    "lon": 121.0424983
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Eton Centris GIS Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 1161688518,
+  "center": {
+    "lat": 14.5662610,
+    "lon": 121.0163264
+  },
+  "tags": {
+    "name": "Makati GIS Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "MAK",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 1161975443,
+  "center": {
+    "lat": 14.4276787,
+    "lon": 121.0260545
+  },
+  "tags": {
+    "name": "Ayala Alabang Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "WR",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 1161985005,
+  "center": {
+    "lat": 14.4780265,
+    "lon": 120.9744762
+  },
+  "tags": {
+    "frequency": "60",
+    "name": "Zapote Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "transmission",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 1181941352,
+  "center": {
+    "lat": 14.3806578,
+    "lon": 120.9578773
+  },
+  "tags": {
+    "name": "Vermosa Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 1213040608,
+  "center": {
+    "lat": 14.6595347,
+    "lon": 121.0120979
+  },
+  "tags": {
+    "frequency": "60",
+    "landuse": "industrial",
+    "location": "outdoor",
+    "name": "Balintawak Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "E",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 1231042724,
+  "center": {
+    "lat": 14.6657735,
+    "lon": 120.9674605
+  },
+  "tags": {
+    "landuse": "industrial",
+    "name": "Malabon Meralco Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "substation": "minor_distribution"
+  }
+},
+{
+  "type": "way",
+  "id": 1296102890,
+  "center": {
+    "lat": 14.5012419,
+    "lon": 121.0454164
+  },
+  "tags": {
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1337513227,
+  "center": {
+    "lat": 14.5793880,
+    "lon": 121.0776135
+  },
+  "tags": {
+    "construction": "yes",
+    "name": "Meralco ArcoVia Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1411696988,
+  "center": {
+    "lat": 14.7772837,
+    "lon": 121.0179096
+  },
+  "tags": {
+    "mapillary": "574242410631166",
+    "power": "substation"
+  }
+},
+{
+  "type": "way",
+  "id": 1426427969,
+  "center": {
+    "lat": 14.8216799,
+    "lon": 120.9029975
+  },
+  "tags": {
+    "name": "Balagtas Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "BAL",
+    "substation": "distribution",
+    "voltage": "115000;34500"
+  }
+},
+{
+  "type": "way",
+  "id": 1500129260,
+  "center": {
+    "lat": 14.7749843,
+    "lon": 120.9692012
+  },
+  "tags": {
+    "name": "Marilao Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "MRL",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 1500158674,
+  "center": {
+    "lat": 14.7512430,
+    "lon": 121.0841783
+  },
+  "tags": {
+    "name": "North Caloocan GIS Substation",
+    "operator": "Meralco",
+    "operator:wikidata": "Q6817918",
+    "power": "substation",
+    "ref": "NOC",
+    "substation": "distribution",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 1500637916,
+  "center": {
+    "lat": 14.7659523,
+    "lon": 121.0107682
+  },
+  "tags": {
+    "name": "Philville Substation",
+    "power": "substation",
+    "substation": "industrial",
+    "voltage": "115000"
+  }
+},
+{
+  "type": "way",
+  "id": 1528452384,
+  "center": {
+    "lat": 14.4241656,
+    "lon": 120.9400220
+  },
+  "tags": {
+    "addr:barangay": "Poblacion IV-D",
+    "addr:city": "Imus",
+    "addr:postcode": "4103",
+    "addr:province": "Cavite",
+    "addr:street": "Nueno Avenue",
+    "power": "substation"
+  }
+}
+
+  ]
+}

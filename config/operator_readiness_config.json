@@ -1,0 +1,14 @@
+{
+  "version": "operator-v2.0",
+  "neutral_prior": 50.0,
+  "prior_source_id": "route2zero_operator_prior_v1",
+  "minimum_observed_evidence_fields": 3,
+  "observed_component_weights": {
+    "fleet": 0.2,
+    "depot": 0.2,
+    "financing": 0.2,
+    "organization": 0.2,
+    "maintenance": 0.1,
+    "participation": 0.1
+  }
+}

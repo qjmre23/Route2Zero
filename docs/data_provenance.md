@@ -1,54 +1,267 @@
-# Route2Zero data provenance
+# Route2Zero 2.0 data provenance
 
-## GTFS source
+## Provenance contract
 
-- Repository: `https://github.com/sakayph/gtfs`
+Route2Zero treats raw source snapshots as immutable, pilot evidence as controlled input, and processed outputs as reproducible derivatives. Every registered source records its organization, URL, retrieval date, reference period, geography, spatial resolution, license, source type, currentness, notes, local path, and SHA-256 checksum.
+
+This document describes the source manifest used by build `r2z-16690ccbe328`.
+
+## Source inventory
+
+| Source ID | Reference period | Type | Currentness | Principal use |
+|---|---|---|---|---|
+| `sakay_gtfs_master_historic` | 2013-2020 | Administrative/community GTFS | Historic | Route universe, stops, schedules, screening geometry |
+| `worldpop_phl_2020_1km` | 2020 | Proxy raster | Historic | Population-exposure equity proxy |
+| `doe_luzon_generation_2024` | 2024 | Government administrative context | Historic | Grid and climate scenario context |
+| `osm_power_snapshot_2026_08_20` | Snapshot 20 Aug 2026 | Proxy map data | Mixed | Mapped substation and charger proximity |
+| `route2zero_climate_scenario_v1` | Pilot scenario | Project assumption set | Current configuration | Low/base/high climate and energy calculations |
+| `route2zero_operator_prior_v1` | Pilot prior | Project placeholder | Current configuration | Neutral operator prior when evidence is missing |
+
+The manifest contains six registered sources. Its registry checksum is `8dd43371168d76a8a6cd298d10a9a3a43aaf2533143afd2e6db405c4d38395c9`.
+
+## 1. Historic GTFS baseline
+
+### Source
+
+- Repository: <https://github.com/sakayph/gtfs/tree/master>
+- Organization: Sakay.ph contributors
+- Local path: `data/raw/gtfs_master/`
 - Retrieval date: 14 August 2026
-- Local canonical source: `data/raw/gtfs_master/`
-- Convenience links: `GTFS/master/` and `GTFS/dotc/`
-- Master commit: `b7394ccd0c22e7fcc18cc6b53baa1200e99e8a87` (24 March 2015, "Add feed info")
-- DOTC commit: `0e06b806258267ae0dd34f0772dfff1f4fccebff` (2 February 2014, "Update schedule validity (unofficial update)")
+- Reference period: 2013-2020
+- Manifest checksum: `3a16a1cdce421bf7240355540bdc72f6eea7ecadaa4789c349f501ca1845d4c7`
+- License: upstream `LICENSE.md`
 
-The repository is historic. The service calendar spans 2013-2020 on `master`; it is not a representation of live 2026 service. Route2Zero displays this limitation prominently and treats the feed as an MVP route-network baseline.
+The feed is a historic network baseline. Route2Zero does not represent its records as active 2026 service.
 
-## Master versus dotc
+### Audit result
 
-| Check | master | dotc | Decision |
-|---|---:|---:|---|
-| Total routes | 1,717 | 1,715 | master has two more routes |
-| LTFRB jeepney routes (`PUJ`) | 1,522 | 1,522 | equivalent jeepney universe |
-| LTFRB bus routes (`PUB`) | 189 | 189 | equivalent bus universe |
-| Calendar maximum end date | 2020-06-30 | 2014-09-19 | master is materially fresher |
-| Additional route field | none | `route_bikes_allowed` | not useful to electrification ranking |
+| GTFS file | Rows |
+|---|---:|
+| `routes.txt` | 1,717 |
+| `trips.txt` | 1,864 |
+| `stops.txt` | 4,858 |
+| `stop_times.txt` | 79,414 |
+| `shapes.txt` | 520 |
+| `frequencies.txt` | 1,864 |
+| `calendar.txt` | 20 |
+| `agency.txt` | 6 |
 
-`master` is therefore the canonical build source. The `dotc` branch is retained unchanged for auditability but is not merged into processed outputs.
+The referential audit reports zero missing trip-to-route, stop-time-to-stop, and frequency-to-trip references.
 
-## Integrity and mutability rules
+### Route universe
 
-Everything under `data/raw/` is treated as immutable source data. All cleaning, joins, derived geometries, proxies, scores, and generated narratives are written under `data/processed/`, `docs/`, or `output/`. Each processed dataset carries source/confidence fields where a measurement, proxy, or placeholder distinction is required.
+The build selects LTFRB route IDs containing `PUJ`, producing 1,522 route-direction records. It preserves one row per route ID and also creates a grouped corridor view. `PUJ` identifies the feed's jeepney route records; it does not establish current franchise or operating status.
 
-## Known GTFS geometry constraint
+### Geometry
 
-`shapes.txt` contains only 10 shape IDs and covers six routes, primarily rail. Route geometry therefore follows the documented two-tier method: use a real GTFS shape where available; otherwise connect the ordered stops from a representative trip and label the result `stop_sequence_approx`.
+Two jeepney route records have usable GTFS shapes. The remaining 1,520 records use representative-trip stops connected in order. Each feature records `geometry_source`. All approximate geometries are marked for validation.
 
-## Equity proxy
+### Service
 
-No retrievable NAMRIA or PSA informal-settlement polygon layer was identified at corridor resolution. The MVP therefore uses the build specification's weaker WorldPop fallback: **The spatial distribution of population in 2020 Philippines**, 1 km population-count GeoTIFF, DOI `10.5258/SOTON/WP00670`.
+Frequency and calendar fields produce a historic typical-weekday service proxy for 1,521 routes. This is `DERIVED` from the feed. It is not an observation and does not establish actual completed trips.
 
-- Source page: `https://hub.worldpop.org/geodata/summary?id=33241`
-- Download: `https://data.worldpop.org/GIS/Population/Global_2000_2020_1km/2020/PHL/phl_ppp_2020_1km_Aggregated.tif`
-- Local file: `data/raw/reference/phl_ppp_2020_1km_Aggregated.tif`
-- SHA-256: `DB87B488519157EC83FB43E2C867016CA72115FDE193A9565B650EE35D6699FD`
-- License: Creative Commons Attribution 4.0
+## 2. WorldPop population raster
 
-This raster is population density, not an informal-settlement boundary. Route2Zero measures the population-weighted share of each 300 m route catchment that intersects high-density cells. Every affected field is labeled `worldpop_2020_1km_population_density_proxy`, and the dashboard describes its low spatial and conceptual confidence.
+- Title: Philippines 2020 population-count raster
+- DOI: <https://doi.org/10.5258/SOTON/WP00670>
+- Organization: WorldPop, University of Southampton
+- Local path: `data/raw/reference/phl_ppp_2020_1km_Aggregated.tif`
+- Retrieval date: 14 August 2026
+- Reference period: 2020
+- Approximate resolution: 1 km
+- Manifest checksum: `db87b488519157ec83fb43e2c867016ca72115fde193a9565b650ee35d6699fd`
 
-## Grid proxy
+Route2Zero uses this raster only for population exposure. It is not a poverty layer, accessibility survey, tenure map, vulnerability index, or informal-settlement boundary.
 
-The regional grid inputs are manually transcribed from the Philippine Department of Energy's official 2024 Key Energy Statistics and 2019-2021 National Grid Emission Factor publications. Metro Manila is represented by one Luzon-grid baseline because no public route- or depot-level capacity dataset is available.
+The route method uses a 300 m buffer and a high-density cutoff calculated within the documented NCR analysis window. Because the raster resolution is coarser than the buffer width, the output is explicitly a proxy with low conceptual and spatial confidence.
 
-- 2024 Key Energy Statistics: `https://prod-cms.doe.gov.ph/documents/d/guest/-final-11-20-25_doe-key-energy-stat-pocket-size-2024-pdf`
-- National Grid Emission Factor reference: `https://doe.gov.ph/sites/default/files/pdf/pep/PEP_2023-2050_Volume_III.pdf`
-- Extracted lookup: `data/raw/reference/doe_2024_luzon_generation_mix.csv`
+No socioeconomic, accessibility-gap, or underserved-settlement input is available in the current build. Those fields remain null.
 
-The score equals the 2024 Luzon renewable-generation share, 14,550 / 90,269 GWh. It is intentionally constant across routes and must not be interpreted as local charger availability.
+## 3. Philippine Department of Energy context
+
+- Source organization: Philippine Department of Energy
+- Local path: `data/raw/reference/doe_2024_luzon_generation_mix.csv`
+- Retrieval date: 14 August 2026
+- Reference period: 2024
+- Geography: Luzon
+- Manifest checksum: `9c6928ae13f3f4b98c4e16aa8e12bf1c5b4cc547368f3ef426bce35464e1b5d6`
+
+The source provides regional generation and grid-emissions context. It does not contain route-, depot-, feeder-, transformer-, or charging-site capacity.
+
+The retained legacy grid proxy uses 14,550 GWh renewable generation divided by 90,269 GWh total generation, or 16.118%. Route2Zero 2.0 also uses a 0.7181 kgCO2e/kWh current-grid context in the climate configuration.
+
+These values are historic regional context. They must not be presented as present route-level electrical capacity.
+
+## 4. OpenStreetMap infrastructure snapshot
+
+- Source: <https://www.openstreetmap.org/copyright>
+- Organization: OpenStreetMap contributors
+- Local path: `data/raw/osm_power/metro_manila_overpass.json`
+- Retrieval date: 20 August 2026
+- Geography: Metro Manila regional bounding box
+- License: ODbL 1.0
+- Manifest checksum: `92d52bde6f3f00640693d5c6a2e4234d1fd7fd6ca46a918a1261e776aba32516`
+
+The cached snapshot contains 138 qualifying elements used by the parser: 117 mapped substations and 21 mapped charging stations with usable coordinates.
+
+The source is `mixed` currentness because mapping completeness, feature existence, and tags may vary. Nearest-feature distance is a screening proxy only. It does not establish:
+
+- utility ownership;
+- feeder or transformer capacity;
+- interconnection feasibility;
+- site control;
+- charger power, compatibility, uptime, or public access;
+- depot access; or
+- tariff and connection cost.
+
+Both `utility_capacity_verified` and `charging_site_verified` are false for every route in this build.
+
+## 5. Climate scenario configuration
+
+- Local path: `config/climate_scenarios.json`
+- Version: `climate-v1.0`
+- Manifest source ID: `route2zero_climate_scenario_v1`
+- Checksum: `1e6645f7ff7dec0c272816cfde3ea986559d0ad2f5d51438c8951f32ef75593c`
+
+The file defines low, base, and high planning assumptions for vehicle efficiency, electric energy use, grid factor, electrification share, charger efficiency, and operating days.
+
+This is a project scenario source, not an observed dataset. Every climate result is `SCENARIO`. The assumptions require pilot calibration with actual vehicles, operators, charging design, and utility evidence.
+
+The current low case is intentionally conservative and produces negative net scenario CO2e throughout the route universe. Negative results are retained.
+
+## 6. Operator neutral prior
+
+- Local path: `config/operator_readiness_config.json`
+- Version: `operator-v2.0`
+- Manifest source ID: `route2zero_operator_prior_v1`
+- Checksum: `52fcf040b400c757380c3aca16542d3b4132c9869a9511f2c12773dedb1c50cc`
+
+The neutral prior is 50/100. It is used only when fewer than three evidence components are present in the consent-based operator ledger.
+
+The current operator ledger is header-only. Therefore:
+
+- observed operator routes: 0;
+- neutral-prior routes: 1,522; and
+- operator claim status: `NEUTRAL_PRIOR` for every route.
+
+The prior is not a measurement of willingness, capacity, finance readiness, organization, fleet, or depot control.
+
+## Validated pilot ledgers
+
+The repository defines four controlled ledgers under `data/validated/`:
+
+### `route_validation.csv`
+
+Holds route status, activity status, date, validator, source type and reference, observed origin and destination, observed headway and service window, geometry-verification flag, operator name, and evidence quality.
+
+### `operator_evidence.csv`
+
+Holds consent-based operator name, evidence date, fleet size, depot control, financing, organizational capacity, maintenance capability, willingness, modernization experience, charging-site access, source reference, verifier, and notes.
+
+### `charging_site_evidence.csv`
+
+Holds site name, date, coordinates, site-control status, utility-capacity status, available capacity where formally provided, source reference, verifier, and notes.
+
+### `stakeholder_validation.csv`
+
+Holds stakeholder type, organization, date, route, workflow component, feedback, evidence change, permission to quote, and source reference.
+
+All four ledgers contain headers only in build `r2z-16690ccbe328`. The processed score table therefore reports zero current validations, zero observed operator scores, zero verified utility-capacity records, and zero verified charging sites.
+
+## Evidence precedence
+
+The intended precedence for a field is:
+
+1. accepted, date-stamped, current verification;
+2. accepted current observation;
+3. accepted current administrative source;
+4. historic administrative or schedule-derived value;
+5. versioned model estimate;
+6. proxy;
+7. neutral prior; and
+8. missing.
+
+Higher precedence does not automatically mean higher quality. Conflicting evidence must be recorded and resolved, not silently overwritten.
+
+## Transformation lineage
+
+The principal lineage is:
+
+```text
+source_registry.json
+  -> source_manifest.json
+historic GTFS
+  -> audit_report.md
+  -> jeepney_routes.geojson
+  -> geometry_reliability.csv
+  -> route_frequency.csv
+  -> route_features.csv
+route_features.csv
+  -> ml_service_intensity.csv
+  -> corridor_typology.csv
+service input + climate config
+  -> climate_impact.csv
+WorldPop
+  -> equity_score.csv
+  -> equity_v2.csv
+OSM + climate demand
+  -> charging_readiness.csv
+validated operator ledger + prior config
+  -> operator_readiness_v2.csv
+all evidence layers
+  -> evidence_confidence.csv
+policy config + analytical layers
+  -> route2zero_scores.csv/.geojson
+scores
+  -> sensitivity.csv
+  -> portfolio_scenarios.json
+  -> validation_priorities.json
+  -> route_planner_cache.json
+all required outputs
+  -> build_manifest.json
+```
+
+## Manifest and checksum behavior
+
+`src/19_finalize_manifest.py` records:
+
+- configuration checksums;
+- source checksums;
+- output checksums;
+- model versions;
+- scenario IDs;
+- random seeds;
+- build ID;
+- build timestamp;
+- flagship route; and
+- pipeline warnings.
+
+The build ID is derived from configuration checksums, source checksums, model versions, policy scenario ID, and portfolio scenario ID. It is stable for identical logical inputs. The timestamp is recorded separately.
+
+The current manifest records Git commit `47cf3c9554ab392938f2ba5ae3ca98d5d369ff61`. Because the Route2Zero 2.0 work was present in a working tree during generation, a release process seeking a one-to-one code attestation should commit the final files and rerun the pipeline so the manifest records that release commit.
+
+## Source-status rules for publication
+
+- Never call the historic GTFS current service.
+- Never call WorldPop a marginalized-settlement map.
+- Never call OSM proximity utility capacity.
+- Never call the operator prior observed readiness.
+- Never call climate scenarios measured reductions.
+- Never call a model estimate passenger demand.
+- Never treat city text tags as validated administrative joins.
+- Never convert absence of evidence into evidence of low need.
+
+## Updating a source
+
+When a source changes:
+
+1. preserve the prior snapshot or tag its release;
+2. update `config/source_registry.json` with the new reference period and retrieval date;
+3. record license and attribution changes;
+4. run the complete pipeline;
+5. compare row counts, checksums, model metrics, scenario IDs, ranks, stability, and portfolio membership;
+6. review any claim-status changes;
+7. update documentation only from regenerated outputs; and
+8. retain a change record for material decision changes.
+
+Partial manual edits to `data/processed/` are not a valid update process.

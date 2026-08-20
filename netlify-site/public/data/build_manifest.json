@@ -1,0 +1,80 @@
+{
+  "build_id": "r2z-16690ccbe328",
+  "build_timestamp_utc": "2026-08-20T05:37:23Z",
+  "git_commit": "47cf3c9554ab392938f2ba5ae3ca98d5d369ff61",
+  "pipeline_version": "2.0.0",
+  "model_versions": {
+    "service_intensity": "service-v1-266e0b1d",
+    "corridor_typology": "typology-v1-f9da2ebe"
+  },
+  "model_metrics_summary": {
+    "service_model": "hist_gradient_boosting",
+    "service_mae": 266.4485,
+    "service_rmse": 562.799,
+    "service_r2": 0.9911,
+    "baseline_mae": 4850.0728,
+    "typology_k": 4,
+    "typology_silhouette": 0.27
+  },
+  "config_checksums": {
+    "charging_config.json": "bba483d8ee76d1f7d5b603d7b1a669403a4b6598e1ae3d8c40d53e707e12b776",
+    "climate_scenarios.json": "1e6645f7ff7dec0c272816cfde3ea986559d0ad2f5d51438c8951f32ef75593c",
+    "equity_config.json": "5e6e580a0f79c37c7d5d428e6bc2994979cf9f03d49ab727d3ba293ddef6da8a",
+    "evidence_confidence_config.json": "0b4808522af833e73251c21a65e84815fde2dee73cfa931dc2be01e742272f0f",
+    "model_config.json": "86ed8a693484aab931f77e753f4e20e41933298882d11e7175a33bad6883ffd4",
+    "operator_readiness_config.json": "52fcf040b400c757380c3aca16542d3b4132c9869a9511f2c12773dedb1c50cc",
+    "optimization_scenarios.json": "e33c31cb9f71f5ad058d7639c46914f0d95d4656f5d102cc223feae53d6aab64",
+    "policy_model.json": "fa9ec411ad518eba0b2db3a6440176dead3ca7e1211d8072efd7c423f3bd0b75",
+    "sensitivity_config.json": "d48c10e258a127728f0a4bac33c21d0ef2585dc2d932ebad0c7005956cf47740",
+    "source_registry.json": "8dd43371168d76a8a6cd298d10a9a3a43aaf2533143afd2e6db405c4d38395c9"
+  },
+  "source_checksums": {
+    "sakay_gtfs_master_historic": "3a16a1cdce421bf7240355540bdc72f6eea7ecadaa4789c349f501ca1845d4c7",
+    "worldpop_phl_2020_1km": "db87b488519157ec83fb43e2c867016ca72115fde193a9565b650ee35d6699fd",
+    "doe_luzon_generation_2024": "9c6928ae13f3f4b98c4e16aa8e12bf1c5b4cc547368f3ef426bce35464e1b5d6",
+    "osm_power_snapshot_2026_08_20": "92d52bde6f3f00640693d5c6a2e4234d1fd7fd6ca46a918a1261e776aba32516",
+    "route2zero_climate_scenario_v1": "1e6645f7ff7dec0c272816cfde3ea986559d0ad2f5d51438c8951f32ef75593c",
+    "route2zero_operator_prior_v1": "52fcf040b400c757380c3aca16542d3b4132c9869a9511f2c12773dedb1c50cc"
+  },
+  "output_checksums": {
+    "route_features.csv": "21569ba423242dad833ee3d77893e41ea6cadae780aa89ace9c5bd29253068b1",
+    "ml_service_intensity.csv": "d09a71db68c6eb784fd782008af8d7e5f3ecac82df9c2bed0b305010c896f82a",
+    "corridor_typology.csv": "26c2e2ab223b71f60ae2d7efbfca8f27feb7381305f232e134ffaa72ac5c053e",
+    "climate_impact.csv": "456fd9968f818829194bf8a2823790d406dede9b248aa38be3fc06fd6a426af4",
+    "equity_v2.csv": "6e60034e1dd41cc3260d3877444e221e1bf32985923c02706da1b5d1b0e4e32f",
+    "charging_readiness.csv": "69d5629f1c4d4a71dba86e968d9ab8473b1f5a8daacc6ab3005f008a00fd69d2",
+    "operator_readiness_v2.csv": "80a7d8bda460fc68a02ba25e5446562eedaed797640ac7c4ed9d3b0e98d65be8",
+    "geometry_reliability.csv": "87162fe6d9cb8ae78f59c43ca3a3d69454f6e484e096e7b8db90c0ba5f52139f",
+    "evidence_confidence.csv": "bef0b99086e9c59575562d06bb6438fe11a7eddd6e5642ac63840c5374bc5aeb",
+    "sensitivity.csv": "673cd29ce7edf60b16617597cb92756a1c2fa23ac918bc9f501390e65fce8c1a",
+    "portfolio_scenarios.json": "4cb75c3784fcbf3bf8ba412b17a77ab3ee00e0c30606500d3a150cd8718b26e9",
+    "validation_priorities.json": "2f44b2d4a278f0539990371a8189042527fa15b6065ec315d2a7e38629c2ee58",
+    "route_planner_cache.json": "0e8bffe889b060ab81e3db5f9bdac668f96455c701c62382794f7a7805089c29",
+    "source_manifest.json": "f182c9d7bc455b78e5fa90d747763d66f88e689ae52ebbea71b6c6df066e132d",
+    "route2zero_scores.csv": "a33a802a132d467aa14e66ea610ebd985e581e27df9794fa7a97b7aa0952f4ad",
+    "route2zero_scores.geojson": "40c755e4aa2aa248e21bf784799ec93df62d0f0e53682862f8de77554703c97d"
+  },
+  "default_scenario_id": "scn-c46e1d86c1",
+  "default_portfolio_scenario_id": "prt-b73fa05705",
+  "random_seeds": {
+    "model_and_typology": 20260820,
+    "sensitivity": 20260820
+  },
+  "flagship_route_id": "LTFRB_PUJ1353",
+  "pipeline_report": {
+    "status": "PASS_WITH_WARNINGS",
+    "pipeline_version": "2.0.0",
+    "build_id": "r2z-16690ccbe328",
+    "build_timestamp_utc": "2026-08-20T05:37:23Z",
+    "rows_processed": 1522,
+    "score_complete_count": 1522,
+    "current_validation_count": 0,
+    "robust_priority_count": 9,
+    "phase1_corridor_count": 8,
+    "warnings": [
+      "No current route validation records have been supplied; all service status remains historic-only.",
+      "No consent-based operator evidence has been supplied; the neutral prior remains active.",
+      "No utility capacity is verified; charging scores use mapped proximity and energy-demand screening only."
+    ]
+  }
+}

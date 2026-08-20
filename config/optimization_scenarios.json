@@ -1,0 +1,17 @@
+{
+  "version": "portfolio-v1.0",
+  "scenarios": [
+    {
+      "title": "Evidence-aware Phase 1",
+      "max_corridors": 8,
+      "minimum_evidence_grade": "C",
+      "minimum_equity_score": 40,
+      "maximum_evidence_limited_corridors": 2,
+      "maximum_corridors_per_primary_city": 2,
+      "maximum_route_directions_per_corridor": 1,
+      "exclude_inactive_routes": true,
+      "hypothetical_budget_php": null,
+      "mode": "evidence_shortlist"
+    }
+  ]
+}

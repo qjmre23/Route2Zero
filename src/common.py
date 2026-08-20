@@ -2,8 +2,12 @@
 
 from __future__ import annotations
 
+import hashlib
 import json
 import math
+import re
+import unicodedata
+from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
 
@@ -14,6 +18,20 @@ ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "data" / "raw" / "gtfs_master"
 PROCESSED_DIR = ROOT / "data" / "processed"
 DOCS_DIR = ROOT / "docs"
+CONFIG_DIR = ROOT / "config"
+VALIDATED_DIR = ROOT / "data" / "validated"
+MODELS_DIR = ROOT / "models"
+
+CLAIM_STATUSES = {
+    "VERIFIED",
+    "OBSERVED",
+    "DERIVED",
+    "ML_ESTIMATED",
+    "PROXY",
+    "SCENARIO",
+    "NEUTRAL_PRIOR",
+    "MISSING",
+}
 
 GTFS_FILES = (
     "routes.txt",
@@ -30,6 +48,9 @@ GTFS_FILES = (
 def ensure_output_dirs() -> None:
     PROCESSED_DIR.mkdir(parents=True, exist_ok=True)
     DOCS_DIR.mkdir(parents=True, exist_ok=True)
+    CONFIG_DIR.mkdir(parents=True, exist_ok=True)
+    VALIDATED_DIR.mkdir(parents=True, exist_ok=True)
+    MODELS_DIR.mkdir(parents=True, exist_ok=True)
 
 
 def load_gtfs(name: str, **kwargs) -> pd.DataFrame:
@@ -91,3 +112,36 @@ def write_json(path: Path, payload: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
     path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
 
+
+def read_json(path: Path) -> object:
+    return json.loads(path.read_text(encoding="utf-8"))
+
+
+def sha256_file(path: Path) -> str:
+    digest = hashlib.sha256()
+    with path.open("rb") as stream:
+        for block in iter(lambda: stream.read(1024 * 1024), b""):
+            digest.update(block)
+    return digest.hexdigest()
+
+
+def stable_hash(payload: object, length: int = 12) -> str:
+    normalized = json.dumps(payload, sort_keys=True, separators=(",", ":"), ensure_ascii=True)
+    return hashlib.sha256(normalized.encode("utf-8")).hexdigest()[:length]
+
+
+def utc_now_iso() -> str:
+    return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+
+def normalize_corridor_name(value: object) -> str:
+    """Return a stable corridor group key without inferring a current franchise."""
+    text = unicodedata.normalize("NFKD", str(value or "")).encode("ascii", "ignore").decode()
+    text = re.sub(r"\b(via|route|loop|puj)\b.*$", "", text, flags=re.IGNORECASE)
+    parts = [re.sub(r"[^a-z0-9]+", "-", part.lower()).strip("-") for part in text.split("-")]
+    parts = sorted(part for part in parts if part)
+    return "__".join(parts) or "unknown-corridor"
+
+
+def parse_grade(value: object) -> int:
+    return {"A": 4, "B": 3, "C": 2, "D": 1}.get(str(value).strip().upper(), 0)

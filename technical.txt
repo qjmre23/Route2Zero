@@ -1,148 +1,1729 @@
-ROUTE2ZERO 2026 TECHNICAL REFERENCE
-Netlify deployment, Mapbox road routing, data pipeline, exports and assurance
-Prepared 17 August 2026
+ROUTE2ZERO 2.0 TECHNICAL REFERENCE
+Build, data, models, scenarios, governance, Netlify deployment, and handover
+Reference build: r2z-16690ccbe328
+Reference policy scenario: scn-c46e1d86c1
+Reference portfolio scenario: prt-b73fa05705
+Pipeline version: 2.0.0
+Build timestamp: 2026-08-20T04:47:08Z
 
-1. PRODUCT CONTRACT
-1.1 Route2Zero ranks Metro Manila jeepney route-direction records for deeper electrification feasibility work.
-1.2 The product is decision support; it does not authorise funding, procurement, route cancellation, fare policy or lending.
-1.3 The current route universe contains 1,522 PUJ records.
-1.4 The default weighted score is emissions 35%, equity 35%, grid 15% and operator readiness 15%.
-1.5 Live weights are normalised in the browser before scores are recomputed.
-1.6 AI-generated explanations are optional and downstream of deterministic scores.
-1.7 No AI response can write to score fields or change rank order.
-1.8 Historic, proxy and placeholder fields remain visible in the dashboard and exports.
+1. DOCUMENT STATUS
 
-2. 2026 WEB ARCHITECTURE
-2.1 The deployable site lives in netlify-site/.
-2.2 Netlify base directory is netlify-site and publish directory is netlify-site/public.
-2.3 The build command is npm run build.
-2.4 scripts/build-netlify.mjs generates public/config.js and copies processed datasets into public/data/.
-2.5 The site is a responsive static application using HTML, CSS and browser JavaScript.
-2.6 The dashboard does not require a server process after deployment.
-2.7 Netlify Functions remain available for optional server-side AI explanations.
-2.8 netlify.toml defines security headers, data caching and function bundling.
+1.1 This file is the deep technical reference for Route2Zero 2.0.
+1.2 It describes the repository state represented by the reference build above.
+1.3 It does not claim that the reference build contains current route validation.
+1.4 It does not claim that the reference build is ready for procurement use.
+1.5 It does not replace the build manifest or source manifest.
+1.6 Machine-readable manifests are authoritative for identifiers and checksums.
+1.7 Source code is authoritative for implemented formulas.
+1.8 Versioned configuration is authoritative for policy and scenario parameters.
+1.9 Validated ledgers are authoritative for accepted pilot evidence.
+1.10 Processed CSV and GeoJSON files are generated outputs.
+1.11 Manual edits to processed outputs are not an accepted workflow.
+1.12 Documentation must be regenerated or reviewed after a material build change.
+1.13 Historic, current, proxy, scenario, and model-estimated states must remain distinct.
+1.14 A later build supersedes numeric facts only when its manifest is named.
+1.15 Repository URL: https://github.com/qjmre23/Route2Zero.
+1.16 Live application URL: https://route2zero.netlify.app/.
 
-3. MAPBOX CONFIGURATION
-3.1 The application uses Mapbox GL JS with custom style mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs.
-3.2 Mapbox public access tokens use the pk. prefix and are designed for browser use.
-3.3 The build script accepts an optional MAPBOX_TOKEN environment variable.
-3.4 When MAPBOX_TOKEN is absent, the approved public fallback token is emitted so Netlify builds do not fail.
-3.5 The fallback is intentionally split in source code to avoid automated secret scanners misclassifying a public token.
-3.6 netlify.toml limits the secrets-scan omission to generated public/config.js.
-3.7 For token rotation, add MAPBOX_TOKEN in Netlify Site configuration → Environment variables and redeploy.
-3.8 Recommended token restriction: allow only the production Netlify domain, custom domain and localhost development origin.
-3.9 Never store secret-scoped Mapbox tokens or account-management tokens in browser code.
+2. PRODUCT CONTRACT
 
-4. STREET-FOLLOWING ROUTING
-4.1 Regional route records are presented as clustered points for readability.
-4.2 Selecting a route extracts its ordered screening coordinates.
-4.3 Mapbox Directions requests are made in chunks of no more than 25 coordinates.
-4.4 Returned road geometries are joined into a selected-route GeoJSON line.
-4.5 The line is styled with a dark casing and electric-lime centre stroke.
-4.6 The interface states “Street-following route ready · Mapbox Directions” after a successful response.
-4.7 If routing is unavailable, the interface preserves the screening geometry and exposes reduced confidence.
-4.8 A Mapbox road path is a visualisation aid; it is not proof of current franchise operations.
+2.1 Route2Zero screens jeepney corridor records for electrification validation.
+2.2 The initial geography is Metro Manila and nearby services in the source feed.
+2.3 The analytical unit is one historic PUJ route-direction record.
+2.4 The reference route universe contains 1,522 records.
+2.5 The system produces a priority score under a named policy scenario.
+2.6 The system produces a separate evidence-confidence score and grade.
+2.7 The system produces low, base, and high climate-and-energy scenarios.
+2.8 The system produces fixed-seed rank-stability fields.
+2.9 The system produces a route-field validation-priority queue.
+2.10 The system produces a constrained Phase-1 validation portfolio.
+2.11 The system produces structured route and portfolio explanations.
+2.12 The system does not authorize procurement.
+2.13 The system does not authorize lending.
+2.14 The system does not cancel or award a franchise.
+2.15 The system does not set fares.
+2.16 The system does not infer individual social status.
+2.17 The system does not establish that a historic route operates in 2026.
+2.18 The system does not establish utility capacity from map proximity.
+2.19 The system is decision support and evidence planning.
 
-5. DATA PIPELINE
-5.1 src/01_audit.py audits GTFS integrity and defines the PUJ route universe.
-5.2 src/02_geometry.py selects representative trips and builds screening geometry.
-5.3 src/03_frequency.py estimates service window, headway and trips-per-day proxies.
-5.4 src/04_emissions_score.py creates the activity-based emissions potential score.
-5.5 src/05_equity_score.py builds the WorldPop density catchment proxy.
-5.6 src/06_grid_score.py builds the Luzon renewable-share context proxy.
-5.7 src/07_operator_score.py applies the neutral 50 placeholder and verified overrides.
-5.8 src/08_composite_score.py creates score completeness, confidence and rank fields.
-5.9 src/09_city_aggregation.py produces city summaries and route-city tags.
-5.10 src/10_policy_brief.py produces evidence-request policy briefs.
-5.11 src/11_ai_explain.py creates optional explanation cache entries.
-5.12 src/run_pipeline.py runs the full ordered pipeline.
+3. DECISION TERMINOLOGY
 
-6. PRIMARY OUTPUTS
-6.1 data/processed/route2zero_scores.csv is the dashboard’s scored record table.
-6.2 data/processed/routes_scored.geojson carries route geometry and score properties.
-6.3 data/processed/city_summary.csv provides city-level screening summaries.
-6.4 data/processed/score_weights.json records the default policy lens.
-6.5 data/processed/explanations_cache.json contains deterministic or optional API explanations.
-6.6 Confidence and source fields stay attached to each scored record.
+3.1 Priority score is the weighted result under a named human-controlled policy lens.
+3.2 Evidence confidence describes the quality and specificity of supporting evidence.
+3.3 Evidence grade maps evidence confidence to A, B, C, or D.
+3.4 ML prediction error describes service-model performance against its target.
+3.5 Rank stability describes behavior under tested policy-weight changes.
+3.6 Top-10 probability is a frequency across simulations, not a truth probability.
+3.7 P10-P90 rank is an empirical simulation range.
+3.8 Climate low, base, and high values are scenario results.
+3.9 Portfolio membership is the result of the current constraints.
+3.10 Value of information is a deterministic perturbation priority.
+3.11 Current validation means accepted date-stamped evidence under the pilot protocol.
+3.12 Historic-only means no accepted current validation has been supplied.
+3.13 Neutral prior means an explicit default due to insufficient evidence.
+3.14 Proxy means indirect evidence with a known conceptual limitation.
+3.15 Model-estimated means produced by a versioned fitted model.
+3.16 No one term above substitutes for another.
+3.17 A robust priority can still have weak evidence.
+3.18 A high evidence grade can still have a scenario-dependent rank.
+3.19 A model can have a strong historic metric and weak current validity.
 
-7. SCORE INTERPRETATION
-7.1 Emissions potential is an activity proxy based on route length and estimated service activity.
-7.2 Equity is a 300-metre WorldPop density catchment proxy.
-7.3 WorldPop density must not be described as settlement-status evidence.
-7.4 Grid feasibility uses Luzon-level renewable share and is not a depot-capacity assessment.
-7.5 Operator readiness defaults to 50 when cooperative or financing evidence is unavailable.
-7.6 A complete composite score requires all four dimensions.
-7.7 The default top record is LTFRB_PUJ1353, Francisco Homes–Cubao, with score 71.38 (displayed as 71.4).
-7.8 Its component values are emissions 98.18, equity 77.42, grid 16.12 and operator readiness 50.0.
+4. CLAIM-STATUS VOCABULARY
 
-8. EXPORTS
-8.1 PDF uses the browser print path to create a formal current-scenario report.
-8.2 Word export creates an editable .doc report containing the current lens, weights and recommendations.
-8.3 CSV export downloads the current ranked scenario data.
-8.4 Exports include the current city filter and active policy weights.
-8.5 Reports repeat the confidence notice and evidence limitations.
-8.6 The repository also contains a 24-slide demonstration deck and a 24-page formal pilot plan.
+4.1 VERIFIED is reserved for accepted verification.
+4.2 OBSERVED is reserved for direct pilot observation.
+4.3 DERIVED is reserved for deterministic calculation from identified inputs.
+4.4 ML_ESTIMATED is reserved for versioned machine-learning output.
+4.5 PROXY is reserved for indirect screening evidence.
+4.6 SCENARIO is reserved for assumption-dependent output.
+4.7 NEUTRAL_PRIOR is reserved for a deliberate default.
+4.8 MISSING is reserved for unavailable defensible values.
+4.9 Claim status is stored at the field or layer level where practical.
+4.10 Source currentness is a separate property.
+4.11 A current configuration can define a scenario.
+4.12 A historic source can support a correctly labeled derived value.
+4.13 A mixed-currentness map source remains a proxy until verified.
+4.14 Missing evidence must not be converted into low need.
+4.15 Conflicting evidence must not be silently overwritten.
+4.16 User-facing language must follow the claim status.
+4.17 Exports must preserve material claim-status limitations.
+4.18 LLM text must not upgrade a claim status.
 
-9. NETLIFY ENVIRONMENT VARIABLES
-9.1 MAPBOX_TOKEN is optional and overrides the approved public browser token.
-9.2 ABSK_KEY is optional and used only by the server-side explanation function.
-9.3 MODEL is optional and selects the explanation model.
-9.4 BASE_URL is optional for an OpenAI-compatible API endpoint.
-9.5 AI_EXPLANATIONS_ENABLED controls whether the explanation function attempts an external API call.
-9.6 Never expose ABSK_KEY or any secret API key through public/config.js.
-9.7 Netlify variable scopes should include Functions for AI secrets and Builds only when a build step requires the value.
+5. REFERENCE RELEASE IDENTITY
 
-10. LOCAL DEVELOPMENT
-10.1 From netlify-site, run npm run build to generate configuration and copy datasets.
-10.2 Serve netlify-site/public with any static server.
-10.3 The verified preview command used for this release is Python http.server on port 8899.
-10.4 Open http://127.0.0.1:8899/.
-10.5 A Mapbox public token must be allowed to load the style and Directions endpoint from localhost.
-10.6 Do not open index.html directly because browser fetch rules may block data loads.
+5.1 Pipeline version is 2.0.0.
+5.2 Build ID is r2z-16690ccbe328.
+5.3 Build timestamp is 2026-08-20T04:47:08Z.
+5.4 The manifest-recorded Git commit is 47cf3c9554ab392938f2ba5ae3ca98d5d369ff61.
+5.5 Default policy scenario is scn-c46e1d86c1.
+5.6 Default portfolio scenario is prt-b73fa05705.
+5.7 Service-model version is service-v1-266e0b1d.
+5.8 Typology-model version is typology-v1-f9da2ebe.
+5.9 Model and typology seed is 20260820.
+5.10 Sensitivity seed is 20260820.
+5.11 Rows processed is 1,522.
+5.12 Complete priority scores is 1,522.
+5.13 Current validation count is zero.
+5.14 Robust-priority count is nine.
+5.15 Phase-1 selected count is eight.
+5.16 Pipeline status is PASS_WITH_WARNINGS.
+5.17 The flagship route ID is LTFRB_PUJ1353.
+5.18 The build ID excludes the build timestamp from its stable identity payload.
+5.19 A release rebuild after the final commit is required for one-to-one Git attestation.
 
-11. DEPLOYMENT CHECKLIST
-11.1 Repository checkout succeeds with no invalid submodule entry.
-11.2 npm run build succeeds when MAPBOX_TOKEN is absent.
-11.3 public/config.js contains only a browser-safe public token.
-11.4 All processed datasets are copied into public/data/.
-11.5 Mapbox style loads and the selected route status becomes street-following ready.
-11.6 Desktop viewport shows no horizontal overflow.
-11.7 Mobile viewport 390×844 shows no horizontal overflow.
-11.8 Score controls update the rankings.
-11.9 Route finder and ranking rows update the map selection.
-11.10 Judge guide and assumptions remain collapsed by default.
-11.11 PDF, Word and CSV exports download successfully.
-11.12 Netlify function returns deterministic fallback text when AI is disabled.
+6. REPOSITORY PATH CONTRACT
 
-12. ASSURANCE RESULTS FOR THIS RELEASE
-12.1 Netlify build ran successfully without MAPBOX_TOKEN.
-12.2 Desktop browser state displayed 1,522 routes and 1,521 complete scores.
-12.3 The leading displayed score was 71.4.
-12.4 The selected route displayed the Mapbox Directions readiness status.
-12.5 Desktop browser width 1,440 had no horizontal overflow.
-12.6 Mobile browser width 390 had no horizontal overflow.
-12.7 Browser-accurate screenshots were captured for desktop hero, map, rankings and mobile views.
-12.8 The presentation contains 24 slides and passed the slide overflow test.
-12.9 The demonstration PDF contains 24 pages.
-12.10 The pilot plan DOCX contains 24 designed sections and no high-severity accessibility findings.
-12.11 The pilot plan PDF contains 24 pages.
+6.1 app contains the legacy Streamlit analytical interface.
+6.2 config contains versioned JSON contracts.
+6.3 data/raw contains immutable source snapshots.
+6.4 data/validated contains controlled pilot evidence ledgers.
+6.5 data/processed contains generated outputs.
+6.6 docs contains method, governance, and validation references.
+6.7 docs/policy_briefs contains generated Phase-1 route briefs.
+6.8 models contains fitted artifacts and metadata.
+6.9 netlify-site contains the production static application.
+6.10 netlify-site/public contains deployable browser assets.
+6.11 netlify-site/netlify/functions contains optional server-side functions.
+6.12 output contains reports and submission artifacts.
+6.13 src contains ordered pipeline stages.
+6.14 tests contains automated verification code.
+6.15 README.md is the repository overview.
+6.16 technical.txt is this reference.
+6.17 Root-relative paths are resolved by src/common.py.
+6.18 Raw source files are never overwritten by the pipeline.
 
-13. KNOWN LIMITATIONS
-13.1 The GTFS service calendar ends in 2020 and cannot prove current operations.
-13.2 Only two records have usable source GTFS shapes.
-13.3 Stop-sequence approximation remains the screening basis for 1,520 records.
-13.4 Mapbox Directions improves display accuracy but does not replace a route survey.
-13.5 Population density is not a direct measure of income, vulnerability or informal-settlement status.
-13.6 Grid context is regional and does not assess feeders, depots, tariffs or charging schedules.
-13.7 Operator readiness is a neutral placeholder until verified evidence is collected.
-13.8 Route-city tags require LGU validation, especially for cross-boundary corridors.
+7. PYTHON DEPENDENCY CONTRACT
 
-14. RECOMMENDED NEXT STEPS
-14.1 Restrict the Mapbox public token to production and localhost origins.
-14.2 Confirm current route operations with participating LGUs and cooperatives.
-14.3 Replace screening geometry with validated path traces for shortlisted routes.
-14.4 Acquire depot, feeder and tariff evidence with the utility.
-14.5 Replace operator placeholders through consent-based structured interviews.
-14.6 Record city-approved weight presets and scenario rationale.
-14.7 Monitor Netlify deploy status after the GitHub push.
-14.8 Use the formal 24-page pilot plan as the implementation and governance baseline.
+7.1 Python dependencies are declared in requirements.txt.
+7.2 pandas handles tabular transformations.
+7.3 geopandas handles spatial route tables.
+7.4 shapely handles line geometry.
+7.5 pyproj handles geodesic and projected calculations.
+7.6 rasterio handles WorldPop raster extraction.
+7.7 scikit-learn handles the service model and typology.
+7.8 scipy is available for scientific support.
+7.9 joblib serializes fitted model artifacts.
+7.10 pytest runs automated tests.
+7.11 Streamlit and Plotly support the legacy analytical view.
+7.12 Python version recorded by the model is 3.12.13.
+7.13 scikit-learn version recorded by the model is 1.9.0.
+7.14 Environment-specific versions outside the manifest must not be assumed.
+7.15 A clean installation should use the constraints in requirements.txt.
+7.16 A production release should retain an installation log.
+7.17 A dependency change can change model or spatial outputs.
+7.18 Material dependency changes require a rebuild and comparison.
+
+8. JAVASCRIPT AND HOSTING CONTRACT
+
+8.1 The production site is static HTML, CSS, and browser JavaScript.
+8.2 netlify-site/package.json declares ES-module behavior.
+8.3 The build script is netlify-site/scripts/build-netlify.mjs.
+8.4 The package build command is node scripts/build-netlify.mjs.
+8.5 Netlify base directory is netlify-site.
+8.6 Netlify publish directory is public relative to the base.
+8.7 Netlify functions directory is netlify/functions relative to the base.
+8.8 Netlify uses esbuild for function bundling.
+8.9 The site does not require a persistent Python process.
+8.10 Browser configuration is generated into public/config.js.
+8.11 Browser-readable processed data are copied into public/data.
+8.12 The optional explanation endpoint is a Netlify Function.
+8.13 Public configuration must contain no secret API key.
+8.14 The browser-safe Mapbox token is allowed in public configuration.
+8.15 Production and local origins should be restricted in the Mapbox account.
+8.16 A host migration must preserve public-versus-secret separation.
+
+9. SOURCE REGISTRY
+
+9.1 config/source_registry.json is the editable registry.
+9.2 src/00_source_manifest.py validates the registry.
+9.3 Each source requires a stable source_id.
+9.4 Each source requires a title.
+9.5 Each source requires an organization.
+9.6 Each source requires a source URL.
+9.7 Each source requires a local path.
+9.8 Each source requires a retrieval date.
+9.9 Each source requires a reference period.
+9.10 Each source requires geography.
+9.11 Each source requires spatial resolution.
+9.12 Each source requires a license statement.
+9.13 Each source requires a source type.
+9.14 Each source requires currentness.
+9.15 Each source requires limitation notes.
+9.16 The current registry contains six sources.
+9.17 The registry checksum is 8dd43371168d76a8a6cd298d10a9a3a43aaf2533143afd2e6db405c4d38395c9.
+9.18 Resolved output is data/processed/source_manifest.json.
+9.19 Directory checksums use stable relative-path and file-hash ordering.
+9.20 Missing source paths fail the stage.
+
+10. REGISTERED SOURCES
+
+10.1 sakay_gtfs_master_historic defines the screening universe.
+10.2 Its reference period is 2013-2020.
+10.3 Its currentness is historic.
+10.4 Its checksum is 3a16a1cdce421bf7240355540bdc72f6eea7ecadaa4789c349f501ca1845d4c7.
+10.5 worldpop_phl_2020_1km supplies population exposure.
+10.6 Its reference period is 2020.
+10.7 Its currentness is historic.
+10.8 Its checksum is db87b488519157ec83fb43e2c867016ca72115fde193a9565b650ee35d6699fd.
+10.9 doe_luzon_generation_2024 supplies regional energy context.
+10.10 Its reference period is 2024.
+10.11 Its checksum is 9c6928ae13f3f4b98c4e16aa8e12bf1c5b4cc547368f3ef426bce35464e1b5d6.
+10.12 osm_power_snapshot_2026_08_20 supplies mapped infrastructure proximity.
+10.13 Its currentness is mixed.
+10.14 Its checksum is 92d52bde6f3f00640693d5c6a2e4234d1fd7fd6ca46a918a1261e776aba32516.
+10.15 route2zero_climate_scenario_v1 supplies scenario assumptions.
+10.16 Its checksum is 1e6645f7ff7dec0c272816cfde3ea986559d0ad2f5d51438c8951f32ef75593c.
+10.17 route2zero_operator_prior_v1 supplies the neutral prior.
+10.18 Its checksum is 52fcf040b400c757380c3aca16542d3b4132c9869a9511f2c12773dedb1c50cc.
+10.19 Source registration does not imply source suitability for every claim.
+10.20 Each downstream method retains its own limitation.
+
+11. GTFS AUDIT
+
+11.1 src/01_audit.py reads eight expected GTFS files.
+11.2 GTFS identifiers are preserved as strings.
+11.3 routes.txt has 1,717 rows.
+11.4 trips.txt has 1,864 rows.
+11.5 stops.txt has 4,858 rows.
+11.6 stop_times.txt has 79,414 rows.
+11.7 shapes.txt has 520 rows.
+11.8 frequencies.txt has 1,864 rows.
+11.9 calendar.txt has 20 rows.
+11.10 agency.txt has six rows.
+11.11 Trip-to-route references have zero missing values.
+11.12 Stop-time-to-stop references have zero missing values.
+11.13 Frequency-to-trip references have zero missing values.
+11.14 Referential integrity passes all three implemented checks.
+11.15 The feed contains 893 agency/name corridor groups.
+11.16 798 groups contain multiple route IDs.
+11.17 The grouped output is route_corridors.csv.
+11.18 Audit success does not establish source currentness.
+11.19 Audit output is data/processed/audit_report.md.
+
+12. ROUTE-UNIVERSE DEFINITION
+
+12.1 The geometry stage selects agency_id equal to LTFRB.
+12.2 It also requires route_id to contain PUJ.
+12.3 The result contains 1,522 route-direction records.
+12.4 Non-jeepney routes are retained in comparison_routes.csv.
+12.5 PUB identifiers are classified as bus context.
+12.6 Other identifiers are classified as rail_or_other context.
+12.7 One output row is required per PUJ route ID.
+12.8 Duplicate route IDs are not permitted in the feature store.
+12.9 Route IDs remain the stable join key.
+12.10 Route name is not used as a unique key.
+12.11 Normalized corridor ID is a grouping key, not an official identifier.
+12.12 The normalization removes accents and punctuation.
+12.13 It removes text after selected words such as via, route, loop, or PUJ.
+12.14 It sorts normalized name parts around a hyphen.
+12.15 The current model metadata records 714 normalized corridor groups.
+12.16 Normalization errors can affect splitting and portfolio direction limits.
+12.17 Pilot review must validate normalized corridor relationships.
+
+13. REPRESENTATIVE TRIP AND GEOMETRY
+
+13.1 src/02_geometry.py creates screening lines.
+13.2 It counts stop-time rows for every trip.
+13.3 It selects the trip with the highest count per route.
+13.4 Trip ID is the stable tie-breaker.
+13.5 Shape points are sorted by numeric shape_pt_sequence.
+13.6 Stop points are sorted by numeric stop_sequence.
+13.7 Consecutive duplicate coordinates are removed.
+13.8 A shape is usable when it has at least two valid points.
+13.9 A stop line is usable when it has at least two valid points.
+13.10 GTFS shape has precedence when available.
+13.11 Ordered-stop approximation is the fallback.
+13.12 WGS84 is the output coordinate system.
+13.13 Length uses geodesic line length on WGS84.
+13.14 Endpoint distance is not used as route length.
+13.15 Two PUJ records use GTFS shape geometry.
+13.16 1,520 use ordered-stop approximation.
+13.17 Missing geometry fails the stage.
+13.18 Output is data/processed/jeepney_routes.geojson.
+13.19 Source geometry is not road-snapped by this stage.
+
+14. GEOMETRY RELIABILITY
+
+14.1 src/02b_geometry_reliability.py scores screening geometry.
+14.2 A GTFS shape begins at 88 points.
+14.3 An ordered-stop approximation begins at 52 points.
+14.4 At least 12 representative stops adds four points.
+14.5 Fewer than 12 stops subtracts eight points.
+14.6 Detour ratio above 4 subtracts 15 points.
+14.7 Detour ratio above 2.5 subtracts seven points.
+14.8 Consecutive-stop gap above 8 km subtracts 14 points.
+14.9 Gap above 4 km subtracts six points.
+14.10 Duplicate-coordinate fraction above 0.1 subtracts six points.
+14.11 Self-intersection subtracts eight points.
+14.12 Invalid geometry forces zero.
+14.13 Field verification forces at least 92.
+14.14 Scores are clipped to 0-100.
+14.15 Grade A begins at 85.
+14.16 Grade B begins at 70.
+14.17 Grade C begins at 50.
+14.18 Grade D is below 50.
+14.19 Current grades are two A, 1,140 C, and 380 D.
+14.20 Current validation-required count is 1,520.
+14.21 Current geometry claim status is DERIVED for all records.
+14.22 Output is geometry_reliability.csv.
+
+15. HISTORIC SERVICE-FREQUENCY PROXY
+
+15.1 src/03_frequency.py calculates typical-weekday schedule fields.
+15.2 Monday-enabled calendar rows are eligible.
+15.3 WEEKDAYS and DAILY service IDs are also eligible.
+15.4 Frequency rows join to trips, routes, and service IDs.
+15.5 Only LTFRB PUJ rows are retained.
+15.6 Headway seconds are converted to minutes.
+15.7 GTFS times above 24 hours are accepted.
+15.8 Invalid times become missing.
+15.9 Service intervals are unioned.
+15.10 Overlapping intervals are not double-counted.
+15.11 Average headway is the mean eligible headway.
+15.12 Daily service window is the union duration in hours.
+15.13 Trips per day equals window hours times 60 divided by headway minutes.
+15.14 The output is a schedule-derived proxy.
+15.15 It is not a completed-trip count.
+15.16 It is not a vehicle-block simulation.
+15.17 It is not passenger demand.
+15.18 1,521 routes have a qualifying historic value.
+15.19 One route retains a missing historic value.
+15.20 Output is route_frequency.csv.
+
+16. LEGACY COMPATIBILITY LAYERS
+
+16.1 The 2.0 pipeline retains original MVP layers for comparison.
+16.2 src/04_emissions_score.py calculates historic daily vehicle-km proxy.
+16.3 The legacy emissions score min-max scales that proxy.
+16.4 The legacy emissions score is not measured emissions.
+16.5 src/05_equity_score.py calculates the population-exposure proxy.
+16.6 src/06_grid_score.py calculates the regional renewable-share proxy.
+16.7 src/07_operator_score.py creates the original neutral operator placeholder.
+16.8 Legacy emissions weight is 0.35.
+16.9 Legacy equity weight is 0.35.
+16.10 Legacy grid weight is 0.15.
+16.11 Legacy operator weight is 0.15.
+16.12 The old 71.4 result is not the Route2Zero 2.0 release result.
+16.13 Legacy fields receive legacy prefixes in the final score table where possible.
+16.14 Legacy outputs support audit and migration.
+16.15 They do not define the default 2.0 policy score.
+16.16 User-facing 2.0 documentation must not present the legacy model as current.
+16.17 Removal of legacy fields requires a compatibility review.
+
+17. FEATURE STORE
+
+17.1 src/04_feature_engineering.py builds route_features.csv.
+17.2 It joins route geometry metadata.
+17.3 It joins historic service fields.
+17.4 It joins historic daily vehicle-km proxy.
+17.5 It joins population-exposure fields.
+17.6 It joins geometry reliability.
+17.7 It joins validation fields.
+17.8 It calculates normalized corridor ID.
+17.9 It calculates stops per kilometre.
+17.10 It calculates mean stop spacing.
+17.11 It calculates a shape-source indicator.
+17.12 It counts hub-like stop names.
+17.13 The hub pattern includes terminal, station, market, palengke, mall, plaza, crossing, and junction.
+17.14 Hub connectivity is a name-pattern feature, not verified interchange quality.
+17.15 Missing current validation initializes historic_only.
+17.16 Missing current activity initializes uncertain.
+17.17 Missing source type initializes historic_gtfs_baseline.
+17.18 Source reference initializes sakay_gtfs_master_historic.
+17.19 The feature store must contain exactly 1,522 unique route IDs.
+17.20 Feature source IDs include GTFS and WorldPop.
+
+18. VALIDATED LEDGER CONTRACT
+
+18.1 data/validated/route_validation.csv holds current route evidence.
+18.2 data/validated/operator_evidence.csv holds consent-based operator evidence.
+18.3 data/validated/charging_site_evidence.csv holds site and utility evidence.
+18.4 data/validated/stakeholder_validation.csv holds stakeholder review.
+18.5 The current files contain headers only.
+18.6 Current route validations therefore equal zero.
+18.7 Current observed operator scores therefore equal zero.
+18.8 Current verified utility-capacity records therefore equal zero.
+18.9 Current verified charging sites therefore equal zero.
+18.10 A ledger row requires a stable source reference.
+18.11 Evidence date and verifier are required for acceptance.
+18.12 Conflicting evidence must be recorded.
+18.13 Personally identifiable information is not required for core analytics.
+18.14 Operator evidence requires consent and access control.
+18.15 Accepted ledger changes require a full rebuild.
+18.16 Processed route_validation.csv includes defaults for unsupplied routes.
+18.17 An empty ledger is not an error when warnings remain explicit.
+
+19. SERVICE-INTENSITY MODEL PURPOSE
+
+19.1 src/05_ml_service_intensity.py trains the supervised model.
+19.2 Model version is service-v1-266e0b1d.
+19.3 Target is historic_daily_vehicle_km_proxy.
+19.4 Target means historic schedule-derived vehicle-km per day proxy.
+19.5 Target does not mean passenger demand.
+19.6 Target does not mean ridership.
+19.7 Target does not mean present-day service.
+19.8 Model output claim status is ML_ESTIMATED.
+19.9 Model output can feed climate only when historic input is missing.
+19.10 Model output use also requires the usefulness gate to pass.
+19.11 Current use count is one route.
+19.12 The current ML-filled route is LTFRB_PUJ2451.
+19.13 Its route name is Alabang-Bbayan via Bicutan.
+19.14 Its prediction is 6,598.245 in target units.
+19.15 Its default rank is 1,335.
+19.16 The prediction does not upgrade current validation.
+19.17 Current observed evidence must override model output.
+
+20. SERVICE-MODEL FEATURES AND LEAKAGE
+
+20.1 Stop count is a feature.
+20.2 Stops per kilometre is a feature.
+20.3 Mean stop spacing is a feature.
+20.4 Endpoint distance is a feature.
+20.5 Geometry detour ratio is a feature.
+20.6 Corridor population proxy is a feature.
+20.7 Equity overlap percentage is a feature.
+20.8 Hub-connectivity count is a feature.
+20.9 Shape-source indicator is a feature.
+20.10 Median imputation handles missing numeric feature values.
+20.11 Average headway is a forbidden leakage field.
+20.12 Daily service window is a forbidden leakage field.
+20.13 Trips per day is a forbidden leakage field.
+20.14 Daily vehicle-km proxy is a forbidden leakage field.
+20.15 Emissions score is a forbidden leakage field.
+20.16 Climate score is a forbidden leakage field.
+20.17 Final priority score is a forbidden leakage field.
+20.18 Rank is a forbidden leakage field.
+20.19 The pipeline validates the feature contract before training.
+20.20 A leaked configured feature raises an error.
+
+21. SERVICE-MODEL TRAINING AND VALIDATION
+
+21.1 Training rows equal 1,521.
+21.2 Corridor groups equal 714.
+21.3 Cross-validation is five-fold GroupKFold.
+21.4 Group key is normalized_corridor_id.
+21.5 Candidate one is histogram gradient boosting.
+21.6 Candidate two is random forest.
+21.7 Candidate selection minimizes out-of-fold MAE.
+21.8 The fold baseline is training-fold target median.
+21.9 Selected model is histogram gradient boosting.
+21.10 Selected MAE is 266.4485.
+21.11 Selected RMSE is 562.7990.
+21.12 Selected R-squared is 0.9911.
+21.13 Baseline MAE is 4,850.0728.
+21.14 Relative MAE improvement is 0.9451.
+21.15 Configured minimum improvement is 0.02.
+21.16 The reference model passes the usefulness gate.
+21.17 Random-forest MAE is 272.0080.
+21.18 Random-forest RMSE is 578.6314.
+21.19 Strong historic metrics do not prove current validity.
+21.20 External pilot evaluation is required.
+21.21 Metadata is stored with the serialized model.
+
+22. SERVICE-MODEL OUTPUTS
+
+22.1 models/service_intensity.joblib stores the fitted pipeline.
+22.2 models/service_intensity_metadata.json stores model metadata.
+22.3 data/processed/ml_service_intensity.csv stores route predictions.
+22.4 Prediction values are clipped at zero.
+22.5 Residual equals historic target minus prediction where target exists.
+22.6 Anomaly threshold is the 95th percentile of absolute residual.
+22.7 Current anomaly count is 77.
+22.8 An anomaly does not prove source error.
+22.9 ml_model_meaningful_vs_baseline records the usefulness gate.
+22.10 ml_service_intensity_used records actual downstream use.
+22.11 Current used count is one.
+22.12 Current unused prediction count is 1,521.
+22.13 Model source is grouped_cv_historic_service_activity_model.
+22.14 Rebuilding can change the model version when target, features, algorithm, or seed changes.
+22.15 Model version uses a stable hash payload.
+22.16 The serialized artifact requires controlled distribution.
+
+23. CORRIDOR TYPOLOGY
+
+23.1 src/06_corridor_typology.py creates unsupervised types.
+23.2 Median imputation precedes scaling.
+23.3 StandardScaler standardizes features.
+23.4 KMeans is the clustering algorithm.
+23.5 Candidate k values range from three through eight.
+23.6 Each candidate uses 30 initializations.
+23.7 Random seed is 20260820.
+23.8 Viable minimum cluster size is at least 10.
+23.9 Viable minimum cluster size is also at least 1 percent of 1,522.
+23.10 k=5 has silhouette 0.2762 but minimum cluster size eight.
+23.11 k=5 is therefore not viable.
+23.12 Selected k is four.
+23.13 Selected silhouette is 0.2700.
+23.14 Model version is typology-v1-f9da2ebe.
+23.15 PCA provides two visualization coordinates.
+23.16 Cluster distance is measured in standardized feature space.
+23.17 Outlier threshold is the within-cluster 95th percentile.
+23.18 Current typology outlier count is 80.
+23.19 Typology is excluded from the policy score.
+23.20 Typology claim status is ML_ESTIMATED.
+
+24. TYPOLOGY LABELS AND COUNTS
+
+24.1 Cluster 2 is labeled Dense Urban Trunk.
+24.2 Dense Urban Trunk contains 265 routes.
+24.3 Cluster 0 is labeled Long Regional Connector.
+24.4 Long Regional Connector contains 503 routes.
+24.5 Cluster 1 is labeled High-Stop-Density Core.
+24.6 High-Stop-Density Core contains 620 routes.
+24.7 Cluster 3 is labeled Local Feeder.
+24.8 Local Feeder contains 134 routes.
+24.9 Labels are assigned from relative center patterns.
+24.10 Labels are not verified operating classifications.
+24.11 Labels do not imply income.
+24.12 Labels do not imply vulnerability.
+24.13 Labels do not imply informal-settlement status.
+24.14 Labels do not imply investment readiness.
+24.15 Labels may be revised without changing policy score.
+24.16 Pilot users must review representatives and outliers.
+
+25. CLIMATE CONFIGURATION
+
+25.1 config/climate_scenarios.json version is climate-v1.0.
+25.2 Operating days per year is 300.
+25.3 Charger efficiency is 0.90.
+25.4 Current grid context is 0.7181 kgCO2e per kWh.
+25.5 Low diesel efficiency is 6.0 km per liter.
+25.6 Base diesel efficiency is 5.0 km per liter.
+25.7 High diesel efficiency is 4.0 km per liter.
+25.8 Diesel factor is 2.68 kgCO2e per liter in all cases.
+25.9 Low electric energy is 1.05 kWh per km.
+25.10 Base electric energy is 0.75 kWh per km.
+25.11 High electric energy is 0.55 kWh per km.
+25.12 Low grid factor is 0.7181 kgCO2e per kWh.
+25.13 Base grid factor is 0.55 kgCO2e per kWh.
+25.14 High grid factor is 0.35 kgCO2e per kWh.
+25.15 Low electrification share is 0.30.
+25.16 Base electrification share is 0.50.
+25.17 High electrification share is 0.70.
+25.18 All assumptions require pilot calibration.
+25.19 Config values are not observed route facts.
+
+26. CLIMATE CALCULATION
+
+26.1 src/07_climate_impact.py calculates climate and energy fields.
+26.2 Daily VKT uses historic proxy when available.
+26.3 Daily VKT uses approved ML prediction when historic proxy is missing.
+26.4 Electrified VKT equals daily VKT times electrification share.
+26.5 Diesel liters avoided equals electrified VKT divided by diesel efficiency.
+26.6 Baseline CO2e equals diesel liters times diesel factor.
+26.7 Traction energy equals electrified VKT times electric kWh per km.
+26.8 Electricity demand equals traction energy divided by charger efficiency.
+26.9 Grid CO2e equals electricity demand times grid factor.
+26.10 Net CO2e equals baseline CO2e minus grid CO2e.
+26.11 Annual tonnes equal daily net kg times operating days divided by 1,000.
+26.12 Calculations run independently for low, base, and high cases.
+26.13 Climate impact score min-max scales base annual net CO2e.
+26.14 Climate claim status is SCENARIO.
+26.15 Impact-is-scenario-not-measurement is true.
+26.16 Climate source IDs include GTFS, DOE, and scenario configuration.
+26.17 Output is climate_impact.csv.
+26.18 Climate values retain negative results.
+
+27. CLIMATE RESULT INTERPRETATION
+
+27.1 All 1,522 low-case route results are negative.
+27.2 No base-case route result is negative.
+27.3 No high-case route result is negative.
+27.4 The low-case route range is approximately -1,132.141 to -14.075 tCO2e per year.
+27.5 The base-case route range is approximately 4.658 to 374.695 tCO2e per year.
+27.6 The high-case route range is approximately 38.298 to 3,080.645 tCO2e per year.
+27.7 Negative low results are not data errors by definition.
+27.8 They reflect the stated efficiency, grid, and share assumptions.
+27.9 Climate score is relative to the current route universe.
+27.10 Min-max score does not provide an absolute feasibility threshold.
+27.11 Scenario CO2e is not measured reduction.
+27.12 Scenario CO2e is not a carbon credit.
+27.13 Scenario CO2e is not a finance-grade baseline.
+27.14 Electricity demand is also scenario-dependent.
+27.15 Pilot calibration must retain source IDs and units.
+27.16 An implemented project requires monitoring beyond this model.
+
+28. EQUITY PROXY
+
+28.1 src/05_equity_score.py performs the raster calculation.
+28.2 WorldPop reference year is 2020.
+28.3 Raster resolution is approximately one kilometre.
+28.4 Route buffers use 300 meters.
+28.5 Routes are projected to UTM Zone 51N for buffering.
+28.6 The high-density cutoff is the 75th percentile of positive cells in the NCR window.
+28.7 Population in high-density cells is divided by total buffer population.
+28.8 The share is min-max scaled to 0-100.
+28.9 src/08_equity_v2.py exposes the score as population exposure.
+28.10 Socioeconomic score is missing.
+28.11 Accessibility-gap score is missing.
+28.12 Underserved-overlap score is missing.
+28.13 Underserved-overlap availability is false.
+28.14 Equity evidence confidence is 25 when the proxy exists.
+28.15 Equity claim status is PROXY.
+28.16 Current equity mean is approximately 79.03.
+28.17 Current equity range is 0-100.
+28.18 Density must not be described as informal-settlement evidence.
+28.19 Low data availability must not be interpreted as low need.
+
+29. CHARGING SOURCE AND DISTANCE
+
+29.1 src/09_charging_readiness.py reads the cached OSM snapshot.
+29.2 The snapshot contains 138 parsed elements.
+29.3 It contains 117 mapped substations with coordinates.
+29.4 It contains 21 mapped charging stations with coordinates.
+29.5 The parser recognizes power=substation.
+29.6 The parser recognizes amenity=charging_station.
+29.7 Route endpoints are used for nearest-feature distance.
+29.8 Distance uses a haversine BallTree.
+29.9 Earth radius is 6,371.0088 km.
+29.10 Nearest feature IDs retain OSM object type and ID.
+29.11 Substation thresholds are 1, 3, 6, and 12 km.
+29.12 Charger thresholds are 1, 3, 8, and 15 km.
+29.13 Threshold scores are 100, 82, 58, and 32.
+29.14 Distances beyond the last threshold score eight.
+29.15 Missing distance scores zero.
+29.16 Map completeness is not guaranteed.
+29.17 Proximity is a screening proxy.
+
+30. CHARGING-READINESS SCORE
+
+30.1 Mapped substation proximity weight is 0.35.
+30.2 Mapped charger proximity weight is 0.25.
+30.3 Terminal-evidence weight is 0.15.
+30.4 Energy-manageability weight is 0.25.
+30.5 Candidate terminal count is currently two for every route.
+30.6 Terminal-evidence score is currently 40 for every route.
+30.7 Energy manageability is 100 minus min-max base electricity demand.
+30.8 Charging score is the weighted sum of the four components.
+30.9 Current charging range is approximately 47.77-90.78.
+30.10 Current charging mean is approximately 76.69.
+30.11 Utility capacity verified is false for all records.
+30.12 Charging site verified is false for all records.
+30.13 Charging evidence confidence is 38 when a mapped charger exists.
+30.14 It is 30 when a mapped charger is absent.
+30.15 Charging claim status is PROXY.
+30.16 Proximity does not prove capacity.
+30.17 Proximity does not prove site control.
+30.18 Proximity does not prove interconnection approval.
+30.19 Proximity does not prove charger availability.
+30.20 Output is charging_readiness.csv.
+
+31. OPERATOR EVIDENCE
+
+31.1 src/10_operator_readiness.py processes operator evidence.
+31.2 Config version is operator-v2.0.
+31.3 Neutral prior is 50.
+31.4 Minimum observed evidence fields is three.
+31.5 Depot-control weight is 0.20.
+31.6 Financing weight is 0.20.
+31.7 Organization weight is 0.20.
+31.8 Maintenance weight is 0.10.
+31.9 Participation weight is 0.10.
+31.10 Verified fleet size contributes to completeness count.
+31.11 Observed component weights are renormalized over present fields.
+31.12 Sufficient evidence produces OBSERVED claim status.
+31.13 Insufficient evidence produces NEUTRAL_PRIOR claim status.
+31.14 Insufficient evidence confidence is five.
+31.15 Current sufficient-evidence count is zero.
+31.16 Current neutral-prior count is 1,522.
+31.17 Current effective operator score is 50 for every route.
+31.18 Missing operator evidence is not evidence of unwillingness.
+31.19 Output is operator_readiness_v2.csv.
+
+32. EVIDENCE-CONFIDENCE METHOD
+
+32.1 src/11_evidence_confidence.py calculates evidence confidence.
+32.2 The method is deterministic.
+32.3 Freshness weight is 0.20.
+32.4 Directness weight is 0.20.
+32.5 Spatial-specificity weight is 0.20.
+32.6 Completeness weight is 0.20.
+32.7 External-validation weight is 0.15.
+32.8 Model-reliability weight is 0.05.
+32.9 Historic-only validation status scores 10.
+32.10 Desk checked scores 35.
+32.11 Operator confirmed scores 70.
+32.12 LGU confirmed scores 80.
+32.13 Field checked scores 90.
+32.14 Conflicting evidence scores 25.
+32.15 Climate confidence is 35 for historic input.
+32.16 Climate confidence is 45 for ML-filled input.
+32.17 Model reliability is 75 when the usefulness gate passes.
+32.18 Model reliability is 25 otherwise.
+32.19 Evidence confidence is not a correctness probability.
+
+33. EVIDENCE-CONFIDENCE COMPONENTS
+
+33.1 Freshness comes from validation status.
+33.2 External validation currently mirrors freshness.
+33.3 Directness is the mean of climate, equity, charging, and operator confidence.
+33.4 Spatial specificity is 65 percent geometry and 35 percent charging confidence.
+33.5 Completeness evaluates climate, equity, charging, operator, and geometry availability.
+33.6 Neutral operator evidence is not counted as complete operator evidence.
+33.7 Overall score is rounded to two decimals.
+33.8 Grade A begins at 80.
+33.9 Grade B begins at 65.
+33.10 Grade C begins at 35.
+33.11 Grade D begins at zero.
+33.12 Current grade C count is 1,519.
+33.13 Current grade D count is three.
+33.14 Current grade A count is zero.
+33.15 Current grade B count is zero.
+33.16 Current confidence range is 33.01-43.02.
+33.17 Current mean confidence is approximately 37.98.
+33.18 Highest-value missing evidence defaults to operator evidence first.
+33.19 Output is evidence_confidence.csv.
+
+34. POLICY-MODEL CONFIGURATION
+
+34.1 config/policy_model.json version is policy-v2.0.
+34.2 Default title is Climate + Equity.
+34.3 Climate-impact weight is 0.40.
+34.4 Equity weight is 0.30.
+34.5 Charging-readiness weight is 0.15.
+34.6 Operator-effective weight is 0.15.
+34.7 The weights sum to one.
+34.8 Climate-equity named preset matches the default.
+34.9 Equity-first weights are 0.25, 0.50, 0.15, and 0.10.
+34.10 Infrastructure-first weights are 0.25, 0.20, 0.35, and 0.20.
+34.11 Named presets are comparison lenses.
+34.12 They are not approved city policy.
+34.13 Human users control policy selection.
+34.14 LLM output cannot change configuration.
+34.15 Config changes require a new scenario identity.
+34.16 The legacy weight set is retained for audit.
+
+35. COMPOSITE PRIORITY SCORE
+
+35.1 src/12_composite_score.py merges analytical layers.
+35.2 It also retains legacy comparison fields.
+35.3 A complete score requires all four default components.
+35.4 The reference build has 1,522 complete scores.
+35.5 Priority equals 0.40 climate plus 0.30 equity plus 0.15 charging plus 0.15 operator.
+35.6 The score is rounded to two decimals.
+35.7 Rank is descending.
+35.8 Rank uses method first for stable tie handling.
+35.9 Ranking method is versioned_human_controlled_weighted_sum.
+35.10 LLM ranking influence is false.
+35.11 Typology used for policy score is false.
+35.12 Climate model type is deterministic_low_base_high_scenario.
+35.13 Sensitivity method is monte_carlo_policy_weights.
+35.14 Optimization method is deterministic_selection.
+35.15 Human policy control is true.
+35.16 Policy weights human controlled is true.
+35.17 Decision-support disclaimer is attached.
+35.18 Output is route2zero_scores.csv and route2zero_scores.geojson.
+
+36. SCENARIO IDENTITY
+
+36.1 Scenario identity uses a stable hash.
+36.2 Scenario payload includes title.
+36.3 Scenario payload includes weights.
+36.4 Scenario payload includes climate assumption set.
+36.5 Scenario payload includes validation filter.
+36.6 Scenario payload includes policy-model version.
+36.7 Current scenario ID is scn-c46e1d86c1.
+36.8 Current validation filter is all_statuses.
+36.9 Current climate assumption set is climate-v1.0.
+36.10 A material payload change changes the ID.
+36.11 Display filters alone must not be confused with scenario identity.
+36.12 Exports should include scenario ID.
+36.13 Screenshots should include or cite scenario ID.
+36.14 Documentation must not mix values from different scenario IDs.
+36.15 Scenario comparison must state both IDs or named configurations.
+36.16 A manually typed scenario label is insufficient provenance.
+
+37. CITY TAGGING
+
+37.1 src/15_city_aggregation.py creates current city tags.
+37.2 It matches aliases in route description and route name.
+37.3 Matches are ordered by first text position.
+37.4 The first city becomes primary_city.
+37.5 All matches become cities_served.
+37.6 Unmatched routes receive Unspecified.
+37.7 City tag method is text_fallback.
+37.8 City tag confidence is low_requires_boundary_validation.
+37.9 Boundary source ID is empty in the reference build.
+37.10 Tags are not spatial administrative joins.
+37.11 Cross-boundary services require local review.
+37.12 Name aliases can produce false or missed matches.
+37.13 Primary city is used by the portfolio constraint.
+37.14 Tag errors can change portfolio membership.
+37.15 route_cities.csv stores route-level tags.
+37.16 city_summary.csv stores grouped summaries.
+37.17 City climate totals in the summary are all-route scenarios, not adopted portfolios.
+
+38. SENSITIVITY CONFIGURATION
+
+38.1 config/sensitivity_config.json version is sensitivity-v1.0.
+38.2 Mode is around_default.
+38.3 Simulations equal 5,000.
+38.4 Random seed is 20260820.
+38.5 Dirichlet concentration is 60.
+38.6 Default weights determine Dirichlet alpha.
+38.7 Robust-priority threshold is 0.70 top-10 probability.
+38.8 Scenario-dependent threshold is 0.20 top-10 probability.
+38.9 Simulation varies policy weights only.
+38.10 It does not sample source-data error.
+38.11 It does not sample climate parameters.
+38.12 It does not sample operator evidence.
+38.13 It does not convert evidence grade into probability.
+38.14 The fixed seed supports repeatability.
+38.15 Changing seed can change empirical frequencies slightly.
+38.16 Changing concentration changes the policy-weight variation.
+
+39. RANK-STABILITY CALCULATION
+
+39.1 src/13_sensitivity.py loads four policy dimensions.
+39.2 Scores are multiplied by 5,000 weight vectors.
+39.3 Ranks are generated per draw.
+39.4 Stable sorting is used within each draw.
+39.5 Top-5 probability is the fraction of ranks at most five.
+39.6 Top-10 probability is the fraction at most ten.
+39.7 Top-20 probability is the fraction at most twenty.
+39.8 Median rank is recorded.
+39.9 Rank P10 is recorded.
+39.10 Rank P90 is recorded.
+39.11 Score P10 is recorded.
+39.12 Score P90 is recorded.
+39.13 Rank width equals P90 minus P10.
+39.14 Stability score gives 70 percent to top-10 frequency.
+39.15 Stability score gives 30 percent to capped rank width.
+39.16 Current robust-priority count is nine.
+39.17 Current scenario-dependent count is 1,183.
+39.18 Current low-priority-robust count is 330.
+39.19 Current evidence-limited count is zero.
+39.20 Output is sensitivity.csv.
+
+40. PORTFOLIO CONFIGURATION
+
+40.1 config/optimization_scenarios.json version is portfolio-v1.0.
+40.2 Current title is Evidence-aware Phase 1.
+40.3 Maximum corridors is eight.
+40.4 Minimum evidence grade is C.
+40.5 Minimum equity score is 40.
+40.6 Maximum evidence-limited corridors is two.
+40.7 Maximum corridors per primary city is two.
+40.8 Maximum directions per normalized corridor is one.
+40.9 Inactive routes are excluded.
+40.10 Hypothetical budget is null.
+40.11 Mode is evidence_shortlist.
+40.12 Configuration is a policy choice.
+40.13 No route-level cost data are used.
+40.14 No fleet quantity constraint is used.
+40.15 No charger count constraint is used.
+40.16 No operator quota is used.
+40.17 City and corridor constraints depend on low-confidence tags.
+
+41. PORTFOLIO OBJECTIVE AND ALGORITHM
+
+41.1 src/14_portfolio_optimizer.py performs deterministic selection.
+41.2 Priority-score objective weight is 0.60.
+41.3 Top-10-frequency objective weight is 0.25 after multiplying by 100.
+41.4 Evidence-confidence objective weight is 0.15.
+41.5 Eligibility requires minimum grade.
+41.6 Eligibility requires minimum equity score.
+41.7 Explicitly inactive routes are removed.
+41.8 Eligible rows sort by objective descending.
+41.9 Priority score is the second sort key.
+41.10 Route ID is the stable final sort key.
+41.11 The algorithm scans the sorted list.
+41.12 City limit is enforced during the scan.
+41.13 Corridor direction limit is enforced during the scan.
+41.14 Evidence-limited limit is enforced during the scan.
+41.15 The scan stops at eight selected rows.
+41.16 Failure to select eight raises an error.
+41.17 Constraints are not silently relaxed.
+41.18 The method is greedy, not a global mathematical solver.
+41.19 Output is portfolio_scenarios.json and portfolio_membership.csv.
+
+42. PORTFOLIO RESULT
+
+42.1 Portfolio scenario is prt-b73fa05705.
+42.2 Status is feasible.
+42.3 Selected count is eight.
+42.4 Selected route LTFRB_PUJ1353 has rank one.
+42.5 Selected route LTFRB_PUJ1241 has rank two.
+42.6 Selected route LTFRB_PUJ2083 has rank three.
+42.7 Selected route LTFRB_PUJ1156 has rank six.
+42.8 Selected route LTFRB_PUJ1638 has rank nine.
+42.9 Selected route LTFRB_PUJ1350 has rank ten.
+42.10 Selected route LTFRB_PUJ1153 has rank eleven.
+42.11 Selected route LTFRB_PUJ1405 has rank seventeen.
+42.12 Five selected routes are robust priorities.
+42.13 Three selected routes are scenario-dependent.
+42.14 All selected routes have grade C evidence.
+42.15 Average selected equity score is 73.9.
+42.16 Average selected evidence confidence is 37.8.
+42.17 Low portfolio climate result is -8,190.9 tCO2e per year.
+42.18 Base portfolio climate result is 2,710.9 tCO2e per year.
+42.19 High portfolio climate result is 22,288.0 tCO2e per year.
+42.20 Portfolio is a validation shortlist, not authorization.
+
+43. TOP-N COMPARISON
+
+43.1 Simple top-eight includes LTFRB_PUJ1353.
+43.2 Simple top-eight includes LTFRB_PUJ1241.
+43.3 Simple top-eight includes LTFRB_PUJ2083.
+43.4 Simple top-eight includes LTFRB_PUJ1352.
+43.5 Simple top-eight includes LTFRB_PUJ1240.
+43.6 Simple top-eight includes LTFRB_PUJ1156.
+43.7 Simple top-eight includes LTFRB_PUJ2084.
+43.8 Simple top-eight includes LTFRB_PUJ1157.
+43.9 Constraints remove LTFRB_PUJ1157.
+43.10 Constraints remove LTFRB_PUJ1240.
+43.11 Constraints remove LTFRB_PUJ1352.
+43.12 Constraints remove LTFRB_PUJ2084.
+43.13 Constraints add LTFRB_PUJ1153.
+43.14 Constraints add LTFRB_PUJ1350.
+43.15 Constraints add LTFRB_PUJ1405.
+43.16 Constraints add LTFRB_PUJ1638.
+43.17 The difference demonstrates coverage constraints.
+43.18 It does not demonstrate a financial optimum.
+
+44. VALUE-OF-INFORMATION METHOD
+
+44.1 src/16_validation_priority.py performs deterministic perturbation.
+44.2 Operator readiness is tested from 30 to 70.
+44.3 Charging readiness is tested plus or minus 20.
+44.4 Charging tests are bounded to 0-100.
+44.5 Climate is tested with low and high scenario scores.
+44.6 Equity exposure is tested plus or minus 15.
+44.7 Equity tests are bounded to 0-100.
+44.8 Each component change uses the default policy weight.
+44.9 Implied rank is compared with baseline scores.
+44.10 Maximum rank swing is recorded.
+44.11 Top-eight crossing is recorded.
+44.12 Selected-route movement beyond rank 20 can signal a flip.
+44.13 Missing operator and charging evidence receive a priority bonus.
+44.14 Priority score is capped at 100.
+44.15 Four fields are tested for each route.
+44.16 Total route-field records equal 6,088.
+44.17 Output is validation_priorities.csv and validation_priorities.json.
+44.18 The method is not causal inference.
+44.19 The method is not monetary value of information.
+
+45. STRUCTURED PLANNING ASSISTANT
+
+45.1 src/17_ai_planner.py writes deterministic route answers.
+45.2 One cache entry is written per route.
+45.3 Each answer includes route name and rank.
+45.4 Each answer includes scenario ID.
+45.5 Each answer includes priority score.
+45.6 Each answer includes evidence grade.
+45.7 Each answer includes top-10 frequency.
+45.8 Each answer includes the highest validation priority.
+45.9 Evidence points include climate range.
+45.10 Evidence points include evidence confidence.
+45.11 Evidence points include P10-P90 rank.
+45.12 Evidence points include portfolio membership.
+45.13 Uncertainty notes are explicit.
+45.14 Cited route IDs and fields are stored.
+45.15 Source is deterministic_fallback in the reference build.
+45.16 LLM ranking influence is false.
+45.17 route_planner_cache.json stores route responses.
+45.18 planner_summary.json stores the portfolio response.
+
+46. OPTIONAL LLM FUNCTION
+
+46.1 netlify/functions/explain.mjs implements the optional endpoint.
+46.2 The endpoint accepts POST only.
+46.3 Invalid JSON returns a client error.
+46.4 Question length is bounded.
+46.5 Fact-string length is bounded.
+46.6 The deterministic fallback is created before the API call.
+46.7 AI_EXPLANATIONS_ENABLED controls API attempts.
+46.8 ABSK_KEY holds the server-side API key.
+46.9 BASE_URL holds the compatible endpoint base.
+46.10 MODEL holds the model name.
+46.11 Missing variables return deterministic fallback.
+46.12 API timeout is 15 seconds.
+46.13 Non-success response returns deterministic fallback.
+46.14 Request failure returns deterministic fallback.
+46.15 The prompt limits response length.
+46.16 The prompt prohibits external facts and rank changes.
+46.17 Response source is labeled.
+46.18 No function path writes to score files.
+46.19 No LLM response changes analytical output.
+
+47. POLICY BRIEFS
+
+47.1 src/18_policy_brief.py writes markdown validation briefs.
+47.2 It selects phase1_selected routes.
+47.3 Current brief count is eight.
+47.4 Each brief includes route ID.
+47.5 Each brief includes scenario ID.
+47.6 Each brief includes portfolio ID.
+47.7 Each brief includes priority and evidence.
+47.8 Each brief includes rank stability.
+47.9 Each brief includes climate range.
+47.10 Each brief includes electricity range.
+47.11 Each brief includes geometry evidence.
+47.12 Each brief includes equity limitation.
+47.13 Each brief includes charging limitation.
+47.14 Each brief includes operator status.
+47.15 Each brief includes typology without policy points.
+47.16 Each brief includes validation actions.
+47.17 Each brief includes governance boundaries.
+47.18 Each brief is decision support only.
+
+48. FINAL BUILD MANIFEST
+
+48.1 src/19_finalize_manifest.py finalizes release identity.
+48.2 It requires 16 named core outputs.
+48.3 Missing required output fails the stage.
+48.4 It hashes every JSON config file.
+48.5 It reads source checksums from source_manifest.json.
+48.6 It reads service metadata.
+48.7 It reads typology metadata.
+48.8 It reads policy scores.
+48.9 It reads the portfolio scenario.
+48.10 Build identity includes pipeline version.
+48.11 Build identity includes config checksums.
+48.12 Build identity includes source checksums.
+48.13 Build identity includes model versions.
+48.14 Build identity includes scenario ID.
+48.15 Build identity includes portfolio ID.
+48.16 Build ID is a 12-character stable-hash suffix with r2z prefix.
+48.17 Build ID is written into CSV and GeoJSON.
+48.18 Build timestamp is written separately.
+48.19 Output checksums are recorded after final writes.
+48.20 build_manifest.json is the final machine-readable release record.
+
+49. FLAGSHIP SELECTION
+
+49.1 Flagship candidates must be Phase-1 selected.
+49.2 Robust-priority selected candidates have precedence.
+49.3 Higher evidence confidence is the first sort key.
+49.4 Higher priority score is the second sort key.
+49.5 Stable route ID is the final tie-breaker.
+49.6 Current flagship is LTFRB_PUJ1353.
+49.7 Current route name is Francisco Homes - Cubao.
+49.8 Current default rank is one.
+49.9 Current priority score is 79.97.
+49.10 Current evidence grade is C.
+49.11 Current evidence confidence is 38.34.
+49.12 Current top-10 frequency is 1.0.
+49.13 Current low climate result is -1,111.8 tCO2e per year.
+49.14 Current high climate result is 3,025.3 tCO2e per year.
+49.15 Selection rule is stored in flagship_route.json.
+49.16 The flagship is not manually forced.
+49.17 A rebuild can change the flagship.
+
+50. PIPELINE REPORT WARNINGS
+
+50.1 Reference pipeline status is PASS_WITH_WARNINGS.
+50.2 Warning one states that no current route validation is supplied.
+50.3 All service status therefore remains historic-only.
+50.4 Warning two states that no consent-based operator evidence is supplied.
+50.5 The neutral operator prior therefore remains active.
+50.6 Warning three states that no utility capacity is verified.
+50.7 Charging scores therefore use proximity and energy screening only.
+50.8 These warnings are release facts.
+50.9 They must appear in technical and decision materials.
+50.10 They must not be downgraded to footnotes when action is discussed.
+50.11 A warning can be removed only after accepted evidence and a rebuild.
+50.12 A passed pipeline is not the same as validated city evidence.
+50.13 Pipeline warnings do not invalidate screening use.
+50.14 They prohibit overclaiming readiness.
+
+51. FULL PIPELINE ORDER
+
+51.1 src/run_pipeline.py executes stages serially.
+51.2 Stage 00 is source manifest.
+51.3 Stage 01 is GTFS audit.
+51.4 Stage 02 is geometry.
+51.5 Stage 02b is geometry reliability.
+51.6 Stage 03 is historic frequency.
+51.7 Stage 04 legacy is emissions proxy.
+51.8 Stage 05 legacy is equity proxy.
+51.9 Stage 06 legacy is grid proxy.
+51.10 Stage 07 legacy is operator placeholder.
+51.11 Stage 04 v2 is feature engineering.
+51.12 Stage 05 v2 is ML service intensity.
+51.13 Stage 06 v2 is corridor typology.
+51.14 Stage 07 v2 is climate impact.
+51.15 Stage 08 v2 is equity exposure.
+51.16 Stage 09 v2 is charging readiness.
+51.17 Stage 10 v2 is operator readiness.
+51.18 Stage 11 v2 is evidence confidence.
+51.19 Stage 12 v2 is composite score.
+51.20 Stage 15 v2 is city aggregation.
+51.21 Stage 13 v2 is sensitivity.
+51.22 Stage 14 v2 is portfolio selection.
+51.23 Stage 16 v2 is validation priority.
+51.24 Stage 17 v2 is planning assistant.
+51.25 Stage 18 v2 is policy briefs.
+51.26 Stage 19 v2 is final manifest.
+51.27 Any stage failure stops the orchestrator.
+
+52. PRIMARY GENERATED OUTPUTS
+
+52.1 source_manifest.json records resolved sources.
+52.2 audit_report.md records GTFS integrity.
+52.3 route_corridors.csv records grouped corridors.
+52.4 jeepney_routes.geojson records screening geometry.
+52.5 geometry_reliability.csv records geometry audit fields.
+52.6 route_frequency.csv records historic service proxy fields.
+52.7 route_features.csv records canonical model features.
+52.8 ml_service_intensity.csv records predictions and use flags.
+52.9 model_metrics.json records service and typology metrics.
+52.10 corridor_typology.csv records cluster fields.
+52.11 climate_impact.csv records energy and CO2e scenarios.
+52.12 equity_v2.csv records exposed equity components.
+52.13 charging_readiness.csv records infrastructure screening.
+52.14 operator_readiness_v2.csv records prior or observed values.
+52.15 evidence_confidence.csv records evidence components and grades.
+52.16 route2zero_scores.csv records the merged analytical table.
+52.17 route2zero_scores.geojson records the same with geometry.
+52.18 route_cities.csv records text-derived city tags.
+52.19 city_summary.csv records grouped city summaries.
+52.20 sensitivity.csv records rank stability.
+52.21 portfolio_scenarios.json records selected portfolio and constraints.
+52.22 portfolio_membership.csv records membership per route.
+52.23 validation_priorities.csv records route-field tests.
+52.24 validation_priorities.json records nested route queues.
+52.25 route_planner_cache.json records route explanations.
+52.26 planner_summary.json records portfolio explanation.
+52.27 flagship_route.json records flagship selection.
+52.28 pipeline_report.json records status and warnings.
+52.29 build_manifest.json records final build identity.
+
+53. REPRODUCIBILITY PROCEDURE
+
+53.1 Create a clean Python environment.
+53.2 Install requirements.txt.
+53.3 Confirm raw and validated paths exist.
+53.4 Confirm configuration JSON parses.
+53.5 Run python src/run_pipeline.py from repository root.
+53.6 Retain complete standard output and error logs.
+53.7 Confirm the pipeline completion message.
+53.8 Inspect pipeline_report.json.
+53.9 Inspect build_manifest.json.
+53.10 Confirm route count and current validation count.
+53.11 Confirm model and scenario IDs.
+53.12 Run automated tests.
+53.13 Run the Netlify build.
+53.14 Serve the generated site over HTTP.
+53.15 Test desktop and mobile workflows.
+53.16 Compare generated checksums with the intended release.
+53.17 Record environment and Git commit.
+53.18 Do not claim byte-identical output if library versions differ.
+53.19 Rebuild after any accepted source or config change.
+
+54. CURRENT MODEL ARTIFACTS
+
+54.1 models/service_intensity.joblib is the fitted supervised pipeline.
+54.2 models/service_intensity_metadata.json describes it.
+54.3 models/corridor_typology.joblib is the fitted clustering pipeline.
+54.4 models/corridor_typology_metadata.json describes it.
+54.5 Model metadata is duplicated into model_metrics.json for reporting.
+54.6 Serialized artifacts must not be edited manually.
+54.7 Model artifacts should be treated as untrusted when loaded from unknown sources.
+54.8 Joblib loading can execute code and requires repository trust.
+54.9 A model checksum should be retained in a formal release package.
+54.10 The build manifest records output and config checksums, not a direct model-file checksum.
+54.11 Model version captures target, features, selected model, or cluster count, and seed.
+54.12 A library change can alter a fitted artifact without changing configured model version payload.
+54.13 Formal release comparison should therefore include environment metadata.
+54.14 Current model metadata includes Python and scikit-learn versions for the service model.
+54.15 Typology metadata includes method, features, seed, and fit timestamp.
+
+55. NETLIFY BUILD
+
+55.1 Root netlify.toml defines the deployment.
+55.2 Base is netlify-site.
+55.3 Command is npm run build.
+55.4 Publish is public relative to base.
+55.5 Functions directory is netlify/functions.
+55.6 Build script creates public/data when necessary.
+55.7 Build script writes public/config.js.
+55.8 Mapbox token is read from MAPBOX_TOKEN when supplied.
+55.9 Otherwise the approved public browser token is used.
+55.10 Mapbox token absence does not fail the standard build.
+55.11 Build script copies route2zero_scores.csv.
+55.12 Build script copies route_cities.csv.
+55.13 Build script copies city_summary.csv.
+55.14 Build script copies route2zero_scores.geojson.
+55.15 Build script copies route_explanations.json in the current implementation.
+55.16 Browser code can read 2.0 fields from the merged score files.
+55.17 A build change that adds separate files must update the copy list.
+55.18 Generated public/config.js is intentionally public.
+
+56. NETLIFY HEADERS AND CACHING
+
+56.1 Data paths receive Cache-Control public, max-age=3600.
+56.2 All paths receive X-Frame-Options DENY.
+56.3 All paths receive X-Content-Type-Options nosniff.
+56.4 All paths receive Referrer-Policy strict-origin-when-cross-origin.
+56.5 Function responses use content type application/json.
+56.6 Function responses use cache-control no-store.
+56.7 Static data caching can delay a just-deployed update for clients.
+56.8 Release QA should use a fresh or cache-bypassed session.
+56.9 A service worker is not required by the current architecture.
+56.10 Cross-origin Mapbox requests depend on token and provider policy.
+56.11 Production security headers do not replace application input validation.
+56.12 CSP is not defined in the current netlify.toml.
+56.13 Adding CSP requires compatibility testing with Mapbox and export libraries.
+56.14 Data files are public by design.
+56.15 No confidential pilot evidence should be copied to the public bundle.
+
+57. MAPBOX CONFIGURATION
+
+57.1 The map uses Mapbox GL JS.
+57.2 Style URL is mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs.
+57.3 Browser tokens begin with pk.
+57.4 A pk token is public by design.
+57.5 A public token is not equivalent to a secret API key.
+57.6 The token should be origin-restricted.
+57.7 Recommended origins include production and approved localhost development.
+57.8 Secret-scoped Mapbox tokens must never enter browser code.
+57.9 Account-management tokens must never enter browser code.
+57.10 Automated secret scanning omits only generated public/config.js.
+57.11 Source splitting avoids false classification of the approved public token.
+57.12 Mapbox usage can incur account consumption.
+57.13 Directions requests should occur only when needed.
+57.14 Browser-session caching reduces repeated requests.
+57.15 Map attribution must remain visible.
+57.16 A custom style failure requires a readable fallback state.
+
+58. STREET-FOLLOWING ROUTE CONTRACT
+
+58.1 Source screening geometry remains the analytical geometry.
+58.2 A selected route can request Mapbox Directions geometry.
+58.3 Ordered coordinates are divided into API-compatible groups.
+58.4 The implementation uses at most 25 waypoints per request group.
+58.5 Returned segments are joined for display.
+58.6 A successful response draws a street-following line.
+58.7 A status label identifies Mapbox Directions readiness.
+58.8 A request ID prevents stale responses from replacing a newer selection.
+58.9 Browser-session caching stores returned route geometry.
+58.10 A missing response must not be replaced by an unlabeled flying line.
+58.11 Source screening geometry may remain visible with reduced-confidence language.
+58.12 Mapbox routing does not verify current operation.
+58.13 Mapbox routing does not verify franchise alignment.
+58.14 Mapbox routing does not replace field survey.
+58.15 Direction waypoints can still cause an incorrect plausible road path.
+58.16 Pilot geometry must be stored separately when verified.
+
+59. ENVIRONMENT VARIABLES
+
+59.1 MAPBOX_TOKEN is optional.
+59.2 MAPBOX_TOKEN is evaluated at build time.
+59.3 It overrides the approved public browser token.
+59.4 ABSK_KEY is optional for the explanation function.
+59.5 ABSK_KEY is the API-key variable.
+59.6 ABSK_KEY must have Functions scope.
+59.7 BASE_URL is optional for the compatible chat endpoint.
+59.8 MODEL is optional for the requested model name.
+59.9 AI_EXPLANATIONS_ENABLED controls external API attempts.
+59.10 Missing AI variables invoke deterministic fallback.
+59.11 A disabled AI flag invokes deterministic fallback.
+59.12 None of the AI variables is required for scoring.
+59.13 None is required for climate calculation.
+59.14 None is required for sensitivity.
+59.15 None is required for portfolio selection.
+59.16 None is required for static dashboard availability.
+59.17 Secret values must not be committed.
+59.18 Secret values must not be logged or placed in exports.
+
+60. SECRET HANDLING
+
+60.1 .env.example contains placeholders only.
+60.2 A local .env file must remain uncommitted.
+60.3 Netlify stores production secrets.
+60.4 Browser JavaScript must not read ABSK_KEY.
+60.5 public/config.js must not contain ABSK_KEY.
+60.6 GitHub Actions logs must not print secret values.
+60.7 Screenshots must not show environment settings.
+60.8 Error messages must not echo authorization headers.
+60.9 Function requests use Bearer authorization server-side.
+60.10 API timeouts reduce hanging requests.
+60.11 Key rotation does not require a static-site code change.
+60.12 Key rotation requires Netlify variable update and function redeploy.
+60.13 Public Mapbox tokens should still follow least privilege.
+60.14 Secret scanners can flag public tokens and require narrow exceptions.
+60.15 Exceptions must not omit the whole repository.
+60.16 Incident response includes rotation and log review.
+
+61. BROWSER DATA CONTRACT
+
+61.1 Browser score data are public.
+61.2 Browser geometry data are public.
+61.3 Browser city tags are public.
+61.4 Browser-generated exports are public to the user who downloads them.
+61.5 Confidential validated evidence must not be copied into public fields.
+61.6 Route IDs remain strings.
+61.7 Boolean CSV fields require explicit parsing.
+61.8 Numeric CSV fields require explicit numeric conversion.
+61.9 Missing values must remain missing.
+61.10 The browser must not replace missing with zero without a method rule.
+61.11 Build ID and scenario ID should remain attached to displayed results.
+61.12 Sorting must use numeric rank or score.
+61.13 User-selected filters do not alter source data.
+61.14 User-selected policy weights must be visible.
+61.15 Dynamic scores must identify the active policy lens.
+61.16 Exports must identify whether a value is default or user-adjusted.
+
+62. EXPORT CONTRACT
+
+62.1 PDF export is a decision record, not authorization.
+62.2 Word-compatible export is an editable decision record.
+62.3 CSV export is analyst-readable scenario data.
+62.4 Export should include current city filter.
+62.5 Export should include active weights.
+62.6 Export should include build ID.
+62.7 Export should include scenario ID.
+62.8 Export should include portfolio ID when relevant.
+62.9 Export should include evidence grade.
+62.10 Export should include claim-status limitations.
+62.11 Export should include climate range rather than a single guaranteed value.
+62.12 Export should include utility-capacity warning.
+62.13 Export should include operator-prior warning.
+62.14 Export should include current-validation count.
+62.15 Export should include generation date.
+62.16 Map images require attribution.
+62.17 Browser-generated reports must be tested for mobile and desktop data states.
+62.18 Submission artifacts must be regenerated after material UI or build changes.
+
+63. TESTING SCOPE
+
+63.1 Automated tests should validate the 1,522-route universe.
+63.2 Tests should validate unique route IDs.
+63.3 Tests should validate two GTFS-shape geometries.
+63.4 Tests should validate 1,520 approximate geometries.
+63.5 Tests should validate bounded component scores.
+63.6 Tests should validate 1,522 complete 2.0 scores.
+63.7 Tests should validate scenario and build IDs.
+63.8 Tests should validate zero LLM ranking influence.
+63.9 Tests should validate claim-status vocabulary.
+63.10 Tests should validate service-model leakage exclusions.
+63.11 Tests should validate the one ML-used route.
+63.12 Tests should validate current evidence warnings.
+63.13 Tests should validate sensitivity repeatability.
+63.14 Tests should validate nine robust priorities.
+63.15 Tests should validate eight selected portfolio records.
+63.16 Tests should validate no public secret key.
+63.17 Tests should validate Netlify build without MAPBOX_TOKEN.
+63.18 Tests should not retain assertions from the legacy 1,521-score release.
+
+64. UI VERIFICATION
+
+64.1 Verify desktop rendering at approximately 1,440 pixels wide.
+64.2 Verify mobile rendering at approximately 390 by 844.
+64.3 Verify no horizontal overflow.
+64.4 Verify keyboard access to controls.
+64.5 Verify visible focus indicators.
+64.6 Verify map alternative text or surrounding textual context.
+64.7 Verify route selection updates all dependent panels.
+64.8 Verify Mapbox status changes after route selection.
+64.9 Verify evidence and stability remain separate.
+64.10 Verify negative climate values render correctly.
+64.11 Verify missing values do not render as zero.
+64.12 Verify portfolio membership and exclusions.
+64.13 Verify deterministic assistant fallback.
+64.14 Verify API-backed response source label when enabled.
+64.15 Verify export files open and contain the active context.
+64.16 Verify no section or link is labeled Judge guide.
+64.17 Verify explanatory sections are collapsed by default where designed.
+64.18 Verify responsive tables remain usable.
+
+65. ACCESSIBILITY CONTRACT
+
+65.1 The page declares English language.
+65.2 Heading order should remain logical.
+65.3 Controls require accessible labels.
+65.4 Buttons require clear names.
+65.5 Color must not be the only signal.
+65.6 Charts require textual summaries.
+65.7 Map status requires a live or readable status region.
+65.8 Tables require headers.
+65.9 Accordions require correct expanded state.
+65.10 Mobile drawers require focus and close behavior.
+65.11 Links require descriptive text.
+65.12 Motion should respect reduced-motion preferences where possible.
+65.13 Contrast should meet the intended accessibility target.
+65.14 Exported reports require readable type and table layout.
+65.15 Generated DOCX should be audited separately.
+65.16 Accessibility defects are release defects, not optional polish.
+
+66. PERFORMANCE AND DATA VOLUME
+
+66.1 route2zero_scores.csv contains 1,522 rows and many analytical columns.
+66.2 route2zero_scores.geojson contains 1,522 features.
+66.3 The GeoJSON is materially larger than the CSV.
+66.4 Static hosting can cache data for one hour.
+66.5 Client parsing occurs after fetch.
+66.6 Map clustering reduces regional visual density.
+66.7 Selected-route Directions requests avoid routing all 1,522 routes.
+66.8 Session caching avoids repeated selected-route requests.
+66.9 Large exports should be generated only on user action.
+66.10 Browser memory should be tested on mid-range mobile devices.
+66.11 Data minimization can reduce initial load if the schema grows.
+66.12 Any schema split must preserve build and scenario linkage.
+66.13 Compression is handled by the hosting platform when configured.
+66.14 Data freshness and caching headers must be balanced.
+66.15 Performance improvements must not remove evidence fields.
+
+67. FAILURE MODES
+
+67.1 Missing raw source path fails source-manifest generation.
+67.2 Broken GTFS references fail the audit result.
+67.3 Missing route geometry fails geometry generation.
+67.4 Insufficient model training data fails model training.
+67.5 Feature leakage fails model training.
+67.6 Missing OSM substations fails charging generation.
+67.7 Missing required score components prevents complete scoring.
+67.8 Portfolio infeasibility raises an error.
+67.9 Missing required final output fails manifest generation.
+67.10 Missing Mapbox token uses the approved public fallback.
+67.11 Mapbox request failure preserves a non-road-verified state.
+67.12 Missing AI variables use deterministic fallback.
+67.13 AI request timeout uses deterministic fallback.
+67.14 Stale browser cache can show a prior data build.
+67.15 Incorrect city text tag can change a constraint result.
+67.16 A malformed CSV boolean can change browser filtering.
+67.17 A negative climate result can be misread if sign is hidden.
+67.18 A warning-free UI can overstate readiness.
+
+68. TROUBLESHOOTING
+
+68.1 Confirm commands run from repository root unless specified.
+68.2 Confirm Python resolves all packages in requirements.txt.
+68.3 Confirm data/raw/gtfs_master contains all expected files.
+68.4 Confirm WorldPop raster exists at the registered path.
+68.5 Confirm OSM snapshot contains substation features.
+68.6 Confirm validated CSV files retain headers when empty.
+68.7 Delete no raw source while troubleshooting.
+68.8 Inspect the first failing pipeline stage.
+68.9 Do not bypass the failed stage by editing downstream outputs.
+68.10 Confirm config JSON is valid.
+68.11 Confirm route IDs remain strings.
+68.12 Confirm Node runs from netlify-site for the build.
+68.13 Confirm public/data contains copied outputs after build.
+68.14 Serve public over HTTP rather than opening index.html directly.
+68.15 Confirm Mapbox origin restrictions allow the preview origin.
+68.16 Confirm Netlify Functions scope includes ABSK_KEY when API use is intended.
+68.17 Confirm browser network responses match the current build.
+68.18 Confirm exports identify the expected scenario.
+
+69. SECURITY AND PRIVACY
+
+69.1 Core route analytics require no resident PII.
+69.2 Public data bundle must contain no confidential operator evidence.
+69.3 Operator ledger access should be limited.
+69.4 Stakeholder permission to quote is recorded separately.
+69.5 Secrets remain in server-side environment variables.
+69.6 Public Mapbox token is limited by origin and scope.
+69.7 User questions sent to the LLM must be bounded.
+69.8 Confidential free text should not be sent to the optional endpoint.
+69.9 Logs should avoid authorization headers.
+69.10 Exports should not expose verifier data unnecessarily.
+69.11 Source licensing must be respected.
+69.12 A security review should precede production pilot data.
+69.13 Serialized model files should be loaded only from trusted releases.
+69.14 Public map dependencies add third-party availability and privacy considerations.
+69.15 Incident handling should define disable and rotation procedures.
+69.16 Deterministic fallback reduces dependence on an external AI service.
+
+70. RESPONSIBLE-AI BOUNDARIES
+
+70.1 ML may fill one missing historic service input in the reference build.
+70.2 ML may describe structural corridor types.
+70.3 ML may not infer individual need.
+70.4 ML may not set policy weights.
+70.5 ML may not authorize investment.
+70.6 Deterministic climate models may calculate scenarios.
+70.7 Deterministic evidence rules may calculate evidence grades.
+70.8 Monte Carlo may calculate rank frequencies.
+70.9 Deterministic selection may construct a validation portfolio.
+70.10 Deterministic perturbation may prioritize evidence collection.
+70.11 LLM may summarize supplied fields.
+70.12 LLM may not create analytical values.
+70.13 LLM may not change claim status.
+70.14 LLM may not hide the negative climate case.
+70.15 LLM may not call density informal settlement.
+70.16 LLM may not call proximity capacity.
+70.17 LLM may not issue automatic funding advice.
+70.18 Human decision owners retain authority.
+
+71. PILOT EVIDENCE PRECEDENCE
+
+71.1 Accepted current verification has highest precedence.
+71.2 Accepted current observation follows.
+71.3 Accepted current administrative evidence follows.
+71.4 Historic administrative or schedule-derived evidence follows.
+71.5 Versioned ML estimate follows.
+71.6 Proxy follows.
+71.7 Neutral prior follows.
+71.8 Missing is the final state.
+71.9 Conflict can prevent automatic precedence.
+71.10 Evidence date and scope matter.
+71.11 A current but indirect proxy can remain weaker than a verified historic fact for a specific claim.
+71.12 Precedence must be applied field by field.
+71.13 Route status and service intensity can have different evidence levels.
+71.14 Geometry and operator evidence can have different verifiers.
+71.15 Accepted evidence must preserve the displaced value for audit where practical.
+71.16 Rebuilds must disclose material precedence changes.
+
+72. SIX-MONTH VALIDATION GATES
+
+72.1 Month 1 defines scope, owners, baseline, and protocol.
+72.2 Month 2 collects current and ground-truth evidence.
+72.3 Gate 1 approves evidence and model-validation protocols.
+72.4 Month 3 validates model and route evidence.
+72.5 Month 4 calibrates climate, charging, and operator evidence.
+72.6 Gate 2 accepts or holds evidence and model results.
+72.7 Month 5 co-designs policy scenarios and constraints.
+72.8 Month 5 also tests human comprehension and the assistant.
+72.9 Month 6 finalizes the portfolio and handover.
+72.10 Gate 3 accepts the city decision pack and reproducibility package.
+72.11 A failed gate should hold affected use.
+72.12 A failed model gate does not disable deterministic evidence management.
+72.13 A failed LLM gate disables the optional LLM feature.
+72.14 A failed capacity gate prevents capacity claims.
+72.15 A failed route-status gate prevents current-operation claims.
+72.16 Open issues require named owners.
+
+73. MODEL PILOT VALIDATION
+
+73.1 Define a current operational target.
+73.2 Define units and collection method.
+73.3 Freeze a current evaluation sample.
+73.4 Freeze a simple baseline.
+73.5 Set thresholds before reviewing final results.
+73.6 Report MAE.
+73.7 Report RMSE.
+73.8 Report bias.
+73.9 Report baseline comparison.
+73.10 Report error by city.
+73.11 Report error by corridor type.
+73.12 Report error by geometry grade.
+73.13 Review outliers.
+73.14 Document missingness.
+73.15 Do not tune on the locked test sample.
+73.16 Observed evidence overrides prediction.
+73.17 Retraining requires a new model version.
+73.18 Weak current performance requires restriction or disablement.
+
+74. LLM PILOT VALIDATION
+
+74.1 Use a fixed question set.
+74.2 Include route status questions.
+74.3 Include climate-range questions.
+74.4 Include negative-case questions.
+74.5 Include utility-capacity questions.
+74.6 Include operator-prior questions.
+74.7 Include rank-stability questions.
+74.8 Include portfolio questions.
+74.9 Include adversarial investment requests.
+74.10 Include attempts to infer social status.
+74.11 Score factual consistency.
+74.12 Score status-language correctness.
+74.13 Score limitation coverage.
+74.14 Score unsupported-number failures.
+74.15 Compare deterministic and API responses.
+74.16 Any material hallucination is a failure.
+74.17 Deterministic fallback must always remain available.
+74.18 LLM disablement must not impair analytical workflow.
+
+75. CHANGE CONTROL
+
+75.1 Source change requires registry update.
+75.2 Config change requires checksum change.
+75.3 Target change requires model version change.
+75.4 Feature change requires leakage review.
+75.5 Algorithm change requires candidate comparison.
+75.6 Seed change requires reproducibility note.
+75.7 Evidence change requires ledger provenance.
+75.8 Policy-weight change requires scenario identity.
+75.9 Constraint change requires portfolio identity.
+75.10 UI text change must preserve analytical meaning.
+75.11 Export change requires output QA.
+75.12 Hosting change requires security review.
+75.13 Every material change requires a full pipeline run.
+75.14 Every material change requires tests.
+75.15 Every material change requires a Netlify build.
+75.16 Release notes should compare ranks, grades, stability, and portfolio.
+75.17 Silent manual fixes to generated data are prohibited.
+
+76. MONITORING
+
+76.1 Monitor source-age thresholds.
+76.2 Monitor current-validation coverage.
+76.3 Monitor feature missingness.
+76.4 Monitor feature distribution shift.
+76.5 Monitor current model MAE and RMSE when observations exist.
+76.6 Monitor error by city and corridor type.
+76.7 Monitor geometry-verification coverage.
+76.8 Monitor operator evidence coverage.
+76.9 Monitor verified utility evidence coverage.
+76.10 Monitor evidence-grade distribution.
+76.11 Monitor robust-priority count.
+76.12 Monitor portfolio membership changes.
+76.13 Monitor negative climate cases.
+76.14 Monitor LLM fallback rate.
+76.15 Monitor LLM factual failures.
+76.16 Monitor Netlify build and function errors.
+76.17 Monitor Mapbox request errors and usage.
+76.18 Monitoring thresholds require named owners.
+
+77. CURRENT FACTUAL UNCERTAINTIES
+
+77.1 No current route operation is verified.
+77.2 No current headway is accepted.
+77.3 No current service window is accepted.
+77.4 No operator evidence is observed.
+77.5 No fleet size is verified.
+77.6 No depot control is verified.
+77.7 No charging site is verified.
+77.8 No utility capacity is verified.
+77.9 No route-level cost is supplied.
+77.10 No budget is supplied.
+77.11 No socioeconomic equity layer is supplied.
+77.12 No accessibility-gap layer is supplied.
+77.13 No validated settlement-status layer is supplied.
+77.14 City tags are text-derived.
+77.15 1,520 route geometries are approximate.
+77.16 Current model metrics are against a historic derived target.
+77.17 Climate inputs are scenarios.
+77.18 These uncertainties are pilot tasks.
+
+78. GLOSSARY
+
+78.1 Build ID identifies a logical pipeline input and model state.
+78.2 Scenario ID identifies a policy-score configuration.
+78.3 Portfolio ID identifies a constraint and selected-route result.
+78.4 Route direction is one GTFS route ID.
+78.5 Normalized corridor is a name-derived grouping key.
+78.6 Daily VKT means daily vehicle-kilometres in the stated source status.
+78.7 Historic daily VKT proxy is schedule-derived.
+78.8 ML daily VKT is model-estimated.
+78.9 Climate impact score is a relative base-case min-max score.
+78.10 Equity score is current population exposure only.
+78.11 Charging score is infrastructure and demand screening.
+78.12 Operator effective score is observed evidence or neutral prior.
+78.13 Evidence confidence is a deterministic audit score.
+78.14 Robust priority is a sensitivity label.
+78.15 Phase-1 selected is a portfolio-membership flag.
+78.16 Portfolio flip means tested evidence can change membership conditions.
+78.17 Deterministic fallback is a structured non-LLM explanation.
+78.18 Road-following path is a Mapbox display geometry.
+
+79. RELEASE VERIFICATION CHECKLIST
+
+79.1 Confirm build ID is visible in build_manifest.json.
+79.2 Confirm policy scenario ID.
+79.3 Confirm portfolio scenario ID.
+79.4 Confirm 1,522 score rows.
+79.5 Confirm 1,522 complete scores.
+79.6 Confirm current validation count.
+79.7 Confirm robust-priority count.
+79.8 Confirm Phase-1 count.
+79.9 Confirm model versions.
+79.10 Confirm service metrics.
+79.11 Confirm typology metrics.
+79.12 Confirm source checksums.
+79.13 Confirm config checksums.
+79.14 Confirm output checksums.
+79.15 Confirm pipeline warnings.
+79.16 Confirm flagship selection.
+79.17 Confirm negative low climate case is preserved.
+79.18 Confirm operator prior remains labeled.
+79.19 Confirm utility capacity remains unverified.
+79.20 Confirm LLM ranking influence is false.
+79.21 Confirm automated tests pass for 2.0 expectations.
+79.22 Confirm Netlify build succeeds without MAPBOX_TOKEN.
+79.23 Confirm production and local UI workflows.
+79.24 Confirm exports carry build and scenario context.
+79.25 Confirm no secret key is present in public assets.
+79.26 Confirm documentation matches the same build.
+
+80. HANDOVER PACKAGE
+
+80.1 Provide source_registry.json.
+80.2 Provide source_manifest.json.
+80.3 Provide raw source snapshots where licensing permits.
+80.4 Provide validated ledgers.
+80.5 Provide configuration files.
+80.6 Provide model artifacts and metadata where permitted.
+80.7 Provide model card.
+80.8 Provide methodology.
+80.9 Provide responsible-AI framework.
+80.10 Provide validation protocol.
+80.11 Provide city adapter guide.
+80.12 Provide build manifest.
+80.13 Provide scenario library.
+80.14 Provide portfolio record.
+80.15 Provide validation-priority queue.
+80.16 Provide policy briefs.
+80.17 Provide deployment settings.
+80.18 Provide secret-management instructions without secret values.
+80.19 Provide refresh and retraining runbook.
+80.20 Provide issue and conflict log.
+80.21 Provide named owners for unresolved evidence.
+80.22 Provide city acceptance record.
+
+81. FINAL TECHNICAL POSITION
+
+81.1 Route2Zero 2.0 is a reproducible screening prototype.
+81.2 Its principal value is evidence-aware decision structure.
+81.3 Its supervised model has strong historic grouped-validation metrics.
+81.4 Those metrics do not establish current operational accuracy.
+81.5 Its typology is descriptive and excluded from policy points.
+81.6 Its climate engine preserves adverse assumptions.
+81.7 Its equity layer remains a population-exposure proxy.
+81.8 Its charging layer does not claim capacity.
+81.9 Its operator layer remains a neutral prior in this build.
+81.10 Its evidence grades remain C or D.
+81.11 Its robust priorities describe weight sensitivity only.
+81.12 Its Phase-1 portfolio is a validation shortlist.
+81.13 Its value-of-information output is a prioritization aid.
+81.14 Its LLM layer is optional and downstream.
+81.15 Its static Netlify deployment supports practical review.
+81.16 Its next technical milestone is current city validation.
+81.17 Any implementation claim must follow that validation.
+81.18 The correct action from this build is validate, calibrate, co-design, and then decide.
+
+END OF ROUTE2ZERO 2.0 TECHNICAL REFERENCE

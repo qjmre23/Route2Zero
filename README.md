@@ -1,334 +1,335 @@
 # Route2Zero
 
-**A transparent, equity-aware priority index for e-jeepney rollout in Metro Manila.**
+Route2Zero is an AI/ML-assisted electrification planning system for Metro Manila jeepney corridors. It combines service intelligence, climate scenarios, equity exposure, charging and operator evidence, uncertainty analysis, and constrained portfolio selection in one auditable decision workflow.
 
-Route2Zero helps transport regulators, local governments, operators, and financiers decide which jeepney corridors should enter electrification validation first. It combines four visible dimensions—emissions-reduction potential, equity, grid feasibility, and operator readiness—into an interactive, adjustable Just Transition Score.
+[Live application](https://route2zero.netlify.app/) | [GitHub repository](https://github.com/qjmre23/Route2Zero)
 
-The MVP is built for the **AI x City Climate Action Hackathon 2026**. Its pilot lens is Metro Manila, with Marikina, Makati, and Malabon included as spotlight cities.
+Route2Zero is designed for transport agencies, local governments, operators, utilities, finance partners, and community stakeholders deciding where limited validation and planning capacity should be used first. It is not a rider trip planner, a franchise decision engine, or an investment authorization system.
 
-> Route2Zero is not a rider-facing trip planner. It is a supply-side decision-support and evidence-gap tool. Every proxy, placeholder, stale source, and missing value is deliberately surfaced.
+## Release snapshot
 
-## What is included
+The repository-facing documentation is anchored to the following reproducible output set.
 
-- A responsive, Netlify-ready 2026 web dashboard plus the legacy Streamlit analysis view
-- Interactive Mapbox map with clustered priorities and on-demand street-following routes
-- Live score-weight controls and city filters
-- A route detail view with four-factor score breakdown
-- A ranked action queue plus PDF, Word, and CSV decision-pack exports
-- An impact-versus-equity comparison chart
-- A visible data-confidence banner
-- Optional AI explanations that never affect ranking
-- Reproducible GTFS audit, geometry, frequency, and scoring scripts
-- Eight generated one-page policy briefs
-- Pilot Plan and demonstration submission artifacts under `output/`
-- Full methodology, provenance, technical guide, and presentation script
+| Release field | Recorded value |
+|---|---|
+| Pipeline version | `2.0.0` |
+| Build ID | `r2z-16690ccbe328` |
+| Build timestamp | `2026-08-20T04:47:08Z` |
+| Default policy scenario | `scn-c46e1d86c1` |
+| Phase-1 portfolio scenario | `prt-b73fa05705` |
+| Route-direction records | 1,522 |
+| Complete priority scores | 1,522 |
+| Current route validations | 0 |
+| Robust-priority records | 9 |
+| Phase-1 selected corridors | 8 |
+| Pipeline status | `PASS_WITH_WARNINGS` |
 
-## Live demo
+The warnings are substantive. The service network is based on a historic 2013-2020 GTFS feed; no current route-validation record has yet been supplied; no consent-based operator evidence has been supplied; and no utility capacity or charging site has been verified. The current outputs are therefore a screening and evidence-acquisition baseline, not proof of present operations or implementation readiness.
 
-### Netlify-ready dashboard (recommended)
+## Decision question
 
-```powershell
-cd netlify-site
-npm run build
-cd ..
-python -m http.server 8899 --directory netlify-site\public
+Route2Zero asks:
+
+> Which corridors should a city validate and prioritize first, how robust is that recommendation to changing policy weights, and what missing evidence could reverse the decision?
+
+The system returns more than a ranked list. Each route carries:
+
+- a human-controlled priority score;
+- a separate evidence-confidence grade;
+- a low, base, and high climate-and-energy scenario;
+- a Monte Carlo rank-stability result;
+- a corridor typology and anomaly flags;
+- a value-of-information queue for missing evidence;
+- Phase-1 portfolio membership and exclusion reasons; and
+- a structured planning explanation grounded in generated fields.
+
+## What Route2Zero 2.0 adds
+
+Route2Zero 2.0 replaces the original four-proxy MVP story with a broader evidence-aware planning pipeline.
+
+1. A leakage-aware service-intensity model estimates the historic schedule-derived vehicle-kilometre proxy only when that historic input is missing.
+2. An unsupervised typology groups structurally similar corridors for interpretation; typology never adds hidden policy points.
+3. A deterministic climate engine reports low, base, and high energy and CO2e scenarios.
+4. Equity remains explicitly limited to WorldPop population exposure because no validated socioeconomic or marginalized-settlement layer is present.
+5. Charging readiness combines mapped-infrastructure proximity with energy-demand screening, while keeping utility capacity and site control unverified.
+6. Operator readiness uses consent-based evidence when sufficient fields exist and otherwise retains a visible neutral prior.
+7. Evidence confidence is calculated separately from priority, prediction error, and rank stability.
+8. Fixed-seed Monte Carlo analysis tests whether a recommendation survives plausible policy-weight changes.
+9. Deterministic value-of-information analysis estimates which missing field can move rank or portfolio membership.
+10. An evidence-constrained Phase-1 selector creates a diverse eight-corridor validation portfolio without inventing a budget.
+11. The planning assistant explains structured outputs but cannot change scores, constraints, climate values, or ranks.
+
+## How to read a Route2Zero result
+
+Four concepts must remain separate.
+
+| Concept | Meaning |
+|---|---|
+| Priority score | Weighted policy result under a named scenario |
+| Evidence confidence | Strength, specificity, completeness, and external validation of the underlying evidence |
+| ML prediction uncertainty | Error and residual behavior of the service-intensity model |
+| Rank stability | Frequency and range of rank outcomes across tested policy weights |
+
+A high priority with grade C evidence is a reason to validate, not a reason to procure. A stable rank does not make historic data current. A good cross-validation metric does not establish 2026 service. A mapped substation does not establish feeder capacity.
+
+### Claim-status vocabulary
+
+Every important field is intended to be understood through one of these statuses:
+
+| Status | Interpretation |
+|---|---|
+| `VERIFIED` | Checked against an accepted external or field source |
+| `OBSERVED` | Directly recorded for the pilot, subject to the stated protocol |
+| `DERIVED` | Calculated deterministically from identified inputs |
+| `ML_ESTIMATED` | Produced by a versioned machine-learning model |
+| `PROXY` | Indirect screening evidence with a known conceptual limitation |
+| `SCENARIO` | Conditional result under explicit assumptions |
+| `NEUTRAL_PRIOR` | Deliberate midpoint used because sufficient evidence is absent |
+| `MISSING` | No defensible value is available |
+
+`historic`, `current`, `scenario`, and `mixed` describe source currentness. They do not replace the claim-status vocabulary.
+
+## Current policy model
+
+The default scenario is titled `Climate + Equity` and uses the following human-controlled weights:
+
+```text
+Priority =
+  0.40 x climate_impact_score
+  + 0.30 x equity_score
+  + 0.15 x charging_readiness_score
+  + 0.15 x operator_effective_score
 ```
 
-Then open `http://127.0.0.1:8899/`. The approved public Mapbox token is included as a build fallback, so `MAPBOX_TOKEN` is optional.
+The generated scenario ID is `scn-c46e1d86c1`. The score is deterministic once the component values and weights are fixed. Machine learning can supply one service-activity input when the historic schedule proxy is missing; the LLM never supplies a numeric input.
 
-### Legacy Streamlit analysis view
+Named policy presets in `config/policy_model.json` include climate-and-equity, equity-first, and infrastructure-first lenses. These are comparison lenses, not endorsed policy decisions. A city should approve and document its own weights during the pilot.
 
-### Windows PowerShell
+## Machine-learning models
+
+### Service-intensity model
+
+The selected model is a histogram gradient-boosting regressor, version `service-v1-266e0b1d`.
+
+| Metric | Recorded grouped cross-validation result |
+|---|---:|
+| Training rows | 1,521 |
+| Normalized corridor groups | 714 |
+| Validation design | Five-fold `GroupKFold` by corridor |
+| MAE | 266.4485 |
+| RMSE | 562.7990 |
+| R-squared | 0.9911 |
+| Median-baseline MAE | 4,850.0728 |
+| Relative MAE improvement | 94.51% |
+
+The target is `historic_daily_vehicle_km_proxy`, derived from the historic schedule. It is not passenger demand, ridership, revenue, or a current service measurement. Leakage fields such as headway, trips per day, climate impact, and final rank are excluded from the model features.
+
+The historic service proxy is available for 1,521 routes. The model is used for one route, `LTFRB_PUJ2451`, because that historic proxy is missing. Validated present-day observations must override both historic and model-estimated service inputs during a pilot.
+
+### Corridor typology
+
+The typology model is version `typology-v1-f9da2ebe`. It applies median imputation, standardization, and K-means clustering. Four clusters were selected because they met the minimum-cluster-size rule and produced a silhouette score of 0.2700.
+
+| Corridor type | Route count |
+|---|---:|
+| Dense Urban Trunk | 265 |
+| High-Stop-Density Core | 620 |
+| Local Feeder | 134 |
+| Long Regional Connector | 503 |
+
+Typology describes structural similarity. It does not infer socioeconomic status, vulnerability, settlement type, demand, or investment value, and it is not included in the policy score.
+
+## Climate and energy scenarios
+
+The climate engine converts the selected daily vehicle-kilometre input into low, base, and high electrification cases. It calculates electrified vehicle-kilometres, diesel litres displaced, electricity demand, baseline diesel CO2e, grid CO2e, and net scenario CO2e.
+
+The assumptions are stored in `config/climate_scenarios.json` and must be calibrated before investment use. The low case is deliberately conservative and produces negative net CO2e for all 1,522 records under its current efficiency, grid, and electrification assumptions. The base and high cases are positive across the current route universe. This is evidence that the result depends on technology and grid assumptions; it is not a prediction of guaranteed savings.
+
+The selected eight-corridor Phase-1 portfolio has the following scenario range:
+
+| Case | Portfolio result |
+|---|---:|
+| Low | -8,190.9 tCO2e/year |
+| Base | 2,710.9 tCO2e/year |
+| High | 22,288.0 tCO2e/year |
+
+These are planning scenarios, not measured reductions, credited emissions, or a project baseline suitable for finance.
+
+## Evidence confidence and validation state
+
+All 1,522 records currently have `validation_status = historic_only` and `active_status = uncertain`.
+
+- 1,519 routes have evidence grade C.
+- 3 routes have evidence grade D.
+- Evidence confidence ranges from 33.01 to 43.02 in the current build.
+- All operator scores are neutral priors of 50 because the operator ledger is empty.
+- All charging scores are proxies; utility capacity and site control are unverified.
+- All equity scores are population-exposure proxies.
+- Two geometries use GTFS shapes; 1,520 use ordered-stop approximations and require validation.
+
+The evidence grade is not a probability that the recommendation is correct. It is a deterministic audit score over freshness, directness, spatial specificity, completeness, external validation, and model reliability.
+
+## Rank stability
+
+The sensitivity stage draws 5,000 fixed-seed policy-weight vectors around the default lens using a Dirichlet distribution. It records top-5, top-10, and top-20 frequency; median rank; P10-P90 rank and score ranges; and a derived stability score.
+
+The current build contains:
+
+- 9 `ROBUST PRIORITY` records;
+- 1,183 `SCENARIO-DEPENDENT` records; and
+- 330 `LOW-PRIORITY ROBUST` records.
+
+The label describes behavior across tested policy weights. It does not correct weak evidence or make a route operationally ready.
+
+## Phase-1 portfolio
+
+Portfolio scenario `prt-b73fa05705` is an evidence-validation shortlist, not a procurement portfolio. It uses deterministic selection with these constraints:
+
+- maximum eight corridors;
+- minimum evidence grade C;
+- minimum equity score 40;
+- maximum two evidence-limited corridors;
+- maximum two corridors per primary city;
+- maximum one route direction per normalized corridor; and
+- exclusion of routes explicitly marked inactive.
+
+No budget is used because no defensible cost or fleet dataset has been supplied. The selector differs from a simple top-eight ranking: four records are removed and four are added to satisfy corridor and city-coverage constraints.
+
+The selected route IDs are:
+
+```text
+LTFRB_PUJ1353
+LTFRB_PUJ1241
+LTFRB_PUJ2083
+LTFRB_PUJ1156
+LTFRB_PUJ1638
+LTFRB_PUJ1153
+LTFRB_PUJ1350
+LTFRB_PUJ1405
+```
+
+The selected portfolio has an average equity score of 73.9 and average evidence confidence of 37.8. All eight selected routes have grade C evidence. These values support a validation plan; they do not establish feasibility.
+
+## Flagship corridor
+
+The build-selected flagship is `LTFRB_PUJ1353`, Francisco Homes - Cubao.
+
+| Field | Build value |
+|---|---:|
+| Default rank | 1 |
+| Priority score | 79.97 |
+| Evidence grade | C |
+| Evidence confidence | 38.34 |
+| Top-10 frequency | 100% |
+| Low climate scenario | -1,111.8 tCO2e/year |
+| High climate scenario | 3,025.3 tCO2e/year |
+
+It is selected by a recorded rule: among Phase-1 corridors, prefer robust-priority records, then higher evidence confidence, priority score, and stable route ID. Its leading position is not manually forced and should be recomputed whenever evidence or configuration changes.
+
+## Repository structure
+
+```text
+Route2Zero/
+|-- app/                         Legacy Streamlit analytical view
+|-- config/                      Versioned model, policy, evidence, and scenario contracts
+|-- data/
+|   |-- raw/                     Immutable source snapshots
+|   |-- validated/               Pilot evidence ledgers; currently header-only
+|   `-- processed/               Generated route, model, scenario, and manifest outputs
+|-- docs/                        Method, governance, validation, and city-adaptation references
+|-- models/                      Serialized fitted models and metadata
+|-- netlify-site/                Static production dashboard and Netlify Function
+|-- output/                      Submission and generated reporting artifacts
+|-- src/                         Ordered pipeline stages
+|-- tests/                       Automated checks
+|-- README.md                    Project overview
+`-- technical.txt                Deep technical reference
+```
+
+## Reproducibility
+
+Install the Python dependencies, run the ordered pipeline, run the automated checks, and build the static site.
 
 ```powershell
 python -m venv .venv
 .\.venv\Scripts\python.exe -m pip install -r requirements.txt
 .\.venv\Scripts\python.exe src\run_pipeline.py
-.\.venv\Scripts\streamlit.exe run app\dashboard.py
+.\.venv\Scripts\python.exe -m pytest -q
+Set-Location netlify-site
+npm run build
 ```
 
-Then open `http://localhost:8501`.
+The final pipeline stage writes `data/processed/build_manifest.json`, including config, source, and output checksums; model and scenario versions; random seeds; the build timestamp; and the recorded Git commit. The current build ID is derived from configuration, source checksums, model versions, and scenario identities. Re-run the pipeline after a release commit when a one-to-one Git attestation is required.
 
-### macOS or Linux
+The principal generated outputs are:
 
-```bash
-python3 -m venv .venv
-source .venv/bin/activate
-pip install -r requirements.txt
-python src/run_pipeline.py
-streamlit run app/dashboard.py
-```
-
-The processed outputs are already included for a fast demo. Re-running the pipeline is optional unless source or override data changed.
+- `data/processed/build_manifest.json`
+- `data/processed/source_manifest.json`
+- `data/processed/model_metrics.json`
+- `data/processed/route2zero_scores.csv`
+- `data/processed/route2zero_scores.geojson`
+- `data/processed/climate_impact.csv`
+- `data/processed/evidence_confidence.csv`
+- `data/processed/sensitivity.csv`
+- `data/processed/portfolio_scenarios.json`
+- `data/processed/validation_priorities.json`
+- `data/processed/route_planner_cache.json`
 
 ## Netlify deployment
 
-This project now includes a Netlify-ready static dashboard in `netlify-site/public/` plus a Netlify Function for optional AI answers. Netlify does not run the Streamlit server directly; the deployed site uses the same processed route data from `data/processed/`.
+The production interface is a static HTML, CSS, and JavaScript application under `netlify-site/public/`. Netlify builds from `netlify-site/`, runs `npm run build`, publishes `public/`, and bundles the optional explanation endpoint from `netlify/functions/`.
 
-The web dashboard uses Mapbox GL JS with the project style `mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs`. When a route is selected, its ordered GTFS coordinates are sent to the Mapbox Directions API in groups of at most 25 waypoints and the returned full GeoJSON geometry is drawn along drivable streets. The site deliberately shows no fallback straight line when Mapbox cannot return a reliable road path. Results are cached for the current browser session.
+The site uses Mapbox GL JS and the project style `mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs`. A selected route can request a street-following Mapbox Directions path from ordered screening coordinates. That path improves map readability; it does not verify the franchise alignment or current operation.
 
-Use these Netlify settings:
+The approved `pk.` Mapbox token is a browser token and is available as the build fallback. `MAPBOX_TOKEN` is optional and can override it at build time. Restrict the public token to approved production and development origins in the Mapbox account.
 
-```text
-Base directory: netlify-site
-Build command: npm run build
-Publish directory: public
-Functions directory: netlify/functions
-```
-
-Add these environment variables in Netlify under Site configuration > Environment variables. The four AI values need **Functions** scope (and may also include Builds):
+The optional server-side explanation function uses these Netlify variables:
 
 ```text
-ABSK_KEY=your_api_key_here
-BASE_URL=your_openai_compatible_base_url_here
-MODEL=your_model_name_here
+ABSK_KEY=your_api_key
+BASE_URL=your_openai_compatible_base_url
+MODEL=your_model_name
 AI_EXPLANATIONS_ENABLED=true
 ```
 
-`ABSK_KEY` is the variable that holds the API key. Do not add the key to browser JavaScript, `.env.example`, `netlify.toml`, or `netlify-site/public/`. The Netlify Function reads it with `process.env.ABSK_KEY`, so the key stays server-side. Redeploy after changing Netlify environment variables.
+`ABSK_KEY` is the API-key variable. It belongs in Netlify Functions scope and must never be written to `public/config.js`, browser JavaScript, screenshots, or committed environment files. If the variables are absent or the request fails, the endpoint returns deterministic fallback text and the decision pipeline remains available.
 
-The Mapbox token begins with `pk.` and is intentionally a public browser token. The build includes the approved public token as an offline-safe default and still accepts an optional `MAPBOX_TOKEN` build variable as an override. It generates an ignored `public/config.js` file and limits Netlify's scan exception to that deliberate public output path. No Mapbox variable is required for the standard deploy. Restrict the token to the production Netlify domain in the Mapbox account after the final site URL is known. Mapbox Directions requests are made only for the selected route and may count toward the account's Mapbox usage.
+## Documentation set
 
-## Optional AI explanation layer
+- [Methodology](docs/methodology.md)
+- [Data provenance](docs/data_provenance.md)
+- [Model card](docs/model_card.md)
+- [Responsible AI](docs/responsible_ai.md)
+- [Validation protocol](docs/validation_protocol.md)
+- [Optimization methodology](docs/optimization_methodology.md)
+- [City adapter guide](docs/city_adapter_guide.md)
+- [Judging evidence matrix](docs/judging_matrix.md)
+- [Pilot AI validation plan](docs/pilot_plan_ai_validation.md)
+- [Live demonstration script](docs/demo_script.md)
+- [Deep technical reference](technical.txt)
 
-Copy `.env.example` to `.env` and set the API values for your environment:
+## Known limitations
 
-```text
-ABSK_KEY=paste_key_here
-BASE_URL=paste_openai_compatible_base_url_here
-MODEL=paste_model_name_here
-AI_EXPLANATIONS_ENABLED=true
-```
+- The route and schedule universe is historic and cannot establish active 2026 service.
+- Text-derived city tags have low confidence and require boundary and local review.
+- Only two routes have usable GTFS shapes; other geometries are planning approximations.
+- Mapbox road paths are visualization aids, not official or field-verified route traces.
+- The service model is evaluated against a historic derived target, not current field observations.
+- Population exposure is not poverty, accessibility, tenure, vulnerability, or informal-settlement evidence.
+- OSM infrastructure proximity does not establish utility capacity, ownership, interconnection approval, or site availability.
+- Operator readiness remains a neutral prior for every route in the current build.
+- Climate outputs are conditional scenarios and include a negative conservative case.
+- The Phase-1 selection has no budget, cost, fleet, or financing constraint because those inputs are unavailable.
+- An LLM explanation can summarize structured fields but cannot validate them.
 
-`.env` is gitignored. Do not commit it. Deployment should provide these values through the host's environment-variable or secrets manager.
-
-Generate offline-safe explanations for every ranked route:
-
-```powershell
-.\.venv\Scripts\python.exe src\11_ai_explain.py
-```
-
-Generate or refresh API-backed explanations for only the highest-ranked routes:
-
-```powershell
-.\.venv\Scripts\python.exe src\11_ai_explain.py --use-api --limit 10
-```
-
-If the API is missing, slow, or unreachable, Route2Zero uses deterministic sentences and the dashboard remains fully functional. The LLM is a narrative layer only; `ranking_ai_influence` is always false.
-
-## Scoring model
-
-The default Just Transition Score is:
-
-```text
-0.35 × emissions activity proxy
-+ 0.35 × equity density proxy
-+ 0.15 × grid regional proxy
-+ 0.15 × operator readiness placeholder/override
-```
-
-### 1. Emissions-reduction potential — 35%
-
-`route length × estimated weekday trips` is min-max scaled across routes. This represents relative service activity, not measured emissions. It does not claim route-level fuel use, engine age, ridership, or tonnes of CO₂ avoided.
-
-### 2. Equity — 35%
-
-Each route is buffered by 300 metres. The score uses the population-weighted share of the catchment intersecting high-density cells in the WorldPop 2020 Philippines 1 km raster. This is a density-only fallback, not an informal-settlement, poverty, or tenure boundary.
-
-### 3. Grid feasibility — 15%
-
-Every route receives the official 2024 Luzon renewable-generation share: `14,550 / 90,269 GWh = 16.118%`. No public route- or depot-level capacity source was available, so this value is intentionally constant and marked coarse.
-
-### 4. Operator readiness — 15%
-
-Every route starts at the neutral midpoint, 50/100. This is an explicit placeholder pending cooperative financing and governance data. Pilot teams can edit `data/processed/operator_overrides.csv` without changing the upstream pipeline.
-
-Weights are named constants in `src/08_composite_score.py` and adjustable in the dashboard. The ranking is deterministic weighted arithmetic.
-
-## Data snapshot
-
-The canonical source is the Sakay community GTFS `master` branch:
-
-- 1,717 total routes
-- 1,711 LTFRB routes
-- 1,522 jeepney route-direction records (`PUJ`)
-- 189 bus route-direction records (`PUB`)
-- 1,864 trips
-- 4,858 stops
-- 79,414 stop-time records
-- 1,864 frequency rows
-- 10 shape IDs covering six routes total
-- 2 jeepney routes with usable shapes
-- 1,520 jeepney routes using ordered-stop approximations
-
-The feed validity window spans 2013–2020. It is a historic MVP network baseline and is not represented as live 2026 service.
-
-Both requested branches are available:
-
-- `data/raw/gtfs_master/` — canonical build source
-- `data/raw/gtfs_dotc/` — comparison source
-- `GTFS/master/` and `GTFS/dotc/` — convenience links
-
-`master` has 1,717 routes and a calendar through 2020. `dotc` has 1,715 routes, includes `route_bikes_allowed`, and ends in 2014. The project therefore continues on `master`.
-
-## Pipeline
-
-Run one task at a time:
-
-```powershell
-.\.venv\Scripts\python.exe src\01_audit.py
-.\.venv\Scripts\python.exe src\02_geometry.py
-.\.venv\Scripts\python.exe src\03_frequency.py
-.\.venv\Scripts\python.exe src\04_emissions_score.py
-.\.venv\Scripts\python.exe src\05_equity_score.py
-.\.venv\Scripts\python.exe src\06_grid_score.py
-.\.venv\Scripts\python.exe src\07_operator_score.py
-.\.venv\Scripts\python.exe src\08_composite_score.py
-.\.venv\Scripts\python.exe src\09_city_aggregation.py
-.\.venv\Scripts\python.exe src\11_ai_explain.py
-.\.venv\Scripts\python.exe src\10_policy_brief.py
-```
-
-Or run the entire deterministic pipeline:
-
-```powershell
-.\.venv\Scripts\python.exe src\run_pipeline.py
-```
-
-Every stage is idempotent. Source data under `data/raw/` is never overwritten.
-
-## Project structure
-
-```text
-Route2Zero/
-├── app/
-│   └── dashboard.py
-├── data/
-│   ├── raw/
-│   │   ├── gtfs_master/
-│   │   ├── gtfs_dotc/
-│   │   └── reference/
-│   └── processed/
-├── docs/
-│   ├── data_provenance.md
-│   ├── methodology.md
-│   ├── demo_script.md
-│   └── policy_briefs/
-├── GTFS/
-├── output/
-│   ├── pdf/
-│   ├── presentation/
-│   └── playwright/
-├── src/
-│   ├── common.py
-│   ├── 01_audit.py
-│   ├── 02_geometry.py
-│   ├── 03_frequency.py
-│   ├── 04_emissions_score.py
-│   ├── 05_equity_score.py
-│   ├── 06_grid_score.py
-│   ├── 07_operator_score.py
-│   ├── 08_composite_score.py
-│   ├── 09_city_aggregation.py
-│   ├── 10_policy_brief.py
-│   ├── 11_ai_explain.py
-│   ├── bedrock_client.py
-│   └── run_pipeline.py
-├── tests/
-├── README.md
-├── technical.txt
-├── script.txt
-└── requirements.txt
-```
-
-## Submission artifacts
-
-### Submission-form upload pack
-
-- `output/submission/Route2Zero_Concept_Deck_20_Slides.pdf` — 20-slide Concept PDF (form maximum met)
-- `output/submission/Route2Zero_Prototype_Demonstration.pdf` — prototype Demonstration PDF with live dashboard captures
-- `output/submission/Route2Zero_Prototype_Demonstration.pptx` — editable alternative for the Demonstration field
-- `output/submission/Route2Zero_Team_Larpers_Pilot_Plan.pdf` — two-page Pilot Plan following the official sample layout
-
-All submission files identify **Team Larpers**, list all eight team members, and display clickable GitHub and hosted-demo links at the top.
-
-- `output/documents/Route2Zero_Pilot_Plan.docx` — editable, accessible 24-page formal Pilot Plan
-- `output/pdf/Route2Zero_Pilot_Plan.pdf` — visually verified 24-page Pilot Plan
-- `output/presentation/Route2Zero_Demonstration_Deck.pptx` — editable 24-slide 2026 demonstration deck with source notes
-- `output/pdf/Route2Zero_Demonstration_Deck.pdf` — visually verified 24-page presentation PDF
-- `script.txt` — narration aligned to all 24 slides plus a live-demo checklist
-- `technical.txt` — Netlify, Mapbox, data, QA, deployment and handover reference
-
-## Key processed outputs
-
-- `audit_report.md` — row counts and referential-integrity pass/fail results
-- `route_corridors.csv` — de-duplicated bidirectional corridor view
-- `jeepney_routes.geojson` — one feature per jeepney route ID
-- `route_frequency.csv` — headway, service window, and estimated trips
-- `emissions_score.csv` — route activity proxy and normalized score
-- `equity_score.csv` — WorldPop density exposure and confidence labels
-- `grid_feasibility.csv` — official Luzon baseline and NGEF context
-- `operator_readiness.csv` — placeholders or workshop overrides
-- `route2zero_scores.csv` / `.geojson` — merged scores, ranks, confidence, geometry
-- `city_summary.csv` — city route counts, averages, and top-five routes
-- `route_explanations.json` — cached API or deterministic narratives
-
-## Tests
-
-```powershell
-.\.venv\Scripts\python.exe -m pytest -q
-```
-
-The tests verify the 1,522-route universe, the two real jeepney shapes, score bounds, proxy/placeholder labels, the one intentionally incomplete rank, absence of AI influence, and absence of the key from committed source/example files.
-
-## Demo path
-
-1. Start on the map and point to the confidence banner.
-2. Select a high-ranked route and show its four-factor breakdown.
-3. Select a lower-ranked route for contrast.
-4. Change one weight, then restore the defaults.
-5. Filter to Marikina, Makati, or Malabon.
-6. Show the impact-equity scatterplot.
-7. Download the filtered rankings.
-8. Close on one generated policy brief.
-
-See `docs/demo_script.md` for a timed three-minute version and `script.txt` for the presentation talk track.
-
-## Known limitations and roadmap
-
-- **Historic GTFS:** refresh routes, stops, headways, and service periods with LTFRB and LGUs.
-- **Sparse shapes:** replace straight stop chords with verified road-snapped paths.
-- **Density-only equity:** add community-validated settlement, poverty, tenure, accessibility, and rider data.
-- **Coarse grid proxy:** add Meralco feeder, substation, depot, tariff, and interconnection evidence.
-- **Operator placeholder:** collect cooperative financing, fleet, governance, and consolidation readiness.
-- **Activity, not emissions:** add actual fleet, fuel, ridership, and air-quality measurements.
-- **Text-based cities:** validate route-city tags with administrative boundaries and local staff.
-- **Weight governance:** publish workshop decisions and sensitivity analysis.
-
-These are pilot workstreams, not hidden defects.
-
-## Team
-
-- John Marwin Ebona
-- Prince Marl
-- Joaquin Sarmiento
-- Isaac Marcus
-- Andrei Dela Cruz
-- Russel Mendez
-- Tj Moreno
-- JM Palaganas
-
-Pilot roles and responsibilities are detailed in the Pilot Plan submission.
+These limitations define the pilot evidence agenda. They are not permissions to fill gaps with unsupported assumptions.
 
 ## Sources and licensing
 
-- Sakay GTFS: <https://github.com/sakayph/gtfs>
-- WorldPop 2020 Philippines 1 km population grid, CC BY 4.0: <https://hub.worldpop.org/geodata/summary?id=33241>
-- Philippine DOE 2024 Key Energy Statistics: <https://prod-cms.doe.gov.ph/documents/d/guest/-final-11-20-25_doe-key-energy-stat-pocket-size-2024-pdf>
-- Philippine DOE grid-emission context: <https://doe.gov.ph/sites/default/files/pdf/pep/PEP_2023-2050_Volume_III.pdf>
+The primary external sources are the historic Sakay community GTFS feed, WorldPop 2020 Philippines population raster, Philippine Department of Energy 2024 Luzon generation context, and a 20 August 2026 OpenStreetMap infrastructure snapshot. Exact URLs, retrieval dates, reference periods, licenses, and checksums are recorded in `config/source_registry.json` and `data/processed/source_manifest.json`.
 
-See `docs/data_provenance.md` for commit hashes, branch comparison, file checksum, and source decisions.
+Upstream source licenses and attribution requirements remain in force. The project repository should carry an explicit project-code license before wider reuse.
 
-## License note
+## Team
 
-Respect the licenses and attribution requirements of all upstream datasets. The repository's original GTFS license is retained in each cloned source directory. Route2Zero-generated code and submission artifacts should be assigned the team’s chosen license before public release.
+Route2Zero is developed by Team Larpers for the AI x City Climate Action Hackathon 2026.
