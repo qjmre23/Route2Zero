@@ -12,10 +12,10 @@ from rasterio.mask import mask
 from rasterio.windows import from_bounds
 from shapely.geometry import box, mapping
 
+from adapters import MetroManilaPopulationAdapter
 from common import PROCESSED_DIR, ROOT, ensure_output_dirs, minmax_score
 
 
-WORLDPOP_RASTER = ROOT / "data" / "raw" / "reference" / "phl_ppp_2020_1km_Aggregated.tif"
 NCR_BOUNDS_WGS84 = (120.85, 14.35, 121.20, 14.85)
 BUFFER_METERS = 300
 
@@ -28,18 +28,37 @@ def valid_values(array: np.ndarray, nodata: float | None) -> np.ndarray:
     return values[values >= 0]
 
 
+def missing_equity_output(route_ids: pd.Series, reason: str) -> pd.DataFrame:
+    """Return an explicit null layer instead of inventing an exposure proxy."""
+    output = pd.DataFrame({"route_id": route_ids.astype(str)})
+    for column in (
+        "equity_overlap_pct", "corridor_population_proxy", "equity_score",
+        "high_density_cutoff_people_per_cell",
+    ):
+        output[column] = np.nan
+    output["equity_source"] = "MISSING"
+    output["equity_confidence"] = "missing_optional_population_layer"
+    output["equity_missing_reason"] = reason
+    output["manually_digitized"] = False
+    output["catchment_buffer_m"] = BUFFER_METERS
+    return output
+
+
 def main() -> int:
     ensure_output_dirs()
-    if not WORLDPOP_RASTER.exists():
-        raise FileNotFoundError(
-            f"Missing {WORLDPOP_RASTER}. Retrieve the documented WorldPop fallback before running."
-        )
-    routes = gpd.read_file(PROCESSED_DIR / "jeepney_routes.geojson").to_crs("EPSG:32651")
+    adapter = MetroManilaPopulationAdapter(ROOT)
+    routes_wgs84 = gpd.read_file(PROCESSED_DIR / "jeepney_routes.geojson")
+    if not adapter.available:
+        output = missing_equity_output(routes_wgs84["route_id"], "worldpop_raster_not_available")
+        output.to_csv(PROCESSED_DIR / "equity_score.csv", index=False)
+        print(f"[WARN] optional WorldPop layer missing; wrote {len(output):,} explicit null equity records")
+        return 0
+    routes = routes_wgs84.to_crs("EPSG:32651")
     route_buffers = routes[["route_id", "geometry"]].copy()
     route_buffers["geometry"] = route_buffers.geometry.buffer(BUFFER_METERS)
 
     rows: list[dict] = []
-    with rasterio.open(WORLDPOP_RASTER) as dataset:
+    with rasterio.open(adapter.raster_path) as dataset:
         if dataset.crs is None:
             raise ValueError("WorldPop raster is missing a CRS")
         ncr_bounds = (

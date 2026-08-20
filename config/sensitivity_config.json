@@ -1,0 +1,30 @@
+{
+  "version": "sensitivity-v2.0",
+  "default_mode": "around_default",
+  "simulations": 5000,
+  "random_seed": 20260820,
+  "modes": {
+    "around_default": {
+      "method": "dirichlet_around_default",
+      "dirichlet_concentration": 60.0,
+      "seed_offset": 0
+    },
+    "broad_simplex": {
+      "method": "dirichlet_broad_simplex",
+      "alpha": 1.0,
+      "seed_offset": 1
+    },
+    "custom": {
+      "method": "bounded_simplex_rejection",
+      "seed_offset": 2,
+      "weight_bounds": {
+        "climate_impact_score": [0.20, 0.60],
+        "equity_score": [0.15, 0.55],
+        "charging_readiness_score": [0.05, 0.35],
+        "operator_effective_score": [0.05, 0.35]
+      }
+    }
+  },
+  "robust_priority_top10_probability": 0.7,
+  "scenario_dependent_top10_probability": 0.2
+}

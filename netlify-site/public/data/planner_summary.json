@@ -1,0 +1,18 @@
+{
+  "question": "What should the city validate first before piloting this portfolio?",
+  "answer": "Prioritize the route-field combinations with the largest tested rank swing or portfolio-flip risk, beginning with operator evidence and utility/charging-site verification for selected corridors.",
+  "evidence_points": [
+    "Portfolio prt-fd6de9d793 contains 8 corridors.",
+    "Its scenario climate range is -8191 to 22288 tCO2e/year.",
+    "Every selected corridor retains explicit evidence and robustness fields."
+  ],
+  "validation_actions": [
+    "Confirm current route status and service observations.",
+    "Request utility evidence before any claim about available charging capacity.",
+    "Collect consent-based operator, depot and financing evidence."
+  ],
+  "scenario_id": "scn-e0f12f397e",
+  "portfolio_scenario_id": "prt-fd6de9d793",
+  "source": "deterministic_fallback",
+  "llm_ranking_influence": false
+}

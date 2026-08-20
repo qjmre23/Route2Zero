@@ -1,0 +1,29 @@
+{
+  "version": "charging-v1.0",
+  "source_id": "osm_power_snapshot_2026_08_20",
+  "site_evidence_source_id": "charging_site_evidence_ledger",
+  "substation_distance_thresholds_km": [1.0, 3.0, 6.0, 12.0],
+  "charger_distance_thresholds_km": [1.0, 3.0, 8.0, 15.0],
+  "component_weights": {
+    "mapped_substation_proximity": 0.35,
+    "mapped_charger_proximity": 0.25,
+    "terminal_evidence": 0.15,
+    "energy_manageability": 0.25
+  },
+  "utility_capacity_verified_default": false,
+  "charging_site_verified_default": false,
+  "terminal_evidence_scores": {
+    "site_recorded": 40.0,
+    "site_control_verified": 70.0,
+    "site_and_utility_verified": 100.0
+  },
+  "confidence_scores": {
+    "missing": 0.0,
+    "mapped_infrastructure": 30.0,
+    "mapped_charger": 38.0,
+    "site_recorded": 50.0,
+    "site_control_verified": 72.0,
+    "site_and_utility_verified": 90.0
+  },
+  "warning": "Mapped proximity is not proof of distribution capacity, site control, interconnection approval or charger availability."
+}

@@ -1,0 +1,16 @@
+{
+  "selection_rule": "Among Phase-1 corridors, prefer ROBUST PRIORITY; then highest evidence confidence, priority score and stable route ID.",
+  "phase1_selected": true,
+  "route_id": "LTFRB_PUJ1353",
+  "route_long_name": "Francisco Homes - Cubao",
+  "rank": 1,
+  "priority_score": 79.07,
+  "evidence_grade": "C",
+  "evidence_confidence": 38.34,
+  "top_10_probability": 1.0,
+  "climate_low_t_year": -1111.8,
+  "climate_high_t_year": 3025.3,
+  "scenario_id": "scn-e0f12f397e",
+  "portfolio_scenario_id": "prt-fd6de9d793",
+  "build_id": "r2z-45c4ba076af9"
+}

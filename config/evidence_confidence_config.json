@@ -1,0 +1,20 @@
+{
+  "version": "evidence-v1.0",
+  "weights": {
+    "freshness": 0.2,
+    "directness": 0.2,
+    "spatial_specificity": 0.2,
+    "completeness": 0.2,
+    "external_validation": 0.15,
+    "model_reliability": 0.05
+  },
+  "grade_thresholds": {"A": 80, "B": 65, "C": 35, "D": 0},
+  "validation_status_scores": {
+    "historic_only": 10,
+    "desk_checked": 35,
+    "operator_confirmed": 70,
+    "lgu_confirmed": 80,
+    "field_checked": 90,
+    "conflicting_evidence": 25
+  }
+}

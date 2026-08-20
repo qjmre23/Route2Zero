@@ -1,0 +1,18 @@
+{
+  "version": "policy-v2.1",
+  "default_title": "Climate + Equity",
+  "allow_reduced_information_score": true,
+  "reduced_information_penalty": 0.85,
+  "default_weights": {
+    "climate_impact_score": 0.4,
+    "equity_score": 0.3,
+    "charging_readiness_score": 0.15,
+    "operator_effective_score": 0.15
+  },
+  "named_scenarios": {
+    "climate_equity": {"climate": 0.4, "equity": 0.3, "charging": 0.15, "operator": 0.15},
+    "equity_first": {"climate": 0.25, "equity": 0.5, "charging": 0.15, "operator": 0.1},
+    "infrastructure_first": {"climate": 0.25, "equity": 0.2, "charging": 0.35, "operator": 0.2}
+  },
+  "legacy_weights": {"emissions": 0.35, "equity": 0.35, "grid": 0.15, "operator": 0.15}
+}

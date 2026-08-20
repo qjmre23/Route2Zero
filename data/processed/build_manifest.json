@@ -1,0 +1,147 @@
+{
+  "build_id": "r2z-45c4ba076af9",
+  "build_timestamp_utc": "2026-08-20T06:49:33Z",
+  "git_commit": "014e1aa96d235d12399a3cf8b8bd1d60a51e4549",
+  "pipeline_version": "2.0.0",
+  "model_versions": {
+    "service_intensity": "service-v1-266e0b1d",
+    "corridor_typology": "typology-v1-f9da2ebe"
+  },
+  "model_metrics_summary": {
+    "service_model": "hist_gradient_boosting",
+    "service_mae": 266.4485,
+    "service_rmse": 562.799,
+    "service_r2": 0.9911,
+    "baseline_mae": 4850.0728,
+    "typology_k": 4,
+    "typology_silhouette": 0.27
+  },
+  "config_checksums": {
+    "charging_config.json": "b1c14d7ee6cf248265b214428bef77074d7f951988b38da33ea2b376e04591bd",
+    "climate_scenarios.json": "1e6645f7ff7dec0c272816cfde3ea986559d0ad2f5d51438c8951f32ef75593c",
+    "equity_config.json": "5e6e580a0f79c37c7d5d428e6bc2994979cf9f03d49ab727d3ba293ddef6da8a",
+    "evidence_confidence_config.json": "0b4808522af833e73251c21a65e84815fde2dee73cfa931dc2be01e742272f0f",
+    "model_config.json": "86ed8a693484aab931f77e753f4e20e41933298882d11e7175a33bad6883ffd4",
+    "operator_readiness_config.json": "2db408cc0caa3c6bc85e7ec1d86d189363a429c6fff1209e8b9778b76896112d",
+    "optimization_scenarios.json": "e33c31cb9f71f5ad058d7639c46914f0d95d4656f5d102cc223feae53d6aab64",
+    "policy_model.json": "964efd3361f070c1a1f635f6dabab21b1f5895a39a69bf46d1207f4e6853b49c",
+    "sensitivity_config.json": "852ffb0c344448cea80bf3ffb640be7889cff88518d1e580d9f7f5631d5ba2da",
+    "source_registry.json": "04e5ae847b2bc1c72115f3bdd1367f93d89813ff432a4aa5d363549c1446e002",
+    "validation_priority_config.json": "1f944a84a53f56c65187d3e854c73673035c240add0f051d403101292740ff3d"
+  },
+  "source_checksums": {
+    "sakay_gtfs_master_historic": "3a16a1cdce421bf7240355540bdc72f6eea7ecadaa4789c349f501ca1845d4c7",
+    "worldpop_phl_2020_1km": "db87b488519157ec83fb43e2c867016ca72115fde193a9565b650ee35d6699fd",
+    "doe_luzon_generation_2024": "9c6928ae13f3f4b98c4e16aa8e12bf1c5b4cc547368f3ef426bce35464e1b5d6",
+    "osm_power_snapshot_2026_08_20": "92d52bde6f3f00640693d5c6a2e4234d1fd7fd6ca46a918a1261e776aba32516",
+    "route2zero_climate_scenario_v1": "1e6645f7ff7dec0c272816cfde3ea986559d0ad2f5d51438c8951f32ef75593c",
+    "route2zero_operator_prior_v1": "2db408cc0caa3c6bc85e7ec1d86d189363a429c6fff1209e8b9778b76896112d",
+    "route_validation_ledger": "f33a9a3460f972fc08f45c731d69074c07ac50febf26f7c084a56e81daecf9c7",
+    "charging_site_evidence_ledger": "397383aecca95c565b29529ea585d3a62ef4cb3ddcb2ec24dfc001b72bf872b6",
+    "operator_evidence_ledger": "9f66e729ec4b97b3e5bae8e6752bc58e006ae08b6bd059aa74a8791915bc61a4",
+    "stakeholder_validation_ledger": "ecd5a9c2bfbb95a6c62eea1068ef8d3c2dada528c6a0c23141119a38a546edf5",
+    "route2zero_operator_scoring_v1": "2db408cc0caa3c6bc85e7ec1d86d189363a429c6fff1209e8b9778b76896112d",
+    "route2zero_validation_priority_v2": "1f944a84a53f56c65187d3e854c73673035c240add0f051d403101292740ff3d"
+  },
+  "output_checksums": {
+    "route_features.csv": "960bd5e32d2d824ebbc35a1d73942d95d5ca5a9b5b75919096229de9385d1477",
+    "ml_service_intensity.csv": "8f5fa09cf3eea8e7d03a3f4081ba53ee551ee50c34aab1e97669e478ee323da2",
+    "corridor_typology.csv": "1bb856925c13da7e82ac2852120084d55fc05af2158c5ee6dee11b3cc97f1dc3",
+    "climate_impact.csv": "3d796582612834f57b73d20785c0c0ee968ebc894c34a6881bd8873eeb86d832",
+    "equity_v2.csv": "875574ac51579ce9ca7f45b55dc82de69b9e8eb572796e040b4f294303338fe4",
+    "charging_readiness.csv": "de529f21e4775fbc9017ef68d3091d683d208fa90951f5a5d7ed5b40bf3d3548",
+    "operator_readiness_v2.csv": "a778e12afb3ef08b198417d8731445fc69a9dcd14d88dc55bf656b27efb34925",
+    "geometry_reliability.csv": "66855b0fadcc37e66cd17e1a276f82a67cd627b0f41004c7f30f7ba61da4798b",
+    "evidence_confidence.csv": "94f6b75f02d96fa3c6e55554c6713de6cb03852784d7a3767749524575cdbf93",
+    "route2zero_scores.csv": "500dc488f40d7040c33178ac42c5e98c31aac1add19645e4680bcad28c4c5e11",
+    "route2zero_scores.geojson": "2c0c6a8fdcf9aee458bdcf7871c26969e8c7e1cbc7429cf46ee5815f292b4bab",
+    "sensitivity.csv": "bd87e1f581ba8e12fc416d38ead560bb29cde17e70f49ed795044c42c890647b",
+    "sensitivity_modes.csv": "5a20702bb226273a5ce6027d2e428af58071ef64174b544cad1fe8139f626c9b",
+    "portfolio_scenarios.json": "d54d2f616065d8fb3024ead47db0e8e7817b4723c29e3858a8214609b0a7eaa4",
+    "validation_priorities.json": "bd1ca28bba752babb752cc75f15673d4db144915345b52ec44f5b43fb9b914ac",
+    "route_planner_cache.json": "c6900ebf548d3677a408e9b3ad46745203e48eb513cbc9f4b83a8739445f8f31",
+    "source_manifest.json": "25ffd8ba2b708bb2e613bc0aeda5f3f68da7aa148430c8f4c7b8efa1b32b5e1b",
+    "route_validation.csv": "8f91eb5a9fb716112174d142f8c3a8972099711a15feb8288cfe200b974e1db0",
+    "route_cities.csv": "f2ffd5a4d83fc35a1df0a50088a13309eedc1710ab11aac341ba20c0bdf2c21e",
+    "city_summary.csv": "09bc5831e6e415f151729f6a5ac6dadce5567f37c1e51dc907a51b9ed390e800",
+    "model_metrics.json": "b0db3da81693a7fd340c7439045325a9523709ff3002fc4a13b9ec7b3e245f17",
+    "portfolio_membership.csv": "476115d28f3b23e08b5b47dc622ea5dc8b8c0206ede6c4890a61ad0fe9458949",
+    "validation_priorities.csv": "05581ede7abf54357ab90aa2418980307a43d0f5762189e9ed661e89f30699ab",
+    "planner_summary.json": "30676d3be2c59db2e0ac453e19466ab5929624db574261b66e275f2ee394e226",
+    "pipeline_report.json": "962d7ee102b6831d8cbf91672773baa8dffa7afada52b975a484d11d6fe5c418",
+    "flagship_route.json": "45d08e181f22d3ba45679ea4769f4e8fd3898761a6517819a94b58da6a58b97c"
+  },
+  "model_artifact_checksums": {
+    "service_intensity.joblib": "669f3d3a6765a4e977f0c162ad5bd4776b49c85dd98fe736cba11e3c40a78eb9",
+    "service_intensity_metadata.json": "417ff4da916012be0b241ce1d3b83ddb98c6dacbf2ba3b9841cd584bf656d190",
+    "corridor_typology.joblib": "045a94a00eae61c54b773fed0e4e0b24f81957a173bde5b19d56d22af514604f",
+    "corridor_typology_metadata.json": "de6f49886e9fd6db4bc7487dd6726bb2d1360700432bce783ce1c4c4b8238518"
+  },
+  "default_scenario_id": "scn-e0f12f397e",
+  "default_portfolio_scenario_id": "prt-fd6de9d793",
+  "random_seeds": {
+    "model_and_typology": 20260820,
+    "sensitivity_around_default": 20260820,
+    "sensitivity_broad_simplex": 20260821,
+    "sensitivity_custom": 20260822
+  },
+  "flagship_route_id": "LTFRB_PUJ1353",
+  "pipeline_report": {
+    "status": "PASS_WITH_WARNINGS",
+    "pipeline_version": "2.0.0",
+    "build_id": "r2z-45c4ba076af9",
+    "build_timestamp_utc": "2026-08-20T06:49:33Z",
+    "rows_processed": 1522,
+    "score_complete_count": 1522,
+    "reduced_information_score_count": 0,
+    "current_validation_count": 0,
+    "active_validation_count": 0,
+    "robust_priority_count": 9,
+    "phase1_corridor_count": 8,
+    "source_dates": {
+      "sakay_gtfs_master_historic": "2026-08-14",
+      "worldpop_phl_2020_1km": "2026-08-14",
+      "doe_luzon_generation_2024": "2026-08-14",
+      "osm_power_snapshot_2026_08_20": "2026-08-20",
+      "route2zero_climate_scenario_v1": "2026-08-20",
+      "route2zero_operator_prior_v1": "2026-08-20",
+      "route_validation_ledger": "2026-08-20",
+      "charging_site_evidence_ledger": "2026-08-20",
+      "operator_evidence_ledger": "2026-08-20",
+      "stakeholder_validation_ledger": "2026-08-20",
+      "route2zero_operator_scoring_v1": "2026-08-20",
+      "route2zero_validation_priority_v2": "2026-08-20"
+    },
+    "optional_sources_missing": [],
+    "model_versions": {
+      "service_intensity": "service-v1-266e0b1d",
+      "corridor_typology": "typology-v1-f9da2ebe"
+    },
+    "claim_status_columns_checked": [
+      "geometry_claim_status",
+      "service_input_claim_status",
+      "ml_prediction_claim_status",
+      "typology_claim_status",
+      "service_intensity_claim_status",
+      "climate_claim_status",
+      "equity_claim_status",
+      "charging_claim_status",
+      "operator_claim_status",
+      "evidence_claim_status"
+    ],
+    "critical_missing_values": {
+      "just_transition_score": 0,
+      "ml_service_intensity_prediction": 0,
+      "net_co2e_avoided_t_year_base": 0,
+      "equity_score": 0,
+      "charging_readiness_score": 0,
+      "operator_effective_score": 0,
+      "overall_evidence_confidence": 0
+    },
+    "warnings": [
+      "No current route validation records have been supplied; all service status remains historic-only.",
+      "No consent-based operator evidence has been supplied; the neutral prior remains active.",
+      "No utility capacity is verified; charging scores use mapped proximity and energy-demand screening only."
+    ]
+  }
+}

@@ -4,8 +4,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#071a20">
-    <meta name="description" content="Route2Zero is a transparent decision-support dashboard for prioritising Metro Manila jeepney routes for electrification.">
-    <title>Route2Zero | Electrification Intelligence</title>
+    <meta name="description" content="Route2Zero is an AI/ML-assisted electrification planning system for evidence-aware e-jeepney corridor decisions in Metro Manila.">
+    <title>Route2Zero 2.0 | Electrification Planning System</title>
     <link rel="icon" href="data:,">
     <link rel="preconnect" href="https://api.mapbox.com">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -15,78 +15,139 @@
     <link rel="stylesheet" href="/styles.css">
   </head>
   <body>
+    <a class="skip-link" href="#overview">Skip to dashboard</a>
     <div class="ambient ambient-one" aria-hidden="true"></div>
     <div class="ambient ambient-two" aria-hidden="true"></div>
 
     <header class="topbar">
-      <a class="brand" href="#top" aria-label="Route2Zero home">
+      <a class="brand" href="#overview" aria-label="Route2Zero overview">
         <span class="brand-mark" aria-hidden="true">R<span>2</span>Z</span>
-        <span><b>Route2Zero</b><small>Electrification intelligence</small></span>
+        <span><b>Route2Zero</b><small>Electrification planning system</small></span>
       </a>
-      <nav aria-label="Dashboard navigation"><a href="#map-section">Map</a><a href="#rankings">Rankings</a><a href="#judge-guide">Judge guide</a></nav>
-      <button class="mobile-controls-button" id="mobileControlsButton" type="button" aria-controls="controls" aria-expanded="false">Filters</button>
+      <nav aria-label="Primary navigation">
+        <a href="#overview">Overview</a>
+        <a href="#corridor-map">Corridor Map</a>
+        <a href="#route-lens">Route Lens</a>
+        <a href="#scenario-lab">Scenario Lab</a>
+        <a href="#phase1-portfolio">Phase-1 Portfolio</a>
+        <a href="#evidence-ai">Evidence &amp; AI</a>
+        <a href="#method-sources">Method &amp; Sources</a>
+      </nav>
+      <div class="topbar-actions">
+        <button id="startWalkthroughTop" class="walkthrough-trigger" type="button">85-sec tour</button>
+        <button class="mobile-controls-button" id="mobileControlsButton" type="button" aria-controls="controls" aria-expanded="false">Filters</button>
+      </div>
     </header>
 
-    <main id="top" class="page-shell">
-      <aside id="controls" class="sidebar" aria-label="Dashboard controls">
-        <div class="sidebar-heading"><span class="live-dot"><i></i> Scenario controls</span><button id="closeControls" class="icon-button" type="button" aria-label="Close controls">×</button></div>
-        <label class="control-label" for="cityFilter">City / LGU lens</label>
+    <main class="page-shell">
+      <aside id="controls" class="sidebar" aria-labelledby="controlsTitle">
+        <div class="sidebar-heading">
+          <span id="controlsTitle" class="live-dot"><i></i> Scenario controls</span>
+          <button id="closeControls" class="icon-button" type="button" aria-label="Close filters">×</button>
+        </div>
+        <div class="scenario-chip"><span>Live scenario</span><strong id="sidebarScenarioId">Loading…</strong></div>
+        <label class="control-label" for="cityFilter">City / LGU scope</label>
         <select id="cityFilter"></select>
-        <label class="toggle-row"><input id="includeUnverified" type="checkbox"><span><b>Include reduced-confidence routes</b><small>Routes with an unavailable equity proxy</small></span></label>
-        <section class="weight-stack" aria-label="Live score weights">
-          <div class="section-kicker"><span>Priority model</span><span id="weightTotal">100%</span></div>
-          <p>Move the weights to test policy scenarios. Values are normalised automatically.</p>
-          <label>Emissions potential <output id="emissionsValue">35</output></label><input id="emissionsWeight" type="range" min="0" max="100" step="5" value="35">
-          <label>Equity density proxy <output id="equityValue">35</output></label><input id="equityWeight" type="range" min="0" max="100" step="5" value="35">
-          <label>Grid feasibility <output id="gridValue">15</output></label><input id="gridWeight" type="range" min="0" max="100" step="5" value="15">
-          <label>Operator readiness <output id="operatorValue">15</output></label><input id="operatorWeight" type="range" min="0" max="100" step="5" value="15">
+        <label class="toggle-row" for="includeHistoric"><input id="includeHistoric" type="checkbox" checked><span><b>Show historic screening baseline</b><small>Historic GTFS is not proof of current service</small></span></label>
+
+        <section class="preset-stack" aria-labelledby="presetTitle">
+          <div class="section-kicker"><span id="presetTitle">Policy lens</span><span>Human controlled</span></div>
+          <div class="preset-grid"><button type="button" data-preset="default" class="active">Climate + Equity</button><button type="button" data-preset="equity">Equity-first</button><button type="button" data-preset="infrastructure">Infrastructure-first</button></div>
         </section>
-        <section class="export-card" aria-label="Export reports">
-          <div class="section-kicker"><span>Decision pack</span><span>3 formats</span></div>
-          <p>Export the current city lens, live weights and ranked recommendations.</p>
-          <div class="export-grid"><button id="exportPdf" class="button-primary" type="button"><span>PDF</span> Print report</button><button id="exportWord" type="button"><span>DOC</span> Word report</button><button id="downloadCsv" type="button"><span>CSV</span> Ranking data</button></div>
+
+        <section class="weight-stack" aria-labelledby="weightsTitle">
+          <div class="section-kicker"><span id="weightsTitle">Normalized weights</span><span id="weightTotal">100%</span></div>
+          <p id="weightsHelp">Move any slider. The displayed policy weights are normalized to 100%.</p>
+          <label for="climateWeight">Climate impact <output id="climateValue" for="climateWeight">40%</output></label><input id="climateWeight" type="range" min="0" max="100" step="5" value="40" aria-describedby="weightsHelp">
+          <label for="equityWeight">Equity exposure <output id="equityValue" for="equityWeight">30%</output></label><input id="equityWeight" type="range" min="0" max="100" step="5" value="30" aria-describedby="weightsHelp">
+          <label for="chargingWeight">Charging readiness <output id="chargingValue" for="chargingWeight">15%</output></label><input id="chargingWeight" type="range" min="0" max="100" step="5" value="15" aria-describedby="weightsHelp">
+          <label for="operatorWeight">Operator readiness <output id="operatorValue" for="operatorWeight">15%</output></label><input id="operatorWeight" type="range" min="0" max="100" step="5" value="15" aria-describedby="weightsHelp">
+        </section>
+
+        <section class="scenario-manager" aria-labelledby="scenarioManagerTitle">
+          <div class="section-kicker"><span id="scenarioManagerTitle">Saved scenarios</span><span>Local device</span></div>
+          <label class="scenario-field" for="scenarioTitle">Scenario name<input id="scenarioTitle" type="text" maxlength="80" autocomplete="off" value="Climate + Equity" placeholder="Name this policy scenario"></label>
+          <div class="scenario-action-grid"><button id="resetScenario" type="button">Reset to default</button><button id="saveScenario" class="button-primary" type="button">Save current</button><button id="copyScenario" class="scenario-copy" type="button">Copy / share scenario JSON</button></div>
+          <label class="scenario-field" for="savedScenarioSelect">Saved on this device<select id="savedScenarioSelect"><option value="">No saved scenarios</option></select></label>
+          <div class="scenario-action-grid"><button id="loadScenario" type="button" disabled>Load selected</button><button id="deleteScenario" class="danger-button" type="button" disabled>Delete selected</button></div>
+          <p id="scenarioManagerStatus" class="scenario-manager-status" role="status" aria-live="polite">Scenario IDs use normalized analytical inputs; names and save times do not change the ID.</p>
+        </section>
+
+        <section class="export-card" aria-labelledby="exportTitle">
+          <div class="section-kicker"><span id="exportTitle">Decision pack</span><span>Audit ready</span></div>
+          <p>Every export carries the active scenario, build and model versions.</p>
+          <div class="export-grid"><button id="exportPdf" class="button-primary" type="button"><span>PDF</span> Decision brief</button><button id="exportWord" type="button"><span>DOC</span> Word report</button><button id="downloadCsv" type="button"><span>CSV</span> Corridor data</button><button id="downloadAudit" type="button"><span>JSON</span> Audit manifest</button></div>
         </section>
       </aside>
 
       <section class="content">
-        <section class="hero" aria-labelledby="hero-title">
-          <div class="hero-copy"><p class="eyebrow">AI × City Climate Action Hackathon 2026</p><h1 id="hero-title">Turn route data into an <em>electrification roadmap.</em></h1><p class="hero-lede">Route2Zero helps Metro Manila decision-makers identify jeepney corridors where electrification can deliver the strongest climate and equity value—without hiding uncertainty.</p><div class="hero-actions"><a class="button-primary" href="#map-section">Explore the live map</a><a class="button-quiet" href="#judge-guide">How it works</a></div></div>
-          <div class="hero-signal" aria-label="Route2Zero decision flow"><p>Decision signal</p><div class="signal-ring"><span id="heroTopScore">—</span><small>top priority</small></div><div class="signal-flow"><span>Route activity</span><i></i><span>Equity</span><i></i><span>Feasibility</span></div><small>Transparent weighted scoring · AI explains, never ranks</small></div>
+        <section id="overview" class="hero" aria-labelledby="heroTitle">
+          <div class="hero-copy"><p class="eyebrow">AI × City Climate Action Hackathon 2026</p><h1 id="heroTitle">Choose corridors that stay strong when the <em>evidence is tested.</em></h1><p class="hero-lede">Find the corridors that remain strong when climate impact, equity, infrastructure, operator evidence and uncertainty are tested together.</p><div class="hero-actions"><a class="button-primary" href="#corridor-map">Explore the corridor map</a><a class="button-quiet" href="#phase1-portfolio">Open Phase-1 portfolio</a><button id="startWalkthroughHero" class="button-quiet" type="button">Start guided walkthrough</button></div></div>
+          <div class="hero-signal" aria-label="Route2Zero analytical governance"><p>Decision architecture</p><div class="signal-orbit"><span id="heroRobustCount">—</span><small>robust-priority routes</small></div><div class="signal-flow"><span>ML estimates</span><i></i><span>Models quantify</span><i></i><span>People decide</span></div><small>ML-assisted corridor intelligence · climate-impact scenarios · human-controlled policy</small></div>
         </section>
 
-        <section class="trust-strip" aria-label="Data confidence notice"><div class="trust-icon">i</div><div><strong>Decision-grade transparency</strong><span>Every proxy, placeholder and data limitation stays visible in the interface and exported reports.</span></div><button id="openMethod" type="button">View assumptions</button></section>
-        <section class="metrics" aria-label="Summary metrics"><article><span>Routes in view</span><strong id="routesMetric">0</strong><small>Current policy lens</small></article><article><span>Complete scores</span><strong id="completeMetric">0</strong><small>All four dimensions</small></article><article><span>Top priority</span><strong id="topMetric">—</strong><small>Live weighted score</small></article><article><span>Road geometry</span><strong>Mapbox</strong><small>Selected route follows streets</small></article></section>
+        <section class="trust-strip" aria-label="Decision-use boundary"><div class="trust-icon" aria-hidden="true">i</div><div><strong>Screen first. Validate before committing.</strong><span>Historic operations, scenario impacts, proxies and neutral priors remain visibly labelled.</span></div><button id="openMethod" type="button">Review evidence boundary</button></section>
+        <section class="metrics" aria-label="Build summary"><article><span>Routes screened</span><strong id="routesMetric">0</strong><small>Historic route-direction universe</small></article><article><span>Current validations</span><strong id="validatedMetric">0</strong><small>Confirmed active in supplied ledger</small></article><article><span>Robust priority</span><strong id="robustMetric">0</strong><small>Across 5,000 policy tests</small></article><article><span>Scenario ID</span><strong id="scenarioMetric" class="metric-code">—</strong><small>Changes with policy controls</small></article></section>
 
-        <section id="map-section" class="panel map-panel">
-          <div class="panel-heading"><div><p class="eyebrow dark">Interactive corridor intelligence</p><h2>Explore priority routes on the street network</h2><p>Select a route to request a detailed Mapbox road path. Clustered points keep the regional view readable.</p></div><div class="route-search"><label for="routeFinder">Find a route</label><select id="routeFinder" aria-label="Route finder"></select></div></div>
-          <div class="map-frame"><div id="map" aria-label="Interactive Mapbox route map"></div><div class="map-legend" aria-label="Map legend"><span><i class="legend-low"></i>Lower</span><span><i class="legend-mid"></i>Mid</span><span><i class="legend-high"></i>Higher priority</span></div><div id="roadStatus" class="road-status" role="status"><i></i><span>Preparing road-matched route…</span></div></div>
+        <section id="corridor-map" class="panel map-panel" aria-labelledby="mapHeading">
+          <div class="panel-heading map-heading"><div><p class="eyebrow dark">Corridor Map</p><h2 id="mapHeading">Read the network through eight evidence layers</h2><p>All routes in the current scope are clustered. Select a corridor for a street-following Mapbox planning path.</p></div><div class="map-tools"><div class="route-search"><label for="routeFinder">Find a route</label><select id="routeFinder"></select></div><div class="layer-search"><label for="mapLayer">Map layer</label><select id="mapLayer"><option value="priority">Priority</option><option value="climate">Climate impact</option><option value="equity">Equity / exposure</option><option value="charging">Charging evidence</option><option value="evidence">Evidence confidence</option><option value="stability">Rank stability</option><option value="typology">Corridor typology</option><option value="validation">Validation status</option></select></div></div></div>
+          <p id="mapHelp" class="sr-only">Use the route selector as the keyboard-accessible alternative to clicking map points. Dashed route lines indicate approximate or unverified source geometry.</p>
+          <div class="map-frame"><div id="map" role="region" aria-label="Interactive Mapbox corridor map" aria-describedby="mapHelp"></div><div id="mapLegend" class="map-legend" aria-label="Map legend"></div><div id="roadStatus" class="road-status" role="status" aria-live="polite" aria-atomic="true"><i></i><span>Preparing the selected corridor…</span></div></div>
+          <div class="map-footnote"><span id="mapCount">0 routes shown</span><span><i class="line-sample dashed"></i> Dashed = source geometry unverified</span><span>Map © Mapbox · Data © OpenStreetMap</span></div>
         </section>
 
-        <section class="detail-grid">
-          <article class="panel route-detail"><div class="detail-topline"><p class="eyebrow dark">Selected recommendation</p><span id="sourcePill" class="pill">Deterministic explanation</span></div><h2 id="routeName">Loading route…</h2><p id="routeMeta" class="muted"></p><div class="mini-metrics"><span><b id="rankValue">—</b>Live rank</span><span><b id="scoreValue">—</b>Priority / 100</span><span><b id="lengthValue">—</b>Route length km</span></div><p id="routeRationale" class="rationale"></p></article>
-          <article class="panel score-panel"><p class="eyebrow dark">What drives the score</p><h2>Score breakdown</h2><div id="breakdownBars" class="bars"></div></article>
+        <section id="route-lens" class="panel route-lens" aria-labelledby="routeLensHeading">
+          <div class="panel-heading compact"><div><p class="eyebrow dark">Route Lens</p><h2 id="routeLensHeading">One corridor, eight decision signals</h2></div><span id="routeStatusPill" class="pill">Historic screening baseline</span></div>
+          <div class="route-identity"><div><h3 id="routeName">Loading route…</h3><p id="routeMeta"></p></div><p id="routeRationale" class="route-rationale"></p></div>
+          <div class="lens-grid">
+            <article class="lens-card accent-lime"><div><span>Priority</span><b id="priorityClaim">DERIVED</b></div><strong id="priorityValue">—</strong><p id="priorityDetail">Live policy score</p></article>
+            <article class="lens-card"><div><span>Evidence</span><b id="evidenceClaim">DERIVED</b></div><strong id="evidenceValue">—</strong><p id="evidenceDetail">Confidence grade</p></article>
+            <article class="lens-card"><div><span>Climate</span><b id="climateClaim">SCENARIO</b></div><strong id="climateRange">—</strong><p id="climateDetail">Net tCO₂e / year range</p></article>
+            <article class="lens-card"><div><span>Equity</span><b id="equityClaim">PROXY</b></div><strong id="equityScore">—</strong><p id="equityDetail">Population exposure only</p></article>
+            <article class="lens-card"><div><span>Charging</span><b id="chargingClaim">PROXY</b></div><strong id="chargingScore">—</strong><p id="chargingDetail">Mapped context; capacity unverified</p></article>
+            <article class="lens-card"><div><span>Operator</span><b id="operatorClaim">NEUTRAL PRIOR</b></div><strong id="operatorScore">—</strong><p id="operatorDetail">Awaiting consent-based evidence</p></article>
+            <article class="lens-card"><div><span>Robustness</span><b id="robustnessClaim">5,000 TESTS</b></div><strong id="robustnessScore">—</strong><p id="robustnessDetail">Top-10 probability</p></article>
+            <article class="lens-card"><div><span>Typology</span><b id="typologyClaim">ML ESTIMATED</b></div><strong id="typologyValue">—</strong><p id="typologyDetail">Comparable corridor pattern</p></article>
+          </div>
+          <div class="decision-change"><div><p class="eyebrow dark">What changes this decision?</p><h3 id="decisionChangeTitle">Loading evidence sensitivity…</h3><p id="decisionChangeCopy"></p></div><div class="rank-range"><span>Current rank <b id="currentRank">—</b></span><span>Median <b id="medianRank">—</b></span><span>P10–P90 <b id="rankRange">—</b></span></div></div>
         </section>
 
-        <section id="rankings" class="panel"><div class="panel-heading compact"><div><p class="eyebrow dark">Action queue</p><h2>Top routes for deeper feasibility work</h2></div><span class="pill">Click a row to map it</span></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>Route</th><th>Primary city</th><th>Priority</th><th>Emissions</th><th>Equity</th><th>Grid</th><th>Operator</th></tr></thead><tbody id="leaderboardBody"></tbody></table></div></section>
-
-        <section class="insight-grid">
-          <article class="panel chart-panel"><div><p class="eyebrow dark">Portfolio view</p><h2>Climate potential × equity</h2><p>Bubble size represents estimated weekday service activity.</p></div><canvas id="scatter" width="960" height="420" aria-label="Emissions and equity scatter plot"></canvas></article>
-          <article class="panel ask-panel"><p class="eyebrow dark">Evidence assistant</p><h2>Ask about the rankings</h2><p>Get a concise explanation grounded only in the current filtered scores.</p><label for="questionInput">Your question</label><textarea id="questionInput" rows="4" placeholder="Which Marikina routes should we examine first?"></textarea><button id="askButton" class="button-primary" type="button">Generate evidence brief</button><span id="answerSource" class="pill hidden">Offline deterministic answer</span><p id="answerText" class="answer"></p></article>
+        <section id="scenario-lab" class="panel scenario-lab" aria-labelledby="scenarioHeading">
+          <div class="panel-heading"><div><p class="eyebrow dark">Scenario Lab</p><h2 id="scenarioHeading">Compare policy choices without hiding trade-offs</h2><p>Live ranks respond to normalized human-controlled weights. Robustness remains a labelled precomputed reference around the default lens.</p></div><span id="scenarioLabId" class="scenario-id">—</span></div>
+          <div class="scenario-preset-row" aria-label="Scenario presets"><button type="button" data-preset="default" class="active">Climate + Equity</button><button type="button" data-preset="equity">Equity-first</button><button type="button" data-preset="infrastructure">Infrastructure-first</button></div>
+          <div class="scenario-grid"><article class="scenario-card"><p class="eyebrow dark">Active policy mix</p><div id="activeWeightBars" class="weight-bars"></div></article><article class="scenario-card"><p class="eyebrow dark">Compared with default</p><div id="scenarioComparison" class="comparison-summary"></div></article></div>
         </section>
 
-        <section id="judge-guide" class="judge-guide">
-          <div class="guide-intro"><p class="eyebrow dark">For judges and city partners</p><h2>Understand the decision logic in minutes.</h2><p>These sections are collapsed by default so the dashboard stays focused during a live demonstration.</p></div>
+        <section id="phase1-portfolio" class="panel portfolio-panel" aria-labelledby="portfolioHeading">
+          <div class="panel-heading"><div><p class="eyebrow dark">Phase-1 Portfolio</p><h2 id="portfolioHeading">Build an evidence-validation shortlist, not a shopping list</h2><p>The default eight-corridor result is precomputed by the deterministic pipeline. Changed constraints produce a clearly labelled interactive preview.</p></div><span id="portfolioScenarioId" class="scenario-id">—</span></div>
+          <div class="portfolio-builder" aria-label="Portfolio constraints"><label for="portfolioMax">Maximum corridors<select id="portfolioMax"><option>4</option><option>6</option><option selected>8</option><option>10</option><option>12</option></select></label><label for="portfolioGrade">Minimum evidence grade<select id="portfolioGrade"><option value="B">B or better</option><option value="C" selected>C or better</option><option value="D">D or better</option></select></label><label for="portfolioEquity">Minimum equity score<select id="portfolioEquity"><option value="0">No floor</option><option value="40" selected>40</option><option value="60">60</option><option value="75">75</option></select></label><button id="buildPortfolio" class="button-primary" type="button">Update shortlist</button></div>
+          <div class="portfolio-metrics"><article><span>Selected</span><strong id="portfolioCount">—</strong><small>corridors</small></article><article><span>Climate range</span><strong id="portfolioClimate">—</strong><small>tCO₂e / year</small></article><article><span>Average equity</span><strong id="portfolioEquityMetric">—</strong><small>exposure score</small></article><article><span>Evidence mix</span><strong id="portfolioEvidence">—</strong><small>selected grades</small></article></div>
+          <div class="portfolio-grid"><article><div class="subheading"><h3>Selected corridors</h3><span id="portfolioModePill" class="pill">Precomputed default</span></div><div id="portfolioList" class="portfolio-list"></div></article><article class="constraint-card"><h3>Why this differs from top-N</h3><div id="portfolioDelta"></div><h4>Active constraints</h4><ul id="portfolioConstraints"></ul></article></div>
+          <div class="action-queue"><div class="subheading"><div><p class="eyebrow dark">Corridor action queue</p><h3>Top routes under the active policy lens</h3></div><span class="pill">Select a route to inspect it</span></div><div class="table-wrap"><table><thead><tr><th>Rank</th><th>Route</th><th>City</th><th>Priority</th><th>Evidence</th><th>Climate range</th><th>Robustness</th></tr></thead><tbody id="leaderboardBody"></tbody></table></div><div id="mobileRouteCards" class="mobile-route-cards"></div></div>
+        </section>
+
+        <section id="evidence-ai" class="evidence-grid" aria-labelledby="evidenceHeading">
+          <article class="panel evidence-panel"><p class="eyebrow dark">Evidence queue</p><h2 id="evidenceHeading">Validate what could reverse the decision</h2><p>Priority is based on deterministic field perturbation, not language-model confidence.</p><div id="evidenceQueue" class="evidence-queue"></div></article>
+          <article class="panel ask-panel"><p class="eyebrow">Planning &amp; Evidence Assistant</p><h2>Ask from the active route and scenario</h2><p>The assistant receives structured evidence only. It cannot edit scores, policy weights or portfolio constraints.</p><div class="suggested-questions" aria-label="Suggested questions"><button type="button" data-question="What should the city validate first for this corridor?">Validate first</button><button type="button" data-question="Why is this corridor robust or scenario-dependent?">Explain robustness</button><button type="button" data-question="What could remove this corridor from the Phase-1 shortlist?">Portfolio risk</button></div><label for="questionInput">Your planning question</label><textarea id="questionInput" rows="4" placeholder="What evidence should the city request before piloting this route?"></textarea><button id="askButton" class="button-primary" type="button">Generate evidence brief</button><span id="answerSource" class="pill hidden">Deterministic fallback</span><div id="answerText" class="answer" role="status" aria-live="polite"></div></article>
+        </section>
+
+        <section id="method-sources" class="method-sources" aria-labelledby="methodHeading">
+          <div class="method-intro"><p class="eyebrow dark">Method &amp; Sources</p><h2 id="methodHeading">Transparent enough to challenge.</h2><p>Open only what you need. The dashboard stays focused while assumptions, provenance and limitations remain one click away.</p></div>
           <div class="accordion-stack">
-            <details><summary><span><b>01</b> How to use Route2Zero</span><i>+</i></summary><div class="accordion-content"><ol><li>Choose a city or keep the Metro Manila view.</li><li>Adjust the four weights to reflect a policy scenario.</li><li>Select a route or click a priority point on the map.</li><li>Review its street-following corridor, score drivers and known limitations.</li><li>Export the current evidence pack as PDF, Word or CSV.</li></ol></div></details>
-            <details><summary><span><b>02</b> Why this matters</span><i>+</i></summary><div class="accordion-content"><p>Electrification resources are limited, while Metro Manila has a large and diverse jeepney network. Route2Zero creates a transparent first-pass shortlist so city teams can focus expensive field validation, grid studies and cooperative engagement where potential public value is strongest.</p></div></details>
-            <details id="methodDetails"><summary><span><b>03</b> Method, assumptions and limitations</span><i>+</i></summary><div class="accordion-content method-grid"><p><strong>Emissions potential</strong>Route kilometres × estimated weekday trips. This is an activity proxy, not measured tailpipe emissions.</p><p><strong>Equity</strong>Population-weighted exposure to high-density 2020 WorldPop cells within a 300 m corridor catchment.</p><p><strong>Grid feasibility</strong>2024 Luzon renewable generation share. It is not local charger or substation capacity.</p><p><strong>Operator readiness</strong>Neutral 50/100 placeholder until cooperative financing workshops provide route-level evidence.</p><p><strong>Geometry</strong>Mapbox builds a drivable street path for the selected route from ordered GTFS coordinates. It is a planning visualisation, not an official franchise boundary.</p><p><strong>AI boundary</strong>Optional AI writes explanations after deterministic scoring. Model output never changes scores or ranks.</p></div></details>
-            <details><summary><span><b>04</b> Recommended next-step pilot</span><i>+</i></summary><div class="accordion-content"><p>Validate the highest-priority corridors with LGUs and cooperatives; collect fleet age, fuel use, ridership, depot access and financing readiness; conduct distribution-grid screening; then compare a small set of investment scenarios before procurement.</p></div></details>
+            <details><summary><span><b>01</b> How to use Route2Zero</span><i aria-hidden="true">+</i></summary><div class="accordion-content"><ol><li>Choose the Metro Manila or LGU scope.</li><li>Set a policy lens and inspect the live scenario ID.</li><li>Select a corridor on the map or action queue.</li><li>Read its eight signals and the evidence that could change the decision.</li><li>Build a constrained Phase-1 validation portfolio and export the audit pack.</li></ol></div></details>
+            <details><summary><span><b>02</b> Why this decision matters</span><i aria-hidden="true">+</i></summary><div class="accordion-content"><p>Electrification resources and field-validation capacity are limited. Route2Zero helps city teams identify which corridors merit deeper work while keeping climate ranges, weak evidence and possible reversals visible.</p></div></details>
+            <details id="methodDetails"><summary><span><b>03</b> Claims, assumptions and safeguards</span><i aria-hidden="true">+</i></summary><div class="accordion-content method-grid"><p><strong>ML service intelligence</strong>Predicts historic service activity for anomaly detection and gap analysis; it is not ridership and is not used when the direct historic proxy is available.</p><p><strong>Climate scenarios</strong>Low/base/high net CO₂e and energy results are deterministic scenarios, not measured reductions.</p><p><strong>Equity</strong>Uses population exposure only. No validated informal-settlement, socioeconomic or accessibility-gap layer is claimed.</p><p><strong>Charging</strong>Mapped proximity is contextual evidence, not proof of utility capacity, interconnection or site control.</p><p><strong>Operator</strong>A neutral prior remains until consent-based cooperative evidence is collected.</p><p><strong>Governance</strong>ML estimates. Deterministic models quantify. Policy weights remain human-controlled. The LLM explains and triages evidence; it never silently edits scores or choices.</p></div></details>
+            <details><summary><span><b>04</b> Sources, models and pipeline health</span><i aria-hidden="true">+</i></summary><div id="sourceHealth" class="accordion-content source-health">Loading build manifest…</div></details>
           </div>
         </section>
-        <footer><div class="brand footer-brand"><span class="brand-mark">R<span>2</span>Z</span><span><b>Route2Zero</b><small>From routes to a fair transition.</small></span></div><p>Prototype decision-support tool · Metro Manila · 2026</p></footer>
+
+        <footer><div class="brand footer-brand"><span class="brand-mark" aria-hidden="true">R<span>2</span>Z</span><span><b>Route2Zero 2.0</b><small>From route evidence to a fair transition.</small></span></div><p><a href="https://github.com/qjmre23/Route2Zero" target="_blank" rel="noreferrer">GitHub repository</a> · <a href="https://route2zero.netlify.app/" target="_blank" rel="noreferrer">Live deployment</a></p></footer>
       </section>
     </main>
-    <div id="controlsBackdrop" class="controls-backdrop" aria-hidden="true"></div>
+
+    <button id="controlsBackdrop" class="controls-backdrop" type="button" tabindex="-1" aria-hidden="true" aria-label="Close filters"></button>
+    <aside id="walkthroughPanel" class="walkthrough-panel hidden" role="dialog" aria-modal="false" aria-labelledby="walkthroughTitle" aria-describedby="walkthroughCopy"><div class="walkthrough-progress"><span id="walkthroughStep">1 / 6</span><span id="walkthroughTime">0–12 sec</span></div><h2 id="walkthroughTitle">Start with the city decision</h2><p id="walkthroughCopy">Route2Zero screens the full historic route universe, then keeps validation gaps visible before action.</p><div class="walkthrough-actions"><button id="walkthroughBack" type="button">Back</button><button id="walkthroughNext" class="button-primary" type="button">Next</button><button id="walkthroughClose" type="button">End tour</button></div></aside>
+
     <script src="/config.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.25.0/mapbox-gl.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>

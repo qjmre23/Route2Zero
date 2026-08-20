@@ -1,0 +1,58 @@
+{
+  "status": "PASS_WITH_WARNINGS",
+  "pipeline_version": "2.0.0",
+  "build_id": "r2z-45c4ba076af9",
+  "build_timestamp_utc": "2026-08-20T06:49:33Z",
+  "rows_processed": 1522,
+  "score_complete_count": 1522,
+  "reduced_information_score_count": 0,
+  "current_validation_count": 0,
+  "active_validation_count": 0,
+  "robust_priority_count": 9,
+  "phase1_corridor_count": 8,
+  "source_dates": {
+    "sakay_gtfs_master_historic": "2026-08-14",
+    "worldpop_phl_2020_1km": "2026-08-14",
+    "doe_luzon_generation_2024": "2026-08-14",
+    "osm_power_snapshot_2026_08_20": "2026-08-20",
+    "route2zero_climate_scenario_v1": "2026-08-20",
+    "route2zero_operator_prior_v1": "2026-08-20",
+    "route_validation_ledger": "2026-08-20",
+    "charging_site_evidence_ledger": "2026-08-20",
+    "operator_evidence_ledger": "2026-08-20",
+    "stakeholder_validation_ledger": "2026-08-20",
+    "route2zero_operator_scoring_v1": "2026-08-20",
+    "route2zero_validation_priority_v2": "2026-08-20"
+  },
+  "optional_sources_missing": [],
+  "model_versions": {
+    "service_intensity": "service-v1-266e0b1d",
+    "corridor_typology": "typology-v1-f9da2ebe"
+  },
+  "claim_status_columns_checked": [
+    "geometry_claim_status",
+    "service_input_claim_status",
+    "ml_prediction_claim_status",
+    "typology_claim_status",
+    "service_intensity_claim_status",
+    "climate_claim_status",
+    "equity_claim_status",
+    "charging_claim_status",
+    "operator_claim_status",
+    "evidence_claim_status"
+  ],
+  "critical_missing_values": {
+    "just_transition_score": 0,
+    "ml_service_intensity_prediction": 0,
+    "net_co2e_avoided_t_year_base": 0,
+    "equity_score": 0,
+    "charging_readiness_score": 0,
+    "operator_effective_score": 0,
+    "overall_evidence_confidence": 0
+  },
+  "warnings": [
+    "No current route validation records have been supplied; all service status remains historic-only.",
+    "No consent-based operator evidence has been supplied; the neutral prior remains active.",
+    "No utility capacity is verified; charging scores use mapped proximity and energy-demand screening only."
+  ]
+}

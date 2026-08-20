@@ -1,37 +1,161 @@
-# Route2Zero 2026 three-minute live demo
+# Route2Zero 2.0 live demonstration script
 
-For the full 24-slide narration, use [`script.txt`](../script.txt).
+## Duration and setup
 
-## 0:00–0:30 — State the decision
+Target duration: 80-88 seconds.
 
-Open the dashboard hero. “Route2Zero answers one planning question: which jeepney corridors deserve deeper electrification feasibility work first? It screens 1,522 Metro Manila route-direction records without hiding the age, proxy status or confidence of the evidence.”
+Use the production application at <https://route2zero.netlify.app/> or the generated local Netlify preview. Use desktop width for the primary walkthrough and keep the browser zoom at 100%.
 
-Point to the four headline metrics and the decision-grade transparency notice.
+Before recording:
 
-## 0:30–1:10 — Show the street-following route
+- confirm build `r2z-45c4ba076af9` is displayed or documented;
+- confirm scenario `scn-e0f12f397e`;
+- confirm 1,522 routes, 0 current validations, 9 robust priorities, and 8 Phase-1 corridors;
+- preselect `LTFRB_PUJ1353` as the flagship;
+- allow the Mapbox style to finish loading;
+- close unrelated tabs and notifications;
+- test the export button; and
+- keep the optional AI endpoint disabled unless its source label has been verified.
 
-Choose **Explore the live map**. “The regional records are clustered for readability. When I select a route, Mapbox Directions constructs a detailed road path, so the highlighted line follows streets rather than flying between stops.”
+Do not show the legacy 71.4 score, old 35/35/15/15 proxy controls, or a section labeled “Judge guide.”
 
-Point to **Street-following route ready · Mapbox Directions**. Add: “This improves the decision view, but it remains a screening geometry until the corridor is ground-checked with the city and operator.”
+## Shot sequence
 
-## 1:10–1:50 — Explain the rank
+### 0:00-0:10 — Decision and scale
 
-Scroll to the selected recommendation and rankings. “The leading record under the default policy lens is Francisco Homes–Cubao at 71.4. The score is a visible weighted sum: 35% emissions activity, 35% equity density, 15% grid context and 15% operator readiness.”
+**Screen:** Hero and release metrics.
 
-Point out that grid is regional and operator readiness is the neutral 50 placeholder. “A top rank means validate first—not invest automatically.”
+**Action:** Let the metric count-up finish, then move the pointer from 1,522 routes to 0 current validations and 9 robust priorities.
 
-## 1:50–2:20 — Test a policy scenario
+**Narration:**
 
-Open **Filters** on mobile or use the left rail on desktop. Move one slider and show the action queue update. “Policy choices are explicit. Values normalise automatically, and AI never changes the arithmetic or rank.”
+“Route2Zero helps a city decide which jeepney corridors to validate for electrification first. This build screens 1,522 historic route records, identifies nine robust priorities, and is explicit that current route validations are still zero.”
 
-Restore the defaults before continuing.
+**Transition:** Click the primary map action. Use the native smooth scroll; do not cut before the map settles.
 
-## 2:20–2:45 — Export the decision pack
+### 0:10-0:24 — Street-following flagship route
 
-Point to PDF, Word and CSV. “The current city lens, weights, shortlist and limitations travel into every export. PDF is ready for circulation, Word is editable and CSV supports analyst review.”
+**Screen:** Interactive map.
 
-## 2:45–3:00 — Close with the pilot
+**Action:** Select Francisco Homes - Cubao, route `LTFRB_PUJ1353`. Let the selection pulse and street-following Mapbox line draw.
 
-Open the collapsed **Judge guide**. “The next step is a six-month pilot: city kickoff, operator interviews, route ground-checks, grid and finance screening, and a city-owned shortlist.”
+**Narration:**
 
-Close: “Screen, validate, co-design, act.”
+“Selecting the flagship requests a street-following path so the line follows roads. It is a planning visualization, not proof of the current franchise alignment.”
+
+**Transition:** Click the selected route panel or next-step control to reveal the route lens.
+
+### 0:24-0:39 — Separate priority from evidence
+
+**Screen:** Route decision lens.
+
+**Action:** Point first to priority 79.07 and rank 1, then to evidence grade C and confidence 38.34. Highlight the top-10 frequency of 100%.
+
+**Narration:**
+
+“The route is first under the default human-controlled policy lens, but its evidence is only grade C. The 100% top-ten frequency means the rank survives the tested weights; it does not make the historic evidence current.”
+
+**Transition:** Open the climate range with one click.
+
+### 0:39-0:51 — Climate uncertainty
+
+**Screen:** Low/base/high climate and energy range.
+
+**Action:** Sweep the pointer from the negative low result, minus 1,111.8 tonnes per year, to the high result, 3,025.3 tonnes per year.
+
+**Narration:**
+
+“The climate engine keeps the full range. The conservative case is negative, while the high case is positive. These are scenarios to calibrate, not claimed emissions reductions.”
+
+**Transition:** Click “What to validate next.”
+
+### 0:51-1:03 — Value of information
+
+**Screen:** Validation-priority panel.
+
+**Action:** Reveal the highest-value missing fields and rank-swing or portfolio-flip indicator.
+
+**Narration:**
+
+“Instead of hiding missing data, Route2Zero tests which field could change the decision most, then creates an evidence request for the city, operator, or utility.”
+
+**Transition:** Click the Phase-1 portfolio tab or anchor.
+
+### 1:03-1:17 — Constrained portfolio
+
+**Screen:** Eight-corridor portfolio and simple-top-N comparison.
+
+**Action:** Animate or highlight the four removed and four added routes, then show the eight-corridor count.
+
+**Narration:**
+
+“The Phase-1 portfolio is not the top eight copied into a list. Corridor and city constraints replace four records, producing eight validation cases with no fabricated budget.”
+
+**Transition:** Open the planning summary.
+
+### 1:17-1:26 — AI boundary and close
+
+**Screen:** Structured planning summary and export action.
+
+**Action:** Show the response source label, then click the export button once.
+
+**Narration:**
+
+“The assistant explains structured outputs and works with deterministic fallback. It never changes a score, climate value, or rank. Route2Zero turns uncertainty into a city-owned validation plan.”
+
+End on the exported decision-record title or the Route2Zero mark with the live and GitHub links visible.
+
+## Interaction choreography
+
+- Use one deliberate click per transition.
+- Keep the pointer visible but stationary during narration.
+- Allow metric, route-line, and panel transitions to complete before moving.
+- Use a short click ripple or button-state change rather than decorative cursor trails.
+- Avoid rapid scrolling.
+- Avoid opening browser developer tools in the submitted walkthrough.
+- If a network call is slow, use a clean cut after the status appears; do not claim success before the line renders.
+- If Mapbox fails, state that the screening geometry remains available and continue. Do not draw a straight line and call it road-following.
+- If the AI endpoint fails, show the deterministic fallback source label and continue.
+
+## Claims checklist
+
+The narration may state:
+
+- 1,522 route-direction records are screened;
+- 0 current validations are supplied;
+- 9 records are robust priorities;
+- 8 corridors are selected for Phase 1;
+- the flagship score is 79.07 under the named default scenario;
+- its evidence is grade C, 38.34;
+- its top-10 frequency is 100% across 5,000 scenarios;
+- its low/high climate range is -1,111.8 to 3,025.3 tCO2e/year; and
+- the LLM has no ranking influence.
+
+The narration must not state:
+
+- that all routes operate in 2026;
+- that the map is an official route trace;
+- that population density identifies informal settlements;
+- that a nearby substation has capacity;
+- that operator readiness is observed;
+- that scenario CO2e has been achieved;
+- that the portfolio is financially optimized; or
+- that AI selected a public investment.
+
+## Recovery paths
+
+### Map request unavailable
+
+Say: “The application has preserved the source screening geometry and lowered the route-path claim. Field verification remains required.”
+
+### Optional AI unavailable
+
+Say: “The explanation has returned through deterministic fallback. All analytical and export functions remain available.”
+
+### Export blocked by browser
+
+Use the print preview already prepared for the same build and scenario. Do not substitute an outdated artifact.
+
+### Timing overrun
+
+Cut the value-of-information explanation to: “It identifies the evidence most likely to change the decision.” Keep the climate caveat and AI boundary.

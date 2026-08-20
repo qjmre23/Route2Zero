@@ -1,0 +1,30 @@
+{
+  "version": "climate-v1.0",
+  "source_policy": "Scenario inputs must be pilot-calibrated before investment use.",
+  "operating_days_per_year": {"value": 300, "source_id": "route2zero_climate_scenario_v1"},
+  "charger_efficiency": {"value": 0.9, "source_id": "route2zero_climate_scenario_v1"},
+  "current_grid_kgco2e_per_kwh": {"value": 0.7181, "source_id": "doe_luzon_generation_2024"},
+  "scenarios": {
+    "low": {
+      "diesel_km_per_liter": {"value": 6.0, "source_id": "route2zero_climate_scenario_v1"},
+      "diesel_kgco2e_per_liter": {"value": 2.68, "source_id": "route2zero_climate_scenario_v1"},
+      "electric_kwh_per_km": {"value": 1.05, "source_id": "route2zero_climate_scenario_v1"},
+      "grid_kgco2e_per_kwh": {"value": 0.7181, "source_id": "doe_luzon_generation_2024"},
+      "electrification_share": {"value": 0.3, "source_id": "route2zero_climate_scenario_v1"}
+    },
+    "base": {
+      "diesel_km_per_liter": {"value": 5.0, "source_id": "route2zero_climate_scenario_v1"},
+      "diesel_kgco2e_per_liter": {"value": 2.68, "source_id": "route2zero_climate_scenario_v1"},
+      "electric_kwh_per_km": {"value": 0.75, "source_id": "route2zero_climate_scenario_v1"},
+      "grid_kgco2e_per_kwh": {"value": 0.55, "source_id": "route2zero_climate_scenario_v1"},
+      "electrification_share": {"value": 0.5, "source_id": "route2zero_climate_scenario_v1"}
+    },
+    "high": {
+      "diesel_km_per_liter": {"value": 4.0, "source_id": "route2zero_climate_scenario_v1"},
+      "diesel_kgco2e_per_liter": {"value": 2.68, "source_id": "route2zero_climate_scenario_v1"},
+      "electric_kwh_per_km": {"value": 0.55, "source_id": "route2zero_climate_scenario_v1"},
+      "grid_kgco2e_per_kwh": {"value": 0.35, "source_id": "route2zero_climate_scenario_v1"},
+      "electrification_share": {"value": 0.7, "source_id": "route2zero_climate_scenario_v1"}
+    }
+  }
+}

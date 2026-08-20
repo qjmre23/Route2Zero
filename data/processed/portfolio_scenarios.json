@@ -1,0 +1,168 @@
+{
+  "version": "portfolio-v1.0",
+  "scenarios": [
+    {
+      "scenario_id": "prt-fd6de9d793",
+      "title": "Evidence-aware Phase 1",
+      "source_scenario_id": "scn-e0f12f397e",
+      "mode": "evidence_shortlist",
+      "optimization_method": "deterministic_selection",
+      "selection_engine_version": "deterministic-selection-v2",
+      "constraints": {
+        "title": "Evidence-aware Phase 1",
+        "max_corridors": 8,
+        "minimum_evidence_grade": "C",
+        "minimum_equity_score": 40,
+        "maximum_evidence_limited_corridors": 2,
+        "maximum_corridors_per_primary_city": 2,
+        "maximum_route_directions_per_corridor": 1,
+        "exclude_inactive_routes": true,
+        "hypothetical_budget_php": null,
+        "mode": "evidence_shortlist"
+      },
+      "status": "feasible",
+      "infeasibility_diagnostics": null,
+      "selected_route_ids": [
+        "LTFRB_PUJ1353",
+        "LTFRB_PUJ1241",
+        "LTFRB_PUJ2083",
+        "LTFRB_PUJ1156",
+        "LTFRB_PUJ1638",
+        "LTFRB_PUJ1153",
+        "LTFRB_PUJ1350",
+        "LTFRB_PUJ1405"
+      ],
+      "selected_routes": [
+        {
+          "route_id": "LTFRB_PUJ1353",
+          "route_long_name": "Francisco Homes - Cubao",
+          "primary_city": "San Jose del Monte",
+          "priority_score": 79.07,
+          "evidence_grade": "C",
+          "robustness_label": "ROBUST PRIORITY",
+          "climate_low_t_year": -1111.8,
+          "climate_high_t_year": 3025.3
+        },
+        {
+          "route_id": "LTFRB_PUJ1241",
+          "route_long_name": "Dasmarinas Resettlement Area - Baclaran via Coastal Rd.",
+          "primary_city": "Pasay",
+          "priority_score": 76.9,
+          "evidence_grade": "C",
+          "robustness_label": "ROBUST PRIORITY",
+          "climate_low_t_year": -1104.0,
+          "climate_high_t_year": 3004.0
+        },
+        {
+          "route_id": "LTFRB_PUJ2083",
+          "route_long_name": "BACLARAN - DASMARINAS B BAYAN",
+          "primary_city": "Dasmarinas",
+          "priority_score": 76.73,
+          "evidence_grade": "C",
+          "robustness_label": "ROBUST PRIORITY",
+          "climate_low_t_year": -1095.7,
+          "climate_high_t_year": 2981.6
+        },
+        {
+          "route_id": "LTFRB_PUJ1156",
+          "route_long_name": "Binangonan - Pasig (TP)",
+          "primary_city": "Binan",
+          "priority_score": 75.11,
+          "evidence_grade": "C",
+          "robustness_label": "ROBUST PRIORITY",
+          "climate_low_t_year": -1105.5,
+          "climate_high_t_year": 3008.2
+        },
+        {
+          "route_id": "LTFRB_PUJ1638",
+          "route_long_name": "EDSA/Shaw Central - Morong via Antipolo, Theresa",
+          "primary_city": "Mandaluyong",
+          "priority_score": 72.11,
+          "evidence_grade": "C",
+          "robustness_label": "ROBUST PRIORITY",
+          "climate_low_t_year": -949.1,
+          "climate_high_t_year": 2582.6
+        },
+        {
+          "route_id": "LTFRB_PUJ1153",
+          "route_long_name": "Binangonan - JRC via Angono",
+          "primary_city": "Mandaluyong",
+          "priority_score": 71.49,
+          "evidence_grade": "C",
+          "robustness_label": "SCENARIO-DEPENDENT",
+          "climate_low_t_year": -1029.4,
+          "climate_high_t_year": 2801.0
+        },
+        {
+          "route_id": "LTFRB_PUJ1350",
+          "route_long_name": "Francisco Homes - Philcoa",
+          "primary_city": "San Jose del Monte",
+          "priority_score": 71.59,
+          "evidence_grade": "C",
+          "robustness_label": "SCENARIO-DEPENDENT",
+          "climate_low_t_year": -982.7,
+          "climate_high_t_year": 2673.9
+        },
+        {
+          "route_id": "LTFRB_PUJ1405",
+          "route_long_name": "Bagong Silang - Philcoa via Commonwealth Ave., Maligaya Park",
+          "primary_city": "Caloocan",
+          "priority_score": 70.33,
+          "evidence_grade": "C",
+          "robustness_label": "SCENARIO-DEPENDENT",
+          "climate_low_t_year": -812.7,
+          "climate_high_t_year": 2211.4
+        }
+      ],
+      "simple_top_n_route_ids": [
+        "LTFRB_PUJ1353",
+        "LTFRB_PUJ1241",
+        "LTFRB_PUJ2083",
+        "LTFRB_PUJ1352",
+        "LTFRB_PUJ1240",
+        "LTFRB_PUJ1156",
+        "LTFRB_PUJ2084",
+        "LTFRB_PUJ1157"
+      ],
+      "added_by_constraints": [
+        "LTFRB_PUJ1153",
+        "LTFRB_PUJ1350",
+        "LTFRB_PUJ1405",
+        "LTFRB_PUJ1638"
+      ],
+      "removed_by_constraints": [
+        "LTFRB_PUJ1157",
+        "LTFRB_PUJ1240",
+        "LTFRB_PUJ1352",
+        "LTFRB_PUJ2084"
+      ],
+      "portfolio_climate_impact_t_year": {
+        "low": -8190.9,
+        "base": 2710.9,
+        "high": 22288.0
+      },
+      "average_equity_score": 73.9,
+      "average_evidence_confidence": 37.8,
+      "evidence_grade_distribution": {
+        "C": 8
+      },
+      "city_distribution": {
+        "San Jose del Monte": 2,
+        "Mandaluyong": 2,
+        "Pasay": 1,
+        "Dasmarinas": 1,
+        "Binan": 1,
+        "Caloocan": 1
+      },
+      "binding_constraints": [
+        "maximum 8 corridors",
+        "maximum 2 corridors per primary city",
+        "maximum 1 route direction per normalized corridor",
+        "minimum equity score 40",
+        "minimum evidence grade C"
+      ],
+      "hypothetical_budget_used": false,
+      "disclaimer": "This is an evidence-validation shortlist, not a procurement or investment authorization."
+    }
+  ]
+}
