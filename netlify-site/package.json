@@ -5,6 +5,6 @@
   "type": "module",
   "scripts": {
     "build": "node scripts/build-netlify.mjs",
-    "check": "node --check public/app.js && node --check netlify/functions/explain.mjs && node --check scripts/build-netlify.mjs"
+    "check": "node --check public/app.js && node --check netlify/functions/explain.mjs && node --check scripts/build-netlify.mjs && node --test tests/explain.test.mjs"
   }
 }

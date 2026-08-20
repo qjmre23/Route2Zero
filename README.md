@@ -293,7 +293,7 @@ MODEL=your_model_name
 AI_EXPLANATIONS_ENABLED=true
 ```
 
-`ABSK_KEY` is the API-key variable. It belongs in Netlify Functions scope and must never be written to `public/config.js`, browser JavaScript, screenshots, or committed environment files. If the variables are absent or the request fails, the endpoint returns deterministic fallback text and the decision pipeline remains available.
+`ABSK_KEY` is the API-key variable. It belongs in Netlify Functions scope and must never be written to `public/config.js`, browser JavaScript, screenshots, or committed environment files. `BASE_URL` may be either an OpenAI-compatible API base URL or the complete HTTPS `/chat/completions` endpoint. If the provider is unavailable, the assistant returns a clearly labelled evidence-only response and retries the model on the next question instead of caching the failure.
 
 ## Documentation set
 

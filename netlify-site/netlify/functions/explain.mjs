@@ -6,6 +6,7 @@ const jsonHeaders = {
 
 const BODY_LIMIT_BYTES = 30000;
 const QUESTION_LIMIT = 500;
+const PROVIDER_TIMEOUT_MS = 18000;
 const IDENTIFIER_PATTERN = /^[A-Za-z0-9][A-Za-z0-9._-]{2,79}$/;
 const requestBuckets = new Map();
 
@@ -188,7 +189,7 @@ function modelAnswerIsGrounded(answer, context) {
   )));
 }
 
-function responseBody(context, answer, source) {
+function responseBody(context, answer, source, aiStatus) {
   const actions = deterministicActions(context);
   return {
     answer,
@@ -197,6 +198,7 @@ function responseBody(context, answer, source) {
     validation_actions: actions,
     actions,
     source,
+    ai_status: aiStatus,
     scenario_id: context.scenario.scenario_id,
     build_id: context.scenario.build_id,
     route_id: context.route?.route_id || null,
@@ -215,6 +217,31 @@ function responseBody(context, answer, source) {
     llm_ranking_influence: false,
     policy_weights_human_controlled: true
   };
+}
+
+function resolveChatCompletionEndpoint(value) {
+  const endpoint = new URL(String(value || "").trim());
+  if (endpoint.protocol !== "https:") throw new Error("unsupported protocol");
+  const path = endpoint.pathname.replace(/\/+$/, "");
+  if (!/\/chat\/completions$/i.test(path)) endpoint.pathname = `${path}/chat/completions`;
+  endpoint.hash = "";
+  return endpoint.toString();
+}
+
+function textFromContent(content) {
+  if (typeof content === "string") return content;
+  if (!Array.isArray(content)) return "";
+  return content.map((item) => {
+    if (typeof item === "string") return item;
+    return typeof item?.text === "string" ? item.text : "";
+  }).filter(Boolean).join(" ");
+}
+
+function extractProviderAnswer(data) {
+  return textFromContent(data?.choices?.[0]?.message?.content)
+    || textFromContent(data?.content)
+    || textFromContent(data?.output?.message?.content)
+    || boundedText(data?.output_text, 1200);
 }
 
 export async function handler(event) {
@@ -237,20 +264,23 @@ export async function handler(event) {
   const apiKey = String(process.env.ABSK_KEY || "").trim();
   const baseUrl = String(process.env.BASE_URL || "").trim().replace(/\/+$/, "");
   const model = String(process.env.MODEL || "").trim();
-  let endpoint;
+  let endpoint = "";
   try {
-    const parsedBase = new URL(baseUrl);
-    if (parsedBase.protocol !== "https:") throw new Error("unsupported protocol");
-    endpoint = new URL(`${parsedBase.pathname.replace(/\/$/, "")}/chat/completions`, parsedBase.origin).toString();
-  } catch {
-    endpoint = "";
-  }
+    endpoint = resolveChatCompletionEndpoint(baseUrl);
+  } catch {}
   if (!apiKey || !endpoint || !model || !["1", "true", "yes"].includes(enabled)) {
-    return json(200, responseBody(context, fallback, "deterministic_fallback"));
+    const aiStatus = !["1", "true", "yes"].includes(enabled)
+      ? "disabled"
+      : !apiKey
+        ? "missing_api_key"
+        : !endpoint
+          ? "invalid_base_url"
+          : "missing_model";
+    return json(200, responseBody(context, fallback, "deterministic_fallback", aiStatus));
   }
 
   const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), 12000);
+  const timeout = setTimeout(() => controller.abort(), PROVIDER_TIMEOUT_MS);
   try {
     const evidence = JSON.stringify({ scenario: context.scenario, route: context.route, portfolio: context.portfolio });
     const response = await fetch(endpoint, {
@@ -273,13 +303,19 @@ export async function handler(event) {
         temperature: 0.2
       })
     });
-    if (!response.ok) return json(200, responseBody(context, fallback, "deterministic_fallback"));
+    if (!response.ok) return json(200, responseBody(context, fallback, "deterministic_fallback", `provider_http_${response.status}`));
     const data = await response.json();
-    const answer = boundedText(data?.choices?.[0]?.message?.content, 1200);
+    const answer = boundedText(extractProviderAnswer(data), 1200);
     const groundedAnswer = modelAnswerIsGrounded(answer, context) ? answer : "";
-    return json(200, responseBody(context, groundedAnswer || fallback, groundedAnswer ? "netlify_function_api" : "deterministic_fallback"));
-  } catch {
-    return json(200, responseBody(context, fallback, "deterministic_fallback"));
+    return json(200, responseBody(
+      context,
+      groundedAnswer || fallback,
+      groundedAnswer ? "netlify_function_api" : "deterministic_fallback",
+      groundedAnswer ? "ok" : "grounding_rejected"
+    ));
+  } catch (error) {
+    const aiStatus = error?.name === "AbortError" ? "provider_timeout" : "provider_request_failed";
+    return json(200, responseBody(context, fallback, "deterministic_fallback", aiStatus));
   } finally {
     clearTimeout(timeout);
   }

@@ -1222,7 +1222,11 @@ function renderAssistantAnswer(data) {
   const answer = escapeHtml(data.answer || "No answer was returned.");
   const actions = Array.isArray(data.actions) ? data.actions.slice(0, 5) : [];
   els.answerText.innerHTML = `<p>${answer}</p>${actions.length ? `<ul>${actions.map((action) => `<li>${escapeHtml(action)}</li>`).join("")}</ul>` : ""}`;
-  const sourceLabels = { netlify_function_api: "AI-generated · structured evidence", deterministic_fallback: "Deterministic fallback · offline safe", precomputed_planner_cache: "Precomputed evidence plan" };
+  const sourceLabels = {
+    netlify_function_api: "AI-generated · structured evidence",
+    deterministic_fallback: data.ai_status === "disabled" ? "AI disabled · evidence-only response" : "AI unavailable · evidence-only response",
+    precomputed_planner_cache: "Precomputed evidence plan"
+  };
   els.answerSource.textContent = sourceLabels[data.source] || "Structured evidence response";
   els.answerSource.classList.remove("hidden");
 }
@@ -1248,11 +1252,10 @@ async function askQuestion() {
     const data = await response.json();
     if (!response.ok) throw new Error(data.error || "Assistant unavailable");
     const result = { ...data, scenario_id: data.scenario_id || state.scenarioId };
-    state.assistantCache.set(key, result);
+    if (result.source === "netlify_function_api") state.assistantCache.set(key, result);
     renderAssistantAnswer(result);
   } catch {
-    const fallback = { ...localAssistantFallback(context), source: "deterministic_fallback", scenario_id: state.scenarioId };
-    state.assistantCache.set(key, fallback);
+    const fallback = { ...localAssistantFallback(context), source: "deterministic_fallback", ai_status: "function_unavailable", scenario_id: state.scenarioId };
     renderAssistantAnswer(fallback);
   } finally {
     els.askButton.disabled = false;
