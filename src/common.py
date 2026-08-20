@@ -127,7 +127,16 @@ def merge_intervals(intervals: Iterable[tuple[float, float]]) -> float:
 
 def write_json(path: Path, payload: object) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    path.write_text(json.dumps(payload, indent=2, ensure_ascii=False), encoding="utf-8")
+    with path.open("w", encoding="utf-8", newline="\n") as stream:
+        stream.write(json.dumps(payload, indent=2, ensure_ascii=False))
+
+
+def normalize_text_newlines(path: Path) -> None:
+    """Rewrite a generated text artifact with platform-independent LF endings."""
+    data = path.read_bytes()
+    normalized = data.replace(b"\r\n", b"\n").replace(b"\r", b"\n")
+    if normalized != data:
+        path.write_bytes(normalized)
 
 
 def read_json(path: Path) -> object:

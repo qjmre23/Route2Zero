@@ -133,6 +133,8 @@ def test_manifests_are_complete_and_build_ids_match(scores: pd.DataFrame) -> Non
         assert output_path.is_file(), filename
         assert SHA256_PATTERN.fullmatch(expected)
         assert sha256(output_path) == expected, filename
+        if output_path.suffix in {".csv", ".json", ".geojson"}:
+            assert b"\r" not in output_path.read_bytes(), f"non-canonical newline in {filename}"
     model_checksums = build_manifest["model_artifact_checksums"]
     assert set(model_checksums) == {
         "service_intensity.joblib",
@@ -143,6 +145,8 @@ def test_manifests_are_complete_and_build_ids_match(scores: pd.DataFrame) -> Non
     for filename, expected in model_checksums.items():
         assert SHA256_PATTERN.fullmatch(expected)
         assert sha256(MODELS / filename) == expected
+        if filename.endswith(".json"):
+            assert b"\r" not in (MODELS / filename).read_bytes(), f"non-canonical newline in {filename}"
 
 
 def test_route_universe_is_complete_unique_and_governed(

@@ -14,6 +14,7 @@ from common import (
     PROCESSED_DIR,
     ROOT,
     ensure_output_dirs,
+    normalize_text_newlines,
     read_json,
     sha256_file,
     stable_hash,
@@ -55,6 +56,11 @@ def main() -> int:
     missing = [name for name in REQUIRED_OUTPUTS if not (PROCESSED_DIR / name).exists()]
     if missing:
         raise FileNotFoundError(f"Required Route2Zero 2.0 outputs missing: {missing}")
+    for name in REQUIRED_OUTPUTS:
+        normalize_text_newlines(PROCESSED_DIR / name)
+    for name in MODEL_ARTIFACTS:
+        if name.endswith(".json"):
+            normalize_text_newlines(MODELS_DIR / name)
     config_checksums = {path.name: sha256_file(path) for path in sorted(CONFIG_DIR.glob("*.json"))}
     source_manifest = read_json(PROCESSED_DIR / "source_manifest.json")
     source_checksums = {source["source_id"]: source.get("checksum_sha256") for source in source_manifest["sources"]}
@@ -82,6 +88,8 @@ def main() -> int:
     geodata["build_id"] = build_id
     geodata["build_timestamp_utc"] = build_timestamp
     geodata.to_file(geo_path, driver="GeoJSON")
+    normalize_text_newlines(score_path)
+    normalize_text_newlines(geo_path)
 
     selected_candidates = scores[
         scores["phase1_selected"].astype(bool)
@@ -169,6 +177,8 @@ def main() -> int:
         "warnings": warnings,
     }
     write_json(PROCESSED_DIR / "pipeline_report.json", report)
+    for name in [*REQUIRED_OUTPUTS, *FINAL_REPORT_OUTPUTS]:
+        normalize_text_newlines(PROCESSED_DIR / name)
     output_checksums = {
         name: sha256_file(PROCESSED_DIR / name)
         for name in [*REQUIRED_OUTPUTS, *FINAL_REPORT_OUTPUTS]

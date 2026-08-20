@@ -54,7 +54,7 @@
     "meaningful_vs_baseline": true,
     "influences_climate_when_historic_value_missing": true,
     "random_seed": 20260820,
-    "trained_at_utc": "2026-08-20T06:24:35Z",
+    "trained_at_utc": "2026-08-20T06:47:51Z",
     "python_version": "3.12.13",
     "scikit_learn_version": "1.9.0",
     "limitations": [
@@ -117,7 +117,7 @@
       "3": "Local Feeder"
     },
     "typology_used_for_policy_score": false,
-    "trained_at_utc": "2026-08-20T06:24:38Z",
+    "trained_at_utc": "2026-08-20T06:47:55Z",
     "limitations": "Typology describes structural similarity; it does not infer income, vulnerability or settlement status."
   }
 }

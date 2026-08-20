@@ -14,7 +14,7 @@ The repository-facing documentation is anchored to the following reproducible ou
 |---|---|
 | Pipeline version | `2.0.0` |
 | Build ID | `r2z-45c4ba076af9` |
-| Build timestamp | `2026-08-20T06:25:29Z` |
+| Build timestamp | `2026-08-20T06:49:33Z` |
 | Default policy scenario | `scn-e0f12f397e` |
 | Phase-1 portfolio scenario | `prt-fd6de9d793` |
 | Route-direction records | 1,522 |
