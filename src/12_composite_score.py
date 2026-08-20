@@ -52,10 +52,25 @@ def main() -> int:
 
     required = list(weights)
     output["score_complete"] = output[required].notna().all(axis=1)
-    output["just_transition_score"] = np.nan
-    complete = output["score_complete"]
-    output.loc[complete, "just_transition_score"] = sum(
-        output.loc[complete, column] * float(weight) for column, weight in weights.items()
+    availability = output[required].notna()
+    weighted_sum = sum(output[column].fillna(0.0) * float(weight) for column, weight in weights.items())
+    available_weight = sum(availability[column].astype(float) * float(weight) for column, weight in weights.items())
+    allow_reduced = bool(policy.get("allow_reduced_information_score", False))
+    penalty = float(policy.get("reduced_information_penalty", 1.0))
+    output["just_transition_score"] = weighted_sum.div(available_weight.replace(0, np.nan))
+    output["reduced_information_score"] = ~output["score_complete"] & available_weight.gt(0)
+    if allow_reduced:
+        output.loc[output["reduced_information_score"], "just_transition_score"] *= penalty
+    else:
+        output.loc[~output["score_complete"], "just_transition_score"] = np.nan
+    output["available_score_dimension_count"] = availability.sum(axis=1)
+    output["included_score_dimensions"] = availability.apply(
+        lambda row: "|".join(column for column in required if bool(row[column])), axis=1
+    )
+    output["reduced_score_method"] = np.where(
+        output["reduced_information_score"],
+        f"available-weight renormalization x {penalty:.2f} penalty",
+        "complete configured weighted sum",
     )
     output["just_transition_score"] = output["just_transition_score"].round(2)
     output["rank"] = output["just_transition_score"].rank(method="first", ascending=False).astype("Int64")
@@ -65,13 +80,14 @@ def main() -> int:
         "climate_assumption_set": output["climate_assumption_set"].dropna().iloc[0],
         "validation_filter": "all_statuses",
         "policy_model_version": policy["version"],
+        "reduced_information_penalty": penalty,
     }
     scenario_id = "scn-" + stable_hash(scenario_payload, 10)
     output["scenario_id"] = scenario_id
     output["scenario_title"] = policy["default_title"]
     output["policy_model_version"] = policy["version"]
     output["default_weights"] = json.dumps(weights, sort_keys=True, separators=(",", ":"))
-    output["ranking_method"] = "versioned_human_controlled_weighted_sum"
+    output["ranking_method"] = "versioned_human_controlled_weighted_sum_with_explicit_reduced_information_mode"
     output["llm_ranking_influence"] = False
     output["ml_features_used"] = output["ml_service_intensity_used"].fillna(False).astype(bool)
     output["ml_typology_used_for_score"] = False

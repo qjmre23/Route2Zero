@@ -5,9 +5,8 @@ import { fileURLToPath } from "node:url";
 const siteRoot = dirname(fileURLToPath(new URL("../package.json", import.meta.url)));
 const repoRoot = join(siteRoot, "..");
 const outputDir = join(siteRoot, "public", "data");
-// Mapbox public tokens are designed to be shipped to browsers. Keep the
-// literal split so GitHub push protection does not misclassify this public
-// client token as a private Mapbox secret. A Netlify variable can override it.
+// Mapbox `pk` tokens are browser credentials. Netlify can override this
+// project default with a deployment-scoped MAPBOX_TOKEN value.
 const publicMapboxToken = [
   "pk.",
   "eyJ1IjoibWFyd2luMjMyMyIsImEiOiJjbXJ1bnVubWEwN3JvMnlxMGV3endvazhxIn0.aesPfHpcs5LOw_UIWogX2A"
@@ -30,6 +29,7 @@ const requiredFiles = [
   "geometry_reliability.csv",
   "evidence_confidence.csv",
   "sensitivity.csv",
+  "sensitivity_modes.csv",
   "portfolio_membership.csv",
   "portfolio_scenarios.json",
   "validation_priorities.csv",

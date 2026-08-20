@@ -2,7 +2,7 @@
 
 ## Card scope
 
-This card covers the two fitted machine-learning components in build `r2z-16690ccbe328`:
+This card covers the two fitted machine-learning components in build `r2z-45c4ba076af9`:
 
 1. the supervised historic service-intensity model; and
 2. the unsupervised corridor-typology model.

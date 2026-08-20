@@ -1,8 +1,8 @@
 ROUTE2ZERO 2.0 TECHNICAL REFERENCE
 Build, data, models, scenarios, governance, Netlify deployment, and handover
-Reference build: r2z-16690ccbe328
-Reference policy scenario: scn-c46e1d86c1
-Reference portfolio scenario: prt-b73fa05705
+Reference build: r2z-45c4ba076af9
+Reference policy scenario: scn-e0f12f397e
+Reference portfolio scenario: prt-fd6de9d793
 Pipeline version: 2.0.0
 Build timestamp: 2026-08-20T04:47:08Z
 
@@ -93,11 +93,11 @@ Build timestamp: 2026-08-20T04:47:08Z
 5. REFERENCE RELEASE IDENTITY
 
 5.1 Pipeline version is 2.0.0.
-5.2 Build ID is r2z-16690ccbe328.
-5.3 Build timestamp is 2026-08-20T04:47:08Z.
-5.4 The manifest-recorded Git commit is 47cf3c9554ab392938f2ba5ae3ca98d5d369ff61.
-5.5 Default policy scenario is scn-c46e1d86c1.
-5.6 Default portfolio scenario is prt-b73fa05705.
+5.2 Build ID is r2z-45c4ba076af9.
+5.3 Build timestamp is 2026-08-20T06:25:29Z.
+5.4 The manifest-recorded Git commit is 457c1d3f3ff7b48ada37516f2a10c26328018cbd.
+5.5 Default policy scenario is scn-e0f12f397e.
+5.6 Default portfolio scenario is prt-fd6de9d793.
 5.7 Service-model version is service-v1-266e0b1d.
 5.8 Typology-model version is typology-v1-f9da2ebe.
 5.9 Model and typology seed is 20260820.
@@ -763,7 +763,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 36.4 Scenario payload includes climate assumption set.
 36.5 Scenario payload includes validation filter.
 36.6 Scenario payload includes policy-model version.
-36.7 Current scenario ID is scn-c46e1d86c1.
+36.7 Current scenario ID is scn-e0f12f397e.
 36.8 Current validation filter is all_statuses.
 36.9 Current climate assumption set is climate-v1.0.
 36.10 A material payload change changes the ID.
@@ -880,7 +880,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 
 42. PORTFOLIO RESULT
 
-42.1 Portfolio scenario is prt-b73fa05705.
+42.1 Portfolio scenario is prt-fd6de9d793.
 42.2 Status is feasible.
 42.3 Selected count is eight.
 42.4 Selected route LTFRB_PUJ1353 has rank one.
@@ -1041,7 +1041,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 49.6 Current flagship is LTFRB_PUJ1353.
 49.7 Current route name is Francisco Homes - Cubao.
 49.8 Current default rank is one.
-49.9 Current priority score is 79.97.
+49.9 Current priority score is 79.07.
 49.10 Current evidence grade is C.
 49.11 Current evidence confidence is 38.34.
 49.12 Current top-10 frequency is 1.0.
@@ -1725,5 +1725,229 @@ Build timestamp: 2026-08-20T04:47:08Z
 81.16 Its next technical milestone is current city validation.
 81.17 Any implementation claim must follow that validation.
 81.18 The correct action from this build is validate, calibrate, co-design, and then decide.
+
+82. UPGRADE SPECIFICATION TRACEABILITY
+
+82.1 Upgrade 1 is implemented through source_registry.json, source_manifest.json, and build_manifest.json.
+82.2 The manifest finalizer checks configuration, source, processed-output, and model-artifact hashes.
+82.3 Upgrade 2 is implemented through the immutable-source merge and route_validation.csv ledger.
+82.4 The current build truthfully reports zero current validations and 1,522 historic-only records.
+82.5 Upgrade 3 is implemented through deterministic geometry reliability and source-specific grades.
+82.6 Street-following Mapbox output remains planning geometry, never official franchise geometry.
+82.7 Upgrade 4 uses explicit multi-city text fallback because no accepted boundary source is present.
+82.8 The city adapter exposes method, confidence, and boundary-source status for later spatial replacement.
+82.9 Upgrade 5 is implemented through the unique 1,522-row route feature store.
+82.10 Feature construction excludes target, post-target, score, and rank leakage fields.
+82.11 Upgrade 6 is implemented through grouped service-intensity training, evaluation, artifacts, and metadata.
+82.12 Service intensity is not labelled ridership, demand, or passenger volume.
+82.13 Upgrade 7 is implemented through fixed-seed corridor typology and deterministic human-readable labels.
+82.14 Typology supports interpretation and filtering but contributes no policy points.
+82.15 Upgrade 8 is implemented through sourced low, base, and high climate-and-energy calculations.
+82.16 Negative net climate benefit is preserved rather than clipped.
+82.17 Upgrade 9 is implemented as an extensible equity adapter with honest WorldPop proxy status.
+82.18 Unsupported socioeconomic, accessibility, and settlement fields remain missing until sourced.
+82.19 Upgrade 10 is implemented as an unavailable-until-validated underserved-overlap contract.
+82.20 No density value, cluster, or route name establishes informal-settlement status.
+82.21 Upgrade 11 is implemented through cached infrastructure, validated charging-site evidence, route energy, and terminal context.
+82.22 Utility capacity remains false unless the evidence ledger explicitly verifies it.
+82.23 Upgrade 12 is implemented through the operator ledger, complete configured evidence components, and neutral-prior fallback.
+82.24 Missing operator evidence never becomes zero readiness or an implied refusal.
+82.25 Upgrade 13 is implemented through freshness, directness, specificity, completeness, validation, and reliability components.
+82.26 Evidence grade remains distinct from prediction error, priority, and rank stability.
+82.27 Upgrade 14 is implemented through a versioned human-controlled policy model and stable scenario hash.
+82.28 The LLM has no score-write path and typology has no score contribution.
+82.29 Upgrade 15 is implemented through fixed-seed around-default, broad-simplex, and configured custom sensitivity modes.
+82.30 The dashboard uses the precomputed default mode while additional modes remain auditable build outputs.
+82.31 Upgrade 16 is implemented through deterministic climate, equity, charging, operator, geometry, and service perturbations.
+82.32 Portfolio-flip evaluation reruns deterministic selection under the tested perturbation.
+82.33 Upgrade 17 is implemented for the evidence-shortlist portfolio supported by current inputs.
+82.34 Budget, fleet, and capacity constraints remain inactive until sourced scenario data are supplied.
+82.35 Upgrade 18 is implemented through normalized scenario objects, stable IDs, local persistence, JSON sharing, and comparison.
+82.36 The current export carries the active scenario rather than a stale default.
+82.37 Upgrade 19 is implemented through structured evidence requests and structured planner responses.
+82.38 Responses include evidence points, uncertainty notes, validation actions, route IDs, and fields.
+82.39 Upgrade 20 is implemented by scoping requests and cached material to route, scenario, and build identifiers.
+82.40 A scenario change invalidates any route-and-rank narrative from the prior scenario.
+82.41 Upgrade 21 is implemented through separate ML, LLM, climate, sensitivity, optimizer, and human-control fields.
+82.42 The governance wording is synchronized across exported data, interface, README, and decks.
+82.43 Upgrade 22 is implemented through seven decision-oriented navigation sections and eight Route Lens cards.
+82.44 Desktop and mobile interfaces avoid page overflow and preserve keyboard operation.
+82.45 Upgrade 23 is implemented through eight precomputed map modes, dynamic legends, geometry status, and route context.
+82.46 Approximate and verified geometry never share an unexplained visual treatment.
+82.47 Upgrade 24 is implemented through live rank, median rank, rank range, top-ten probability, evidence, and flip fields.
+82.48 Every robustness statement is computed from sensitivity and value-of-information products.
+82.49 Upgrade 25 is implemented through constraint controls, optimized selections, near selections, and exclusion reasons.
+82.50 An infeasible combination produces a conflict message and no substitute portfolio.
+82.51 Upgrade 26 is implemented through the Francisco Homes–Cubao end-to-end case.
+82.52 The route remains flagship because the upgraded pipeline selected it, not because the legacy deck named it.
+82.53 Upgrade 27 is implemented through scenario-responsive PDF, Word, CSV, and JSON decision packs.
+82.54 Exports carry versions, weights, assumptions, confidence, stability, sources, limitations, and the decision-support disclaimer.
+82.55 Upgrade 28 is implemented through the Netlify build copier and required-data contract.
+82.56 The build publishes processed decision products and excludes private ledgers, raw notes, and secrets.
+82.57 Upgrade 29 is implemented through the model card and responsible-AI reference.
+82.58 Metrics are named MAE, RMSE, R-squared, and baseline comparison rather than an unsupported accuracy percentage.
+82.59 Upgrade 30 is implemented through aggregate-data, consent, dignity, contestability, and fairness rules.
+82.60 Current fairness limits remain visible because validated community evidence is not yet available.
+82.61 Upgrade 31 is implemented through the evidence queue and data-health disclosure.
+82.62 Coverage metrics expose historic-only, validated, operator, charging, geometry, source-age, and missing-field status.
+82.63 Upgrade 32 is implemented through the stakeholder-validation schema and permission fields.
+82.64 The ledger is empty in this release because no interaction or endorsement is fabricated.
+82.65 Upgrade 33 is implemented through analytical contract tests, build smoke tests, endpoint tests, and browser acceptance checks.
+82.66 Continuous integration installs reproducible environments and verifies Python and Netlify contracts.
+82.67 Upgrade 34 is implemented through bounded Python dependency ranges and version capture in model metadata.
+82.68 Heavy libraries are not added unless they perform an implemented analytical task.
+82.69 Upgrade 35 is implemented through server-side secrets, strict request validation, size limits, identifiers, rate limiting, sanitization, and fallback.
+82.70 The endpoint accepts no user-supplied retrieval URL and reports no environment details.
+82.71 Upgrade 36 is implemented through the evidence-precedence hierarchy and explicit optional-layer degradation.
+82.72 AI, Mapbox routing, optional evidence, and infeasible optimization failures never fabricate facts.
+82.73 Upgrade 37 is implemented through the synchronized README, methodology, provenance, glossary, and limitations.
+82.74 Documentation separates verified, observed, derived, ML-estimated, proxy, scenario, neutral-prior, and missing states.
+82.75 Upgrade 38 is implemented through an exactly 20-slide concept deck aligned to the six judging areas.
+82.76 The concept story leads with the city decision and analytical proof, not responsive design or exports.
+82.77 Upgrade 39 is implemented through an 18-slide demonstration focused on one decision workflow.
+82.78 The demonstration uses real dashboard captures, generated outputs, scenario comparison, portfolio, assistant, and export proof.
+82.79 Upgrade 40 is implemented through the four-page, six-month pilot plan with three evidence gates.
+82.80 Model validation, field evidence, climate calibration, governance, handover, partners, risks, and owners are explicit.
+82.81 Upgrade 41 is implemented through the shared eight-value claim-status vocabulary and finalizer checks.
+82.82 Important interface and export values retain their material evidence status.
+82.83 Upgrade 42 is implemented through named policy lenses and scenario-delta reporting.
+82.84 Comparison reports top-ten entries and exits, rank and score shifts, portfolio changes, climate, equity, and evidence deltas.
+82.85 Upgrade 43 is implemented through pipeline_report.json and the Method and Sources health panel.
+82.86 Health includes versions, timestamps, row counts, source periods, missingness, validations, and warnings.
+82.87 Upgrade 44 is implemented through formal city adapter interfaces and the city adapter guide.
+82.88 Metro Manila remains the deep implementation; another city requires local sources, mapping, calibration, and validation.
+82.89 Upgrade 45 is implemented through evidence-supported differentiation language.
+82.90 The product makes no unsupported first, only, official, current, capacity, or settlement claim.
+82.91 Upgrade 46 is implemented through judging_matrix.md and submission QA evidence.
+82.92 Each criterion links to a working product behavior, analytical output, document, or limitation.
+82.93 Upgrade 47 is implemented through the final pipeline, Python, Node, browser, accessibility, artifact, link, and roster checks.
+82.94 Repository push and live-host verification are release operations performed only after every local gate passes.
+
+83. FRONTEND STATE AND EVENT MODEL
+
+83.1 The browser loads configuration before analytical data.
+83.2 The browser checks required data products before enabling decision workflows.
+83.3 Route records are indexed by immutable route ID.
+83.4 The selected route is state, not a hard-coded page constant.
+83.5 City scope is state and changes the visible route set.
+83.6 Validation filtering is state and never upgrades historic evidence.
+83.7 Policy weights are normalized to 100 percent.
+83.8 Weight changes create a new stable scenario identifier.
+83.9 Scenario recalculation changes priority, rank, table order, route cards, and assistant context.
+83.10 Scenario comparison uses preserved baseline and active scenario snapshots.
+83.11 Comparison does not call policy-weight changes causal effects.
+83.12 Map-layer changes restyle precomputed properties without rerunning Python.
+83.13 Route selection updates the map, Route Lens, robustness, evidence queue, and assistant.
+83.14 Map Directions requests are cancellable when route selection changes.
+83.15 Successful road-following geometry is solid.
+83.16 Approximate GTFS stop-sequence geometry is dashed and labelled.
+83.17 Direction failure preserves a labelled approximation instead of a blank map.
+83.18 Resize observation triggers Mapbox resize after layout changes.
+83.19 Portfolio controls update a deterministic client-side view of supported constraints.
+83.20 Unsupported budget, fleet, and capacity facts are not invented by the browser.
+83.21 Exports serialize the current state at click time.
+83.22 Export filenames include the active scenario short identifier.
+83.23 Mobile rankings use route cards instead of an unreadable fixed-width table.
+83.24 The mobile control drawer uses inert and aria-hidden while closed.
+83.25 Drawer opening moves focus to its close control.
+83.26 Escape closes the drawer and focus returns to the trigger.
+83.27 Range inputs have associated labels and outputs.
+83.28 Clickable route rows support keyboard activation.
+83.29 Reduced-motion preferences suppress nonessential transition time.
+83.30 The guided tour is optional and never blocks manual navigation.
+
+84. PLANNING ENDPOINT CONTRACT
+
+84.1 The function accepts POST requests only.
+84.2 The request body has a fixed maximum byte size.
+84.3 Body size is enforced after reading even when Content-Length is absent or incorrect.
+84.4 Unknown top-level fields are rejected.
+84.5 Question length is bounded.
+84.6 Scenario ID and build ID formats are validated.
+84.7 Weight values are numeric, bounded, and normalized by the caller.
+84.8 Structured route fields are size-limited.
+84.9 Control characters are removed from data fields.
+84.10 The external endpoint must use HTTPS.
+84.11 The secret credential is read only in server execution.
+84.12 The credential is never inserted into public configuration.
+84.13 A warm-instance rate limiter bounds repeated requests.
+84.14 External model calls use a timeout.
+84.15 Prompt instructions and evidence data are separated by explicit delimiters.
+84.16 The model is instructed to use only supplied facts.
+84.17 Returned numbers must be grounded in supplied evidence.
+84.18 Returned fields are normalized into the structured response contract.
+84.19 Missing or malformed model content triggers deterministic fallback.
+84.20 The fallback cites the same route, scenario, evidence fields, and validation actions.
+84.21 Neither API nor fallback can mutate analytical files or browser scores.
+84.22 Logs omit secret values and private stakeholder payloads.
+84.23 Error messages omit raw environment and upstream response bodies.
+84.24 AI_EXPLANATIONS_ENABLED can disable the external call without disabling the application.
+84.25 ABSK_KEY is required only when the external explanation path is enabled.
+
+85. SUBMISSION ARTIFACT RELEASE CONTRACT
+
+85.1 The concept deliverable is Route2Zero_Concept.pdf.
+85.2 The editable concept source is Route2Zero_Concept_Deck_20_Slides.pptx.
+85.3 The concept contains exactly 20 slides.
+85.4 The demonstration deliverable is Route2Zero_Prototype_Demonstration.pdf.
+85.5 The editable demonstration source is Route2Zero_Prototype_Demonstration.pptx.
+85.6 The demonstration contains exactly 18 slides.
+85.7 The pilot deliverable is Route2Zero_Team_Larpers_Pilot_Plan.pdf.
+85.8 The editable pilot source is Route2Zero_Team_Larpers_Pilot_Plan.docx.
+85.9 The pilot contains exactly four A4 portrait pages.
+85.10 Every PDF page displays the repository and live application links at the top.
+85.11 Every displayed repository and live application link is clickable.
+85.12 The official pilot-plan banner, table language, grid, pale-blue headers, and formal page geometry remain recognizable.
+85.13 The canonical roster contains exactly eight people.
+85.14 Canonical member 1 is John Marwin Ebona.
+85.15 Canonical member 2 is Isaac Marcus.
+85.16 Canonical member 3 is Andrei Dela Cruz.
+85.17 Canonical member 4 is Russel Mendez.
+85.18 Canonical member 5 is TRISTIAN JAMES CABALAR.
+85.19 Canonical member 6 is JOHN MICHAEL PALAGANAS.
+85.20 Canonical member 7 is Carl Nueva.
+85.21 Canonical member 8 is JOSEPH CLARENCE PARAYAOAN.
+85.22 Each canonical name appears exactly once in each submission PDF.
+85.23 No retired roster name appears in the final PDFs, PPTX files, or DOCX file.
+85.24 Slide overflow checks must pass for both editable decks.
+85.25 The DOCX accessibility audit must contain zero high-, medium-, and low-severity findings.
+85.26 DOCX table grids and cell widths must reconcile.
+85.27 Every slide and page must be reviewed from a rendered image before release.
+85.28 Real interface captures must match the implemented Route2Zero 2.0 interface.
+85.29 Artifact timestamps and identifiers must come from the final build manifest.
+85.30 Submission artifacts are regenerated after a material analytical or roster change.
+
+86. FINAL ACCEPTANCE PROCEDURE
+
+86.1 Read the complete upgrade specification before evaluating coverage.
+86.2 Confirm all expected source, configuration, model, processed, UI, and document files exist.
+86.3 Run the full Python pipeline from source registry through manifest finalization.
+86.4 Require a zero process exit code.
+86.5 Confirm the pipeline report is PASS or PASS_WITH_WARNINGS.
+86.6 Treat expected evidence warnings as limitations, not silent success.
+86.7 Confirm every score row carries the final build ID.
+86.8 Confirm every score row carries the default scenario ID.
+86.9 Run the complete Python contract suite.
+86.10 Run Netlify syntax validation.
+86.11 Run the tokenless Netlify production build.
+86.12 Run the root delegated production build.
+86.13 Start a local static preview from the built public directory.
+86.14 Exercise the application at 1440 by 900 pixels.
+86.15 Exercise the application at 390 by 844 pixels.
+86.16 Verify no page-level horizontal overflow.
+86.17 Verify scenario weights remain normalized and scenario ID changes.
+86.18 Verify route selection updates every dependent panel.
+86.19 Verify scenario comparison reports every required delta.
+86.20 Verify the portfolio reports selected, near-selected, excluded, and infeasible states.
+86.21 Verify AI-disabled deterministic planning remains useful.
+86.22 Verify each export format downloads and carries current identifiers.
+86.23 Verify Mapbox failure retains a labelled route approximation.
+86.24 Verify code-comment audit contains no authoring-tool, prompt, scanner, or vibe-coding commentary.
+86.25 Verify idea.txt contains exactly 800 whitespace-delimited words.
+86.26 Verify the three PDFs meet page, link, roster, and visual requirements.
+86.27 Verify both PPTX files pass overflow testing.
+86.28 Verify the pilot DOCX passes accessibility and table-geometry checks.
+86.29 Review git diff and exclude temporary browser evidence from the release commit.
+86.30 Push the tested commit and verify the live Netlify host after deployment.
 
 END OF ROUTE2ZERO 2.0 TECHNICAL REFERENCE

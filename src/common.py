@@ -13,6 +13,8 @@ from typing import Iterable
 
 import pandas as pd
 
+from adapters import MetroManilaGTFSAdapter
+
 
 ROOT = Path(__file__).resolve().parents[1]
 RAW_DIR = ROOT / "data" / "raw" / "gtfs_master"
@@ -32,6 +34,23 @@ CLAIM_STATUSES = {
     "NEUTRAL_PRIOR",
     "MISSING",
 }
+
+
+def validate_claim_status_columns(
+    frame: pd.DataFrame,
+    columns: Iterable[str] | None = None,
+) -> list[str]:
+    """Reject claim labels outside the shared measurement-status vocabulary."""
+    selected = list(columns) if columns is not None else [
+        column for column in frame.columns if column.endswith("claim_status")
+    ]
+    for column in selected:
+        if column not in frame.columns:
+            raise ValueError(f"Required claim-status column is missing: {column}")
+        invalid = sorted(set(frame[column].dropna().astype(str)) - CLAIM_STATUSES)
+        if invalid:
+            raise ValueError(f"Invalid values in {column}: {invalid}")
+    return selected
 
 GTFS_FILES = (
     "routes.txt",
@@ -55,9 +74,7 @@ def ensure_output_dirs() -> None:
 
 def load_gtfs(name: str, **kwargs) -> pd.DataFrame:
     """Read one immutable GTFS file with identifiers preserved as strings."""
-    if name not in GTFS_FILES:
-        raise ValueError(f"Unexpected GTFS file: {name}")
-    return pd.read_csv(RAW_DIR / name, dtype=str, low_memory=False, **kwargs)
+    return MetroManilaGTFSAdapter(ROOT).load_table(name, **kwargs)
 
 
 def minmax_score(values: pd.Series) -> pd.Series:

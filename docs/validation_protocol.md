@@ -2,7 +2,7 @@
 
 ## Objective
 
-The protocol converts build `r2z-16690ccbe328` from a historic screening baseline into a locally reviewed decision workflow. It defines the minimum evidence needed to validate route status, service intensity, geometry, climate assumptions, equity indicators, charging feasibility, operator readiness, model behavior, rank stability, and portfolio constraints.
+The protocol converts build `r2z-45c4ba076af9` from a historic screening baseline into a locally reviewed decision workflow. It defines the minimum evidence needed to validate route status, service intensity, geometry, climate assumptions, equity indicators, charging feasibility, operator readiness, model behavior, rank stability, and portfolio constraints.
 
 The protocol does not authorize procurement. It produces an evidence-backed Phase-1 shortlist and an explicit list of unresolved questions.
 
@@ -31,7 +31,7 @@ This baseline is a starting condition, not a defect to conceal.
 
 The pilot should select:
 
-- the eight corridors in portfolio `prt-b73fa05705`;
+- the eight corridors in portfolio `prt-fd6de9d793`;
 - the build-selected flagship `LTFRB_PUJ1353`;
 - at least one typology representative from each cluster;
 - at least one typology outlier;
@@ -355,7 +355,7 @@ Optional scenario metrics include calibrated portfolio CO2e and energy ranges. D
 
 ## Rebuild and approval
 
-Accepted evidence must enter `data/validated/` or versioned configuration. Run the complete pipeline, automated checks, and Netlify build. Compare the new build with `r2z-16690ccbe328` for:
+Accepted evidence must enter `data/validated/` or versioned configuration. Run the complete pipeline, automated checks, and Netlify build. Compare the new build with `r2z-45c4ba076af9` for:
 
 - changed sources and checksums;
 - validation statuses;

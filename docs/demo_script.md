@@ -8,8 +8,8 @@ Use the production application at <https://route2zero.netlify.app/> or the gener
 
 Before recording:
 
-- confirm build `r2z-16690ccbe328` is displayed or documented;
-- confirm scenario `scn-c46e1d86c1`;
+- confirm build `r2z-45c4ba076af9` is displayed or documented;
+- confirm scenario `scn-e0f12f397e`;
 - confirm 1,522 routes, 0 current validations, 9 robust priorities, and 8 Phase-1 corridors;
 - preselect `LTFRB_PUJ1353` as the flagship;
 - allow the Mapbox style to finish loading;
@@ -49,7 +49,7 @@ Do not show the legacy 71.4 score, old 35/35/15/15 proxy controls, or a section 
 
 **Screen:** Route decision lens.
 
-**Action:** Point first to priority 79.97 and rank 1, then to evidence grade C and confidence 38.34. Highlight the top-10 frequency of 100%.
+**Action:** Point first to priority 79.07 and rank 1, then to evidence grade C and confidence 38.34. Highlight the top-10 frequency of 100%.
 
 **Narration:**
 
@@ -125,7 +125,7 @@ The narration may state:
 - 0 current validations are supplied;
 - 9 records are robust priorities;
 - 8 corridors are selected for Phase 1;
-- the flagship score is 79.97 under the named default scenario;
+- the flagship score is 79.07 under the named default scenario;
 - its evidence is grade C, 38.34;
 - its top-10 frequency is 100% across 5,000 scenarios;
 - its low/high climate range is -1,111.8 to 3,025.3 tCO2e/year; and

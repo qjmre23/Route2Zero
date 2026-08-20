@@ -2,22 +2,26 @@
 
 ## Provenance contract
 
-Route2Zero treats raw source snapshots as immutable, pilot evidence as controlled input, and processed outputs as reproducible derivatives. Every registered source records its organization, URL, retrieval date, reference period, geography, spatial resolution, license, source type, currentness, notes, local path, and SHA-256 checksum.
+Route2Zero treats raw source snapshots as immutable, pilot evidence as controlled input, and processed outputs as reproducible derivatives. Every registered source records its organization, URL, retrieval date, reference period, geography, spatial resolution, license, source type, currentness, notes, local path, requirement status, availability, and SHA-256 checksum when available.
 
-This document describes the source manifest used by build `r2z-16690ccbe328`.
+This document describes the source manifest used by build `r2z-45c4ba076af9`.
 
 ## Source inventory
 
-| Source ID | Reference period | Type | Currentness | Principal use |
+| Source ID | Reference period | Type | Requirement | Principal use |
 |---|---|---|---|---|
-| `sakay_gtfs_master_historic` | 2013-2020 | Administrative/community GTFS | Historic | Route universe, stops, schedules, screening geometry |
-| `worldpop_phl_2020_1km` | 2020 | Proxy raster | Historic | Population-exposure equity proxy |
-| `doe_luzon_generation_2024` | 2024 | Government administrative context | Historic | Grid and climate scenario context |
-| `osm_power_snapshot_2026_08_20` | Snapshot 20 Aug 2026 | Proxy map data | Mixed | Mapped substation and charger proximity |
-| `route2zero_climate_scenario_v1` | Pilot scenario | Project assumption set | Current configuration | Low/base/high climate and energy calculations |
-| `route2zero_operator_prior_v1` | Pilot prior | Project placeholder | Current configuration | Neutral operator prior when evidence is missing |
+| `sakay_gtfs_master_historic` | 2013-2020 | Administrative/community GTFS | Required | Route universe, stops, schedules, screening geometry |
+| `worldpop_phl_2020_1km` | 2020 | Proxy raster | Optional | Population-exposure equity proxy |
+| `doe_luzon_generation_2024` | 2024 | Government administrative context | Required | Grid and climate scenario context |
+| `osm_power_snapshot_2026_08_20` | Snapshot 20 Aug 2026 | Proxy map data | Optional | Mapped substation and charger proximity |
+| `route2zero_climate_scenario_v1` | Pilot scenario | Project assumption set | Required | Low/base/high climate and energy calculations |
+| `route2zero_operator_prior_v1` | Pilot prior | Project placeholder | Required | Neutral operator prior when evidence is missing |
 
-The manifest contains six registered sources. Its registry checksum is `8dd43371168d76a8a6cd298d10a9a3a43aaf2533143afd2e6db405c4d38395c9`.
+The generated source manifest is authoritative for the exact registry checksum, availability states, and source count of a build. Controlled route, operator, charging-site, and stakeholder ledgers are also registered inputs; a header-only ledger is an available input with no accepted evidence.
+
+## Optional-source behavior
+
+WorldPop and the OSM infrastructure snapshot are optional enrichment layers, not prerequisites for preserving the route universe. When either file is absent, the source manifest records `available = false` and a null checksum. Dependent fields are emitted as null with claim status `MISSING` where feasible. The pipeline must not substitute zero, a favorable default, or a fabricated terminal/site count. A downstream portfolio may consequently be explicitly infeasible under its configured equity or evidence constraints.
 
 ## 1. Historic GTFS baseline
 
@@ -77,6 +81,8 @@ The route method uses a 300 m buffer and a high-density cutoff calculated within
 
 No socioeconomic, accessibility-gap, or underserved-settlement input is available in the current build. Those fields remain null.
 
+If the raster is unavailable in a later build, the population adapter preserves route IDs but emits null population-exposure and equity values with `MISSING` status. Absence of the optional raster is not evidence of low exposure.
+
 ## 3. Philippine Department of Energy context
 
 - Source organization: Philippine Department of Energy
@@ -114,7 +120,7 @@ The source is `mixed` currentness because mapping completeness, feature existenc
 - depot access; or
 - tariff and connection cost.
 
-Both `utility_capacity_verified` and `charging_site_verified` are false for every route in this build.
+Mapped proximity is combined only with accepted rows from `data/validated/charging_site_evidence.csv`. Candidate-terminal counts, site-control flags, utility-capacity flags, verified capacity, and terminal evidence are data-driven from that ledger; no route receives a fixed terminal count or terminal-evidence score. In a header-only ledger, the mapped snapshot remains proxy evidence and verification flags remain false. If both mapped infrastructure and accepted site evidence are unavailable, charging proximity/readiness fields are null with status `MISSING`.
 
 ## 5. Climate scenario configuration
 
@@ -138,6 +144,8 @@ The current low case is intentionally conservative and produces negative net sce
 
 The neutral prior is 50/100. It is used only when fewer than three evidence components are present in the consent-based operator ledger.
 
+The operator method consumes all eight configured components when supplied: verified fleet size, depot control, financing, organizational capacity, maintenance capability, willingness to participate, modernization experience, and charging-site access. Fleet-size conversion, weights, completeness, and sufficiency thresholds are versioned assumptions; missing components are omitted and present weights are re-normalized rather than treating missing as zero.
+
 The current operator ledger is header-only. Therefore:
 
 - observed operator routes: 0;
@@ -156,17 +164,17 @@ Holds route status, activity status, date, validator, source type and reference,
 
 ### `operator_evidence.csv`
 
-Holds consent-based operator name, evidence date, fleet size, depot control, financing, organizational capacity, maintenance capability, willingness, modernization experience, charging-site access, source reference, verifier, and notes.
+Holds consent-based operator name, evidence date, fleet size, depot control, financing, organizational capacity, maintenance capability, willingness, modernization experience, charging-site access, source reference, verifier, and notes. Accepted rows are consumed directly by the operator adapter and scored with all eight configured components.
 
 ### `charging_site_evidence.csv`
 
-Holds site name, date, coordinates, site-control status, utility-capacity status, available capacity where formally provided, source reference, verifier, and notes.
+Holds site name, date, coordinates, site-control status, utility-capacity status, available capacity where formally provided, source reference, verifier, and notes. Accepted rows drive terminal counts and site/utility verification; coordinates alone do not verify capacity.
 
 ### `stakeholder_validation.csv`
 
 Holds stakeholder type, organization, date, route, workflow component, feedback, evidence change, permission to quote, and source reference.
 
-All four ledgers contain headers only in build `r2z-16690ccbe328`. The processed score table therefore reports zero current validations, zero observed operator scores, zero verified utility-capacity records, and zero verified charging sites.
+All four ledgers contain headers only in build `r2z-45c4ba076af9`. The processed score table therefore reports zero current validations, zero observed operator scores, zero verified utility-capacity records, and zero verified charging sites.
 
 ## Evidence precedence
 
@@ -204,7 +212,7 @@ service input + climate config
 WorldPop
   -> equity_score.csv
   -> equity_v2.csv
-OSM + climate demand
+optional OSM + charging-site ledger + climate demand
   -> charging_readiness.csv
 validated operator ledger + prior config
   -> operator_readiness_v2.csv
@@ -214,6 +222,7 @@ policy config + analytical layers
   -> route2zero_scores.csv/.geojson
 scores
   -> sensitivity.csv
+  -> sensitivity_modes.csv
   -> portfolio_scenarios.json
   -> validation_priorities.json
   -> route_planner_cache.json
@@ -236,6 +245,8 @@ all required outputs
 - flagship route; and
 - pipeline warnings.
 
+A missing required source remains a build error. A missing optional source remains a manifest row with `available = false`, null checksum, and an explicit warning; it is excluded from checksum derivation without being erased from provenance. Available but empty ledgers retain their file checksum and zero accepted rows.
+
 The build ID is derived from configuration checksums, source checksums, model versions, policy scenario ID, and portfolio scenario ID. It is stable for identical logical inputs. The timestamp is recorded separately.
 
 The current manifest records Git commit `47cf3c9554ab392938f2ba5ae3ca98d5d369ff61`. Because the Route2Zero 2.0 work was present in a working tree during generation, a release process seeking a one-to-one code attestation should commit the final files and rerun the pipeline so the manifest records that release commit.
@@ -250,6 +261,8 @@ The current manifest records Git commit `47cf3c9554ab392938f2ba5ae3ca98d5d369ff6
 - Never call a model estimate passenger demand.
 - Never treat city text tags as validated administrative joins.
 - Never convert absence of evidence into evidence of low need.
+- Publish missing optional WorldPop or OSM layers as `MISSING`/null, not zero.
+- Never treat a header-only operator or charging ledger as accepted evidence.
 
 ## Updating a source
 

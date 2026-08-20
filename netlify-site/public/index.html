@@ -64,6 +64,15 @@
           <label for="operatorWeight">Operator readiness <output id="operatorValue" for="operatorWeight">15%</output></label><input id="operatorWeight" type="range" min="0" max="100" step="5" value="15" aria-describedby="weightsHelp">
         </section>
 
+        <section class="scenario-manager" aria-labelledby="scenarioManagerTitle">
+          <div class="section-kicker"><span id="scenarioManagerTitle">Saved scenarios</span><span>Local device</span></div>
+          <label class="scenario-field" for="scenarioTitle">Scenario name<input id="scenarioTitle" type="text" maxlength="80" autocomplete="off" value="Climate + Equity" placeholder="Name this policy scenario"></label>
+          <div class="scenario-action-grid"><button id="resetScenario" type="button">Reset to default</button><button id="saveScenario" class="button-primary" type="button">Save current</button><button id="copyScenario" class="scenario-copy" type="button">Copy / share scenario JSON</button></div>
+          <label class="scenario-field" for="savedScenarioSelect">Saved on this device<select id="savedScenarioSelect"><option value="">No saved scenarios</option></select></label>
+          <div class="scenario-action-grid"><button id="loadScenario" type="button" disabled>Load selected</button><button id="deleteScenario" class="danger-button" type="button" disabled>Delete selected</button></div>
+          <p id="scenarioManagerStatus" class="scenario-manager-status" role="status" aria-live="polite">Scenario IDs use normalized analytical inputs; names and save times do not change the ID.</p>
+        </section>
+
         <section class="export-card" aria-labelledby="exportTitle">
           <div class="section-kicker"><span id="exportTitle">Decision pack</span><span>Audit ready</span></div>
           <p>Every export carries the active scenario, build and model versions.</p>

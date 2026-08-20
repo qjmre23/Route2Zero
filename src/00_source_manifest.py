@@ -12,7 +12,7 @@ from common import CONFIG_DIR, PROCESSED_DIR, ROOT, ensure_output_dirs, read_jso
 REQUIRED_FIELDS = {
     "source_id", "title", "organization", "source_url", "local_path", "retrieval_date",
     "reference_period", "geography", "spatial_resolution", "license", "source_type",
-    "currentness", "notes",
+    "currentness", "notes", "required",
 }
 
 
@@ -33,16 +33,22 @@ def main() -> int:
     sources = registry.get("sources", [])
     if not sources:
         raise ValueError("source_registry.json contains no sources")
+    source_ids = [str(source.get("source_id", "")) for source in sources]
+    if len(source_ids) != len(set(source_ids)):
+        raise ValueError("source_registry.json contains duplicate source IDs")
     resolved = []
     for source in sources:
         missing_fields = REQUIRED_FIELDS - set(source)
         if missing_fields:
             raise ValueError(f"Source {source.get('source_id')} missing {sorted(missing_fields)}")
         local = ROOT / source["local_path"]
-        if not local.exists():
+        required = bool(source["required"])
+        if required and not local.exists():
             raise FileNotFoundError(f"Required source path is missing: {local}")
         entry = dict(source)
-        entry["checksum_sha256"] = checksum_path(local)
+        entry["available"] = local.exists()
+        entry["checksum_sha256"] = checksum_path(local) if local.exists() else None
+        entry["availability_status"] = "AVAILABLE" if local.exists() else "MISSING_OPTIONAL"
         resolved.append(entry)
     payload = {
         "registry_version": registry["registry_version"],
@@ -51,7 +57,8 @@ def main() -> int:
         "sources": resolved,
     }
     write_json(PROCESSED_DIR / "source_manifest.json", payload)
-    print(f"[PASS] source manifest: {len(resolved)} sources")
+    optional_missing = sum(not source["available"] for source in resolved)
+    print(f"[PASS] source manifest: {len(resolved)} sources; optional missing={optional_missing}")
     return 0
 
 

@@ -4,7 +4,7 @@
 
 Route2Zero uses deterministic evidence-constrained selection. It is not a financial optimizer, mixed-integer program, cost-benefit model, or procurement recommendation.
 
-The current result is portfolio scenario `prt-b73fa05705`, derived from policy scenario `scn-c46e1d86c1` in build `r2z-16690ccbe328`.
+The current result is portfolio scenario `prt-fd6de9d793`, derived from policy scenario `scn-e0f12f397e` in build `r2z-45c4ba076af9`.
 
 ## Purpose
 
@@ -93,9 +93,9 @@ The evidence-limited rule currently has no effect because the sensitivity output
 8. Skip an evidence-limited route when that limit is reached.
 9. Accept a route otherwise.
 10. Stop after eight acceptances.
-11. Fail the scenario if eight routes cannot be selected.
+11. If eight routes cannot be selected, return an explicit infeasible result without a partial or relaxed portfolio.
 
-This greedy scan is deterministic for fixed inputs. It does not guarantee a mathematical global optimum under a general objective. The term “optimizer” in code refers to the portfolio-selection stage, not a solver claim.
+This greedy scan is deterministic for fixed inputs. Its ordering, tie-breaks, eligibility checks, and constraints live in one reusable selector called by both the baseline portfolio stage and validation-priority perturbations. It does not guarantee a mathematical global optimum under a general objective. The term “optimizer” in code refers to the portfolio-selection stage, not a solver claim.
 
 ## Current selected portfolio
 
@@ -210,13 +210,23 @@ The scenario ID changes when its source policy scenario, constraints, or selecte
 
 ## Feasibility failure
 
-If the algorithm cannot select the required number of routes, it raises an error rather than silently relaxing constraints. The decision owner must then identify the conflicting constraints and approve a revised scenario.
+If the algorithm cannot select the required number of routes, the portfolio output follows an explicit contract:
+
+- `status` is `infeasible`;
+- the selected-route list is empty;
+- requested and attainable counts are reported;
+- exclusion and constraint diagnostics identify why candidates were rejected; and
+- no threshold, quota, or coverage rule is relaxed automatically.
+
+The pipeline may continue far enough to publish those diagnostics and `MISSING`/null optional-source effects. The decision owner must identify the conflicting constraints and approve a revised, versioned scenario before selection is rerun.
 
 An infeasible result is useful evidence. The system must not manufacture a portfolio to preserve a presentation claim.
 
 ## Sensitivity and value of information
 
-Rank stability enters the portfolio objective through top-10 probability. Evidence confidence enters directly at 15%. Value-of-information results do not enter the selection objective; they guide what to validate after selection.
+Rank stability enters the portfolio objective through top-10 probability. Evidence confidence enters directly at 15%. Rank sensitivity is reported for three fixed-seed, 5,000-draw modes: around-default, broad-simplex, and configured custom bounds; the around-default result remains the default objective input.
+
+Value-of-information results do not enter the selection objective; they guide what to validate after selection. The geometry, service, climate, operator, charging, and equity low/high perturbations recompute the affected route score and rerun this same selector. A portfolio flip is recorded only when selected membership actually changes or feasibility changes, rather than inferred from crossing a top-N rank threshold.
 
 During a pilot, compare portfolio membership before and after current evidence is added. Record routes that enter or leave and which evidence or constraint caused the change.
 
@@ -233,6 +243,7 @@ During a pilot, compare portfolio membership before and after current evidence i
 - No charging capacity is verified.
 - Climate inputs are scenarios.
 - No budget or cost constraint exists.
+- Optional WorldPop or OSM absence can leave eligibility inputs null and make a configured scenario infeasible.
 
 These limitations make the result appropriate for validation planning, not implementation authorization.
 

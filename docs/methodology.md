@@ -4,7 +4,7 @@
 
 Route2Zero is a corridor-screening and evidence-acquisition system. Its output is a documented order for validation and a constrained Phase-1 shortlist. It does not determine funding, franchise status, procurement, lending, fares, or route cancellation.
 
-This document describes pipeline version `2.0.0` and build `r2z-16690ccbe328`. The default policy scenario is `scn-c46e1d86c1`; the default portfolio scenario is `prt-b73fa05705`.
+This document describes pipeline version `2.0.0` and build `r2z-45c4ba076af9`. The default policy scenario is `scn-e0f12f397e`; the default portfolio scenario is `prt-fd6de9d793`.
 
 ## Decision unit
 
@@ -38,9 +38,11 @@ Source currentness is tracked separately as historic, current, mixed, or scenari
 
 ## Stage 1: source registry
 
-`src/00_source_manifest.py` validates every source entry in `config/source_registry.json`. Required metadata include source ID, title, organization, URL, local path, retrieval date, reference period, geography, spatial resolution, license, source type, currentness, and notes.
+`src/00_source_manifest.py` validates every source entry in `config/source_registry.json`. Required metadata include source ID, title, organization, URL, local path, retrieval date, reference period, geography, spatial resolution, license, source type, currentness, notes, and whether the source is required.
 
-The stage hashes each file or, for a directory, a stable ordered list of relative paths and file hashes. The resolved output is `data/processed/source_manifest.json`.
+The stage hashes each available file or, for a directory, a stable ordered list of relative paths and file hashes. A missing required source stops the build. A missing optional WorldPop or OSM layer remains in the manifest with `available = false` and a null checksum, and its dependent fields degrade to `MISSING`/null where feasible. The resolved output is `data/processed/source_manifest.json`.
+
+City-specific access is isolated behind formal transport/GTFS, population, charging, operator, and boundary/city adapter interfaces. The Metro Manila adapters wire the current paths and text-fallback city method; another city implements the same contracts rather than changing the analytical stages.
 
 ## Stage 2: GTFS audit
 
@@ -189,7 +191,7 @@ The configured usefulness gate requires at least 2% relative MAE improvement. Th
 
 ### Use rule
 
-The model prediction replaces nothing when the historic proxy is available. It is used only when the historic proxy is missing and the model passed the usefulness gate. In build `r2z-16690ccbe328`, it supplies the daily VKT input for one route, `LTFRB_PUJ2451`.
+The model prediction replaces nothing when the historic proxy is available. It is used only when the historic proxy is missing and the model passed the usefulness gate. In build `r2z-45c4ba076af9`, it supplies the daily VKT input for one route, `LTFRB_PUJ2451`.
 
 This precedence is deliberate:
 
@@ -253,7 +255,7 @@ The conservative low case is negative for every route in the current build. Base
 
 ## Stage 11: equity
 
-The WorldPop 2020 Philippines population-count raster is the only equity input in this build.
+The WorldPop 2020 Philippines population-count raster is the only equity input in the documented reference build and is accessed through the optional population adapter.
 
 The legacy spatial stage:
 
@@ -265,11 +267,11 @@ The legacy spatial stage:
 
 Route2Zero 2.0 exposes this as `population_exposure_score`. The socioeconomic, accessibility-gap, and underserved-overlap components are null. Their weights are zero.
 
-The current equity score is therefore a `PROXY`. It must not be described as poverty, vulnerability, tenure, disability, accessibility, informal-settlement, or marginalized-community status.
+When available, the current equity score is therefore a `PROXY`. It must not be described as poverty, vulnerability, tenure, disability, accessibility, informal-settlement, or marginalized-community status. If the raster is absent, route IDs are preserved while population-exposure and dependent equity values are null with claim status `MISSING`; zero is not substituted.
 
 ## Stage 12: charging readiness
 
-The charging stage uses a cached OpenStreetMap snapshot with 117 mapped substations and 21 mapped charging stations. Nearest distances are measured from the route's two screening endpoints using a haversine BallTree.
+The charging stage uses the charging adapter to combine an optional cached OpenStreetMap screening snapshot with accepted records in `data/validated/charging_site_evidence.csv`. When the snapshot is present, nearest distances are measured from the route's two screening endpoints using a haversine BallTree.
 
 Distance thresholds map to scores of 100, 82, 58, 32, or 8. Substation thresholds are 1, 3, 6, and 12 km. Charger thresholds are 1, 3, 8, and 15 km.
 
@@ -283,15 +285,24 @@ charging_readiness_score =
   + 0.25 x energy_manageability
 ```
 
-The current terminal-evidence score is 40 and candidate-terminal count is two for every route. Energy manageability is the inverse min-max score of base-case electricity demand.
+Candidate-terminal counts and terminal/site evidence come only from accepted ledger rows. Site-control, utility-capacity, verified-capacity, and charging-site flags are aggregated from their recorded fields; a header-only ledger contributes no evidence. Energy manageability is the inverse min-max score of base-case electricity demand.
 
-All charging results are `PROXY`. Both `utility_capacity_verified` and `charging_site_verified` are false for all 1,522 routes. Proximity does not establish ownership, capacity, interconnection approval, tariff, site control, access, or charger availability.
+Mapped proximity is `PROXY`; accepted site or utility records retain the status supported by their evidence. Proximity does not establish ownership, capacity, interconnection approval, tariff, site control, access, or charger availability. If OSM is absent but accepted site evidence exists, only ledger-supported fields remain. If both sources are unavailable, proximity and charging-readiness values are null with claim status `MISSING`.
 
 ## Stage 13: operator readiness
 
-The operator ledger accepts route-level, consent-based evidence. The current component set includes depot control, financing, organizational capacity, maintenance capability, willingness to participate, and verified fleet size.
+The operator ledger accepts route-level, consent-based evidence. The scoring configuration covers all eight recorded components:
 
-At least three component fields are required before the observed score is used. Present component weights are re-normalized over supplied fields. Evidence confidence increases with completeness but is capped at 90.
+- verified fleet size;
+- depot control;
+- financing;
+- organizational capacity;
+- maintenance capability;
+- willingness to participate;
+- modernization experience; and
+- charging-site access.
+
+Fleet size is converted to a 0-100 component through versioned breakpoints. At least three component fields are required before the observed score is used. Present component weights are re-normalized over supplied fields, so missing evidence is not treated as zero. Evidence confidence increases with completeness but is capped at 90.
 
 If sufficient evidence is not present:
 
@@ -337,7 +348,7 @@ priority_score =
 
 All four components are complete for all 1,522 records. Ranks use descending score order with stable first-occurrence tie handling.
 
-The scenario identity hashes the title, weights, climate assumption set, validation filter, and policy-model version. The current scenario is `scn-c46e1d86c1`.
+The scenario identity hashes the title, weights, climate assumption set, validation filter, and policy-model version. The current scenario is `scn-e0f12f397e`.
 
 The score stage records:
 
@@ -355,7 +366,13 @@ Every current city tag has method `text_fallback` and confidence `low_requires_b
 
 ## Stage 17: rank stability
 
-Sensitivity uses 5,000 fixed-seed Dirichlet draws around the default weights. The concentration parameter is 60 and the seed is 20260820.
+Sensitivity runs three reproducible fixed-seed modes with 5,000 draws each:
+
+- `around_default`: concentrated Dirichlet draws around the approved default weights;
+- `broad_simplex`: broad Dirichlet draws across the policy-weight simplex; and
+- `custom`: configured bounded per-dimension draws, normalized to sum to one.
+
+The default `sensitivity.csv` fields attached to route scores continue to use `around_default`. The combined mode output is written separately so broad and custom stress tests do not silently redefine the default rank-stability interpretation.
 
 For each route, Route2Zero records:
 
@@ -382,24 +399,26 @@ portfolio_objective =
   + 0.15 x evidence_confidence
 ```
 
-It filters by minimum evidence grade and equity score, then scans eligible routes in descending objective order while enforcing city, corridor-direction, evidence-limited, and maximum-count constraints.
+It filters by minimum evidence grade and equity score, then scans eligible routes in descending objective order while enforcing city, corridor-direction, evidence-limited, and maximum-count constraints. Baseline selection and value-of-information tests call the same deterministic selector.
 
-This is deterministic constrained selection, not mixed-integer optimization and not a financial optimizer. It has no budget because no defensible route-level cost input exists.
+This is deterministic constrained selection, not mixed-integer optimization and not a financial optimizer. It has no budget because no defensible route-level cost input exists. If the requested count cannot be filled, the stage returns an explicit `infeasible` result with no selected routes and constraint diagnostics; it never relaxes constraints silently.
 
 The current scenario selects eight routes and is feasible. It differs from the simple top-eight list by four added and four removed route IDs.
 
 ## Stage 19: value of information
 
-For every route, four uncertain fields are perturbed:
+For every route, six uncertain fields are perturbed through configured low/high ranges:
 
+- geometry reliability;
+- service intensity;
+- climate assumptions;
 - operator readiness from 30 to 70;
 - charging readiness by plus or minus 20, bounded to 0-100;
-- climate assumptions using low and high scenario scores; and
 - equity population exposure by plus or minus 15, bounded to 0-100.
 
-The stage recomputes implied rank against the baseline score distribution. It records maximum rank swing, whether top-eight or selected-route status may flip, and a validation-priority score.
+Geometry and service perturbations propagate through their affected climate inputs rather than being added as policy dimensions. Each perturbation recomputes the affected score and reruns the same deterministic selector used for the baseline portfolio. The stage records maximum rank swing, actual low/high membership changes, `portfolio_flip_possible`, and a validation-priority score.
 
-The method creates 6,088 route-field records. It is a deterministic local perturbation screen, not a causal value-of-information model and not a monetary valuation.
+The method creates six route-field records per route. It is a deterministic local perturbation screen, not a causal value-of-information model and not a monetary valuation.
 
 ## Stage 20: planning assistant
 
@@ -413,7 +432,7 @@ LLM output never enters the scoring table, climate engine, sensitivity simulatio
 
 The finalizer checks for all required outputs, hashes configuration and source inputs, records model versions and random seeds, writes build IDs into the score files, selects the flagship route using the declared rule, and writes the pipeline report.
 
-Build `r2z-16690ccbe328` reports:
+Build `r2z-45c4ba076af9` reports:
 
 - 1,522 rows processed;
 - 1,522 complete scores;
@@ -450,4 +469,3 @@ Before investment use, a city pilot must:
 - approve weights, constraints, and decision rights.
 
 The validation protocol in `docs/validation_protocol.md` defines the minimum process.
-

@@ -2,52 +2,20 @@
 
 from __future__ import annotations
 
-import re
 import sys
 
 import geopandas as gpd
 import pandas as pd
 
+from adapters import MetroManilaCityBoundaryAdapter
 from common import PROCESSED_DIR, ensure_output_dirs
 
 
-CITY_ALIASES = {
-    "Quezon City": ["Quezon City"], "Caloocan": ["Caloocan City", "Caloocan"],
-    "Las Pinas": ["Las Piñas City", "Las Pinas City", "Las Piñas", "Las Pinas"],
-    "Makati": ["Makati City", "Makati"], "Malabon": ["Malabon City", "Malabon"],
-    "Mandaluyong": ["Mandaluyong City", "Mandaluyong"], "Marikina": ["Marikina City", "Marikina"],
-    "Muntinlupa": ["Muntinlupa City", "Muntinlupa"], "Navotas": ["Navotas City", "Navotas"],
-    "Paranaque": ["Parañaque City", "Paranaque City", "Parañaque", "Paranaque"],
-    "Pasay": ["Pasay City", "Pasay"], "Pasig": ["Pasig City", "Pasig"],
-    "San Juan": ["San Juan City", "San Juan"], "Taguig": ["Taguig City", "Taguig"],
-    "Valenzuela": ["Valenzuela City", "Valenzuela"], "Pateros": ["Pateros"],
-    "Antipolo": ["Antipolo City", "Antipolo"], "Bacoor": ["Bacoor City", "Bacoor"],
-    "Dasmarinas": ["Dasmariñas City", "Dasmarinas City", "Dasmariñas", "Dasmarinas"],
-    "San Jose del Monte": ["San Jose del Monte City", "San Jose del Monte"],
-    "Binan": ["Biñan City", "Binan City", "Biñan", "Binan"], "Carmona": ["Carmona City", "Carmona"],
-    "General Mariano Alvarez": ["General Mariano Alvarez", "GMA, Cavite"],
-}
+CITY_ADAPTER = MetroManilaCityBoundaryAdapter()
 
 
 def cities_for_route(description: object, route_name: object) -> list[str]:
-    text = f"{description or ''} | {route_name or ''}"
-    hits: list[tuple[int, str]] = []
-    cleaned = text
-    for city, aliases in CITY_ALIASES.items():
-        positions = [cleaned.lower().find(alias.lower()) for alias in aliases]
-        positions = [position for position in positions if position >= 0]
-        if positions:
-            hits.append((min(positions), city))
-        for alias in aliases:
-            cleaned = re.sub(re.escape(alias) + r"\s*,?\s*Manila", alias, cleaned, flags=re.I)
-    positions = [match.start() for match in re.finditer(r"(?<!Metro )\bManila\b", cleaned, flags=re.I)]
-    if positions:
-        hits.append((min(positions), "Manila"))
-    ordered: list[str] = []
-    for _, city in sorted(hits):
-        if city not in ordered:
-            ordered.append(city)
-    return ordered or ["Unspecified"]
+    return CITY_ADAPTER.cities_for_route(description, route_name)
 
 
 def main() -> int:
@@ -64,9 +32,9 @@ def main() -> int:
             "primary_city": cities[0],
             "cities_served": "|".join(cities),
             "city_count": len(cities),
-            "city_tag_method": "text_fallback",
+            "city_tag_method": CITY_ADAPTER.method,
             "city_tag_confidence": "low_requires_boundary_validation",
-            "boundary_source_id": "",
+            "boundary_source_id": CITY_ADAPTER.boundary_source_id,
         })
     route_cities = pd.DataFrame(rows)
     route_cities.to_csv(PROCESSED_DIR / "route_cities.csv", index=False)
@@ -88,7 +56,7 @@ def main() -> int:
             "portfolio_climate_high_t_year_if_all": round(float(group["net_co2e_avoided_t_year_high"].sum()), 1),
             "top_5_route_ids": "|".join(ranked.head(5)["route_id"]),
             "top_5_route_names": "|".join(ranked.head(5)["route_long_name"].fillna("Unnamed route")),
-            "city_tag_method": "text_fallback",
+            "city_tag_method": CITY_ADAPTER.method,
         })
     pd.DataFrame(summaries).sort_values("route_count", ascending=False).to_csv(PROCESSED_DIR / "city_summary.csv", index=False)
     print(f"[PASS] city text fallback: {len(route_cities):,} routes; spatial boundary validation remains pending")

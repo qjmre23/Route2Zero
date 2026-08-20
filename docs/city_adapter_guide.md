@@ -57,9 +57,21 @@ Before implementation, identify:
 
 Do not begin by copying the Metro Manila ranking.
 
+## Formal adapter contract
+
+Route2Zero separates city-specific inputs from the analytical stages through five small adapter interfaces:
+
+- transport/GTFS, which supplies route, trip, stop, schedule, and geometry tables;
+- population, which supplies an optional population raster and its availability state;
+- charging, which supplies an optional mapped-infrastructure snapshot plus the controlled charging-site ledger;
+- operator, which supplies the controlled operator-evidence ledger; and
+- boundary/city, which supplies administrative joins when available or an explicitly low-confidence text fallback.
+
+The Metro Manila implementations are the reference wiring for the current build. A new city should implement the same interfaces and source metadata rather than add city-specific paths inside scoring stages. Adapters must distinguish three states: available evidence, an available but empty validated ledger, and an unavailable optional layer. The latter two states must never be converted into positive evidence.
+
 ## 1. Source registry adapter
 
-Create or revise `config/source_registry.json` so every required source has:
+Create or revise `config/source_registry.json` so every source has a stable `required` or optional classification plus:
 
 - stable source ID;
 - title and organization;
@@ -74,7 +86,7 @@ Create or revise `config/source_registry.json` so every required source has:
 - currentness; and
 - limitations.
 
-Run the source-manifest stage before any transformation. Do not register a remote URL without preserving the actual local snapshot used in the build where licensing permits.
+Run the source-manifest stage before any transformation. A missing required source stops the build. A missing optional source remains in the manifest with `available = false` and a null checksum, and dependent route fields degrade to `MISSING`/null where the method permits. Do not register a remote URL without preserving the actual local snapshot used in the build where licensing permits.
 
 ## 2. Transport-data adapter
 
@@ -181,11 +193,11 @@ Potential dimensions include:
 - lawful aggregate socioeconomic indicators; and
 - validated underserved-area datasets.
 
-For every indicator, document construct, population, resolution, date, uncertainty, and governance. Leave unsupported dimensions null.
+For every indicator, document construct, population, resolution, date, uncertainty, and governance. Leave unsupported dimensions null. The population adapter is optional: if its raster is absent, population exposure and dependent equity fields must be null with claim status `MISSING`, not zero and not a low-need label.
 
 ## 9. Charging and utility adapter
 
-Replace the Metro Manila OSM snapshot with a local, dated infrastructure source. Separate:
+Replace the Metro Manila OSM snapshot with a local, dated infrastructure source. The charging adapter combines that optional screening layer with `data/validated/charging_site_evidence.csv`; candidate-terminal counts and terminal/site evidence must come from accepted ledger rows rather than constants. Separate:
 
 - mapped infrastructure;
 - site control;
@@ -195,11 +207,22 @@ Replace the Metro Manila OSM snapshot with a local, dated infrastructure source.
 - charger availability; and
 - final engineering feasibility.
 
-Only formal evidence should set capacity or site-verification flags. Proximity thresholds may require local recalibration for network density and geography.
+Only formal evidence should set capacity or site-verification flags. A header-only ledger is no evidence. If the mapped layer is absent but accepted site evidence exists, retain only what that evidence supports. If both are absent, proximity and readiness fields are null and the claim status is `MISSING`. Proximity thresholds may require local recalibration for network density and geography.
 
 ## 10. Operator adapter
 
 Define lawful, consent-based evidence with operator partners. Adapt fields to local institutions without converting missing data into a penalty.
+
+The reference operator adapter evaluates all eight configured evidence components when present:
+
+- verified fleet size;
+- depot control;
+- financing;
+- organizational capacity;
+- maintenance capability;
+- willingness to participate;
+- modernization experience; and
+- charging-site access.
 
 Review:
 
@@ -212,7 +235,7 @@ Review:
 - confidentiality; and
 - challenge process.
 
-An adapter may disable operator scoring and leave it missing if a neutral prior would be misleading. That decision must be explicit.
+Present-component weights are re-normalized only over supplied fields; missing fields are not scored as zero. Fleet-size conversion to a 0-100 component, thresholds, weights, and the minimum evidence count must remain versioned configuration. An adapter may disable operator scoring and leave it missing if a neutral prior would be misleading. That decision must be explicit.
 
 ## 11. Evidence-confidence adapter
 
@@ -241,7 +264,13 @@ The Metro Manila 40/30/15/15 default is a prototype lens, not a recommended univ
 
 ## 13. Sensitivity adapter
 
-Review the number of simulations, Dirichlet concentration, seed, and robust-priority thresholds. The current values are 5,000 simulations, concentration 60, and 0.70 top-10 probability.
+Run and report three reproducible fixed-seed modes, with 5,000 draws per mode:
+
+- `around_default`, a concentrated Dirichlet distribution around the approved default weights;
+- `broad_simplex`, a broad Dirichlet exploration of the full policy-weight simplex; and
+- `custom`, bounded per-dimension draws defined in configuration and normalized to sum to one.
+
+The default score attachment remains based on `around_default`; the other modes are separate stress-test outputs. Review the draw count, concentration, custom bounds, seed, and robust-priority thresholds before transfer.
 
 If the city evaluates a small route universe, replace top-10 thresholds with a size-appropriate criterion. Document the new interpretation.
 
@@ -258,13 +287,15 @@ Define a local validation portfolio before adding an investment budget. Review:
 - evidence-limited quota; and
 - feasibility behavior.
 
+The same deterministic selector must be callable by the baseline portfolio and value-of-information stages. When constraints cannot fill the requested portfolio, it must return an explicit `infeasible` result with an empty selected set and constraint diagnostics. It must not silently relax a threshold or manufacture a shortlist.
+
 Add financial constraints only with defensible, comparable cost inputs. If a solver is introduced, document objective, variables, constraints, optimality status, and infeasibility behavior.
 
 ## 15. Value-of-information adapter
 
-Replace generic perturbation ranges with locally defensible ranges. Record why each range is plausible.
+Replace generic perturbation ranges with locally defensible, versioned ranges. The reference screen covers geometry, service, climate, operator, charging, and equity evidence. For every low/high perturbation, recompute the affected score and rerun the same deterministic portfolio selector; `portfolio_flip_possible` is based on changed membership, not a rank-crossing shortcut.
 
-Possible fields include current service, operator evidence, charging capacity, vehicle efficiency, grid factor, accessibility, and cost. Do not convert rank swing into monetary value without an appropriate decision model.
+Possible future fields include vehicle efficiency, grid factor, accessibility, and cost. Do not convert rank swing into monetary value without an appropriate decision model.
 
 ## 16. Planning-assistant adapter
 

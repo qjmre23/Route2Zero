@@ -4,7 +4,7 @@
 
 Route2Zero supports public-sector planning under incomplete evidence. Its governance objective is not to remove uncertainty. It is to keep uncertainty, policy choices, source limitations, and human decision rights visible throughout the workflow.
 
-This framework applies to build `r2z-16690ccbe328`, policy scenario `scn-c46e1d86c1`, and portfolio scenario `prt-b73fa05705`.
+This framework applies to build `r2z-45c4ba076af9`, policy scenario `scn-e0f12f397e`, and portfolio scenario `prt-fd6de9d793`.
 
 ## Governing statement
 
@@ -52,7 +52,7 @@ The optional LLM receives a bounded question and structured ranked facts. It may
 
 ### Non-AI analytics
 
-Climate, evidence confidence, policy score, sensitivity summaries, portfolio selection, and value of information are deterministic or fixed-seed calculations. Calling every analytical stage “AI” would obscure accountability.
+Climate, evidence confidence, policy score, three-mode sensitivity summaries, portfolio selection, and value of information are deterministic or fixed-seed calculations. Calling every analytical stage “AI” would obscure accountability.
 
 ## Human control points
 
@@ -118,9 +118,11 @@ During a pilot:
 
 If a defensible marginalized- or underserved-settlement source is unavailable, that field remains missing. It is not reconstructed from density.
 
+WorldPop is an optional population-exposure layer. If it is unavailable, exposure and dependent equity fields remain null with status `MISSING`; the system must not replace them with zero or interpret absence as low need. The same rule applies to optional OSM charging proximity. Downstream constraints may therefore produce an explicit infeasible portfolio, which is safer than fabricating complete evidence.
+
 ## Operator evidence and consent
 
-Operator evidence can concern fleet, depot access, financing, organizational capacity, maintenance, and willingness. It can be sensitive even when it is not personal data.
+Operator evidence can concern verified fleet size, depot control, financing, organizational capacity, maintenance capability, willingness to participate, modernization experience, and charging-site access. It can be sensitive even when it is not personal data.
 
 The pilot must:
 
@@ -133,7 +135,7 @@ The pilot must:
 - avoid publication of confidential financing or personal information; and
 - document how evidence affects scores or status.
 
-The current neutral prior must remain explicit until sufficient evidence is accepted.
+All eight configured components must be considered when supplied. Missing components are omitted rather than scored as zero, and a header-only ledger is not evidence. The current neutral prior must remain explicit until sufficient evidence is accepted.
 
 ## Model governance
 
@@ -229,7 +231,9 @@ Every decision pack should identify:
 - current-validation count;
 - climate assumption set;
 - rank-stability method and seed;
+- sensitivity mode (`around_default`, `broad_simplex`, or `custom`) and draw count;
 - portfolio method;
+- portfolio feasibility status and constraint diagnostics;
 - known limitations;
 - human decision owner; and
 - next validation actions.
@@ -259,13 +263,18 @@ Corrections must flow through validated ledgers or versioned configuration, foll
 | Historic service treated as current | Historic-only label, current-validation ledger, publication warning |
 | High model metric overstated | Historic target disclosure, current holdout requirement |
 | Density treated as vulnerability | Proxy label, null socioeconomic fields, prohibited-claim rule |
+| Missing WorldPop treated as zero need | Optional-source state, null values, `MISSING` claim status |
 | OSM proximity treated as capacity | Capacity flag remains false until formal evidence |
+| Missing OSM replaced with fabricated proximity | Optional-source state and null charging-proximity/readiness fields |
 | Operator prior treated as observation | `NEUTRAL_PRIOR` status and low confidence |
+| Incomplete operator ledger treated as zero capability | Eight-component completeness, present-weight normalization, explicit prior |
 | Negative climate case hidden | Preserve full low/base/high range |
 | Stable rank mistaken for readiness | Display evidence grade separately |
 | LLM hallucination | Bounded facts, deterministic fallback, source label, no numeric write path |
 | Policy preferences hidden in score | Named scenarios, visible weights, human approval |
 | Portfolio appears financially optimized | State deterministic selection and no budget |
+| Portfolio constraints silently relaxed | Explicit infeasible result, empty selection, and constraint diagnostics |
+| Rank crossing mistaken for portfolio change | Re-run the shared selector for geometry, service, climate, operator, charging, and equity perturbations |
 | Text city tag misassigns corridor | Low-confidence label and boundary-validation task |
 | Stakeholder conflict erased | Conflict status, change log, challenge process |
 
@@ -277,6 +286,8 @@ The deterministic system may be released for screening when:
 - scores, statuses, and IDs are internally consistent;
 - no secret is exposed to the browser;
 - limitations are visible;
+- optional-source absence is preserved as `MISSING`/null;
+- infeasible portfolio scenarios return diagnostics without a fabricated shortlist;
 - exports preserve scenario context; and
 - tests and the Netlify build complete successfully.
 

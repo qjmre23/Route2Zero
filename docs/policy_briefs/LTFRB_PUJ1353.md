@@ -2,15 +2,15 @@
 
 **Route ID:** `LTFRB_PUJ1353`
 
-**Default scenario:** `scn-c46e1d86c1`
+**Default scenario:** `scn-e0f12f397e`
 
-**Phase-1 portfolio:** `prt-b73fa05705`
+**Phase-1 portfolio:** `prt-fd6de9d793`
 
 **Recommended status:** Proceed to evidence validation; not procurement authorization.
 
 ## Decision snapshot
 
-- Priority: **#1 / 1,522**, score **80.0/100**.
+- Priority: **#1 / 1,522**, score **79.1/100**.
 - Evidence: **C**, 38.3/100.
 - Rank stability: **100% top-10 frequency** across 5,000 policy scenarios; P10-P90 rank **#1-#1**.
 - Climate range: **-1112 to 3025 tCO2e/year** under low/high planning assumptions. This is a scenario, not a measured reduction.
@@ -21,7 +21,7 @@
 - Service input: `DERIVED` from `historic_gtfs_service_activity_proxy`.
 - Geometry: **C**, 56/100; `stop_sequence_approx`. Planning geometry is not an official franchise trace.
 - Equity: **77.4/100**, population-exposure proxy only. No informal-settlement status is inferred.
-- Charging evidence: **66.5/100**; nearest mapped substation 0.6 km; utility capacity **not verified**.
+- Charging evidence: **60.5/100**; nearest mapped substation 0.6 km; utility capacity **not verified**.
 - Operator: **50.0/100**, `NEUTRAL_PRIOR`.
 - Corridor type: **Dense Urban Trunk**; typology does not add hidden policy points.
 

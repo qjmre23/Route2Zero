@@ -13,10 +13,10 @@ The repository-facing documentation is anchored to the following reproducible ou
 | Release field | Recorded value |
 |---|---|
 | Pipeline version | `2.0.0` |
-| Build ID | `r2z-16690ccbe328` |
-| Build timestamp | `2026-08-20T04:47:08Z` |
-| Default policy scenario | `scn-c46e1d86c1` |
-| Phase-1 portfolio scenario | `prt-b73fa05705` |
+| Build ID | `r2z-45c4ba076af9` |
+| Build timestamp | `2026-08-20T06:25:29Z` |
+| Default policy scenario | `scn-e0f12f397e` |
+| Phase-1 portfolio scenario | `prt-fd6de9d793` |
 | Route-direction records | 1,522 |
 | Complete priority scores | 1,522 |
 | Current route validations | 0 |
@@ -101,7 +101,7 @@ Priority =
   + 0.15 x operator_effective_score
 ```
 
-The generated scenario ID is `scn-c46e1d86c1`. The score is deterministic once the component values and weights are fixed. Machine learning can supply one service-activity input when the historic schedule proxy is missing; the LLM never supplies a numeric input.
+The generated scenario ID is `scn-e0f12f397e`. The score is deterministic once the component values and weights are fixed. Machine learning can supply one service-activity input when the historic schedule proxy is missing; the LLM never supplies a numeric input.
 
 Named policy presets in `config/policy_model.json` include climate-and-equity, equity-first, and infrastructure-first lenses. These are comparison lenses, not endorsed policy decisions. A city should approve and document its own weights during the pilot.
 
@@ -183,7 +183,7 @@ The label describes behavior across tested policy weights. It does not correct w
 
 ## Phase-1 portfolio
 
-Portfolio scenario `prt-b73fa05705` is an evidence-validation shortlist, not a procurement portfolio. It uses deterministic selection with these constraints:
+Portfolio scenario `prt-fd6de9d793` is an evidence-validation shortlist, not a procurement portfolio. It uses deterministic selection with these constraints:
 
 - maximum eight corridors;
 - minimum evidence grade C;
@@ -217,7 +217,7 @@ The build-selected flagship is `LTFRB_PUJ1353`, Francisco Homes - Cubao.
 | Field | Build value |
 |---|---:|
 | Default rank | 1 |
-| Priority score | 79.97 |
+| Priority score | 79.07 |
 | Evidence grade | C |
 | Evidence confidence | 38.34 |
 | Top-10 frequency | 100% |

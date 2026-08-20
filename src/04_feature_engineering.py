@@ -26,6 +26,8 @@ def load_validation_defaults(routes: pd.DataFrame) -> pd.DataFrame:
     defaults["source_type"] = "historic_gtfs_baseline"
     defaults["source_reference"] = "sakay_gtfs_master_historic"
     defaults["notes"] = "No current route validation supplied."
+    defaults["observed_origin"] = ""
+    defaults["observed_destination"] = ""
     defaults["observed_headway_min"] = np.nan
     defaults["observed_service_window_hrs"] = np.nan
     defaults["geometry_verified"] = False

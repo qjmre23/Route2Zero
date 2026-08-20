@@ -1,0 +1,42 @@
+{
+  "version": "validation-priority-v2.0",
+  "portfolio_selector_method": "deterministic_selection_v2",
+  "perturbations": {
+    "operator_readiness": {
+      "low": 30.0,
+      "high": 70.0,
+      "source_id": "route2zero_operator_prior_v1",
+      "reason": "neutral prior range requiring consent-based operator evidence"
+    },
+    "charging_readiness": {
+      "absolute_delta": 20.0,
+      "source_id": "osm_power_snapshot_2026_08_20",
+      "reason": "mapped proximity cannot verify utility capacity or site control"
+    },
+    "climate_assumptions": {
+      "source_id": "route2zero_climate_scenario_v1",
+      "reason": "vehicle efficiency, electrification share and grid assumptions"
+    },
+    "equity_population_exposure": {
+      "absolute_delta": 15.0,
+      "source_id": "worldpop_phl_2020_1km",
+      "reason": "population exposure does not establish socioeconomic need"
+    },
+    "geometry_reliability": {
+      "relative_uncertainty_by_grade": {"A": 0.03, "B": 0.08, "C": 0.18, "D": 0.35},
+      "source_id": "sakay_gtfs_master_historic",
+      "reason": "screening geometry length and alignment require street-level validation"
+    },
+    "service_intensity": {
+      "relative_uncertainty_by_claim_status": {
+        "VERIFIED": 0.03,
+        "OBSERVED": 0.08,
+        "DERIVED": 0.20,
+        "ML_ESTIMATED": 0.30,
+        "MISSING": 0.50
+      },
+      "source_id": "sakay_gtfs_master_historic",
+      "reason": "historic or estimated service intensity requires current counts"
+    }
+  }
+}

@@ -22,7 +22,7 @@ def main() -> int:
     output["underserved_overlap_available"] = bool(config["underserved_overlap_available"])
     output["equity_score"] = output["population_exposure_score"]
     output["equity_evidence_confidence"] = np.where(output["equity_score"].notna(), 25.0, 0.0)
-    output["equity_source_ids"] = "worldpop_phl_2020_1km"
+    output["equity_source_ids"] = np.where(output["equity_score"].notna(), "worldpop_phl_2020_1km", "")
     output["equity_claim_status"] = np.where(output["equity_score"].notna(), "PROXY", "MISSING")
     output["equity_method_version"] = config["version"]
     output["equity_limitation"] = "Population exposure only; no validated socioeconomic, accessibility-gap or settlement-status layer is available."

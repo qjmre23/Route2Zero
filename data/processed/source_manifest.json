@@ -1,10 +1,11 @@
 {
   "registry_version": "2.0.0",
-  "registry_checksum_sha256": "8dd43371168d76a8a6cd298d10a9a3a43aaf2533143afd2e6db405c4d38395c9",
-  "source_count": 6,
+  "registry_checksum_sha256": "04e5ae847b2bc1c72115f3bdd1367f93d89813ff432a4aa5d363549c1446e002",
+  "source_count": 12,
   "sources": [
     {
       "source_id": "sakay_gtfs_master_historic",
+      "required": true,
       "title": "Sakay community GTFS - master branch",
       "organization": "Sakay.ph contributors",
       "source_url": "https://github.com/sakayph/gtfs/tree/master",
@@ -17,10 +18,13 @@
       "source_type": "administrative",
       "currentness": "historic",
       "notes": "Defines the screening universe; it is not evidence of current 2026 operations.",
-      "checksum_sha256": "3a16a1cdce421bf7240355540bdc72f6eea7ecadaa4789c349f501ca1845d4c7"
+      "available": true,
+      "checksum_sha256": "3a16a1cdce421bf7240355540bdc72f6eea7ecadaa4789c349f501ca1845d4c7",
+      "availability_status": "AVAILABLE"
     },
     {
       "source_id": "worldpop_phl_2020_1km",
+      "required": false,
       "title": "Philippines 2020 population-count raster",
       "organization": "WorldPop, University of Southampton",
       "source_url": "https://doi.org/10.5258/SOTON/WP00670",
@@ -33,10 +37,13 @@
       "source_type": "proxy",
       "currentness": "historic",
       "notes": "Population exposure proxy only; not poverty, tenure or informal-settlement evidence.",
-      "checksum_sha256": "db87b488519157ec83fb43e2c867016ca72115fde193a9565b650ee35d6699fd"
+      "available": true,
+      "checksum_sha256": "db87b488519157ec83fb43e2c867016ca72115fde193a9565b650ee35d6699fd",
+      "availability_status": "AVAILABLE"
     },
     {
       "source_id": "doe_luzon_generation_2024",
+      "required": true,
       "title": "Luzon generation mix and grid-emissions context",
       "organization": "Philippine Department of Energy",
       "source_url": "https://doe.gov.ph/",
@@ -49,10 +56,13 @@
       "source_type": "administrative",
       "currentness": "historic",
       "notes": "Regional energy context; not route-level distribution capacity.",
-      "checksum_sha256": "9c6928ae13f3f4b98c4e16aa8e12bf1c5b4cc547368f3ef426bce35464e1b5d6"
+      "available": true,
+      "checksum_sha256": "9c6928ae13f3f4b98c4e16aa8e12bf1c5b4cc547368f3ef426bce35464e1b5d6",
+      "availability_status": "AVAILABLE"
     },
     {
       "source_id": "osm_power_snapshot_2026_08_20",
+      "required": false,
       "title": "Mapped substations and EV charging stations",
       "organization": "OpenStreetMap contributors",
       "source_url": "https://www.openstreetmap.org/copyright",
@@ -65,10 +75,13 @@
       "source_type": "proxy",
       "currentness": "mixed",
       "notes": "Proximity is screening evidence only and does not prove utility capacity, ownership or site availability.",
-      "checksum_sha256": "92d52bde6f3f00640693d5c6a2e4234d1fd7fd6ca46a918a1261e776aba32516"
+      "available": true,
+      "checksum_sha256": "92d52bde6f3f00640693d5c6a2e4234d1fd7fd6ca46a918a1261e776aba32516",
+      "availability_status": "AVAILABLE"
     },
     {
       "source_id": "route2zero_climate_scenario_v1",
+      "required": true,
       "title": "Route2Zero pilot climate and service-electrification assumptions",
       "organization": "Team Larpers",
       "source_url": "https://github.com/qjmre23/Route2Zero/blob/main/config/climate_scenarios.json",
@@ -81,10 +94,13 @@
       "source_type": "placeholder",
       "currentness": "current",
       "notes": "Low/base/high planning assumptions requiring pilot calibration; outputs are scenarios, not measured reductions.",
-      "checksum_sha256": "1e6645f7ff7dec0c272816cfde3ea986559d0ad2f5d51438c8951f32ef75593c"
+      "available": true,
+      "checksum_sha256": "1e6645f7ff7dec0c272816cfde3ea986559d0ad2f5d51438c8951f32ef75593c",
+      "availability_status": "AVAILABLE"
     },
     {
       "source_id": "route2zero_operator_prior_v1",
+      "required": true,
       "title": "Neutral operator-readiness prior",
       "organization": "Team Larpers",
       "source_url": "https://github.com/qjmre23/Route2Zero/blob/main/config/operator_readiness_config.json",
@@ -97,7 +113,123 @@
       "source_type": "placeholder",
       "currentness": "current",
       "notes": "A neutral prior is used only where consent-based operator evidence is missing.",
-      "checksum_sha256": "52fcf040b400c757380c3aca16542d3b4132c9869a9511f2c12773dedb1c50cc"
+      "available": true,
+      "checksum_sha256": "2db408cc0caa3c6bc85e7ec1d86d189363a429c6fff1209e8b9778b76896112d",
+      "availability_status": "AVAILABLE"
+    },
+    {
+      "source_id": "route_validation_ledger",
+      "required": true,
+      "title": "Current route validation ledger",
+      "organization": "Team Larpers and authorized validators",
+      "source_url": "https://github.com/qjmre23/Route2Zero/blob/main/data/validated/route_validation.csv",
+      "local_path": "data/validated/route_validation.csv",
+      "retrieval_date": "2026-08-20",
+      "reference_period": "rolling pilot validation",
+      "geography": "Metro Manila",
+      "spatial_resolution": "route",
+      "license": "Project evidence ledger",
+      "source_type": "validated_ledger",
+      "currentness": "rolling",
+      "notes": "Empty fields and historic-only status remain explicit; no validation is inferred.",
+      "available": true,
+      "checksum_sha256": "f33a9a3460f972fc08f45c731d69074c07ac50febf26f7c084a56e81daecf9c7",
+      "availability_status": "AVAILABLE"
+    },
+    {
+      "source_id": "charging_site_evidence_ledger",
+      "required": true,
+      "title": "Charging-site and utility evidence ledger",
+      "organization": "Team Larpers and authorized site or utility verifiers",
+      "source_url": "https://github.com/qjmre23/Route2Zero/blob/main/data/validated/charging_site_evidence.csv",
+      "local_path": "data/validated/charging_site_evidence.csv",
+      "retrieval_date": "2026-08-20",
+      "reference_period": "rolling pilot validation",
+      "geography": "Metro Manila",
+      "spatial_resolution": "route and candidate charging site",
+      "license": "Project evidence ledger",
+      "source_type": "validated_ledger",
+      "currentness": "rolling",
+      "notes": "An empty ledger means that no site control or utility capacity has been verified.",
+      "available": true,
+      "checksum_sha256": "397383aecca95c565b29529ea585d3a62ef4cb3ddcb2ec24dfc001b72bf872b6",
+      "availability_status": "AVAILABLE"
+    },
+    {
+      "source_id": "operator_evidence_ledger",
+      "required": true,
+      "title": "Consent-based operator evidence ledger",
+      "organization": "Team Larpers and participating operators",
+      "source_url": "https://github.com/qjmre23/Route2Zero/blob/main/data/validated/operator_evidence.csv",
+      "local_path": "data/validated/operator_evidence.csv",
+      "retrieval_date": "2026-08-20",
+      "reference_period": "rolling pilot validation",
+      "geography": "Metro Manila",
+      "spatial_resolution": "route and operator",
+      "license": "Project evidence ledger",
+      "source_type": "validated_ledger",
+      "currentness": "rolling",
+      "notes": "Only supplied, consent-based fields affect the observed score; absent evidence retains the neutral prior.",
+      "available": true,
+      "checksum_sha256": "9f66e729ec4b97b3e5bae8e6752bc58e006ae08b6bd059aa74a8791915bc61a4",
+      "availability_status": "AVAILABLE"
+    },
+    {
+      "source_id": "stakeholder_validation_ledger",
+      "required": true,
+      "title": "Stakeholder validation and feedback ledger",
+      "organization": "Team Larpers and participating stakeholders",
+      "source_url": "https://github.com/qjmre23/Route2Zero/blob/main/data/validated/stakeholder_validation.csv",
+      "local_path": "data/validated/stakeholder_validation.csv",
+      "retrieval_date": "2026-08-20",
+      "reference_period": "rolling pilot validation",
+      "geography": "Metro Manila",
+      "spatial_resolution": "route and workflow component",
+      "license": "Project evidence ledger",
+      "source_type": "validated_ledger",
+      "currentness": "rolling",
+      "notes": "No stakeholder endorsement or quotation permission is inferred from an empty row set.",
+      "available": true,
+      "checksum_sha256": "ecd5a9c2bfbb95a6c62eea1068ef8d3c2dada528c6a0c23141119a38a546edf5",
+      "availability_status": "AVAILABLE"
+    },
+    {
+      "source_id": "route2zero_operator_scoring_v1",
+      "required": true,
+      "title": "Route2Zero operator evidence scoring assumptions",
+      "organization": "Team Larpers",
+      "source_url": "https://github.com/qjmre23/Route2Zero/blob/main/config/operator_readiness_config.json",
+      "local_path": "config/operator_readiness_config.json",
+      "retrieval_date": "2026-08-20",
+      "reference_period": "pilot scoring scenario",
+      "geography": "Metro Manila",
+      "spatial_resolution": "route",
+      "license": "Project configuration",
+      "source_type": "placeholder",
+      "currentness": "current",
+      "notes": "Fleet-size breakpoints and component weights are transparent planning assumptions, not external measurements.",
+      "available": true,
+      "checksum_sha256": "2db408cc0caa3c6bc85e7ec1d86d189363a429c6fff1209e8b9778b76896112d",
+      "availability_status": "AVAILABLE"
+    },
+    {
+      "source_id": "route2zero_validation_priority_v2",
+      "required": true,
+      "title": "Route2Zero value-of-information perturbation assumptions",
+      "organization": "Team Larpers",
+      "source_url": "https://github.com/qjmre23/Route2Zero/blob/main/config/validation_priority_config.json",
+      "local_path": "config/validation_priority_config.json",
+      "retrieval_date": "2026-08-20",
+      "reference_period": "pilot validation scenario",
+      "geography": "Metro Manila",
+      "spatial_resolution": "route and evidence field",
+      "license": "Project configuration",
+      "source_type": "placeholder",
+      "currentness": "current",
+      "notes": "Perturbation ranges are decision-testing scenarios and do not claim measured error bounds.",
+      "available": true,
+      "checksum_sha256": "1f944a84a53f56c65187d3e854c73673035c240add0f051d403101292740ff3d",
+      "availability_status": "AVAILABLE"
     }
   ]
 }

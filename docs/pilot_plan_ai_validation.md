@@ -4,12 +4,12 @@
 
 This plan defines how a six-month city pilot should validate the machine-learning and LLM components of Route2Zero while preserving the authority of deterministic models and human decision owners.
 
-The starting point is build `r2z-16690ccbe328`:
+The starting point is build `r2z-45c4ba076af9`:
 
 - service model `service-v1-266e0b1d`;
 - typology model `typology-v1-f9da2ebe`;
-- policy scenario `scn-c46e1d86c1`;
-- portfolio `prt-b73fa05705`;
+- policy scenario `scn-e0f12f397e`;
+- portfolio `prt-fd6de9d793`;
 - 0 current route validations;
 - 9 robust-priority records; and
 - 8 Phase-1 corridors.

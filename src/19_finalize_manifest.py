@@ -8,14 +8,37 @@ import sys
 import geopandas as gpd
 import pandas as pd
 
-from common import CONFIG_DIR, MODELS_DIR, PROCESSED_DIR, ROOT, ensure_output_dirs, read_json, sha256_file, stable_hash, utc_now_iso, write_json
+from common import (
+    CONFIG_DIR,
+    MODELS_DIR,
+    PROCESSED_DIR,
+    ROOT,
+    ensure_output_dirs,
+    read_json,
+    sha256_file,
+    stable_hash,
+    utc_now_iso,
+    validate_claim_status_columns,
+    write_json,
+)
 
 
 REQUIRED_OUTPUTS = [
     "route_features.csv", "ml_service_intensity.csv", "corridor_typology.csv", "climate_impact.csv",
     "equity_v2.csv", "charging_readiness.csv", "operator_readiness_v2.csv", "geometry_reliability.csv",
     "evidence_confidence.csv", "route2zero_scores.csv", "route2zero_scores.geojson", "sensitivity.csv",
+    "sensitivity_modes.csv",
     "portfolio_scenarios.json", "validation_priorities.json", "route_planner_cache.json", "source_manifest.json",
+    "route_validation.csv", "route_cities.csv", "city_summary.csv", "model_metrics.json",
+    "portfolio_membership.csv", "validation_priorities.csv", "planner_summary.json",
+]
+
+FINAL_REPORT_OUTPUTS = ["pipeline_report.json", "flagship_route.json"]
+MODEL_ARTIFACTS = [
+    "service_intensity.joblib",
+    "service_intensity_metadata.json",
+    "corridor_typology.joblib",
+    "corridor_typology_metadata.json",
 ]
 
 
@@ -34,10 +57,11 @@ def main() -> int:
         raise FileNotFoundError(f"Required Route2Zero 2.0 outputs missing: {missing}")
     config_checksums = {path.name: sha256_file(path) for path in sorted(CONFIG_DIR.glob("*.json"))}
     source_manifest = read_json(PROCESSED_DIR / "source_manifest.json")
-    source_checksums = {source["source_id"]: source["checksum_sha256"] for source in source_manifest["sources"]}
+    source_checksums = {source["source_id"]: source.get("checksum_sha256") for source in source_manifest["sources"]}
     service_meta = read_json(MODELS_DIR / "service_intensity_metadata.json")
     typology_meta = read_json(MODELS_DIR / "corridor_typology_metadata.json")
     scores = pd.read_csv(PROCESSED_DIR / "route2zero_scores.csv", dtype={"route_id": str})
+    claim_columns = validate_claim_status_columns(scores)
     portfolio = read_json(PROCESSED_DIR / "portfolio_scenarios.json")["scenarios"][0]
     build_timestamp = utc_now_iso()
     identity = {
@@ -59,17 +83,24 @@ def main() -> int:
     geodata["build_timestamp_utc"] = build_timestamp
     geodata.to_file(geo_path, driver="GeoJSON")
 
-    output_checksums = {name: sha256_file(PROCESSED_DIR / name) for name in REQUIRED_OUTPUTS if name not in {"route2zero_scores.csv", "route2zero_scores.geojson"}}
-    output_checksums["route2zero_scores.csv"] = sha256_file(score_path)
-    output_checksums["route2zero_scores.geojson"] = sha256_file(geo_path)
     selected_candidates = scores[
         scores["phase1_selected"].astype(bool)
         & scores["robustness_label"].eq("ROBUST PRIORITY")
     ]
     candidates = selected_candidates if not selected_candidates.empty else scores[scores["phase1_selected"].astype(bool)]
+    flagship_is_phase1_selected = not candidates.empty
+    if candidates.empty:
+        candidates = scores[scores["just_transition_score"].notna()]
+    if candidates.empty:
+        raise ValueError("No scored route is available for the analytical flagship record")
     flagship = candidates.sort_values(["overall_evidence_confidence", "just_transition_score", "route_id"], ascending=[False, False, True]).iloc[0]
     flagship_payload = {
-        "selection_rule": "Among Phase-1 corridors, prefer ROBUST PRIORITY; then highest evidence confidence, priority score and stable route ID.",
+        "selection_rule": (
+            "Among Phase-1 corridors, prefer ROBUST PRIORITY; then highest evidence confidence, priority score and stable route ID."
+            if flagship_is_phase1_selected
+            else "Portfolio infeasible: analytical example only, chosen by evidence confidence, priority score and stable route ID; not Phase-1 selected."
+        ),
+        "phase1_selected": flagship_is_phase1_selected,
         "route_id": flagship["route_id"],
         "route_long_name": flagship["route_long_name"],
         "rank": int(flagship["rank"]),
@@ -86,6 +117,19 @@ def main() -> int:
     write_json(PROCESSED_DIR / "flagship_route.json", flagship_payload)
 
     validation_count = int((~scores["validation_status"].eq("historic_only")).sum())
+    active_validation_count = int(scores["active_status"].eq("active").sum())
+    critical_missing_values = {
+        column: int(scores[column].isna().sum())
+        for column in [
+            "just_transition_score",
+            "ml_service_intensity_prediction",
+            "net_co2e_avoided_t_year_base",
+            "equity_score",
+            "charging_readiness_score",
+            "operator_effective_score",
+            "overall_evidence_confidence",
+        ]
+    }
     warnings = []
     if validation_count == 0:
         warnings.append("No current route validation records have been supplied; all service status remains historic-only.")
@@ -93,6 +137,8 @@ def main() -> int:
         warnings.append("No consent-based operator evidence has been supplied; the neutral prior remains active.")
     if int(scores["utility_capacity_verified"].astype(bool).sum()) == 0:
         warnings.append("No utility capacity is verified; charging scores use mapped proximity and energy-demand screening only.")
+    if portfolio["status"] == "infeasible":
+        warnings.append("The configured Phase-1 portfolio is infeasible; no constraint was relaxed and no route was selected.")
     if not bool(service_meta["meaningful_vs_baseline"]):
         warnings.append("The service-intensity model did not beat the configured baseline and is experimental only.")
     report = {
@@ -102,12 +148,34 @@ def main() -> int:
         "build_timestamp_utc": build_timestamp,
         "rows_processed": len(scores),
         "score_complete_count": int(scores["score_complete"].sum()),
+        "reduced_information_score_count": int(scores.get("reduced_information_score", pd.Series(False, index=scores.index)).astype(bool).sum()),
         "current_validation_count": validation_count,
+        "active_validation_count": active_validation_count,
         "robust_priority_count": int(scores["robustness_label"].eq("ROBUST PRIORITY").sum()),
         "phase1_corridor_count": int(scores["phase1_selected"].astype(bool).sum()),
+        "source_dates": {
+            source["source_id"]: source["retrieval_date"] for source in source_manifest["sources"]
+        },
+        "optional_sources_missing": [
+            source["source_id"] for source in source_manifest["sources"]
+            if not source.get("required", True) and not source.get("available", True)
+        ],
+        "model_versions": {
+            "service_intensity": service_meta["model_version"],
+            "corridor_typology": typology_meta["model_version"],
+        },
+        "claim_status_columns_checked": claim_columns,
+        "critical_missing_values": critical_missing_values,
         "warnings": warnings,
     }
     write_json(PROCESSED_DIR / "pipeline_report.json", report)
+    output_checksums = {
+        name: sha256_file(PROCESSED_DIR / name)
+        for name in [*REQUIRED_OUTPUTS, *FINAL_REPORT_OUTPUTS]
+    }
+    model_artifact_checksums = {
+        name: sha256_file(MODELS_DIR / name) for name in MODEL_ARTIFACTS
+    }
     manifest = {
         "build_id": build_id,
         "build_timestamp_utc": build_timestamp,
@@ -129,9 +197,15 @@ def main() -> int:
         "config_checksums": config_checksums,
         "source_checksums": source_checksums,
         "output_checksums": output_checksums,
+        "model_artifact_checksums": model_artifact_checksums,
         "default_scenario_id": str(scores["scenario_id"].iloc[0]),
         "default_portfolio_scenario_id": portfolio["scenario_id"],
-        "random_seeds": {"model_and_typology": 20260820, "sensitivity": 20260820},
+        "random_seeds": {
+            "model_and_typology": 20260820,
+            "sensitivity_around_default": 20260820,
+            "sensitivity_broad_simplex": 20260821,
+            "sensitivity_custom": 20260822
+        },
         "flagship_route_id": flagship_payload["route_id"],
         "pipeline_report": report,
     }

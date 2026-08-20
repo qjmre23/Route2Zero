@@ -56,14 +56,26 @@ def main() -> int:
             "llm_ranking_influence": False,
         }
     write_json(PROCESSED_DIR / "route_planner_cache.json", cache)
-    summary = {
-        "question": "What should the city validate first before piloting this portfolio?",
-        "answer": "Prioritize the route-field combinations with the largest tested rank swing or portfolio-flip risk, beginning with operator evidence and utility/charging-site verification for selected corridors.",
-        "evidence_points": [
+    feasible = portfolio["status"] == "feasible"
+    if feasible:
+        portfolio_answer = "Prioritize the route-field combinations with the largest tested rank swing or portfolio-flip risk, beginning with operator evidence and utility/charging-site verification for selected corridors."
+        portfolio_points = [
             f"Portfolio {portfolio['scenario_id']} contains {len(portfolio['selected_route_ids'])} corridors.",
             f"Its scenario climate range is {portfolio['portfolio_climate_impact_t_year']['low']:.0f} to {portfolio['portfolio_climate_impact_t_year']['high']:.0f} tCO2e/year.",
             "Every selected corridor retains explicit evidence and robustness fields.",
-        ],
+        ]
+    else:
+        diagnostics = portfolio.get("infeasibility_diagnostics") or {}
+        portfolio_answer = "The configured evidence and equity constraints are currently infeasible. Validate missing layers or explicitly revise the human-controlled scenario before naming a pilot portfolio."
+        portfolio_points = [
+            f"Portfolio {portfolio['scenario_id']} selected no routes and applied no automatic constraint relaxation.",
+            f"Eligible routes recorded by the selector: {diagnostics.get('eligible_count', 0)}.",
+            "An infeasible result is a valid decision-support outcome, not permission to invent missing evidence.",
+        ]
+    summary = {
+        "question": "What should the city validate first before piloting this portfolio?",
+        "answer": portfolio_answer,
+        "evidence_points": portfolio_points,
         "validation_actions": [
             "Confirm current route status and service observations.",
             "Request utility evidence before any claim about available charging capacity.",

@@ -1,17 +1,20 @@
 from __future__ import annotations
 
 import hashlib
+import importlib.util
 import json
 import os
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 from pathlib import Path
 
 import numpy as np
 import pandas as pd
 import pytest
+from shapely.geometry import LineString
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -26,6 +29,25 @@ EXPECTED_SENSITIVITY_SEED = 20_260_820
 BUILD_ID_PATTERN = re.compile(r"^r2z-[0-9a-f]{12}$")
 SCENARIO_ID_PATTERN = re.compile(r"^scn-[0-9a-f]{10}$")
 SHA256_PATTERN = re.compile(r"^[0-9a-f]{64}$")
+CLAIM_STATUSES = {
+    "VERIFIED",
+    "OBSERVED",
+    "DERIVED",
+    "ML_ESTIMATED",
+    "PROXY",
+    "SCENARIO",
+    "NEUTRAL_PRIOR",
+    "MISSING",
+}
+VALIDATION_STATUSES = {
+    "historic_only",
+    "desk_checked",
+    "operator_confirmed",
+    "lgu_confirmed",
+    "field_checked",
+    "conflicting_evidence",
+}
+ACTIVE_STATUSES = {"active", "inactive", "uncertain"}
 
 
 def load_json(path: Path) -> dict:
@@ -38,6 +60,15 @@ def sha256(path: Path) -> str:
         for chunk in iter(lambda: handle.read(1024 * 1024), b""):
             digest.update(chunk)
     return digest.hexdigest()
+
+
+def load_pipeline_module(filename: str, module_name: str):
+    sys.path.insert(0, str(ROOT / "src"))
+    spec = importlib.util.spec_from_file_location(module_name, ROOT / "src" / filename)
+    assert spec and spec.loader
+    module = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(module)
+    return module
 
 
 @pytest.fixture(scope="session")
@@ -58,7 +89,14 @@ def test_manifests_are_complete_and_build_ids_match(scores: pd.DataFrame) -> Non
     assert source_manifest["source_count"] == len(source_manifest["sources"])
     source_ids = [source["source_id"] for source in source_manifest["sources"]]
     assert source_ids and len(source_ids) == len(set(source_ids))
-    assert all(SHA256_PATTERN.fullmatch(source["checksum_sha256"]) for source in source_manifest["sources"])
+    for source in source_manifest["sources"]:
+        assert isinstance(source["required"], bool)
+        assert source["availability_status"] in {"AVAILABLE", "MISSING_OPTIONAL"}
+        if source["available"]:
+            assert SHA256_PATTERN.fullmatch(source["checksum_sha256"])
+        else:
+            assert source["required"] is False
+            assert source["checksum_sha256"] is None
 
     build_id = build_manifest["build_id"]
     assert BUILD_ID_PATTERN.fullmatch(build_id)
@@ -80,10 +118,13 @@ def test_manifests_are_complete_and_build_ids_match(scores: pd.DataFrame) -> Non
         "climate_impact.csv",
         "evidence_confidence.csv",
         "sensitivity.csv",
+        "sensitivity_modes.csv",
         "portfolio_scenarios.json",
         "route_planner_cache.json",
         "route2zero_scores.csv",
         "route2zero_scores.geojson",
+        "pipeline_report.json",
+        "flagship_route.json",
     }
     output_checksums = build_manifest["output_checksums"]
     assert required_outputs <= output_checksums.keys()
@@ -92,6 +133,16 @@ def test_manifests_are_complete_and_build_ids_match(scores: pd.DataFrame) -> Non
         assert output_path.is_file(), filename
         assert SHA256_PATTERN.fullmatch(expected)
         assert sha256(output_path) == expected, filename
+    model_checksums = build_manifest["model_artifact_checksums"]
+    assert set(model_checksums) == {
+        "service_intensity.joblib",
+        "service_intensity_metadata.json",
+        "corridor_typology.joblib",
+        "corridor_typology_metadata.json",
+    }
+    for filename, expected in model_checksums.items():
+        assert SHA256_PATTERN.fullmatch(expected)
+        assert sha256(MODELS / filename) == expected
 
 
 def test_route_universe_is_complete_unique_and_governed(
@@ -106,6 +157,263 @@ def test_route_universe_is_complete_unique_and_governed(
     assert not scores["llm_ranking_influence"].astype(bool).any()
     assert scores["human_policy_control"].astype(bool).all()
     assert scores["policy_weights_human_controlled"].astype(bool).all()
+
+
+def test_geometry_reliability_handles_verified_and_extreme_cases() -> None:
+    module = load_pipeline_module("02b_geometry_reliability.py", "route2zero_geometry_reliability")
+
+    invalid = module.score_geometry(
+        pd.Series(
+            {
+                "geometry": LineString(),
+                "geometry_source": "stop_sequence_approx",
+                "length_km": 0,
+                "stop_count": 0,
+            }
+        )
+    )
+    assert invalid["geometry_valid"] is False
+    assert invalid["geometry_reliability_score"] == 0
+    assert invalid["geometry_reliability_grade"] == "D"
+    assert invalid["geometry_validation_required"] is True
+
+    line = LineString([(121.0, 14.0), (121.01, 14.01)])
+    source_credit = module.score_geometry(
+        pd.Series(
+            {
+                "geometry": line,
+                "geometry_source": "shape",
+                "length_km": 1.6,
+                "stop_count": 20,
+            }
+        ),
+        field_verified=True,
+    )
+    assert source_credit["geometry_reliability_grade"] == "A"
+    assert source_credit["geometry_claim_status"] == "VERIFIED"
+    assert source_credit["geometry_validation_required"] is False
+
+    extreme = module.score_geometry(
+        pd.Series(
+            {
+                "geometry": line,
+                "geometry_source": "stop_sequence_approx",
+                "length_km": 20,
+                "stop_count": 20,
+            }
+        )
+    )
+    assert "extreme detour ratio" in extreme["geometry_reliability_reasons"]
+    assert extreme["geometry_reliability_score"] < source_credit["geometry_reliability_score"]
+
+
+def test_claim_statuses_and_validation_ledger_follow_shared_contract(
+    scores: pd.DataFrame,
+) -> None:
+    claim_columns = [column for column in scores.columns if column.endswith("claim_status")]
+    assert claim_columns
+    for column in claim_columns:
+        assert not scores[column].isna().any(), column
+        assert set(scores[column]) <= CLAIM_STATUSES, column
+
+    ledger = pd.read_csv(ROOT / "data" / "validated" / "route_validation.csv", dtype=str)
+    required_ledger_fields = {
+        "route_id",
+        "route_long_name",
+        "validation_status",
+        "active_status",
+        "validation_date",
+        "validator",
+        "source_type",
+        "source_reference",
+        "notes",
+        "observed_origin",
+        "observed_destination",
+        "observed_headway_min",
+        "observed_service_window_hrs",
+        "geometry_verified",
+        "operator_name_if_verified",
+        "evidence_quality",
+    }
+    assert required_ledger_fields <= set(ledger.columns)
+    assert set(scores["validation_status"]) <= VALIDATION_STATUSES
+    assert set(scores["active_status"]) <= ACTIVE_STATUSES
+
+    stakeholder = pd.read_csv(
+        ROOT / "data" / "validated" / "stakeholder_validation.csv", dtype=str
+    )
+    assert {
+        "stakeholder_type",
+        "organization",
+        "date",
+        "route_id",
+        "workflow_component",
+        "feedback_summary",
+        "evidence_change",
+        "permission_to_quote",
+        "source_reference",
+    } <= set(stakeholder.columns)
+
+
+def test_external_numeric_assumptions_reference_registered_sources() -> None:
+    registered = {
+        source["source_id"]
+        for source in load_json(CONFIG / "source_registry.json")["sources"]
+    }
+    climate = load_json(CONFIG / "climate_scenarios.json")
+
+    sourced_parameters = [
+        climate["operating_days_per_year"],
+        climate["charger_efficiency"],
+        climate["current_grid_kgco2e_per_kwh"],
+    ]
+    for scenario in climate["scenarios"].values():
+        sourced_parameters.extend(scenario.values())
+    assert sourced_parameters
+    for parameter in sourced_parameters:
+        assert isinstance(parameter["value"], (int, float))
+        assert parameter["source_id"] in registered
+
+    charging = load_json(CONFIG / "charging_config.json")
+    operator = load_json(CONFIG / "operator_readiness_config.json")
+    assert {charging["source_id"], charging["site_evidence_source_id"]} <= registered
+    assert {
+        operator["prior_source_id"], operator["evidence_source_id"], operator["scoring_source_id"]
+    } <= registered
+
+
+def test_source_ledgers_are_registered_and_schema_complete() -> None:
+    registry = load_json(CONFIG / "source_registry.json")
+    sources = {source["source_id"]: source for source in registry["sources"]}
+    ledger_contracts = {
+        "route_validation_ledger": {
+            "path": "data/validated/route_validation.csv",
+            "columns": {"route_id", "validation_status", "active_status", "source_reference"},
+        },
+        "charging_site_evidence_ledger": {
+            "path": "data/validated/charging_site_evidence.csv",
+            "columns": {
+                "route_id", "site_name", "site_control_verified", "utility_capacity_verified",
+                "available_capacity_kw", "source_reference", "verifier",
+            },
+        },
+        "operator_evidence_ledger": {
+            "path": "data/validated/operator_evidence.csv",
+            "columns": {
+                "route_id", "verified_fleet_size", "modernization_experience_score",
+                "charging_site_access_score", "source_reference", "verifier",
+            },
+        },
+        "stakeholder_validation_ledger": {
+            "path": "data/validated/stakeholder_validation.csv",
+            "columns": {"route_id", "stakeholder_type", "evidence_change", "permission_to_quote"},
+        },
+    }
+    for source_id, contract in ledger_contracts.items():
+        assert source_id in sources
+        assert sources[source_id]["required"] is True
+        assert sources[source_id]["local_path"] == contract["path"]
+        frame = pd.read_csv(ROOT / contract["path"], dtype=str)
+        assert contract["columns"] <= set(frame.columns)
+
+
+def test_optional_city_adapters_return_explicit_absence(tmp_path: Path) -> None:
+    sys.path.insert(0, str(ROOT / "src"))
+    from adapters import (
+        CHARGING_EVIDENCE_COLUMNS,
+        OPERATOR_EVIDENCE_COLUMNS,
+        MetroManilaChargingAdapter,
+        MetroManilaCityBoundaryAdapter,
+        MetroManilaOperatorEvidenceAdapter,
+        MetroManilaPopulationAdapter,
+    )
+
+    assert MetroManilaPopulationAdapter(tmp_path).available is False
+    charging = MetroManilaChargingAdapter(tmp_path)
+    assert charging.load_snapshot() is None
+    assert list(charging.load_site_evidence().columns) == CHARGING_EVIDENCE_COLUMNS
+    assert charging.load_site_evidence().empty
+    operator = MetroManilaOperatorEvidenceAdapter(tmp_path).load_evidence()
+    assert list(operator.columns) == OPERATOR_EVIDENCE_COLUMNS
+    assert operator.empty
+    city = MetroManilaCityBoundaryAdapter()
+    assert city.method == "text_fallback"
+    assert city.boundary_source_id == ""
+    assert city.cities_for_route("Makati City to Pasig City", "Sample")[:2] == ["Makati", "Pasig"]
+    equity_module = load_pipeline_module("05_equity_score.py", "route2zero_equity_score")
+    missing_equity = equity_module.missing_equity_output(pd.Series(["R1", "R2"]), "test_missing")
+    assert missing_equity["equity_score"].isna().all()
+    assert set(missing_equity["equity_source"]) == {"MISSING"}
+    assert set(missing_equity["equity_missing_reason"]) == {"test_missing"}
+
+
+def test_charging_site_evidence_drives_terminal_and_verification_fields() -> None:
+    module = load_pipeline_module("09_charging_readiness.py", "route2zero_charging_readiness")
+    config = load_json(CONFIG / "charging_config.json")
+    evidence = pd.DataFrame([
+        {
+            "route_id": "R1", "site_name": "Terminal A", "evidence_date": "2026-08-20",
+            "site_lat": 14.5, "site_lon": 121.0, "site_control_verified": False,
+            "utility_capacity_verified": False, "available_capacity_kw": np.nan,
+            "source_reference": "field-note-a", "verifier": "validator", "notes": "candidate only",
+        },
+        {
+            "route_id": "R1", "site_name": "Terminal B", "evidence_date": "2026-08-21",
+            "site_lat": 14.6, "site_lon": 121.1, "site_control_verified": True,
+            "utility_capacity_verified": True, "available_capacity_kw": 500,
+            "source_reference": "utility-letter-b", "verifier": "validator", "notes": "verified",
+        },
+    ])
+    output = module.aggregate_site_evidence(pd.Series(["R1", "R2"]), evidence, config).set_index("route_id")
+    assert output.loc["R1", "candidate_terminal_count"] == 2
+    assert bool(output.loc["R1", "site_control_verified"])
+    assert bool(output.loc["R1", "utility_capacity_verified"])
+    assert bool(output.loc["R1", "charging_site_verified"])
+    assert output.loc["R1", "verified_available_capacity_kw"] == 500
+    assert output.loc["R1", "terminal_evidence_score"] == config["terminal_evidence_scores"]["site_and_utility_verified"]
+    assert output.loc["R2", "candidate_terminal_count"] == 0
+    assert not bool(output.loc["R2", "charging_site_verified"])
+    assert output.loc["R2", "terminal_evidence_score"] == 0
+    assert pd.isna(output.loc["R2", "verified_available_capacity_kw"])
+
+
+def test_operator_scoring_uses_all_eight_configured_components() -> None:
+    module = load_pipeline_module("10_operator_readiness.py", "route2zero_operator_readiness")
+    config = load_json(CONFIG / "operator_readiness_config.json")
+    base = {
+        "route_id": "R1", "operator_name": "Cooperative", "evidence_date": "2026-08-20",
+        "verified_fleet_size": 25, "depot_control_score": 60, "financing_score": 65,
+        "organizational_capacity_score": 70, "maintenance_capability_score": 75,
+        "willingness_to_participate_score": 80, "modernization_experience_score": 0,
+        "charging_site_access_score": 0, "source_reference": "consented-record",
+        "verifier": "validator", "notes": "synthetic test",
+    }
+    low = module.score_operator_evidence(pd.DataFrame({"route_id": ["R1"]}), pd.DataFrame([base]), config)
+    high_evidence = {**base, "modernization_experience_score": 100, "charging_site_access_score": 100}
+    high = module.score_operator_evidence(pd.DataFrame({"route_id": ["R1"]}), pd.DataFrame([high_evidence]), config)
+    assert low.loc[0, "operator_evidence_component_count"] == 8
+    assert low.loc[0, "operator_evidence_completeness"] == 100
+    assert not bool(low.loc[0, "operator_readiness_placeholder"])
+    assert high.loc[0, "operator_observed_score"] > low.loc[0, "operator_observed_score"]
+    assert set(low.loc[0, "operator_components_configured"].split("|")) == set(config["observed_component_weights"])
+    assert "operator_evidence_ledger" in low.loc[0, "operator_source_ids"]
+
+
+def test_pipeline_report_exposes_health_and_missingness(scores: pd.DataFrame) -> None:
+    report = load_json(PROCESSED / "pipeline_report.json")
+    manifest = load_json(PROCESSED / "build_manifest.json")
+    assert report["build_id"] == manifest["build_id"]
+    assert report["rows_processed"] == EXPECTED_ROUTE_COUNT
+    assert report["status"] in {"PASS", "PASS_WITH_WARNINGS"}
+    assert set(report["model_versions"]) == {"service_intensity", "corridor_typology"}
+    assert report["source_dates"]
+    assert report["claim_status_columns_checked"]
+    assert report["active_validation_count"] == int(scores["active_status"].eq("active").sum())
+    expected_missing = {
+        column: int(scores[column].isna().sum())
+        for column in report["critical_missing_values"]
+    }
+    assert report["critical_missing_values"] == expected_missing
 
 
 def test_service_model_feature_list_has_no_target_leakage() -> None:
@@ -234,6 +542,7 @@ def test_evidence_scores_map_to_configured_grades(scores: pd.DataFrame) -> None:
 
 def test_sensitivity_contract_uses_fixed_seed_and_5000_runs(scores: pd.DataFrame) -> None:
     sensitivity = pd.read_csv(PROCESSED / "sensitivity.csv", dtype={"route_id": str})
+    modes = pd.read_csv(PROCESSED / "sensitivity_modes.csv", dtype={"route_id": str})
     config = load_json(CONFIG / "sensitivity_config.json")
     assert config["simulations"] == EXPECTED_SIMULATIONS
     assert config["random_seed"] == EXPECTED_SENSITIVITY_SEED
@@ -242,7 +551,10 @@ def test_sensitivity_contract_uses_fixed_seed_and_5000_runs(scores: pd.DataFrame
     assert set(sensitivity["route_id"]) == set(scores["route_id"])
     assert set(sensitivity["simulations"]) == {EXPECTED_SIMULATIONS}
     assert set(sensitivity["sensitivity_seed"]) == {EXPECTED_SENSITIVITY_SEED}
-    assert set(sensitivity["sensitivity_mode"]) == {config["mode"]}
+    assert set(sensitivity["sensitivity_mode"]) == {config["default_mode"]}
+    assert len(modes) == EXPECTED_ROUTE_COUNT * len(config["modes"])
+    assert set(modes["sensitivity_mode"]) == set(config["modes"])
+    assert modes.groupby("sensitivity_mode")["route_id"].nunique().eq(EXPECTED_ROUTE_COUNT).all()
 
     for column in ("top_5_probability", "top_10_probability", "top_20_probability"):
         assert sensitivity[column].between(0, 1).all(), column
@@ -253,6 +565,76 @@ def test_sensitivity_contract_uses_fixed_seed_and_5000_runs(scores: pd.DataFrame
     assert (sensitivity["rank_p10"] <= sensitivity["median_rank"]).all()
     assert (sensitivity["median_rank"] <= sensitivity["rank_p90"]).all()
     assert sensitivity["rank_stability_score"].between(0, 100).all()
+
+
+def test_sensitivity_weight_modes_are_reproducible_and_bounded() -> None:
+    module = load_pipeline_module("13_sensitivity.py", "route2zero_sensitivity")
+    config = load_json(CONFIG / "sensitivity_config.json")
+    config = {**config, "simulations": 128}
+    policy = load_json(CONFIG / "policy_model.json")
+    default = np.asarray([policy["default_weights"][name] for name in module.DIMENSIONS], dtype=float)
+    generated = {}
+    for mode in config["modes"]:
+        first = module.generate_weight_draws(config, default, mode)
+        second = module.generate_weight_draws(config, default, mode)
+        assert np.array_equal(first, second)
+        assert first.shape == (128, 4)
+        assert np.allclose(first.sum(axis=1), 1.0)
+        assert (first >= 0).all() and (first <= 1).all()
+        generated[mode] = first
+    assert not np.array_equal(generated["around_default"], generated["broad_simplex"])
+    bounds = config["modes"]["custom"]["weight_bounds"]
+    for index, name in enumerate(module.DIMENSIONS):
+        low, high = bounds[name]
+        assert (generated["custom"][:, index] >= low - 1e-7).all()
+        assert (generated["custom"][:, index] <= high + 1e-7).all()
+
+
+def test_optimizer_reports_infeasible_constraints_without_relaxation() -> None:
+    sys.path.insert(0, str(ROOT / "src"))
+    from portfolio_selection import PortfolioSelectionError, PortfolioSelector
+
+    scores = pd.DataFrame([
+        {
+            "route_id": "R1", "evidence_grade": "C", "equity_score": 70,
+            "active_status": "active", "just_transition_score": 90,
+            "top_10_probability": 0.8, "overall_evidence_confidence": 60,
+            "primary_city": "City A", "normalized_corridor_id": "C1",
+            "robustness_label": "ROBUST PRIORITY",
+        },
+        {
+            "route_id": "R2", "evidence_grade": "C", "equity_score": 65,
+            "active_status": "active", "just_transition_score": 85,
+            "top_10_probability": 0.7, "overall_evidence_confidence": 60,
+            "primary_city": "City B", "normalized_corridor_id": "C2",
+            "robustness_label": "ROBUST PRIORITY",
+        },
+        {
+            "route_id": "R3", "evidence_grade": "D", "equity_score": 80,
+            "active_status": "active", "just_transition_score": 95,
+            "top_10_probability": 0.9, "overall_evidence_confidence": 20,
+            "primary_city": "City C", "normalized_corridor_id": "C3",
+            "robustness_label": "EVIDENCE-LIMITED",
+        },
+    ])
+    scenario = {
+        "max_corridors": 3,
+        "minimum_evidence_grade": "C",
+        "minimum_equity_score": 40,
+        "maximum_evidence_limited_corridors": 1,
+        "maximum_corridors_per_primary_city": 2,
+        "maximum_route_directions_per_corridor": 1,
+        "exclude_inactive_routes": True,
+    }
+    selector = PortfolioSelector(scores, scenario)
+    with pytest.raises(PortfolioSelectionError) as caught:
+        selector.select()
+    diagnostics = caught.value.diagnostics
+    assert diagnostics["required_count"] == 3
+    assert diagnostics["selected_count"] == 2
+    assert diagnostics["eligible_count"] == 2
+    assert diagnostics["selected_route_ids"] == ["R1", "R2"]
+    assert "No relaxation" in diagnostics["message"]
 
 
 def test_phase1_optimizer_selects_eight_unique_corridors_and_changes_top8(
@@ -281,6 +663,29 @@ def test_phase1_optimizer_selects_eight_unique_corridors_and_changes_top8(
     assert selected_corridors.notna().all()
     assert selected_corridors.is_unique
     assert by_route.loc[selected, "phase1_selected"].astype(bool).all()
+
+
+def test_validation_priority_covers_six_fields_and_reuses_selector(scores: pd.DataFrame) -> None:
+    details = pd.read_csv(PROCESSED / "validation_priorities.csv", dtype={"route_id": str})
+    payload = load_json(PROCESSED / "validation_priorities.json")
+    expected_fields = {
+        "operator_readiness",
+        "charging_readiness",
+        "climate_assumptions",
+        "equity_population_exposure",
+        "geometry_reliability",
+        "service_intensity",
+    }
+    assert len(details) == EXPECTED_ROUTE_COUNT * len(expected_fields)
+    assert set(details["field_name"]) == expected_fields
+    assert details.groupby("route_id")["field_name"].nunique().eq(len(expected_fields)).all()
+    assert set(details["selection_method"]) == {"deterministic_selection_v2"}
+    assert details["portfolio_flip_possible"].notna().all()
+    assert details["assumption_source_id"].notna().all()
+    assert payload["selection_method"] == "deterministic_selection_v2"
+    assert len(payload["routes"]) == EXPECTED_ROUTE_COUNT
+    assert all(len(route["priorities"]) == 6 for route in payload["routes"])
+    assert set(details["route_id"]) == set(scores["route_id"])
 
 
 def test_planner_cache_is_route_and_scenario_aware(scores: pd.DataFrame) -> None:

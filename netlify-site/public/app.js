@@ -7,6 +7,8 @@ const PRESETS = Object.freeze({
   equity: { title: "Equity-first", weights: { climate: 30, equity: 45, charging: 15, operator: 10 } },
   infrastructure: { title: "Infrastructure-first", weights: { climate: 30, equity: 20, charging: 35, operator: 15 } }
 });
+const SAVED_SCENARIOS_KEY = "route2zero.savedScenarios.v2";
+const MAX_SAVED_SCENARIOS = 24;
 
 const SCORE_COLUMNS = Object.freeze({
   climate: "climate_impact_score",
@@ -48,6 +50,8 @@ const state = {
   flagship: {},
   normalizedWeights: { ...DEFAULT_WEIGHTS },
   scenarioId: "",
+  scenarioCreatedAt: "",
+  savedScenarios: [],
   activePreset: "default",
   activeLayer: "priority",
   map: null,
@@ -73,6 +77,14 @@ const els = {
   includeHistoric: byId("includeHistoric"),
   weightTotal: byId("weightTotal"),
   sidebarScenarioId: byId("sidebarScenarioId"),
+  scenarioTitle: byId("scenarioTitle"),
+  resetScenario: byId("resetScenario"),
+  saveScenario: byId("saveScenario"),
+  copyScenario: byId("copyScenario"),
+  savedScenarioSelect: byId("savedScenarioSelect"),
+  loadScenario: byId("loadScenario"),
+  deleteScenario: byId("deleteScenario"),
+  scenarioManagerStatus: byId("scenarioManagerStatus"),
   routesMetric: byId("routesMetric"),
   validatedMetric: byId("validatedMetric"),
   robustMetric: byId("robustMetric"),
@@ -270,23 +282,233 @@ function getNormalizedWeights() {
   return normalized;
 }
 
+function validationFilterValue() {
+  return els.includeHistoric.checked ? "historic_baseline_plus_supplied_validation" : "supplied_current_validation_only";
+}
+
+function optimizationConstraints() {
+  return {
+    max_corridors: Number(els.portfolioMax.value),
+    minimum_evidence_grade: els.portfolioGrade.value,
+    minimum_equity_score: Number(els.portfolioEquity.value),
+    maximum_corridors_per_primary_city: 2,
+    maximum_directions_per_corridor: 1
+  };
+}
+
+function canonicalPolicyWeights() {
+  const keys = ["climate", "equity", "charging", "operator"];
+  const canonical = Object.fromEntries(keys.map((key) => [key, Number(Number(state.normalizedWeights[key]).toFixed(4))]));
+  const total = Object.values(canonical).reduce((sum, value) => sum + value, 0);
+  const adjustmentKey = keys.reduce((best, key) => state.normalizedWeights[key] > state.normalizedWeights[best] ? key : best, keys[0]);
+  canonical[adjustmentKey] = Number((canonical[adjustmentKey] + 100 - total).toFixed(4));
+  return canonical;
+}
+
+function scenarioAnalyticalInputs() {
+  const reference = state.scores[0] || {};
+  return {
+    city_filter: els.cityFilter.value,
+    policy_weights: canonicalPolicyWeights(),
+    climate_assumption_set: reference.climate_assumption_set || "not_reported",
+    validation_filter: validationFilterValue(),
+    sensitivity_mode: reference.sensitivity_mode || "not_reported",
+    optimization_constraints: optimizationConstraints(),
+    source_build_id: state.build.build_id || "unknown"
+  };
+}
+
 function defaultPolicyActive() {
   return Object.keys(DEFAULT_WEIGHTS).every((key) => Math.abs(state.normalizedWeights[key] - DEFAULT_WEIGHTS[key]) < 0.01)
     && els.cityFilter.value === "All Metro Manila"
-    && els.includeHistoric.checked;
+    && els.includeHistoric.checked
+    && Number(els.portfolioMax.value) === 8
+    && els.portfolioGrade.value === "C"
+    && Number(els.portfolioEquity.value) === 40;
 }
 
 function updateScenarioId() {
-  const signature = JSON.stringify({
-    city: els.cityFilter.value,
-    historic: els.includeHistoric.checked,
-    weights: Object.fromEntries(Object.entries(state.normalizedWeights).map(([key, value]) => [key, Number(value.toFixed(4))])),
-    policy: state.build.policy_model_version || "policy-v2.0",
-    build: state.build.build_id || "unknown"
-  });
-  state.scenarioId = defaultPolicyActive() && state.build.default_scenario_id
+  const signature = JSON.stringify(scenarioAnalyticalInputs());
+  const nextId = defaultPolicyActive() && state.build.default_scenario_id
     ? state.build.default_scenario_id
     : `scn-live-${hashString(signature)}`;
+  if (nextId !== state.scenarioId) state.scenarioCreatedAt = new Date().toISOString();
+  state.scenarioId = nextId;
+}
+
+function suggestedScenarioTitle() {
+  const lens = PRESETS[state.activePreset]?.title || "Custom policy";
+  const city = els.cityFilter.value === "All Metro Manila" ? "Metro Manila" : els.cityFilter.value;
+  return `${lens} · ${city}`;
+}
+
+function currentScenarioObject(title = "") {
+  const inputs = scenarioAnalyticalInputs();
+  if (!state.scenarioCreatedAt) state.scenarioCreatedAt = new Date().toISOString();
+  return {
+    scenario_id: state.scenarioId,
+    title: boundedScenarioTitle(title || els.scenarioTitle.value || suggestedScenarioTitle()),
+    city_filter: inputs.city_filter,
+    policy_weights: inputs.policy_weights,
+    climate_assumption_set: inputs.climate_assumption_set,
+    validation_filter: inputs.validation_filter,
+    sensitivity_mode: inputs.sensitivity_mode,
+    optimization_constraints: inputs.optimization_constraints,
+    created_at: state.scenarioCreatedAt,
+    source_build_id: inputs.source_build_id
+  };
+}
+
+function boundedScenarioTitle(value) {
+  return String(value || "").replace(/[\u0000-\u001f\u007f]/g, " ").replace(/\s+/g, " ").trim().slice(0, 80) || "Untitled policy scenario";
+}
+
+function savedScenarioIsValid(scenario) {
+  if (!scenario || typeof scenario !== "object" || Array.isArray(scenario)) return false;
+  const requiredText = ["scenario_id", "title", "city_filter", "climate_assumption_set", "validation_filter", "sensitivity_mode", "created_at", "source_build_id"];
+  if (requiredText.some((field) => typeof scenario[field] !== "string" || !scenario[field])) return false;
+  const weights = scenario.policy_weights;
+  const constraints = scenario.optimization_constraints;
+  if (!weights || typeof weights !== "object" || Array.isArray(weights) || !constraints || typeof constraints !== "object" || Array.isArray(constraints)) return false;
+  const values = ["climate", "equity", "charging", "operator"].map((key) => Number(weights[key]));
+  return values.every((value) => Number.isFinite(value) && value >= 0 && value <= 100)
+    && Math.abs(values.reduce((sum, value) => sum + value, 0) - 100) < .1;
+}
+
+function readSavedScenarios() {
+  try {
+    const parsed = JSON.parse(localStorage.getItem(SAVED_SCENARIOS_KEY) || "[]");
+    if (!Array.isArray(parsed)) return [];
+    const unique = new Map();
+    parsed.filter(savedScenarioIsValid).forEach((scenario) => unique.set(scenario.scenario_id, scenario));
+    return [...unique.values()].slice(0, MAX_SAVED_SCENARIOS);
+  } catch {
+    return [];
+  }
+}
+
+function persistSavedScenarios() {
+  try {
+    localStorage.setItem(SAVED_SCENARIOS_KEY, JSON.stringify(state.savedScenarios.slice(0, MAX_SAVED_SCENARIOS)));
+    return true;
+  } catch {
+    return false;
+  }
+}
+
+function setScenarioManagerStatus(message) {
+  els.scenarioManagerStatus.textContent = message;
+}
+
+function renderSavedScenarioOptions(selectedId = "") {
+  const selected = selectedId || els.savedScenarioSelect.value;
+  els.savedScenarioSelect.innerHTML = state.savedScenarios.length
+    ? `<option value="">Choose a saved scenario</option>${state.savedScenarios.map((scenario) => `<option value="${escapeHtml(scenario.scenario_id)}">${escapeHtml(scenario.title)} · ${escapeHtml(scenario.scenario_id)}</option>`).join("")}`
+    : "<option value=\"\">No saved scenarios</option>";
+  if (state.savedScenarios.some((scenario) => scenario.scenario_id === selected)) els.savedScenarioSelect.value = selected;
+  updateSavedScenarioButtons();
+}
+
+function updateSavedScenarioButtons() {
+  const hasSelection = Boolean(els.savedScenarioSelect.value);
+  els.loadScenario.disabled = !hasSelection;
+  els.deleteScenario.disabled = !hasSelection;
+}
+
+function resetScenarioToDefault() {
+  els.cityFilter.value = "All Metro Manila";
+  els.includeHistoric.checked = true;
+  Object.entries(DEFAULT_WEIGHTS).forEach(([key, value]) => { weightInputs[key].value = value; });
+  els.portfolioMax.value = "8";
+  els.portfolioGrade.value = "C";
+  els.portfolioEquity.value = "40";
+  state.activePreset = "default";
+  document.querySelectorAll("[data-preset]").forEach((button) => button.classList.toggle("active", button.dataset.preset === "default"));
+  els.scenarioTitle.value = "Climate + Equity · Metro Manila";
+  renderAll();
+  setScenarioManagerStatus(`Reset to ${state.scenarioId}. Saved scenarios were not deleted.`);
+}
+
+function saveCurrentScenario() {
+  const scenario = currentScenarioObject();
+  const existing = state.savedScenarios.findIndex((item) => item.scenario_id === scenario.scenario_id);
+  if (existing >= 0) state.savedScenarios.splice(existing, 1);
+  state.savedScenarios.unshift(scenario);
+  state.savedScenarios = state.savedScenarios.slice(0, MAX_SAVED_SCENARIOS);
+  if (!persistSavedScenarios()) {
+    setScenarioManagerStatus("This browser blocked local scenario storage. Copy the JSON instead.");
+    return;
+  }
+  renderSavedScenarioOptions(scenario.scenario_id);
+  setScenarioManagerStatus(`Saved “${scenario.title}” as ${scenario.scenario_id} on this device.`);
+}
+
+function setSelectValueIfAvailable(select, value) {
+  if ([...select.options].some((option) => option.value === String(value))) select.value = String(value);
+}
+
+function loadSelectedScenario() {
+  const saved = state.savedScenarios.find((scenario) => scenario.scenario_id === els.savedScenarioSelect.value);
+  if (!saved) {
+    setScenarioManagerStatus("Choose a saved scenario first.");
+    return;
+  }
+  setSelectValueIfAvailable(els.cityFilter, saved.city_filter);
+  els.includeHistoric.checked = saved.validation_filter === "historic_baseline_plus_supplied_validation";
+  Object.entries(saved.policy_weights).forEach(([key, value]) => {
+    if (!weightInputs[key]) return;
+    const step = weightInputs[key].step;
+    weightInputs[key].step = "any";
+    weightInputs[key].value = Number(value);
+    weightInputs[key].step = step;
+  });
+  setSelectValueIfAvailable(els.portfolioMax, saved.optimization_constraints.max_corridors);
+  setSelectValueIfAvailable(els.portfolioGrade, saved.optimization_constraints.minimum_evidence_grade);
+  setSelectValueIfAvailable(els.portfolioEquity, saved.optimization_constraints.minimum_equity_score);
+  state.scenarioId = saved.scenario_id;
+  state.scenarioCreatedAt = saved.created_at;
+  els.scenarioTitle.value = boundedScenarioTitle(saved.title);
+  inferPreset();
+  renderAll();
+  const currentId = state.scenarioId;
+  setScenarioManagerStatus(currentId === saved.scenario_id
+    ? `Loaded “${saved.title}” (${currentId}).`
+    : `Loaded the saved controls and re-hashed them as ${currentId} for the current build.`);
+}
+
+function deleteSelectedScenario() {
+  const saved = state.savedScenarios.find((scenario) => scenario.scenario_id === els.savedScenarioSelect.value);
+  if (!saved) return;
+  if (!window.confirm(`Delete the locally saved scenario “${saved.title}”?`)) return;
+  state.savedScenarios = state.savedScenarios.filter((scenario) => scenario.scenario_id !== saved.scenario_id);
+  persistSavedScenarios();
+  renderSavedScenarioOptions();
+  setScenarioManagerStatus(`Deleted “${saved.title}” from this device. The live controls were not changed.`);
+}
+
+function legacyClipboardCopy(text) {
+  const textarea = document.createElement("textarea");
+  textarea.value = text;
+  textarea.setAttribute("readonly", "");
+  textarea.style.position = "fixed";
+  textarea.style.opacity = "0";
+  document.body.appendChild(textarea);
+  textarea.select();
+  const copied = document.execCommand("copy");
+  textarea.remove();
+  return copied;
+}
+
+async function copyCurrentScenarioJson() {
+  const scenario = currentScenarioObject();
+  const text = JSON.stringify(scenario, null, 2);
+  try {
+    if (navigator.clipboard?.writeText) await navigator.clipboard.writeText(text);
+    else if (!legacyClipboardCopy(text)) throw new Error("clipboard unavailable");
+    setScenarioManagerStatus(`Copied normalized scenario JSON for ${scenario.scenario_id}.`);
+  } catch {
+    setScenarioManagerStatus("Clipboard access was blocked. Save the scenario locally or use the JSON audit export.");
+  }
 }
 
 function routeIsCurrent(row) {
@@ -364,8 +586,13 @@ function renderRouteFinder() {
 function deterministicRouteSummary(row) {
   const climateLow = numeric(row, "net_co2e_avoided_t_year_low");
   const climateHigh = numeric(row, "net_co2e_avoided_t_year_high");
+  const historicService = numeric(row, "trips_per_day_estimate");
+  const mlService = numeric(row, "ml_service_intensity_prediction");
   const missing = row.highest_value_missing_evidence || "current service validation";
-  return `${row.route_long_name} is #${row.liveRank || "—"} at ${formatNumber(row.liveScore, 1)}/100 under ${state.scenarioId}. Its climate scenario spans ${formatSigned(climateLow)} to ${formatSigned(climateHigh)} tCO₂e/year, while evidence remains Grade ${row.evidence_grade || "—"}. Validate ${missing} before the shortlist is treated as an investment decision.`;
+  const serviceContext = mlService === null
+    ? `Historic schedule service proxy: ${formatNumber(historicService)} trips/day; no ML comparator is available.`
+    : `Historic schedule service proxy: ${formatNumber(historicService)} trips/day; ML comparator: ${formatNumber(mlService)} for anomaly analysis, not ridership.`;
+  return `${row.route_long_name} is #${row.liveRank || "—"} at ${formatNumber(row.liveScore, 1)}/100 under ${state.scenarioId}. ${serviceContext} Its climate scenario spans ${formatSigned(climateLow)} to ${formatSigned(climateHigh)} tCO₂e/year, while evidence remains Grade ${row.evidence_grade || "—"}. Validate ${missing} before the shortlist is treated as an investment decision.`;
 }
 
 function renderRouteLens() {
@@ -452,11 +679,27 @@ function renderScenarioComparison() {
   const defaultRank = Number(row?.rank);
   const rankDelta = row && Number.isFinite(defaultRank) ? defaultRank - Number(row.liveRank) : 0;
   const scoreDelta = row ? Number(row.liveScore) - Number(row.just_transition_score) : 0;
+  const defaultPortfolioIds = new Set(state.defaultPortfolio?.selected_route_ids || []);
+  const currentPortfolioIds = new Set(state.portfolioRows.map((item) => item.route_id));
+  const portfolioEntered = [...currentPortfolioIds].filter((routeId) => !defaultPortfolioIds.has(routeId));
+  const portfolioLeft = [...defaultPortfolioIds].filter((routeId) => !currentPortfolioIds.has(routeId));
+  const defaultPortfolioRows = state.scores.filter((item) => defaultPortfolioIds.has(item.route_id));
+  const currentClimate = portfolioClimateSummary(state.portfolioRows).base;
+  const defaultClimate = portfolioClimateSummary(defaultPortfolioRows).base;
+  const average = (rows, field) => rows.length
+    ? rows.reduce((sum, item) => sum + (numeric(item, field) || 0), 0) / rows.length
+    : 0;
+  const equityDelta = average(state.portfolioRows, "equity_score") - average(defaultPortfolioRows, "equity_score");
+  const evidenceDelta = average(state.portfolioRows, "overall_evidence_confidence") - average(defaultPortfolioRows, "overall_evidence_confidence");
   els.scenarioComparison.innerHTML = [
     ["Selected rank change", rankDelta === 0 ? "No change" : `${rankDelta > 0 ? "▲" : "▼"} ${Math.abs(rankDelta)} places`],
     ["Selected score change", formatSigned(scoreDelta, 1)],
     ["Entering top 10", entered.length ? entered.slice(0, 3).join(", ") : "None"],
-    ["Leaving top 10", left.length ? left.slice(0, 3).join(", ") : "None"]
+    ["Leaving top 10", left.length ? left.slice(0, 3).join(", ") : "None"],
+    ["Portfolio change", portfolioEntered.length || portfolioLeft.length ? `${portfolioEntered.length} in · ${portfolioLeft.length} out` : "No change"],
+    ["Climate impact change", `${formatSigned(currentClimate - defaultClimate)} tCO₂e/yr`],
+    ["Average equity change", formatSigned(equityDelta, 1)],
+    ["Evidence-quality change", formatSigned(evidenceDelta, 1)]
   ].map(([label, value]) => `<div><span>${escapeHtml(label)}</span><strong>${escapeHtml(value)}</strong></div>`).join("");
 }
 
@@ -521,6 +764,7 @@ function renderPortfolio() {
   const selectedIds = new Set(rows.map((row) => row.route_id));
   const added = precomputed ? (state.defaultPortfolio.added_by_constraints || []) : rows.filter((row) => !simpleIds.has(row.route_id)).map((row) => row.route_id);
   const removed = precomputed ? (state.defaultPortfolio.removed_by_constraints || []) : simpleTop.filter((row) => !selectedIds.has(row.route_id)).map((row) => row.route_id);
+  const nearSelection = state.filtered.filter((row) => row.liveScore !== null && !selectedIds.has(row.route_id)).slice(0, 3);
 
   els.portfolioScenarioId.textContent = state.portfolioScenarioId;
   els.portfolioCount.textContent = rows.length.toLocaleString();
@@ -528,8 +772,17 @@ function renderPortfolio() {
   els.portfolioEquityMetric.textContent = formatNumber(precomputed?.average_equity_score ?? averageEquity, 1);
   els.portfolioEvidence.textContent = Object.entries(precomputed?.evidence_grade_distribution || gradeCounts).map(([grade, count]) => `${grade}:${count}`).join(" · ") || "None";
   els.portfolioModePill.textContent = precomputed ? "Precomputed default" : "Interactive deterministic preview";
-  els.portfolioList.innerHTML = rows.length ? rows.map((row, index) => `<div class="portfolio-item"><b>${String(index + 1).padStart(2, "0")}</b><button type="button" data-route-id="${escapeHtml(row.route_id)}">${escapeHtml(row.route_long_name)}<small>${escapeHtml(row.primary_city || "Unspecified")} · Grade ${escapeHtml(row.evidence_grade || "—")}</small></button><span>${formatNumber(row.liveScore ?? row.just_transition_score, 1)}</span></div>`).join("") : "<p>No feasible routes match these constraints.</p>";
-  els.portfolioDelta.innerHTML = `<p>${precomputed ? "The pipeline enforces corridor and city diversity instead of simply taking the first eight rows." : "This preview applies the active policy score, evidence floor, equity floor, one direction per corridor and at most two corridors per primary city."}</p><div class="delta-group"><div><b>Added by constraints</b><span>${escapeHtml(added.length ? added.slice(0, 5).join(", ") : "None")}</span></div><div><b>Removed from top-N</b><span>${escapeHtml(removed.length ? removed.slice(0, 5).join(", ") : "None")}</span></div></div>`;
+  els.portfolioList.innerHTML = rows.length
+    ? rows.map((row, index) => `<div class="portfolio-item"><b>${String(index + 1).padStart(2, "0")}</b><button type="button" data-route-id="${escapeHtml(row.route_id)}">${escapeHtml(row.route_long_name)}<small>${escapeHtml(row.primary_city || "Unspecified")} · Grade ${escapeHtml(row.evidence_grade || "—")}</small></button><span>${formatNumber(row.liveScore ?? row.just_transition_score, 1)}</span></div>`).join("")
+    : `<p class="portfolio-alert" role="status"><strong>No feasible shortlist.</strong> No route satisfies Grade ${escapeHtml(els.portfolioGrade.value)} or better, equity ≥${escapeHtml(els.portfolioEquity.value)}, and the current city/validation scope. Relax a conflicting constraint; no substitute result has been fabricated.</p>`;
+  const nearSelectionRows = nearSelection.map((row) => {
+    const reason = row.portfolio_exclusion_reason
+      || (gradeRank(row.evidence_grade) > gradeRank(els.portfolioGrade.value) ? `evidence Grade ${row.evidence_grade || "missing"}`
+        : Number(row.equity_score) < Number(els.portfolioEquity.value) ? `equity ${formatNumber(row.equity_score, 1)} below floor`
+          : "corridor or city-diversity constraint");
+    return `<li><b>${escapeHtml(row.route_id)}</b> · ${escapeHtml(reason)}</li>`;
+  }).join("");
+  els.portfolioDelta.innerHTML = `<p>${precomputed ? "The pipeline enforces corridor and city diversity instead of simply taking the first eight rows." : "This preview applies the active policy score, evidence floor, equity floor, one direction per corridor and at most two corridors per primary city."}</p><div class="delta-group"><div><b>Added by constraints</b><span>${escapeHtml(added.length ? added.slice(0, 5).join(", ") : "None")}</span></div><div><b>Removed from top-N</b><span>${escapeHtml(removed.length ? removed.slice(0, 5).join(", ") : "None")}</span></div></div><div class="near-selection"><b>Near selection / exclusion reason</b><ul>${nearSelectionRows || "<li>No eligible near-selection route.</li>"}</ul></div>`;
   const constraints = precomputed?.binding_constraints || [
     `maximum ${els.portfolioMax.value} corridors`,
     "maximum 2 corridors per primary city",
@@ -557,18 +810,49 @@ function renderEvidenceQueue() {
     const flipDifference = Number(bool(right.portfolio_flip_possible)) - Number(bool(left.portfolio_flip_possible));
     return portfolioDifference || flipDifference || Number(right.validation_priority_score) - Number(left.validation_priority_score) || Number(right.maximum_rank_swing) - Number(left.maximum_rank_swing);
   }).slice(0, 6);
-  els.evidenceQueue.innerHTML = rows.map((row, index) => `<div class="evidence-item"><b>${String(index + 1).padStart(2, "0")}</b><button type="button" data-route-id="${escapeHtml(row.route_id)}">${escapeHtml(row.route_long_name)}<small>${escapeHtml(String(row.highest_value_missing_evidence || "current validation").replaceAll("_", " "))} · up to ${formatNumber(row.maximum_rank_swing)}-place swing</small></button><span>${bool(row.portfolio_flip_possible) ? "PORTFOLIO FLIP" : `PRIORITY ${formatNumber(row.validation_priority_score)}`}</span></div>`).join("");
+  const evidenceOwner = (field) => {
+    const value = String(field || "").toLowerCase();
+    if (value.includes("operator") || value.includes("fleet") || value.includes("depot")) return "Operator / cooperative";
+    if (value.includes("charging") || value.includes("utility") || value.includes("capacity")) return "Utility + LGU energy team";
+    if (value.includes("climate") || value.includes("efficiency") || value.includes("emission")) return "LGU climate team";
+    if (value.includes("equity") || value.includes("accessibility") || value.includes("socioeconomic")) return "LGU + community research";
+    if (value.includes("geometry") || value.includes("route") || value.includes("service") || value.includes("active")) return "LGU + field team";
+    return "Field validation team";
+  };
+  els.evidenceQueue.innerHTML = rows.map((row, index) => {
+    const field = row.highest_value_missing_evidence || "current validation";
+    const signal = bool(row.portfolio_flip_possible) ? "Portfolio flip possible" : `Priority ${formatNumber(row.validation_priority_score)}`;
+    return `<div class="evidence-item"><b>${String(index + 1).padStart(2, "0")}</b><button type="button" data-route-id="${escapeHtml(row.route_id)}">${escapeHtml(row.route_long_name)}<small>${escapeHtml(String(field).replaceAll("_", " "))} · up to ${formatNumber(row.maximum_rank_swing)}-place swing</small></button><span><b>${escapeHtml(evidenceOwner(field))}</b><small>${escapeHtml(signal)}</small></span></div>`;
+  }).join("");
 }
 
 function renderSourceHealth() {
   const models = state.build.model_versions || {};
   const sourceCount = state.sources.source_count ?? state.sources.sources?.length ?? 0;
   const warnings = state.report.warnings || [];
+  const total = state.scores.length || 1;
+  const percentage = (count) => `${formatNumber(count / total * 100, 1)}%`;
+  const currentCount = state.scores.filter(routeIsCurrent).length;
+  const operatorVerified = state.scores.filter((row) => !bool(row.operator_readiness_placeholder)).length;
+  const chargingVerified = state.scores.filter((row) => bool(row.charging_site_verified)).length;
+  const reliableGeometry = state.scores.filter((row) => bool(row.geometry_verified) || ["A", "B"].includes(String(row.geometry_reliability_grade).toUpperCase())).length;
+  const incompleteScores = state.scores.filter((row) => !bool(row.score_complete)).length;
+  const sourcePeriods = [...new Set((state.sources.sources || []).map((source) => source.reference_period).filter(Boolean))];
+  const criticalMissing = Object.values(state.report.critical_missing_values || {}).reduce((sum, value) => sum + (Number(value) || 0), 0);
+  const gapCounts = state.scores.reduce((counts, row) => {
+    const field = String(row.highest_value_missing_evidence || "unspecified").replaceAll("_", " ");
+    counts[field] = (counts[field] || 0) + 1;
+    return counts;
+  }, {});
+  const leadingGaps = Object.entries(gapCounts).sort((left, right) => right[1] - left[1]).slice(0, 3).map(([field, count]) => `${field} (${count})`).join(" · ");
   els.sourceHealth.innerHTML = [
     ["Pipeline", `${state.report.status || "Unknown"} · ${formatNumber(state.report.rows_processed)} rows`],
     ["Build", `${state.build.build_id || "Unknown"} · ${state.build.build_timestamp_utc || "Unknown time"}`],
     ["Models", `${models.service_intensity || "No service model"} · ${models.corridor_typology || "No typology model"}`],
     ["Sources", `${sourceCount} registered · checksummed build manifest`],
+    ["Source periods", sourcePeriods.length ? sourcePeriods.join(" · ") : "No source dates reported"],
+    ["Evidence coverage", `${percentage(total - currentCount)} historic-only · ${percentage(currentCount)} current validation · ${percentage(operatorVerified)} operator evidence · ${percentage(chargingVerified)} verified charging site · ${percentage(reliableGeometry)} reliable geometry`],
+    ["Missing values", `${criticalMissing} missing values across monitored analytical fields · ${incompleteScores} incomplete policy-score rows · leading evidence gaps: ${leadingGaps || "none reported"}`],
     ["Current validation", `${formatNumber(state.report.current_validation_count)} routes · historic status remains explicit`],
     ["Pipeline warnings", warnings.length ? warnings.join(" ") : "No warnings reported"]
   ].map(([title, copy]) => `<div><strong>${escapeHtml(title)}</strong>${escapeHtml(copy)}</div>`).join("");
@@ -844,8 +1128,8 @@ function renderAll() {
   renderRouteFinder();
   renderRouteLens();
   renderActiveWeights();
-  renderScenarioComparison();
   renderPortfolio();
+  renderScenarioComparison();
   renderLeaderboard();
   renderEvidenceQueue();
   refreshMapData();
@@ -875,9 +1159,13 @@ function assistantContext(question) {
       scenario_id: state.scenarioId,
       build_id: state.build.build_id,
       policy_model_version: row?.policy_model_version || "policy-v2.0",
-      weights: Object.fromEntries(Object.entries(state.normalizedWeights).map(([key, value]) => [key, Number((value / 100).toFixed(4))])),
+      climate_assumption_set: row?.climate_assumption_set || "not reported",
+      sensitivity_method: row?.sensitivity_method || "not reported",
+      sensitivity_mode: row?.sensitivity_mode || "not reported",
+      weights: Object.fromEntries(Object.entries(canonicalPolicyWeights()).map(([key, value]) => [key, Number((value / 100).toFixed(6))])),
       city_scope: els.cityFilter.value,
-      historic_baseline_included: els.includeHistoric.checked
+      historic_baseline_included: els.includeHistoric.checked,
+      validation_filter: els.includeHistoric.checked ? "historic baseline plus supplied current validation" : "supplied current validation only"
     },
     route: row ? {
       route_id: row.route_id,
@@ -900,6 +1188,10 @@ function assistantContext(question) {
       maximum_rank_swing: numeric(row, "maximum_rank_swing"),
       portfolio_flip_possible: bool(row.portfolio_flip_possible),
       validation_priority_reason: row.validation_priority_reason,
+      validation_status: row.validation_status,
+      active_status: row.active_status,
+      utility_capacity_verified: bool(row.utility_capacity_verified),
+      operator_readiness_placeholder: bool(row.operator_readiness_placeholder),
       claim_statuses: {
         climate: row.climate_claim_status,
         equity: row.equity_claim_status,
@@ -985,6 +1277,16 @@ function triggerDownload(blob, filename) {
   setTimeout(() => URL.revokeObjectURL(url), 800);
 }
 
+function knownLimitations(row) {
+  return [...new Set([
+    ...(state.report.warnings || []),
+    row?.evidence_limitations,
+    row?.equity_limitation,
+    row?.charging_limitation,
+    "Historic GTFS defines the screening universe and does not prove current 2026 service."
+  ].filter(Boolean))];
+}
+
 function auditManifest() {
   const row = activeRow();
   return {
@@ -993,11 +1295,18 @@ function auditManifest() {
     build_timestamp_utc: state.build.build_timestamp_utc,
     pipeline_version: state.build.pipeline_version,
     model_versions: state.build.model_versions,
-    scenario: assistantContext("").scenario,
-    selected_route: row ? { route_id: row.route_id, route_long_name: row.route_long_name, live_rank: row.liveRank, live_priority_score: Number(row.liveScore?.toFixed(3)), evidence_grade: row.evidence_grade, robustness_label: row.robustness_label } : null,
+    model_metrics_summary: state.build.model_metrics_summary || state.modelMetrics,
+    source_registry_version: state.sources.registry_version,
+    source_registry_checksum_sha256: state.sources.registry_checksum_sha256,
+    source_versions: (state.sources.sources || []).map((source) => ({ source_id: source.source_id, reference_period: source.reference_period, retrieval_date: source.retrieval_date, currentness: source.currentness, checksum_sha256: source.checksum_sha256 })),
+    config_checksums: state.build.config_checksums,
+    scenario: currentScenarioObject(),
+    uncertainty_method: row?.sensitivity_method || "not reported",
+    selected_route: row ? { route_id: row.route_id, route_long_name: row.route_long_name, live_rank: row.liveRank, live_priority_score: Number(row.liveScore?.toFixed(3)), evidence_grade: row.evidence_grade, evidence_confidence: numeric(row, "overall_evidence_confidence"), robustness_label: row.robustness_label, rank_p10: numeric(row, "rank_p10"), rank_p90: numeric(row, "rank_p90"), highest_value_missing_evidence: row.highest_value_missing_evidence, validation_status: row.validation_status } : null,
     portfolio: assistantContext("").portfolio,
     governance: { llm_ranking_influence: false, policy_weights_human_controlled: true, optimization_method: state.portfolioIsPrecomputed ? "deterministic_selection" : "deterministic_client_preview" },
-    disclaimer: row?.decision_support_disclaimer || "Decision support only; validate before committing resources."
+    known_limitations: knownLimitations(row),
+    disclaimer: row?.decision_support_disclaimer || "This output is decision support, not authorization for procurement, lending, franchise cancellation, or investment."
   };
 }
 
@@ -1018,8 +1327,38 @@ function downloadCsv() {
     operator_effective_score: row.operator_effective_score,
     top_10_probability: row.top_10_probability,
     robustness_label: row.robustness_label,
+    rank_p10: row.rank_p10,
+    rank_p90: row.rank_p90,
+    rank_stability_score: row.rank_stability_score,
     validation_status: row.validation_status,
+    active_status: row.active_status,
+    validation_date: row.validation_date,
+    validation_source_reference: row.source_reference,
     highest_value_missing_evidence: row.highest_value_missing_evidence,
+    evidence_limitations: row.evidence_limitations,
+    freshness_score: row.freshness_score,
+    directness_score: row.directness_score,
+    spatial_specificity_score: row.spatial_specificity_score,
+    completeness_score: row.completeness_score,
+    external_validation_score: row.external_validation_score,
+    climate_source_ids: row.climate_source_ids,
+    equity_source_ids: row.equity_source_ids,
+    charging_source_ids: row.charging_source_ids,
+    operator_source_ids: row.operator_source_ids,
+    feature_source_ids: row.feature_source_ids,
+    climate_claim_status: row.climate_claim_status,
+    equity_claim_status: row.equity_claim_status,
+    charging_claim_status: row.charging_claim_status,
+    operator_claim_status: row.operator_claim_status,
+    policy_model_version: row.policy_model_version,
+    ml_model_version: row.ml_model_version,
+    clustering_model_version: row.clustering_model_version,
+    ml_service_intensity_used: row.ml_service_intensity_used,
+    ml_typology_used_for_score: row.ml_typology_used_for_score,
+    llm_ranking_influence: row.llm_ranking_influence,
+    sensitivity_method: row.sensitivity_method,
+    sensitivity_mode: row.sensitivity_mode,
+    climate_assumption_set: row.climate_assumption_set,
     build_id: state.build.build_id,
     scenario_id: state.scenarioId,
     portfolio_scenario_id: state.portfolioScenarioId
@@ -1083,6 +1422,28 @@ function exportPdfReport() {
   doc.setFont("helvetica", "bold"); doc.text("Highest-value evidence gap", 15, finalY + 47);
   doc.setFont("helvetica", "normal"); doc.text(doc.splitTextToSize(`${String(row.highest_value_missing_evidence || "current validation").replaceAll("_", " ")}: ${row.validation_priority_reason || "Collect direct evidence before proceeding."}`, 180), 15, finalY + 56);
   doc.setFillColor(232, 239, 229); doc.roundedRect(15, finalY + 78, 180, 34, 3, 3, "F"); doc.setFont("helvetica", "bold"); doc.text("Decision support only", 21, finalY + 90); doc.setFont("helvetica", "normal"); doc.text(doc.splitTextToSize(row.decision_support_disclaimer || "Validate evidence before procurement, lending, franchise or investment action.", 165), 21, finalY + 99);
+
+  doc.addPage();
+  doc.setFillColor(6, 25, 31); doc.rect(0, 0, 210, 25, "F"); doc.setTextColor(199, 244, 89); doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.text("Audit metadata and known limitations", 15, 16);
+  const auditRows = [
+    ["Exported", manifest.exported_at_utc],
+    ["Build / pipeline", `${manifest.build_id} · ${manifest.pipeline_version}`],
+    ["Policy scenario", `${state.scenarioId} · ${JSON.stringify(manifest.scenario.policy_weights)}`],
+    ["Climate assumptions", manifest.scenario.climate_assumption_set],
+    ["Validation filter", manifest.scenario.validation_filter],
+    ["Uncertainty", `${manifest.uncertainty_method} · ${manifest.scenario.sensitivity_mode}`],
+    ["Service model", manifest.model_versions?.service_intensity || "not reported"],
+    ["Typology model", manifest.model_versions?.corridor_typology || "not reported"],
+    ["Source registry", `${manifest.source_registry_version || "not reported"} · ${manifest.source_versions.length} registered sources`]
+  ];
+  doc.autoTable({ startY: 33, head: [["Audit field", "Value"]], body: auditRows, margin: { left: 15, right: 15 }, styles: { fontSize: 7.3, cellPadding: 2.2 }, headStyles: { fillColor: [13, 119, 114], textColor: 255 }, columnStyles: { 0: { cellWidth: 42 } } });
+  const auditY = doc.lastAutoTable?.finalY || 96;
+  doc.setTextColor(10, 36, 41); doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.text("Source periods", 15, auditY + 14);
+  const sourceLines = manifest.source_versions.map((source) => `${source.source_id}: ${source.reference_period || "not reported"} · retrieved ${source.retrieval_date || "not reported"}`);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(7.3); doc.text(doc.splitTextToSize(sourceLines.join("\n"), 180), 15, auditY + 23);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(10); doc.text("Known limitations", 15, auditY + 66);
+  doc.setFont("helvetica", "normal"); doc.setFontSize(7.3); doc.text(doc.splitTextToSize(manifest.known_limitations.map((item) => `• ${item}`).join("\n"), 180), 15, auditY + 75);
+  doc.setFont("helvetica", "bold"); doc.setFontSize(8); doc.text(doc.splitTextToSize(manifest.disclaimer, 180), 15, 276);
   doc.save(`route2zero_${safeFilePart(state.scenarioId)}_decision_brief.pdf`);
 }
 
@@ -1090,7 +1451,16 @@ function wordReportHtml() {
   const row = activeRow();
   const manifest = auditManifest();
   const portfolioRows = state.portfolioRows.map((item, index) => `<tr><td>${index + 1}</td><td>${escapeHtml(item.route_long_name)}</td><td>${escapeHtml(item.primary_city || "—")}</td><td>${escapeHtml(item.evidence_grade || "—")}</td><td>${formatNumber(item.liveScore ?? item.just_transition_score, 1)}</td></tr>`).join("");
-  return `<!doctype html><html><head><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;color:#0a2429;margin:38px;line-height:1.5}h1{color:#0d7772}h2{margin-top:28px;border-bottom:2px solid #c7f459;padding-bottom:6px}.meta{color:#607173}.score{font-size:28px;font-weight:bold;color:#0d7772}table{width:100%;border-collapse:collapse}th,td{border:1px solid #d5e0d6;padding:8px;text-align:left}th{background:#0d7772;color:white}.note{background:#f1f5ef;padding:14px}</style></head><body><h1>Route2Zero 2.0 Decision Brief</h1><p class="meta">Build ${escapeHtml(manifest.build_id)} · Scenario ${escapeHtml(state.scenarioId)} · Portfolio ${escapeHtml(state.portfolioScenarioId)}</p><h2>Selected corridor</h2><h3>${escapeHtml(row.route_long_name)}</h3><p>${escapeHtml(row.route_id)} · ${escapeHtml(String(row.cities_served || "Unspecified").replaceAll("|", " · "))}</p><p class="score">${formatNumber(row.liveScore, 1)}/100 · Rank #${row.liveRank}</p><p>${escapeHtml(deterministicRouteSummary(row))}</p><h2>Eight-signal route lens</h2><ul><li>Evidence: Grade ${escapeHtml(row.evidence_grade)} (${formatNumber(row.overall_evidence_confidence, 1)}/100)</li><li>Climate scenario: ${formatSigned(row.net_co2e_avoided_t_year_low)} to ${formatSigned(row.net_co2e_avoided_t_year_high)} tCO2e/year</li><li>Equity exposure: ${formatNumber(row.equity_score, 1)}/100 (${escapeHtml(row.equity_claim_status)})</li><li>Charging readiness: ${formatNumber(row.charging_readiness_score, 1)}/100; utility capacity unverified</li><li>Operator readiness: ${formatNumber(row.operator_effective_score, 1)}/100 (${escapeHtml(row.operator_claim_status)})</li><li>Robustness: ${formatNumber(Number(row.top_10_probability) * 100)}% top-10 across ${formatNumber(row.simulations)} scenarios</li><li>Typology: ${escapeHtml(row.corridor_type_label)}</li></ul><h2>Phase-1 evidence-validation portfolio</h2><table><thead><tr><th>#</th><th>Corridor</th><th>Primary city</th><th>Evidence</th><th>Priority</th></tr></thead><tbody>${portfolioRows}</tbody></table><h2>Responsible-use boundary</h2><div class="note"><p>ML estimates where appropriate. Deterministic models quantify impacts, uncertainty and selection. Policy weights remain human-controlled. The LLM explains structured evidence and never changes a score or policy choice.</p><p><b>Decision support only:</b> ${escapeHtml(row.decision_support_disclaimer)}</p></div><p><a href="https://route2zero.netlify.app/">Live dashboard</a> · <a href="https://github.com/qjmre23/Route2Zero">GitHub repository</a></p></body></html>`;
+  const sourceRows = manifest.source_versions.map((source) => `<tr><td>${escapeHtml(source.source_id)}</td><td>${escapeHtml(source.reference_period || "not reported")}</td><td>${escapeHtml(source.retrieval_date || "not reported")}</td></tr>`).join("");
+  const limitationItems = manifest.known_limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
+  return `<!doctype html><html><head><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;color:#0a2429;margin:38px;line-height:1.5}h1{color:#0d7772}h2{margin-top:28px;border-bottom:2px solid #c7f459;padding-bottom:6px}.meta{color:#607173}.score{font-size:28px;font-weight:bold;color:#0d7772}table{width:100%;border-collapse:collapse}th,td{border:1px solid #d5e0d6;padding:8px;text-align:left}th{background:#0d7772;color:white}.note{background:#f1f5ef;padding:14px}</style></head><body>
+  <h1>Route2Zero 2.0 Decision Brief</h1><p class="meta">Exported ${escapeHtml(manifest.exported_at_utc)} · Build ${escapeHtml(manifest.build_id)} · Scenario ${escapeHtml(state.scenarioId)} · Portfolio ${escapeHtml(state.portfolioScenarioId)}</p>
+  <h2>Selected corridor</h2><h3>${escapeHtml(row.route_long_name)}</h3><p>${escapeHtml(row.route_id)} · ${escapeHtml(String(row.cities_served || "Unspecified").replaceAll("|", " · "))}</p><p class="score">${formatNumber(row.liveScore, 1)}/100 · Rank #${row.liveRank}</p><p>${escapeHtml(deterministicRouteSummary(row))}</p>
+  <h2>Eight-signal route lens</h2><ul><li>Evidence: Grade ${escapeHtml(row.evidence_grade)} (${formatNumber(row.overall_evidence_confidence, 1)}/100)</li><li>Climate scenario: ${formatSigned(row.net_co2e_avoided_t_year_low)} to ${formatSigned(row.net_co2e_avoided_t_year_high)} tCO2e/year</li><li>Equity exposure: ${formatNumber(row.equity_score, 1)}/100 (${escapeHtml(row.equity_claim_status)})</li><li>Charging readiness: ${formatNumber(row.charging_readiness_score, 1)}/100; utility capacity unverified</li><li>Operator readiness: ${formatNumber(row.operator_effective_score, 1)}/100 (${escapeHtml(row.operator_claim_status)})</li><li>Robustness: ${formatNumber(Number(row.top_10_probability) * 100)}% top-10 across ${formatNumber(row.simulations)} scenarios</li><li>Typology: ${escapeHtml(row.corridor_type_label)}</li></ul>
+  <h2>Phase-1 evidence-validation portfolio</h2><table><thead><tr><th>#</th><th>Corridor</th><th>Primary city</th><th>Evidence</th><th>Priority</th></tr></thead><tbody>${portfolioRows}</tbody></table>
+  <h2>Audit metadata</h2><table><tbody><tr><th>Policy weights</th><td>${escapeHtml(JSON.stringify(manifest.scenario.policy_weights))}</td></tr><tr><th>Climate assumptions</th><td>${escapeHtml(manifest.scenario.climate_assumption_set)}</td></tr><tr><th>Validation filter</th><td>${escapeHtml(manifest.scenario.validation_filter)}</td></tr><tr><th>Uncertainty method</th><td>${escapeHtml(`${manifest.uncertainty_method} · ${manifest.scenario.sensitivity_mode}`)}</td></tr><tr><th>Service model</th><td>${escapeHtml(manifest.model_versions?.service_intensity || "not reported")}</td></tr><tr><th>Typology model</th><td>${escapeHtml(manifest.model_versions?.corridor_typology || "not reported")}</td></tr></tbody></table>
+  <h2>Source versions</h2><table><thead><tr><th>Source ID</th><th>Reference period</th><th>Retrieved</th></tr></thead><tbody>${sourceRows}</tbody></table>
+  <h2>Known limitations</h2><ul>${limitationItems}</ul><h2>Responsible-use boundary</h2><div class="note"><p>ML estimates where appropriate. Deterministic models quantify impacts, uncertainty and selection. Policy weights remain human-controlled. The LLM explains structured evidence and never changes a score or policy choice.</p><p><b>Decision support only:</b> ${escapeHtml(manifest.disclaimer)}</p></div><p><a href="https://route2zero.netlify.app/">Live dashboard</a> · <a href="https://github.com/qjmre23/Route2Zero">GitHub repository</a></p></body></html>`;
 }
 
 function exportWordReport() {
@@ -1219,8 +1589,11 @@ async function init() {
     if (feature.geometry?.type === "LineString") state.pathByRoute.set(String(feature.properties.route_id), feature.geometry.coordinates);
   });
   renderCityOptions();
+  state.savedScenarios = readSavedScenarios();
   state.selectedRouteId = flagship.route_id || build.flagship_route_id || state.defaultRanked[0]?.route_id || state.scores[0]?.route_id;
   renderAll();
+  els.scenarioTitle.value = suggestedScenarioTitle();
+  renderSavedScenarioOptions();
   renderSourceHealth();
   initialiseMap();
 }
@@ -1229,10 +1602,16 @@ Object.values(weightInputs).forEach((input) => input.addEventListener("input", (
 document.querySelectorAll("[data-preset]").forEach((button) => button.addEventListener("click", () => setPreset(button.dataset.preset)));
 els.cityFilter.addEventListener("change", renderAll);
 els.includeHistoric.addEventListener("change", renderAll);
+els.resetScenario.addEventListener("click", resetScenarioToDefault);
+els.saveScenario.addEventListener("click", saveCurrentScenario);
+els.copyScenario.addEventListener("click", copyCurrentScenarioJson);
+els.savedScenarioSelect.addEventListener("change", updateSavedScenarioButtons);
+els.loadScenario.addEventListener("click", loadSelectedScenario);
+els.deleteScenario.addEventListener("click", deleteSelectedScenario);
 els.routeFinder.addEventListener("change", (event) => setSelected(event.target.value, false));
 els.mapLayer.addEventListener("change", (event) => { state.activeLayer = event.target.value; refreshMapData(); });
-els.buildPortfolio.addEventListener("click", () => { renderPortfolio(); renderLeaderboard(); renderEvidenceQueue(); refreshMapData(); });
-[els.portfolioMax, els.portfolioGrade, els.portfolioEquity].forEach((control) => control.addEventListener("change", () => { renderPortfolio(); renderEvidenceQueue(); refreshMapData(); }));
+els.buildPortfolio.addEventListener("click", renderAll);
+[els.portfolioMax, els.portfolioGrade, els.portfolioEquity].forEach((control) => control.addEventListener("change", renderAll));
 
 function delegatedRouteSelection(event) {
   const button = event.target.closest("[data-route-id]");
