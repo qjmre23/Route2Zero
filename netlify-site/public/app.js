@@ -1220,8 +1220,7 @@ function localAssistantFallback(context) {
 
 function renderAssistantAnswer(data) {
   const answer = escapeHtml(data.answer || "No answer was returned.");
-  const actions = Array.isArray(data.actions) ? data.actions.slice(0, 5) : [];
-  els.answerText.innerHTML = `<p>${answer}</p>${actions.length ? `<ul>${actions.map((action) => `<li>${escapeHtml(action)}</li>`).join("")}</ul>` : ""}`;
+  els.answerText.innerHTML = `<p>${answer}</p>`;
   const sourceLabels = {
     netlify_function_api: "AI-generated · structured evidence",
     deterministic_fallback: data.ai_status === "disabled" ? "AI disabled · evidence-only response" : "AI unavailable · evidence-only response",

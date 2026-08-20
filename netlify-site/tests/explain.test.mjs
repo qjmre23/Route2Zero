@@ -1,7 +1,11 @@
 import assert from "node:assert/strict";
+import { readFileSync } from "node:fs";
 import test from "node:test";
 
 import { handler } from "../netlify/functions/explain.mjs";
+
+const appSource = readFileSync(new URL("../public/app.js", import.meta.url), "utf8");
+const styleSource = readFileSync(new URL("../public/styles.css", import.meta.url), "utf8");
 
 const payload = {
   question: "What should the city validate first?",
@@ -120,4 +124,14 @@ test("reports provider failures without exposing configuration values", { concur
   } finally {
     globalThis.fetch = originalFetch;
   }
+});
+
+test("renders one high-contrast assistant paragraph without repeated action bullets", () => {
+  const renderFunction = appSource.slice(
+    appSource.indexOf("function renderAssistantAnswer"),
+    appSource.indexOf("async function askQuestion")
+  );
+  assert.match(renderFunction, /answerText\.innerHTML = `<p>\$\{answer\}<\/p>`/);
+  assert.doesNotMatch(renderFunction, /<ul>|data\.actions/);
+  assert.match(styleSource, /\.ask-panel \.answer p \{[^}]*color: #f5fffc;/);
 });

@@ -258,8 +258,8 @@ tbody tr:hover, tbody tr.selected-row { background: #eef9ef; }
 .ask-panel > .button-primary { width: 100%; margin: 10px 0; }
 .suggested-questions { display: flex; flex-wrap: wrap; gap: 7px; margin: 13px 0; }
 .suggested-questions button { text-align: center; }
-.answer { min-height: 54px; margin-top: 9px; color: #e9f7f3; font-size: .82rem; line-height: 1.55; }
-.answer ul { margin: 8px 0 0; padding-left: 18px; }
+.answer { min-height: 54px; margin-top: 12px; color: #f5fffc; font-size: .88rem; font-weight: 500; line-height: 1.65; }
+.ask-panel .answer p { margin: 0; color: #f5fffc; }
 
 .method-sources { display: grid; grid-template-columns: minmax(250px, .38fr) minmax(0, .62fr); gap: clamp(24px, 5vw, 70px); margin: 62px 0 30px; padding: clamp(25px, 4vw, 54px); border-radius: 29px; background: #e5ede3; }
 .method-intro > p:last-child { color: var(--muted); line-height: 1.6; }
