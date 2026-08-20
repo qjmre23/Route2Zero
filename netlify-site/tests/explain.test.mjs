@@ -85,6 +85,24 @@ test("accepts array-form provider content", { concurrency: false }, async () => 
   }
 });
 
+test("does not treat named Phase-1 and top-10 labels as unsupported numeric claims", { concurrency: false }, async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response(JSON.stringify({
+    choices: [{ message: { content: "Keep this corridor in the Phase-1 review because it remains a top-10 candidate." } }]
+  }), { status: 200 });
+  try {
+    const response = await withProviderEnvironment({
+      ABSK_KEY: "test-key",
+      BASE_URL: "https://provider.example/v1",
+      MODEL: "test-model",
+      AI_EXPLANATIONS_ENABLED: "true"
+    }, () => handler(event()));
+    assert.equal(responseJson(response).source, "netlify_function_api");
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
 test("reports provider failures without exposing configuration values", { concurrency: false }, async () => {
   const originalFetch = globalThis.fetch;
   globalThis.fetch = async () => new Response("rate limited", { status: 429 });
