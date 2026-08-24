@@ -16,7 +16,7 @@ def main() -> int:
     output_dir = DOCS_DIR / "policy_briefs"
     output_dir.mkdir(parents=True, exist_ok=True)
     for row in selected.itertuples(index=False):
-        text = f"""# Route2Zero 2.0 validation brief: {row.route_long_name}
+        text = f"""# Route2Zero 2.1 validation brief: {row.route_long_name}
 
 **Route ID:** `{row.route_id}`
 

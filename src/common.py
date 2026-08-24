@@ -126,9 +126,18 @@ def merge_intervals(intervals: Iterable[tuple[float, float]]) -> float:
 
 
 def write_json(path: Path, payload: object) -> None:
+    def json_safe(value: object) -> object:
+        if isinstance(value, dict):
+            return {key: json_safe(item) for key, item in value.items()}
+        if isinstance(value, (list, tuple)):
+            return [json_safe(item) for item in value]
+        if isinstance(value, float) and not math.isfinite(value):
+            return None
+        return value
+
     path.parent.mkdir(parents=True, exist_ok=True)
     with path.open("w", encoding="utf-8", newline="\n") as stream:
-        stream.write(json.dumps(payload, indent=2, ensure_ascii=False))
+        stream.write(json.dumps(json_safe(payload), indent=2, ensure_ascii=False, allow_nan=False))
 
 
 def normalize_text_newlines(path: Path) -> None:

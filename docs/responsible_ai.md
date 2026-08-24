@@ -4,7 +4,7 @@
 
 Route2Zero supports public-sector planning under incomplete evidence. Its governance objective is not to remove uncertainty. It is to keep uncertainty, policy choices, source limitations, and human decision rights visible throughout the workflow.
 
-This framework applies to build `r2z-45c4ba076af9`, policy scenario `scn-e0f12f397e`, and portfolio scenario `prt-fd6de9d793`.
+This framework applies to build `r2z-0cd49ad56aaa`, policy scenario `scn-e0f12f397e`, and portfolio scenario `prt-fd6de9d793`.
 
 ## Governing statement
 
@@ -90,12 +90,12 @@ Language must follow the status. A proxy must not be called a measurement. A sce
 
 The present build has:
 
-- zero current route validations;
-- 1,522 historic-only service statuses;
+- 20 dated current external route records with active service still uncertain;
+- 1,502 historic-only route records;
 - zero observed operator scores;
 - zero verified utility-capacity records;
 - zero verified charging sites;
-- 1,520 approximate geometries requiring validation;
+- 20 observed OSM member-way geometries, two GTFS shapes, and 1,500 planning approximations;
 - population exposure as the only equity dimension; and
 - grade C or D evidence for every route.
 
@@ -272,7 +272,7 @@ Corrections must flow through validated ledgers or versioned configuration, foll
 | Stable rank mistaken for readiness | Display evidence grade separately |
 | LLM hallucination | Bounded facts, deterministic fallback, source label, no numeric write path |
 | Policy preferences hidden in score | Named scenarios, visible weights, human approval |
-| Portfolio appears financially optimized | State deterministic selection and no budget |
+| Portfolio appears financially optimized | State deterministic selection, no budget constraint, and separate `PROXY`/`MISSING` feasibility fields |
 | Portfolio constraints silently relaxed | Explicit infeasible result, empty selection, and constraint diagnostics |
 | Rank crossing mistaken for portfolio change | Re-run the shared selector for geometry, service, climate, operator, charging, and equity perturbations |
 | Text city tag misassigns corridor | Low-confidence label and boundary-validation task |

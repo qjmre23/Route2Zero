@@ -1,4 +1,4 @@
-# Route2Zero 2.0 live demonstration script
+# Route2Zero 2.1 live demonstration script
 
 ## Duration and setup
 
@@ -8,9 +8,9 @@ Use the production application at <https://route2zero.netlify.app/> or the gener
 
 Before recording:
 
-- confirm build `r2z-45c4ba076af9` is displayed or documented;
+- confirm build `r2z-0cd49ad56aaa` is displayed or documented;
 - confirm scenario `scn-e0f12f397e`;
-- confirm 1,522 routes, 0 current validations, 9 robust priorities, and 8 Phase-1 corridors;
+- confirm 1,522 routes, 20 dated current external records, 9 robust priorities, and 8 Phase-1 corridors;
 - preselect `LTFRB_PUJ1353` as the flagship;
 - allow the Mapbox style to finish loading;
 - close unrelated tabs and notifications;
@@ -25,23 +25,23 @@ Do not show superseded proxy-era scores or controls, or a section labeled “Jud
 
 **Screen:** Hero and release metrics.
 
-**Action:** Let the metric count-up finish, then move the pointer from 1,522 routes to 0 current validations and 9 robust priorities.
+**Action:** Let the metric count-up finish, then move the pointer from 1,522 routes to 20 current external records and 9 robust priorities.
 
 **Narration:**
 
-“Route2Zero helps a city decide which jeepney corridors to validate for electrification first. This build screens 1,522 historic route records, identifies nine robust priorities, and is explicit that current route validations are still zero.”
+“Route2Zero helps a city decide which jeepney corridors to validate for electrification first. This build screens 1,522 historic route records, identifies nine robust priorities, and adds 20 dated external route records without pretending they prove active service.”
 
 **Transition:** Click the primary map action. Use the native smooth scroll; do not cut before the map settles.
 
-### 0:10-0:24 — Street-following flagship route
+### 0:10-0:24 — Observed and interpreted route geometry
 
 **Screen:** Interactive map.
 
-**Action:** Select Francisco Homes - Cubao, route `LTFRB_PUJ1353`. Let the selection pulse and street-following Mapbox line draw.
+**Action:** Select a reviewed OSM corridor such as `LTFRB_PUJ1034` first and show its relation/date evidence, then return to Francisco Homes - Cubao, route `LTFRB_PUJ1353`, to show the labelled Mapbox interpretation.
 
 **Narration:**
 
-“Selecting the flagship requests a street-following path so the line follows roads. It is a planning visualization, not proof of the current franchise alignment.”
+“Reviewed OSM matches use their actual member-way geometry and show the relation date. Other corridors use a Mapbox street-following interpretation. Neither one alone proves active service or franchise authority.”
 
 **Transition:** Click the selected route panel or next-step control to reveal the route lens.
 
@@ -61,11 +61,11 @@ Do not show superseded proxy-era scores or controls, or a section labeled “Jud
 
 **Screen:** Low/base/high climate and energy range.
 
-**Action:** Sweep the pointer from the negative low result, minus 1,111.8 tonnes per year, to the high result, 3,025.3 tonnes per year.
+**Action:** Point first to the base result, plus 368.0 tonnes per year, then show the bounded range from minus 1,111.8 to plus 3,025.3.
 
 **Narration:**
 
-“The climate engine keeps the full range. The conservative case is negative, while the high case is positive. These are scenarios to calibrate, not claimed emissions reductions.”
+“The base case is plus 368 tonnes per year. The low case turns negative when high electricity use meets a carbon-intensive grid; vehicle efficiency is the strongest sensitivity. These are scenarios to calibrate, not claimed reductions.”
 
 **Transition:** Click “What to validate next.”
 
@@ -122,13 +122,13 @@ End on the exported decision-record title or the Route2Zero mark with the live a
 The narration may state:
 
 - 1,522 route-direction records are screened;
-- 0 current validations are supplied;
+- 20 dated current external route records are supplied, while active service remains uncertain;
 - 9 records are robust priorities;
 - 8 corridors are selected for Phase 1;
 - the flagship score is 79.07 under the named default scenario;
 - its evidence is grade C, 38.34;
 - its top-10 frequency is 100% across 5,000 scenarios;
-- its low/high climate range is -1,111.8 to 3,025.3 tCO2e/year; and
+- its base climate case is +368.0 tCO2e/year, bounded by -1,111.8 to +3,025.3; and
 - the LLM has no ranking influence.
 
 The narration must not state:

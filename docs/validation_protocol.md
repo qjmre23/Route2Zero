@@ -2,7 +2,7 @@
 
 ## Objective
 
-The protocol converts build `r2z-45c4ba076af9` from a historic screening baseline into a locally reviewed decision workflow. It defines the minimum evidence needed to validate route status, service intensity, geometry, climate assumptions, equity indicators, charging feasibility, operator readiness, model behavior, rank stability, and portfolio constraints.
+The protocol converts build `r2z-0cd49ad56aaa` from a historic screening baseline into a locally reviewed decision workflow. It defines the minimum evidence needed to validate route status, service intensity, geometry, climate assumptions, equity indicators, charging feasibility, operator readiness, model behavior, rank stability, and portfolio constraints.
 
 The protocol does not authorize procurement. It produces an evidence-backed Phase-1 shortlist and an explicit list of unresolved questions.
 
@@ -19,7 +19,8 @@ At pilot start:
 | Observed operator scores | 0 |
 | Verified utility-capacity records | 0 |
 | Verified charging sites | 0 |
-| Ordered-stop geometries requiring validation | 1,520 |
+| Dated current OSM route records | 20; active status uncertain |
+| Ordered-stop geometries requiring validation | 1,500 |
 | Evidence grade C | 1,519 |
 | Evidence grade D | 3 |
 | Robust priorities | 9 |
@@ -235,7 +236,7 @@ The historic grouped-validation R-squared of 0.9911 is not the acceptance thresh
 
 ## Typology validation
 
-Review representatives and outliers from all four clusters. Ask whether the labels are understandable and operationally useful. Record misclassified or ambiguous cases.
+Review representatives and outliers from all three clusters. Ask whether the labels are understandable and operationally useful. Record misclassified or ambiguous cases.
 
 Typology acceptance affects only interpretive use and sampling. It does not alter the priority score.
 
@@ -355,7 +356,7 @@ Optional scenario metrics include calibrated portfolio CO2e and energy ranges. D
 
 ## Rebuild and approval
 
-Accepted evidence must enter `data/validated/` or versioned configuration. Run the complete pipeline, automated checks, and Netlify build. Compare the new build with `r2z-45c4ba076af9` for:
+Accepted evidence must enter `data/validated/` or versioned configuration. Run the complete pipeline, automated checks, and Netlify build. Compare the new build with `r2z-0cd49ad56aaa` for:
 
 - changed sources and checksums;
 - validation statuses;

@@ -1,4 +1,4 @@
-"""Build the canonical, leakage-aware route feature store for Route2Zero 2.0."""
+"""Build the canonical, leakage-aware route feature store for Route2Zero 2.1."""
 
 from __future__ import annotations
 

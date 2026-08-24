@@ -2,9 +2,9 @@
 
 ## Use of this matrix
 
-This matrix maps the Route2Zero 2.0 implementation to the published judging areas of Relevance, Innovation, Impact, Presentation, Feasibility, and Viability. No numerical weights are assumed because none are encoded in the repository evidence used for this submission.
+This matrix maps the Route2Zero 2.1 implementation to the published judging areas of Relevance, Innovation, Impact, Presentation, Feasibility, and Viability. No numerical weights are assumed because none are encoded in the repository evidence used for this submission.
 
-The evidence anchor is build `r2z-45c4ba076af9`, scenario `scn-e0f12f397e`, and portfolio `prt-fd6de9d793`.
+The evidence anchor is build `r2z-0cd49ad56aaa`, scenario `scn-e0f12f397e`, and portfolio `prt-fd6de9d793`.
 
 ## Release facts
 
@@ -12,12 +12,13 @@ The evidence anchor is build `r2z-45c4ba076af9`, scenario `scn-e0f12f397e`, and 
 |---|---|
 | Route universe | 1,522 PUJ route-direction records |
 | Complete scores | 1,522 |
-| Current validations | 0 |
+| Dated current external route records | 20; active service remains uncertain |
+| Usable source geometries | 22: 20 OSM relations + 2 GTFS shapes |
 | Robust priorities | 9 |
 | Phase-1 corridors | 8 |
 | Service model | Histogram gradient boosting, version `service-v1-266e0b1d` |
-| Model validation | Grouped five-fold, MAE 266.4485, baseline MAE 4,850.0728 |
-| Typology | Four clusters, silhouette 0.2700 |
+| Model validation | Grouped five-fold, MAE 267.6992, baseline MAE 4,850.3377 |
+| Typology | Three clusters, silhouette 0.3730 |
 | Sensitivity | 5,000 fixed-seed policy-weight scenarios |
 | Portfolio climate range | -8,190.9 to 22,288.0 tCO2e/year |
 | Evidence distribution | 1,519 grade C; 3 grade D |
@@ -39,14 +40,14 @@ Route2Zero addresses the urban-transportation focus area by helping city and tra
 
 ### Responsible limitation
 
-The current build has zero current route validations. Relevance to an actual city decision must be confirmed through city pairing, operator engagement, utility evidence, and field validation.
+The current build has 20 reviewed, dated OSM route records and observed member-way geometries, but no record is field-confirmed active. Relevance to an actual city decision must still be confirmed through city pairing, operator engagement, utility evidence, and field validation.
 
 Route2Zero does not claim the Informal or Marginalized Settlements focus area from WorldPop density. A defensible settlement or underserved-area source would be required.
 
 ### Judge verification path
 
 1. Open the build summary.
-2. Confirm 1,522 records and zero current validations.
+2. Confirm 1,522 records and 20 dated current external records with active status uncertain.
 3. Open the flagship evidence card.
 4. Inspect its source statuses and validation queue.
 5. Review the pilot protocol.
@@ -61,11 +62,11 @@ Route2Zero's innovation is a hybrid planning workflow: machine learning for limi
 
 - A supervised service model uses grouped validation and explicit leakage exclusions.
 - The model is used only for one missing historic service input in the current build.
-- An unsupervised typology identifies four structural corridor types and 80 outliers.
+- An unsupervised typology identifies three structural corridor types; typology remains descriptive and outside the policy score.
 - Low, base, and high climate-and-energy scenarios preserve negative results.
 - Evidence confidence is separate from priority and rank stability.
 - Monte Carlo analysis records top-k frequency and P10-P90 rank ranges.
-- Value-of-information output tests four fields for rank swing and portfolio flips.
+- Value-of-information output tests six evidence fields for rank swing and portfolio flips.
 - Deterministic selection differs from simple top-N by four routes.
 - Structured planning explanations cite route fields and retain deterministic fallback.
 
@@ -185,9 +186,9 @@ Route2Zero can be maintained and transferred because sources, configurations, mo
 
 ### Responsible limitation
 
-The current manifest records the Git commit visible at build time while Route2Zero 2.0 work existed in the working tree. A formal release should commit final code and regenerate the manifest for one-to-one commit attestation.
+The current manifest records the Git commit visible at build time while Route2Zero 2.1 work existed in the working tree. A formal release should commit final code and regenerate the manifest for one-to-one commit attestation.
 
-No cost or revenue model is present. Financial viability must be assessed during the pilot with verified fleet, charging, depot, tariff, and finance inputs.
+An order-of-magnitude fleet and capital screen is present, but every value is `PROXY`, financing is `MISSING`, and major depot, grid, operating, and finance costs are excluded. Financial viability still requires verified fleet, charging, depot, tariff, and financing inputs during the pilot.
 
 ### Judge verification path
 
@@ -216,11 +217,11 @@ No cost or revenue model is present. Financial viability must be assessed during
 
 Before submission, confirm that the website, Concept, Demonstration, Pilot Plan, README, and technical reference all use:
 
-- build `r2z-45c4ba076af9` or a clearly identified later rebuild;
+- build `r2z-0cd49ad56aaa` or a clearly identified later rebuild;
 - scenario `scn-e0f12f397e` or a clearly identified replacement;
 - portfolio `prt-fd6de9d793` or a clearly identified replacement;
 - 1,522 records;
-- 0 current validations;
+- 20 dated current external route records;
 - 9 robust priorities;
 - 8 Phase-1 corridors;
 - the new 40/30/15/15 policy lens;

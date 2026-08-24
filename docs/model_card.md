@@ -1,8 +1,8 @@
-# Route2Zero 2.0 model card
+# Route2Zero 2.1 model card
 
 ## Card scope
 
-This card covers the two fitted machine-learning components in build `r2z-45c4ba076af9`:
+This card covers the two fitted machine-learning components in build `r2z-0cd49ad56aaa`:
 
 1. the supervised historic service-intensity model; and
 2. the unsupervised corridor-typology model.
@@ -32,7 +32,7 @@ The LLM, when enabled, has a third and separate role: summarize already-generate
 | Random seed | 20260820 |
 | Python | 3.12.13 |
 | scikit-learn | 1.9.0 |
-| Training timestamp | `2026-08-20T04:46:47Z` |
+| Training timestamp | `2026-08-24T15:23:20Z` |
 | Serialized model | `models/service_intensity.joblib` |
 
 ### Intended use
@@ -111,8 +111,8 @@ The baseline for each fold is the median target value from the training partitio
 
 | Candidate | MAE | RMSE | R-squared | Baseline MAE | Relative MAE improvement |
 |---|---:|---:|---:|---:|---:|
-| Histogram gradient boosting | 266.4485 | 562.7990 | 0.9911 | 4,850.0728 | 0.9451 |
-| Random forest | 272.0080 | 578.6314 | 0.9906 | 4,850.0728 | 0.9439 |
+| Histogram gradient boosting | 267.6992 | 574.1447 | 0.9907 | 4,850.3377 | 0.9448 |
+| Random forest | 284.7374 | 653.4361 | 0.9880 | 4,850.3377 | 0.9413 |
 
 The histogram gradient-boosting model is selected by MAE.
 
@@ -128,9 +128,9 @@ The historic proxy exists for 1,521 routes. The model prediction is used for one
 
 - Route ID: `LTFRB_PUJ2451`
 - Route name: Alabang-Bbayan via Bicutan
-- Prediction: 6,598.245 historic-proxy vehicle-kilometres per day
+- Prediction: 6,656.52 historic-proxy vehicle-kilometres per day
 - Claim status: `ML_ESTIMATED`
-- Default rank: 1,335
+- Default rank: 1,334
 
 For the other 1,521 routes, the prediction is retained for comparison and residual analysis but does not replace the historic derived value.
 
@@ -162,13 +162,13 @@ If current performance is weak, observed or high-quality administrative evidence
 
 | Field | Value |
 |---|---|
-| Model version | `typology-v1-f9da2ebe` |
+| Model version | `typology-v1-ab8203c9` |
 | Method | Median imputation, standardization, K-means |
 | Projection | Two-component PCA for visualization |
 | Random seed | 20260820 |
-| Selected clusters | 4 |
-| Silhouette score | 0.2700 |
-| Training timestamp | `2026-08-20T04:46:50Z` |
+| Selected clusters | 3 |
+| Silhouette score | 0.3730 |
+| Training timestamp | `2026-08-24T15:23:23Z` |
 | Serialized model | `models/corridor_typology.joblib` |
 
 ### Intended use
@@ -191,29 +191,28 @@ Candidate values from 3 through 8 are evaluated. A candidate is considered viabl
 
 | k | Silhouette | Minimum cluster size | Viable under rule |
 |---:|---:|---:|---|
-| 3 | 0.2438 | 284 | Yes |
-| 4 | 0.2700 | 134 | Yes |
-| 5 | 0.2762 | 8 | No |
-| 6 | 0.2680 | 6 | No |
-| 7 | 0.2735 | 2 | No |
-| 8 | 0.2450 | 2 | No |
+| 3 | 0.3730 | 22 | Yes |
+| 4 | 0.2864 | 22 | Yes |
+| 5 | 0.2927 | 22 | Yes |
+| 6 | 0.2822 | 22 | Yes |
+| 7 | 0.2515 | 22 | Yes |
+| 8 | 0.2567 | 22 | Yes |
 
-Although k=5 has a slightly higher silhouette score, it fails the minimum-cluster-size rule. The selected k is four.
+Every candidate meets the minimum-cluster-size rule in this build. The selected k is three because it has the highest silhouette score.
 
 ### Current cluster distribution
 
 | Label | Cluster ID | Routes |
 |---|---:|---:|
-| Long Regional Connector | 0 | 503 |
-| High-Stop-Density Core | 1 | 620 |
-| Dense Urban Trunk | 2 | 265 |
-| Local Feeder | 3 | 134 |
+| Dense Urban Trunk | 0 | 631 |
+| High-Stop-Density Core | 1 | 869 |
+| Long Regional Connector | 2 | 22 |
 
 Human-readable labels are assigned from relative cluster-centre patterns. They are descriptive conveniences, not ground truth.
 
 ### Outlier flag
 
-Distance to the assigned cluster center is calculated in standardized feature space. A route at or above the within-cluster 95th percentile is flagged. The current output contains 80 typology outliers.
+Distance to the assigned cluster center is calculated in standardized feature space. A route at or above the within-cluster 95th percentile is flagged. The current output contains 78 typology outliers.
 
 ### Non-intended uses
 

@@ -4,13 +4,13 @@
 
 This plan defines how a six-month city pilot should validate the machine-learning and LLM components of Route2Zero while preserving the authority of deterministic models and human decision owners.
 
-The starting point is build `r2z-45c4ba076af9`:
+The starting point is build `r2z-0cd49ad56aaa`:
 
 - service model `service-v1-266e0b1d`;
-- typology model `typology-v1-f9da2ebe`;
+- typology model `typology-v1-ab8203c9`;
 - policy scenario `scn-e0f12f397e`;
 - portfolio `prt-fd6de9d793`;
-- 0 current route validations;
+- 20 dated current external route records, with active service still uncertain;
 - 9 robust-priority records; and
 - 8 Phase-1 corridors.
 
@@ -20,7 +20,7 @@ The pilot must answer:
 
 1. Does the service-intensity model improve on a transparent baseline when evaluated against current observations?
 2. Are errors acceptable and understandable across cities, corridor types, and geometry grades?
-3. Are the four typology groups useful for planner interpretation and case sampling?
+3. Are the three typology groups useful for planner interpretation and case sampling?
 4. Do users distinguish model estimate, proxy, scenario, and observed evidence?
 5. Does the planning assistant remain faithful to structured fields and limitations?
 6. Can the system operate safely when the LLM is disabled or unavailable?
@@ -34,11 +34,11 @@ The supervised model was evaluated on a historic derived target using five-fold 
 |---|---:|
 | Training rows | 1,521 |
 | Corridor groups | 714 |
-| MAE | 266.4485 |
-| RMSE | 562.7990 |
-| R-squared | 0.9911 |
-| Median-baseline MAE | 4,850.0728 |
-| Relative MAE improvement | 94.51% |
+| MAE | 267.6992 |
+| RMSE | 574.1447 |
+| R-squared | 0.9907 |
+| Median-baseline MAE | 4,850.3377 |
+| Relative MAE improvement | 94.48% |
 
 These values are not proof of accuracy on current service. The pilot evaluation must use newly collected or accepted current evidence.
 
@@ -121,11 +121,10 @@ Model improvement is not accepted solely because a global metric increases. Revi
 
 ### Month 3
 
-Select representatives and outliers from all four clusters:
+Select representatives and outliers from all three clusters:
 
 - Dense Urban Trunk;
 - High-Stop-Density Core;
-- Local Feeder; and
 - Long Regional Connector.
 
 Planners review whether features and labels correspond to recognizable operational patterns. Record ambiguous cases and label changes.

@@ -1,16 +1,16 @@
-ROUTE2ZERO 2.0 TECHNICAL REFERENCE
+ROUTE2ZERO 2.1 TECHNICAL REFERENCE
 Build, data, models, scenarios, governance, Netlify deployment, and handover
-Reference build: r2z-45c4ba076af9
+Reference build: r2z-0cd49ad56aaa
 Reference policy scenario: scn-e0f12f397e
 Reference portfolio scenario: prt-fd6de9d793
-Pipeline version: 2.0.0
-Build timestamp: 2026-08-20T04:47:08Z
+Pipeline version: 2.1.0
+Build timestamp: 2026-08-24T15:24:12Z
 
 1. DOCUMENT STATUS
 
-1.1 This file is the deep technical reference for Route2Zero 2.0.
+1.1 This file is the deep technical reference for Route2Zero 2.1.
 1.2 It describes the repository state represented by the reference build above.
-1.3 It does not claim that the reference build contains current route validation.
+1.3 It does not claim that a dated external route record proves active service.
 1.4 It does not claim that the reference build is ready for procurement use.
 1.5 It does not replace the build manifest or source manifest.
 1.6 Machine-readable manifests are authoritative for identifiers and checksums.
@@ -72,7 +72,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 4. CLAIM-STATUS VOCABULARY
 
 4.1 VERIFIED is reserved for accepted verification.
-4.2 OBSERVED is reserved for direct pilot observation.
+4.2 OBSERVED is reserved for directly recorded external or pilot evidence with an identified source and date, without agency-certification claim.
 4.3 DERIVED is reserved for deterministic calculation from identified inputs.
 4.4 ML_ESTIMATED is reserved for versioned machine-learning output.
 4.5 PROXY is reserved for indirect screening evidence.
@@ -92,25 +92,25 @@ Build timestamp: 2026-08-20T04:47:08Z
 
 5. REFERENCE RELEASE IDENTITY
 
-5.1 Pipeline version is 2.0.0.
-5.2 Build ID is r2z-45c4ba076af9.
-5.3 Build timestamp is 2026-08-20T06:49:33Z.
-5.4 The manifest-recorded Git commit is 014e1aa96d235d12399a3cf8b8bd1d60a51e4549.
+5.1 Pipeline version is 2.1.0.
+5.2 Build ID is r2z-0cd49ad56aaa.
+5.3 Build timestamp is 2026-08-24T15:24:12Z.
+5.4 The manifest-recorded Git commit is fc151f33f366407ea7de18ad0184e8fb3faef341.
 5.5 Default policy scenario is scn-e0f12f397e.
 5.6 Default portfolio scenario is prt-fd6de9d793.
 5.7 Service-model version is service-v1-266e0b1d.
-5.8 Typology-model version is typology-v1-f9da2ebe.
+5.8 Typology-model version is typology-v1-ab8203c9.
 5.9 Model and typology seed is 20260820.
 5.10 Sensitivity seed is 20260820.
 5.11 Rows processed is 1,522.
 5.12 Complete priority scores is 1,522.
-5.13 Current validation count is zero.
+5.13 Dated current external route-record count is 20; active status remains uncertain for all 1,522 records.
 5.14 Robust-priority count is nine.
 5.15 Phase-1 selected count is eight.
 5.16 Pipeline status is PASS_WITH_WARNINGS.
 5.17 The flagship route ID is LTFRB_PUJ1353.
 5.18 The build ID excludes the build timestamp from its stable identity payload.
-5.19 A release rebuild after the final commit is required for one-to-one Git attestation.
+5.19 The analytical build was regenerated from the exact code commit recorded at 5.4.
 
 6. REPOSITORY PATH CONTRACT
 
@@ -272,22 +272,22 @@ Build timestamp: 2026-08-20T04:47:08Z
 13.7 Consecutive duplicate coordinates are removed.
 13.8 A shape is usable when it has at least two valid points.
 13.9 A stop line is usable when it has at least two valid points.
-13.10 GTFS shape has precedence when available.
-13.11 Ordered-stop approximation is the fallback.
+13.10 Reviewed OSM member-way geometry has precedence for the 20 accepted one-to-one matches.
+13.11 GTFS shape is next; ordered-stop approximation is the fallback.
 13.12 WGS84 is the output coordinate system.
 13.13 Length uses geodesic line length on WGS84.
 13.14 Endpoint distance is not used as route length.
 13.15 Two PUJ records use GTFS shape geometry.
-13.16 1,520 use ordered-stop approximation.
+13.16 Twenty use OSM relations and 1,500 use ordered-stop approximation.
 13.17 Missing geometry fails the stage.
 13.18 Output is data/processed/jeepney_routes.geojson.
-13.19 Source geometry is not road-snapped by this stage.
+13.19 OSM member-way geometry follows mapped roads; non-OSM source geometry is not road-snapped by this stage.
 
 14. GEOMETRY RELIABILITY
 
 14.1 src/02b_geometry_reliability.py scores screening geometry.
 14.2 A GTFS shape begins at 88 points.
-14.3 An ordered-stop approximation begins at 52 points.
+14.3 A reviewed OSM relation begins at 92 points; an ordered-stop approximation begins at 52 points.
 14.4 At least 12 representative stops adds four points.
 14.5 Fewer than 12 stops subtracts eight points.
 14.6 Detour ratio above 4 subtracts 15 points.
@@ -303,9 +303,9 @@ Build timestamp: 2026-08-20T04:47:08Z
 14.16 Grade B begins at 70.
 14.17 Grade C begins at 50.
 14.18 Grade D is below 50.
-14.19 Current grades are two A, 1,140 C, and 380 D.
-14.20 Current validation-required count is 1,520.
-14.21 Current geometry claim status is DERIVED for all records.
+14.19 Current grades are two A, 17 B, 1,128 C, and 375 D.
+14.20 Current validation-required count is 1,500.
+14.21 OSM route geometry is OBSERVED; other non-field geometry remains DERIVED.
 14.22 Output is geometry_reliability.csv.
 
 15. HISTORIC SERVICE-FREQUENCY PROXY
@@ -331,25 +331,18 @@ Build timestamp: 2026-08-20T04:47:08Z
 15.19 One route retains a missing historic value.
 15.20 Output is route_frequency.csv.
 
-16. LEGACY COMPATIBILITY LAYERS
+16. INTERMEDIATE COMPATIBILITY LAYERS
 
-16.1 The 2.0 pipeline retains original MVP layers for comparison.
-16.2 src/04_emissions_score.py calculates historic daily vehicle-km proxy.
-16.3 The legacy emissions score min-max scales that proxy.
-16.4 The legacy emissions score is not measured emissions.
-16.5 src/05_equity_score.py calculates the population-exposure proxy.
-16.6 src/06_grid_score.py calculates the regional renewable-share proxy.
-16.7 src/07_operator_score.py creates the original neutral operator placeholder.
-16.8 Legacy emissions weight is 0.35.
-16.9 Legacy equity weight is 0.35.
-16.10 Legacy grid weight is 0.15.
-16.11 Legacy operator weight is 0.15.
-16.12 The old 71.4 result is not the Route2Zero 2.0 release result.
-16.13 Legacy fields receive legacy prefixes in the final score table where possible.
-16.14 Legacy outputs support audit and migration.
-16.15 They do not define the default 2.0 policy score.
-16.16 User-facing 2.0 documentation must not present the legacy model as current.
-16.17 Removal of legacy fields requires a compatibility review.
+16.1 The pipeline retains intermediate activity, population-exposure, regional-grid, and neutral-operator files for audit compatibility.
+16.2 src/04_emissions_score.py calculates the historic daily vehicle-km proxy.
+16.3 Its min-max activity field is not measured emissions and is not the current policy score.
+16.4 src/05_equity_score.py calculates the population-exposure proxy.
+16.5 src/06_grid_score.py calculates the regional renewable-share context.
+16.6 src/07_operator_score.py creates the neutral operator placeholder consumed by earlier compatibility workflows.
+16.7 The current priority model uses climate impact, equity, charging readiness, and operator readiness through config/policy_model.json.
+16.8 Intermediate outputs support audit and migration only.
+16.9 They do not define the current default policy score.
+16.10 Current documentation must not present an intermediate compatibility layer as the release model.
 
 17. FEATURE STORE
 
@@ -448,15 +441,15 @@ Build timestamp: 2026-08-20T04:47:08Z
 21.7 Candidate selection minimizes out-of-fold MAE.
 21.8 The fold baseline is training-fold target median.
 21.9 Selected model is histogram gradient boosting.
-21.10 Selected MAE is 266.4485.
-21.11 Selected RMSE is 562.7990.
-21.12 Selected R-squared is 0.9911.
-21.13 Baseline MAE is 4,850.0728.
-21.14 Relative MAE improvement is 0.9451.
+21.10 Selected MAE is 267.6992.
+21.11 Selected RMSE is 574.1447.
+21.12 Selected R-squared is 0.9907.
+21.13 Baseline MAE is 4,850.3377.
+21.14 Relative MAE improvement is 0.9448.
 21.15 Configured minimum improvement is 0.02.
 21.16 The reference model passes the usefulness gate.
-21.17 Random-forest MAE is 272.0080.
-21.18 Random-forest RMSE is 578.6314.
+21.17 Random-forest MAE is 284.7374.
+21.18 Random-forest RMSE is 653.4361.
 21.19 Strong historic metrics do not prove current validity.
 21.20 External pilot evaluation is required.
 21.21 Metadata is stored with the serialized model.
@@ -491,28 +484,28 @@ Build timestamp: 2026-08-20T04:47:08Z
 23.7 Random seed is 20260820.
 23.8 Viable minimum cluster size is at least 10.
 23.9 Viable minimum cluster size is also at least 1 percent of 1,522.
-23.10 k=5 has silhouette 0.2762 but minimum cluster size eight.
-23.11 k=5 is therefore not viable.
-23.12 Selected k is four.
-23.13 Selected silhouette is 0.2700.
-23.14 Model version is typology-v1-f9da2ebe.
+23.10 Every candidate k from three through eight has minimum cluster size 22 in this build.
+23.11 Every candidate therefore passes the configured minimum-size rule.
+23.12 Selected k is three.
+23.13 Selected silhouette is 0.3730.
+23.14 Model version is typology-v1-ab8203c9.
 23.15 PCA provides two visualization coordinates.
 23.16 Cluster distance is measured in standardized feature space.
 23.17 Outlier threshold is the within-cluster 95th percentile.
-23.18 Current typology outlier count is 80.
+23.18 Current typology outlier count is 78.
 23.19 Typology is excluded from the policy score.
 23.20 Typology claim status is ML_ESTIMATED.
 
 24. TYPOLOGY LABELS AND COUNTS
 
-24.1 Cluster 2 is labeled Dense Urban Trunk.
-24.2 Dense Urban Trunk contains 265 routes.
-24.3 Cluster 0 is labeled Long Regional Connector.
-24.4 Long Regional Connector contains 503 routes.
+24.1 Cluster 0 is labeled Dense Urban Trunk.
+24.2 Dense Urban Trunk contains 631 routes.
+24.3 Cluster 2 is labeled Long Regional Connector.
+24.4 Long Regional Connector contains 22 routes.
 24.5 Cluster 1 is labeled High-Stop-Density Core.
-24.6 High-Stop-Density Core contains 620 routes.
-24.7 Cluster 3 is labeled Local Feeder.
-24.8 Local Feeder contains 134 routes.
+24.6 High-Stop-Density Core contains 869 routes.
+24.7 The selected three-cluster model does not create a Local Feeder cluster.
+24.8 Labels remain relative descriptions of the fitted centers.
 24.9 Labels are assigned from relative center patterns.
 24.10 Labels are not verified operating classifications.
 24.11 Labels do not imply income.
@@ -717,7 +710,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 
 34. POLICY-MODEL CONFIGURATION
 
-34.1 config/policy_model.json version is policy-v2.0.
+34.1 config/policy_model.json version is policy-v2.1.
 34.2 Default title is Climate + Equity.
 34.3 Climate-impact weight is 0.40.
 34.4 Equity weight is 0.30.
@@ -1187,7 +1180,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 55.13 Build script copies city_summary.csv.
 55.14 Build script copies route2zero_scores.geojson.
 55.15 Build script copies route_explanations.json in the current implementation.
-55.16 Browser code can read 2.0 fields from the merged score files.
+55.16 Browser code reads 2.1 fields from the merged score files.
 55.17 A build change that adds separate files must update the copy list.
 55.18 Generated public/config.js is intentionally public.
 
@@ -1332,9 +1325,9 @@ Build timestamp: 2026-08-20T04:47:08Z
 63.1 Automated tests should validate the 1,522-route universe.
 63.2 Tests should validate unique route IDs.
 63.3 Tests should validate two GTFS-shape geometries.
-63.4 Tests should validate 1,520 approximate geometries.
+63.4 Tests validate 1,500 approximate geometries and 22 usable source geometries.
 63.5 Tests should validate bounded component scores.
-63.6 Tests should validate 1,522 complete 2.0 scores.
+63.6 Tests validate 1,522 complete 2.1 scores.
 63.7 Tests should validate scenario and build IDs.
 63.8 Tests should validate zero LLM ranking influence.
 63.9 Tests should validate claim-status vocabulary.
@@ -1493,7 +1486,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 71.1 Accepted current verification has highest precedence.
 71.2 Accepted current observation follows.
 71.3 Accepted current administrative evidence follows.
-71.4 Historic administrative or schedule-derived evidence follows.
+71.04 Historic administrative or schedule-derived evidence follows.
 71.5 Versioned ML estimate follows.
 71.6 Proxy follows.
 71.7 Neutral prior follows.
@@ -1625,7 +1618,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 77.12 No accessibility-gap layer is supplied.
 77.13 No validated settlement-status layer is supplied.
 77.14 City tags are text-derived.
-77.15 1,520 route geometries are approximate.
+77.15 1,500 route geometries are approximate.
 77.16 Current model metrics are against a historic derived target.
 77.17 Climate inputs are scenarios.
 77.18 These uncertainties are pilot tasks.
@@ -1673,7 +1666,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 79.18 Confirm operator prior remains labeled.
 79.19 Confirm utility capacity remains unverified.
 79.20 Confirm LLM ranking influence is false.
-79.21 Confirm automated tests pass for 2.0 expectations.
+79.21 Confirm automated tests pass for 2.1 expectations.
 79.22 Confirm Netlify build succeeds without MAPBOX_TOKEN.
 79.23 Confirm production and local UI workflows.
 79.24 Confirm exports carry build and scenario context.
@@ -1707,7 +1700,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 
 81. FINAL TECHNICAL POSITION
 
-81.1 Route2Zero 2.0 is a reproducible screening prototype.
+81.1 Route2Zero 2.1 is a reproducible screening prototype.
 81.2 Its principal value is evidence-aware decision structure.
 81.3 Its supervised model has strong historic grouped-validation metrics.
 81.4 Those metrics do not establish current operational accuracy.
@@ -1731,9 +1724,9 @@ Build timestamp: 2026-08-20T04:47:08Z
 82.1 Upgrade 1 is implemented through source_registry.json, source_manifest.json, and build_manifest.json.
 82.2 The manifest finalizer checks configuration, source, processed-output, and model-artifact hashes.
 82.3 Upgrade 2 is implemented through the immutable-source merge and route_validation.csv ledger.
-82.4 The current build truthfully reports zero current validations and 1,522 historic-only records.
+82.4 The current build truthfully reports 20 dated current external route records, 1,502 historic-only records, and uncertain active status for every record.
 82.5 Upgrade 3 is implemented through deterministic geometry reliability and source-specific grades.
-82.6 Street-following Mapbox output remains planning geometry, never official franchise geometry.
+82.6 Reviewed OSM matches use member-way geometry; other Mapbox paths remain planning interpretations. Neither one proves active service or franchise authority.
 82.7 Upgrade 4 uses explicit multi-city text fallback because no accepted boundary source is present.
 82.8 The city adapter exposes method, confidence, and boundary-source status for later spatial replacement.
 82.9 Upgrade 5 is implemented through the unique 1,522-row route feature store.
@@ -1761,7 +1754,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 82.31 Upgrade 16 is implemented through deterministic climate, equity, charging, operator, geometry, and service perturbations.
 82.32 Portfolio-flip evaluation reruns deterministic selection under the tested perturbation.
 82.33 Upgrade 17 is implemented for the evidence-shortlist portfolio supported by current inputs.
-82.34 Budget, fleet, and capacity constraints remain inactive until sourced scenario data are supplied.
+82.34 Budget and financing constraints remain inactive. Fleet and capital figures are separate sourced `PROXY` fields with excluded costs and no authority to define procurement.
 82.35 Upgrade 18 is implemented through normalized scenario objects, stable IDs, local persistence, JSON sharing, and comparison.
 82.36 The current export carries the active scenario rather than a stale default.
 82.37 Upgrade 19 is implemented through structured evidence requests and structured planner responses.
@@ -1913,7 +1906,7 @@ Build timestamp: 2026-08-20T04:47:08Z
 85.25 The DOCX accessibility audit must contain zero high-, medium-, and low-severity findings.
 85.26 DOCX table grids and cell widths must reconcile.
 85.27 Every slide and page must be reviewed from a rendered image before release.
-85.28 Real interface captures must match the implemented Route2Zero 2.0 interface.
+85.28 Real interface captures must match the implemented Route2Zero 2.1 interface.
 85.29 Artifact timestamps and identifiers must come from the final build manifest.
 85.30 Submission artifacts are regenerated after a material analytical or roster change.
 
@@ -1950,4 +1943,4 @@ Build timestamp: 2026-08-20T04:47:08Z
 86.29 Review git diff and exclude temporary browser evidence from the release commit.
 86.30 Push the tested commit and verify the live Netlify host after deployment.
 
-END OF ROUTE2ZERO 2.0 TECHNICAL REFERENCE
+END OF ROUTE2ZERO 2.1 TECHNICAL REFERENCE

@@ -1,10 +1,10 @@
-# Route2Zero 2.0 data provenance
+# Route2Zero 2.1 data provenance
 
 ## Provenance contract
 
 Route2Zero treats raw source snapshots as immutable, pilot evidence as controlled input, and processed outputs as reproducible derivatives. Every registered source records its organization, URL, retrieval date, reference period, geography, spatial resolution, license, source type, currentness, notes, local path, requirement status, availability, and SHA-256 checksum when available.
 
-This document describes the source manifest used by build `r2z-45c4ba076af9`.
+This document describes the source manifest used by build `r2z-0cd49ad56aaa`.
 
 ## Source inventory
 
@@ -14,6 +14,12 @@ This document describes the source manifest used by build `r2z-45c4ba076af9`.
 | `worldpop_phl_2020_1km` | 2020 | Proxy raster | Optional | Population-exposure equity proxy |
 | `doe_luzon_generation_2024` | 2024 | Government administrative context | Required | Grid and climate scenario context |
 | `osm_power_snapshot_2026_08_20` | Snapshot 20 Aug 2026 | Proxy map data | Optional | Mapped substation and charger proximity |
+| `osm_share_taxi_routes_2026_08_24` | Snapshot 24 Aug 2026 | Observed external map data | Required | Dated route records and member-way geometry |
+| `osm_metro_manila_route_conventions_2026_08_24` | Retrieved 24 Aug 2026 | Method reference | Required | Local `route=bus` + `bus=share_taxi` interpretation |
+| `ltfrb_lptrp_index_2026_08_24` | Retrieved 24 Aug 2026 | Administrative reference | Required | Official-plan cross-check; no route-level match accepted |
+| `doe_energy_investment_kit_2024` | 2024 | Government publication | Required | Vehicle and charger planning-cost proxies |
+| `pna_ejeepney_trial_2023` | 2023 | Reported observation | Required | 120 km fleet-sizing proxy |
+| `psa_poverty_sae_candidate_2026_08_24` | 2023 estimates | Candidate proxy | Required | Registered next equity source; not integrated |
 | `route2zero_climate_scenario_v1` | Pilot scenario | Project assumption set | Required | Low/base/high climate and energy calculations |
 | `route2zero_operator_prior_v1` | Pilot prior | Project placeholder | Required | Neutral operator prior when evidence is missing |
 
@@ -58,7 +64,7 @@ The build selects LTFRB route IDs containing `PUJ`, producing 1,522 route-direct
 
 ### Geometry
 
-Two jeepney route records have usable GTFS shapes. The remaining 1,520 records use representative-trip stops connected in order. Each feature records `geometry_source`. All approximate geometries are marked for validation.
+Twenty jeepney records use reviewed OSM member-way geometry and two use GTFS shapes. The remaining 1,500 records use representative-trip stops connected in order. Each feature records `geometry_source`; every approximate geometry is marked for validation.
 
 ### Service
 
@@ -94,7 +100,7 @@ If the raster is unavailable in a later build, the population adapter preserves 
 
 The source provides regional generation and grid-emissions context. It does not contain route-, depot-, feeder-, transformer-, or charging-site capacity.
 
-The retained legacy grid proxy uses 14,550 GWh renewable generation divided by 90,269 GWh total generation, or 16.118%. Route2Zero 2.0 also uses a 0.7181 kgCO2e/kWh current-grid context in the climate configuration.
+The retained legacy grid proxy uses 14,550 GWh renewable generation divided by 90,269 GWh total generation, or 16.118%. Route2Zero 2.1 also uses a 0.7181 kgCO2e/kWh current-grid context in the climate configuration.
 
 These values are historic regional context. They must not be presented as present route-level electrical capacity.
 
@@ -174,7 +180,11 @@ Holds site name, date, coordinates, site-control status, utility-capacity status
 
 Holds stakeholder type, organization, date, route, workflow component, feedback, evidence change, permission to quote, and source reference.
 
-All four ledgers contain headers only in build `r2z-45c4ba076af9`. The processed score table therefore reports zero current validations, zero observed operator scores, zero verified utility-capacity records, and zero verified charging sites.
+All four controlled ledgers contain headers only in build `r2z-0cd49ad56aaa`. A separate reviewed OSM configuration supplies 20 dated current external route records and observed member-way geometries. The score table still reports zero field-confirmed active-service records, zero observed operator readiness scores, zero verified utility-capacity records, and zero verified charging sites.
+
+### Reviewed OSM route evidence
+
+The immutable Overpass snapshot contains 299 Metro Manila and adjoining `route=bus` + `bus=share_taxi` relations. `config/osm_route_matching.json` records 20 manually reviewed one-to-one name/endpoint matches with relation IDs, matching rationale, and a minimum edit date of 1 January 2023. The pipeline derives `osm_route_validation.csv` and `osm_route_geometry.geojson`; it never treats the configuration as proof of active service. OSM data remains under ODbL 1.0 and must retain contributor attribution and share-alike obligations where an adapted database is publicly distributed.
 
 ## Evidence precedence
 
@@ -249,7 +259,7 @@ A missing required source remains a build error. A missing optional source remai
 
 The build ID is derived from configuration checksums, source checksums, model versions, policy scenario ID, and portfolio scenario ID. It is stable for identical logical inputs. The timestamp is recorded separately.
 
-The current manifest records Git commit `47cf3c9554ab392938f2ba5ae3ca98d5d369ff61`. Because the Route2Zero 2.0 work was present in a working tree during generation, a release process seeking a one-to-one code attestation should commit the final files and rerun the pipeline so the manifest records that release commit.
+The current manifest records Git commit `47cf3c9554ab392938f2ba5ae3ca98d5d369ff61`. Because the Route2Zero 2.1 work was present in a working tree during generation, a release process seeking a one-to-one code attestation should commit the final files and rerun the pipeline so the manifest records that release commit.
 
 ## Source-status rules for publication
 

@@ -545,8 +545,7 @@ async function copyCurrentScenarioJson() {
 
 function routeIsCurrent(row) {
   const status = String(row.validation_status || "").toLowerCase();
-  const active = String(row.active_status || "").toLowerCase();
-  return !["", "historic_only", "unvalidated"].includes(status) && !["uncertain", "inactive"].includes(active);
+  return !["", "historic_only", "unvalidated"].includes(status);
 }
 
 function computeLiveScores() {
@@ -695,7 +694,7 @@ function renderRouteLens() {
   els.rankRange.textContent = `#${formatNumber(row.rank_p10)}–#${formatNumber(row.rank_p90)}`;
 
   els.validationEvidence.innerHTML = routeIsCurrent(row)
-    ? `${claimBadge(row.route_geometry_claim_status || "OBSERVED")}<div><strong>Current-evidence record</strong> Matched to <a href="${escapeHtml(row.source_reference)}" target="_blank" rel="noreferrer">OSM relation ${escapeHtml(row.osm_relation_id)}</a>, edited ${escapeHtml(row.validation_date)}. The map uses its member-way geometry. Active service and franchise authority remain uncertain; LTFRB plan status is ${escapeHtml(row.official_plan_status || "MISSING")}.</div>`
+    ? `${claimBadge(row.route_geometry_claim_status || "OBSERVED")}<div><strong>Current-evidence record</strong> Matched to <a href="${escapeHtml(row.source_reference)}" target="_blank" rel="noreferrer">OSM relation ${escapeHtml(String(row.osm_relation_id || "").replace(/\.0$/, ""))}</a>, reviewed ${escapeHtml(row.validation_date)}. The map uses its member-way geometry. Active service and franchise authority remain uncertain; LTFRB plan status is ${escapeHtml(row.official_plan_status || "MISSING")}.</div>`
     : `${claimBadge("MISSING")}<div><strong>No accepted current-route match.</strong> The corridor remains in the historic screening universe and uses ${escapeHtml(row.geometry_source || "approximate")} geometry.</div>`;
 
   setClaimBadge(els.fleetClaim, row.fleet_proxy_claim_status || "MISSING");
@@ -1180,8 +1179,8 @@ async function drawSelectedRoadRoute() {
     ] });
     applyRouteLineStyle(row, false);
     fitMapToCoordinates(observedCoordinates);
-    const edited = row.osm_timestamp ? String(row.osm_timestamp).slice(0, 10) : "date unavailable";
-    updateRoadStatus(`Observed OSM member-way geometry · relation ${row.osm_relation_id || "—"} · edited ${edited} · activity remains uncertain`, "success");
+    const edited = row.osm_relation_timestamp ? String(row.osm_relation_timestamp).slice(0, 10) : (row.validation_date || "date unavailable");
+    updateRoadStatus(`Observed OSM member-way geometry · relation ${String(row.osm_relation_id || "—").replace(/\.0$/, "")} · edited ${edited} · activity remains uncertain`, "success");
     return;
   }
   lineSource.setData({ type: "Feature", properties: { routeId: row.route_id, source: "gtfs_stop_sequence" }, geometry: { type: "LineString", coordinates: raw } });
@@ -1485,7 +1484,7 @@ function exportPdfReport() {
   const manifest = auditManifest();
   const climate = portfolioClimateSummary(state.portfolioRows);
   doc.setFillColor(6, 25, 31); doc.rect(0, 0, 210, 44, "F");
-  doc.setTextColor(199, 244, 89); doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.text("Route2Zero 2.0", 15, 18);
+  doc.setTextColor(199, 244, 89); doc.setFont("helvetica", "bold"); doc.setFontSize(22); doc.text("Route2Zero 2.1", 15, 18);
   doc.setTextColor(232, 244, 240); doc.setFont("helvetica", "normal"); doc.setFontSize(9); doc.text("Evidence-aware e-jeepney corridor decision brief", 15, 28);
   doc.setFontSize(7); doc.text(`Build ${manifest.build_id} · Scenario ${state.scenarioId} · Portfolio ${state.portfolioScenarioId}`, 15, 37);
   doc.setTextColor(10, 36, 41); doc.setFont("helvetica", "bold"); doc.setFontSize(14); doc.text("Selected corridor", 15, 56);
@@ -1554,7 +1553,7 @@ function wordReportHtml() {
   const sourceRows = manifest.source_versions.map((source) => `<tr><td>${escapeHtml(source.source_id)}</td><td>${escapeHtml(source.reference_period || "not reported")}</td><td>${escapeHtml(source.retrieval_date || "not reported")}</td></tr>`).join("");
   const limitationItems = manifest.known_limitations.map((item) => `<li>${escapeHtml(item)}</li>`).join("");
   return `<!doctype html><html><head><meta charset="utf-8"><style>body{font-family:Arial,sans-serif;color:#0a2429;margin:38px;line-height:1.5}h1{color:#0d7772}h2{margin-top:28px;border-bottom:2px solid #c7f459;padding-bottom:6px}.meta{color:#607173}.score{font-size:28px;font-weight:bold;color:#0d7772}table{width:100%;border-collapse:collapse}th,td{border:1px solid #d5e0d6;padding:8px;text-align:left}th{background:#0d7772;color:white}.note{background:#f1f5ef;padding:14px}</style></head><body>
-  <h1>Route2Zero 2.0 Decision Brief</h1><p class="meta">Exported ${escapeHtml(manifest.exported_at_utc)} · Build ${escapeHtml(manifest.build_id)} · Scenario ${escapeHtml(state.scenarioId)} · Portfolio ${escapeHtml(state.portfolioScenarioId)}</p>
+  <h1>Route2Zero 2.1 Decision Brief</h1><p class="meta">Exported ${escapeHtml(manifest.exported_at_utc)} · Build ${escapeHtml(manifest.build_id)} · Scenario ${escapeHtml(state.scenarioId)} · Portfolio ${escapeHtml(state.portfolioScenarioId)}</p>
   <h2>Selected corridor</h2><h3>${escapeHtml(row.route_long_name)}</h3><p>${escapeHtml(row.route_id)} · ${escapeHtml(String(row.cities_served || "Unspecified").replaceAll("|", " · "))}</p><p class="score">${formatNumber(row.liveScore, 1)}/100 · Rank #${row.liveRank}</p><p>${escapeHtml(deterministicRouteSummary(row))}</p>
   <h2>Eight-signal route lens</h2><ul><li>Evidence: Grade ${escapeHtml(row.evidence_grade)} (${formatNumber(row.overall_evidence_confidence, 1)}/100)</li><li>Climate scenario: ${formatSigned(row.net_co2e_avoided_t_year_low)} to ${formatSigned(row.net_co2e_avoided_t_year_high)} tCO2e/year</li><li>Equity exposure: ${formatNumber(row.equity_score, 1)}/100 (${escapeHtml(row.equity_claim_status)})</li><li>Charging readiness: ${formatNumber(row.charging_readiness_score, 1)}/100; utility capacity unverified</li><li>Operator readiness: ${formatNumber(row.operator_effective_score, 1)}/100 (${escapeHtml(row.operator_claim_status)})</li><li>Robustness: ${formatNumber(Number(row.top_10_probability) * 100)}% top-10 across ${formatNumber(row.simulations)} scenarios</li><li>Typology: ${escapeHtml(row.corridor_type_label)}</li></ul>
   <h2>Phase-1 evidence-validation portfolio</h2><table><thead><tr><th>#</th><th>Corridor</th><th>Primary city</th><th>Evidence</th><th>Priority</th></tr></thead><tbody>${portfolioRows}</tbody></table>
@@ -1769,5 +1768,5 @@ document.addEventListener("pointerdown", (event) => {
 window.addEventListener("resize", () => state.map?.resize());
 
 init().catch((error) => {
-  document.querySelector(".content").innerHTML = `<section class="panel"><h1>Route2Zero could not load</h1><p>${escapeHtml(error.message)}</p><p>Run the Route2Zero 2.0 pipeline and Netlify build so all versioned data products are available.</p></section>`;
+  document.querySelector(".content").innerHTML = `<section class="panel"><h1>Route2Zero could not load</h1><p>${escapeHtml(error.message)}</p><p>Run the Route2Zero 2.1 pipeline and Netlify build so all versioned data products are available.</p></section>`;
 });

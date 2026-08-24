@@ -1,7 +1,7 @@
 {
   "version": "operator-search-v1.0",
   "search_date": "2026-08-24",
-  "scope": "Phase-1 corridors from build r2z-45c4ba076af9",
+  "scope": "Eight Phase-1 corridors in the current reproducible release",
   "sources_checked": [
     "osm_metro_manila_route_conventions_2026_08_24",
     "osm_share_taxi_routes_2026_08_24",

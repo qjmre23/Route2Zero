@@ -1,11 +1,11 @@
 # Route2Zero
 
 
-Route2Zero is an AI/ML-assisted electrification planning system for Metro Manila jeepney corridors. It combines service intelligence, climate scenarios, equity exposure, charging and operator evidence, uncertainty analysis, and constrained portfolio selection in one auditable decision workflow.
+Route2Zero helps a city decide which Metro Manila jeepney corridors are worth validating first for a fair electric transition. It turns a fragmented historic network into an auditable shortlist, shows which recommendations survive changing policy priorities, and makes the evidence that could reverse each decision impossible to miss.
 
 [Live application](https://route2zero.netlify.app/) | [GitHub repository](https://github.com/qjmre23/Route2Zero)
 
-Route2Zero is designed for transport agencies, local governments, operators, utilities, finance partners, and community stakeholders deciding where limited validation and planning capacity should be used first. It is not a rider trip planner, a franchise decision engine, or an investment authorization system.
+The system is designed for transport agencies, local governments, operators, utilities, finance partners, and community stakeholders. It is decision support—not a rider trip planner, franchise decision engine, procurement approval, or investment authorization system.
 
 ## Release snapshot
 
@@ -13,19 +13,21 @@ The repository-facing documentation is anchored to the following reproducible ou
 
 | Release field | Recorded value |
 |---|---|
-| Pipeline version | `2.0.0` |
-| Build ID | `r2z-45c4ba076af9` |
-| Build timestamp | `2026-08-20T06:49:33Z` |
+| Pipeline version | `2.1.0` |
+| Build ID | `r2z-0cd49ad56aaa` |
+| Build timestamp | `2026-08-24T15:24:12Z` |
+| Source commit | `fc151f33f366407ea7de18ad0184e8fb3faef341` |
 | Default policy scenario | `scn-e0f12f397e` |
 | Phase-1 portfolio scenario | `prt-fd6de9d793` |
 | Route-direction records | 1,522 |
 | Complete priority scores | 1,522 |
-| Current route validations | 0 |
+| Dated current external route records | 20 |
+| Usable source geometries | 22 |
 | Robust-priority records | 9 |
 | Phase-1 selected corridors | 8 |
 | Pipeline status | `PASS_WITH_WARNINGS` |
 
-The warnings are substantive. The service network is based on a historic 2013-2020 GTFS feed; no current route-validation record has yet been supplied; no consent-based operator evidence has been supplied; and no utility capacity or charging site has been verified. The current outputs are therefore a screening and evidence-acquisition baseline, not proof of present operations or implementation readiness.
+The warnings are substantive. The service network is based on a historic 2013–2020 GTFS feed. Twenty corridors now have a reviewed, dated OpenStreetMap route record and member-way geometry, but an OSM edit does not prove present service or franchise authority. No consent-based operator readiness evidence, utility capacity, or charging site is verified. The output remains a screening and evidence-acquisition baseline, not implementation authorization.
 
 ## Decision question
 
@@ -44,9 +46,9 @@ The system returns more than a ranked list. Each route carries:
 - Phase-1 portfolio membership and exclusion reasons; and
 - a structured planning explanation grounded in generated fields.
 
-## What Route2Zero 2.0 adds
+## What Route2Zero 2.1 adds
 
-Route2Zero 2.0 replaces the original four-proxy MVP story with a broader evidence-aware planning pipeline.
+Route2Zero 2.1 replaces the original four-proxy MVP story with a broader evidence-aware planning pipeline.
 
 1. A leakage-aware service-intensity model estimates the historic schedule-derived vehicle-kilometre proxy only when that historic input is missing.
 2. An unsupervised typology groups structurally similar corridors for interpretation; typology never adds hidden policy points.
@@ -59,6 +61,8 @@ Route2Zero 2.0 replaces the original four-proxy MVP story with a broader evidenc
 9. Deterministic value-of-information analysis estimates which missing field can move rank or portfolio membership.
 10. An evidence-constrained Phase-1 selector creates a diverse eight-corridor validation portfolio without inventing a budget.
 11. The planning assistant explains structured outputs but cannot change scores, constraints, climate values, or ranks.
+12. A reviewed OSM validation layer adds 20 dated external records and actual member-way geometry while keeping active service uncertain.
+13. A cost/fleet snapshot adds order-of-magnitude `PROXY` values and keeps financing `MISSING`.
 
 ## How to read a Route2Zero result
 
@@ -117,11 +121,11 @@ The selected model is a histogram gradient-boosting regressor, version `service-
 | Training rows | 1,521 |
 | Normalized corridor groups | 714 |
 | Validation design | Five-fold `GroupKFold` by corridor |
-| MAE | 266.4485 |
-| RMSE | 562.7990 |
-| R-squared | 0.9911 |
-| Median-baseline MAE | 4,850.0728 |
-| Relative MAE improvement | 94.51% |
+| MAE | 267.6992 |
+| RMSE | 574.1447 |
+| R-squared | 0.9907 |
+| Median-baseline MAE | 4,850.3377 |
+| Relative MAE improvement | 94.48% |
 
 The target is `historic_daily_vehicle_km_proxy`, derived from the historic schedule. It is not passenger demand, ridership, revenue, or a current service measurement. Leakage fields such as headway, trips per day, climate impact, and final rank are excluded from the model features.
 
@@ -129,14 +133,13 @@ The historic service proxy is available for 1,521 routes. The model is used for 
 
 ### Corridor typology
 
-The typology model is version `typology-v1-f9da2ebe`. It applies median imputation, standardization, and K-means clustering. Four clusters were selected because they met the minimum-cluster-size rule and produced a silhouette score of 0.2700.
+The typology model is version `typology-v1-ab8203c9`. It applies median imputation, standardization, and K-means clustering. Three clusters were selected because they met the minimum-cluster-size rule and produced a silhouette score of 0.3730.
 
 | Corridor type | Route count |
 |---|---:|
-| Dense Urban Trunk | 265 |
-| High-Stop-Density Core | 620 |
-| Local Feeder | 134 |
-| Long Regional Connector | 503 |
+| Dense Urban Trunk | 631 |
+| High-Stop-Density Core | 869 |
+| Long Regional Connector | 22 |
 
 Typology describes structural similarity. It does not infer socioeconomic status, vulnerability, settlement type, demand, or investment value, and it is not included in the policy score.
 
@@ -146,7 +149,7 @@ The climate engine converts the selected daily vehicle-kilometre input into low,
 
 The assumptions are stored in `config/climate_scenarios.json` and must be calibrated before investment use. The low case is deliberately conservative and produces negative net CO2e for all 1,522 records under its current efficiency, grid, and electrification assumptions. The base and high cases are positive across the current route universe. This is evidence that the result depends on technology and grid assumptions; it is not a prediction of guaranteed savings.
 
-The selected eight-corridor Phase-1 portfolio has the following scenario range:
+The selected eight-corridor Phase-1 portfolio leads with a base case of **+2,710.9 tCO2e/year** and keeps the bounded range visible:
 
 | Case | Portfolio result |
 |---|---:|
@@ -158,15 +161,16 @@ These are planning scenarios, not measured reductions, credited emissions, or a 
 
 ## Evidence confidence and validation state
 
-All 1,522 records currently have `validation_status = historic_only` and `active_status = uncertain`.
+Twenty records have `validation_status = current` because a reviewed OSM relation was edited on or after the configured 2023 cutoff. All 1,522 records retain `active_status = uncertain`; the remaining 1,502 are `historic_only`.
 
 - 1,519 routes have evidence grade C.
 - 3 routes have evidence grade D.
-- Evidence confidence ranges from 33.01 to 43.02 in the current build.
+- Evidence confidence ranges from 33.01 to 62.59 in the current build.
 - All operator scores are neutral priors of 50 because the operator ledger is empty.
+- A desk search is recorded for all eight Phase-1 corridors; one named operator reference was found, but it does not satisfy the readiness-evidence threshold.
 - All charging scores are proxies; utility capacity and site control are unverified.
 - All equity scores are population-exposure proxies.
-- Two geometries use GTFS shapes; 1,520 use ordered-stop approximations and require validation.
+- Twenty geometries use reviewed OSM member ways, two use GTFS shapes, and 1,500 use ordered-stop approximations.
 
 The evidence grade is not a probability that the recommendation is correct. It is a deterministic audit score over freshness, directness, spatial specificity, completeness, external validation, and model reliability.
 
@@ -177,8 +181,8 @@ The sensitivity stage draws 5,000 fixed-seed policy-weight vectors around the de
 The current build contains:
 
 - 9 `ROBUST PRIORITY` records;
-- 1,183 `SCENARIO-DEPENDENT` records; and
-- 330 `LOW-PRIORITY ROBUST` records.
+- 1,180 `SCENARIO-DEPENDENT` records; and
+- 333 `LOW-PRIORITY ROBUST` records.
 
 The label describes behavior across tested policy weights. It does not correct weak evidence or make a route operationally ready.
 
@@ -194,7 +198,7 @@ Portfolio scenario `prt-fd6de9d793` is an evidence-validation shortlist, not a p
 - maximum one route direction per normalized corridor; and
 - exclusion of routes explicitly marked inactive.
 
-No budget is used because no defensible cost or fleet dataset has been supplied. The selector differs from a simple top-eight ranking: four records are removed and four are added to satisfy corridor and city-coverage constraints.
+No budget is used by the selector. A separate feasibility screen estimates roughly 1,943 vehicles, 102 charging stations, and ₱4.91 billion in vehicle-plus-charger capital for the eight corridors. Those values are `PROXY`, exclude depot, civil, grid, battery, operating, tax, insurance, and financing costs, and must never be presented as a budget. The selector differs from a simple top-eight ranking: four records are removed and four are added to satisfy corridor and city-coverage constraints.
 
 The selected route IDs are:
 
@@ -223,6 +227,7 @@ The build-selected flagship is `LTFRB_PUJ1353`, Francisco Homes - Cubao.
 | Evidence confidence | 38.34 |
 | Top-10 frequency | 100% |
 | Low climate scenario | -1,111.8 tCO2e/year |
+| Base climate scenario | +368.0 tCO2e/year |
 | High climate scenario | 3,025.3 tCO2e/year |
 
 It is selected by a recorded rule: among Phase-1 corridors, prefer robust-priority records, then higher evidence confidence, priority score, and stable route ID. Its leading position is not manually forced and should be recomputed whenever evidence or configuration changes.
@@ -280,7 +285,7 @@ The principal generated outputs are:
 
 The production interface is a static HTML, CSS, and JavaScript application under `netlify-site/public/`. Netlify builds from `netlify-site/`, runs `npm run build`, publishes `public/`, and bundles the optional explanation endpoint from `netlify/functions/`.
 
-The site uses Mapbox GL JS and the project style `mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs`. A selected route can request a street-following Mapbox Directions path from ordered screening coordinates. That path improves map readability; it does not verify the franchise alignment or current operation.
+The site uses Mapbox GL JS and the project style `mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs`. Reviewed OSM matches render their observed member-way geometry directly. Other selected corridors can request a street-following Mapbox Directions interpretation from ordered historic screening coordinates; that interpretation improves readability but does not verify franchise alignment or current operation.
 
 The approved `pk.` Mapbox token is a browser token and is available as the build fallback. `MAPBOX_TOKEN` is optional and can override it at build time. Restrict the public token to approved production and development origins in the Mapbox account.
 
@@ -313,24 +318,33 @@ AI_EXPLANATIONS_ENABLED=true
 
 - The route and schedule universe is historic and cannot establish active 2026 service.
 - Text-derived city tags have low confidence and require boundary and local review.
-- Only two routes have usable GTFS shapes; other geometries are planning approximations.
-- Mapbox road paths are visualization aids, not official or field-verified route traces.
+- Twenty corridors have reviewed OSM member-way geometry and two have GTFS shapes; the other 1,500 geometries are planning approximations.
+- OSM geometry is observed external evidence, not proof of active service; Mapbox road paths remain visualization aids.
 - The service model is evaluated against a historic derived target, not current field observations.
 - Population exposure is not poverty, accessibility, tenure, vulnerability, or informal-settlement evidence.
 - OSM infrastructure proximity does not establish utility capacity, ownership, interconnection approval, or site availability.
 - Operator readiness remains a neutral prior for every route in the current build.
 - Climate outputs are conditional scenarios and include a negative conservative case.
-- The Phase-1 selection has no budget, cost, fleet, or financing constraint because those inputs are unavailable.
+- The Phase-1 selection has no budget or financing constraint. Fleet and capital outputs are order-of-magnitude proxies with major excluded costs.
 - An LLM explanation can summarize structured fields but cannot validate them.
 
 These limitations define the pilot evidence agenda. They are not permissions to fill gaps with unsupported assumptions.
 
 ## Sources and licensing
 
-The primary external sources are the historic Sakay community GTFS feed, WorldPop 2020 Philippines population raster, Philippine Department of Energy 2024 Luzon generation context, and a 20 August 2026 OpenStreetMap infrastructure snapshot. Exact URLs, retrieval dates, reference periods, licenses, and checksums are recorded in `config/source_registry.json` and `data/processed/source_manifest.json`.
+The 18 registered sources include historic GTFS, WorldPop, DOE energy context, OSM infrastructure and route relations, LTFRB plan references, feasibility references, a PSA equity candidate, and controlled project evidence ledgers. Exact URLs, retrieval dates, reference periods, licenses, checksums, and limitations are recorded in `config/source_registry.json` and `data/processed/source_manifest.json`.
 
-Upstream source licenses and attribution requirements remain in force. The project repository should carry an explicit project-code license before wider reuse.
+Project-authored code and documentation are MIT licensed. Upstream terms remain separate: OSM data is ODbL 1.0, WorldPop is CC BY 4.0, the historic GTFS remains under its included DOTC developer agreement, and publication-specific restrictions are documented in [NOTICE.md](NOTICE.md).
 
 ## Team
 
 Route2Zero is developed by Team Larpers for the AI x City Climate Action Hackathon 2026.
+
+- John Marwin Ebona
+- Isaac Marcus
+- Andrei Dela Cruz
+- Russel Mendez
+- TRISTIAN JAMES CABALAR
+- JOHN MICHAEL PALAGANAS
+- Carl Nueva
+- JOSEPH CLARENCE PARAYAOAN

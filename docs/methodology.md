@@ -1,10 +1,10 @@
-# Route2Zero 2.0 methodology
+# Route2Zero 2.1 methodology
 
 ## Method scope
 
 Route2Zero is a corridor-screening and evidence-acquisition system. Its output is a documented order for validation and a constrained Phase-1 shortlist. It does not determine funding, franchise status, procurement, lending, fares, or route cancellation.
 
-This document describes pipeline version `2.0.0` and build `r2z-45c4ba076af9`. The default policy scenario is `scn-e0f12f397e`; the default portfolio scenario is `prt-fd6de9d793`.
+This document describes pipeline version `2.1.0` and build `r2z-0cd49ad56aaa`. The default policy scenario is `scn-e0f12f397e`; the default portfolio scenario is `prt-fd6de9d793`.
 
 ## Decision unit
 
@@ -17,7 +17,7 @@ The unit of analysis is one LTFRB public-utility-jeepney route-direction record 
 - The current model metadata records 714 normalized corridor groups.
 - `data/processed/route_corridors.csv` preserves an agency/name corridor view without discarding route IDs.
 
-All 1,522 records are currently `historic_only` and `active_status = uncertain`. There are zero current route validations in this build.
+Twenty records are `current` because a reviewed OpenStreetMap route relation was edited on or after 1 January 2023; 1,502 remain `historic_only`. Every record retains `active_status = uncertain` because route-record recency does not establish current operation or franchise authority.
 
 ## Claim and currentness controls
 
@@ -26,7 +26,7 @@ Route2Zero uses a fixed claim vocabulary:
 | Status | Use |
 |---|---|
 | `VERIFIED` | Accepted field or external verification |
-| `OBSERVED` | Direct pilot observation |
+| `OBSERVED` | Directly recorded external or pilot evidence with an identified source and date, without agency-certification claim |
 | `DERIVED` | Deterministic calculation |
 | `ML_ESTIMATED` | Versioned model output |
 | `PROXY` | Indirect screening indicator |
@@ -72,7 +72,8 @@ The current route universe contains:
 | Geometry source | Count |
 |---|---:|
 | GTFS shape | 2 |
-| Ordered-stop approximation | 1,520 |
+| Reviewed OSM relation member ways | 20 |
+| Ordered-stop approximation | 1,500 |
 
 The approximate geometry is a screening line. A Mapbox Directions rendering is also a planning visualization and does not convert the line into verified franchise geometry.
 
@@ -92,7 +93,7 @@ A GTFS shape begins at 88 points and an ordered-stop approximation at 52. Rules 
 
 Grades are A at 85 or above, B at 70 or above, C at 50 or above, and D below 50.
 
-The current build has two A geometries, 1,140 C geometries, and 380 D geometries. All 1,520 ordered-stop approximations require validation.
+The current build has two A, 17 B, 1,128 C, and 375 D geometry grades. Twenty reviewed OSM relations and two GTFS shapes are treated as usable source geometries; all 1,500 ordered-stop approximations require validation.
 
 ## Stage 5: historic service-frequency proxy
 
@@ -181,17 +182,17 @@ The candidate with lower grouped-validation MAE is selected. The selected histog
 
 | Metric | Value |
 |---|---:|
-| MAE | 266.4485 |
-| RMSE | 562.7990 |
-| R-squared | 0.9911 |
-| Median-baseline MAE | 4,850.0728 |
-| Relative MAE improvement | 0.9451 |
+| MAE | 267.6992 |
+| RMSE | 574.1447 |
+| R-squared | 0.9907 |
+| Median-baseline MAE | 4,850.3377 |
+| Relative MAE improvement | 0.9448 |
 
 The configured usefulness gate requires at least 2% relative MAE improvement. The selected model clears that gate.
 
 ### Use rule
 
-The model prediction replaces nothing when the historic proxy is available. It is used only when the historic proxy is missing and the model passed the usefulness gate. In build `r2z-45c4ba076af9`, it supplies the daily VKT input for one route, `LTFRB_PUJ2451`.
+The model prediction replaces nothing when the historic proxy is available. It is used only when the historic proxy is missing and the model passed the usefulness gate. In build `r2z-0cd49ad56aaa`, it supplies the daily VKT input for one route, `LTFRB_PUJ2451`.
 
 This precedence is deliberate:
 
@@ -211,7 +212,7 @@ The present implementation contains the historic-versus-ML fallback. The pilot p
 
 Candidate cluster counts from 3 through 8 are evaluated. A cluster count is viable only when its smallest cluster contains at least 10 routes and at least 1% of the route universe. The viable candidate with the highest silhouette score is selected.
 
-Four clusters are selected with silhouette 0.2700. Human-readable labels are assigned from cluster-centre patterns:
+Three clusters are selected with silhouette 0.3730. Human-readable labels are assigned from cluster-centre patterns:
 
 - Dense Urban Trunk;
 - Long Regional Connector;
@@ -265,7 +266,7 @@ The legacy spatial stage:
 4. calculates each buffer's population-weighted share in cells at or above that cutoff; and
 5. min-max scales the share to 0-100.
 
-Route2Zero 2.0 exposes this as `population_exposure_score`. The socioeconomic, accessibility-gap, and underserved-overlap components are null. Their weights are zero.
+Route2Zero 2.1 exposes this as `population_exposure_score`. The socioeconomic, accessibility-gap, and underserved-overlap components are null. Their weights are zero.
 
 When available, the current equity score is therefore a `PROXY`. It must not be described as poverty, vulnerability, tenure, disability, accessibility, informal-settlement, or marginalized-community status. If the raster is absent, route IDs are preserved while population-exposure and dependent equity values are null with claim status `MISSING`; zero is not substituted.
 
@@ -401,11 +402,15 @@ portfolio_objective =
 
 It filters by minimum evidence grade and equity score, then scans eligible routes in descending objective order while enforcing city, corridor-direction, evidence-limited, and maximum-count constraints. Baseline selection and value-of-information tests call the same deterministic selector.
 
-This is deterministic constrained selection, not mixed-integer optimization and not a financial optimizer. It has no budget because no defensible route-level cost input exists. If the requested count cannot be filled, the stage returns an explicit `infeasible` result with no selected routes and constraint diagnostics; it never relaxes constraints silently.
+This is deterministic constrained selection, not mixed-integer optimization and not a financial optimizer. It has no budget constraint. A separate 2.1 feasibility screen supplies order-of-magnitude fleet and capital proxies but explicitly excludes depot, civil, grid, battery, operating, tax, insurance, and financing costs. If the requested count cannot be filled, the selector returns an explicit `infeasible` result with no selected routes and constraint diagnostics; it never relaxes constraints silently.
+
+## Stage 19: feasibility cost screen
+
+`src/14b_feasibility_cost.py` divides daily VKT by a 120 km/day vehicle proxy, rounds fleet and charger counts upward, and applies DOE planning values of PHP 2.5 million per four-wheel BEV and PHP 0.5 million per four-wheel charging station. All resulting fleet and cost fields are `PROXY`; financing is `MISSING`. The Phase-1 output is approximately 1,943 vehicles, 102 charging stations, and PHP 4.9085 billion in vehicle-plus-charger capital. This is an evidence-acquisition starting point, not a quote or budget.
 
 The current scenario selects eight routes and is feasible. It differs from the simple top-eight list by four added and four removed route IDs.
 
-## Stage 19: value of information
+## Stage 20: value of information
 
 For every route, six uncertain fields are perturbed through configured low/high ranges:
 
@@ -420,7 +425,7 @@ Geometry and service perturbations propagate through their affected climate inpu
 
 The method creates six route-field records per route. It is a deterministic local perturbation screen, not a causal value-of-information model and not a monetary valuation.
 
-## Stage 20: planning assistant
+## Stage 21: planning assistant
 
 The current pipeline writes structured deterministic route explanations and a portfolio summary. Each response cites route IDs, fields, scenario ID, portfolio ID, uncertainty notes, and validation actions.
 
@@ -428,15 +433,16 @@ The current cache source is `deterministic_fallback`. The Netlify Function can o
 
 LLM output never enters the scoring table, climate engine, sensitivity simulation, constraint set, or portfolio selector. `llm_ranking_influence` is false.
 
-## Stage 21: final manifest
+## Stage 22: final manifest
 
 The finalizer checks for all required outputs, hashes configuration and source inputs, records model versions and random seeds, writes build IDs into the score files, selects the flagship route using the declared rule, and writes the pipeline report.
 
-Build `r2z-45c4ba076af9` reports:
+Build `r2z-0cd49ad56aaa`, generated from commit `fc151f33f366407ea7de18ad0184e8fb3faef341`, reports:
 
 - 1,522 rows processed;
 - 1,522 complete scores;
-- 0 current validations;
+- 20 dated current external route records, all with active status uncertain;
+- 22 usable source geometries, including 20 OSM relations and two GTFS shapes;
 - 9 robust priorities;
 - 8 Phase-1 corridors; and
 - `PASS_WITH_WARNINGS`.
