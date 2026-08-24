@@ -121,7 +121,7 @@ The original MVP layers are retained for audit and comparison:
 - `grid_feasibility.csv` uses the Luzon renewable-generation share; and
 - `operator_readiness.csv` uses a neutral 50 or an authorized override.
 
-These legacy layers do not define the Route2Zero 2.0 default policy score. Their fields remain in the final table with `legacy_` prefixes where applicable.
+Earlier proxy layers remain intermediate audit artifacts only and do not define the current default policy score or final score-table schema.
 
 ## Stage 7: canonical feature store
 

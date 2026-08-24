@@ -32,6 +32,8 @@ REQUIRED_OUTPUTS = [
     "portfolio_scenarios.json", "validation_priorities.json", "route_planner_cache.json", "source_manifest.json",
     "route_validation.csv", "route_cities.csv", "city_summary.csv", "model_metrics.json",
     "portfolio_membership.csv", "validation_priorities.csv", "planner_summary.json",
+    "osm_route_validation.csv", "osm_route_geometry.geojson", "feasibility_cost_routes.csv",
+    "feasibility_cost_scenarios.json",
 ]
 
 FINAL_REPORT_OUTPUTS = ["pipeline_report.json", "flagship_route.json"]
@@ -55,7 +57,7 @@ def main() -> int:
     ensure_output_dirs()
     missing = [name for name in REQUIRED_OUTPUTS if not (PROCESSED_DIR / name).exists()]
     if missing:
-        raise FileNotFoundError(f"Required Route2Zero 2.0 outputs missing: {missing}")
+        raise FileNotFoundError(f"Required Route2Zero 2.1 outputs missing: {missing}")
     for name in REQUIRED_OUTPUTS:
         normalize_text_newlines(PROCESSED_DIR / name)
     for name in MODEL_ARTIFACTS:
@@ -71,7 +73,7 @@ def main() -> int:
     portfolio = read_json(PROCESSED_DIR / "portfolio_scenarios.json")["scenarios"][0]
     build_timestamp = utc_now_iso()
     identity = {
-        "pipeline_version": "2.0.0",
+        "pipeline_version": "2.1.0",
         "config_checksums": config_checksums,
         "source_checksums": source_checksums,
         "model_versions": [service_meta["model_version"], typology_meta["model_version"]],
@@ -117,7 +119,14 @@ def main() -> int:
         "evidence_confidence": round(float(flagship["overall_evidence_confidence"]), 2),
         "top_10_probability": round(float(flagship["top_10_probability"]), 4),
         "climate_low_t_year": round(float(flagship["net_co2e_avoided_t_year_low"]), 1),
+        "climate_base_t_year": round(float(flagship["net_co2e_avoided_t_year_base"]), 1),
         "climate_high_t_year": round(float(flagship["net_co2e_avoided_t_year_high"]), 1),
+        "validation_status": flagship.get("validation_status", "historic_only"),
+        "active_status": flagship.get("active_status", "uncertain"),
+        "validation_date": flagship.get("validation_date", ""),
+        "validation_source_reference": flagship.get("source_reference", ""),
+        "geometry_source": flagship.get("geometry_source", ""),
+        "geometry_claim_status": flagship.get("route_geometry_claim_status", "DERIVED"),
         "scenario_id": flagship["scenario_id"],
         "portfolio_scenario_id": flagship["portfolio_scenario_id"],
         "build_id": build_id,
@@ -126,6 +135,9 @@ def main() -> int:
 
     validation_count = int((~scores["validation_status"].eq("historic_only")).sum())
     active_validation_count = int(scores["active_status"].eq("active").sum())
+    usable_geometry_count = int(scores["geometry_source"].isin(["shape", "osm_relation"]).sum())
+    operator_search_attempt_count = int(scores["operator_search_note"].fillna("").ne("No route-specific desk search recorded in this release.").sum())
+    operator_reference_observed_count = int(scores["operator_reference_status"].eq("OBSERVED").sum())
     critical_missing_values = {
         column: int(scores[column].isna().sum())
         for column in [
@@ -142,7 +154,11 @@ def main() -> int:
     if validation_count == 0:
         warnings.append("No current route validation records have been supplied; all service status remains historic-only.")
     if int((~scores["operator_readiness_placeholder"].astype(bool)).sum()) == 0:
-        warnings.append("No consent-based operator evidence has been supplied; the neutral prior remains active.")
+        warnings.append(
+            f"No consent-based operator readiness evidence has been supplied; the neutral prior remains active. "
+            f"Desk searches are recorded for {operator_search_attempt_count} Phase-1 corridors and found "
+            f"{operator_reference_observed_count} named operator reference that does not satisfy the readiness-evidence threshold."
+        )
     if int(scores["utility_capacity_verified"].astype(bool).sum()) == 0:
         warnings.append("No utility capacity is verified; charging scores use mapped proximity and energy-demand screening only.")
     if portfolio["status"] == "infeasible":
@@ -151,7 +167,7 @@ def main() -> int:
         warnings.append("The service-intensity model did not beat the configured baseline and is experimental only.")
     report = {
         "status": "PASS_WITH_WARNINGS" if warnings else "PASS",
-        "pipeline_version": "2.0.0",
+        "pipeline_version": "2.1.0",
         "build_id": build_id,
         "build_timestamp_utc": build_timestamp,
         "rows_processed": len(scores),
@@ -159,6 +175,10 @@ def main() -> int:
         "reduced_information_score_count": int(scores.get("reduced_information_score", pd.Series(False, index=scores.index)).astype(bool).sum()),
         "current_validation_count": validation_count,
         "active_validation_count": active_validation_count,
+        "usable_geometry_count": usable_geometry_count,
+        "osm_observed_geometry_count": int(scores["geometry_source"].eq("osm_relation").sum()),
+        "operator_search_attempt_count": operator_search_attempt_count,
+        "operator_reference_observed_count": operator_reference_observed_count,
         "robust_priority_count": int(scores["robustness_label"].eq("ROBUST PRIORITY").sum()),
         "phase1_corridor_count": int(scores["phase1_selected"].astype(bool).sum()),
         "source_dates": {
@@ -190,7 +210,7 @@ def main() -> int:
         "build_id": build_id,
         "build_timestamp_utc": build_timestamp,
         "git_commit": git_commit(),
-        "pipeline_version": "2.0.0",
+        "pipeline_version": "2.1.0",
         "model_versions": {
             "service_intensity": service_meta["model_version"],
             "corridor_typology": typology_meta["model_version"],

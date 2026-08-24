@@ -1,0 +1,91 @@
+{
+  "version": "feasibility-v1.0",
+  "currency": "PHP",
+  "scope": "order-of-magnitude validation scenario; not a budget or procurement estimate",
+  "assumptions": {
+    "version": "feasibility-v1.0",
+    "currency": "PHP",
+    "fleet_method": "ceil(daily_vkt / assumed_vehicle_km_per_day)",
+    "assumed_vehicle_km_per_day": {
+      "value": 120,
+      "claim_status": "PROXY",
+      "source_id": "pna_ejeepney_trial_2023"
+    },
+    "vehicle_unit_cost_php": {
+      "value": 2500000,
+      "claim_status": "PROXY",
+      "source_id": "doe_energy_investment_kit_2024",
+      "scope_note": "DOE battery-electric four-wheel vehicle planning value; not a supplier quote for a jeepney."
+    },
+    "vehicles_per_charger_per_day": {
+      "value": 20,
+      "claim_status": "PROXY",
+      "source_id": "doe_energy_investment_kit_2024"
+    },
+    "charger_unit_cost_php": {
+      "value": 500000,
+      "claim_status": "PROXY",
+      "source_id": "doe_energy_investment_kit_2024",
+      "scope_note": "DOE four-wheel EVCS planning value; charger power, civil works, interconnection and depot upgrades are not specified."
+    },
+    "financing_terms": {
+      "value": null,
+      "claim_status": "MISSING",
+      "source_id": null
+    },
+    "excluded_costs": [
+      "land or depot acquisition",
+      "civil works",
+      "distribution-system upgrades",
+      "interconnection fees",
+      "battery replacement",
+      "taxes, insurance and financing costs",
+      "operations and maintenance"
+    ]
+  },
+  "phase1": {
+    "route_count": 8,
+    "fleet_size_proxy": 1943.0,
+    "charger_count_proxy": 102.0,
+    "vehicle_capex_proxy_php": 4857500000.0,
+    "charger_capex_proxy_php": 51000000.0,
+    "total_capex_proxy_php": 4908500000.0,
+    "financing_terms": null,
+    "fleet_claim_status": "PROXY",
+    "cost_claim_status": "PROXY",
+    "financing_claim_status": "MISSING"
+  },
+  "corridor_type_summary": [
+    {
+      "corridor_type": "Dense Urban Trunk",
+      "route_count": 631,
+      "median_fleet_size_proxy": 115.0,
+      "median_total_capex_proxy_php": 290500000.0,
+      "claim_status": "PROXY"
+    },
+    {
+      "corridor_type": "High-Stop-Density Core",
+      "route_count": 869,
+      "median_fleet_size_proxy": 38.0,
+      "median_total_capex_proxy_php": 96000000.0,
+      "claim_status": "PROXY"
+    },
+    {
+      "corridor_type": "Long Regional Connector",
+      "route_count": 22,
+      "median_fleet_size_proxy": 45.0,
+      "median_total_capex_proxy_php": 114000000.0,
+      "claim_status": "PROXY"
+    }
+  ],
+  "excluded_costs": [
+    "land or depot acquisition",
+    "civil works",
+    "distribution-system upgrades",
+    "interconnection fees",
+    "battery replacement",
+    "taxes, insurance and financing costs",
+    "operations and maintenance"
+  ],
+  "disclaimer": "Confirm route-level fleet, duty cycle, depot, tariff, interconnection and financing evidence before using these figures for any decision."
+}

@@ -1,0 +1,20 @@
+{
+  "version": "operator-search-v1.0",
+  "search_date": "2026-08-24",
+  "scope": "Phase-1 corridors from build r2z-45c4ba076af9",
+  "sources_checked": [
+    "osm_metro_manila_route_conventions_2026_08_24",
+    "osm_share_taxi_routes_2026_08_24",
+    "ltfrb_lptrp_index_2026_08_24"
+  ],
+  "results": [
+    {"route_id": "LTFRB_PUJ1353", "status": "MISSING", "operator_name": null, "note": "Current OSM route naming indicates a changed Francisco Homes service pattern; no route-specific readiness fields were accepted."},
+    {"route_id": "LTFRB_PUJ1241", "status": "MISSING", "operator_name": null, "note": "No exact current route/operator match was found."},
+    {"route_id": "LTFRB_PUJ2083", "status": "MISSING", "operator_name": null, "note": "No exact current route/operator match was found."},
+    {"route_id": "LTFRB_PUJ1156", "status": "MISSING", "operator_name": null, "note": "A current route name exists in the OSM convention list, but no named operator or consent-based readiness evidence was found."},
+    {"route_id": "LTFRB_PUJ1638", "status": "MISSING", "operator_name": null, "note": "A current route name exists in the OSM convention list, but no named operator or consent-based readiness evidence was found."},
+    {"route_id": "LTFRB_PUJ1350", "status": "MISSING", "operator_name": null, "note": "Current OSM route naming indicates a changed Francisco Homes service pattern; no route-specific readiness fields were accepted."},
+    {"route_id": "LTFRB_PUJ1153", "status": "MISSING", "operator_name": null, "note": "A current route name exists in the OSM convention list, but no named operator or consent-based readiness evidence was found."},
+    {"route_id": "LTFRB_PUJ1405", "status": "OBSERVED", "operator_name": "Bagong Silang Transport Service Cooperative", "note": "Named on the current Metro Manila OSM route-conventions page; operator identity is observed, but readiness score remains a neutral prior because fleet, depot and financing fields are missing."}
+  ]
+}

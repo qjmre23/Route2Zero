@@ -29,31 +29,31 @@
   "cross_validation": "GroupKFold(5) by normalized_corridor_id",
   "candidate_metrics": {
     "hist_gradient_boosting": {
-      "mae": 266.4485,
-      "rmse": 562.799,
-      "r2": 0.9911,
-      "baseline_mae": 4850.0728,
-      "relative_mae_improvement": 0.9451
+      "mae": 267.6992,
+      "rmse": 574.1447,
+      "r2": 0.9907,
+      "baseline_mae": 4850.3377,
+      "relative_mae_improvement": 0.9448
     },
     "random_forest": {
-      "mae": 272.008,
-      "rmse": 578.6314,
-      "r2": 0.9906,
-      "baseline_mae": 4850.0728,
-      "relative_mae_improvement": 0.9439
+      "mae": 284.7374,
+      "rmse": 653.4361,
+      "r2": 0.988,
+      "baseline_mae": 4850.3377,
+      "relative_mae_improvement": 0.9413
     }
   },
   "selected_metrics": {
-    "mae": 266.4485,
-    "rmse": 562.799,
-    "r2": 0.9911,
-    "baseline_mae": 4850.0728,
-    "relative_mae_improvement": 0.9451
+    "mae": 267.6992,
+    "rmse": 574.1447,
+    "r2": 0.9907,
+    "baseline_mae": 4850.3377,
+    "relative_mae_improvement": 0.9448
   },
   "meaningful_vs_baseline": true,
   "influences_climate_when_historic_value_missing": true,
   "random_seed": 20260820,
-  "trained_at_utc": "2026-08-20T06:47:51Z",
+  "trained_at_utc": "2026-08-24T15:14:21Z",
   "python_version": "3.12.13",
   "scikit_learn_version": "1.9.0",
   "limitations": [

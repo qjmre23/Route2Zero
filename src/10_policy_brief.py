@@ -72,7 +72,7 @@ This narrative explains the deterministic score shown below; it does not influen
 | Grid feasibility | {value(row['grid_feasibility_score'], '/100')} | Shared 2024 Luzon renewable-generation share proxy |
 | Operator readiness | {value(row['operator_readiness_score'], '/100')} | Neutral placeholder pending cooperative financing evidence |
 
-Default weights are 35% emissions, 35% equity, 15% grid, and 15% operator readiness. Route ranking is a transparent weighted sum.
+Default weights are 40% climate impact, 30% equity, 15% charging readiness, and 15% operator readiness. Route ranking is a transparent weighted sum.
 
 ## Pilot decision and validation request
 
@@ -96,4 +96,3 @@ Invite the relevant LGU, LTFRB representatives, operators, and rider groups to v
 
 if __name__ == "__main__":
     sys.exit(main())
-

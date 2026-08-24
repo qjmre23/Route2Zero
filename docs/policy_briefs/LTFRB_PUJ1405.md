@@ -27,7 +27,7 @@
 
 ## What to validate first
 
-1. **Climate Assumptions** - tested swing up to 731 rank positions.
+1. **Climate Assumptions** - tested swing up to 732 rank positions.
 2. Confirm current route activity, headway, service window and operator/cooperative.
 3. Request site-control and utility evidence before any claim about available charging capacity.
 4. Review the population-exposure proxy with local accessibility and equity evidence.

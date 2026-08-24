@@ -126,7 +126,7 @@ The dashboard presents one decision story across network, route, evidence, uncer
 
 ### Responsible limitation
 
-A street-following line improves readability but does not verify the official or operated route. Submission screenshots and reports must be regenerated from the final build and must not reuse the pre-2.0 71.4/proxy interface.
+A street-following line improves readability but does not verify the official or operated route. Submission screenshots and reports must be regenerated from the final build and must not reuse superseded proxy-era interfaces.
 
 ### Judge verification path
 
@@ -228,4 +228,4 @@ Before submission, confirm that the website, Concept, Demonstration, Pilot Plan,
 - the current evidence and operator limitations; and
 - a consistent boundary between ML, deterministic analytics, LLM explanation, and human authority.
 
-Do not preserve legacy 71.4, the old 35/35/15/15 proxy score, or “AI explains. The scoring pipeline ranks.” as descriptions of Route2Zero 2.0.
+Do not preserve superseded proxy-era scores, weights, or slogans as descriptions of the current system.

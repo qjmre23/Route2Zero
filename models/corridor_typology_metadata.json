@@ -1,5 +1,5 @@
 {
-  "model_version": "typology-v1-f9da2ebe",
+  "model_version": "typology-v1-ab8203c9",
   "method": "StandardScaler + KMeans",
   "feature_columns": [
     "length_km",
@@ -14,44 +14,43 @@
   "evaluated_cluster_counts": [
     {
       "k": 3,
-      "silhouette_score": 0.2438,
-      "minimum_cluster_size": 284
+      "silhouette_score": 0.373,
+      "minimum_cluster_size": 22
     },
     {
       "k": 4,
-      "silhouette_score": 0.27,
-      "minimum_cluster_size": 134
+      "silhouette_score": 0.2864,
+      "minimum_cluster_size": 22
     },
     {
       "k": 5,
-      "silhouette_score": 0.2762,
-      "minimum_cluster_size": 8
+      "silhouette_score": 0.2927,
+      "minimum_cluster_size": 22
     },
     {
       "k": 6,
-      "silhouette_score": 0.268,
-      "minimum_cluster_size": 6
+      "silhouette_score": 0.2822,
+      "minimum_cluster_size": 22
     },
     {
       "k": 7,
-      "silhouette_score": 0.2735,
-      "minimum_cluster_size": 2
+      "silhouette_score": 0.2515,
+      "minimum_cluster_size": 22
     },
     {
       "k": 8,
-      "silhouette_score": 0.245,
-      "minimum_cluster_size": 2
+      "silhouette_score": 0.2567,
+      "minimum_cluster_size": 22
     }
   ],
-  "selected_k": 4,
-  "selected_silhouette_score": 0.27,
+  "selected_k": 3,
+  "selected_silhouette_score": 0.373,
   "cluster_labels": {
-    "2": "Dense Urban Trunk",
-    "0": "Long Regional Connector",
-    "1": "High-Stop-Density Core",
-    "3": "Local Feeder"
+    "0": "Dense Urban Trunk",
+    "2": "Long Regional Connector",
+    "1": "High-Stop-Density Core"
   },
   "typology_used_for_policy_score": false,
-  "trained_at_utc": "2026-08-20T06:47:55Z",
+  "trained_at_utc": "2026-08-24T15:14:24Z",
   "limitations": "Typology describes structural similarity; it does not infer income, vulnerability or settlement status."
 }

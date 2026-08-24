@@ -1,7 +1,7 @@
 route_id,route_long_name,length_km,trips_per_day_estimate,daily_vehicle_km_proxy,emissions_potential_score,emissions_source,emissions_confidence
 LTFRB_PUJ1001,HULO - P. VICTORINO/KALENTONG,5.074,1020.0,5175.48,15.04,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1002,HULO - P. VICTORINO/KALENTONG,4.88,1020.0,4977.599999999999,14.41,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1003,A. Bonifacio - A. Mabini via 10th Avenue,2.546,1020.0,2596.9199999999996,6.92,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1003,A. Bonifacio - A. Mabini via 10th Avenue,2.788,1020.0,2843.7599999999998,7.69,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1004,A. Bonifacio - A. Mabini via 10th Avenue,2.546,1020.0,2596.9199999999996,6.92,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1005,A. Bonifacio - E. Rodriguez via D. Tuazon,3.235,1020.0,3299.7,9.13,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1006,A. Bonifacio - E. Rodriguez via D. Tuazon,3.549,1020.0,3619.98,10.14,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -30,7 +30,7 @@ LTFRB_PUJ1029,Alabang - Pasay RTDA. Via FTI Service Rd.,8.096,1020.0,8257.92,24.
 LTFRB_PUJ1030,Alabang - Pasay RTDA. Via FTI Service Rd.,8.134,1020.0,8296.68,24.86,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1031,Alabang - Pasay RTDA. Via South Super Highway,8.428,1020.0,8596.560000000001,25.81,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1033,Alabang - Signal Village via South Expressway Service Road,11.533,1020.0,11763.66,35.78,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1034,Alabang - Signal Village via South Expressway Service Road,14.01,1020.0,14290.199999999999,43.73,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1034,Alabang - Signal Village via South Expressway Service Road,14.476,1020.0,14765.52,45.23,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1035,(Alabang) Pacita Complex - Sucat,3.647,1020.0,3719.9399999999996,10.45,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1036,(Alabang) Pacita Complex - Sucat,6.735,1020.0,6869.700000000001,20.37,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1037,Alabang - Sucat via Cupang (East Service Rd.),4.459,1020.0,4548.179999999999,13.06,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -106,14 +106,14 @@ LTFRB_PUJ1111,Brgy. Bagong Silangan - Marcos Rd. via Sampaguita Road,4.908,1020.
 LTFRB_PUJ1112,Brgy. Bagong Silangan - Marcos Rd. via Sampaguita Road,5.724,1020.0,5838.4800000000005,17.12,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1113,Bagumbayan (Taguig) - Sucat,1.464,1020.0,1493.28,3.44,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1114,Bagumbayan (Taguig) - Sucat,3.598,1020.0,3669.96,10.3,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1116,Bagong Silang - Novaliches (TP) via Susano,8.187,1020.0,8350.74,25.03,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1116,Bagong Silang - Novaliches (TP) via Susano,7.279,1020.0,7424.58,22.12,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1117,Bagong Silang - Robinson's Fairview via Zabarte Rd.,7.333,1020.0,7479.66,22.29,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1118,Bagong Silang - Robinson's Fairview via Zabarte Rd.,9.189,1020.0,9372.78,28.25,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1121,Balic - Balic - Bustillos via G. Tuazon,2.573,1020.0,2624.46,7.0,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1122,Balic - Balic - Bustillos via G. Tuazon,3.057,1020.0,3118.14,8.56,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1123,Balic - Balic - Espana/M. Dela Fuente,2.676,1020.0,2729.52,7.33,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1122,Balic - Balic - Bustillos via G. Tuazon,3.537,1020.0,3607.74,10.1,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1123,Balic - Balic - Espana/M. Dela Fuente,2.903,1020.0,2961.06,8.06,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1124,Balic - Balic - Espana/M. Dela Fuente,2.338,1020.0,2384.76,6.25,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1125,Balic - Balic - Quiapo (Barbosa) via Lepanto,3.886,1020.0,3963.7200000000003,11.22,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1125,Balic - Balic - Quiapo (Barbosa) via Lepanto,4.3,1020.0,4386.0,12.55,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1128,Balic - Balic (Galas) - Quiapo (Barbosa) via Lepanto,3.697,1020.0,3770.94,10.61,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1129,Balete Drive/E. Rodriguez Loop Service,4.001,1020.0,4081.0200000000004,11.59,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1130,Balintawak - Blumentritt,4.005,1020.0,4085.1,11.6,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -158,7 +158,7 @@ LTFRB_PUJ1169,"Blumentritt - Libertad via Sta. Cruz, L. Guinto",10.366,1020.0,10
 LTFRB_PUJ1170,"Blumentritt - Libertad via Sta. Cruz, Mabini",9.271,1020.0,9456.42,28.51,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1171,"Blumentritt - Libertad via Sta. Cruz, Mabini",9.899,1020.0,10096.98,30.53,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1172,Blumentritt - North Harbor via Divisoria,2.375,1020.0,2422.5,6.37,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1173,Blumentritt - North Harbor via Divisoria,2.624,1020.0,2676.48,7.17,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1173,Blumentritt - North Harbor via Divisoria,5.795,1020.0,5910.9,17.35,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1174,"Blumentritt - Pasay RTDA. via Quiapo, L. Guinto",11.427,1020.0,11655.539999999999,35.44,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1175,"Blumentritt - Pasay RTDA. via Quiapo, L. Guinto",11.306,1020.0,11532.119999999999,35.05,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1176,"Blumentritt - Pasay RTDA via Sta. Cruz, L. Guinto",10.97,1020.0,11189.400000000001,33.97,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -178,7 +178,7 @@ LTFRB_PUJ1189,Boni/Pinatubo - Kalentong/JRC,4.924,1020.0,5022.4800000000005,14.5
 LTFRB_PUJ1190,Boni - Kalentong/JRC via Boni Ave.,3.541,1020.0,3611.8199999999997,10.11,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1191,Boni - Kalentong/JRC via Boni Ave.,3.908,1020.0,3986.16,11.29,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1192,Boni (Robinson's Complex) - Kalentong/JRC,4.105,1020.0,4187.1,11.92,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1193,Boni (Robinson's Complex) - Kalentong/JRC,4.458,1020.0,4547.16,13.06,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1193,Boni (Robinson's Complex) - Kalentong/JRC,4.025,1020.0,4105.5,11.67,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1194,Boni/Pinatubo - Stop & Shop,6.723,1020.0,6857.46,20.33,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1195,Boni/Pinatubo - Stop & Shop,6.796,1020.0,6931.92,20.57,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1196,Buendia (Crispa) - PRC via P. Tamo,4.847,1020.0,4943.9400000000005,14.31,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -221,7 +221,7 @@ LTFRB_PUJ1233,Cubao - Recto via Espana,7.717,1020.0,7871.339999999999,23.52,gtfs
 LTFRB_PUJ1234,Cubao - Lagro via Kalayaan,18.15,1020.0,18513.0,57.03,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1235,Cubao - Lagro via Kalayaan,19.291,1020.0,19676.82,60.69,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1236,Cubao (Arayat) - V. Luna via Ybardolaza,5.266,1020.0,5371.32,15.65,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1237,Cubao (Arayat) - V. Luna via Ybardolaza,4.789,1020.0,4884.78,14.12,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1237,Cubao (Arayat) - V. Luna via Ybardolaza,5.487,1020.0,5596.74,16.36,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1238,Dagat - Dagatan - del Pan via Rotonda,5.203,1020.0,5307.06,15.45,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1239,Dagat - Dagatan - del Pan via Rotonda,5.118,1020.0,5220.360000000001,15.18,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1240,Dasmarinas Resettlement Area - Baclaran via Coastal Rd.,29.611,1020.0,30203.22,93.83,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -235,7 +235,7 @@ LTFRB_PUJ1248,H. Dela Costa II - SM Fairview via Quirino Highway,3.541,1020.0,36
 LTFRB_PUJ1249,H. Dela Costa II - SM Fairview via Quirino Highway,6.174,1020.0,6297.4800000000005,18.57,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1250,Del Monte - Quezon Ave. via Banaue,1.682,1020.0,1715.6399999999999,4.14,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1251,Del Monte - Quezon Ave. via Banaue,1.682,1020.0,1715.6399999999999,4.14,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1252,Del Pan Guadalupe (Ibabaw),4.259,1020.0,4344.18,12.42,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1252,Del Pan Guadalupe (Ibabaw),4.339,1020.0,4425.780000000001,12.68,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1253,Del Pan Guadalupe (Ibabaw),4.61,1020.0,4702.200000000001,13.55,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1254,Dian - Libertad,2.408,1020.0,2456.16,6.47,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1255,Dian - Libertad,3.658,1020.0,3731.16,10.49,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -324,7 +324,7 @@ LTFRB_PUJ1342,Forbes Park - Pasay Rd. via Ayala Ave.,3.104,1020.0,3166.08,8.71,g
 LTFRB_PUJ1343,Forbes Park - Pasay Rd. via Ayala Ave.,3.104,1020.0,3166.08,8.71,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1344,FTI - Kayaman C,7.438,1020.0,7586.759999999999,22.63,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1345,FTI - Kayaman C,6.506,1020.0,6636.12,19.63,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1346,Fort Bonifacio (Gate III) - Guadalupe,12.03,1020.0,12270.599999999999,37.37,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1346,Fort Bonifacio (Gate III) - Guadalupe,10.967,1020.0,11186.34,33.96,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1347,Fort Bonifacio (Gate III) - Guadalupe,7.824,1020.0,7980.48,23.87,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1348,rancisco Homes - Novaliches (TP) via Quirino Hi-way,16.516,1020.0,16846.32,51.78,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1349,rancisco Homes - Novaliches (TP) via Quirino Hi-way,15.48,1020.0,15789.6,48.45,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -420,7 +420,7 @@ LTFRB_PUJ1440,Marcos Ave. - Quirino Hi-way via T. Sora,7.931,1020.0,8089.62,24.2
 LTFRB_PUJ1441,Marcos Ave. - Quirino Hi-way via T. Sora,7.81,1020.0,7966.2,23.82,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1442,Rodriguez (Rizal) - Litex Market via Litex Rd.,9.294,1020.0,9479.880000000001,28.59,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1443,Rodriguez (Rizal) - Litex Market via Litex Rd.,9.294,1020.0,9479.880000000001,28.59,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1444,Pabahay ni Erap (Sub-urban) - Commonwealth Market,12.418,1020.0,12666.359999999999,38.62,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1444,Pabahay ni Erap (Sub-urban) - Commonwealth Market,13.374,1020.0,13641.480000000001,41.69,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1445,Pabahay ni Erap (Sub-urban) - Commonwealth Market,12.418,1020.0,12666.359999999999,38.62,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1446,Marikina - Paenaan (Antipolo),14.358,1020.0,14645.16,44.85,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1447,Marikina - Paenaan (Antipolo),12.482,1020.0,12731.64,38.82,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -485,7 +485,7 @@ LTFRB_PUJ1510,Paco - Pier South,3.32,1020.0,3386.3999999999996,9.4,gtfs_route_le
 LTFRB_PUJ1511,Paco - Pier South,3.795,1020.0,3870.9,10.93,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1512,Paco - Sta. Mesa Rotonda via Nagtahan,2.38,1020.0,2427.6,6.38,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1513,Paco - Sta. Mesa Rotonda via Nagtahan,2.38,1020.0,2427.6,6.38,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1514,"Pantranco - Proj. 2 & 3 via Timog, Kamuning",7.129,1020.0,7271.58,21.63,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1514,"Pantranco - Proj. 2 & 3 via Timog, Kamuning",6.943,1020.0,7081.86,21.04,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1515,"Pantranco - Proj. 2 & 3 via Timog, Kamuning",7.155,1020.0,7298.1,21.72,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1516,Pantranco - Proj. 8 via Roosevelt,7.203,1020.0,7347.06,21.87,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1517,Pantranco - Proj. 8 via Roosevelt,7.053,1020.0,7194.0599999999995,21.39,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -554,7 +554,7 @@ LTFRB_PUJ1584,San Miguel - Ikot,2.26,1020.0,2305.2,6.0,gtfs_route_length_x_estim
 LTFRB_PUJ1585,San Miguel - Ikot,1.916,1020.0,1954.32,4.89,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1587,Santol - Pina Ave. via Buenos Aires,1.699,1020.0,1732.98,4.2,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1588,SSS Village - Stop & Shop via Aurora Blvd.,16.848,1020.0,17184.96,52.85,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1589,SSS Village - Stop & Shop via Aurora Blvd.,16.685,1020.0,17018.699999999997,52.32,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1589,SSS Village - Stop & Shop via Aurora Blvd.,16.375,1020.0,16702.5,51.33,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1590,Sucat Hi-way - Bagumbayan,3.125,1020.0,3187.5,8.78,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1591,Sucat Hi-way - Bagumbayan,3.125,1020.0,3187.5,8.78,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1592,Sucat - Market-Market,13.517,1020.0,13787.34,42.15,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -703,7 +703,7 @@ LTFRB_PUJ1747,GUDALUPE-FTI via J.P.RIZAL Ext. C5,11.968,1020.0,12207.36,37.17,gt
 LTFRB_PUJ1748,GUADALUPE-PATEROS via JP RIZAL,4.907,1020.0,5005.14,14.5,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1749,GUADALUPE-PATEROS via JP RIZAL,4.319,1020.0,4405.38,12.61,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1750,GUADALUPE-BUTING,3.738,1020.0,3812.7599999999998,10.75,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1752,GATE 5 - GREENHILLS SHOPPING CENTER,1.869,1020.0,1906.3799999999999,4.74,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1752,GATE 5 - GREENHILLS SHOPPING CENTER,0.872,1020.0,889.4399999999999,1.54,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1753,GATE 5 - GREENHILLS SHOPPING CENTER,1.234,1020.0,1258.68,2.7,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1754,FRISCO-VITO CRUZvia MABINI,12.722,1020.0,12976.439999999999,39.6,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1755,FRISCO-VITO CRUZvia MABINI,12.947,1020.0,13205.939999999999,40.32,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -775,7 +775,7 @@ LTFRB_PUJ1823,NOVALICHES - RIZAL AVE. via BANAL,14.168,1020.0,14451.359999999999
 LTFRB_PUJ1824,NOVALICHES - RIZAL AVE. via BANAL,13.391,1020.0,13658.82,41.74,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1826,A RIVERA - STA CRUZ,2.405,1020.0,2453.1,6.46,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1827,ALABANG - BALIBAGO,16.637,1020.0,16969.74,52.17,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1828,ALABANG - KATARUNGAN VILLAGE via MUNTINLUPA NBP,5.986,1020.0,6105.719999999999,17.96,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1828,ALABANG - KATARUNGAN VILLAGE via MUNTINLUPA NBP,16.098,1020.0,16419.96,50.44,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1830,ALABANG - LAS PINAS,11.429,1020.0,11657.58,35.44,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1831,ALABANG - LAS PINAS,11.319,1020.0,11545.380000000001,35.09,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1833,ALABANG - MUNTINLUPA,7.024,1020.0,7164.4800000000005,21.3,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -863,7 +863,7 @@ LTFRB_PUJ1919,MAKATI P BURGOS - L GUINTO,5.205,1020.0,5309.1,15.46,gtfs_route_le
 LTFRB_PUJ1920,LRT TAFT - SM MOA,2.236,1020.0,2280.7200000000003,5.92,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1922,LAGRO - NOVALICHES via QUIRINO HIGHWAY,5.592,1020.0,5703.839999999999,16.7,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1923,LAGRO - NOVALICHES via QUIRINO HIGHWAY,3.679,1020.0,3752.58,10.56,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ1924,L GUINTO - STA ANA,3.739,1020.0,3813.7799999999997,10.75,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ1924,L GUINTO - STA ANA,5.073,1020.0,5174.46,15.03,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1925,L GUINTO - STA ANA,3.739,1020.0,3813.7799999999997,10.75,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1926,L GUINTO - PANDACAN,3.908,1020.0,3986.16,11.29,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ1928,KALENTONG JRC - P. VICTORINO via P CRUZ,4.753,1020.0,4848.06,14.0,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -1113,7 +1113,7 @@ LTFRB_PUJ2188,Blumentritt Vito Cruz L Guinto,6.365,1020.0,6492.3,19.18,gtfs_rout
 LTFRB_PUJ2189,COMMONWEALTH MARKET STA LUCIA Q PLAZA,10.976,1020.0,11195.52,33.99,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2190,COMMONWEALTH MARKET STA LUCIA Q PLAZA,10.422,1020.0,10630.44,32.21,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2192,Crame San Juan via N Domingo,3.195,1020.0,3258.8999999999996,9.0,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ2193,CUBAO (MERCURY) ROCES SUPER PALENGKE,2.917,1020.0,2975.3399999999997,8.11,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ2193,CUBAO (MERCURY) ROCES SUPER PALENGKE,4.159,1020.0,4242.179999999999,12.1,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2194,CUBAO (MERCURY) ROCES SUPER PALENGKE,3.507,1020.0,3577.1400000000003,10.0,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2195,Cubao Crame via Murphy,2.835,1020.0,2891.7,7.85,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2196,Cubao Crame via Murphy,2.481,1020.0,2530.62,6.71,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -1181,7 +1181,7 @@ LTFRB_PUJ2259,Proj 2 3 Welcome Rtda,9.278,1020.0,9463.560000000001,28.54,gtfs_ro
 LTFRB_PUJ2260,Proj 2 3 Welcome Rtda,5.766,1020.0,5881.32,17.26,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2261,QUIRINO HIGHWAY ZABARTE PANAY AVENUE,17.523,1020.0,17873.46,55.01,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2262,QUIRINO HIGHWAY ZABARTE PANAY AVENUE,17.496,1020.0,17845.92,54.93,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ2263,QUIRINO HIGHWAY STA LUCIA,2.63,1020.0,2682.6,7.19,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ2263,QUIRINO HIGHWAY STA LUCIA,1.989,1020.0,2028.7800000000002,5.13,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2264,QUIRINO HIGHWAY STA LUCIA,2.029,1020.0,2069.58,5.26,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2265,SM FAIRVIEW LAGRO SUBDIVISION LOOP,3.043,1020.0,3103.86,8.51,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2266,SM FAIRVIEW LAGRO SUBDIVISION LOOP,1.554,1020.0,1585.0800000000002,3.73,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
@@ -1313,7 +1313,7 @@ LTFRB_PUJ2397,Proj 6 Recto via Espana QAve,10.297,1020.0,10502.94,31.81,gtfs_rou
 LTFRB_PUJ2398,Proj 6 Recto via Espana QAve,11.112,1020.0,11334.24,34.43,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2399,QI Kalaw,5.413,1020.0,5521.26,16.12,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2400,QI Kalaw,5.876,1020.0,5993.52,17.61,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
-LTFRB_PUJ2401,Quezon Ave LRT 5th Avenue Caloocan,4.087,1020.0,4168.74,11.87,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
+LTFRB_PUJ2401,Quezon Ave LRT 5th Avenue Caloocan,4.728,1020.0,4822.5599999999995,13.92,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2403,Quiapo (Barbosa) San Juan via Legarda,4.721,1020.0,4815.42,13.9,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2404,Quiapo (Barbosa) San Juan via Legarda,4.69,1020.0,4783.8,13.8,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions
 LTFRB_PUJ2405,Quiapo Sangandaan via Evangelista,1.554,1020.0,1585.0800000000002,3.73,gtfs_route_length_x_estimated_trips_proxy,proxy_not_measured_emissions

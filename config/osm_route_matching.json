@@ -1,0 +1,31 @@
+{
+  "version": "osm-route-match-v1.0",
+  "snapshot_source_id": "osm_share_taxi_routes_2026_08_24",
+  "match_review_date": "2026-08-24",
+  "minimum_relation_edit_date": "2023-01-01",
+  "validation_status": "current",
+  "active_status": "uncertain",
+  "geometry_claim_status": "OBSERVED",
+  "matches": [
+    {"route_id": "LTFRB_PUJ1003", "osm_relation_id": 21109106, "match_basis": "same endpoints and via street"},
+    {"route_id": "LTFRB_PUJ1123", "osm_relation_id": 11370051, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1125", "osm_relation_id": 11370053, "match_basis": "same endpoints and via street"},
+    {"route_id": "LTFRB_PUJ2193", "osm_relation_id": 11533207, "match_basis": "same endpoints; terminal landmark name changed from Mercury to Diamond"},
+    {"route_id": "LTFRB_PUJ1193", "osm_relation_id": 11246069, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1752", "osm_relation_id": 19463820, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1252", "osm_relation_id": 21179894, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1237", "osm_relation_id": 11533209, "match_basis": "same endpoints and via street"},
+    {"route_id": "LTFRB_PUJ2263", "osm_relation_id": 19815168, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1924", "osm_relation_id": 5475297, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1514", "osm_relation_id": 5407772, "match_basis": "same endpoints and via streets"},
+    {"route_id": "LTFRB_PUJ1444", "osm_relation_id": 15021429, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ2401", "osm_relation_id": 10845737, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1346", "osm_relation_id": 11483660, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1122", "osm_relation_id": 11370052, "match_basis": "same endpoints and via street"},
+    {"route_id": "LTFRB_PUJ1589", "osm_relation_id": 15021433, "match_basis": "same endpoints and via road"},
+    {"route_id": "LTFRB_PUJ1116", "osm_relation_id": 8992805, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1173", "osm_relation_id": 11375473, "match_basis": "same endpoints and via area"},
+    {"route_id": "LTFRB_PUJ1828", "osm_relation_id": 14994373, "match_basis": "same endpoints"},
+    {"route_id": "LTFRB_PUJ1034", "osm_relation_id": 11521406, "match_basis": "same endpoints; SLEX is the current name for the expressway reference"}
+  ]
+}

@@ -14,7 +14,7 @@ from pathlib import Path
 import numpy as np
 import pandas as pd
 import pytest
-from shapely.geometry import LineString
+from shapely.geometry import LineString, MultiLineString
 
 
 ROOT = Path(__file__).resolve().parents[1]
@@ -41,6 +41,7 @@ CLAIM_STATUSES = {
 }
 VALIDATION_STATUSES = {
     "historic_only",
+    "current",
     "desk_checked",
     "operator_confirmed",
     "lgu_confirmed",
@@ -125,6 +126,10 @@ def test_manifests_are_complete_and_build_ids_match(scores: pd.DataFrame) -> Non
         "route2zero_scores.geojson",
         "pipeline_report.json",
         "flagship_route.json",
+        "osm_route_validation.csv",
+        "osm_route_geometry.geojson",
+        "feasibility_cost_routes.csv",
+        "feasibility_cost_scenarios.json",
     }
     output_checksums = build_manifest["output_checksums"]
     assert required_outputs <= output_checksums.keys()
@@ -161,6 +166,29 @@ def test_route_universe_is_complete_unique_and_governed(
     assert not scores["llm_ranking_influence"].astype(bool).any()
     assert scores["human_policy_control"].astype(bool).all()
     assert scores["policy_weights_human_controlled"].astype(bool).all()
+
+
+def test_current_osm_evidence_and_feasibility_are_pipeline_outputs(scores: pd.DataFrame) -> None:
+    current = scores[scores["validation_status"].eq("current")]
+    assert len(current) == 20
+    assert current["active_status"].eq("uncertain").all()
+    assert current["geometry_source"].eq("osm_relation").all()
+    assert current["route_geometry_claim_status"].eq("OBSERVED").all()
+    assert current["validation_date"].notna().all()
+    assert current["osm_relation_id"].notna().all()
+    assert scores["geometry_source"].isin({"shape", "osm_relation"}).sum() == 22
+
+    osm_validation = pd.read_csv(PROCESSED / "osm_route_validation.csv", dtype={"route_id": str})
+    assert len(osm_validation) == 20
+    assert osm_validation["route_id"].is_unique
+    assert osm_validation["osm_relation_id"].is_unique
+
+    feasibility = load_json(PROCESSED / "feasibility_cost_scenarios.json")
+    assert feasibility["phase1"]["route_count"] == 8
+    assert feasibility["phase1"]["fleet_claim_status"] == "PROXY"
+    assert feasibility["phase1"]["cost_claim_status"] == "PROXY"
+    assert feasibility["phase1"]["financing_claim_status"] == "MISSING"
+    assert feasibility["phase1"]["total_capex_proxy_php"] > 0
 
 
 def test_geometry_reliability_handles_verified_and_extreme_cases() -> None:
@@ -209,6 +237,24 @@ def test_geometry_reliability_handles_verified_and_extreme_cases() -> None:
     )
     assert "extreme detour ratio" in extreme["geometry_reliability_reasons"]
     assert extreme["geometry_reliability_score"] < source_credit["geometry_reliability_score"]
+
+    osm_geometry = MultiLineString([
+        [(121.0, 14.0), (121.01, 14.01)],
+        [(121.01, 14.01), (121.02, 14.02)],
+    ])
+    osm_observed = module.score_geometry(
+        pd.Series(
+            {
+                "geometry": osm_geometry,
+                "geometry_source": "osm_relation",
+                "length_km": 3.2,
+                "stop_count": 20,
+            }
+        )
+    )
+    assert osm_observed["geometry_reliability_grade"] == "A"
+    assert osm_observed["geometry_claim_status"] == "OBSERVED"
+    assert osm_observed["geometry_validation_required"] is False
 
 
 def test_claim_statuses_and_validation_ledger_follow_shared_contract(

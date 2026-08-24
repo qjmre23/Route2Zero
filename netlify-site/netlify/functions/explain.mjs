@@ -133,15 +133,6 @@ function normalizePayload(payload) {
   };
 }
 
-function deterministicActions(context) {
-  const missing = context.route?.highest_value_missing_evidence?.replaceAll("_", " ") || "current route status and service";
-  return [
-    `Validate ${missing} with a named source and date.`,
-    "Request utility evidence before making any claim about available charging capacity.",
-    "Collect consent-based operator, depot and financing evidence before implementation."
-  ];
-}
-
 function fallbackAnswer(context) {
   const route = context.route;
   if (!route) return "No corridor is available under the current scope. Restore the historic screening baseline or change the city filter before requesting an evidence brief.";
@@ -191,13 +182,10 @@ function modelAnswerIsGrounded(answer, context) {
 }
 
 function responseBody(context, answer, source, aiStatus) {
-  const actions = deterministicActions(context);
   return {
     answer,
     evidence_points: evidencePoints(context),
     uncertainty_notes: uncertaintyNotes(context),
-    validation_actions: actions,
-    actions,
     source,
     ai_status: aiStatus,
     scenario_id: context.scenario.scenario_id,

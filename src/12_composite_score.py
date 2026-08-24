@@ -18,10 +18,6 @@ def main() -> int:
     weights = policy["default_weights"]
     routes = gpd.read_file(PROCESSED_DIR / "jeepney_routes.geojson")
     features = pd.read_csv(PROCESSED_DIR / "route_features.csv", dtype={"route_id": str})
-    legacy_emissions = pd.read_csv(PROCESSED_DIR / "emissions_score.csv", dtype={"route_id": str})
-    legacy_equity = pd.read_csv(PROCESSED_DIR / "equity_score.csv", dtype={"route_id": str})
-    legacy_grid = pd.read_csv(PROCESSED_DIR / "grid_feasibility.csv", dtype={"route_id": str})
-    legacy_operator = pd.read_csv(PROCESSED_DIR / "operator_readiness.csv", dtype={"route_id": str})
     frames = [
         pd.read_csv(PROCESSED_DIR / "ml_service_intensity.csv", dtype={"route_id": str}),
         pd.read_csv(PROCESSED_DIR / "corridor_typology.csv", dtype={"route_id": str}),
@@ -37,18 +33,6 @@ def main() -> int:
     for frame in frames:
         columns = ["route_id"] + [column for column in frame.columns if column != "route_id" and column not in output.columns]
         output = output.merge(frame[columns], on="route_id", how="left")
-
-    output = output.merge(legacy_emissions[["route_id", "emissions_potential_score"]].rename(columns={"emissions_potential_score": "legacy_emissions_activity_score"}), on="route_id", how="left")
-    output = output.merge(legacy_equity[["route_id", "equity_score"]].rename(columns={"equity_score": "legacy_equity_density_score"}), on="route_id", how="left")
-    output = output.merge(legacy_grid[["route_id", "grid_feasibility_score", "grid_renewable_share_pct"]].rename(columns={"grid_feasibility_score": "legacy_grid_regional_proxy_score"}), on="route_id", how="left")
-    output = output.merge(legacy_operator[["route_id", "operator_readiness_score"]].rename(columns={"operator_readiness_score": "legacy_operator_prior_score"}), on="route_id", how="left")
-    legacy_weights = policy["legacy_weights"]
-    output["legacy_just_transition_score"] = (
-        output["legacy_emissions_activity_score"] * float(legacy_weights["emissions"])
-        + output["legacy_equity_density_score"] * float(legacy_weights["equity"])
-        + output["legacy_grid_regional_proxy_score"] * float(legacy_weights["grid"])
-        + output["legacy_operator_prior_score"] * float(legacy_weights["operator"])
-    ).round(2)
 
     required = list(weights)
     output["score_complete"] = output[required].notna().all(axis=1)

@@ -1,13 +1,15 @@
 {
   "status": "PASS_WITH_WARNINGS",
-  "pipeline_version": "2.0.0",
-  "build_id": "r2z-45c4ba076af9",
-  "build_timestamp_utc": "2026-08-20T06:49:33Z",
+  "pipeline_version": "2.1.0",
+  "build_id": "r2z-eb39102e30d7",
+  "build_timestamp_utc": "2026-08-24T15:15:34Z",
   "rows_processed": 1522,
   "score_complete_count": 1522,
   "reduced_information_score_count": 0,
-  "current_validation_count": 0,
+  "current_validation_count": 20,
   "active_validation_count": 0,
+  "usable_geometry_count": 22,
+  "osm_observed_geometry_count": 20,
   "robust_priority_count": 9,
   "phase1_corridor_count": 8,
   "source_dates": {
@@ -15,6 +17,12 @@
     "worldpop_phl_2020_1km": "2026-08-14",
     "doe_luzon_generation_2024": "2026-08-14",
     "osm_power_snapshot_2026_08_20": "2026-08-20",
+    "osm_share_taxi_routes_2026_08_24": "2026-08-24",
+    "osm_metro_manila_route_conventions_2026_08_24": "2026-08-24",
+    "ltfrb_lptrp_index_2026_08_24": "2026-08-24",
+    "doe_energy_investment_kit_2024": "2026-08-24",
+    "pna_ejeepney_trial_2023": "2026-08-24",
+    "psa_poverty_sae_candidate_2026_08_24": "2026-08-24",
     "route2zero_climate_scenario_v1": "2026-08-20",
     "route2zero_operator_prior_v1": "2026-08-20",
     "route_validation_ledger": "2026-08-20",
@@ -27,10 +35,11 @@
   "optional_sources_missing": [],
   "model_versions": {
     "service_intensity": "service-v1-266e0b1d",
-    "corridor_typology": "typology-v1-f9da2ebe"
+    "corridor_typology": "typology-v1-ab8203c9"
   },
   "claim_status_columns_checked": [
     "geometry_claim_status",
+    "route_geometry_claim_status",
     "service_input_claim_status",
     "ml_prediction_claim_status",
     "typology_claim_status",
@@ -39,7 +48,11 @@
     "equity_claim_status",
     "charging_claim_status",
     "operator_claim_status",
-    "evidence_claim_status"
+    "evidence_claim_status",
+    "fleet_proxy_claim_status",
+    "vehicle_cost_claim_status",
+    "charger_cost_claim_status",
+    "financing_claim_status"
   ],
   "critical_missing_values": {
     "just_transition_score": 0,
@@ -51,7 +64,6 @@
     "overall_evidence_confidence": 0
   },
   "warnings": [
-    "No current route validation records have been supplied; all service status remains historic-only.",
     "No consent-based operator evidence has been supplied; the neutral prior remains active.",
     "No utility capacity is verified; charging scores use mapped proximity and energy-demand screening only."
   ]

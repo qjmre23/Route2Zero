@@ -41,13 +41,16 @@ const requiredFiles = [
   "build_manifest.json",
   "pipeline_report.json",
   "model_metrics.json",
-  "flagship_route.json"
+  "flagship_route.json",
+  "osm_route_validation.csv",
+  "feasibility_cost_routes.csv",
+  "feasibility_cost_scenarios.json"
 ];
 
 await mkdir(outputDir, { recursive: true });
 await writeFile(
   join(siteRoot, "public", "config.js"),
-  `window.ROUTE2ZERO_CONFIG = ${JSON.stringify({ mapboxToken, mapboxStyleUrl, appVersion: "2.0.0" })};\n`,
+  `window.ROUTE2ZERO_CONFIG = ${JSON.stringify({ mapboxToken, mapboxStyleUrl, appVersion: "2.1.0" })};\n`,
   "utf8"
 );
 console.log("Generated public Mapbox runtime configuration");

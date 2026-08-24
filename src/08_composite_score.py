@@ -11,8 +11,8 @@ from common import PROCESSED_DIR, ensure_output_dirs
 
 
 DEFAULT_WEIGHTS = {
-    "emissions_potential_score": 0.35,
-    "equity_score": 0.35,
+    "emissions_potential_score": 0.4,
+    "equity_score": 0.3,
     "grid_feasibility_score": 0.15,
     "operator_readiness_score": 0.15,
 }
@@ -48,7 +48,7 @@ def main() -> int:
     output["rank"] = output["just_transition_score"].rank(method="first", ascending=False).astype("Int64")
     output["ranking_method"] = "deterministic_weighted_sum"
     output["ranking_ai_influence"] = False
-    output["default_weights"] = "emissions=0.35|equity=0.35|grid=0.15|operator=0.15"
+    output["default_weights"] = "emissions=0.40|equity=0.30|grid=0.15|operator=0.15"
     output["overall_confidence"] = output.apply(
         lambda row: "incomplete_missing_metric"
         if not row["score_complete"]

@@ -9,7 +9,7 @@ import geopandas as gpd
 import numpy as np
 import pandas as pd
 
-from common import PROCESSED_DIR, ROOT, ensure_output_dirs, load_gtfs, normalize_corridor_name
+from common import CONFIG_DIR, PROCESSED_DIR, ROOT, ensure_output_dirs, load_gtfs, normalize_corridor_name, read_json
 
 
 HUB_PATTERN = re.compile(r"terminal|station|market|palengke|mall|plaza|crossing|junction", re.IGNORECASE)
@@ -18,6 +18,8 @@ HUB_PATTERN = re.compile(r"terminal|station|market|palengke|mall|plaza|crossing|
 def load_validation_defaults(routes: pd.DataFrame) -> pd.DataFrame:
     path = ROOT / "data" / "validated" / "route_validation.csv"
     supplied = pd.read_csv(path, dtype={"route_id": str})
+    osm_path = PROCESSED_DIR / "osm_route_validation.csv"
+    osm_supplied = pd.read_csv(osm_path, dtype={"route_id": str}) if osm_path.is_file() else pd.DataFrame()
     defaults = routes[["route_id", "route_long_name"]].copy()
     defaults["validation_status"] = "historic_only"
     defaults["active_status"] = "uncertain"
@@ -33,14 +35,38 @@ def load_validation_defaults(routes: pd.DataFrame) -> pd.DataFrame:
     defaults["geometry_verified"] = False
     defaults["operator_name_if_verified"] = ""
     defaults["evidence_quality"] = "historic_only"
-    if supplied.empty:
-        return defaults
-    supplied = supplied.drop_duplicates("route_id", keep="last")
+    defaults["osm_relation_id"] = np.nan
+    defaults["osm_relation_name"] = ""
+    defaults["osm_relation_timestamp"] = ""
+    defaults["osm_operator_reference"] = ""
+    defaults["osm_network"] = ""
+    defaults["match_basis"] = ""
+    defaults["route_geometry_claim_status"] = "DERIVED"
+    defaults["official_plan_status"] = "MISSING"
+    defaults["official_plan_source_reference"] = "ltfrb_lptrp_index_2026_08_24"
     merged = defaults.set_index("route_id")
-    for column in supplied.columns:
-        if column == "route_id":
+    for evidence in (osm_supplied, supplied):
+        if evidence.empty:
             continue
-        merged.loc[supplied["route_id"], column] = supplied.set_index("route_id")[column]
+        evidence = evidence.drop_duplicates("route_id", keep="last")
+        unknown = sorted(set(evidence["route_id"]) - set(merged.index))
+        if unknown:
+            raise ValueError(f"Validation evidence references unknown route IDs: {unknown}")
+        indexed = evidence.set_index("route_id")
+        for column in indexed.columns:
+            merged.loc[indexed.index, column] = indexed[column]
+
+    search_config = read_json(CONFIG_DIR / "operator_reference_search.json")
+    merged["operator_reference_status"] = "MISSING"
+    merged["operator_reference_name"] = ""
+    merged["operator_search_note"] = "No route-specific desk search recorded in this release."
+    for result in search_config["results"]:
+        route_id = str(result["route_id"])
+        if route_id not in merged.index:
+            raise ValueError(f"Operator search log references unknown route ID: {route_id}")
+        merged.loc[route_id, "operator_reference_status"] = result["status"]
+        merged.loc[route_id, "operator_reference_name"] = result.get("operator_name") or ""
+        merged.loc[route_id, "operator_search_note"] = result["note"]
     return merged.reset_index()
 
 

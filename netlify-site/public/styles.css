@@ -177,6 +177,28 @@ input[type="range"] { width: 100%; height: 28px; margin: -3px 0 2px; accent-colo
 .lens-card.accent-lime strong { color: var(--lime); }
 .lens-card p { margin: 0; font-size: .72rem; line-height: 1.42; }
 .lens-card.accent-lime p { color: #bcd2cd; }
+.claim-badge, .lens-card b { display: inline-flex; align-items: center; justify-content: center; width: fit-content; padding: 5px 8px; border: 1px solid transparent; border-radius: 999px; font-size: .58rem; font-weight: 800; letter-spacing: .055em; line-height: 1; text-transform: uppercase; }
+.claim-badge[data-status="VERIFIED"], .lens-card b[data-status="VERIFIED"] { color: #075442; border-color: #74d8b1; background: #d7f7e7; }
+.claim-badge[data-status="OBSERVED"], .lens-card b[data-status="OBSERVED"] { color: #07566e; border-color: #82cce5; background: #dff4fb; }
+.claim-badge[data-status="DERIVED"], .lens-card b[data-status="DERIVED"] { color: #3f4b74; border-color: #b7c1e4; background: #edf0fb; }
+.claim-badge[data-status="ML_ESTIMATED"], .lens-card b[data-status="ML_ESTIMATED"] { color: #5b3478; border-color: #c9a8e1; background: #f3e9fb; }
+.claim-badge[data-status="PROXY"], .lens-card b[data-status="PROXY"] { color: #76570c; border-color: #e7c25e; background: #fff5d7; }
+.claim-badge[data-status="SCENARIO"], .lens-card b[data-status="SCENARIO"] { color: #78460c; border-color: #efb263; background: #fff0dc; }
+.claim-badge[data-status="NEUTRAL_PRIOR"], .lens-card b[data-status="NEUTRAL_PRIOR"] { color: #5f6265; border-color: #c7cbce; background: #f1f2f2; }
+.claim-badge[data-status="MISSING"], .lens-card b[data-status="MISSING"] { color: #822f2b; border-color: #e7aaa6; background: #fde9e7; }
+.lens-card.accent-lime b { color: #093d37; border-color: rgba(199, 244, 89, .65); background: var(--lime); }
+.climate-context, .validation-evidence { display: grid; grid-template-columns: auto minmax(0, 1fr); align-items: start; gap: 12px; margin-top: 13px; padding: 15px 17px; border: 1px solid var(--line); border-radius: 15px; background: #f7faf5; color: var(--muted); font-size: .78rem; line-height: 1.55; }
+.climate-context strong, .validation-evidence strong { color: var(--ink); }
+.validation-evidence a { font-weight: 800; }
+.feasibility-panel { background: linear-gradient(145deg, #fffefa, #eef6ed); }
+.feasibility-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.feasibility-grid article { min-width: 0; display: grid; grid-template-columns: minmax(0, 1fr) auto; gap: 10px; padding: 17px; border: 1px solid var(--line); border-radius: 16px; background: rgba(255,255,255,.78); }
+.feasibility-grid article > span { color: var(--muted); font-size: .7rem; font-weight: 800; letter-spacing: .07em; text-transform: uppercase; }
+.feasibility-grid strong { grid-column: 1 / -1; overflow-wrap: anywhere; font: 800 clamp(1.25rem, 2vw, 1.9rem)/1.1 Manrope, sans-serif; }
+.feasibility-grid small { grid-column: 1 / -1; color: var(--muted); line-height: 1.45; }
+.model-restraint { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 20px; margin-top: 12px; padding: 17px; border-radius: 16px; color: white; background: var(--deep); }
+.model-restraint h3 { margin: 0 0 5px; }
+.model-restraint p:last-child { margin: 0; color: #bdd2cd; line-height: 1.5; }
 .decision-change { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: center; gap: 22px; margin-top: 13px; padding: 19px; border-radius: 16px; background: #edf3ea; }
 .decision-change h3 { margin: 0; font-size: 1.1rem; }
 .decision-change p:last-child { margin: 6px 0 0; line-height: 1.55; }
@@ -336,6 +358,7 @@ footer a { font-weight: 700; }
   .portfolio-builder { grid-template-columns: repeat(3, 1fr); }
   .portfolio-builder button { grid-column: 1 / -1; }
   .method-sources { margin-top: 42px; padding: 24px 18px; }
+  .feasibility-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 700px) {
@@ -356,6 +379,8 @@ footer a { font-weight: 700; }
   .road-status { top: 9px; left: 9px; max-width: calc(100% - 68px); border-radius: 13px; font-size: .67rem; }
   .map-footnote { display: grid; }
   .lens-grid, .scenario-grid, .portfolio-list { grid-template-columns: 1fr; }
+  .feasibility-grid { grid-template-columns: 1fr; }
+  .climate-context, .validation-evidence, .model-restraint { grid-template-columns: 1fr; }
   .lens-card { min-height: 132px; }
   .decision-change { padding: 15px; }
   .rank-range { grid-template-columns: repeat(3, 1fr); }

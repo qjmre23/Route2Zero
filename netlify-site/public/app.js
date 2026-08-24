@@ -34,6 +34,7 @@ const state = {
   defaultRanked: [],
   geojson: null,
   pathByRoute: new Map(),
+  geometryByRoute: new Map(),
   selectedRouteId: null,
   build: {},
   report: {},
@@ -108,6 +109,8 @@ const els = {
   climateClaim: byId("climateClaim"),
   climateRange: byId("climateRange"),
   climateDetail: byId("climateDetail"),
+  climateContext: byId("climateContext"),
+  validationEvidence: byId("validationEvidence"),
   equityClaim: byId("equityClaim"),
   equityScore: byId("equityScore"),
   equityDetail: byId("equityDetail"),
@@ -123,6 +126,14 @@ const els = {
   typologyClaim: byId("typologyClaim"),
   typologyValue: byId("typologyValue"),
   typologyDetail: byId("typologyDetail"),
+  fleetClaim: byId("fleetClaim"),
+  fleetProxy: byId("fleetProxy"),
+  chargerCostClaim: byId("chargerCostClaim"),
+  chargerProxy: byId("chargerProxy"),
+  vehicleCostClaim: byId("vehicleCostClaim"),
+  capexProxy: byId("capexProxy"),
+  financingClaim: byId("financingClaim"),
+  mlComparison: byId("mlComparison"),
   decisionChangeTitle: byId("decisionChangeTitle"),
   decisionChangeCopy: byId("decisionChangeCopy"),
   currentRank: byId("currentRank"),
@@ -138,6 +149,7 @@ const els = {
   portfolioScenarioId: byId("portfolioScenarioId"),
   portfolioCount: byId("portfolioCount"),
   portfolioClimate: byId("portfolioClimate"),
+  portfolioClimateRange: byId("portfolioClimateRange"),
   portfolioEquityMetric: byId("portfolioEquityMetric"),
   portfolioEvidence: byId("portfolioEvidence"),
   portfolioModePill: byId("portfolioModePill"),
@@ -246,6 +258,26 @@ function formatSigned(value, digits = 0) {
   const number = Number(value);
   if (!Number.isFinite(number)) return "N/A";
   return `${number > 0 ? "+" : ""}${formatNumber(number, digits)}`;
+}
+
+function formatPhp(value) {
+  const number = Number(value);
+  if (!Number.isFinite(number)) return "MISSING";
+  if (Math.abs(number) >= 1e9) return `₱${formatNumber(number / 1e9, 2)}B`;
+  if (Math.abs(number) >= 1e6) return `₱${formatNumber(number / 1e6, 2)}M`;
+  return `₱${formatNumber(number, 0)}`;
+}
+
+function setClaimBadge(element, status) {
+  if (!element) return;
+  const normalized = String(status || "MISSING").toUpperCase().replaceAll(" ", "_");
+  element.textContent = normalized.replaceAll("_", " ");
+  element.dataset.status = normalized;
+}
+
+function claimBadge(status) {
+  const normalized = String(status || "MISSING").toUpperCase().replaceAll(" ", "_");
+  return `<span class="claim-badge" data-status="${escapeHtml(normalized)}">${escapeHtml(normalized.replaceAll("_", " "))}</span>`;
 }
 
 function safeFilePart(value) {
@@ -585,6 +617,7 @@ function renderRouteFinder() {
 
 function deterministicRouteSummary(row) {
   const climateLow = numeric(row, "net_co2e_avoided_t_year_low");
+  const climateBase = numeric(row, "net_co2e_avoided_t_year_base");
   const climateHigh = numeric(row, "net_co2e_avoided_t_year_high");
   const historicService = numeric(row, "trips_per_day_estimate");
   const mlService = numeric(row, "ml_service_intensity_prediction");
@@ -592,7 +625,7 @@ function deterministicRouteSummary(row) {
   const serviceContext = mlService === null
     ? `Historic schedule service proxy: ${formatNumber(historicService)} trips/day; no ML comparator is available.`
     : `Historic schedule service proxy: ${formatNumber(historicService)} trips/day; ML comparator: ${formatNumber(mlService)} for anomaly analysis, not ridership.`;
-  return `${row.route_long_name} is #${row.liveRank || "—"} at ${formatNumber(row.liveScore, 1)}/100 under ${state.scenarioId}. ${serviceContext} Its climate scenario spans ${formatSigned(climateLow)} to ${formatSigned(climateHigh)} tCO₂e/year, while evidence remains Grade ${row.evidence_grade || "—"}. Validate ${missing} before the shortlist is treated as an investment decision.`;
+  return `${row.route_long_name} is #${row.liveRank || "—"} at ${formatNumber(row.liveScore, 1)}/100 under ${state.scenarioId}. ${serviceContext} The base climate case is ${formatSigned(climateBase)} tCO₂e/year, bounded by ${formatSigned(climateLow)} to ${formatSigned(climateHigh)}, while evidence remains Grade ${row.evidence_grade || "—"}. Validate ${missing} before the shortlist is treated as an investment decision.`;
 }
 
 function renderRouteLens() {
@@ -617,37 +650,40 @@ function renderRouteLens() {
   els.routeName.textContent = row.route_long_name;
   els.routeMeta.textContent = `${row.route_id} · ${String(row.cities_served || "Unspecified").replaceAll("|", " · ")} · ${formatNumber(row.length_km, 1)} km`;
   els.routeRationale.textContent = useCached ? plannerCache.answer : deterministicRouteSummary(row);
-  els.routeStatusPill.textContent = routeIsCurrent(row) ? "Current validation supplied" : "Historic screening baseline · current status unverified";
+  els.routeStatusPill.textContent = routeIsCurrent(row) ? "Current external record · active status uncertain" : "Historic screening baseline · current status unverified";
 
-  els.priorityClaim.textContent = "DERIVED";
+  setClaimBadge(els.priorityClaim, "DERIVED");
   els.priorityValue.textContent = `${formatNumber(row.liveScore, 1)}/100`;
   els.priorityDetail.textContent = `Live rank #${row.liveRank || "—"} · human-controlled weights`;
 
-  els.evidenceClaim.textContent = String(row.evidence_claim_status || "DERIVED").replaceAll("_", " ");
+  setClaimBadge(els.evidenceClaim, row.evidence_claim_status || "DERIVED");
   els.evidenceValue.textContent = `${row.evidence_grade || "—"} · ${formatNumber(evidence, 1)}`;
   els.evidenceDetail.textContent = row.evidence_limitations || "Evidence limitations unavailable";
 
-  els.climateClaim.textContent = String(row.climate_claim_status || "SCENARIO").replaceAll("_", " ");
-  els.climateRange.textContent = `${formatSigned(climateLow)} → ${formatSigned(climateHigh)}`;
-  els.climateDetail.textContent = `Base ${formatSigned(climateBase)} tCO₂e/year · ${row.climate_assumption_set || "scenario assumptions"}`;
+  setClaimBadge(els.climateClaim, row.climate_claim_status || "SCENARIO");
+  els.climateRange.textContent = `Base ${formatSigned(climateBase)}`;
+  els.climateDetail.textContent = `${formatSigned(climateLow)} to ${formatSigned(climateHigh)} tCO₂e/year · ${row.climate_assumption_set || "scenario assumptions"}`;
+  els.climateContext.innerHTML = `${claimBadge("SCENARIO")}<div><strong>Why can the low case be negative?</strong> Its high electricity use per kilometre is paired with a carbon-intensive grid, so charging emissions exceed the diesel emissions displaced. Vehicle efficiency is the single strongest low-case sensitivity; grid intensity is next. Electrification share changes the size of the result, not its sign.</div>`;
 
-  els.equityClaim.textContent = String(row.equity_claim_status || "PROXY").replaceAll("_", " ");
+  setClaimBadge(els.equityClaim, row.equity_claim_status || "PROXY");
   els.equityScore.textContent = `${formatNumber(equity, 1)}/100`;
   els.equityDetail.textContent = row.equity_limitation || "Population exposure proxy";
 
-  els.chargingClaim.textContent = String(row.charging_claim_status || "PROXY").replaceAll("_", " ");
+  setClaimBadge(els.chargingClaim, row.charging_claim_status || "PROXY");
   els.chargingScore.textContent = `${formatNumber(charging, 1)}/100`;
   els.chargingDetail.textContent = `${formatNumber(row.nearest_substation_distance_km, 2)} km to mapped substation · capacity unverified`;
 
-  els.operatorClaim.textContent = String(row.operator_claim_status || "NEUTRAL_PRIOR").replaceAll("_", " ");
+  setClaimBadge(els.operatorClaim, row.operator_claim_status || "NEUTRAL_PRIOR");
   els.operatorScore.textContent = `${formatNumber(operator, 1)}/100`;
-  els.operatorDetail.textContent = bool(row.operator_readiness_placeholder) ? "Neutral prior · consent-based evidence not yet supplied" : "Observed operator evidence supplied";
+  els.operatorDetail.textContent = bool(row.operator_readiness_placeholder)
+    ? `${row.operator_reference_status === "OBSERVED" ? `Named reference: ${row.operator_reference_name}; ` : ""}readiness remains neutral until fleet, depot and financing evidence is supplied`
+    : "Observed operator readiness evidence supplied";
 
-  els.robustnessClaim.textContent = `${formatNumber(row.simulations)} TESTS`;
+  setClaimBadge(els.robustnessClaim, "DERIVED");
   els.robustnessScore.textContent = topTen === null ? "N/A" : `${formatNumber(topTen * 100)}% top-10`;
-  els.robustnessDetail.textContent = `${row.robustness_label || "Not assessed"} · baseline sensitivity reference`;
+  els.robustnessDetail.textContent = `${row.robustness_label || "Not assessed"} · ${formatNumber(row.simulations)} fixed-seed tests`;
 
-  els.typologyClaim.textContent = String(row.typology_claim_status || "ML_ESTIMATED").replaceAll("_", " ");
+  setClaimBadge(els.typologyClaim, row.typology_claim_status || "ML_ESTIMATED");
   els.typologyValue.textContent = row.corridor_type_label || "Unclassified";
   els.typologyDetail.textContent = `${row.clustering_model_version || "model unavailable"}${bool(row.cluster_outlier_flag) ? " · pattern outlier" : ""}`;
 
@@ -657,6 +693,22 @@ function renderRouteLens() {
   els.currentRank.textContent = `#${row.liveRank || "—"}`;
   els.medianRank.textContent = `#${formatNumber(row.median_rank)}`;
   els.rankRange.textContent = `#${formatNumber(row.rank_p10)}–#${formatNumber(row.rank_p90)}`;
+
+  els.validationEvidence.innerHTML = routeIsCurrent(row)
+    ? `${claimBadge(row.route_geometry_claim_status || "OBSERVED")}<div><strong>Current-evidence record</strong> Matched to <a href="${escapeHtml(row.source_reference)}" target="_blank" rel="noreferrer">OSM relation ${escapeHtml(row.osm_relation_id)}</a>, edited ${escapeHtml(row.validation_date)}. The map uses its member-way geometry. Active service and franchise authority remain uncertain; LTFRB plan status is ${escapeHtml(row.official_plan_status || "MISSING")}.</div>`
+    : `${claimBadge("MISSING")}<div><strong>No accepted current-route match.</strong> The corridor remains in the historic screening universe and uses ${escapeHtml(row.geometry_source || "approximate")} geometry.</div>`;
+
+  setClaimBadge(els.fleetClaim, row.fleet_proxy_claim_status || "MISSING");
+  setClaimBadge(els.chargerCostClaim, row.charger_cost_claim_status || "MISSING");
+  setClaimBadge(els.vehicleCostClaim, row.vehicle_cost_claim_status || "MISSING");
+  setClaimBadge(els.financingClaim, row.financing_claim_status || "MISSING");
+  els.fleetProxy.textContent = numeric(row, "fleet_size_proxy") === null ? "MISSING" : `${formatNumber(row.fleet_size_proxy)} vehicles`;
+  els.chargerProxy.textContent = numeric(row, "charger_count_proxy") === null ? "MISSING" : `${formatNumber(row.charger_count_proxy)} stations`;
+  els.capexProxy.textContent = formatPhp(row.total_capex_proxy_php);
+  const mlRoute = state.scores.find((item) => bool(item.ml_service_intensity_used));
+  els.mlComparison.textContent = mlRoute
+    ? `${mlRoute.route_id}: historic daily VKT is MISSING; the model supplies ${formatNumber(mlRoute.ml_service_intensity_prediction, 1)} daily VKT for the climate input. It is not ridership, current service or a substitute for observation.`
+    : "No route currently uses the model because no eligible historic activity field is missing.";
 
   const lensCards = document.querySelectorAll(".lens-card");
   if (lensCards[1]) lensCards[1].title = row.evidence_limitations || "";
@@ -768,7 +820,8 @@ function renderPortfolio() {
 
   els.portfolioScenarioId.textContent = state.portfolioScenarioId;
   els.portfolioCount.textContent = rows.length.toLocaleString();
-  els.portfolioClimate.textContent = `${formatSigned(climate.low)} → ${formatSigned(climate.high)}`;
+  els.portfolioClimate.textContent = `${formatSigned(climate.base)} tCO₂e/yr`;
+  els.portfolioClimateRange.textContent = `Range ${formatSigned(climate.low)} to ${formatSigned(climate.high)} · low case is efficiency-led`;
   els.portfolioEquityMetric.textContent = formatNumber(precomputed?.average_equity_score ?? averageEquity, 1);
   els.portfolioEvidence.textContent = Object.entries(precomputed?.evidence_grade_distribution || gradeCounts).map(([grade, count]) => `${grade}:${count}`).join(" · ") || "None";
   els.portfolioModePill.textContent = precomputed ? "Precomputed default" : "Interactive deterministic preview";
@@ -796,9 +849,10 @@ function renderPortfolio() {
 function renderLeaderboard() {
   const rows = state.filtered.filter((row) => row.liveScore !== null).slice(0, 12);
   els.leaderboardBody.innerHTML = rows.map((row) => {
+    const climateBase = numeric(row, "net_co2e_avoided_t_year_base");
     const climateLow = numeric(row, "net_co2e_avoided_t_year_low");
     const climateHigh = numeric(row, "net_co2e_avoided_t_year_high");
-    return `<tr class="${row.route_id === state.selectedRouteId ? "selected-row" : ""}"><td>#${row.liveRank}</td><td><button class="route-table-button" type="button" data-route-id="${escapeHtml(row.route_id)}">${escapeHtml(row.route_long_name)}<small>${escapeHtml(row.route_id)}</small></button></td><td>${escapeHtml(row.primary_city || "Unspecified")}</td><td><b>${formatNumber(row.liveScore, 1)}</b></td><td>${escapeHtml(row.evidence_grade || "—")} · ${formatNumber(row.overall_evidence_confidence, 1)}</td><td>${formatSigned(climateLow)} → ${formatSigned(climateHigh)}</td><td>${escapeHtml(row.robustness_label || "Not assessed")}</td></tr>`;
+    return `<tr class="${row.route_id === state.selectedRouteId ? "selected-row" : ""}"><td>#${row.liveRank}</td><td><button class="route-table-button" type="button" data-route-id="${escapeHtml(row.route_id)}">${escapeHtml(row.route_long_name)}<small>${escapeHtml(row.route_id)}</small></button></td><td>${escapeHtml(row.primary_city || "Unspecified")}</td><td><b>${formatNumber(row.liveScore, 1)}</b></td><td>${escapeHtml(row.evidence_grade || "—")} · ${formatNumber(row.overall_evidence_confidence, 1)}</td><td><b>${formatSigned(climateBase)}</b><small>${formatSigned(climateLow)} to ${formatSigned(climateHigh)}</small></td><td>${escapeHtml(row.robustness_label || "Not assessed")}</td></tr>`;
   }).join("");
   els.mobileRouteCards.innerHTML = rows.map((row) => `<button class="mobile-route-card ${row.route_id === state.selectedRouteId ? "selected" : ""}" type="button" data-route-id="${escapeHtml(row.route_id)}"><b>#${row.liveRank}</b><span><strong>${escapeHtml(row.route_long_name)}</strong><small>${escapeHtml(row.primary_city || "Unspecified")} · Evidence ${escapeHtml(row.evidence_grade || "—")}</small></span><span>${formatNumber(row.liveScore, 1)}</span></button>`).join("");
 }
@@ -819,10 +873,19 @@ function renderEvidenceQueue() {
     if (value.includes("geometry") || value.includes("route") || value.includes("service") || value.includes("active")) return "LGU + field team";
     return "Field validation team";
   };
+  const evidenceStatus = (row, field) => {
+    const value = String(field || "").toLowerCase();
+    if (value.includes("operator") || value.includes("fleet") || value.includes("depot")) return row.operator_claim_status || "NEUTRAL_PRIOR";
+    if (value.includes("charging") || value.includes("utility") || value.includes("capacity")) return bool(row.utility_capacity_verified) ? "VERIFIED" : "MISSING";
+    if (value.includes("geometry")) return row.geometry_claim_status || "DERIVED";
+    if (value.includes("service") || value.includes("route") || value.includes("active")) return routeIsCurrent(row) ? "OBSERVED" : "MISSING";
+    if (value.includes("equity")) return row.equity_claim_status || "PROXY";
+    return "MISSING";
+  };
   els.evidenceQueue.innerHTML = rows.map((row, index) => {
     const field = row.highest_value_missing_evidence || "current validation";
     const signal = bool(row.portfolio_flip_possible) ? "Portfolio flip possible" : `Priority ${formatNumber(row.validation_priority_score)}`;
-    return `<div class="evidence-item"><b>${String(index + 1).padStart(2, "0")}</b><button type="button" data-route-id="${escapeHtml(row.route_id)}">${escapeHtml(row.route_long_name)}<small>${escapeHtml(String(field).replaceAll("_", " "))} · up to ${formatNumber(row.maximum_rank_swing)}-place swing</small></button><span><b>${escapeHtml(evidenceOwner(field))}</b><small>${escapeHtml(signal)}</small></span></div>`;
+    return `<div class="evidence-item"><b>${String(index + 1).padStart(2, "0")}</b><button type="button" data-route-id="${escapeHtml(row.route_id)}">${escapeHtml(row.route_long_name)}<small>${claimBadge(evidenceStatus(row, field))} ${escapeHtml(String(field).replaceAll("_", " "))} · up to ${formatNumber(row.maximum_rank_swing)}-place swing</small></button><span><b>${escapeHtml(evidenceOwner(field))}</b><small>${escapeHtml(signal)}</small></span></div>`;
   }).join("");
 }
 
@@ -866,6 +929,16 @@ function layerValue(row) {
 
 function routePointCollection() {
   const selectedPortfolio = new Set(state.portfolioRows.map((row) => String(row.route_id)));
+  const layerClaimStatus = (row) => ({
+    priority: "DERIVED",
+    climate: row.climate_claim_status || "SCENARIO",
+    equity: row.equity_claim_status || "PROXY",
+    charging: row.charging_claim_status || "PROXY",
+    evidence: row.evidence_claim_status || "DERIVED",
+    stability: "DERIVED",
+    typology: row.typology_claim_status || "ML_ESTIMATED",
+    validation: routeIsCurrent(row) ? "OBSERVED" : "MISSING"
+  })[state.activeLayer] || "MISSING";
   const features = state.filtered.map((row) => {
     const coordinates = state.pathByRoute.get(String(row.route_id));
     if (!coordinates?.length) return null;
@@ -881,6 +954,7 @@ function routePointCollection() {
         category: String(layerValue(row)),
         layerLabel: LAYERS[state.activeLayer].label,
         evidenceGrade: row.evidence_grade || "—",
+        claimStatus: layerClaimStatus(row),
         robustness: row.robustness_label || "Not assessed",
         validation: row.validation_status || "unvalidated",
         portfolio: selectedPortfolio.has(String(row.route_id)) ? 1 : 0,
@@ -980,7 +1054,7 @@ function initialiseMap() {
       const value = LAYERS[state.activeLayer].kind === "numeric" ? formatNumber(feature.properties.value, 1) : feature.properties.value;
       state.hoverPopup = new window.mapboxgl.Popup({ closeButton: false, closeOnClick: false, offset: 12, className: "route-hover-popup" })
         .setLngLat(feature.geometry.coordinates)
-        .setHTML(`<div class="map-popup"><b>${escapeHtml(feature.properties.title)}</b><span>#${escapeHtml(feature.properties.rank)} · ${escapeHtml(feature.properties.layerLabel)} ${escapeHtml(value)}</span><span>Evidence ${escapeHtml(feature.properties.evidenceGrade)} · ${escapeHtml(feature.properties.robustness)}</span><span>Status: ${escapeHtml(String(feature.properties.validation).replaceAll("_", " "))}</span></div>`)
+        .setHTML(`<div class="map-popup"><b>${escapeHtml(feature.properties.title)}</b><span>${claimBadge(feature.properties.claimStatus)} #${escapeHtml(feature.properties.rank)} · ${escapeHtml(feature.properties.layerLabel)} ${escapeHtml(value)}</span><span>Evidence ${escapeHtml(feature.properties.evidenceGrade)} · ${escapeHtml(feature.properties.robustness)}</span><span>Status: ${escapeHtml(String(feature.properties.validation).replaceAll("_", " "))}</span></div>`)
         .addTo(state.map);
     });
     state.map.on("mouseleave", "route-points-layer", () => {
@@ -1013,6 +1087,13 @@ function cleanedCoordinates(routeId) {
   const coordinates = state.pathByRoute.get(String(routeId)) || [];
   const valid = coordinates.filter((point) => Array.isArray(point) && point.length >= 2 && Number.isFinite(Number(point[0])) && Number.isFinite(Number(point[1]))).map((point) => [Number(point[0]), Number(point[1])]);
   return valid.filter((point, index) => index === 0 || point[0] !== valid[index - 1][0] || point[1] !== valid[index - 1][1]);
+}
+
+function flattenedGeometryCoordinates(geometry) {
+  if (!geometry) return [];
+  if (geometry.type === "LineString") return geometry.coordinates || [];
+  if (geometry.type === "MultiLineString") return (geometry.coordinates || []).flat();
+  return [];
 }
 
 function coordinateChunks(coordinates, size = 25) {
@@ -1077,12 +1158,30 @@ async function drawSelectedRoadRoute() {
   const requestId = ++state.roadRequestId;
   const row = activeRow();
   const raw = cleanedCoordinates(state.selectedRouteId);
+  const observedGeometry = state.geometryByRoute.get(String(state.selectedRouteId));
+  const observedCoordinates = flattenedGeometryCoordinates(observedGeometry);
   const lineSource = state.map.getSource("selected-route");
   const endpointSource = state.map.getSource("selected-endpoints");
   if (!row || raw.length < 2) {
     lineSource.setData({ type: "Feature", properties: {}, geometry: { type: "LineString", coordinates: [] } });
     endpointSource.setData(emptyFeatureCollection());
     updateRoadStatus("This corridor does not have enough coordinates to map.", "error");
+    return;
+  }
+  if (row.geometry_source === "osm_relation" && observedGeometry && observedCoordinates.length >= 2) {
+    lineSource.setData({
+      type: "Feature",
+      properties: { routeId: row.route_id, source: "osm_relation" },
+      geometry: observedGeometry
+    });
+    endpointSource.setData({ type: "FeatureCollection", features: [
+      { type: "Feature", properties: { kind: "start" }, geometry: { type: "Point", coordinates: observedCoordinates[0] } },
+      { type: "Feature", properties: { kind: "end" }, geometry: { type: "Point", coordinates: observedCoordinates[observedCoordinates.length - 1] } }
+    ] });
+    applyRouteLineStyle(row, false);
+    fitMapToCoordinates(observedCoordinates);
+    const edited = row.osm_timestamp ? String(row.osm_timestamp).slice(0, 10) : "date unavailable";
+    updateRoadStatus(`Observed OSM member-way geometry · relation ${row.osm_relation_id || "—"} · edited ${edited} · activity remains uncertain`, "success");
     return;
   }
   lineSource.setData({ type: "Feature", properties: { routeId: row.route_id, source: "gtfs_stop_sequence" }, geometry: { type: "LineString", coordinates: raw } });
@@ -1210,11 +1309,10 @@ function assistantContext(question) {
 
 function localAssistantFallback(context) {
   const route = context.route;
-  if (!route) return { answer: "No route is available in the current scope.", actions: ["Restore the historic screening baseline or change the city scope."] };
+  if (!route) return { answer: "No route is available in the current scope." };
   const missing = String(route.highest_value_missing_evidence || "current service validation").replaceAll("_", " ");
   return {
-    answer: `${route.route_long_name} is #${route.live_rank} under ${context.scenario.scenario_id}. Validate ${missing} first because the deterministic perturbation test allows a rank swing of up to ${formatNumber(route.maximum_rank_swing)} places${route.portfolio_flip_possible ? " and can change portfolio membership" : ""}.`,
-    actions: ["Confirm current route status and observed service.", "Request utility evidence before claiming charging capacity.", "Collect consent-based operator and depot evidence."]
+    answer: `${route.route_long_name} is #${route.live_rank} under ${context.scenario.scenario_id}. Validate ${missing} first because the deterministic perturbation test allows a rank swing of up to ${formatNumber(route.maximum_rank_swing)} places${route.portfolio_flip_possible ? " and can change portfolio membership" : ""}.`
   };
 }
 
@@ -1508,8 +1606,8 @@ function trapControlsFocus(event) {
 }
 
 const tourSteps = [
-  { target: "#overview", time: "0–12 sec", title: "Start with the city decision", copy: "Route2Zero screens the full historic route universe and shows immediately that current validation is still missing.", action: () => setPreset("default") },
-  { target: "#corridor-map", time: "12–28 sec", title: "Follow the corridor on real streets", copy: "The selected flagship is road-matched through Mapbox. A dashed line keeps unverified source geometry visibly distinct.", action: () => { state.activeLayer = "priority"; els.mapLayer.value = "priority"; setSelected(state.flagship.route_id || state.build.flagship_route_id || state.selectedRouteId, false); } },
+  { target: "#overview", time: "0–12 sec", title: "Start with the city decision", copy: "Route2Zero screens 1,522 historic route-direction records and identifies which corridors have a dated current external record, while keeping present-day activity uncertain.", action: () => setPreset("default") },
+  { target: "#corridor-map", time: "12–28 sec", title: "Follow the corridor on real streets", copy: "Reviewed OpenStreetMap relations use their observed member-way geometry. Other corridors use a visibly labelled Mapbox street-following interpretation of ordered historic stops.", action: () => { state.activeLayer = "priority"; els.mapLayer.value = "priority"; setSelected(state.flagship.route_id || state.build.flagship_route_id || state.selectedRouteId, false); } },
   { target: "#route-lens", time: "28–42 sec", title: "Read eight signals, not one score", copy: "Climate scenarios, evidence, equity, charging, operator readiness, robustness and ML typology stay separate and claim-labelled." },
   { target: "#scenario-lab", time: "42–57 sec", title: "Test a human policy choice", copy: "Switch to Equity-first and watch live ranks, top-ten membership and the scenario ID change from actual data.", action: () => setPreset("equity") },
   { target: "#phase1-portfolio", time: "57–71 sec", title: "Build a constrained Phase-1 shortlist", copy: "The default eight-corridor portfolio is a real precomputed pipeline output and visibly differs from simple top-N sorting.", action: () => setPreset("default") },
@@ -1588,7 +1686,10 @@ async function init() {
   state.flagship = flagship;
   state.defaultRanked = [...state.scores].filter((row) => numeric(row, "just_transition_score") !== null).sort((left, right) => Number(left.rank) - Number(right.rank));
   geojson.features.forEach((feature) => {
-    if (feature.geometry?.type === "LineString") state.pathByRoute.set(String(feature.properties.route_id), feature.geometry.coordinates);
+    if (!["LineString", "MultiLineString"].includes(feature.geometry?.type)) return;
+    const routeId = String(feature.properties.route_id);
+    state.geometryByRoute.set(routeId, feature.geometry);
+    state.pathByRoute.set(routeId, flattenedGeometryCoordinates(feature.geometry));
   });
   renderCityOptions();
   state.savedScenarios = readSavedScenarios();

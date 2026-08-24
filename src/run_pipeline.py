@@ -1,4 +1,4 @@
-"""Run the full Route2Zero 2.0 pipeline in dependency order."""
+"""Run the full Route2Zero 2.1 pipeline in dependency order."""
 
 from __future__ import annotations
 
@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[1]
 SCRIPTS = [
     "00_source_manifest.py",
     "01_audit.py",
+    "01b_osm_route_validation.py",
     "02_geometry.py",
     "02b_geometry_reliability.py",
     "03_frequency.py",
@@ -30,6 +31,7 @@ SCRIPTS = [
     "15_city_aggregation.py",
     "13_sensitivity.py",
     "14_portfolio_optimizer.py",
+    "14b_feasibility_cost.py",
     "16_validation_priority.py",
     "17_ai_planner.py",
     "18_policy_brief.py",

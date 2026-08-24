@@ -8,6 +8,7 @@ import sys
 import geopandas as gpd
 import pandas as pd
 from pyproj import Geod
+from shapely.geometry import MultiLineString
 
 from common import PROCESSED_DIR, ROOT, ensure_output_dirs
 
@@ -32,17 +33,27 @@ def grade(score: float) -> str:
 
 def score_geometry(row: pd.Series, field_verified: bool = False) -> dict[str, object]:
     geometry = row.geometry
-    coords = list(geometry.coords) if geometry is not None and not geometry.is_empty else []
+    parts = list(geometry.geoms) if isinstance(geometry, MultiLineString) else ([geometry] if geometry is not None else [])
+    part_coords = [list(part.coords) for part in parts if part is not None and not part.is_empty]
+    coords = [coord for values in part_coords for coord in values]
     valid = bool(geometry is not None and not geometry.is_empty and geometry.is_valid and len(coords) >= 2)
-    endpoint = distance_km(coords[0], coords[-1]) if valid else math.nan
+    endpoints = [(values[0], values[-1]) for values in part_coords if len(values) >= 2]
+    endpoint = max((distance_km(start, end) for start, end in endpoints), default=math.nan) if valid else math.nan
     length = float(row.get("length_km", math.nan))
     detour = length / endpoint if valid and endpoint > 0.05 else math.nan
     duplicate_fraction = 1.0 - len(set(coords)) / len(coords) if coords else 1.0
-    gaps = [distance_km(coords[index - 1], coords[index]) for index in range(1, len(coords))]
+    gaps = [
+        distance_km(values[index - 1], values[index])
+        for values in part_coords
+        for index in range(1, len(values))
+    ]
     max_gap = max(gaps) if gaps else math.nan
-    score = 88.0 if row.get("geometry_source") == "shape" else 52.0
+    source = row.get("geometry_source")
+    score = 92.0 if source == "osm_relation" else (88.0 if source == "shape" else 52.0)
     reasons: list[str] = [
-        "GTFS shape source" if row.get("geometry_source") == "shape" else "ordered-stop planning approximation"
+        "reviewed OSM relation member-way geometry"
+        if source == "osm_relation"
+        else ("GTFS shape source" if source == "shape" else "ordered-stop planning approximation")
     ]
     if int(row.get("stop_count", 0) or 0) >= 12:
         score += 4
@@ -84,8 +95,8 @@ def score_geometry(row: pd.Series, field_verified: bool = False) -> dict[str, ob
         "geometry_reliability_score": score,
         "geometry_reliability_grade": grade(score),
         "geometry_reliability_reasons": " | ".join(reasons),
-        "geometry_validation_required": not field_verified and score < 85,
-        "geometry_claim_status": "VERIFIED" if field_verified else "DERIVED",
+        "geometry_validation_required": not field_verified and source != "osm_relation" and score < 85,
+        "geometry_claim_status": "VERIFIED" if field_verified else ("OBSERVED" if source == "osm_relation" else "DERIVED"),
     }
 
 

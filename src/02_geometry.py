@@ -7,7 +7,7 @@ import sys
 import geopandas as gpd
 import pandas as pd
 from pyproj import Geod
-from shapely.geometry import LineString
+from shapely.geometry import LineString, MultiLineString
 
 from common import PROCESSED_DIR, ensure_output_dirs, load_gtfs
 
@@ -15,9 +15,9 @@ from common import PROCESSED_DIR, ensure_output_dirs, load_gtfs
 GEOD = Geod(ellps="WGS84")
 
 
-def geodesic_length_km(line: LineString) -> float:
-    lons, lats = line.xy
-    return abs(float(GEOD.line_length(lons, lats))) / 1000.0
+def geodesic_length_km(line: LineString | MultiLineString) -> float:
+    parts = list(line.geoms) if isinstance(line, MultiLineString) else [line]
+    return sum(abs(float(GEOD.line_length(*part.xy))) for part in parts) / 1000.0
 
 
 def unique_consecutive(coords: list[tuple[float, float]]) -> list[tuple[float, float]]:
@@ -35,6 +35,8 @@ def main() -> int:
     stop_times = load_gtfs("stop_times.txt")
     stops = load_gtfs("stops.txt")
     shapes = load_gtfs("shapes.txt")
+    osm_path = PROCESSED_DIR / "osm_route_geometry.geojson"
+    osm_routes = gpd.read_file(osm_path).set_index("route_id") if osm_path.is_file() else None
 
     jeepneys = routes[
         routes["agency_id"].eq("LTFRB") & routes["route_id"].str.contains("PUJ", na=False)
@@ -97,7 +99,10 @@ def main() -> int:
         if meta is None:
             raise ValueError(f"No representative trip for {route.route_id}")
         shape_id = str(meta.get("shape_id")) if pd.notna(meta.get("shape_id")) else ""
-        if shape_id in shape_lines:
+        if osm_routes is not None and route.route_id in osm_routes.index:
+            geometry = osm_routes.loc[route.route_id].geometry
+            geometry_source = "osm_relation"
+        elif shape_id in shape_lines:
             geometry = shape_lines[shape_id]
             geometry_source = "shape"
         else:
@@ -132,4 +137,3 @@ def main() -> int:
 
 if __name__ == "__main__":
     sys.exit(main())
-

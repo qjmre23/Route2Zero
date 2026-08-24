@@ -13,6 +13,5 @@
     "climate_equity": {"climate": 0.4, "equity": 0.3, "charging": 0.15, "operator": 0.15},
     "equity_first": {"climate": 0.25, "equity": 0.5, "charging": 0.15, "operator": 0.1},
     "infrastructure_first": {"climate": 0.25, "equity": 0.2, "charging": 0.35, "operator": 0.2}
-  },
-  "legacy_weights": {"emissions": 0.35, "equity": 0.35, "grid": 0.15, "operator": 0.15}
+  }
 }

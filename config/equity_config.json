@@ -7,6 +7,8 @@
     "underserved_overlap": 0.0
   },
   "secondary_source_available": false,
+  "secondary_source_candidate_id": "psa_poverty_sae_candidate_2026_08_24",
+  "secondary_source_candidate_note": "City-level poverty estimates are registered for pilot validation but are not integrated until route-city geometry and aggregation rules are spatially verified.",
   "underserved_overlap_available": false,
   "missing_data_policy": "Low evidence is not automatically low need; unavailable dimensions remain null and are not silently inferred."
 }

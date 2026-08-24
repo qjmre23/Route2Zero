@@ -77,9 +77,7 @@ def main() -> int:
         "answer": portfolio_answer,
         "evidence_points": portfolio_points,
         "validation_actions": [
-            "Confirm current route status and service observations.",
-            "Request utility evidence before any claim about available charging capacity.",
-            "Collect consent-based operator, depot and financing evidence.",
+            "Review each selected corridor's highest-ranked evidence request in the versioned validation queue."
         ],
         "scenario_id": portfolio["source_scenario_id"],
         "portfolio_scenario_id": portfolio["scenario_id"],

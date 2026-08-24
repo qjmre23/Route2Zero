@@ -48,9 +48,18 @@ def nearest_for_routes(
     distances: list[float] = []
     nearest_ids: list[str] = []
     for geometry in routes.geometry:
+        if geometry.geom_type == "MultiLineString":
+            coordinate_sequences = [list(part.coords) for part in geometry.geoms if len(part.coords) >= 2]
+            flattened = [coordinate for sequence in coordinate_sequences for coordinate in sequence]
+        else:
+            flattened = list(geometry.coords)
+        if len(flattened) < 2:
+            distances.append(math.nan)
+            nearest_ids.append("")
+            continue
         points = np.asarray([
-            (geometry.coords[0][1], geometry.coords[0][0]),
-            (geometry.coords[-1][1], geometry.coords[-1][0]),
+            (flattened[0][1], flattened[0][0]),
+            (flattened[-1][1], flattened[-1][0]),
         ])
         values, indexes = tree.query(np.radians(points), k=1)
         position = int(np.argmin(values[:, 0]))

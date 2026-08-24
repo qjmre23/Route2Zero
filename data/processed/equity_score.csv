@@ -30,7 +30,7 @@ LTFRB_PUJ1029,81.351,364209.3,81.35,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ1030,81.351,364209.3,81.35,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1031,81.351,364209.3,81.35,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1033,88.78,395423.6,88.78,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1034,90.455,520228.1,90.46,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1034,86.281,409163.5,86.28,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1035,46.821,69826.5,46.82,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1036,52.931,109755.0,52.93,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1037,40.401,80921.9,40.4,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -106,14 +106,14 @@ LTFRB_PUJ1111,94.001,302927.0,94.0,worldpop_2020_1km_population_density_proxy,lo
 LTFRB_PUJ1112,94.438,326722.7,94.44,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1113,41.225,48226.0,41.22,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1114,58.398,70714.6,58.4,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1116,82.207,339927.4,82.21,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1116,82.31,341913.7,82.31,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1117,93.605,357942.8,93.6,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1118,88.279,379537.4,88.28,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1121,95.756,245601.3,95.76,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1122,95.756,245601.3,95.76,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1123,100.0,249110.4,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1124,100.0,201327.2,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1125,97.033,351266.5,97.03,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1125,93.904,299019.5,93.9,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1128,96.421,291215.6,96.42,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1129,77.206,125380.2,77.21,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1130,100.0,312894.2,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -158,7 +158,7 @@ LTFRB_PUJ1169,92.073,599858.4,92.07,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ1170,86.274,356315.8,86.27,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1171,89.82,471611.4,89.82,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1172,100.0,319234.3,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1173,100.0,300233.2,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1173,100.0,585226.3,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1174,92.873,717854.9,92.87,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1175,92.873,717854.9,92.87,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1176,92.222,657751.3,92.22,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -178,7 +178,7 @@ LTFRB_PUJ1189,100.0,443375.2,100.0,worldpop_2020_1km_population_density_proxy,lo
 LTFRB_PUJ1190,100.0,373725.1,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1191,100.0,373725.1,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1192,100.0,373725.1,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1193,100.0,373725.1,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1193,100.0,398970.4,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1194,100.0,481088.5,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1195,100.0,481088.5,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1196,80.708,208630.3,80.71,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -221,7 +221,7 @@ LTFRB_PUJ1233,93.783,480537.5,93.78,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ1234,79.65,722424.8,79.65,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1235,79.65,722424.8,79.65,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1236,78.882,209769.4,78.88,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1237,81.29,178420.7,81.29,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1237,83.213,198852.8,83.21,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1238,99.659,540718.6,99.66,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1239,99.659,540718.6,99.66,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1240,72.644,1100401.3,72.64,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -235,7 +235,7 @@ LTFRB_PUJ1248,91.988,317682.4,91.99,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ1249,87.696,382361.4,87.7,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1250,80.466,134618.2,80.47,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1251,80.466,134618.2,80.47,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1252,87.14,248993.8,87.14,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1252,86.055,229635.3,86.06,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1253,85.414,254025.5,85.41,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1254,100.0,240001.1,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1255,100.0,285929.4,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -324,7 +324,7 @@ LTFRB_PUJ1342,81.538,92795.4,81.54,worldpop_2020_1km_population_density_proxy,lo
 LTFRB_PUJ1343,81.538,92795.4,81.54,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1344,81.889,320288.0,81.89,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1345,73.079,215468.0,73.08,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1346,81.207,260549.5,81.21,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1346,78.645,266726.3,78.65,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1347,85.24,230959.4,85.24,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1348,75.147,500817.1,75.15,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1349,78.533,479222.5,78.53,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -420,7 +420,7 @@ LTFRB_PUJ1440,77.937,314834.6,77.94,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ1441,79.376,336813.2,79.38,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1442,85.463,307362.2,85.46,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1443,85.463,307362.2,85.46,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1444,86.805,452054.2,86.81,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1444,85.448,409887.3,85.45,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1445,86.805,452054.2,86.81,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1446,7.546,200695.6,7.55,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1447,8.067,187727.8,8.07,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -485,7 +485,7 @@ LTFRB_PUJ1510,66.383,103164.5,66.38,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ1511,79.095,168102.0,79.09,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1512,95.541,233771.7,95.54,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1513,95.541,233771.7,95.54,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1514,86.037,313138.0,86.04,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1514,80.279,267538.5,80.28,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1515,83.086,258499.2,83.09,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1516,94.196,356415.1,94.2,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1517,96.57,368791.4,96.57,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -554,7 +554,7 @@ LTFRB_PUJ1584,77.793,129997.4,77.79,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ1585,77.793,129997.4,77.79,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1587,100.0,145716.0,100.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1588,75.46,562041.2,75.46,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1589,80.358,586956.8,80.36,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1589,80.611,594616.3,80.61,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1590,58.398,70714.6,58.4,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1591,58.398,70714.6,58.4,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1592,85.247,510208.2,85.25,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -703,7 +703,7 @@ LTFRB_PUJ1747,89.22,515182.4,89.22,worldpop_2020_1km_population_density_proxy,lo
 LTFRB_PUJ1748,93.438,298685.2,93.44,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1749,95.236,293044.0,95.24,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1750,96.889,181336.6,96.89,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1752,0.0,51623.0,0.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1752,0.0,38320.3,0.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1753,0.0,33123.1,0.0,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1754,87.835,615988.1,87.83,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1755,87.711,609772.6,87.71,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -775,7 +775,7 @@ LTFRB_PUJ1823,96.904,777325.2,96.9,worldpop_2020_1km_population_density_proxy,lo
 LTFRB_PUJ1824,96.761,742958.9,96.76,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1826,97.534,316502.0,97.53,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1827,54.33,377248.8,54.33,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1828,70.969,185492.9,70.97,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1828,47.572,284699.5,47.57,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1830,73.009,430823.4,73.01,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1831,73.558,427609.6,73.56,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1833,71.763,278109.3,71.76,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -863,7 +863,7 @@ LTFRB_PUJ1919,88.592,405526.5,88.59,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ1920,90.492,132569.5,90.49,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1922,81.215,233453.1,81.22,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1923,89.493,211858.5,89.49,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ1924,93.206,349451.3,93.21,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ1924,94.468,429118.5,94.47,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1925,93.206,349451.3,93.21,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1926,94.824,333450.2,94.82,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ1928,94.077,295279.4,94.08,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -1113,7 +1113,7 @@ LTFRB_PUJ2188,90.009,405165.6,90.01,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ2189,89.216,495854.2,89.22,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2190,86.214,457396.0,86.21,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2192,69.674,163548.2,69.67,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ2193,87.988,142150.8,87.99,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ2193,83.422,179310.4,83.42,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2194,83.422,179310.4,83.42,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2195,60.81,84152.9,60.81,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2196,60.81,84152.9,60.81,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -1181,7 +1181,7 @@ LTFRB_PUJ2259,85.529,385210.8,85.53,worldpop_2020_1km_population_density_proxy,l
 LTFRB_PUJ2260,86.354,227699.3,86.35,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2261,77.83,656756.5,77.83,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2262,77.199,637917.7,77.2,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ2263,92.835,196299.7,92.83,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ2263,90.879,154208.2,90.88,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2264,92.043,176775.2,92.04,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2265,54.314,70530.9,54.31,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2266,66.62,96534.7,66.62,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
@@ -1313,7 +1313,7 @@ LTFRB_PUJ2397,89.31,560008.9,89.31,worldpop_2020_1km_population_density_proxy,lo
 LTFRB_PUJ2398,89.772,585298.7,89.77,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2399,95.121,378040.2,95.12,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2400,91.818,391640.2,91.82,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
-LTFRB_PUJ2401,86.541,195387.2,86.54,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
+LTFRB_PUJ2401,88.618,231032.9,88.62,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2403,96.496,297467.5,96.5,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2404,96.496,297467.5,96.5,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
 LTFRB_PUJ2405,96.663,233864.7,96.66,worldpop_2020_1km_population_density_proxy,low_resolution_density_not_settlement_boundaries,False,14641.191,300
