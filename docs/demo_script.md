@@ -2,15 +2,15 @@
 
 ## Duration and setup
 
-Target duration: approximately 85 seconds with the configured network voice. Exact duration follows narration playback and may vary with network conditions.
+The live tour advances by completed steps and narration playback. It intentionally shows no elapsed-time or target-duration counter.
 
-Use the production application at <https://route2zero.netlify.app/> or the generated local Netlify preview. Press **TOUR ME** for the primary demonstration. The built-in tour performs 15 live stages, including animated dropdown selection, random route selection, street-following map zoom, scenario controls, portfolio constraints, an assistant question, methods, and exports. It can be paused, resumed, skipped forward or back, muted, or ended at any time.
+Use the production application at <https://route2zero.netlify.app/> or the generated local Netlify preview. Press **TOUR ME** for the primary demonstration. The built-in tour performs 15 live stages, including a concise decision summary, progressive evidence disclosure, animated dropdown selection, random route selection, street-following map zoom, scenario controls, portfolio constraints, an assistant question, methods, and exports. It can be paused, resumed, skipped forward or back, muted, or ended at any time.
 
 Before recording:
 
 - confirm build `r2z-d4c8d4cc709a` is displayed or documented;
 - confirm scenario `scn-e0f12f397e`;
-- confirm 1,522 routes, 20 dated current external records, 9 robust priorities, and 8 Phase-1 corridors;
+- confirm 1,522 historic routes, 20 dated external map records, 9 robust priorities, and 8 Phase-1 corridors;
 - confirm a mapped route is available in the route selector; TOUR ME chooses one at random on every run;
 - allow the Mapbox style to finish loading;
 - close unrelated tabs and notifications;
@@ -44,7 +44,7 @@ The walkthrough uses the identified build and its active controls. It is not a v
 
 **Screen:** Hero and build metrics.
 
-**Action:** Let the metric count-up finish, then move the pointer from 1,522 routes to 20 current external records and 9 robust priorities.
+**Action:** Move the pointer from 1,522 historic routes to 20 dated map records and 9 robust validation priorities.
 
 **Narration:**
 
@@ -141,7 +141,7 @@ End on the exported decision-record title or the Route2Zero mark with the live a
 The narration may state:
 
 - 1,522 route-direction records are screened;
-- 20 dated current external route records are supplied, while active service remains uncertain;
+- 20 dated external map records are supplied, while active service remains uncertain;
 - 9 records are robust priorities;
 - 8 corridors are selected for Phase 1;
 - the flagship score is 79.07 under the named default scenario;

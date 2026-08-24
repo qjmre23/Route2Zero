@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
     <meta name="theme-color" content="#071a20">
-    <meta name="description" content="Route2Zero is an AI/ML-assisted electrification planning system for evidence-aware e-jeepney corridor decisions in Metro Manila.">
+    <meta name="description" content="Route2Zero screens 1,522 historic jeepney route records and turns uncertainty into an eight-corridor field-validation plan for electric mobility decisions.">
     <title>Route2Zero 2.1 | Evidence-Aware Electrification Planning</title>
     <link rel="icon" href="data:,">
     <link rel="preconnect" href="https://api.mapbox.com">
@@ -45,7 +45,7 @@
           <span id="controlsTitle" class="live-dot"><i></i> Scenario controls</span>
           <button id="closeControls" class="icon-button" type="button" aria-label="Close filters">×</button>
         </div>
-        <div class="scenario-chip"><span>Live scenario</span><strong id="sidebarScenarioId">Loading…</strong></div>
+        <div class="scenario-chip"><span>Live scenario</span><strong id="sidebarScenarioId">scn-e0f12f397e</strong></div>
         <label class="control-label" for="cityFilter">City / LGU scope</label>
         <select id="cityFilter"></select>
         <label class="toggle-row" for="includeHistoric"><input id="includeHistoric" type="checkbox" checked><span><b>Show historic screening baseline</b><small>Historic GTFS is not proof of current service</small></span></label>
@@ -82,24 +82,25 @@
 
       <section class="content">
         <section id="overview" class="hero" aria-labelledby="heroTitle">
-          <div class="hero-copy"><p class="eyebrow">AI × City Climate Action Hackathon 2026</p><h1 id="heroTitle">Choose corridors that stay strong when the <em>evidence is tested.</em></h1><p class="hero-lede">Find the corridors that remain strong when climate impact, equity, infrastructure, operator evidence and uncertainty are tested together.</p><div class="hero-actions"><a class="button-primary" href="#corridor-map">Explore the corridor map</a><a class="button-quiet" href="#phase1-portfolio">Open Phase-1 portfolio</a><button id="startWalkthroughHero" class="button-quiet" type="button" disabled>TOUR ME</button></div></div>
-          <div class="hero-signal" aria-label="Route2Zero analytical governance"><p>Decision architecture</p><div class="signal-orbit"><span id="heroRobustCount">—</span><small>robust-priority routes</small></div><div class="signal-flow"><span>ML estimates</span><i></i><span>Models quantify</span><i></i><span>People decide</span></div><small>ML-assisted corridor intelligence · climate-impact scenarios · human-controlled policy</small></div>
+          <div class="hero-copy"><p class="eyebrow">AI × City Climate Action Hackathon 2026</p><h1 id="heroTitle">Decide where to validate <em>electric jeepney pilots first.</em></h1><p class="hero-lede">Screen historic corridors, expose what is still unknown, and turn limited fieldwork into a defensible validation portfolio.</p><div class="hero-actions"><a class="button-primary" href="#corridor-map">Explore the corridor map</a><a class="button-quiet" href="#phase1-portfolio">Open validation portfolio</a><button id="startWalkthroughHero" class="button-quiet" type="button" disabled>TOUR ME</button></div></div>
+          <div class="hero-signal" aria-label="Route2Zero analytical governance"><p>Validation priority</p><div class="signal-orbit"><span id="heroRobustCount">9</span><small>routes stay top-10 across policy tests</small></div><div class="signal-flow"><span>Screen</span><i></i><span>Validate</span><i></i><span>Pilot</span></div><small>Models organize evidence · people approve every real-world step</small></div>
         </section>
 
-        <section class="trust-strip" aria-label="Decision-use boundary"><div class="trust-icon" aria-hidden="true">i</div><div><strong>Screen first. Validate before committing.</strong><span>Historic operations, scenario impacts, proxies and neutral priors remain visibly labelled.</span></div><button id="openMethod" type="button">Review evidence boundary</button></section>
-        <section class="metrics" aria-label="Build summary"><article><span>Routes screened</span><strong id="routesMetric">0</strong><small>Historic route-direction universe</small></article><article><span>Current validations</span><strong id="validatedMetric">0</strong><small>Dated external route records; activity still uncertain</small></article><article><span>Robust priority</span><strong id="robustMetric">0</strong><small>Across 5,000 policy tests</small></article><article><span>Scenario ID</span><strong id="scenarioMetric" class="metric-code">—</strong><small>Changes with policy controls</small></article></section>
+        <section class="trust-strip" aria-label="Decision-use boundary"><div class="trust-icon" aria-hidden="true">i</div><div><strong>Validation-ready, not deployment-approved.</strong><span>20 dated map records · 0 field-confirmed active routes · 8 corridors prioritized for field validation.</span></div><button id="openMethod" type="button">Review validation boundary</button></section>
+        <section class="metrics" aria-label="Build summary"><article><span>Historic routes screened</span><strong id="routesMetric">1,522</strong><small>2013–2020 route-direction records</small></article><article><span>Dated map matches</span><strong id="validatedMetric">20</strong><small>Not proof of active service</small></article><article><span>Robust validation priorities</span><strong id="robustMetric">9</strong><small>Top-10 across 5,000 policy tests</small></article><article><span>Scenario ID</span><strong id="scenarioMetric" class="metric-code">scn-e0f12f397e</strong><small>Changes with policy controls</small></article></section>
 
         <section id="corridor-map" class="panel map-panel" aria-labelledby="mapHeading">
-          <div class="panel-heading map-heading"><div><p class="eyebrow dark">Corridor Map</p><h2 id="mapHeading">Read the network through eight evidence layers</h2><p>All routes in the current scope are clustered. Reviewed OSM matches use observed member-way geometry; other corridors use a labelled Mapbox street-following interpretation.</p></div><div class="map-tools"><div class="route-search"><label for="routeFinder">Find a route</label><select id="routeFinder"></select></div><div class="layer-search"><label for="mapLayer">Map layer</label><select id="mapLayer"><option value="priority">Priority</option><option value="climate">Climate impact</option><option value="equity">Equity / exposure</option><option value="charging">Charging evidence</option><option value="evidence">Evidence confidence</option><option value="stability">Rank stability</option><option value="typology">Corridor typology</option><option value="validation">Validation status</option></select></div></div></div>
+          <div class="panel-heading map-heading"><div><p class="eyebrow dark">Corridor Map</p><h2 id="mapHeading">Compare routes, then open only the evidence you need</h2><p>Reviewed OSM matches use observed member-way geometry. Other routes remain clearly labelled as historic screening records with planning geometry.</p></div><div class="map-tools"><div class="route-search"><label for="routeFinder">Find a route</label><select id="routeFinder"></select></div><div class="layer-search"><label for="mapLayer">Map layer</label><select id="mapLayer"><option value="priority">Priority</option><option value="climate">Climate impact</option><option value="equity">Equity / exposure</option><option value="charging">Charging evidence</option><option value="evidence">Evidence confidence</option><option value="stability">Rank stability</option><option value="typology">Corridor typology</option><option value="validation">Validation status</option></select></div></div></div>
           <p id="mapHelp" class="sr-only">Use the route selector as the keyboard-accessible alternative to clicking map points. Dashed route lines indicate approximate or unverified source geometry.</p>
           <div class="map-frame"><div id="map" role="region" aria-label="Interactive Mapbox corridor map" aria-describedby="mapHelp"></div><div id="mapLegend" class="map-legend" aria-label="Map legend"></div><div id="roadStatus" class="road-status" role="status" aria-live="polite" aria-atomic="true"><i></i><span>Preparing the selected corridor…</span></div></div>
           <div class="map-footnote"><span id="mapCount">0 routes shown</span><span><i class="line-sample dashed"></i> Dashed = source geometry unverified</span><span>Map © Mapbox · Data © OpenStreetMap</span></div>
         </section>
 
         <section id="route-lens" class="panel route-lens" aria-labelledby="routeLensHeading">
-          <div class="panel-heading compact"><div><p class="eyebrow dark">Route Lens</p><h2 id="routeLensHeading">One corridor, eight decision signals</h2></div><span id="routeStatusPill" class="pill">Historic screening baseline</span></div>
+          <div class="panel-heading compact"><div><p class="eyebrow dark">Route Lens</p><h2 id="routeLensHeading">One corridor, one clear decision</h2></div><span id="routeStatusPill" class="pill">Historic screening baseline</span></div>
           <div class="route-identity"><div><h3 id="routeName">Loading route…</h3><p id="routeMeta"></p></div><p id="routeRationale" class="route-rationale"></p></div>
-          <div class="lens-grid">
+          <div id="decisionSummary" class="decision-summary" aria-label="Corridor decision summary"><article><span>Decision</span><strong id="decisionSummaryRank">Loading…</strong><small id="decisionSummaryRankDetail">Active policy result</small></article><article><span>Evidence confidence</span><strong id="decisionSummaryEvidence">Loading…</strong><small id="decisionSummaryEvidenceDetail">Current status</small></article><article><span>Validate next</span><strong id="decisionSummaryNext">Loading…</strong><small id="decisionSummaryNextDetail">Highest-value evidence gap</small></article></div>
+          <details id="evidenceSignalDetails" class="evidence-signal-details"><summary><span><b>Evidence detail</b> Open the eight supporting signals</span><i aria-hidden="true">+</i></summary><div class="evidence-signal-body"><div class="lens-grid">
             <article class="lens-card accent-lime"><div><span>Priority</span><b id="priorityClaim">DERIVED</b></div><strong id="priorityValue">—</strong><p id="priorityDetail">Live policy score</p></article>
             <article class="lens-card"><div><span>Evidence</span><b id="evidenceClaim">DERIVED</b></div><strong id="evidenceValue">—</strong><p id="evidenceDetail">Confidence grade</p></article>
             <article class="lens-card"><div><span>Climate</span><b id="climateClaim">SCENARIO</b></div><strong id="climateRange">—</strong><p id="climateDetail">Net tCO₂e / year range</p></article>
@@ -108,9 +109,7 @@
             <article class="lens-card"><div><span>Operator</span><b id="operatorClaim">NEUTRAL PRIOR</b></div><strong id="operatorScore">—</strong><p id="operatorDetail">Awaiting consent-based evidence</p></article>
             <article class="lens-card"><div><span>Robustness</span><b id="robustnessClaim" data-status="DERIVED">DERIVED</b></div><strong id="robustnessScore">—</strong><p id="robustnessDetail">Top-10 probability</p></article>
             <article class="lens-card"><div><span>Typology</span><b id="typologyClaim" data-status="ML_ESTIMATED">ML_ESTIMATED</b></div><strong id="typologyValue">—</strong><p id="typologyDetail">Comparable corridor pattern</p></article>
-          </div>
-          <div id="climateContext" class="climate-context"></div>
-          <div id="validationEvidence" class="validation-evidence"></div>
+          </div><div id="climateContext" class="climate-context"></div><div id="validationEvidence" class="validation-evidence"></div></div></details>
           <div class="decision-change"><div><p class="eyebrow dark">What changes this decision?</p><h3 id="decisionChangeTitle">Loading evidence sensitivity…</h3><p id="decisionChangeCopy"></p></div><div class="rank-range"><span>Current rank <b id="currentRank">—</b></span><span>Median <b id="medianRank">—</b></span><span>P10–P90 <b id="rankRange">—</b></span></div></div>
         </section>
 
@@ -155,7 +154,7 @@
 
     <button id="controlsBackdrop" class="controls-backdrop" type="button" tabindex="-1" aria-hidden="true" aria-label="Close filters"></button>
     <aside id="walkthroughPanel" class="walkthrough-panel hidden" role="dialog" aria-modal="false" aria-labelledby="walkthroughTitle" aria-describedby="walkthroughCopy" tabindex="-1">
-      <div class="walkthrough-progress"><span id="walkthroughStep">1 / 15</span><span id="walkthroughTime">0:00 / 1:25</span></div>
+      <div class="walkthrough-progress"><span id="walkthroughStep">1 / 15</span></div>
       <div class="walkthrough-track" role="progressbar" aria-label="Tour progress" aria-valuemin="1" aria-valuemax="15" aria-valuenow="1"><i id="walkthroughBar"></i></div>
       <h2 id="walkthroughTitle">Meet Route2Zero</h2>
       <p id="walkthroughCopy">The guided tour will operate the live dashboard while explaining each decision layer.</p>

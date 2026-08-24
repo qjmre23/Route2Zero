@@ -75,9 +75,6 @@ const state = {
     controller: null,
     audio: null,
     audioCache: new Map(),
-    startedAt: 0,
-    pausedAt: 0,
-    clock: null,
     cursorX: -90,
     cursorY: -90,
     randomRouteId: null,
@@ -120,6 +117,13 @@ const els = {
   routeName: byId("routeName"),
   routeMeta: byId("routeMeta"),
   routeRationale: byId("routeRationale"),
+  decisionSummaryRank: byId("decisionSummaryRank"),
+  decisionSummaryRankDetail: byId("decisionSummaryRankDetail"),
+  decisionSummaryEvidence: byId("decisionSummaryEvidence"),
+  decisionSummaryEvidenceDetail: byId("decisionSummaryEvidenceDetail"),
+  decisionSummaryNext: byId("decisionSummaryNext"),
+  decisionSummaryNextDetail: byId("decisionSummaryNextDetail"),
+  evidenceSignalDetails: byId("evidenceSignalDetails"),
   priorityClaim: byId("priorityClaim"),
   priorityValue: byId("priorityValue"),
   priorityDetail: byId("priorityDetail"),
@@ -194,7 +198,6 @@ const els = {
   startWalkthroughHero: byId("startWalkthroughHero"),
   walkthroughPanel: byId("walkthroughPanel"),
   walkthroughStep: byId("walkthroughStep"),
-  walkthroughTime: byId("walkthroughTime"),
   walkthroughTitle: byId("walkthroughTitle"),
   walkthroughCopy: byId("walkthroughCopy"),
   walkthroughBar: byId("walkthroughBar"),
@@ -679,7 +682,20 @@ function renderRouteLens() {
   els.routeName.textContent = row.route_long_name;
   els.routeMeta.textContent = `${row.route_id} · ${String(row.cities_served || "Unspecified").replaceAll("|", " · ")} · ${formatNumber(row.length_km, 1)} km`;
   els.routeRationale.textContent = useCached ? plannerCache.answer : deterministicRouteSummary(row);
-  els.routeStatusPill.textContent = routeIsCurrent(row) ? "Current external record · active status uncertain" : "Historic screening baseline · current status unverified";
+  els.routeStatusPill.textContent = routeIsCurrent(row) ? "Dated external map record · active status uncertain" : "Historic screening baseline · current status unverified";
+
+  const missing = row.highest_value_missing_evidence || "current service validation";
+  const readableMissing = String(missing).replaceAll("_", " ");
+  els.decisionSummaryRank.textContent = `#${row.liveRank || "—"} for validation`;
+  els.decisionSummaryRankDetail.textContent = `${formatNumber(row.liveScore, 1)}/100 under the active policy lens`;
+  els.decisionSummaryEvidence.textContent = `Grade ${row.evidence_grade || "—"}`;
+  els.decisionSummaryEvidenceDetail.textContent = routeIsCurrent(row)
+    ? "Dated map record; active service remains uncertain"
+    : "Historic record; current service is unverified";
+  els.decisionSummaryNext.textContent = readableMissing;
+  els.decisionSummaryNextDetail.textContent = bool(row.portfolio_flip_possible)
+    ? "This evidence can change shortlist membership"
+    : "Highest-value evidence gap for this route";
 
   setClaimBadge(els.priorityClaim, "DERIVED");
   els.priorityValue.textContent = `${formatNumber(row.liveScore, 1)}/100`;
@@ -716,7 +732,6 @@ function renderRouteLens() {
   els.typologyValue.textContent = row.corridor_type_label || "Unclassified";
   els.typologyDetail.textContent = `${row.clustering_model_version || "model unavailable"}${bool(row.cluster_outlier_flag) ? " · pattern outlier" : ""}`;
 
-  const missing = row.highest_value_missing_evidence || "current service validation";
   els.decisionChangeTitle.textContent = `Highest-value gap: ${String(missing).replaceAll("_", " ")}`;
   els.decisionChangeCopy.textContent = `${row.validation_priority_reason || "Collect direct evidence before proceeding."} Tested rank swing: up to ${formatNumber(row.maximum_rank_swing)} places${bool(row.portfolio_flip_possible) ? "; this field can flip portfolio membership." : "."}`;
   els.currentRank.textContent = `#${row.liveRank || "—"}`;
@@ -724,7 +739,7 @@ function renderRouteLens() {
   els.rankRange.textContent = `#${formatNumber(row.rank_p10)}–#${formatNumber(row.rank_p90)}`;
 
   els.validationEvidence.innerHTML = routeIsCurrent(row)
-    ? `${claimBadge(row.route_geometry_claim_status || "OBSERVED")}<div><strong>Current-evidence record</strong> Matched to <a href="${escapeHtml(row.source_reference)}" target="_blank" rel="noreferrer">OSM relation ${escapeHtml(String(row.osm_relation_id || "").replace(/\.0$/, ""))}</a>, reviewed ${escapeHtml(row.validation_date)}. The map uses its member-way geometry. Active service and franchise authority remain uncertain; LTFRB plan status is ${escapeHtml(row.official_plan_status || "MISSING")}.</div>`
+    ? `${claimBadge(row.route_geometry_claim_status || "OBSERVED")}<div><strong>Dated external map record</strong> Matched to <a href="${escapeHtml(row.source_reference)}" target="_blank" rel="noreferrer">OSM relation ${escapeHtml(String(row.osm_relation_id || "").replace(/\.0$/, ""))}</a>, reviewed ${escapeHtml(row.validation_date)}. The map uses its member-way geometry. Active service and franchise authority remain uncertain; LTFRB plan status is ${escapeHtml(row.official_plan_status || "MISSING")}.</div>`
     : `${claimBadge("MISSING")}<div><strong>No accepted current-route match.</strong> The corridor remains in the historic screening universe and uses ${escapeHtml(row.geometry_source || "approximate")} geometry.</div>`;
 
   setClaimBadge(els.fleetClaim, row.fleet_proxy_claim_status || "MISSING");
@@ -1909,7 +1924,7 @@ const tourSteps = [
   {
     target: ".metrics",
     title: "Start with coverage and uncertainty",
-    copy: "The headline metrics separate the historic screening universe, dated validations, robust-priority routes and the active scenario identifier.",
+    copy: "The headline metrics separate the historic screening universe, dated map records, robust validation priorities and the active scenario identifier.",
     narration: "These metrics expose coverage and uncertainty. Historic route records are screened at scale, while current validation and robust priority remain separate claims.",
     perform: async (signal) => {
       await moveTourCursor("#routesMetric", "Routes screened", signal);
@@ -1941,21 +1956,24 @@ const tourSteps = [
     }
   },
   {
-    target: "#route-lens",
-    title: "Read the corridor identity first",
-    copy: "Route identity, validation status, rationale and active priority are kept together before deeper indicators are interpreted.",
-    narration: "The Route Lens keeps identity and validation status ahead of the score. Priority responds to policy, but the underlying claims stay visible.",
+    target: "#decisionSummary",
+    title: "Read the decision before the detail",
+    copy: "The first view answers three questions: where the route ranks, how strong the evidence is, and what the city should validate next.",
+    narration: "The Route Lens starts with a plain decision summary: validation rank, evidence confidence, and the next check that could change the choice.",
     perform: async (signal) => {
       await moveTourCursor("#routeName", state.tour.randomRouteName || "Selected corridor", signal);
-      await moveTourCursor("#priorityValue", "Live priority", signal);
+      await moveTourCursor("#decisionSummaryRank", "Validation priority", signal);
+      await moveTourCursor("#decisionSummaryNext", "Validate next", signal);
     }
   },
   {
-    target: ".lens-grid",
-    title: "Keep eight decision signals separate",
-    copy: "Climate, equity, charging, operator readiness, evidence, robustness and ML typology are never collapsed into an unexplained AI verdict.",
-    narration: "Eight claim-labelled signals prevent false precision. Climate is scenario-based, equity and charging are proxies, and operator readiness remains explicit evidence work.",
+    target: "#evidenceSignalDetails > summary",
+    title: "Open evidence detail only when needed",
+    copy: "The eight supporting signals stay one click away, keeping the main decision readable without hiding assumptions or uncertainty.",
+    narration: "The detailed signals are progressive disclosure, not a wall of badges. I will open them now so climate, equity, charging, operator evidence, robustness, and typology remain inspectable.",
     perform: async (signal) => {
+      if (!els.evidenceSignalDetails.open) await pulseTourClick(els.evidenceSignalDetails.querySelector("summary"), "Open evidence detail", signal, true);
+      await focusTourTarget(".lens-grid", signal);
       await moveTourCursor("#climateRange", "Climate range", signal);
       await moveTourCursor("#evidenceValue", "Evidence grade", signal);
       await moveTourCursor("#robustnessScore", "Rank stability", signal);
@@ -2076,17 +2094,6 @@ const tourSteps = [
   }
 ];
 
-function formatTourClock(milliseconds) {
-  const seconds = Math.max(0, Math.floor(milliseconds / 1000));
-  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
-}
-
-function updateTourClock() {
-  if (!state.tour.running) return;
-  const now = state.tour.pausedAt || Date.now();
-  els.walkthroughTime.textContent = `${formatTourClock(now - state.tour.startedAt)} / 1:25`;
-}
-
 function snapshotTourState() {
   return {
     weights: Object.fromEntries(Object.entries(weightInputs).map(([key, input]) => [key, input.value])),
@@ -2101,6 +2108,7 @@ function snapshotTourState() {
     answerSource: els.answerSource.textContent,
     answerSourceHidden: els.answerSource.classList.contains("hidden"),
     methodOpen: els.methodDetails.open,
+    evidenceSignalsOpen: els.evidenceSignalDetails.open,
     scrollY: window.scrollY
   };
 }
@@ -2120,6 +2128,7 @@ function restoreTourState() {
   els.answerSource.textContent = snapshot.answerSource;
   els.answerSource.classList.toggle("hidden", snapshot.answerSourceHidden);
   els.methodDetails.open = snapshot.methodOpen;
+  els.evidenceSignalDetails.open = snapshot.evidenceSignalsOpen;
   document.querySelectorAll("[data-preset]").forEach((button) => button.classList.toggle("active", button.dataset.preset === snapshot.preset));
   renderAll();
   if (state.filtered.some((row) => String(row.route_id) === String(snapshot.selectedRouteId))) setSelected(snapshot.selectedRouteId, false);
@@ -2185,8 +2194,6 @@ function startWalkthrough(event) {
   state.tour.randomRouteName = "";
   state.tour.assistantReply = "";
   state.tour.snapshot = snapshotTourState();
-  state.tour.startedAt = Date.now();
-  state.tour.pausedAt = 0;
   document.body.classList.add("tour-running");
   els.walkthroughPanel.classList.remove("hidden");
   els.walkthroughPause.textContent = "Pause";
@@ -2197,19 +2204,14 @@ function startWalkthrough(event) {
   els.walkthroughVoiceStatus.innerHTML = state.tour.voiceEnabled
     ? "<i></i> Preparing ElevenLabs voice…"
     : "<i></i> Voice muted";
-  state.tour.clock = window.setInterval(updateTourClock, 250);
-  updateTourClock();
   void runTourStep(0);
 }
 
 function endWalkthrough(completed = false) {
   if (!state.tour.running && state.tourIndex < 0) return;
   cancelTourStep();
-  window.clearInterval(state.tour.clock);
-  state.tour.clock = null;
   state.tour.running = false;
   state.tour.paused = false;
-  state.tour.pausedAt = 0;
   document.body.classList.remove("tour-running");
   clearTourFocus();
   els.tourCursor.classList.remove("visible", "has-label", "clicking");
@@ -2226,13 +2228,10 @@ function toggleTourPause() {
   els.walkthroughPause.textContent = state.tour.paused ? "Resume" : "Pause";
   els.walkthroughPause.setAttribute("aria-pressed", String(state.tour.paused));
   if (state.tour.paused) {
-    state.tour.pausedAt = Date.now();
     cancelTourStep();
     els.walkthroughActionStatus.textContent = "Tour paused";
     setTourCursorLabel("Paused");
   } else {
-    state.tour.startedAt += Date.now() - state.tour.pausedAt;
-    state.tour.pausedAt = 0;
     void runTourStep(Math.max(0, state.tourIndex));
   }
 }

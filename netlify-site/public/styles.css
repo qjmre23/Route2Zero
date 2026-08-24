@@ -166,6 +166,18 @@ input[type="range"] { width: 100%; height: 28px; margin: -3px 0 2px; accent-colo
 .route-rationale { align-self: center; line-height: 1.6; }
 .pill, .scenario-id { display: inline-flex; align-items: center; width: fit-content; max-width: 100%; border-radius: 999px; padding: 6px 10px; color: #0b6259; background: #dbf5e9; font-size: .67rem; font-weight: 800; overflow-wrap: anywhere; }
 .scenario-id { color: #d4ff84; background: var(--deep); font-family: ui-monospace, SFMono-Regular, Consolas, monospace; }
+.decision-summary { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.decision-summary article { min-width: 0; display: flex; flex-direction: column; padding: 17px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(145deg, #fbfcf8, #edf4ea); }
+.decision-summary article:first-child { color: white; border-color: transparent; background: linear-gradient(145deg, #073136, #0c6158); }
+.decision-summary span { color: var(--muted); font-size: .68rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.decision-summary article:first-child span, .decision-summary article:first-child small { color: #bdd2cd; }
+.decision-summary strong { margin: 12px 0 7px; overflow-wrap: anywhere; font: 800 clamp(1.1rem, 1.7vw, 1.55rem)/1.15 Manrope, sans-serif; text-transform: capitalize; }
+.decision-summary article:first-child strong { color: var(--lime); }
+.decision-summary small { margin-top: auto; color: var(--muted); line-height: 1.4; }
+.evidence-signal-details { margin-top: 11px; overflow: hidden; background: rgba(248, 250, 246, .9); }
+.evidence-signal-details > summary { color: var(--ink); background: #e9f0e6; }
+.evidence-signal-details > summary b { padding: 5px 8px; border-radius: 999px; color: #0b6259; background: #d4f2e4; }
+.evidence-signal-body { padding: 12px; }
 .lens-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
 .lens-card { min-width: 0; min-height: 168px; display: flex; flex-direction: column; justify-content: space-between; padding: 17px; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(145deg, #fbfcf8, #f0f5ed); }
 .lens-card.accent-lime { color: white; border-color: transparent; background: linear-gradient(145deg, #073136, #0c6158); }
@@ -384,6 +396,7 @@ body.tour-running .walkthrough-trigger, body.tour-running #startWalkthroughHero 
   body.controls-open .controls-backdrop { display: block; }
   .metrics { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .route-identity, .decision-change, .method-sources { grid-template-columns: 1fr; }
+  .decision-summary { grid-template-columns: 1fr; }
   .portfolio-builder { grid-template-columns: repeat(3, 1fr); }
   .portfolio-builder button { grid-column: 1 / -1; }
   .method-sources { margin-top: 42px; padding: 24px 18px; }

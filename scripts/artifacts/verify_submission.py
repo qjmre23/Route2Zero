@@ -3,7 +3,9 @@ from pypdf import PdfReader
 import json
 import re
 
-base = Path("output/submission")
+root = Path(__file__).resolve().parents[2]
+base = root / "output" / "submission"
+manifest = json.loads((root / "data" / "processed" / "build_manifest.json").read_text(encoding="utf-8"))
 pdfs = [
     "Route2Zero_Concept.pdf",
     "Route2Zero_Prototype_Demonstration.pdf",
@@ -20,9 +22,9 @@ expected_pages = {
     "Route2Zero_Team_Larpers_Pilot_Plan.pdf": 5,
 }
 provenance_ids = (
-    "r2z-d4c8d4cc709a",
-    "scn-e0f12f397e",
-    "prt-fd6de9d793",
+    manifest["build_id"],
+    manifest["default_scenario_id"],
+    manifest["default_portfolio_scenario_id"],
 )
 out = {}
 for fn in pdfs:
@@ -83,5 +85,45 @@ for fn in pdfs:
             count == 1 for count in name_occurrences.values()
         ),
         "team_larpers": "Team Larpers" in text,
+        "build_ids_found": sorted(set(re.findall(r"r2z-[0-9a-f]+", text))),
+        "single_canonical_build_id": set(re.findall(r"r2z-[0-9a-f]+", text)) == {manifest["build_id"]},
     }
+
+surface_paths = {
+    "README.md": root / "README.md",
+    "docs/judging_matrix.md": root / "docs" / "judging_matrix.md",
+}
+surface_build_ids = {
+    name: sorted(set(re.findall(r"r2z-[0-9a-f]+", path.read_text(encoding="utf-8"))))
+    for name, path in surface_paths.items()
+}
+out["traceability_contract"] = {
+    "manifest_build_id": manifest["build_id"],
+    "manifest_scenario_id": manifest["default_scenario_id"],
+    "manifest_portfolio_id": manifest["default_portfolio_scenario_id"],
+    "surface_build_ids": surface_build_ids,
+    "all_surfaces_use_canonical_build": all(
+        set(build_ids) == {manifest["build_id"]}
+        for build_ids in surface_build_ids.values()
+    ),
+    "all_pdfs_use_canonical_build": all(
+        item["single_canonical_build_id"]
+        for name, item in out.items()
+        if name.endswith(".pdf")
+    ),
+}
 print(json.dumps(out, indent=2))
+
+pdf_checks_ok = all(
+    item["page_count_ok"]
+    and item["links_visible_on_every_page"]
+    and item["links_clickable_on_every_page"]
+    and item["provenance_ids_on_every_page"]
+    and item["canonical_roster_ok"]
+    and item["team_larpers"]
+    and item["single_canonical_build_id"]
+    for name, item in out.items()
+    if name.endswith(".pdf")
+)
+if not pdf_checks_ok or not out["traceability_contract"]["all_surfaces_use_canonical_build"]:
+    raise SystemExit(1)

@@ -12,7 +12,7 @@ The evidence anchor is build `r2z-d4c8d4cc709a`, scenario `scn-e0f12f397e`, and 
 |---|---|
 | Route universe | 1,522 PUJ route-direction records |
 | Complete scores | 1,522 |
-| Dated current external route records | 20; active service remains uncertain |
+| Dated external map records | 20; active service remains uncertain |
 | Usable source geometries | 22: 20 OSM relations + 2 GTFS shapes |
 | Robust priorities | 9 |
 | Phase-1 corridors | 8 |
@@ -47,7 +47,7 @@ Route2Zero does not claim the Informal or Marginalized Settlements focus area fr
 ### Judge verification path
 
 1. Open the build summary.
-2. Confirm 1,522 records and 20 dated current external records with active status uncertain.
+2. Confirm 1,522 historic records and 20 dated external map records with active status uncertain.
 3. Open the flagship evidence card.
 4. Inspect its source statuses and validation queue.
 5. Review the pilot protocol.
@@ -221,7 +221,7 @@ Before submission, confirm that the website, Concept, Demonstration, Pilot Plan,
 - scenario `scn-e0f12f397e` or a clearly identified replacement;
 - portfolio `prt-fd6de9d793` or a clearly identified replacement;
 - 1,522 records;
-- 20 dated current external route records;
+- 20 dated external map records, with active service still uncertain;
 - 9 robust priorities;
 - 8 Phase-1 corridors;
 - the 40/30/15/15 policy lens;
