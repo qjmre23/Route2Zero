@@ -53,7 +53,7 @@
   "meaningful_vs_baseline": true,
   "influences_climate_when_historic_value_missing": true,
   "random_seed": 20260820,
-  "trained_at_utc": "2026-08-24T15:14:21Z",
+  "trained_at_utc": "2026-08-24T16:12:06Z",
   "python_version": "3.12.13",
   "scikit_learn_version": "1.9.0",
   "limitations": [

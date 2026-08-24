@@ -4,7 +4,7 @@
 
 This plan defines how a six-month city pilot should validate the machine-learning and LLM components of Route2Zero while preserving the authority of deterministic models and human decision owners.
 
-The starting point is build `r2z-0cd49ad56aaa`:
+The starting point is build `r2z-d4c8d4cc709a`:
 
 - service model `service-v1-266e0b1d`;
 - typology model `typology-v1-ab8203c9`;

@@ -1,4 +1,4 @@
-# Route2Zero 2.0 validation brief: Binangonan - JRC via Angono
+# Route2Zero 2.1 validation brief: Binangonan - JRC via Angono
 
 **Route ID:** `LTFRB_PUJ1153`
 

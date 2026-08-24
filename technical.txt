@@ -1,10 +1,10 @@
 ROUTE2ZERO 2.1 TECHNICAL REFERENCE
 Build, data, models, scenarios, governance, Netlify deployment, and handover
-Reference build: r2z-0cd49ad56aaa
+Reference build: r2z-d4c8d4cc709a
 Reference policy scenario: scn-e0f12f397e
 Reference portfolio scenario: prt-fd6de9d793
 Pipeline version: 2.1.0
-Build timestamp: 2026-08-24T15:24:12Z
+Build timestamp: 2026-08-24T16:13:03Z
 
 1. DOCUMENT STATUS
 
@@ -93,9 +93,9 @@ Build timestamp: 2026-08-24T15:24:12Z
 5. REFERENCE RELEASE IDENTITY
 
 5.1 Pipeline version is 2.1.0.
-5.2 Build ID is r2z-0cd49ad56aaa.
-5.3 Build timestamp is 2026-08-24T15:24:12Z.
-5.4 The manifest-recorded Git commit is fc151f33f366407ea7de18ad0184e8fb3faef341.
+5.2 Build ID is r2z-d4c8d4cc709a.
+5.3 Build timestamp is 2026-08-24T16:13:03Z.
+5.4 The manifest-recorded Git commit is 190ade5203cc5cbb02840a39246be46713bebd03.
 5.5 Default policy scenario is scn-e0f12f397e.
 5.6 Default portfolio scenario is prt-fd6de9d793.
 5.7 Service-model version is service-v1-266e0b1d.

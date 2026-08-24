@@ -139,7 +139,7 @@ function label(slide, value, x, y, fill = C.lavender, color = C.navy2, width = 1
 function addTopLinks(slide, dark = false) {
   const color = dark ? "#C9D4E8" : C.muted;
   const linkColor = dark ? "#7DE6D1" : C.blue;
-  const s = rich(
+  rich(
     slide,
     [[
       { run: "GitHub: ", textStyle: { color } },
@@ -148,23 +148,32 @@ function addTopLinks(slide, dark = false) {
         textStyle: { color: linkColor, underline: "sng" },
         link: { uri: GITHUB, isExternal: true },
       },
-      { run: "   |   Live: ", textStyle: { color } },
+    ]],
+    66,
+    14,
+    410,
+    22,
+    { fontSize: 13, color }
+  );
+  rich(
+    slide,
+    [[
+      { run: "Live: ", textStyle: { color } },
       {
         run: LIVE,
         textStyle: { color: linkColor, underline: "sng" },
         link: { uri: LIVE, isExternal: true },
       },
     ]],
-    66,
+    490,
     14,
-    900,
+    420,
     22,
     { fontSize: 13, color }
   );
-  return s;
 }
 
-function addFooter(slide, pageNo, dark = false, meta = `${BUILD} · ${SCENARIO}`) {
+function addFooter(slide, pageNo, dark = false, meta = `${BUILD} · ${SCENARIO} · ${PORTFOLIO}`) {
   line(slide, 66, 680, 1148, dark ? "#243B5F" : C.line, 1);
   text(slide, meta, 66, 686, 880, 18, { fontSize: 11, color: dark ? "#8FA7C8" : C.muted });
   text(slide, String(pageNo).padStart(2, "0"), 1155, 684, 58, 20, {
@@ -536,7 +545,7 @@ async function buildConcept() {
     text(s, "BASE CASE", 94, 575, 150, 18, { fontSize: 12, bold: true, color: "#7DE6D1" });
     text(s, "+2,711 tCO₂e/year", 94, 599, 320, 30, { fontSize: 26, bold: true, color: C.white });
     text(s, "Bounded low–high: −8,191 to +22,288 · avg equity 73.9 · all 8 grade C", 450, 592, 680, 40, { fontSize: 17, bold: true, color: "#D6E0EF", align: "right" });
-    addFooter(s, 18, false, `${BUILD} · ${PORTFOLIO}`); notes(s, "The constrained portfolio changes four of the simple top-eight routes because it enforces corridor and city diversity constraints.", ["data/processed/portfolio_scenarios.json"]);
+    addFooter(s, 18, false, `${BUILD} · ${SCENARIO} · ${PORTFOLIO}`); notes(s, "The constrained portfolio changes four of the simple top-eight routes because it enforces corridor and city diversity constraints.", ["data/processed/portfolio_scenarios.json"]);
   }
 
   // 19. Flagship corridor.
@@ -574,7 +583,7 @@ async function demoScreenshotSlide(p, n, titleValue, shot, caption, annotations 
   const s = p.slides.add(); s.background.fill = opts.dark ? C.navy : C.white; addTopLinks(s, opts.dark); addTitle(s, titleValue, opts.kicker ?? "Prototype evidence", opts.dark, opts.titleSize ?? 39);
   await addImage(s, shot, 72, 164, 1090, 468, caption, { crop: opts.crop, radius: 14, borderColor: opts.dark ? "#29466E" : C.line });
   annotations.forEach((a) => annotation(s, ...a));
-  addFooter(s, n, opts.dark, opts.meta ?? `${BUILD} · ${SCENARIO}`);
+  addFooter(s, n, opts.dark, opts.meta ?? `${BUILD} · ${SCENARIO} · ${PORTFOLIO}`);
   notes(s, opts.note ?? caption, opts.sources ?? [LIVE, GITHUB]);
   return s;
 }
@@ -616,7 +625,7 @@ async function buildDemo() {
     text(s, "Historic: MISSING", 765, 461, 190, 28, { fontSize: 18, bold: true, color: C.coral }); text(s, "ML: 6,657", 958, 461, 195, 28, { fontSize: 20, bold: true, color: C.blue, align: "right" });
     text(s, "LTFRB_PUJ2451 is the only route where ML supplies the climate activity input. It is not current service or ridership.", 765, 505, 390, 68, { fontSize: 16.5, color: C.slate });
     label(s, "GroupKFold(5)", 765, 580, C.lavender, C.blue, 158); label(s, "No rank leakage", 945, 580, C.mint, C.green, 185);
-    addFooter(s, 6, false, `${BUILD} · ${SERVICE_MODEL}`); notes(s, "The model target is a historic schedule-based service proxy, not passenger demand.", ["data/processed/model_metrics.json"]);
+    addFooter(s, 6, false, `${BUILD} · ${SCENARIO} · ${PORTFOLIO} · ${SERVICE_MODEL}`); notes(s, "The model target is a historic schedule-based service proxy, not passenger demand.", ["data/processed/model_metrics.json"]);
   }
 
   await demoScreenshotSlide(p, 7, "The selected route is compared against similar corridors.", "map.png", "Typology map", [[1, 105, 223, "Layer: Corridor typology"], [2, 857, 225, "Three structural groups"], [3, 884, 544, "K = 3 · silhouette 0.373"]], { kicker: "Corridor typology", note: "Typology is unsupervised ML and does not add hidden points to the policy score.", sources: ["data/processed/corridor_typology.csv", "data/processed/model_metrics.json"] });
@@ -631,7 +640,7 @@ async function buildDemo() {
     await addImage(s, "scenario-lab.png", 72, 170, 650, 448, "Scenario Lab stability output", { crop: { left: 0.02, top: 0.05, right: 0.22, bottom: 0.08 } });
     const rows = [["Flagship", "1 → 1", "100%", "ROBUST", C.green], ["Binangonan–JRC", "9 → 24", "40.7%", "DEPENDENT", C.amber]];
     rows.forEach((r, i) => { const y = 218 + i * 156; text(s, r[0], 772, y, 360, 28, { fontSize: 22, bold: true }); text(s, "P10–P90 rank", 772, y + 43, 165, 20, { fontSize: 13, color: C.muted }); text(s, r[1], 956, y + 36, 175, 31, { fontSize: 24, bold: true, color: r[4], align: "right" }); text(s, "Top-10 probability", 772, y + 83, 190, 20, { fontSize: 13, color: C.muted }); text(s, r[2], 956, y + 77, 175, 31, { fontSize: 24, bold: true, color: r[4], align: "right" }); label(s, r[3], 772, y + 119, r[4] + "22", r[4], 210); });
-    addFooter(s, 12, false, `${BUILD} · seed 20260820 · 5,000 simulations`); notes(s, "Rank stability is resilience to the tested policy weights, not predictive accuracy.", ["data/processed/sensitivity.csv"]);
+    addFooter(s, 12, false, `${BUILD} · ${SCENARIO} · ${PORTFOLIO} · seed 20260820 · 5,000 simulations`); notes(s, "Rank stability is resilience to the tested policy weights, not predictive accuracy.", ["data/processed/sensitivity.csv"]);
   }
 
   await demoScreenshotSlide(p, 13, "What could change this decision?", "evidence-ai.png", "Value-of-information queue", [[1, 106, 225, "Climate assumptions: rank swing 1,395"], [2, 855, 225, "Portfolio flip possible"], [3, 118, 550, "Field validation action"]], { kicker: "Value of information", note: "The queue is precomputed by deterministic perturbation.", sources: ["data/processed/validation_priorities.json"] });

@@ -1,4 +1,4 @@
-# Route2Zero 2.0 validation brief: EDSA/Shaw Central - Morong via Antipolo, Theresa
+# Route2Zero 2.1 validation brief: EDSA/Shaw Central - Morong via Antipolo, Theresa
 
 **Route ID:** `LTFRB_PUJ1638`
 

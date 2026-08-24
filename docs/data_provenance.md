@@ -4,7 +4,7 @@
 
 Route2Zero treats raw source snapshots as immutable, pilot evidence as controlled input, and processed outputs as reproducible derivatives. Every registered source records its organization, URL, retrieval date, reference period, geography, spatial resolution, license, source type, currentness, notes, local path, requirement status, availability, and SHA-256 checksum when available.
 
-This document describes the source manifest used by build `r2z-0cd49ad56aaa`.
+This document describes the source manifest used by build `r2z-d4c8d4cc709a`.
 
 ## Source inventory
 
@@ -180,7 +180,7 @@ Holds site name, date, coordinates, site-control status, utility-capacity status
 
 Holds stakeholder type, organization, date, route, workflow component, feedback, evidence change, permission to quote, and source reference.
 
-All four controlled ledgers contain headers only in build `r2z-0cd49ad56aaa`. A separate reviewed OSM configuration supplies 20 dated current external route records and observed member-way geometries. The score table still reports zero field-confirmed active-service records, zero observed operator readiness scores, zero verified utility-capacity records, and zero verified charging sites.
+All four controlled ledgers contain headers only in build `r2z-d4c8d4cc709a`. A separate reviewed OSM configuration supplies 20 dated current external route records and observed member-way geometries. The score table still reports zero field-confirmed active-service records, zero observed operator readiness scores, zero verified utility-capacity records, and zero verified charging sites.
 
 ### Reviewed OSM route evidence
 

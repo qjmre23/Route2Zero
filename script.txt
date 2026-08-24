@@ -68,7 +68,7 @@ Say: The six-month pilot moves through governance, data refresh and ground truth
 Close: Route2Zero does not ask a city to trust a rank. It shows what to validate, why it matters, and when the evidence is strong enough to decide.
 
 LIVE DEMONSTRATION CHECKLIST
-1. Open https://route2zero.netlify.app/ and confirm build r2z-0cd49ad56aaa.
+1. Open https://route2zero.netlify.app/ and confirm build r2z-d4c8d4cc709a.
 2. Show 1,522 screened records, 20 dated current external records, and nine robust priorities.
 3. Select LTFRB_PUJ1034 and point to its OSM relation, edit date, OBSERVED badge, and member-way geometry.
 4. Return to LTFRB_PUJ1353 and show the labelled Mapbox street-following interpretation.

@@ -4,7 +4,7 @@
 
 Route2Zero uses deterministic evidence-constrained selection. It is not a financial optimizer, mixed-integer program, cost-benefit model, or procurement recommendation.
 
-The current result is portfolio scenario `prt-fd6de9d793`, derived from policy scenario `scn-e0f12f397e` in build `r2z-0cd49ad56aaa`.
+The current result is portfolio scenario `prt-fd6de9d793`, derived from policy scenario `scn-e0f12f397e` in build `r2z-d4c8d4cc709a`.
 
 ## Purpose
 

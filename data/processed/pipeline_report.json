@@ -1,8 +1,8 @@
 {
   "status": "PASS_WITH_WARNINGS",
   "pipeline_version": "2.1.0",
-  "build_id": "r2z-eb39102e30d7",
-  "build_timestamp_utc": "2026-08-24T15:15:34Z",
+  "build_id": "r2z-d4c8d4cc709a",
+  "build_timestamp_utc": "2026-08-24T16:13:03Z",
   "rows_processed": 1522,
   "score_complete_count": 1522,
   "reduced_information_score_count": 0,
@@ -10,6 +10,8 @@
   "active_validation_count": 0,
   "usable_geometry_count": 22,
   "osm_observed_geometry_count": 20,
+  "operator_search_attempt_count": 8,
+  "operator_reference_observed_count": 1,
   "robust_priority_count": 9,
   "phase1_corridor_count": 8,
   "source_dates": {
@@ -46,6 +48,7 @@
     "service_intensity_claim_status",
     "climate_claim_status",
     "equity_claim_status",
+    "secondary_equity_claim_status",
     "charging_claim_status",
     "operator_claim_status",
     "evidence_claim_status",
@@ -64,7 +67,7 @@
     "overall_evidence_confidence": 0
   },
   "warnings": [
-    "No consent-based operator evidence has been supplied; the neutral prior remains active.",
+    "No consent-based operator readiness evidence has been supplied; the neutral prior remains active. Desk searches are recorded for 8 Phase-1 corridors and found 1 named operator reference that does not satisfy the readiness-evidence threshold.",
     "No utility capacity is verified; charging scores use mapped proximity and energy-demand screening only."
   ]
 }

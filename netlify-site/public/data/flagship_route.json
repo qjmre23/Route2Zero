@@ -9,8 +9,15 @@
   "evidence_confidence": 38.34,
   "top_10_probability": 1.0,
   "climate_low_t_year": -1111.8,
+  "climate_base_t_year": 368.0,
   "climate_high_t_year": 3025.3,
+  "validation_status": "historic_only",
+  "active_status": "uncertain",
+  "validation_date": null,
+  "validation_source_reference": "sakay_gtfs_master_historic",
+  "geometry_source": "stop_sequence_approx",
+  "geometry_claim_status": "DERIVED",
   "scenario_id": "scn-e0f12f397e",
   "portfolio_scenario_id": "prt-fd6de9d793",
-  "build_id": "r2z-45c4ba076af9"
+  "build_id": "r2z-d4c8d4cc709a"
 }

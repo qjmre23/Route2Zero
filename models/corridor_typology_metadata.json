@@ -51,6 +51,6 @@
     "1": "High-Stop-Density Core"
   },
   "typology_used_for_policy_score": false,
-  "trained_at_utc": "2026-08-24T15:14:24Z",
+  "trained_at_utc": "2026-08-24T16:12:09Z",
   "limitations": "Typology describes structural similarity; it does not infer income, vulnerability or settlement status."
 }

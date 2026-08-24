@@ -4,7 +4,7 @@
 
 Route2Zero is a corridor-screening and evidence-acquisition system. Its output is a documented order for validation and a constrained Phase-1 shortlist. It does not determine funding, franchise status, procurement, lending, fares, or route cancellation.
 
-This document describes pipeline version `2.1.0` and build `r2z-0cd49ad56aaa`. The default policy scenario is `scn-e0f12f397e`; the default portfolio scenario is `prt-fd6de9d793`.
+This document describes pipeline version `2.1.0` and build `r2z-d4c8d4cc709a`. The default policy scenario is `scn-e0f12f397e`; the default portfolio scenario is `prt-fd6de9d793`.
 
 ## Decision unit
 
@@ -192,7 +192,7 @@ The configured usefulness gate requires at least 2% relative MAE improvement. Th
 
 ### Use rule
 
-The model prediction replaces nothing when the historic proxy is available. It is used only when the historic proxy is missing and the model passed the usefulness gate. In build `r2z-0cd49ad56aaa`, it supplies the daily VKT input for one route, `LTFRB_PUJ2451`.
+The model prediction replaces nothing when the historic proxy is available. It is used only when the historic proxy is missing and the model passed the usefulness gate. In build `r2z-d4c8d4cc709a`, it supplies the daily VKT input for one route, `LTFRB_PUJ2451`.
 
 This precedence is deliberate:
 
@@ -437,7 +437,7 @@ LLM output never enters the scoring table, climate engine, sensitivity simulatio
 
 The finalizer checks for all required outputs, hashes configuration and source inputs, records model versions and random seeds, writes build IDs into the score files, selects the flagship route using the declared rule, and writes the pipeline report.
 
-Build `r2z-0cd49ad56aaa`, generated from commit `fc151f33f366407ea7de18ad0184e8fb3faef341`, reports:
+Build `r2z-d4c8d4cc709a`, generated from commit `190ade5203cc5cbb02840a39246be46713bebd03`, reports:
 
 - 1,522 rows processed;
 - 1,522 complete scores;

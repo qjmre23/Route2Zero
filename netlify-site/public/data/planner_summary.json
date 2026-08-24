@@ -7,9 +7,7 @@
     "Every selected corridor retains explicit evidence and robustness fields."
   ],
   "validation_actions": [
-    "Confirm current route status and service observations.",
-    "Request utility evidence before any claim about available charging capacity.",
-    "Collect consent-based operator, depot and financing evidence."
+    "Review each selected corridor's highest-ranked evidence request in the versioned validation queue."
   ],
   "scenario_id": "scn-e0f12f397e",
   "portfolio_scenario_id": "prt-fd6de9d793",

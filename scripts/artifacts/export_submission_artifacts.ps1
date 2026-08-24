@@ -21,8 +21,25 @@ try {
         @{ Source = $concept; Target = (Join-Path $submission "Route2Zero_Concept.pdf") },
         @{ Source = $demo; Target = (Join-Path $submission "Route2Zero_Prototype_Demonstration.pdf") }
     )) {
-        $presentation = $powerPoint.Presentations.Open($item.Source, $true, $false, $false)
+        $presentation = $powerPoint.Presentations.Open($item.Source, $false, $false, $false)
         try {
+            foreach ($slide in $presentation.Slides) {
+                foreach ($shape in $slide.Shapes) {
+                    if ($shape.HasTextFrame -eq 0 -or $shape.TextFrame.HasText -eq 0) {
+                        continue
+                    }
+                    $shapeText = $shape.TextFrame.TextRange.Text
+                    if ($shapeText -like "*https://github.com/qjmre23/Route2Zero*") {
+                        $shape.ActionSettings(1).Action = 7
+                        $shape.ActionSettings(1).Hyperlink.Address = "https://github.com/qjmre23/Route2Zero"
+                    }
+                    elseif ($shapeText -like "*https://route2zero.netlify.app/*") {
+                        $shape.ActionSettings(1).Action = 7
+                        $shape.ActionSettings(1).Hyperlink.Address = "https://route2zero.netlify.app/"
+                    }
+                }
+            }
+            $presentation.Save()
             $presentation.SaveAs($item.Target, 32)
         }
         finally {

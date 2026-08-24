@@ -8,7 +8,7 @@ Use the production application at <https://route2zero.netlify.app/> or the gener
 
 Before recording:
 
-- confirm build `r2z-0cd49ad56aaa` is displayed or documented;
+- confirm build `r2z-d4c8d4cc709a` is displayed or documented;
 - confirm scenario `scn-e0f12f397e`;
 - confirm 1,522 routes, 20 dated current external records, 9 robust priorities, and 8 Phase-1 corridors;
 - preselect `LTFRB_PUJ1353` as the flagship;

@@ -1,4 +1,4 @@
-# Route2Zero 2.0 validation brief: Bagong Silang - Philcoa via Commonwealth Ave., Maligaya Park
+# Route2Zero 2.1 validation brief: Bagong Silang - Philcoa via Commonwealth Ave., Maligaya Park
 
 **Route ID:** `LTFRB_PUJ1405`
 

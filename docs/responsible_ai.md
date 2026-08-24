@@ -4,7 +4,7 @@
 
 Route2Zero supports public-sector planning under incomplete evidence. Its governance objective is not to remove uncertainty. It is to keep uncertainty, policy choices, source limitations, and human decision rights visible throughout the workflow.
 
-This framework applies to build `r2z-0cd49ad56aaa`, policy scenario `scn-e0f12f397e`, and portfolio scenario `prt-fd6de9d793`.
+This framework applies to build `r2z-d4c8d4cc709a`, policy scenario `scn-e0f12f397e`, and portfolio scenario `prt-fd6de9d793`.
 
 ## Governing statement
 

@@ -4,7 +4,7 @@
 
 This matrix maps the Route2Zero 2.1 implementation to the published judging areas of Relevance, Innovation, Impact, Presentation, Feasibility, and Viability. No numerical weights are assumed because none are encoded in the repository evidence used for this submission.
 
-The evidence anchor is build `r2z-0cd49ad56aaa`, scenario `scn-e0f12f397e`, and portfolio `prt-fd6de9d793`.
+The evidence anchor is build `r2z-d4c8d4cc709a`, scenario `scn-e0f12f397e`, and portfolio `prt-fd6de9d793`.
 
 ## Release facts
 
@@ -217,7 +217,7 @@ An order-of-magnitude fleet and capital screen is present, but every value is `P
 
 Before submission, confirm that the website, Concept, Demonstration, Pilot Plan, README, and technical reference all use:
 
-- build `r2z-0cd49ad56aaa` or a clearly identified later rebuild;
+- build `r2z-d4c8d4cc709a` or a clearly identified later rebuild;
 - scenario `scn-e0f12f397e` or a clearly identified replacement;
 - portfolio `prt-fd6de9d793` or a clearly identified replacement;
 - 1,522 records;
