@@ -57,7 +57,7 @@ def main() -> int:
     ensure_output_dirs()
     missing = [name for name in REQUIRED_OUTPUTS if not (PROCESSED_DIR / name).exists()]
     if missing:
-        raise FileNotFoundError(f"Required Route2Zero 2.1 outputs missing: {missing}")
+        raise FileNotFoundError(f"Required Route2Zero outputs missing: {missing}")
     for name in REQUIRED_OUTPUTS:
         normalize_text_newlines(PROCESSED_DIR / name)
     for name in MODEL_ARTIFACTS:

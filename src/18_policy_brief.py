@@ -15,8 +15,10 @@ def main() -> int:
     selected = scores[scores["phase1_selected"].astype(bool)].sort_values("rank")
     output_dir = DOCS_DIR / "policy_briefs"
     output_dir.mkdir(parents=True, exist_ok=True)
+    for existing_brief in output_dir.glob("*.md"):
+        existing_brief.unlink()
     for row in selected.itertuples(index=False):
-        text = f"""# Route2Zero 2.1 validation brief: {row.route_long_name}
+        text = f"""# Route2Zero validation brief: {row.route_long_name}
 
 **Route ID:** `{row.route_id}`
 

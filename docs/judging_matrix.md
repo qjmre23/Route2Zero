@@ -2,11 +2,11 @@
 
 ## Use of this matrix
 
-This matrix maps the Route2Zero 2.1 implementation to the published judging areas of Relevance, Innovation, Impact, Presentation, Feasibility, and Viability. No numerical weights are assumed because none are encoded in the repository evidence used for this submission.
+This matrix maps the Route2Zero implementation to the published judging areas of Relevance, Innovation, Impact, Presentation, Feasibility, and Viability. No numerical weights are assumed because none are encoded in the repository evidence used for this submission.
 
 The evidence anchor is build `r2z-d4c8d4cc709a`, scenario `scn-e0f12f397e`, and portfolio `prt-fd6de9d793`.
 
-## Release facts
+## Build facts
 
 | Fact | Evidence |
 |---|---|
@@ -127,7 +127,7 @@ The dashboard presents one decision story across network, route, evidence, uncer
 
 ### Responsible limitation
 
-A street-following line improves readability but does not verify the official or operated route. Submission screenshots and reports must be regenerated from the final build and must not reuse superseded proxy-era interfaces.
+A street-following line improves readability but does not verify the official or operated route. Submission screenshots and reports are tied to the identified build and its evidence state.
 
 ### Judge verification path
 
@@ -186,7 +186,7 @@ Route2Zero can be maintained and transferred because sources, configurations, mo
 
 ### Responsible limitation
 
-The current manifest records the Git commit visible at build time while Route2Zero 2.1 work existed in the working tree. A formal release should commit final code and regenerate the manifest for one-to-one commit attestation.
+The current manifest records analytical source commit `190ade5203cc5cbb02840a39246be46713bebd03`, together with source, configuration, model, scenario, and output checksums.
 
 An order-of-magnitude fleet and capital screen is present, but every value is `PROXY`, financing is `MISSING`, and major depot, grid, operating, and finance costs are excluded. Financial viability still requires verified fleet, charging, depot, tariff, and financing inputs during the pilot.
 
@@ -224,9 +224,9 @@ Before submission, confirm that the website, Concept, Demonstration, Pilot Plan,
 - 20 dated current external route records;
 - 9 robust priorities;
 - 8 Phase-1 corridors;
-- the new 40/30/15/15 policy lens;
+- the 40/30/15/15 policy lens;
 - the full negative-to-positive climate range;
 - the current evidence and operator limitations; and
 - a consistent boundary between ML, deterministic analytics, LLM explanation, and human authority.
 
-Do not preserve superseded proxy-era scores, weights, or slogans as descriptions of the current system.
+Published descriptions use the scores, weights, evidence state, and language of the identified build.

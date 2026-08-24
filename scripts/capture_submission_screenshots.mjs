@@ -1,6 +1,13 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { chromium } from "file:///C:/Users/LENOVO/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/playwright/index.mjs";
+import { pathToFileURL } from "node:url";
+
+const nodeModules = process.env.ROUTE2ZERO_NODE_MODULES || process.env.RUNTIME_NODE_MODULES;
+if (!nodeModules) {
+  throw new Error("ROUTE2ZERO_NODE_MODULES must point to the Node.js dependency directory.");
+}
+const playwrightUrl = pathToFileURL(path.join(nodeModules, "playwright", "index.mjs")).href;
+const { chromium } = await import(playwrightUrl);
 
 const root = path.resolve(import.meta.dirname, "..");
 const output = path.join(root, "output", "submission", "assets", "2.1");
@@ -11,11 +18,17 @@ console.log("Preparing screenshot output");
 await fs.mkdir(output, { recursive: true });
 await fs.mkdir(legacyOutput, { recursive: true });
 
-const browser = await chromium.launch({
+const launchOptions = {
   headless: true,
-  executablePath: process.env.PLAYWRIGHT_BROWSER_PATH || "C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe",
   args: ["--no-sandbox", "--disable-gpu"],
-});
+};
+if (process.env.PLAYWRIGHT_BROWSER_PATH) {
+  launchOptions.executablePath = process.env.PLAYWRIGHT_BROWSER_PATH;
+}
+if (process.env.PLAYWRIGHT_BROWSER_CHANNEL) {
+  launchOptions.channel = process.env.PLAYWRIGHT_BROWSER_CHANNEL;
+}
+const browser = await chromium.launch(launchOptions);
 console.log("Browser launched");
 const page = await browser.newPage({ viewport: { width: 1440, height: 1000 }, deviceScaleFactor: 1 });
 const failures = [];

@@ -1,4 +1,4 @@
-"""Merge Route2Zero 2.1 analytical layers into a versioned human policy model."""
+"""Merge Route2Zero analytical layers into a versioned human policy model."""
 
 from __future__ import annotations
 

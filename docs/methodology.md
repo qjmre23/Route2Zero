@@ -1,4 +1,4 @@
-# Route2Zero 2.1 methodology
+# Route2Zero methodology
 
 ## Method scope
 
@@ -113,16 +113,16 @@ The result is a schedule-derived planning proxy. It is not a block schedule, veh
 
 The proxy is available for 1,521 records. One route lacks a qualifying historic value.
 
-## Stage 6: compatibility layers
+## Stage 6: baseline audit layers
 
-The original MVP layers are retained for audit and comparison:
+The baseline screening layers remain available as intermediate audit artifacts:
 
 - `emissions_score.csv` uses route length multiplied by estimated historic trips;
 - `equity_score.csv` uses WorldPop population exposure within a 300 m buffer;
 - `grid_feasibility.csv` uses the Luzon renewable-generation share; and
 - `operator_readiness.csv` uses a neutral 50 or an authorized override.
 
-Earlier proxy layers remain intermediate audit artifacts only and do not define the current default policy score or final score-table schema.
+These proxy layers do not define the default policy score or final score-table schema.
 
 ## Stage 7: canonical feature store
 
@@ -258,7 +258,7 @@ The conservative low case is negative for every route in the current build. Base
 
 The WorldPop 2020 Philippines population-count raster is the only equity input in the documented reference build and is accessed through the optional population adapter.
 
-The legacy spatial stage:
+The population-exposure stage:
 
 1. projects route lines to UTM Zone 51N;
 2. buffers each line by 300 metres;
@@ -266,7 +266,7 @@ The legacy spatial stage:
 4. calculates each buffer's population-weighted share in cells at or above that cutoff; and
 5. min-max scales the share to 0-100.
 
-Route2Zero 2.1 exposes this as `population_exposure_score`. The socioeconomic, accessibility-gap, and underserved-overlap components are null. Their weights are zero.
+Route2Zero exposes this as `population_exposure_score`. The socioeconomic, accessibility-gap, and underserved-overlap components are null. Their weights are zero.
 
 When available, the current equity score is therefore a `PROXY`. It must not be described as poverty, vulnerability, tenure, disability, accessibility, informal-settlement, or marginalized-community status. If the raster is absent, route IDs are preserved while population-exposure and dependent equity values are null with claim status `MISSING`; zero is not substituted.
 

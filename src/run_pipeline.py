@@ -1,4 +1,4 @@
-"""Run the full Route2Zero 2.1 pipeline in dependency order."""
+"""Run the complete Route2Zero pipeline in dependency order."""
 
 from __future__ import annotations
 

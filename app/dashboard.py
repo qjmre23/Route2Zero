@@ -358,4 +358,4 @@ with st.expander("Method, provenance, and honest limitations"):
     st.caption("Source files and reproducible scripts are included in the project documentation and processed-data outputs.")
 
 st.markdown("---")
-st.caption("Route2Zero · AI x City Climate Action Hackathon 2026 · Prepared 14 August 2026")
+st.caption("Route2Zero · AI x City Climate Action Hackathon 2026 · Evidence build 24 August 2026")

@@ -1,4 +1,4 @@
-# Route2Zero 2.1 live demonstration script
+# Route2Zero live demonstration script
 
 ## Duration and setup
 
@@ -17,13 +17,13 @@ Before recording:
 - test the export button; and
 - keep the optional AI endpoint disabled unless its source label has been verified.
 
-Do not show superseded proxy-era scores or controls, or a section labeled “Judge guide.”
+The walkthrough uses the identified build, its active controls, and its recorded evidence state.
 
 ## Shot sequence
 
 ### 0:00-0:10 — Decision and scale
 
-**Screen:** Hero and release metrics.
+**Screen:** Hero and build metrics.
 
 **Action:** Let the metric count-up finish, then move the pointer from 1,522 routes to 20 current external records and 9 robust priorities.
 

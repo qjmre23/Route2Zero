@@ -1,4 +1,4 @@
-# Route2Zero 2.1 validation brief: BACLARAN - DASMARINAS B BAYAN
+# Route2Zero validation brief: BACLARAN - DASMARINAS B BAYAN
 
 **Route ID:** `LTFRB_PUJ2083`
 

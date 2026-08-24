@@ -1,4 +1,4 @@
-# Route2Zero 2.1 validation brief: Dasmarinas Resettlement Area - Baclaran via Coastal Rd.
+# Route2Zero validation brief: Dasmarinas Resettlement Area - Baclaran via Coastal Rd.
 
 **Route ID:** `LTFRB_PUJ1241`
 

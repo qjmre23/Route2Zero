@@ -1,4 +1,4 @@
-# Route2Zero 2.1 model card
+# Route2Zero model card
 
 ## Card scope
 

@@ -23,7 +23,7 @@ The Philippines 2020 population-count raster is from WorldPop, University of Sou
 ## Philippine public-sector and published references
 
 - Philippine Department of Energy generation context and 2024 Energy Investment Kit are credited to the Department of Energy. The retrieved publications state no separate reuse license; factual planning values are summarized with attribution.
-- The LTFRB LPTRP index is credited to the Land Transportation Franchising and Regulatory Board. No route-level Metro Manila match was accepted in this release.
+- The LTFRB LPTRP index is credited to the Land Transportation Franchising and Regulatory Board. No route-level Metro Manila match is accepted in the current source set.
 - Philippine Statistics Authority small-area poverty estimates are registered as a candidate source under CC BY 4.0 unless otherwise stated. They are not integrated in the current score.
 - The Philippine News Agency e-jeepney trial report is all rights reserved. Route2Zero records only the attributed factual range value needed for a clearly labelled proxy and does not reproduce the article.
 

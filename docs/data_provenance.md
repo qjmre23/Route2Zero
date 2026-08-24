@@ -1,4 +1,4 @@
-# Route2Zero 2.1 data provenance
+# Route2Zero data provenance
 
 ## Provenance contract
 
@@ -100,7 +100,7 @@ If the raster is unavailable in a later build, the population adapter preserves 
 
 The source provides regional generation and grid-emissions context. It does not contain route-, depot-, feeder-, transformer-, or charging-site capacity.
 
-The retained legacy grid proxy uses 14,550 GWh renewable generation divided by 90,269 GWh total generation, or 16.118%. Route2Zero 2.1 also uses a 0.7181 kgCO2e/kWh current-grid context in the climate configuration.
+The baseline grid screening value uses 14,550 GWh renewable generation divided by 90,269 GWh total generation, or 16.118%. The climate configuration uses a 0.7181 kgCO2e/kWh grid-emissions context.
 
 These values are historic regional context. They must not be presented as present route-level electrical capacity.
 
@@ -259,7 +259,7 @@ A missing required source remains a build error. A missing optional source remai
 
 The build ID is derived from configuration checksums, source checksums, model versions, policy scenario ID, and portfolio scenario ID. It is stable for identical logical inputs. The timestamp is recorded separately.
 
-The current manifest records Git commit `47cf3c9554ab392938f2ba5ae3ca98d5d369ff61`. Because the Route2Zero 2.1 work was present in a working tree during generation, a release process seeking a one-to-one code attestation should commit the final files and rerun the pipeline so the manifest records that release commit.
+The current manifest records analytical source commit `190ade5203cc5cbb02840a39246be46713bebd03`. Documentation and submission commits may follow without changing the analytical inputs represented by that manifest.
 
 ## Source-status rules for publication
 

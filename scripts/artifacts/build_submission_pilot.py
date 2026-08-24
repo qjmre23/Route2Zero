@@ -9,7 +9,7 @@ from docx.oxml.ns import qn
 from docx.opc.constants import RELATIONSHIP_TYPE as RT
 from docx.shared import Cm, Inches, Pt, RGBColor
 
-ROOT = Path(r"C:\Users\LENOVO\Documents\Innovative_Cities")
+ROOT = Path(__file__).resolve().parents[2]
 TMP = ROOT / "tmp" / "route2zero-submission"
 BANNER = TMP / "hackathon-template-banner.png"
 OUT = ROOT / "output" / "submission" / "Route2Zero_Team_Larpers_Pilot_Plan.docx"
@@ -499,7 +499,7 @@ bullets(
     1,
 )
 section(doc, "Submission head start", 2)
-body(doc, "The hackathon build already seeds Month 2 with 20 dated OSM route matches and 20 observed member-way geometries, raising usable source geometries from 2 to 22. These records reduce the initial desk-review burden but do not prove active operations or franchise authority.", 8.2)
+body(doc, "The evidence set includes 20 dated OSM route matches, 20 observed member-way geometries, and 22 usable source geometries. These records reduce the initial desk-review burden but do not prove active operations or franchise authority.", 8.2)
 body(doc, f"Baseline traceability: build {BUILD_ID} | scenario {SCENARIO_ID} | portfolio {PORTFOLIO_ID}", 7.4, 0)
 
 # Page 5 — team structure and handover.

@@ -1,15 +1,20 @@
 import fs from "node:fs/promises";
 import path from "node:path";
-import { fileURLToPath } from "node:url";
-import {
-  Presentation,
-  PresentationFile,
-} from "file:///C:/Users/LENOVO/.cache/codex-runtimes/codex-primary-runtime/dependencies/node/node_modules/@oai/artifact-tool/dist/artifact_tool.mjs";
+import { fileURLToPath, pathToFileURL } from "node:url";
+
+const nodeModules = process.env.ROUTE2ZERO_NODE_MODULES || process.env.RUNTIME_NODE_MODULES;
+if (!nodeModules) {
+  throw new Error("ROUTE2ZERO_NODE_MODULES must point to the Node.js dependency directory.");
+}
+const artifactToolUrl = pathToFileURL(
+  path.join(nodeModules, "@oai", "artifact-tool", "dist", "artifact_tool.mjs")
+).href;
+const { Presentation, PresentationFile } = await import(artifactToolUrl);
 
 const HERE = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(HERE, "..", "..");
 const OUT = path.join(ROOT, "output", "submission");
-const QA = path.join(ROOT, "tmp", "route2zero-submission", "deck-2.1-qa");
+const QA = path.join(ROOT, "tmp", "route2zero-submission", "deck-qa");
 const SHOTS = path.join(ROOT, "output", "submission", "assets", "2.1");
 const BUILD_MANIFEST = JSON.parse(await fs.readFile(path.join(ROOT, "data", "processed", "build_manifest.json"), "utf8"));
 
