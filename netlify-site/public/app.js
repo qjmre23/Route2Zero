@@ -74,7 +74,6 @@ const state = {
     token: 0,
     controller: null,
     audio: null,
-    speechFinish: null,
     audioCache: new Map(),
     startedAt: 0,
     pausedAt: 0,
@@ -207,7 +206,10 @@ const els = {
   walkthroughVoice: byId("walkthroughVoice"),
   walkthroughClose: byId("walkthroughClose"),
   tourCursor: byId("tourCursor"),
-  tourCursorLabel: byId("tourCursorLabel")
+  tourCursorLabel: byId("tourCursorLabel"),
+  tourChoiceMenu: byId("tourChoiceMenu"),
+  tourChoiceTitle: byId("tourChoiceTitle"),
+  tourChoiceList: byId("tourChoiceList")
 };
 
 const weightInputs = {
@@ -1732,15 +1734,57 @@ async function pulseTourClick(element, label, signal, invoke = true) {
   els.tourCursor.classList.remove("clicking");
 }
 
+function hideTourChoiceMenu() {
+  els.tourChoiceMenu.classList.add("hidden");
+  els.tourChoiceMenu.classList.remove("opens-up", "closing");
+  els.tourChoiceMenu.setAttribute("aria-hidden", "true");
+  els.tourChoiceList.replaceChildren();
+}
+
 async function selectTourValue(element, value, label, signal) {
   if (!element || ![...element.options].some((option) => String(option.value) === String(value))) return;
   await pulseTourClick(element, "Open choices", signal, false);
+  const options = [...element.options];
+  const chosenIndex = options.findIndex((option) => String(option.value) === String(value));
+  const visibleCount = Math.min(5, options.length);
+  let start = Math.max(0, chosenIndex - Math.floor(visibleCount / 2));
+  let end = Math.min(options.length, start + visibleCount);
+  start = Math.max(0, end - visibleCount);
+  const visibleOptions = options.slice(start, end);
+  els.tourChoiceTitle.textContent = `Choose from ${options.length.toLocaleString()} option${options.length === 1 ? "" : "s"}`;
+  els.tourChoiceList.innerHTML = visibleOptions.map((option, offset) => {
+    const index = start + offset;
+    const selected = option.selected ? " selected" : "";
+    return `<div class="tour-choice-option${selected}" data-tour-option-index="${index}">${escapeHtml(option.textContent.trim())}</div>`;
+  }).join("");
+  const rect = element.getBoundingClientRect();
+  const width = Math.min(Math.max(rect.width, 300), window.innerWidth - 24);
+  const estimatedHeight = 43 + visibleOptions.length * 41;
+  const left = Math.max(12, Math.min(window.innerWidth - width - 12, rect.left));
+  const opensUp = rect.bottom + estimatedHeight + 10 > window.innerHeight && rect.top - estimatedHeight > 12;
+  const top = opensUp ? rect.top - estimatedHeight - 8 : rect.bottom + 8;
+  els.tourChoiceMenu.style.left = `${left}px`;
+  els.tourChoiceMenu.style.top = `${Math.max(12, top)}px`;
+  els.tourChoiceMenu.style.width = `${width}px`;
+  els.tourChoiceMenu.classList.toggle("opens-up", opensUp);
+  els.tourChoiceMenu.classList.remove("hidden", "closing");
+  els.tourChoiceMenu.setAttribute("aria-hidden", "false");
+  await tourDelay(260, signal);
+  const choice = els.tourChoiceList.querySelector(`[data-tour-option-index="${chosenIndex}"]`);
+  if (choice) {
+    await moveTourCursor(choice, label, signal, { x: .72, y: .5 });
+    choice.classList.add("choosing");
+    await pulseTourClick(choice, `Select: ${options[chosenIndex].textContent.trim()}`, signal, false);
+  }
   element.value = String(value);
   element.dispatchEvent(new Event("input", { bubbles: true }));
   element.dispatchEvent(new Event("change", { bubbles: true }));
   els.walkthroughActionStatus.textContent = label;
   setTourCursorLabel(label);
-  await tourDelay(520, signal);
+  els.tourChoiceMenu.classList.add("closing");
+  await tourDelay(180, signal);
+  hideTourChoiceMenu();
+  await tourDelay(280, signal);
 }
 
 async function typeTourText(element, text, signal) {
@@ -1772,7 +1816,7 @@ async function fetchTourAudio(text) {
     body: JSON.stringify({ text })
   }).then(async (response) => {
     if (!response.ok) {
-      state.tour.providerAvailable = false;
+      if ([405, 501, 503].includes(response.status)) state.tour.providerAvailable = false;
       throw new Error("Narration unavailable");
     }
     const blob = await response.blob();
@@ -1780,7 +1824,6 @@ async function fetchTourAudio(text) {
     state.tour.providerAvailable = true;
     return blob;
   }).catch((error) => {
-    state.tour.providerAvailable = false;
     state.tour.audioCache.delete(text);
     throw error;
   });
@@ -1792,45 +1835,6 @@ function stopTourMedia() {
   if (state.tour.audio) {
     state.tour.audio.finish();
   }
-  window.speechSynthesis?.cancel();
-  state.tour.speechFinish?.();
-  state.tour.speechFinish = null;
-}
-
-function preferredBrowserVoice() {
-  const voices = window.speechSynthesis?.getVoices?.() || [];
-  const english = voices.filter((voice) => /^en[-_]/i.test(voice.lang));
-  const maleNames = /david|mark|guy|daniel|james|george|ryan|christopher|matthew|andrew|aaron/i;
-  return english.find((voice) => maleNames.test(voice.name)) || english.find((voice) => voice.default) || english[0] || voices[0];
-}
-
-function playBrowserNarration(text, signal) {
-  if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) return tourDelay(Math.min(4800, Math.max(1800, text.length * 45)), signal, true);
-  return new Promise((resolve, reject) => {
-    if (signal?.aborted) { reject(abortException()); return; }
-    const utterance = new SpeechSynthesisUtterance(text);
-    const voice = preferredBrowserVoice();
-    if (voice) utterance.voice = voice;
-    utterance.lang = voice?.lang || "en-US";
-    utterance.rate = 1.08;
-    utterance.pitch = .93;
-    let settled = false;
-    let watchdog;
-    const finish = () => {
-      if (settled) return;
-      settled = true;
-      window.clearTimeout(watchdog);
-      if (state.tour.speechFinish === finish) state.tour.speechFinish = null;
-      resolve();
-    };
-    state.tour.speechFinish = finish;
-    watchdog = window.setTimeout(finish, Math.min(11000, Math.max(2600, text.length * 68)));
-    utterance.onend = finish;
-    utterance.onerror = finish;
-    signal?.addEventListener("abort", () => { window.clearTimeout(watchdog); window.speechSynthesis.cancel(); if (state.tour.speechFinish === finish) state.tour.speechFinish = null; if (!settled) { settled = true; reject(abortException()); } }, { once: true });
-    window.speechSynthesis.cancel();
-    window.speechSynthesis.speak(utterance);
-  });
 }
 
 function playAudioNarration(blob, signal) {
@@ -1858,26 +1862,24 @@ function playAudioNarration(blob, signal) {
 
 async function playTourNarration(text, signal) {
   if (!state.tour.voiceEnabled || !text) return;
+  els.walkthroughVoiceStatus.classList.remove("muted");
+  els.walkthroughVoiceStatus.innerHTML = "<i></i> Preparing ElevenLabs voice…";
   try {
-    const audioRequest = fetchTourAudio(text);
-    const blob = await Promise.race([
-      audioRequest,
-      tourDelay(1800, signal, true).then(() => { throw new Error("Narration startup timeout"); })
-    ]);
+    const blob = await fetchTourAudio(text);
+    if (signal?.aborted) throw abortException();
     els.walkthroughVoiceStatus.classList.remove("muted");
     els.walkthroughVoiceStatus.innerHTML = "<i></i> ElevenLabs voice";
     await playAudioNarration(blob, signal);
   } catch (error) {
     if (error?.name === "AbortError") throw error;
-    els.walkthroughVoiceStatus.classList.remove("muted");
-    els.walkthroughVoiceStatus.innerHTML = "<i></i> Device voice fallback";
-    await playBrowserNarration(text, signal);
+    els.walkthroughVoiceStatus.classList.add("muted");
+    els.walkthroughVoiceStatus.innerHTML = "<i></i> ElevenLabs unavailable · no substitute voice";
   }
 }
 
-function prefetchTourNarration(index) {
+function prefetchTourNarration(index, count = 2) {
   if (!state.tour.voiceEnabled || state.tour.providerAvailable === false) return;
-  [tourSteps[index], tourSteps[index + 1]].forEach((step) => {
+  tourSteps.slice(index, index + count).forEach((step) => {
     if (step && typeof step.narration === "string") fetchTourAudio(step.narration).catch(() => {});
   });
 }
@@ -2130,6 +2132,7 @@ function cancelTourStep() {
   state.tour.controller?.abort();
   state.tour.controller = null;
   stopTourMedia();
+  hideTourChoiceMenu();
   els.tourCursor.classList.remove("clicking");
 }
 
@@ -2190,6 +2193,10 @@ function startWalkthrough(event) {
   els.walkthroughPause.setAttribute("aria-pressed", "false");
   els.walkthroughVoice.textContent = state.tour.voiceEnabled ? "Voice on" : "Voice off";
   els.walkthroughVoice.setAttribute("aria-pressed", String(state.tour.voiceEnabled));
+  els.walkthroughVoiceStatus.classList.toggle("muted", !state.tour.voiceEnabled);
+  els.walkthroughVoiceStatus.innerHTML = state.tour.voiceEnabled
+    ? "<i></i> Preparing ElevenLabs voice…"
+    : "<i></i> Voice muted";
   state.tour.clock = window.setInterval(updateTourClock, 250);
   updateTourClock();
   void runTourStep(0);
@@ -2235,7 +2242,8 @@ function toggleTourVoice() {
   els.walkthroughVoice.textContent = state.tour.voiceEnabled ? "Voice on" : "Voice off";
   els.walkthroughVoice.setAttribute("aria-pressed", String(state.tour.voiceEnabled));
   els.walkthroughVoiceStatus.classList.toggle("muted", !state.tour.voiceEnabled);
-  els.walkthroughVoiceStatus.innerHTML = state.tour.voiceEnabled ? "<i></i> Voice on" : "<i></i> Voice muted";
+  els.walkthroughVoiceStatus.innerHTML = state.tour.voiceEnabled ? "<i></i> Preparing ElevenLabs voice…" : "<i></i> Voice muted";
+  if (state.tour.voiceEnabled) prefetchTourNarration(Math.max(0, state.tourIndex), 1);
   stopTourMedia();
 }
 
@@ -2296,6 +2304,9 @@ async function init() {
   state.dataReady = true;
   els.startWalkthroughTop.disabled = false;
   els.startWalkthroughHero.disabled = false;
+  const warmFirstTourNarration = () => prefetchTourNarration(0, 1);
+  if ("requestIdleCallback" in window) window.requestIdleCallback(warmFirstTourNarration, { timeout: 1200 });
+  else window.setTimeout(warmFirstTourNarration, 250);
 }
 
 Object.values(weightInputs).forEach((input) => input.addEventListener("input", () => { inferPreset(); renderAll(); }));
@@ -2339,6 +2350,11 @@ mobileControlsQuery.addEventListener("change", syncControlsA11y);
 
 els.startWalkthroughTop.addEventListener("click", startWalkthrough);
 els.startWalkthroughHero.addEventListener("click", startWalkthrough);
+[els.startWalkthroughTop, els.startWalkthroughHero].forEach((button) => {
+  ["pointerenter", "focus", "touchstart"].forEach((eventName) => {
+    button.addEventListener(eventName, () => prefetchTourNarration(0, 1), { once: true, passive: eventName === "touchstart" });
+  });
+});
 els.walkthroughPause.addEventListener("click", toggleTourPause);
 els.walkthroughBack.addEventListener("click", () => { if (state.tour.running) void runTourStep(state.tourIndex - 1); });
 els.walkthroughNext.addEventListener("click", () => { if (state.tourIndex >= tourSteps.length - 1) endWalkthrough(true); else if (state.tour.running) void runTourStep(state.tourIndex + 1); });

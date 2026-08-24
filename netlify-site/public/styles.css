@@ -331,11 +331,22 @@ footer a { font-weight: 700; }
 .tour-cursor.clicking::after { animation: cursorClick .32s ease-out; }
 .tour-cursor span { position: absolute; top: 35px; left: 10px; width: max-content; max-width: min(260px, 65vw); padding: 6px 9px; border: 1px solid rgba(255, 255, 255, .15); border-radius: 8px; color: #fff; background: rgba(6, 25, 31, .94); box-shadow: 0 8px 24px rgba(4, 29, 31, .24); font: 700 .68rem DM Sans, sans-serif; opacity: 0; transform: translateY(-3px); transition: opacity .15s ease, transform .15s ease; }
 .tour-cursor.has-label span { opacity: 1; transform: translateY(0); }
+.tour-choice-menu { position: fixed; z-index: 225; max-height: min(310px, 55vh); overflow: hidden; border: 1px solid rgba(199, 244, 89, .46); border-radius: 14px; color: #ecfff8; background: rgba(6, 31, 35, .985); box-shadow: 0 24px 54px rgba(2, 22, 25, .42); transform-origin: top center; animation: tourMenuDrop .22s cubic-bezier(.2,.8,.25,1) both; }
+.tour-choice-menu.opens-up { transform-origin: bottom center; animation-name: tourMenuRise; }
+.tour-choice-menu > span { display: block; padding: 9px 12px 7px; color: #9ec8bf; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
+.tour-choice-menu > div { display: grid; gap: 3px; max-height: 255px; overflow: hidden; padding: 0 6px 7px; }
+.tour-choice-option { min-height: 38px; display: flex; align-items: center; gap: 9px; overflow: hidden; border: 1px solid transparent; border-radius: 9px; padding: 7px 9px; color: #e9f7f3; background: rgba(255, 255, 255, .045); font-size: .7rem; font-weight: 700; line-height: 1.25; text-overflow: ellipsis; white-space: nowrap; }
+.tour-choice-option::before { width: 7px; height: 7px; flex: 0 0 auto; border: 1px solid #7aa098; border-radius: 50%; content: ""; }
+.tour-choice-option.selected, .tour-choice-option.choosing { border-color: rgba(199, 244, 89, .7); color: #102b2a; background: var(--lime); }
+.tour-choice-option.selected::before, .tour-choice-option.choosing::before { border-color: #0a2827; background: #0a2827; box-shadow: 0 0 0 3px rgba(10, 40, 39, .14); }
+.tour-choice-menu.closing { opacity: 0; transform: translateY(-5px) scale(.97); transition: opacity .16s ease, transform .16s ease; }
 body.tour-running .walkthrough-trigger, body.tour-running #startWalkthroughHero { pointer-events: none; opacity: .58; }
 @keyframes tourGlow { to { box-shadow: 0 0 0 10px rgba(199, 244, 89, .14), var(--shadow); } }
 @keyframes cursorHalo { to { transform: scale(1.16); opacity: .74; } }
 @keyframes cursorClick { 50% { transform: scale(.54); background: rgba(199, 244, 89, .38); } }
 @keyframes voicePulse { to { opacity: .55; transform: scale(.82); } }
+@keyframes tourMenuDrop { from { opacity: 0; transform: translateY(-10px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
+@keyframes tourMenuRise { from { opacity: 0; transform: translateY(10px) scale(.96); } to { opacity: 1; transform: translateY(0) scale(1); } }
 .click-ripple { position: absolute; z-index: 5; width: 14px; height: 14px; border-radius: 50%; background: rgba(255, 255, 255, .65); pointer-events: none; transform: translate(-50%, -50%) scale(0); animation: clickRipple .55s ease-out forwards; }
 @keyframes clickRipple { to { transform: translate(-50%, -50%) scale(10); opacity: 0; } }
 

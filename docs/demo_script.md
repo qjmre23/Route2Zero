@@ -4,7 +4,7 @@
 
 Target duration: approximately 85 seconds with the configured network voice. Exact duration follows narration playback and may vary with network conditions.
 
-Use the production application at <https://route2zero.netlify.app/> or the generated local Netlify preview. Press **TOUR ME** for the primary demonstration. The built-in tour performs 15 live stages, including random route selection, street-following map zoom, scenario controls, portfolio constraints, an assistant question, methods, and exports. It can be paused, resumed, skipped forward or back, muted, or ended at any time.
+Use the production application at <https://route2zero.netlify.app/> or the generated local Netlify preview. Press **TOUR ME** for the primary demonstration. The built-in tour performs 15 live stages, including animated dropdown selection, random route selection, street-following map zoom, scenario controls, portfolio constraints, an assistant question, methods, and exports. It can be paused, resumed, skipped forward or back, muted, or ended at any time.
 
 Before recording:
 
@@ -18,7 +18,7 @@ Before recording:
 - confirm the planning assistant returns its verified source label; and
 - add `ELEVENLABS_API_KEY` to Netlify with Functions runtime scope for the production male narration voice.
 
-The walkthrough uses the identified build and its active controls. It is not a video or fixed click track. It restores the dashboard's starting route, scenario, portfolio controls, question and scroll position when it ends. Browser speech is the built-in recovery path when the ElevenLabs function is unavailable.
+The walkthrough uses the identified build and its active controls. It is not a video or fixed click track. Dropdown steps visibly open an option menu, move to the exact value, click it and update the real control. It restores the dashboard's starting route, scenario, portfolio controls, question and scroll position when it ends. The opening narration is prewarmed and every spoken step uses the same configured ElevenLabs voice. There is no browser or device-voice substitute; when the provider is unavailable, the visual tour continues silently with a visible status.
 
 ## Built-in TOUR ME sequence
 
