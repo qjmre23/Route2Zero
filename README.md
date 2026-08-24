@@ -64,8 +64,9 @@ Route2Zero therefore supports screening, validation design, and stakeholder revi
 | Evidence & AI | Generates a bounded explanation from structured facts and identifies unresolved evidence |
 | Method & Sources | Exposes methodology, model versions, source records, build identifiers, and limitations |
 | Report export | Produces decision-ready PDF, presentation, document, and structured reporting outputs |
+| TOUR ME | Runs a narrated 15-stage product tour with a visible cursor, random mapped-route selection, map zoom, policy and portfolio controls, a live assistant question, methods, and exports |
 
-The responsive interface is deployed on Netlify and uses Mapbox GL JS for interactive cartography. Reviewed OSM relations are drawn from observed member-way geometry. Other routes use road-following Mapbox interpretations based on ordered screening coordinates and remain labelled as planning geometry.
+The responsive interface is deployed on Netlify and uses Mapbox GL JS for interactive cartography. Reviewed OSM relations are drawn from observed member-way geometry. Other routes use road-following Mapbox interpretations based on ordered screening coordinates and remain labelled as planning geometry. TOUR ME operates the real interface rather than replaying a fixed recording, restores the user's starting controls when it ends, supports pause and voice controls, and provides a reduced-motion mode.
 
 ## Decision methodology
 
@@ -347,8 +348,11 @@ The repository-level netlify.toml sets netlify-site as the build base, runs npm 
 | MODEL | Netlify Functions | Provider model identifier |
 | AI_EXPLANATIONS_ENABLED | Netlify Functions | Enables the bounded explanation endpoint when set to true |
 | MAPBOX_TOKEN | Build, optional | Overrides the approved public Mapbox browser token |
+| ELEVENLABS_API_KEY | Netlify Functions | Required for the narrated TOUR ME voice; never exposed to the browser |
+| ELEVENLABS_VOICE_ID | Netlify Functions, optional | Overrides the default male Adam voice (`pNInz6obpgDQGcFmaJgB`) |
+| ELEVENLABS_MODEL_ID | Netlify Functions, optional | Overrides the low-latency narration model (`eleven_flash_v2_5`) |
 
-The Mapbox style is mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs. Public pk. tokens are browser credentials and remain origin-restricted through the Mapbox account. Server-side provider credentials are never written to browser configuration, committed files, screenshots, or static assets.
+The Mapbox style is mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs. Public pk. tokens are browser credentials and remain origin-restricted through the Mapbox account. Server-side provider credentials are never written to browser configuration, committed files, screenshots, or static assets. If ElevenLabs is unavailable, the tour continues with the device's English voice so the product demonstration does not fail.
 
 ## Quality controls
 

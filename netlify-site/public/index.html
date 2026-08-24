@@ -34,7 +34,7 @@
         <a href="#method-sources">Method &amp; Sources</a>
       </nav>
       <div class="topbar-actions">
-        <button id="startWalkthroughTop" class="walkthrough-trigger" type="button">85-sec tour</button>
+        <button id="startWalkthroughTop" class="walkthrough-trigger" type="button" disabled>TOUR ME</button>
         <button class="mobile-controls-button" id="mobileControlsButton" type="button" aria-controls="controls" aria-expanded="false">Filters</button>
       </div>
     </header>
@@ -82,7 +82,7 @@
 
       <section class="content">
         <section id="overview" class="hero" aria-labelledby="heroTitle">
-          <div class="hero-copy"><p class="eyebrow">AI × City Climate Action Hackathon 2026</p><h1 id="heroTitle">Choose corridors that stay strong when the <em>evidence is tested.</em></h1><p class="hero-lede">Find the corridors that remain strong when climate impact, equity, infrastructure, operator evidence and uncertainty are tested together.</p><div class="hero-actions"><a class="button-primary" href="#corridor-map">Explore the corridor map</a><a class="button-quiet" href="#phase1-portfolio">Open Phase-1 portfolio</a><button id="startWalkthroughHero" class="button-quiet" type="button">Start guided walkthrough</button></div></div>
+          <div class="hero-copy"><p class="eyebrow">AI × City Climate Action Hackathon 2026</p><h1 id="heroTitle">Choose corridors that stay strong when the <em>evidence is tested.</em></h1><p class="hero-lede">Find the corridors that remain strong when climate impact, equity, infrastructure, operator evidence and uncertainty are tested together.</p><div class="hero-actions"><a class="button-primary" href="#corridor-map">Explore the corridor map</a><a class="button-quiet" href="#phase1-portfolio">Open Phase-1 portfolio</a><button id="startWalkthroughHero" class="button-quiet" type="button" disabled>TOUR ME</button></div></div>
           <div class="hero-signal" aria-label="Route2Zero analytical governance"><p>Decision architecture</p><div class="signal-orbit"><span id="heroRobustCount">—</span><small>robust-priority routes</small></div><div class="signal-flow"><span>ML estimates</span><i></i><span>Models quantify</span><i></i><span>People decide</span></div><small>ML-assisted corridor intelligence · climate-impact scenarios · human-controlled policy</small></div>
         </section>
 
@@ -154,7 +154,21 @@
     </main>
 
     <button id="controlsBackdrop" class="controls-backdrop" type="button" tabindex="-1" aria-hidden="true" aria-label="Close filters"></button>
-    <aside id="walkthroughPanel" class="walkthrough-panel hidden" role="dialog" aria-modal="false" aria-labelledby="walkthroughTitle" aria-describedby="walkthroughCopy"><div class="walkthrough-progress"><span id="walkthroughStep">1 / 6</span><span id="walkthroughTime">0–12 sec</span></div><h2 id="walkthroughTitle">Start with the city decision</h2><p id="walkthroughCopy">Route2Zero screens the full historic route universe, then keeps validation gaps visible before action.</p><div class="walkthrough-actions"><button id="walkthroughBack" type="button">Back</button><button id="walkthroughNext" class="button-primary" type="button">Next</button><button id="walkthroughClose" type="button">End tour</button></div></aside>
+    <aside id="walkthroughPanel" class="walkthrough-panel hidden" role="dialog" aria-modal="false" aria-labelledby="walkthroughTitle" aria-describedby="walkthroughCopy" tabindex="-1">
+      <div class="walkthrough-progress"><span id="walkthroughStep">1 / 15</span><span id="walkthroughTime">0:00 / 1:25</span></div>
+      <div class="walkthrough-track" role="progressbar" aria-label="Tour progress" aria-valuemin="1" aria-valuemax="15" aria-valuenow="1"><i id="walkthroughBar"></i></div>
+      <h2 id="walkthroughTitle">Meet Route2Zero</h2>
+      <p id="walkthroughCopy">The guided tour will operate the live dashboard while explaining each decision layer.</p>
+      <div class="walkthrough-status" aria-live="polite"><span id="walkthroughVoiceStatus"><i></i> Voice ready</span><span id="walkthroughActionStatus">Preparing live data…</span></div>
+      <div class="walkthrough-actions">
+        <button id="walkthroughPause" type="button" aria-pressed="false">Pause</button>
+        <button id="walkthroughBack" type="button">Back</button>
+        <button id="walkthroughNext" class="button-primary" type="button">Next</button>
+        <button id="walkthroughVoice" type="button" aria-pressed="true">Voice on</button>
+        <button id="walkthroughClose" type="button">End tour</button>
+      </div>
+    </aside>
+    <div id="tourCursor" class="tour-cursor" aria-hidden="true"><span id="tourCursorLabel"></span></div>
 
     <script src="/config.js"></script>
     <script src="https://api.mapbox.com/mapbox-gl-js/v3.25.0/mapbox-gl.js"></script>

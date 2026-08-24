@@ -309,15 +309,33 @@ footer p { color: var(--muted); font-size: .73rem; }
 footer a { font-weight: 700; }
 
 .controls-backdrop { display: none; }
-.walkthrough-panel { position: fixed; z-index: 100; right: 22px; bottom: 22px; width: min(440px, calc(100vw - 28px)); padding: 20px; border: 1px solid rgba(255, 255, 255, .15); border-radius: 20px; color: white; background: linear-gradient(145deg, rgba(6, 25, 31, .98), rgba(12, 72, 67, .98)); box-shadow: 0 30px 80px rgba(4, 29, 31, .34); }
+.walkthrough-panel { position: fixed; z-index: 210; right: 22px; bottom: 22px; width: min(470px, calc(100vw - 28px)); padding: 20px; border: 1px solid rgba(199, 244, 89, .22); border-radius: 20px; color: white; background: linear-gradient(145deg, rgba(6, 25, 31, .985), rgba(12, 72, 67, .985)); box-shadow: 0 30px 80px rgba(4, 29, 31, .42); backdrop-filter: blur(18px); }
 .walkthrough-progress { display: flex; justify-content: space-between; gap: 10px; color: var(--lime); font-size: .7rem; font-weight: 800; text-transform: uppercase; letter-spacing: .09em; }
-.walkthrough-panel h2 { margin: 12px 0 7px; font: 800 1.25rem Manrope, sans-serif; }
-.walkthrough-panel p { margin: 0; color: #bdd2cd; font-size: .84rem; line-height: 1.55; }
-.walkthrough-actions { display: flex; gap: 7px; margin-top: 15px; }
-.walkthrough-actions button { min-height: 44px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 10px; padding: 9px 12px; color: white; background: rgba(255, 255, 255, .07); font-weight: 800; cursor: pointer; }
-.walkthrough-actions .button-primary { margin-left: auto; }
-.tour-focus { outline: 4px solid rgba(199, 244, 89, .8) !important; outline-offset: 5px; animation: tourGlow 1.45s ease-in-out infinite alternate; }
-@keyframes tourGlow { to { box-shadow: 0 0 0 9px rgba(199, 244, 89, .12), var(--shadow); } }
+.walkthrough-track { height: 4px; margin-top: 10px; overflow: hidden; border-radius: 99px; background: rgba(255, 255, 255, .12); }
+.walkthrough-track i { display: block; width: 6.67%; height: 100%; border-radius: inherit; background: linear-gradient(90deg, var(--lime), #78ecdb); transition: width .3s ease; }
+.walkthrough-panel h2 { margin: 13px 0 7px; font: 800 1.25rem Manrope, sans-serif; }
+.walkthrough-panel > p { min-height: 2.65rem; margin: 0; color: #d6e6e2; font-size: .84rem; line-height: 1.55; }
+.walkthrough-status { display: flex; flex-wrap: wrap; align-items: center; gap: 7px 13px; margin-top: 12px; color: #a9c9c2; font-size: .68rem; font-weight: 700; }
+.walkthrough-status span:first-child { display: inline-flex; align-items: center; gap: 6px; color: #dff7ef; }
+.walkthrough-status i { width: 7px; height: 7px; border-radius: 50%; background: var(--lime); box-shadow: 0 0 0 4px rgba(199, 244, 89, .12); animation: voicePulse 1s ease-in-out infinite alternate; }
+.walkthrough-status .muted i { background: #8aa29c; box-shadow: none; animation: none; }
+.walkthrough-actions { display: flex; flex-wrap: wrap; gap: 7px; margin-top: 15px; }
+.walkthrough-actions button { min-height: 42px; border: 1px solid rgba(255, 255, 255, .18); border-radius: 10px; padding: 8px 11px; color: white; background: rgba(255, 255, 255, .07); font-size: .74rem; font-weight: 800; cursor: pointer; }
+.walkthrough-actions button:hover, .walkthrough-actions button:focus-visible { border-color: rgba(199, 244, 89, .58); background: rgba(199, 244, 89, .11); }
+.walkthrough-actions .button-primary { margin-left: auto; color: #092426; background: var(--lime); }
+.tour-focus { position: relative; z-index: 2; outline: 4px solid rgba(199, 244, 89, .9) !important; outline-offset: 6px; animation: tourGlow 1s ease-in-out infinite alternate; }
+.tour-cursor { --cursor-x: -90px; --cursor-y: -90px; position: fixed; z-index: 230; top: 0; left: 0; width: 23px; height: 29px; opacity: 0; pointer-events: none; transform: translate3d(var(--cursor-x), var(--cursor-y), 0); filter: drop-shadow(0 4px 5px rgba(0, 20, 22, .45)); transition: opacity .18s ease; }
+.tour-cursor.visible { opacity: 1; }
+.tour-cursor::before { position: absolute; inset: 0; content: ""; border: 2px solid #092426; background: #fff; clip-path: polygon(0 0, 0 92%, 27% 67%, 43% 100%, 58% 92%, 42% 61%, 78% 61%); }
+.tour-cursor::after { position: absolute; z-index: -1; top: -15px; left: -15px; width: 48px; height: 48px; border: 2px solid rgba(199, 244, 89, .88); border-radius: 50%; content: ""; background: rgba(199, 244, 89, .13); box-shadow: 0 0 0 8px rgba(199, 244, 89, .07); animation: cursorHalo 1s ease-in-out infinite alternate; }
+.tour-cursor.clicking::after { animation: cursorClick .32s ease-out; }
+.tour-cursor span { position: absolute; top: 35px; left: 10px; width: max-content; max-width: min(260px, 65vw); padding: 6px 9px; border: 1px solid rgba(255, 255, 255, .15); border-radius: 8px; color: #fff; background: rgba(6, 25, 31, .94); box-shadow: 0 8px 24px rgba(4, 29, 31, .24); font: 700 .68rem DM Sans, sans-serif; opacity: 0; transform: translateY(-3px); transition: opacity .15s ease, transform .15s ease; }
+.tour-cursor.has-label span { opacity: 1; transform: translateY(0); }
+body.tour-running .walkthrough-trigger, body.tour-running #startWalkthroughHero { pointer-events: none; opacity: .58; }
+@keyframes tourGlow { to { box-shadow: 0 0 0 10px rgba(199, 244, 89, .14), var(--shadow); } }
+@keyframes cursorHalo { to { transform: scale(1.16); opacity: .74; } }
+@keyframes cursorClick { 50% { transform: scale(.54); background: rgba(199, 244, 89, .38); } }
+@keyframes voicePulse { to { opacity: .55; transform: scale(.82); } }
 .click-ripple { position: absolute; z-index: 5; width: 14px; height: 14px; border-radius: 50%; background: rgba(255, 255, 255, .65); pointer-events: none; transform: translate(-50%, -50%) scale(0); animation: clickRipple .55s ease-out forwards; }
 @keyframes clickRipple { to { transform: translate(-50%, -50%) scale(10); opacity: 0; } }
 
@@ -400,7 +418,11 @@ footer a { font-weight: 700; }
   .accordion-content { padding-left: 18px; }
   summary { padding: 14px; font-size: .81rem; }
   footer { display: grid; }
-  .walkthrough-panel { right: 14px; bottom: 14px; }
+  .walkthrough-panel { right: 10px; bottom: max(10px, env(safe-area-inset-bottom)); width: calc(100vw - 20px); padding: 16px; border-radius: 17px; }
+  .walkthrough-panel > p { min-height: 0; }
+  .walkthrough-actions { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
+  .walkthrough-actions button { min-width: 0; padding-inline: 5px; font-size: .66rem; }
+  .walkthrough-actions .button-primary { margin-left: 0; }
 }
 
 @media (max-width: 430px) {
@@ -424,4 +446,5 @@ footer a { font-weight: 700; }
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
   *, *::before, *::after { animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+  .tour-cursor { display: none; }
 }

@@ -6,6 +6,8 @@ __pycache__/
 .streamlit/secrets.toml
 tmp/
 output/playwright/
+output/pytest-temp/
+.playwright-cli/
 data/processed/*.tmp
 netlify-site/public/config.js
 *.inspect.ndjson

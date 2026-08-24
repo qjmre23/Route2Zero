@@ -2,24 +2,43 @@
 
 ## Duration and setup
 
-Target duration: 80-88 seconds.
+Target duration: approximately 85 seconds with the configured network voice. Exact duration follows narration playback and may vary with network conditions.
 
-Use the production application at <https://route2zero.netlify.app/> or the generated local Netlify preview. Use desktop width for the primary walkthrough and keep the browser zoom at 100%.
+Use the production application at <https://route2zero.netlify.app/> or the generated local Netlify preview. Press **TOUR ME** for the primary demonstration. The built-in tour performs 15 live stages, including random route selection, street-following map zoom, scenario controls, portfolio constraints, an assistant question, methods, and exports. It can be paused, resumed, skipped forward or back, muted, or ended at any time.
 
 Before recording:
 
 - confirm build `r2z-d4c8d4cc709a` is displayed or documented;
 - confirm scenario `scn-e0f12f397e`;
 - confirm 1,522 routes, 20 dated current external records, 9 robust priorities, and 8 Phase-1 corridors;
-- preselect `LTFRB_PUJ1353` as the flagship;
+- confirm a mapped route is available in the route selector; TOUR ME chooses one at random on every run;
 - allow the Mapbox style to finish loading;
 - close unrelated tabs and notifications;
-- test the export button; and
-- keep the optional AI endpoint disabled unless its source label has been verified.
+- test the export button;
+- confirm the planning assistant returns its verified source label; and
+- add `ELEVENLABS_API_KEY` to Netlify with Functions runtime scope for the production male narration voice.
 
-The walkthrough uses the identified build, its active controls, and its recorded evidence state.
+The walkthrough uses the identified build and its active controls. It is not a video or fixed click track. It restores the dashboard's starting route, scenario, portfolio controls, question and scroll position when it ends. Browser speech is the built-in recovery path when the ElevenLabs function is unavailable.
 
-## Shot sequence
+## Built-in TOUR ME sequence
+
+1. Establishes the live city decision system.
+2. Reads coverage, validation, robust-priority and scenario metrics.
+3. Randomly selects a mapped route from the active scope.
+4. Zooms Mapbox to the corridor and switches to validation status.
+5. Opens the selected route identity and live priority.
+6. Reads the eight separately labelled decision signals.
+7. Reviews fleet, charger and capital feasibility proxies.
+8. Clicks the Equity-first policy preset.
+9. Moves the equity-weight slider and normalizes the policy mix.
+10. Sets Phase-1 capacity, evidence and equity constraints.
+11. Reviews selected routes and constraint-driven exclusions.
+12. Highlights the highest-value evidence queue.
+13. Types and submits a live evidence question to the planning assistant.
+14. Opens methods, claims, safeguards and source health.
+15. Highlights the PDF, Word, CSV and audit-manifest exports.
+
+## Backup manual shot sequence
 
 ### 0:00-0:10 — Decision and scale
 
@@ -105,7 +124,7 @@ The walkthrough uses the identified build, its active controls, and its recorded
 
 End on the exported decision-record title or the Route2Zero mark with the live and GitHub links visible.
 
-## Interaction choreography
+## Backup manual interaction choreography
 
 - Use one deliberate click per transition.
 - Keep the pointer visible but stationary during narration.

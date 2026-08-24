@@ -65,7 +65,28 @@ const state = {
   assistantCache: new Map(),
   controlsOpen: false,
   tourIndex: -1,
-  tourStarter: null
+  tourStarter: null,
+  dataReady: false,
+  tour: {
+    running: false,
+    paused: false,
+    voiceEnabled: true,
+    token: 0,
+    controller: null,
+    audio: null,
+    speechFinish: null,
+    audioCache: new Map(),
+    startedAt: 0,
+    pausedAt: 0,
+    clock: null,
+    cursorX: -90,
+    cursorY: -90,
+    randomRouteId: null,
+    randomRouteName: "",
+    providerAvailable: null,
+    snapshot: null,
+    assistantReply: ""
+  }
 };
 
 const byId = (id) => document.getElementById(id);
@@ -177,9 +198,16 @@ const els = {
   walkthroughTime: byId("walkthroughTime"),
   walkthroughTitle: byId("walkthroughTitle"),
   walkthroughCopy: byId("walkthroughCopy"),
+  walkthroughBar: byId("walkthroughBar"),
+  walkthroughVoiceStatus: byId("walkthroughVoiceStatus"),
+  walkthroughActionStatus: byId("walkthroughActionStatus"),
+  walkthroughPause: byId("walkthroughPause"),
   walkthroughBack: byId("walkthroughBack"),
   walkthroughNext: byId("walkthroughNext"),
-  walkthroughClose: byId("walkthroughClose")
+  walkthroughVoice: byId("walkthroughVoice"),
+  walkthroughClose: byId("walkthroughClose"),
+  tourCursor: byId("tourCursor"),
+  tourCursorLabel: byId("tourCursorLabel")
 };
 
 const weightInputs = {
@@ -1604,44 +1632,611 @@ function trapControlsFocus(event) {
   else if (!event.shiftKey && document.activeElement === last) { event.preventDefault(); first.focus(); }
 }
 
+const reducedTourMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+function abortException() {
+  return new DOMException("Tour step ended", "AbortError");
+}
+
+function tourDelay(milliseconds, signal, preserveTiming = false) {
+  if (signal?.aborted) return Promise.reject(abortException());
+  return new Promise((resolve, reject) => {
+    const duration = reducedTourMotion.matches && !preserveTiming ? Math.min(milliseconds, 40) : milliseconds;
+    const timer = window.setTimeout(resolve, duration);
+    signal?.addEventListener("abort", () => { window.clearTimeout(timer); reject(abortException()); }, { once: true });
+  });
+}
+
+function randomTourIndex(length) {
+  if (length <= 1) return 0;
+  if (window.crypto?.getRandomValues) {
+    const value = new Uint32Array(1);
+    window.crypto.getRandomValues(value);
+    return Math.floor((value[0] / 4294967296) * length);
+  }
+  return Math.floor(Math.random() * length);
+}
+
+function randomTourRoute() {
+  const mapped = state.filtered.filter((row) => cleanedCoordinates(row.route_id).length >= 2 && String(row.route_id) !== String(state.selectedRouteId));
+  const candidates = mapped.length ? mapped : state.filtered;
+  return candidates[randomTourIndex(candidates.length)] || activeRow();
+}
+
+function tourTarget(reference) {
+  if (reference instanceof Element) return reference;
+  if (typeof reference === "function") return tourTarget(reference());
+  return typeof reference === "string" ? document.querySelector(reference) : null;
+}
+
+function clearTourFocus() {
+  document.querySelectorAll(".tour-focus").forEach((element) => element.classList.remove("tour-focus"));
+}
+
+async function focusTourTarget(reference, signal) {
+  const element = tourTarget(reference);
+  if (!element) return null;
+  clearTourFocus();
+  element.classList.add("tour-focus");
+  const rect = element.getBoundingClientRect();
+  const fixed = getComputedStyle(element).position === "fixed";
+  if (!fixed && (rect.top < 120 || rect.bottom > window.innerHeight * .72)) {
+    const destination = Math.max(0, window.scrollY + rect.top - Math.max(105, window.innerHeight * .2));
+    window.scrollTo({ top: destination, behavior: reducedTourMotion.matches ? "auto" : "smooth" });
+    await tourDelay(540, signal);
+  }
+  return element;
+}
+
+function setTourCursorLabel(label = "") {
+  els.tourCursorLabel.textContent = label;
+  els.tourCursor.classList.toggle("has-label", Boolean(label));
+}
+
+async function moveTourCursor(reference, label, signal, placement = {}) {
+  const element = tourTarget(reference);
+  if (!element || signal?.aborted) return;
+  const rect = element.getBoundingClientRect();
+  const xRatio = placement.x ?? (.42 + randomTourIndex(20) / 100);
+  const yRatio = placement.y ?? .5;
+  const targetX = Math.max(8, Math.min(window.innerWidth - 36, rect.left + rect.width * xRatio));
+  const targetY = Math.max(8, Math.min(window.innerHeight - 52, rect.top + rect.height * yRatio));
+  els.tourCursor.classList.add("visible");
+  setTourCursorLabel(label);
+  if (!reducedTourMotion.matches && els.tourCursor.animate) {
+    const midX = (state.tour.cursorX + targetX) / 2 + (randomTourIndex(50) - 25);
+    const midY = (state.tour.cursorY + targetY) / 2 - 24;
+    const animation = els.tourCursor.animate([
+      { transform: `translate3d(${state.tour.cursorX}px, ${state.tour.cursorY}px, 0)` },
+      { transform: `translate3d(${midX}px, ${midY}px, 0)`, offset: .48 },
+      { transform: `translate3d(${targetX}px, ${targetY}px, 0)` }
+    ], { duration: 520 + randomTourIndex(180), easing: "cubic-bezier(.2,.75,.25,1)", fill: "none" });
+    await Promise.race([animation.finished.catch(() => {}), tourDelay(760, signal)]);
+  }
+  if (signal?.aborted) throw abortException();
+  state.tour.cursorX = targetX;
+  state.tour.cursorY = targetY;
+  els.tourCursor.style.setProperty("--cursor-x", `${targetX}px`);
+  els.tourCursor.style.setProperty("--cursor-y", `${targetY}px`);
+}
+
+async function pulseTourClick(element, label, signal, invoke = true) {
+  if (!element) return;
+  await moveTourCursor(element, label, signal);
+  els.tourCursor.classList.add("clicking");
+  element.dispatchEvent(new PointerEvent("pointerdown", { bubbles: true, pointerType: "mouse" }));
+  await tourDelay(120, signal);
+  element.dispatchEvent(new PointerEvent("pointerup", { bubbles: true, pointerType: "mouse" }));
+  if (invoke) element.click();
+  await tourDelay(220, signal);
+  els.tourCursor.classList.remove("clicking");
+}
+
+async function selectTourValue(element, value, label, signal) {
+  if (!element || ![...element.options].some((option) => String(option.value) === String(value))) return;
+  await pulseTourClick(element, "Open choices", signal, false);
+  element.value = String(value);
+  element.dispatchEvent(new Event("input", { bubbles: true }));
+  element.dispatchEvent(new Event("change", { bubbles: true }));
+  els.walkthroughActionStatus.textContent = label;
+  setTourCursorLabel(label);
+  await tourDelay(520, signal);
+}
+
+async function typeTourText(element, text, signal) {
+  if (!element) return;
+  await pulseTourClick(element, "Type a live question", signal, false);
+  element.focus({ preventScroll: true });
+  element.value = "";
+  const interval = reducedTourMotion.matches ? 0 : 17;
+  for (const character of text) {
+    if (signal?.aborted) throw abortException();
+    element.value += character;
+    element.dispatchEvent(new Event("input", { bubbles: true }));
+    if (interval) await tourDelay(interval + randomTourIndex(17), signal);
+  }
+  els.walkthroughActionStatus.textContent = "Question typed from the active route context";
+  setTourCursorLabel("Question ready");
+}
+
+function tourNarration(step) {
+  return typeof step.narration === "function" ? step.narration() : step.narration;
+}
+
+async function fetchTourAudio(text) {
+  if (!text || state.tour.providerAvailable === false) throw new Error("Provider unavailable");
+  if (state.tour.audioCache.has(text)) return state.tour.audioCache.get(text);
+  const request = fetch("/.netlify/functions/narrate", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify({ text })
+  }).then(async (response) => {
+    if (!response.ok) {
+      state.tour.providerAvailable = false;
+      throw new Error("Narration unavailable");
+    }
+    const blob = await response.blob();
+    if (!blob.type.startsWith("audio/") || blob.size < 100) throw new Error("Invalid narration response");
+    state.tour.providerAvailable = true;
+    return blob;
+  }).catch((error) => {
+    state.tour.providerAvailable = false;
+    state.tour.audioCache.delete(text);
+    throw error;
+  });
+  state.tour.audioCache.set(text, request);
+  return request;
+}
+
+function stopTourMedia() {
+  if (state.tour.audio) {
+    state.tour.audio.finish();
+  }
+  window.speechSynthesis?.cancel();
+  state.tour.speechFinish?.();
+  state.tour.speechFinish = null;
+}
+
+function preferredBrowserVoice() {
+  const voices = window.speechSynthesis?.getVoices?.() || [];
+  const english = voices.filter((voice) => /^en[-_]/i.test(voice.lang));
+  const maleNames = /david|mark|guy|daniel|james|george|ryan|christopher|matthew|andrew|aaron/i;
+  return english.find((voice) => maleNames.test(voice.name)) || english.find((voice) => voice.default) || english[0] || voices[0];
+}
+
+function playBrowserNarration(text, signal) {
+  if (!window.speechSynthesis || !window.SpeechSynthesisUtterance) return tourDelay(Math.min(4800, Math.max(1800, text.length * 45)), signal, true);
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) { reject(abortException()); return; }
+    const utterance = new SpeechSynthesisUtterance(text);
+    const voice = preferredBrowserVoice();
+    if (voice) utterance.voice = voice;
+    utterance.lang = voice?.lang || "en-US";
+    utterance.rate = 1.08;
+    utterance.pitch = .93;
+    let settled = false;
+    let watchdog;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      window.clearTimeout(watchdog);
+      if (state.tour.speechFinish === finish) state.tour.speechFinish = null;
+      resolve();
+    };
+    state.tour.speechFinish = finish;
+    watchdog = window.setTimeout(finish, Math.min(11000, Math.max(2600, text.length * 68)));
+    utterance.onend = finish;
+    utterance.onerror = finish;
+    signal?.addEventListener("abort", () => { window.clearTimeout(watchdog); window.speechSynthesis.cancel(); if (state.tour.speechFinish === finish) state.tour.speechFinish = null; if (!settled) { settled = true; reject(abortException()); } }, { once: true });
+    window.speechSynthesis.cancel();
+    window.speechSynthesis.speak(utterance);
+  });
+}
+
+function playAudioNarration(blob, signal) {
+  return new Promise((resolve, reject) => {
+    if (signal?.aborted) { reject(abortException()); return; }
+    const url = URL.createObjectURL(blob);
+    const audio = new Audio(url);
+    let settled = false;
+    const finish = () => {
+      if (settled) return;
+      settled = true;
+      audio.pause();
+      if (state.tour.audio?.element === audio) state.tour.audio = null;
+      URL.revokeObjectURL(url);
+      resolve();
+    };
+    state.tour.audio = { element: audio, url, finish };
+    const watchdog = window.setTimeout(finish, 16000);
+    audio.onended = () => { window.clearTimeout(watchdog); finish(); };
+    audio.onerror = () => { window.clearTimeout(watchdog); finish(); };
+    signal?.addEventListener("abort", () => { window.clearTimeout(watchdog); audio.pause(); if (state.tour.audio?.element === audio) state.tour.audio = null; if (!settled) { settled = true; URL.revokeObjectURL(url); reject(abortException()); } }, { once: true });
+    audio.play().catch((error) => { window.clearTimeout(watchdog); if (state.tour.audio?.element === audio) state.tour.audio = null; if (!settled) { settled = true; URL.revokeObjectURL(url); reject(error); } });
+  });
+}
+
+async function playTourNarration(text, signal) {
+  if (!state.tour.voiceEnabled || !text) return;
+  try {
+    const audioRequest = fetchTourAudio(text);
+    const blob = await Promise.race([
+      audioRequest,
+      tourDelay(1800, signal, true).then(() => { throw new Error("Narration startup timeout"); })
+    ]);
+    els.walkthroughVoiceStatus.classList.remove("muted");
+    els.walkthroughVoiceStatus.innerHTML = "<i></i> ElevenLabs voice";
+    await playAudioNarration(blob, signal);
+  } catch (error) {
+    if (error?.name === "AbortError") throw error;
+    els.walkthroughVoiceStatus.classList.remove("muted");
+    els.walkthroughVoiceStatus.innerHTML = "<i></i> Device voice fallback";
+    await playBrowserNarration(text, signal);
+  }
+}
+
+function prefetchTourNarration(index) {
+  if (!state.tour.voiceEnabled || state.tour.providerAvailable === false) return;
+  [tourSteps[index], tourSteps[index + 1]].forEach((step) => {
+    if (step && typeof step.narration === "string") fetchTourAudio(step.narration).catch(() => {});
+  });
+}
+
+async function ensureTourControls(signal) {
+  if (!mobileControlsQuery.matches || state.controlsOpen) return;
+  setControlsOpen(true, false);
+  await tourDelay(360, signal);
+}
+
+function setTourRange(input, value) {
+  input.value = String(value);
+  input.dispatchEvent(new Event("input", { bubbles: true }));
+}
+
 const tourSteps = [
-  { target: "#overview", time: "0–12 sec", title: "Start with the city decision", copy: "Route2Zero screens 1,522 historic route-direction records and identifies which corridors have a dated current external record, while keeping present-day activity uncertain.", action: () => setPreset("default") },
-  { target: "#corridor-map", time: "12–28 sec", title: "Follow the corridor on real streets", copy: "Reviewed OpenStreetMap relations use their observed member-way geometry. Other corridors use a visibly labelled Mapbox street-following interpretation of ordered historic stops.", action: () => { state.activeLayer = "priority"; els.mapLayer.value = "priority"; setSelected(state.flagship.route_id || state.build.flagship_route_id || state.selectedRouteId, false); } },
-  { target: "#route-lens", time: "28–42 sec", title: "Read eight signals, not one score", copy: "Climate scenarios, evidence, equity, charging, operator readiness, robustness and ML typology stay separate and claim-labelled." },
-  { target: "#scenario-lab", time: "42–57 sec", title: "Test a human policy choice", copy: "Switch to Equity-first and watch live ranks, top-ten membership and the scenario ID change from actual data.", action: () => setPreset("equity") },
-  { target: "#phase1-portfolio", time: "57–71 sec", title: "Build a constrained Phase-1 shortlist", copy: "The default eight-corridor portfolio is a real precomputed pipeline output and visibly differs from simple top-N sorting.", action: () => setPreset("default") },
-  { target: "#evidence-ai", time: "71–85 sec", title: "Ask what must be validated first", copy: "The assistant is grounded in the active route, scenario and evidence queue. Exported reports carry build, model and scenario metadata.", action: () => { els.questionInput.value = "What should the city validate first for this corridor?"; const context = assistantContext(els.questionInput.value); renderAssistantAnswer({ ...localAssistantFallback(context), source: "precomputed_planner_cache" }); } }
+  {
+    target: "#overview",
+    title: "Meet the live decision system",
+    copy: "This is an operating planning dashboard—not a slide sequence. The tour will use its real controls, routes, models and evidence.",
+    narration: "Welcome to Route2Zero. I will operate the live system and show how a city can move from corridor evidence to a defensible pilot shortlist.",
+    perform: async (signal) => {
+      await moveTourCursor("#heroRobustCount", "Live analytical result", signal);
+      els.walkthroughActionStatus.textContent = "Live dashboard · current build loaded";
+    }
+  },
+  {
+    target: ".metrics",
+    title: "Start with coverage and uncertainty",
+    copy: "The headline metrics separate the historic screening universe, dated validations, robust-priority routes and the active scenario identifier.",
+    narration: "These metrics expose coverage and uncertainty. Historic route records are screened at scale, while current validation and robust priority remain separate claims.",
+    perform: async (signal) => {
+      await moveTourCursor("#routesMetric", "Routes screened", signal);
+      await moveTourCursor("#validatedMetric", "Dated validations", signal);
+    }
+  },
+  {
+    target: "#routeFinder",
+    title: "Choose a real corridor at random",
+    copy: "Each run selects a different mapped corridor from the current scope, then updates every downstream view.",
+    narration: "I am choosing a mapped corridor at random. This is not a rehearsed flagship route; the dashboard will recalculate the complete route context.",
+    perform: async (signal) => {
+      const route = randomTourRoute();
+      if (!route) return;
+      state.tour.randomRouteId = String(route.route_id);
+      state.tour.randomRouteName = route.route_long_name;
+      await selectTourValue(els.routeFinder, route.route_id, `Selected ${route.route_long_name}`, signal);
+    }
+  },
+  {
+    target: "#corridor-map",
+    title: "Trace the corridor on the street network",
+    copy: "The selected route zooms into Mapbox street-following geometry. The layer control then switches the whole network to validation status.",
+    narration: "The map zooms to the chosen corridor and follows streets. I will switch the network to validation status so evidence gaps remain visible beside location.",
+    perform: async (signal) => {
+      await selectTourValue(els.mapLayer, "validation", "Layer: validation status", signal);
+      await moveTourCursor("#map", "Street-following corridor", signal, { x: .5, y: .45 });
+      await tourDelay(620, signal);
+    }
+  },
+  {
+    target: "#route-lens",
+    title: "Read the corridor identity first",
+    copy: "Route identity, validation status, rationale and active priority are kept together before deeper indicators are interpreted.",
+    narration: "The Route Lens keeps identity and validation status ahead of the score. Priority responds to policy, but the underlying claims stay visible.",
+    perform: async (signal) => {
+      await moveTourCursor("#routeName", state.tour.randomRouteName || "Selected corridor", signal);
+      await moveTourCursor("#priorityValue", "Live priority", signal);
+    }
+  },
+  {
+    target: ".lens-grid",
+    title: "Keep eight decision signals separate",
+    copy: "Climate, equity, charging, operator readiness, evidence, robustness and ML typology are never collapsed into an unexplained AI verdict.",
+    narration: "Eight claim-labelled signals prevent false precision. Climate is scenario-based, equity and charging are proxies, and operator readiness remains explicit evidence work.",
+    perform: async (signal) => {
+      await moveTourCursor("#climateRange", "Climate range", signal);
+      await moveTourCursor("#evidenceValue", "Evidence grade", signal);
+      await moveTourCursor("#robustnessScore", "Rank stability", signal);
+    }
+  },
+  {
+    target: "#feasibility",
+    title: "Add an order-of-magnitude feasibility screen",
+    copy: "Fleet, chargers and capital remain screening proxies. Financing is marked missing instead of being invented.",
+    narration: "Feasibility adds fleet, charger and capital orders of magnitude without pretending they are quotes. Missing financing terms stay visibly missing.",
+    perform: async (signal) => {
+      await moveTourCursor("#fleetProxy", "Fleet proxy", signal);
+      await moveTourCursor("#capexProxy", "Capital proxy", signal);
+    }
+  },
+  {
+    target: "#scenario-lab",
+    title: "Change the policy lens",
+    copy: "A real click applies the Equity-first preset, recalculates ranks and produces a new auditable scenario ID.",
+    narration: "Now I will click Equity-first. Human-controlled weights change the ranking and scenario identifier; the language model cannot change either one.",
+    perform: async (signal) => {
+      const button = document.querySelector('#scenario-lab [data-preset="equity"]');
+      await pulseTourClick(button, "Click Equity-first", signal, true);
+      els.walkthroughActionStatus.textContent = `Scenario ${state.scenarioId}`;
+    }
+  },
+  {
+    target: () => weightInputs.equity,
+    title: "Fine-tune a policy weight",
+    copy: "The cursor moves a live slider. All four displayed weights are normalized to 100 percent before scoring.",
+    narration: "Presets are only a starting point. I will raise the equity weight directly, and Route2Zero will normalize the full policy mix before recalculating.",
+    perform: async (signal) => {
+      await ensureTourControls(signal);
+      await focusTourTarget(weightInputs.equity, signal);
+      await moveTourCursor(weightInputs.equity, "Move equity weight", signal, { x: .7, y: .5 });
+      setTourRange(weightInputs.equity, 55);
+      els.walkthroughActionStatus.textContent = `Normalized mix · ${els.weightTotal.textContent}`;
+      await tourDelay(480, signal);
+      if (mobileControlsQuery.matches) setControlsOpen(false, false);
+    }
+  },
+  {
+    target: "#phase1-portfolio",
+    title: "Set Phase-1 constraints",
+    copy: "The tour limits the shortlist to six corridors, requires Grade C evidence or better, and raises the equity floor before rebuilding.",
+    narration: "A pilot shortlist is more than the first six ranks. I will set capacity, evidence and equity constraints, then run the portfolio builder.",
+    perform: async (signal) => {
+      await selectTourValue(els.portfolioMax, "6", "Maximum: 6 corridors", signal);
+      await selectTourValue(els.portfolioGrade, "C", "Evidence: Grade C or better", signal);
+      await selectTourValue(els.portfolioEquity, "60", "Equity floor: 60", signal);
+      await pulseTourClick(els.buildPortfolio, "Update shortlist", signal, true);
+      els.walkthroughActionStatus.textContent = `${els.portfolioCount.textContent} corridors selected`;
+    }
+  },
+  {
+    target: ".portfolio-grid",
+    title: "Inspect selections and exclusions",
+    copy: "Selected corridors, constraint effects and differences from simple top-N sorting are shown together.",
+    narration: "The result explains what entered, what was excluded and why it differs from top-N sorting. This is a validation portfolio, not a procurement order.",
+    perform: async (signal) => {
+      await moveTourCursor("#portfolioList", "Selected corridors", signal);
+      await moveTourCursor("#portfolioDelta", "Selection trade-offs", signal);
+    }
+  },
+  {
+    target: "#evidenceQueue",
+    title: "Prioritize evidence that can reverse the choice",
+    copy: "The evidence queue ranks the missing checks with the greatest decision impact, rather than hiding them inside a confidence score.",
+    narration: "The evidence queue focuses fieldwork on assumptions that can reverse rank or portfolio membership. That makes validation effort targeted and auditable.",
+    perform: async (signal) => {
+      const first = els.evidenceQueue.querySelector("[data-route-id]") || els.evidenceQueue.firstElementChild;
+      await moveTourCursor(first || els.evidenceQueue, "Highest-value validation", signal);
+    }
+  },
+  {
+    target: "#evidence-ai",
+    title: "Ask the grounded planning assistant",
+    copy: "The cursor types a live question, submits the active route and scenario, and waits for the deployed evidence-grounded response.",
+    narration: () => state.tour.assistantReply
+      ? `The live assistant answered: ${state.tour.assistantReply.slice(0, 520)}`
+      : "The planning assistant uses only the active route, scenario and structured evidence. It cannot edit scores, weights or portfolio constraints.",
+    narrateAfter: true,
+    perform: async (signal) => {
+      const question = "For this corridor, what should the city validate before a pilot and why?";
+      await typeTourText(els.questionInput, question, signal);
+      await pulseTourClick(els.askButton, "Generate evidence brief", signal, false);
+      els.walkthroughActionStatus.textContent = "Waiting for the grounded assistant…";
+      await Promise.race([askQuestion(), tourDelay(12000, signal, true)]);
+      state.tour.assistantReply = els.answerText.textContent.trim();
+      els.walkthroughActionStatus.textContent = "Live evidence brief returned";
+      await moveTourCursor("#answerText", "Grounded response", signal);
+    }
+  },
+  {
+    target: "#method-sources",
+    title: "Open methods, safeguards and source health",
+    copy: "The evidence boundary, model restraint, sources and build health are available in the dashboard—not buried outside the product.",
+    narration: "Methods and safeguards remain one click away. I will open the claims boundary so a reviewer can inspect what is measured, estimated, proxied or missing.",
+    perform: async (signal) => {
+      await pulseTourClick(els.openMethod, "Open evidence boundary", signal, true);
+      await tourDelay(320, signal);
+      await moveTourCursor("#methodDetails", "Claims and safeguards", signal);
+    }
+  },
+  {
+    target: () => els.exportPdf,
+    title: "Export an audit-ready decision pack",
+    copy: "PDF, Word, CSV and JSON outputs carry the active build, model and scenario metadata. The tour highlights them without forcing a download.",
+    narration: "Finally, city teams can export a decision brief, editable report, corridor data and audit manifest. Every output carries the active scenario and build identity.",
+    perform: async (signal) => {
+      await ensureTourControls(signal);
+      await focusTourTarget(els.exportPdf, signal);
+      await moveTourCursor(els.exportPdf, "PDF decision brief", signal);
+      await moveTourCursor(els.exportWord, "Editable Word report", signal);
+      await moveTourCursor(els.downloadAudit, "Audit manifest", signal);
+      els.walkthroughActionStatus.textContent = "Tour complete · original controls will be restored";
+    }
+  }
 ];
 
-function activateTourStep(index) {
-  document.querySelectorAll(".tour-focus").forEach((element) => element.classList.remove("tour-focus"));
+function formatTourClock(milliseconds) {
+  const seconds = Math.max(0, Math.floor(milliseconds / 1000));
+  return `${Math.floor(seconds / 60)}:${String(seconds % 60).padStart(2, "0")}`;
+}
+
+function updateTourClock() {
+  if (!state.tour.running) return;
+  const now = state.tour.pausedAt || Date.now();
+  els.walkthroughTime.textContent = `${formatTourClock(now - state.tour.startedAt)} / 1:25`;
+}
+
+function snapshotTourState() {
+  return {
+    weights: Object.fromEntries(Object.entries(weightInputs).map(([key, input]) => [key, input.value])),
+    preset: state.activePreset,
+    selectedRouteId: state.selectedRouteId,
+    activeLayer: state.activeLayer,
+    portfolioMax: els.portfolioMax.value,
+    portfolioGrade: els.portfolioGrade.value,
+    portfolioEquity: els.portfolioEquity.value,
+    question: els.questionInput.value,
+    answer: els.answerText.innerHTML,
+    answerSource: els.answerSource.textContent,
+    answerSourceHidden: els.answerSource.classList.contains("hidden"),
+    methodOpen: els.methodDetails.open,
+    scrollY: window.scrollY
+  };
+}
+
+function restoreTourState() {
+  const snapshot = state.tour.snapshot;
+  if (!snapshot) return;
+  Object.entries(snapshot.weights).forEach(([key, value]) => { weightInputs[key].value = value; });
+  state.activePreset = snapshot.preset;
+  state.activeLayer = snapshot.activeLayer;
+  els.mapLayer.value = snapshot.activeLayer;
+  els.portfolioMax.value = snapshot.portfolioMax;
+  els.portfolioGrade.value = snapshot.portfolioGrade;
+  els.portfolioEquity.value = snapshot.portfolioEquity;
+  els.questionInput.value = snapshot.question;
+  els.answerText.innerHTML = snapshot.answer;
+  els.answerSource.textContent = snapshot.answerSource;
+  els.answerSource.classList.toggle("hidden", snapshot.answerSourceHidden);
+  els.methodDetails.open = snapshot.methodOpen;
+  document.querySelectorAll("[data-preset]").forEach((button) => button.classList.toggle("active", button.dataset.preset === snapshot.preset));
+  renderAll();
+  if (state.filtered.some((row) => String(row.route_id) === String(snapshot.selectedRouteId))) setSelected(snapshot.selectedRouteId, false);
+  if (mobileControlsQuery.matches && state.controlsOpen) setControlsOpen(false, false);
+  window.scrollTo({ top: snapshot.scrollY, behavior: "auto" });
+}
+
+function cancelTourStep() {
+  state.tour.token += 1;
+  state.tour.controller?.abort();
+  state.tour.controller = null;
+  stopTourMedia();
+  els.tourCursor.classList.remove("clicking");
+}
+
+async function runTourStep(index) {
+  if (!state.tour.running || state.tour.paused) return;
+  cancelTourStep();
+  const token = state.tour.token;
+  const controller = new AbortController();
+  state.tour.controller = controller;
   state.tourIndex = Math.max(0, Math.min(tourSteps.length - 1, index));
   const step = tourSteps[state.tourIndex];
-  step.action?.();
-  const target = document.querySelector(step.target);
-  target?.classList.add("tour-focus");
-  target?.scrollIntoView({ behavior: "smooth", block: "start" });
   els.walkthroughStep.textContent = `${state.tourIndex + 1} / ${tourSteps.length}`;
-  els.walkthroughTime.textContent = step.time;
   els.walkthroughTitle.textContent = step.title;
   els.walkthroughCopy.textContent = step.copy;
   els.walkthroughBack.disabled = state.tourIndex === 0;
   els.walkthroughNext.textContent = state.tourIndex === tourSteps.length - 1 ? "Finish" : "Next";
+  els.walkthroughBar.style.width = `${((state.tourIndex + 1) / tourSteps.length) * 100}%`;
+  els.walkthroughBar.parentElement.setAttribute("aria-valuenow", String(state.tourIndex + 1));
+  els.walkthroughBar.parentElement.setAttribute("aria-valuemax", String(tourSteps.length));
+  els.walkthroughActionStatus.textContent = "Demonstrating live controls…";
+  try {
+    const target = await focusTourTarget(step.target, controller.signal);
+    if (target) await moveTourCursor(target, step.title, controller.signal);
+    prefetchTourNarration(state.tourIndex + 1);
+    const action = Promise.resolve(step.perform?.(controller.signal));
+    if (step.narrateAfter) {
+      await action;
+      await Promise.all([playTourNarration(tourNarration(step), controller.signal), tourDelay(2600, controller.signal, true)]);
+    } else {
+      await Promise.all([action, playTourNarration(tourNarration(step), controller.signal), tourDelay(3000, controller.signal, true)]);
+    }
+    if (!state.tour.running || state.tour.paused || controller.signal.aborted || token !== state.tour.token) return;
+    if (state.tourIndex >= tourSteps.length - 1) endWalkthrough(true);
+    else void runTourStep(state.tourIndex + 1);
+  } catch (error) {
+    if (error?.name !== "AbortError" && state.tour.running) {
+      els.walkthroughActionStatus.textContent = "This step was skipped safely; continuing…";
+      if (state.tourIndex >= tourSteps.length - 1) endWalkthrough(true);
+      else void runTourStep(state.tourIndex + 1);
+    }
+  }
 }
 
 function startWalkthrough(event) {
+  if (!state.dataReady || state.tour.running) return;
   state.tourStarter = event?.currentTarget || document.activeElement;
+  state.tour.running = true;
+  state.tour.paused = false;
+  state.tour.randomRouteId = null;
+  state.tour.randomRouteName = "";
+  state.tour.assistantReply = "";
+  state.tour.snapshot = snapshotTourState();
+  state.tour.startedAt = Date.now();
+  state.tour.pausedAt = 0;
+  document.body.classList.add("tour-running");
   els.walkthroughPanel.classList.remove("hidden");
-  els.walkthroughPanel.setAttribute("aria-live", "polite");
-  activateTourStep(0);
-  requestAnimationFrame(() => els.walkthroughNext.focus());
+  els.walkthroughPause.textContent = "Pause";
+  els.walkthroughPause.setAttribute("aria-pressed", "false");
+  els.walkthroughVoice.textContent = state.tour.voiceEnabled ? "Voice on" : "Voice off";
+  els.walkthroughVoice.setAttribute("aria-pressed", String(state.tour.voiceEnabled));
+  state.tour.clock = window.setInterval(updateTourClock, 250);
+  updateTourClock();
+  void runTourStep(0);
 }
 
-function endWalkthrough() {
-  document.querySelectorAll(".tour-focus").forEach((element) => element.classList.remove("tour-focus"));
+function endWalkthrough(completed = false) {
+  if (!state.tour.running && state.tourIndex < 0) return;
+  cancelTourStep();
+  window.clearInterval(state.tour.clock);
+  state.tour.clock = null;
+  state.tour.running = false;
+  state.tour.paused = false;
+  state.tour.pausedAt = 0;
+  document.body.classList.remove("tour-running");
+  clearTourFocus();
+  els.tourCursor.classList.remove("visible", "has-label", "clicking");
   els.walkthroughPanel.classList.add("hidden");
+  restoreTourState();
+  state.tour.snapshot = null;
   state.tourIndex = -1;
-  state.tourStarter?.focus?.();
+  if (!completed) state.tourStarter?.focus?.();
+}
+
+function toggleTourPause() {
+  if (!state.tour.running) return;
+  state.tour.paused = !state.tour.paused;
+  els.walkthroughPause.textContent = state.tour.paused ? "Resume" : "Pause";
+  els.walkthroughPause.setAttribute("aria-pressed", String(state.tour.paused));
+  if (state.tour.paused) {
+    state.tour.pausedAt = Date.now();
+    cancelTourStep();
+    els.walkthroughActionStatus.textContent = "Tour paused";
+    setTourCursorLabel("Paused");
+  } else {
+    state.tour.startedAt += Date.now() - state.tour.pausedAt;
+    state.tour.pausedAt = 0;
+    void runTourStep(Math.max(0, state.tourIndex));
+  }
+}
+
+function toggleTourVoice() {
+  state.tour.voiceEnabled = !state.tour.voiceEnabled;
+  els.walkthroughVoice.textContent = state.tour.voiceEnabled ? "Voice on" : "Voice off";
+  els.walkthroughVoice.setAttribute("aria-pressed", String(state.tour.voiceEnabled));
+  els.walkthroughVoiceStatus.classList.toggle("muted", !state.tour.voiceEnabled);
+  els.walkthroughVoiceStatus.innerHTML = state.tour.voiceEnabled ? "<i></i> Voice on" : "<i></i> Voice muted";
+  stopTourMedia();
 }
 
 async function fetchTextRequired(url) {
@@ -1698,6 +2293,9 @@ async function init() {
   renderSavedScenarioOptions();
   renderSourceHealth();
   initialiseMap();
+  state.dataReady = true;
+  els.startWalkthroughTop.disabled = false;
+  els.startWalkthroughHero.disabled = false;
 }
 
 Object.values(weightInputs).forEach((input) => input.addEventListener("input", () => { inferPreset(); renderAll(); }));
@@ -1741,9 +2339,11 @@ mobileControlsQuery.addEventListener("change", syncControlsA11y);
 
 els.startWalkthroughTop.addEventListener("click", startWalkthrough);
 els.startWalkthroughHero.addEventListener("click", startWalkthrough);
-els.walkthroughBack.addEventListener("click", () => activateTourStep(state.tourIndex - 1));
-els.walkthroughNext.addEventListener("click", () => { if (state.tourIndex >= tourSteps.length - 1) endWalkthrough(); else activateTourStep(state.tourIndex + 1); });
-els.walkthroughClose.addEventListener("click", endWalkthrough);
+els.walkthroughPause.addEventListener("click", toggleTourPause);
+els.walkthroughBack.addEventListener("click", () => { if (state.tour.running) void runTourStep(state.tourIndex - 1); });
+els.walkthroughNext.addEventListener("click", () => { if (state.tourIndex >= tourSteps.length - 1) endWalkthrough(true); else if (state.tour.running) void runTourStep(state.tourIndex + 1); });
+els.walkthroughVoice.addEventListener("click", toggleTourVoice);
+els.walkthroughClose.addEventListener("click", () => endWalkthrough(false));
 
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape") {
