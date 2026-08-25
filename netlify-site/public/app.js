@@ -1658,6 +1658,7 @@ function trapControlsFocus(event) {
 }
 
 const reducedTourMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+const compactTourQuery = window.matchMedia("(max-width: 700px)");
 
 function abortException() {
   return new DOMException("Tour step ended", "AbortError");
@@ -1698,17 +1699,51 @@ function clearTourFocus() {
   document.querySelectorAll(".tour-focus").forEach((element) => element.classList.remove("tour-focus"));
 }
 
+function tourViewportBounds() {
+  const top = mobileControlsQuery.matches ? 84 : 112;
+  let bottom = window.innerHeight - 16;
+  if (!els.walkthroughPanel.classList.contains("hidden")) {
+    const panelRect = els.walkthroughPanel.getBoundingClientRect();
+    if (panelRect.top > top + 120) bottom = Math.min(bottom, panelRect.top - 14);
+  }
+  return { top, bottom: Math.max(top + 120, bottom) };
+}
+
+function tourScrollableAncestor(element) {
+  let parent = element?.parentElement;
+  while (parent && parent !== document.body) {
+    const style = getComputedStyle(parent);
+    if (/(auto|scroll)/.test(style.overflowY) && parent.scrollHeight > parent.clientHeight) return parent;
+    parent = parent.parentElement;
+  }
+  return null;
+}
+
 async function focusTourTarget(reference, signal) {
   const element = tourTarget(reference);
   if (!element) return null;
   clearTourFocus();
   element.classList.add("tour-focus");
-  const rect = element.getBoundingClientRect();
-  const fixed = getComputedStyle(element).position === "fixed";
-  if (!fixed && (rect.top < 120 || rect.bottom > window.innerHeight * .72)) {
-    const destination = Math.max(0, window.scrollY + rect.top - Math.max(105, window.innerHeight * .2));
-    window.scrollTo({ top: destination, behavior: reducedTourMotion.matches ? "auto" : "smooth" });
+  const bounds = tourViewportBounds();
+  const scrollable = tourScrollableAncestor(element);
+  let rect = element.getBoundingClientRect();
+  const isVisible = rect.right > 0 && rect.left < window.innerWidth && rect.bottom > bounds.top && rect.top < bounds.bottom;
+  const fullyFramed = rect.top >= bounds.top + 8 && rect.bottom <= bounds.bottom - 8;
+  if (!isVisible || !fullyFramed) {
+    const availableHeight = bounds.bottom - bounds.top - 20;
+    const desiredTop = bounds.top + Math.max(10, (availableHeight - Math.min(rect.height, availableHeight)) / 2);
+    const behavior = reducedTourMotion.matches ? "auto" : "smooth";
+    if (scrollable) {
+      const containerRect = scrollable.getBoundingClientRect();
+      const containerTop = Math.max(bounds.top, containerRect.top) + 10;
+      const containerBottom = Math.min(bounds.bottom, containerRect.bottom) - 10;
+      const framedTop = containerTop + Math.max(0, (containerBottom - containerTop - Math.min(rect.height, containerBottom - containerTop)) / 2);
+      scrollable.scrollTo({ top: Math.max(0, scrollable.scrollTop + rect.top - framedTop), behavior });
+    } else if (getComputedStyle(element).position !== "fixed") {
+      window.scrollTo({ top: Math.max(0, window.scrollY + rect.top - desiredTop), behavior });
+    }
     await tourDelay(540, signal);
+    rect = element.getBoundingClientRect();
   }
   return element;
 }
@@ -1722,11 +1757,14 @@ async function moveTourCursor(reference, label, signal, placement = {}) {
   const element = tourTarget(reference);
   if (!element || signal?.aborted) return;
   const rect = element.getBoundingClientRect();
+  const bounds = tourViewportBounds();
   const xRatio = placement.x ?? (.42 + randomTourIndex(20) / 100);
   const yRatio = placement.y ?? .5;
   const targetX = Math.max(8, Math.min(window.innerWidth - 36, rect.left + rect.width * xRatio));
-  const targetY = Math.max(8, Math.min(window.innerHeight - 52, rect.top + rect.height * yRatio));
+  const targetY = Math.max(bounds.top + 5, Math.min(bounds.bottom - 44, rect.top + rect.height * yRatio));
   els.tourCursor.classList.add("visible");
+  els.tourCursor.classList.toggle("label-left", targetX > window.innerWidth * .58);
+  els.tourCursor.classList.toggle("label-up", targetY > bounds.bottom - 82);
   setTourCursorLabel(label);
   if (!reducedTourMotion.matches && els.tourCursor.animate) {
     const midX = (state.tour.cursorX + targetX) / 2 + (randomTourIndex(50) - 25);
@@ -1769,7 +1807,7 @@ async function selectTourValue(element, value, label, signal) {
   await pulseTourClick(element, "Open choices", signal, false);
   const options = [...element.options];
   const chosenIndex = options.findIndex((option) => String(option.value) === String(value));
-  const visibleCount = Math.min(5, options.length);
+  const visibleCount = Math.min(compactTourQuery.matches ? 3 : 5, options.length);
   let start = Math.max(0, chosenIndex - Math.floor(visibleCount / 2));
   let end = Math.min(options.length, start + visibleCount);
   start = Math.max(0, end - visibleCount);
@@ -1781,13 +1819,15 @@ async function selectTourValue(element, value, label, signal) {
     return `<div class="tour-choice-option${selected}" data-tour-option-index="${index}">${escapeHtml(option.textContent.trim())}</div>`;
   }).join("");
   const rect = element.getBoundingClientRect();
-  const width = Math.min(Math.max(rect.width, 300), window.innerWidth - 24);
+  const bounds = tourViewportBounds();
+  const width = Math.min(Math.max(rect.width, compactTourQuery.matches ? 260 : 300), window.innerWidth - 20);
   const estimatedHeight = 43 + visibleOptions.length * 41;
-  const left = Math.max(12, Math.min(window.innerWidth - width - 12, rect.left));
-  const opensUp = rect.bottom + estimatedHeight + 10 > window.innerHeight && rect.top - estimatedHeight > 12;
-  const top = opensUp ? rect.top - estimatedHeight - 8 : rect.bottom + 8;
+  const left = Math.max(10, Math.min(window.innerWidth - width - 10, rect.left));
+  const opensUp = rect.bottom + estimatedHeight + 10 > bounds.bottom && rect.top - estimatedHeight > bounds.top;
+  const proposedTop = opensUp ? rect.top - estimatedHeight - 8 : rect.bottom + 8;
+  const top = Math.max(bounds.top, Math.min(bounds.bottom - estimatedHeight, proposedTop));
   els.tourChoiceMenu.style.left = `${left}px`;
-  els.tourChoiceMenu.style.top = `${Math.max(12, top)}px`;
+  els.tourChoiceMenu.style.top = `${top}px`;
   els.tourChoiceMenu.style.width = `${width}px`;
   els.tourChoiceMenu.classList.toggle("opens-up", opensUp);
   els.tourChoiceMenu.classList.remove("hidden", "closing");
@@ -1929,7 +1969,7 @@ function setTourRange(input, value) {
 
 const tourSteps = [
   {
-    target: "#overview",
+    target: () => compactTourQuery.matches ? document.querySelector(".hero-copy") : document.querySelector("#overview"),
     title: "Meet the live decision system",
     copy: "This is an operating planning dashboard—not a slide sequence. The tour will use its real controls, routes, models and evidence.",
     narration: TOUR_NARRATION[0].text,
@@ -2026,7 +2066,7 @@ const tourSteps = [
     }
   },
   {
-    target: () => weightInputs.equity,
+    target: () => mobileControlsQuery.matches && !state.controlsOpen ? els.mobileControlsButton : weightInputs.equity,
     title: "Fine-tune a policy weight",
     copy: "The cursor moves a live slider. All four displayed weights are normalized to 100 percent before scoring.",
     narration: TOUR_NARRATION[8].text,
@@ -2109,7 +2149,7 @@ const tourSteps = [
     }
   },
   {
-    target: () => els.exportPdf,
+    target: () => mobileControlsQuery.matches && !state.controlsOpen ? els.mobileControlsButton : els.exportPdf,
     title: "Export an audit-ready decision pack",
     copy: "PDF, Word, CSV and JSON outputs carry the active build, model and scenario metadata. The tour highlights them without forcing a download.",
     narration: TOUR_NARRATION[14].text,
@@ -2245,7 +2285,7 @@ function endWalkthrough(completed = false) {
   state.tour.paused = false;
   document.body.classList.remove("tour-running");
   clearTourFocus();
-  els.tourCursor.classList.remove("visible", "has-label", "clicking");
+  els.tourCursor.classList.remove("visible", "has-label", "clicking", "label-left", "label-up");
   els.walkthroughPanel.classList.add("hidden");
   restoreTourState();
   state.tour.snapshot = null;

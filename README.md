@@ -68,6 +68,12 @@ Route2Zero therefore supports screening, validation design, and stakeholder revi
 
 The responsive interface is deployed on Netlify and uses Mapbox GL JS for interactive cartography. Reviewed OSM relations are drawn from observed member-way geometry. Other routes use road-following Mapbox interpretations based on ordered screening coordinates and remain labelled as planning geometry. TOUR ME operates the real interface rather than replaying a fixed recording. Its cursor opens a visible option menu, highlights the chosen value, clicks it, and dispatches the same input and change events used by the dashboard. Fourteen deterministic narration steps are committed as MP3 files generated with one ElevenLabs voice; only the assistant-response step is synthesized live because its answer changes with the selected route and scenario. The tour restores the user's starting controls when it ends, supports pause and voice controls, and provides a reduced-motion mode.
 
+### What AI contributes
+
+Route2Zero separates analytical assistance from policy authority. A supervised model completes one missing historic service-intensity input and supplies route-level residual flags; clustering supports descriptive sampling and interpretation. The Planning and Evidence Assistant then turns the active route, scenario, evidence status, and portfolio context into concise validation questions and comparisons. These components reduce evidence-review friction, but they do not create policy weights, climate values, evidence grades, rankings, constraints, or portfolio membership.
+
+The six-month pilot measures that contribution directly. AI-assisted evidence review is compared with an analyst-only workflow using time-to-first validation brief, missed-evidence rate, factual-error rate, and unsupported-claim rate. Route2Zero claims no productivity gain until that comparison is completed.
+
 The static HTML carries the current build summary before JavaScript runs, so link previewers, accessibility tools, slow connections, and no-script fetchers see `1,522` historic records, `20` dated map matches, `9` robust validation priorities, and scenario `scn-e0f12f397e` instead of placeholder zeroes.
 
 ## Submission traceability

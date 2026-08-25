@@ -390,6 +390,13 @@ def test_optional_city_adapters_return_explicit_absence(tmp_path: Path) -> None:
     assert city.method == "text_fallback"
     assert city.boundary_source_id == ""
     assert city.cities_for_route("Makati City to Pasig City", "Sample")[:2] == ["Makati", "Pasig"]
+    binangonan = city.cities_for_route(
+        "Quezon Ext. Binangonan, Manila - Market Ave, Pasig City, Manila",
+        "Binangonan - Pasig (TP)",
+    )
+    assert binangonan[:2] == ["Binangonan", "Pasig"]
+    assert "Binan" not in binangonan
+    assert city.cities_for_route("Biñan City to Carmona City", "Sample")[:2] == ["Binan", "Carmona"]
     equity_module = load_pipeline_module("05_equity_score.py", "route2zero_equity_score")
     missing_equity = equity_module.missing_equity_output(pd.Series(["R1", "R2"]), "test_missing")
     assert missing_equity["equity_score"].isna().all()

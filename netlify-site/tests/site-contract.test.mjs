@@ -38,6 +38,21 @@ test("judge view uses progressive evidence disclosure and no tour timer", async 
   assert.doesNotMatch(app, /walkthroughTime|formatTourClock|updateTourClock|speechSynthesis/);
 });
 
+test("phone tour reserves a visible stage and keeps controls usable", async () => {
+  const [app, css] = await Promise.all([
+    readFile(join(siteRoot, "public", "app.js"), "utf8"),
+    readFile(join(siteRoot, "public", "styles.css"), "utf8")
+  ]);
+
+  assert.match(app, /function tourViewportBounds\(\)/);
+  assert.match(app, /function tourScrollableAncestor\(element\)/);
+  assert.match(app, /compactTourQuery\.matches \? 3 : 5/);
+  assert.match(css, /grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/);
+  assert.match(css, /body\.tour-running \{ scroll-padding-bottom: 46svh; \}/);
+  assert.match(css, /\.tour-cursor\.label-left span/);
+  assert.match(css, /@media \(max-width: 360px\), \(max-height: 620px\) and \(max-width: 700px\)/);
+});
+
 test("deterministic tour steps use committed MP3 narration while the live assistant stays dynamic", async () => {
   const recorded = TOUR_NARRATION.filter((entry) => !entry.dynamic);
   const dynamic = TOUR_NARRATION.filter((entry) => entry.dynamic);

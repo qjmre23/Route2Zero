@@ -183,6 +183,8 @@ Compare:
 
 The evaluation should test whether the assistant improves a real planner task, such as identifying the next evidence request, rather than merely sounding fluent.
 
+For the primary evidence-review task, compare AI-assisted and analyst-only work using time-to-first validation brief, missed-evidence rate, factual-error rate, unsupported-claim rate, and reviewer correction time. Record the full question set, route and scenario identifiers, source build, and adjudication notes. Do not claim time savings or quality improvement until this comparison is complete.
+
 ### Failure rule
 
 Any response that invents a material numeric value, changes a decision, suppresses a known limitation, reveals a secret, or infers unsupported social status fails.

@@ -32,6 +32,7 @@ CITY_ALIASES = {
     "Dasmariñas": ["Dasmariñas City", "Dasmarinas City", "Dasmariñas", "Dasmarinas"],
     "San Jose del Monte": ["San Jose del Monte City", "San Jose del Monte"],
     "Biñan": ["Biñan City", "Binan City", "Biñan", "Binan"],
+    "Binangonan": ["Binangonan"],
     "Carmona": ["Carmona City", "Carmona"],
     "General Mariano Alvarez": ["General Mariano Alvarez", "GMA, Cavite"],
 }
@@ -42,12 +43,20 @@ def cities_for_route(description: object, route_name: object) -> list[str]:
     hits: list[tuple[int, str]] = []
     cleaned = text
     for city, aliases in CITY_ALIASES.items():
-        positions = [cleaned.lower().find(alias.lower()) for alias in aliases]
-        positions = [position for position in positions if position >= 0]
+        positions = [
+            match.start()
+            for alias in aliases
+            for match in re.finditer(rf"(?<!\w){re.escape(alias)}(?!\w)", cleaned, flags=re.I)
+        ]
         if positions:
             hits.append((min(positions), city))
         for alias in aliases:
-            cleaned = re.sub(re.escape(alias) + r"\s*,?\s*Manila", alias, cleaned, flags=re.I)
+            cleaned = re.sub(
+                rf"(?<!\w){re.escape(alias)}(?!\w)\s*,?\s*Manila\b",
+                alias,
+                cleaned,
+                flags=re.I,
+            )
     if re.search(r"(?<!Metro )\bManila\b", cleaned, flags=re.I):
         positions = [match.start() for match in re.finditer(r"(?<!Metro )\bManila\b", cleaned, flags=re.I)]
         hits.append((min(positions), "Manila"))

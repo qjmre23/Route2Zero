@@ -342,15 +342,15 @@ async function buildConcept() {
 
   // 6. AI and analytical governance.
   {
-    const s = p.slides.add(); s.background.fill = C.white; addTopLinks(s); addTitle(s, "AI has analytical work — policy authority stays human.", "AI / ML boundary");
+    const s = p.slides.add(); s.background.fill = C.white; addTopLinks(s); addTitle(s, "AI accelerates evidence triage; the city keeps decision authority.", "AI / ML boundary");
     const cols = [
-      ["MACHINE LEARNING", C.blue, ["Service-intensity estimate", "Anomaly flag", "Corridor typology"]],
-      ["DETERMINISTIC MODELS", C.green, ["Climate + energy", "Evidence confidence", "Sensitivity + optimization"]],
-      ["LLM PLANNING ASSISTANT", C.coral, ["Explain evidence", "Compare scenarios", "Triage validation"]],
+      ["MACHINE LEARNING", C.blue, ["Historic gap completion", "Residual anomaly flags", "Descriptive route typology"]],
+      ["DETERMINISTIC MODELS", C.green, ["Climate + energy", "Evidence confidence", "Sensitivity + constrained selection"]],
+      ["LLM PLANNING ASSISTANT", C.coral, ["Interrogate route evidence", "Compare scenarios", "Draft validation questions"]],
     ];
     cols.forEach((col, i) => { const x = 72 + i * 380; text(s, col[0], x, 190, 330, 25, { fontSize: 14, bold: true, color: col[1] }); line(s, x, 226, 330, col[1], 4); bulletList(s, col[2], x, 252, 330, 178, { fontSize: 21, spaceAfter: 14 }); });
     rect(s, 72, 484, 1090, 102, C.navy, 16);
-    text(s, "ML estimates. Deterministic models quantify. City teams control policy. The LLM explains and triages evidence.", 102, 508, 1030, 58, { fontSize: 26, bold: true, color: C.white, align: "center", valign: "middle" });
+    text(s, "AI compresses sparse evidence and speeds interrogation. It never writes a score, constraint, or portfolio choice.", 102, 508, 1030, 58, { fontSize: 25, bold: true, color: C.white, align: "center", valign: "middle" });
     text(s, "The assistant never writes scores, rankings, climate values, weights, or portfolio membership.", 72, 610, 1090, 28, { fontSize: 18, color: C.slate, align: "center" });
     addFooter(s, 6); notes(s, "Clarify three distinct roles: ML estimation, deterministic computation, and LLM explanation.");
   }
@@ -651,7 +651,7 @@ async function buildDemo() {
   await demoScreenshotSlide(p, 13, "What could change this decision?", "evidence-ai.png", "Value-of-information queue", [[1, 106, 225, "Climate assumptions: rank swing 1,395"], [2, 855, 225, "Portfolio flip possible"], [3, 118, 550, "Field validation action"]], { kicker: "Value of information", note: "The queue is precomputed by deterministic perturbation.", sources: ["data/processed/validation_priorities.json"] });
   await demoScreenshotSlide(p, 14, "A city can change priorities without hiding the trade-off.", "scenario-lab.png", "Scenario comparison", [[1, 106, 220, "Named policy preset"], [2, 861, 220, "Weights normalized to 100%"], [3, 849, 548, "Scenario ID updates"]], { kicker: "Scenario comparison", note: "The policy scenario is explicit and auditable; the assistant cache is keyed by route, scenario, and build.", sources: ["config/policy_model.json"] });
   await demoScreenshotSlide(p, 15, "Now move from ranking to a city validation program.", "portfolio.png", "Portfolio constraints", [[1, 106, 222, "Maximum eight corridors"], [2, 867, 222, "Evidence and equity constraints"], [3, 852, 548, "Cost is visible, not optimized"]], { kicker: "Phase-1 portfolio inputs", note: "The deterministic shortlist uses evidence and diversity constraints. The new feasibility proxy informs validation but is not presented as a verified budget constraint.", sources: ["config/optimization_scenarios.json", "data/processed/feasibility_cost_scenarios.json"] });
-  await demoScreenshotSlide(p, 16, "The optimized portfolio is not simply the top eight routes.", "portfolio.png", "Optimized portfolio result", [[1, 104, 220, "Four routes added by constraints"], [2, 850, 220, "Portfolio scenario range"], [3, 845, 547, "Binding constraints + exclusions"]], { kicker: "Optimized result", note: "The optimizer changes four routes while selecting one route direction per normalized corridor.", sources: ["data/processed/portfolio_scenarios.json"] });
+  await demoScreenshotSlide(p, 16, "The constrained portfolio is not simply the top eight routes.", "portfolio.png", "Constrained portfolio result", [[1, 104, 220, "Four routes added by constraints"], [2, 850, 220, "Portfolio scenario range"], [3, 845, 547, "Binding constraints + exclusions"]], { kicker: "Constrained result", note: "The deterministic selector changes four routes while selecting one route direction per normalized corridor.", sources: ["data/processed/portfolio_scenarios.json"] });
   await demoScreenshotSlide(p, 17, "AI explains the evidence and tells the city what to verify next.", "evidence-ai.png", "Planning and Evidence Assistant", [[1, 105, 221, "Question grounded in portfolio"], [2, 854, 221, "Evidence-backed answer"], [3, 847, 548, "Scenario + source + provider status"]], { kicker: "Planning & Evidence Assistant", titleSize: 37, note: "The assistant never writes scores, rankings, climate values, weights, or portfolio membership.", sources: ["data/processed/route_planner_cache.json", "netlify-site/netlify/functions/explain.mjs"] });
 
   // 18 — close and reproducibility.

@@ -344,6 +344,8 @@ footer a { font-weight: 700; }
 .tour-cursor::after { position: absolute; z-index: -1; top: -15px; left: -15px; width: 48px; height: 48px; border: 2px solid rgba(199, 244, 89, .88); border-radius: 50%; content: ""; background: rgba(199, 244, 89, .13); box-shadow: 0 0 0 8px rgba(199, 244, 89, .07); animation: cursorHalo 1s ease-in-out infinite alternate; }
 .tour-cursor.clicking::after { animation: cursorClick .32s ease-out; }
 .tour-cursor span { position: absolute; top: 35px; left: 10px; width: max-content; max-width: min(260px, 65vw); padding: 6px 9px; border: 1px solid rgba(255, 255, 255, .15); border-radius: 8px; color: #fff; background: rgba(6, 25, 31, .94); box-shadow: 0 8px 24px rgba(4, 29, 31, .24); font: 700 .68rem DM Sans, sans-serif; opacity: 0; transform: translateY(-3px); transition: opacity .15s ease, transform .15s ease; }
+.tour-cursor.label-left span { right: 8px; left: auto; }
+.tour-cursor.label-up span { top: auto; bottom: 35px; }
 .tour-cursor.has-label span { opacity: 1; transform: translateY(0); }
 .tour-choice-menu { position: fixed; z-index: 225; max-height: min(310px, 55vh); overflow: hidden; border: 1px solid rgba(199, 244, 89, .46); border-radius: 14px; color: #ecfff8; background: rgba(6, 31, 35, .985); box-shadow: 0 24px 54px rgba(2, 22, 25, .42); transform-origin: top center; animation: tourMenuDrop .22s cubic-bezier(.2,.8,.25,1) both; }
 .tour-choice-menu.opens-up { transform-origin: bottom center; animation-name: tourMenuRise; }
@@ -444,11 +446,24 @@ body.tour-running .walkthrough-trigger, body.tour-running #startWalkthroughHero 
   .accordion-content { padding-left: 18px; }
   summary { padding: 14px; font-size: .81rem; }
   footer { display: grid; }
-  .walkthrough-panel { right: 10px; bottom: max(10px, env(safe-area-inset-bottom)); width: calc(100vw - 20px); padding: 16px; border-radius: 17px; }
-  .walkthrough-panel > p { min-height: 0; }
-  .walkthrough-actions { display: grid; grid-template-columns: repeat(5, minmax(0, 1fr)); }
-  .walkthrough-actions button { min-width: 0; padding-inline: 5px; font-size: .66rem; }
+  body.tour-running { scroll-padding-bottom: 46svh; }
+  .walkthrough-panel { right: 0; bottom: 0; left: 0; width: 100%; max-height: min(46svh, 280px); overflow-y: auto; padding: 13px 12px max(11px, env(safe-area-inset-bottom)); border-radius: 19px 19px 0 0; }
+  .walkthrough-panel h2 { margin: 8px 0 4px; font-size: 1.02rem; }
+  .walkthrough-panel > p { min-height: 0; display: -webkit-box; overflow: hidden; font-size: .76rem; line-height: 1.38; -webkit-box-orient: vertical; -webkit-line-clamp: 3; }
+  .walkthrough-track { margin-top: 6px; }
+  .walkthrough-status { min-width: 0; gap: 5px 10px; margin-top: 8px; }
+  .walkthrough-status span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .walkthrough-status span:last-child { max-width: 100%; }
+  .walkthrough-actions { display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 6px; margin-top: 9px; }
+  .walkthrough-actions button { min-width: 0; min-height: 40px; padding: 7px 4px; font-size: .68rem; }
+  .walkthrough-actions button:nth-child(-n + 3) { grid-column: span 2; }
+  .walkthrough-actions button:nth-child(n + 4) { grid-column: span 3; }
   .walkthrough-actions .button-primary { margin-left: 0; }
+  .tour-focus { outline-width: 3px !important; outline-offset: 3px; }
+  .tour-cursor { width: 20px; height: 25px; }
+  .tour-cursor::after { top: -11px; left: -11px; width: 39px; height: 39px; }
+  .tour-cursor span { max-width: min(210px, 58vw); font-size: .64rem; }
+  .tour-choice-menu { max-height: 210px; }
 }
 
 @media (max-width: 430px) {
@@ -465,8 +480,17 @@ body.tour-running .walkthrough-trigger, body.tour-running #startWalkthroughHero 
   .delta-group { grid-template-columns: 1fr; }
   .evidence-item { grid-template-columns: auto minmax(0, 1fr); }
   .evidence-item > span { grid-column: 2; text-align: left; }
-  .walkthrough-actions { flex-wrap: wrap; }
-  .walkthrough-actions .button-primary { margin-left: 0; }
+  .walkthrough-panel { max-height: min(43svh, 244px); }
+  .walkthrough-panel > p { -webkit-line-clamp: 2; }
+  .walkthrough-progress { font-size: .63rem; }
+  .walkthrough-status { font-size: .62rem; }
+  .walkthrough-status span:last-child { display: none; }
+}
+
+@media (max-width: 360px), (max-height: 620px) and (max-width: 700px) {
+  .walkthrough-panel { max-height: min(42svh, 232px); padding-top: 10px; }
+  .walkthrough-panel h2 { font-size: .94rem; }
+  .walkthrough-actions button { min-height: 38px; font-size: .64rem; }
 }
 
 @media (prefers-reduced-motion: reduce) {

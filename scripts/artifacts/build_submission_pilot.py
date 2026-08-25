@@ -354,7 +354,7 @@ section(doc, "Pilot scope")
 bullets(
     doc,
     [
-        "Target up to three partner LGUs, subject to city pairing and pilot agreement.",
+        "Begin with one lead LGU; add one comparison LGU only after Gate 1 and a signed second-city pilot agreement.",
         "Validate a manageable corridor sample, one flagship corridor, and a broader Phase-1 shortlist.",
         "Engage relevant operators/cooperatives, a utility or energy counterpart, and rider/community representatives where appropriate.",
         "Test ML service estimates, climate assumptions, route geometry, equity evidence, charging evidence, operator readiness, policy scenarios, robustness, and portfolio constraints.",
@@ -400,7 +400,7 @@ timeline = [
     ("Month 2", "Data refresh + ground truth", "Extend the hackathon's 20-route OSM validation seed with field observation; validate geometry and service; collect operator, charging/depot, and local equity/accessibility evidence.", "Expanded validation, operator, and charging ledgers; ground-truth sample; source refresh."),
     ("Gate 1", "Evidence readiness review", "Accept evidence plan and model-validation protocol; confirm minimum data coverage; resolve governance blockers.", "Approved evidence gate or documented corrective actions."),
     ("Month 3", "Model + route validation", "Compare ML estimates with refreshed observations; recalculate metrics; review anomalies; tune geometry/evidence rules and equity variables.", "Pilot model evaluation; model-card update; revised evidence grades; validated flagship case."),
-    ("Month 4", "Climate, charging + operator pre-feasibility", "Calibrate diesel/electric assumptions; validate energy scenarios; request utility evidence; assess sites, operators, and verified constraints.", "Calibrated climate scenario; charging/operator cards; optimizer-ready constraints."),
+    ("Month 4", "Climate, charging + operator pre-feasibility", "Calibrate diesel/electric assumptions; validate energy scenarios; request utility evidence; assess sites, operators, and verified constraints.", "Calibrated climate scenario; charging/operator cards; selection-ready constraints."),
     ("Gate 2", "Quality + route-set review", "Accept pilot route set and model/evidence quality; hold routes with unresolved critical issues or mark them evidence-limited.", "Approved route set with explicit holds and evidence limits."),
     ("Month 5", "Scenario co-design + human factors", "Run policy workshops; review sensitivity; agree portfolio constraints; test Priority vs Evidence vs Stability; review assistant and accessibility.", "Approved scenarios; draft portfolio; usability and governance findings."),
     ("Month 6", "Decision pack + handover", "Finalize portfolio, evidence queue, model card, source registry, refresh process, issue log, analyst training, and task ownership.", "Accepted decision pack; final build; reproducibility package; city handover."),
@@ -419,6 +419,7 @@ table(
     [
         ("Coverage", "% pilot routes ground-checked; % shortlisted routes with complete evidence cards; critical gaps resolved."),
         ("Model", "MAE/RMSE vs refreshed observations, improvement over baseline, and documented route-level residual review."),
+        ("AI task value", "Compare AI-assisted and analyst-only evidence review using time-to-first brief, missed-evidence rate, factual errors, and unsupported claims."),
         ("Decision quality", "Evidence-grade improvement; ranking/portfolio stability before vs after validation; routes moved from evidence-limited to decision-ready."),
         ("Adoption", "LGU/operator/utility interactions; planner task completion; understanding of Priority, Evidence, and Stability."),
         ("Handover", "One accepted city decision pack and one completed reproducibility/refresh handover."),
