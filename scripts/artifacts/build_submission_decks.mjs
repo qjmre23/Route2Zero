@@ -39,8 +39,8 @@ const TEAM = [
   "Isaac Marcus",
   "Andrei Dela Cruz",
   "Russel Mendez",
-  "TRISTIAN JAMES CABALAR",
-  "JOHN MICHAEL PALAGANAS",
+  "Joaquin Sarmiento",
+  "Prince Marl Mirasol",
   "Carl Nueva",
   "JOSEPH CLARENCE PARAYAOAN",
 ];
@@ -268,10 +268,10 @@ async function buildConcept() {
     addTopLinks(s, true);
     text(s, "ROUTE2ZERO", 66, 73, 540, 28, { fontSize: 15, bold: true, color: "#7DE6D1" });
     text(s, "AI/ML-assisted planning for a just e-jeepney transition.", 66, 122, 620, 190, { fontSize: 56, bold: true, color: C.white, lineSpacing: 0.92 });
-    text(s, "Which Metro Manila corridors should be validated and prioritized first — and how robust is that decision?", 66, 333, 560, 112, { fontSize: 24, color: "#D6E0EF", lineSpacing: 1.05 });
+    text(s, "Screens 1,522 historic corridor records into 9 priorities for field validation — then shows what the city must verify before spending.", 66, 333, 560, 112, { fontSize: 24, color: "#D6E0EF", lineSpacing: 1.05 });
     metric(s, "1,522", "route-direction records screened", 66, 492, "#7DE6D1", 205);
     metric(s, "9", "robust-priority corridors", 300, 492, "#7DE6D1", 190);
-    metric(s, "20", "dated OSM validations", 515, 492, "#7DE6D1", 170);
+    metric(s, "20", "dated OSM map records", 515, 492, "#7DE6D1", 170);
     text(s, "Team Larpers · Metro Manila · AI x City Climate Action Hackathon 2026", 66, 625, 620, 26, { fontSize: 16, color: "#B5C5DC" });
     addFooter(s, 1, true);
     notes(s, "Open with the city decision: this is a transportation planning system, not vehicle hardware and not a generic chatbot.", [GITHUB, LIVE]);
@@ -375,7 +375,7 @@ async function buildConcept() {
 
   // 8. Current evidence validation.
   {
-    const s = p.slides.add(); s.background.fill = C.white; addTopLinks(s); addTitle(s, "A dated external route record now changes the evidence state — without claiming active service.", "Current-evidence validation layer", false, 36);
+    const s = p.slides.add(); s.background.fill = C.white; addTopLinks(s); addTitle(s, "A dated external map record changes the evidence state — without claiming active service.", "Dated external map records", false, 36);
     await addImage(s, "current-validation.png", 72, 176, 635, 430, "Validated corridor Route Lens with OSM source and review date", { crop: { left: 0.01, top: 0.02, right: 0.01, bottom: 0.02 } });
     label(s, "Historic only", 758, 184, "#FDE8EC", C.coral, 150);
     text(s, "1,522-route screening baseline", 758, 228, 390, 32, { fontSize: 21, bold: true, color: C.ink });
@@ -384,7 +384,7 @@ async function buildConcept() {
     text(s, "20 corridors with dated OSM route relations", 758, 383, 390, 50, { fontSize: 24, bold: true, color: C.navy2 });
     bulletList(s, ["route=share_taxi convention", "edited 2023-01-01 or later", "actual member-way geometry", "active service remains uncertain"], 758, 456, 385, 146, { fontSize: 17, spaceAfter: 8 });
     addSourceLine(s, "Example: LTFRB_PUJ1034 · OSM relation 11521406 · reviewed 24 Aug 2026"); addFooter(s, 8);
-    notes(s, "A current external route record supports the route and geometry claim. It does not certify active operations or franchise authority.", ["data/processed/osm_route_validation.csv", "data/processed/osm_route_geometry.geojson", "https://www.openstreetmap.org/relation/11521406"]);
+    notes(s, "A dated external map record supports the route and geometry claim. It does not certify active operations or franchise authority.", ["data/processed/osm_route_validation.csv", "data/processed/osm_route_geometry.geojson", "https://www.openstreetmap.org/relation/11521406"]);
   }
 
   // 9. ML service intelligence.
@@ -412,7 +412,7 @@ async function buildConcept() {
 
   // 10. Typology.
   {
-    const s = p.slides.add(); s.background.fill = C.soft; addTopLinks(s); addTitle(s, "Route2Zero compares like with like.", "Corridor typology");
+    const s = p.slides.add(); s.background.fill = C.soft; addTopLinks(s); addTitle(s, "Typology is descriptive, not predictive.", "Corridor typology");
     await addImage(s, "map.png", 72, 174, 690, 430, "Corridor map colored by typology", { crop: { left: 0.04, top: 0.16, right: 0.04, bottom: 0.04 } });
     s.charts.add("bar", {
       position: { left: 805, top: 190, width: 360, height: 265 },
@@ -424,14 +424,14 @@ async function buildConcept() {
     });
     label(s, "Selected k = 3", 815, 478, C.mint, C.green, 150);
     text(s, "Silhouette 0.373", 815, 520, 300, 32, { fontSize: 20, bold: true, color: C.ink });
-    text(s, `KMeans · ${TYPOLOGY_MODEL}\nTypology informs comparison, not policy score.`, 815, 557, 340, 70, { fontSize: 17, color: C.slate });
-    addFooter(s, 10); notes(s, "The flagship is a Dense Urban Trunk and is an outlier within that cluster. Typology never infers vulnerability or settlement status.", ["data/processed/corridor_typology.csv", "data/processed/model_metrics.json"]);
+    text(s, `KMeans · ${TYPOLOGY_MODEL}\nModest separation · comparison aid only · no policy points.`, 815, 557, 340, 70, { fontSize: 17, color: C.slate });
+    addFooter(s, 10); notes(s, "A silhouette of 0.373 indicates overlapping structural groups. The flagship is a Dense Urban Trunk and an outlier within that cluster. Typology never predicts outcomes or infers vulnerability or settlement status.", ["data/processed/corridor_typology.csv", "data/processed/model_metrics.json"]);
   }
 
   // 11. Climate.
   {
     const s = p.slides.add(); s.background.fill = C.white; addTopLinks(s); addTitle(s, "The system estimates climate outcomes — not an ‘emissions score.’", "Climate + energy impact", false, 40);
-    const chain = [["+368", "base tCO₂e/year"], ["31,585", "historic daily VKT"], ["50%", "base electric share"], ["−1,112 to +3,025", "bounded range"]];
+    const chain = [["+368", "base tCO₂e/year"], ["31,585", "historic daily VKT"], ["50%", "base electric share"], ["−1,112 to +3,025", "scenario range · not a CI"]];
     chain.forEach((item, i) => { const x = 72 + i * 275; text(s, item[0], x, 210, 230, 62, { fontSize: i === 3 ? 34 : 42, bold: true, color: i === 3 ? C.coral : C.navy2 }); text(s, item[1], x, 280, 230, 36, { fontSize: 17, color: C.slate }); if (i < 3) text(s, "→", x + 235, 225, 34, 36, { fontSize: 30, color: C.line, align: "center" }); });
     s.charts.add("bar", {
       position: { left: 72, top: 370, width: 685, height: 230 }, categories: ["Low", "Base", "High"],
@@ -602,7 +602,7 @@ async function buildDemo() {
     rect(s, 550, 0, 730, 720, { type: "gradient", gradientKind: "linear", angleDeg: 0, stops: [{ offset: 0, color: "#07162B" }, { offset: 76000, color: "#07162B75" }, { offset: 100000, color: "#07162B00" }] });
     text(s, "Route2Zero 2.1", 66, 100, 510, 86, { fontSize: 62, bold: true, color: C.white });
     text(s, "Prototype Demonstration", 66, 188, 510, 48, { fontSize: 34, bold: true, color: "#7DE6D1" });
-    text(s, "A live decision workflow: screen 1,522 corridors, show what is known, and prioritize the evidence needed for a defensible Phase-1 pilot.", 66, 270, 500, 126, { fontSize: 24, color: "#D6E0EF" });
+    text(s, "Screen 1,522 historic corridor records into 9 priorities for field validation — then show what the city must verify before spending.", 66, 270, 500, 126, { fontSize: 24, color: "#D6E0EF" });
     const meta = [["BUILD", BUILD], ["MODEL", SERVICE_MODEL], ["SCENARIO", SCENARIO], ["GENERATED", GENERATED]];
     meta.forEach((m, i) => { text(s, m[0], 66, 426 + i * 45, 110, 18, { fontSize: 11, bold: true, color: "#8FA7C8" }); text(s, m[1], 184, 420 + i * 45, 365, 28, { fontSize: 17, bold: true, color: C.white }); });
     text(s, "Values shown are generated from the linked build and scenario — not manually entered.", 66, 623, 500, 38, { fontSize: 15.5, color: "#B5C5DC" });
@@ -619,8 +619,8 @@ async function buildDemo() {
   }
 
   await demoScreenshotSlide(p, 3, "The final city decision cockpit.", "overview.png", "Route2Zero Overview dashboard", [[1, 94, 218, "1,522 screened · 20 dated matches"], [2, 921, 222, "Scenario and build state"], [3, 106, 552, "Map, Route Lens, feasibility"]], { kicker: "System overview", note: "The 2.1 interface keeps the city decision, evidence state, and next action in one workflow." });
-  await demoScreenshotSlide(p, 4, "A validated corridor shows its source, review date, and observed geometry.", "current-validation.png", "Current OSM validation state in the Route Lens", [[1, 104, 220, "OBSERVED field badges"], [2, 850, 220, "OSM relation 11521406"], [3, 116, 550, "Reviewed 24 Aug 2026"]], { kicker: "Current-evidence validation", titleSize: 36, note: "The dated OSM relation supports the route and geometry claim; active service and franchise authority remain uncertain.", sources: ["data/processed/osm_route_validation.csv", "data/processed/osm_route_geometry.geojson"] });
-  await demoScreenshotSlide(p, 5, "Flagship corridor: Francisco Homes–Cubao.", "route-lens.png", "Flagship Route Lens", [[1, 105, 228, "Priority, evidence, stability"], [2, 852, 225, "Eight field-status badges"], [3, 118, 551, "Climate and validation action"]], { kicker: "Flagship Route Lens", note: "The flagship remains historic-only and uses a DERIVED route approximation; the interface does not hide that limitation.", sources: ["data/processed/flagship_route.json"] });
+  await demoScreenshotSlide(p, 4, "A dated map record shows its source, review date, and observed geometry.", "current-validation.png", "Dated OSM map record in the expanded Route Lens", [[1, 104, 220, "OBSERVED map and geometry claim"], [2, 850, 220, "OSM relation 11521406"], [3, 116, 550, "Reviewed 24 Aug 2026"]], { kicker: "Dated external map record", titleSize: 36, note: "The dated OSM relation supports the route and geometry claim; active service and franchise authority remain uncertain.", sources: ["data/processed/osm_route_validation.csv", "data/processed/osm_route_geometry.geojson"] });
+  await demoScreenshotSlide(p, 5, "Flagship corridor: Francisco Homes–Cubao.", "route-lens.png", "Flagship Route Lens", [[1, 105, 228, "Validation rank"], [2, 852, 225, "Evidence confidence"], [3, 118, 551, "Validate next"]], { kicker: "Flagship Route Lens", note: "The default view leads with three decisions. Eight supporting signals are available through progressive disclosure.", sources: ["data/processed/flagship_route.json"] });
 
   // 6 — ML output with screenshot and chart.
   {
@@ -633,8 +633,8 @@ async function buildDemo() {
     addFooter(s, 6, false, `${BUILD} · ${SCENARIO} · ${PORTFOLIO} · ${SERVICE_MODEL}`); notes(s, "The model target is a historic schedule-based service proxy, not passenger demand.", ["data/processed/model_metrics.json"]);
   }
 
-  await demoScreenshotSlide(p, 7, "The selected route is compared against similar corridors.", "map.png", "Typology map", [[1, 105, 223, "Layer: Corridor typology"], [2, 857, 225, "Three structural groups"], [3, 884, 544, "K = 3 · silhouette 0.373"]], { kicker: "Corridor typology", note: "Typology is unsupervised ML and does not add hidden points to the policy score.", sources: ["data/processed/corridor_typology.csv", "data/processed/model_metrics.json"] });
-  await demoScreenshotSlide(p, 8, "Lead with the base climate case; keep the bounded risk beside it.", "route-lens.png", "Flagship climate and energy panel", [[1, 102, 220, "Base +368 tCO₂e/year"], [2, 854, 224, "Low–high shown beside it"], [3, 111, 550, "Negative-low explanation"]], { kicker: "Climate + energy", note: "The low case turns negative when a carbon-intensive grid is paired with an inefficient EV assumption; vehicle efficiency and grid intensity dominate the sensitivity.", sources: ["data/processed/climate_impact.csv", "config/climate_scenarios.json"] });
+  await demoScreenshotSlide(p, 7, "Typology is a descriptive comparison aid, not a prediction.", "map.png", "Typology map", [[1, 105, 223, "Layer: Corridor typology"], [2, 857, 225, "Three overlapping groups"], [3, 884, 544, "K = 3 · silhouette 0.373"]], { kicker: "Corridor typology", note: "The modest silhouette indicates overlapping structure. Typology adds no policy points and predicts no outcome.", sources: ["data/processed/corridor_typology.csv", "data/processed/model_metrics.json"] });
+  await demoScreenshotSlide(p, 8, "Lead with the base climate case; keep the scenario range beside it.", "route-lens-expanded.png", "Expanded flagship climate and energy panel", [[1, 102, 220, "Base +368 tCO₂e/year"], [2, 854, 224, "Scenario range · not a CI"], [3, 111, 550, "Negative-low explanation"]], { kicker: "Climate + energy", note: "The low case turns negative when a carbon-intensive grid is paired with an inefficient EV assumption. The low-high range is a scenario bound, not a statistical confidence interval.", sources: ["data/processed/climate_impact.csv", "config/climate_scenarios.json"] });
   await demoScreenshotSlide(p, 9, "The climate recommendation is tested against who and where it serves.", "equity-map.png", "Equity layer and Route Lens", [[1, 102, 221, "Layer: Equity / exposure"], [2, 872, 221, "Population exposure"], [3, 862, 545, "PROXY · second layer MISSING"]], { kicker: "Equity + accessibility", note: "Current build uses population exposure only. PSA city-level poverty estimates are registered as the next validation candidate; no poverty or settlement-status inference is made.", sources: ["data/processed/equity_v2.csv"] });
   await demoScreenshotSlide(p, 10, "Feasibility is visible as a proxy — never disguised as a budget.", "feasibility.png", "Feasibility and model-restraint panel", [[1, 106, 221, "Fleet and charger PROXY"], [2, 842, 221, "Capital proxy"], [3, 854, 548, "Financing MISSING"]], { kicker: "Feasibility + model restraint", note: "The live panel exposes order-of-magnitude fleet and hardware figures, excluded costs, and the single route that uses ML.", sources: ["data/processed/feasibility_cost_scenarios.json", "data/processed/model_metrics.json"] });
   await demoScreenshotSlide(p, 11, "Priority, evidence quality, and stability are different questions.", "route-lens.png", "Route Lens evidence summary", [[1, 112, 225, "Priority 79.07"], [2, 455, 225, "Evidence 38.34 · grade C"], [3, 812, 225, "Stability 100% top-10"]], { kicker: "Evidence confidence", note: "A route can be high priority and still require more evidence.", sources: ["data/processed/evidence_confidence.csv", "data/processed/sensitivity.csv"] });
@@ -652,13 +652,13 @@ async function buildDemo() {
   await demoScreenshotSlide(p, 14, "A city can change priorities without hiding the trade-off.", "scenario-lab.png", "Scenario comparison", [[1, 106, 220, "Named policy preset"], [2, 861, 220, "Weights normalized to 100%"], [3, 849, 548, "Scenario ID updates"]], { kicker: "Scenario comparison", note: "The policy scenario is explicit and auditable; the assistant cache is keyed by route, scenario, and build.", sources: ["config/policy_model.json"] });
   await demoScreenshotSlide(p, 15, "Now move from ranking to a city validation program.", "portfolio.png", "Portfolio constraints", [[1, 106, 222, "Maximum eight corridors"], [2, 867, 222, "Evidence and equity constraints"], [3, 852, 548, "Cost is visible, not optimized"]], { kicker: "Phase-1 portfolio inputs", note: "The deterministic shortlist uses evidence and diversity constraints. The new feasibility proxy informs validation but is not presented as a verified budget constraint.", sources: ["config/optimization_scenarios.json", "data/processed/feasibility_cost_scenarios.json"] });
   await demoScreenshotSlide(p, 16, "The optimized portfolio is not simply the top eight routes.", "portfolio.png", "Optimized portfolio result", [[1, 104, 220, "Four routes added by constraints"], [2, 850, 220, "Portfolio scenario range"], [3, 845, 547, "Binding constraints + exclusions"]], { kicker: "Optimized result", note: "The optimizer changes four routes while selecting one route direction per normalized corridor.", sources: ["data/processed/portfolio_scenarios.json"] });
-  await demoScreenshotSlide(p, 17, "AI explains the evidence and tells the city what to verify next.", "evidence-ai.png", "Planning and Evidence Assistant", [[1, 105, 221, "Question grounded in portfolio"], [2, 854, 221, "Evidence-backed answer"], [3, 847, 548, "Scenario + source + fallback status"]], { kicker: "Planning & Evidence Assistant", titleSize: 37, note: "The assistant never writes scores, rankings, climate values, weights, or portfolio membership.", sources: ["data/processed/route_planner_cache.json", "netlify-site/netlify/functions/ai-planner.mjs"] });
+  await demoScreenshotSlide(p, 17, "AI explains the evidence and tells the city what to verify next.", "evidence-ai.png", "Planning and Evidence Assistant", [[1, 105, 221, "Question grounded in portfolio"], [2, 854, 221, "Evidence-backed answer"], [3, 847, 548, "Scenario + source + provider status"]], { kicker: "Planning & Evidence Assistant", titleSize: 37, note: "The assistant never writes scores, rankings, climate values, weights, or portfolio membership.", sources: ["data/processed/route_planner_cache.json", "netlify-site/netlify/functions/explain.mjs"] });
 
   // 18 — close and reproducibility.
   {
     const s = p.slides.add(); s.background.fill = C.navy; addTopLinks(s, true); addTitle(s, "The decision can be reproduced, exported, challenged, and rerun.", "Reproducibility + close", true, 39);
     await addImage(s, "method-sources.png", 72, 169, 590, 402, "Method and Sources export and manifest view", { crop: { left: 0.02, top: 0.05, right: 0.18, bottom: 0.05 }, borderColor: "#29466E" });
-    const items = [["BUILD", BUILD], ["SCENARIO", SCENARIO], ["MODEL", SERVICE_MODEL], ["SIMULATIONS", "5,000 · fixed seed"], ["FALLBACK", "AI-disabled deterministic path"], ["TESTS", "pipeline · contracts · Netlify build"]];
+    const items = [["BUILD", BUILD], ["SCENARIO", SCENARIO], ["MODEL", SERVICE_MODEL], ["SIMULATIONS", "5,000 · fixed seed"], ["TOUR VOICE", "14 recorded MP3 · 1 live response"], ["TESTS", "pipeline · freshness · Netlify build"]];
     items.forEach((it, i) => { text(s, it[0], 717, 178 + i * 58, 150, 20, { fontSize: 12, bold: true, color: "#7DE6D1" }); text(s, it[1], 865, 171 + i * 58, 315, 32, { fontSize: 18, bold: true, color: C.white, align: "right" }); line(s, 717, 211 + i * 58, 463, "#29466E", 1); });
     text(s, `Team Larpers · ${TEAM_ROWS[0].join(" · ")}`, 72, 576, 1090, 14, { fontSize: 8.8, color: "#8FA7C8", align: "center", autoFit: "shrinkText" });
     text(s, TEAM_ROWS[1].join(" · "), 72, 592, 1090, 14, { fontSize: 8.8, color: "#8FA7C8", align: "center", autoFit: "shrinkText" });

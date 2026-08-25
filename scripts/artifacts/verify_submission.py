@@ -13,7 +13,7 @@ pdfs = [
 ]
 team_names = [
     "John Marwin Ebona", "Isaac Marcus", "Andrei Dela Cruz", "Russel Mendez",
-    "TRISTIAN JAMES CABALAR", "JOHN MICHAEL PALAGANAS", "Carl Nueva",
+    "Joaquin Sarmiento", "Prince Marl Mirasol", "Carl Nueva",
     "JOSEPH CLARENCE PARAYAOAN",
 ]
 expected_pages = {

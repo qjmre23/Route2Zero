@@ -1,8 +1,11 @@
 import assert from "node:assert/strict";
+import { createHash } from "node:crypto";
 import test from "node:test";
-import { readFile } from "node:fs/promises";
+import { readFile, stat } from "node:fs/promises";
 import { dirname, join } from "node:path";
 import { fileURLToPath } from "node:url";
+
+import { TOUR_NARRATION } from "../public/tour-audio.js";
 
 const siteRoot = dirname(fileURLToPath(new URL("../package.json", import.meta.url)));
 const repoRoot = join(siteRoot, "..");
@@ -33,4 +36,29 @@ test("judge view uses progressive evidence disclosure and no tour timer", async 
   assert.match(html, /id="evidenceSignalDetails"/);
   assert.doesNotMatch(html, /walkthroughTime|1:25/);
   assert.doesNotMatch(app, /walkthroughTime|formatTourClock|updateTourClock|speechSynthesis/);
+});
+
+test("deterministic tour steps use committed MP3 narration while the live assistant stays dynamic", async () => {
+  const recorded = TOUR_NARRATION.filter((entry) => !entry.dynamic);
+  const dynamic = TOUR_NARRATION.filter((entry) => entry.dynamic);
+  const manifest = JSON.parse(await readFile(join(siteRoot, "public", "audio", "tour", "manifest.json"), "utf8"));
+
+  assert.equal(TOUR_NARRATION.length, 15);
+  assert.equal(recorded.length, 14);
+  assert.deepEqual(dynamic.map((entry) => entry.step), [13]);
+  assert.equal(dynamic[0].audioSrc, undefined);
+  assert.equal(manifest.provider, "ElevenLabs");
+  assert.equal(manifest.deterministic_steps, 14);
+  assert.deepEqual(manifest.dynamic_steps, [13]);
+
+  for (const entry of recorded) {
+    assert.match(entry.audioSrc, /^\/audio\/tour\/\d{2}-[a-z0-9-]+\.mp3$/);
+    const filePath = join(siteRoot, "public", entry.audioSrc.slice(1));
+    const [info, bytes] = await Promise.all([stat(filePath), readFile(filePath)]);
+    const recordedFile = manifest.files.find((item) => item.step === entry.step);
+    assert.ok(info.size > 10000, `${entry.audioSrc} is unexpectedly small`);
+    assert.equal(recordedFile.audioSrc, entry.audioSrc);
+    assert.equal(recordedFile.bytes, info.size);
+    assert.equal(recordedFile.sha256, createHash("sha256").update(bytes).digest("hex"));
+  }
 });

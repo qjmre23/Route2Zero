@@ -236,7 +236,7 @@ The typology is not included in the priority score.
 - Approximate geometry affects length, detour, and density features.
 - K-means favors roughly spherical clusters in standardized space.
 - The PCA projection does not preserve all distances.
-- A silhouette score of 0.27 indicates only moderate separation.
+- The selected silhouette score of 0.3730 indicates modest separation; route types overlap and must not be treated as natural or predictive classes.
 - Human labels can encourage over-interpretation if limitations are omitted.
 
 ### Required pilot validation
@@ -292,4 +292,4 @@ Any change to target, features, grouping, preprocessing, algorithm, seed, or use
 
 ## Current disposition
 
-The service model is suitable for prototype fallback and pilot validation against its historic target. It is not yet validated for current operations. The typology is suitable for exploratory comparison and case sampling. Neither model is suitable for autonomous public-investment decisions.
+The service model is suitable for prototype completion and pilot validation against its historic target. It is not yet validated for current operations. The typology is descriptive, not predictive, and is suitable only for exploratory comparison and case sampling. Neither model is suitable for autonomous public-investment decisions.

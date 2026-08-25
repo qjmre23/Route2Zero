@@ -1,3 +1,5 @@
+import { TOUR_NARRATION } from "./tour-audio.js";
+
 const MAPBOX_ACCESS_TOKEN = String(window.ROUTE2ZERO_CONFIG?.mapboxToken || "").trim();
 const MAPBOX_STYLE_URL = String(window.ROUTE2ZERO_CONFIG?.mapboxStyleUrl || "mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs").trim();
 
@@ -707,21 +709,23 @@ function renderRouteLens() {
 
   setClaimBadge(els.climateClaim, row.climate_claim_status || "SCENARIO");
   els.climateRange.textContent = `Base ${formatSigned(climateBase)}`;
-  els.climateDetail.textContent = `${formatSigned(climateLow)} to ${formatSigned(climateHigh)} tCO₂e/year · ${row.climate_assumption_set || "scenario assumptions"}`;
+  els.climateDetail.textContent = `Scenario range, not a confidence interval: ${formatSigned(climateLow)} to ${formatSigned(climateHigh)} tCO₂e/year · ${row.climate_assumption_set || "scenario assumptions"}`;
   els.climateContext.innerHTML = `${claimBadge("SCENARIO")}<div><strong>Why can the low case be negative?</strong> Its high electricity use per kilometre is paired with a carbon-intensive grid, so charging emissions exceed the diesel emissions displaced. Vehicle efficiency is the single strongest low-case sensitivity; grid intensity is next. Electrification share changes the size of the result, not its sign.</div>`;
 
   setClaimBadge(els.equityClaim, row.equity_claim_status || "PROXY");
-  els.equityScore.textContent = `${formatNumber(equity, 1)}/100`;
+  els.equityScore.textContent = `${formatNumber(equity, 1)}/100 proxy`;
   els.equityDetail.textContent = row.equity_limitation || "Population exposure proxy";
 
   setClaimBadge(els.chargingClaim, row.charging_claim_status || "PROXY");
-  els.chargingScore.textContent = `${formatNumber(charging, 1)}/100`;
+  els.chargingScore.textContent = `${formatNumber(charging, 1)}/100 proxy`;
   els.chargingDetail.textContent = `${formatNumber(row.nearest_substation_distance_km, 2)} km to mapped substation · capacity unverified`;
 
   setClaimBadge(els.operatorClaim, row.operator_claim_status || "NEUTRAL_PRIOR");
-  els.operatorScore.textContent = `${formatNumber(operator, 1)}/100`;
+  els.operatorScore.textContent = bool(row.operator_readiness_placeholder)
+    ? `${formatNumber(operator, 1)}/100 prior`
+    : `${formatNumber(operator, 1)}/100`;
   els.operatorDetail.textContent = bool(row.operator_readiness_placeholder)
-    ? `${row.operator_reference_status === "OBSERVED" ? `Named reference: ${row.operator_reference_name}; ` : ""}readiness remains neutral until fleet, depot and financing evidence is supplied`
+    ? `${row.operator_reference_status === "OBSERVED" ? `Named reference: ${row.operator_reference_name}; ` : ""}constant neutral prior across the route universe; not operator evidence`
     : "Observed operator readiness evidence supplied";
 
   setClaimBadge(els.robustnessClaim, "DERIVED");
@@ -730,7 +734,8 @@ function renderRouteLens() {
 
   setClaimBadge(els.typologyClaim, row.typology_claim_status || "ML_ESTIMATED");
   els.typologyValue.textContent = row.corridor_type_label || "Unclassified";
-  els.typologyDetail.textContent = `${row.clustering_model_version || "model unavailable"}${bool(row.cluster_outlier_flag) ? " · pattern outlier" : ""}`;
+  const typologySilhouette = numeric(state.modelMetrics?.corridor_typology || {}, "selected_silhouette_score");
+  els.typologyDetail.textContent = `Descriptive only · not used in score${typologySilhouette === null ? "" : ` · silhouette ${formatNumber(typologySilhouette, 3)}`}${bool(row.cluster_outlier_flag) ? " · pattern outlier" : ""}`;
 
   els.decisionChangeTitle.textContent = `Highest-value gap: ${String(missing).replaceAll("_", " ")}`;
   els.decisionChangeCopy.textContent = `${row.validation_priority_reason || "Collect direct evidence before proceeding."} Tested rank swing: up to ${formatNumber(row.maximum_rank_swing)} places${bool(row.portfolio_flip_possible) ? "; this field can flip portfolio membership." : "."}`;
@@ -939,7 +944,7 @@ function renderSourceHealth() {
   const warnings = state.report.warnings || [];
   const total = state.scores.length || 1;
   const percentage = (count) => `${formatNumber(count / total * 100, 1)}%`;
-  const currentCount = state.scores.filter(routeIsCurrent).length;
+  const datedMapRecordCount = state.scores.filter(routeIsCurrent).length;
   const operatorVerified = state.scores.filter((row) => !bool(row.operator_readiness_placeholder)).length;
   const chargingVerified = state.scores.filter((row) => bool(row.charging_site_verified)).length;
   const reliableGeometry = state.scores.filter((row) => bool(row.geometry_verified) || ["A", "B"].includes(String(row.geometry_reliability_grade).toUpperCase())).length;
@@ -956,11 +961,14 @@ function renderSourceHealth() {
     ["Pipeline", `${state.report.status || "Unknown"} · ${formatNumber(state.report.rows_processed)} rows`],
     ["Build", `${state.build.build_id || "Unknown"} · ${state.build.build_timestamp_utc || "Unknown time"}`],
     ["Models", `${models.service_intensity || "No service model"} · ${models.corridor_typology || "No typology model"}`],
+    ["Typology boundary", `K-means silhouette ${formatNumber(state.modelMetrics?.corridor_typology?.selected_silhouette_score, 3)} · descriptive grouping only · excluded from policy score`],
     ["Sources", `${sourceCount} registered · checksummed build manifest`],
     ["Source periods", sourcePeriods.length ? sourcePeriods.join(" · ") : "No source dates reported"],
-    ["Evidence coverage", `${percentage(total - currentCount)} historic-only · ${percentage(currentCount)} current validation · ${percentage(operatorVerified)} operator evidence · ${percentage(chargingVerified)} verified charging site · ${percentage(reliableGeometry)} reliable geometry`],
+    ["Evidence coverage", `${percentage(total - datedMapRecordCount)} historic-only · ${percentage(datedMapRecordCount)} dated map records · ${percentage(operatorVerified)} operator evidence · ${percentage(chargingVerified)} verified charging site · ${percentage(reliableGeometry)} reliable geometry`],
     ["Missing values", `${criticalMissing} missing values across monitored analytical fields · ${incompleteScores} incomplete policy-score rows · leading evidence gaps: ${leadingGaps || "none reported"}`],
-    ["Current validation", `${formatNumber(state.report.current_validation_count)} routes · historic status remains explicit`],
+    ["Active-service validation", `${formatNumber(state.report.active_validation_count || 0)} field-confirmed routes · dated map records do not prove active service`],
+    ["Freshness monitor", "CI checks current and mixed snapshots after 120 days and rolling evidence ledgers after 45 days"],
+    ["GIS access", "Read-only CSV and GeoJSON are available under /data/; the field-observation CSV template is available under /templates/"],
     ["Pipeline warnings", warnings.length ? warnings.join(" ") : "No warnings reported"]
   ].map(([title, copy]) => `<div><strong>${escapeHtml(title)}</strong>${escapeHtml(copy)}</div>`).join("");
 }
@@ -1822,27 +1830,31 @@ function tourNarration(step) {
   return typeof step.narration === "function" ? step.narration() : step.narration;
 }
 
-async function fetchTourAudio(text) {
-  if (!text || state.tour.providerAvailable === false) throw new Error("Provider unavailable");
-  if (state.tour.audioCache.has(text)) return state.tour.audioCache.get(text);
-  const request = fetch("/.netlify/functions/narrate", {
+async function fetchTourAudio(text, audioSrc = "") {
+  if (!text) throw new Error("Narration unavailable");
+  if (!audioSrc && state.tour.providerAvailable === false) throw new Error("Provider unavailable");
+  const cacheKey = audioSrc || text;
+  if (state.tour.audioCache.has(cacheKey)) return state.tour.audioCache.get(cacheKey);
+  const request = fetch(audioSrc || "/.netlify/functions/narrate", audioSrc ? {
+    cache: "force-cache"
+  } : {
     method: "POST",
     headers: { "content-type": "application/json" },
     body: JSON.stringify({ text })
   }).then(async (response) => {
     if (!response.ok) {
-      if ([405, 501, 503].includes(response.status)) state.tour.providerAvailable = false;
+      if (!audioSrc && [405, 501, 503].includes(response.status)) state.tour.providerAvailable = false;
       throw new Error("Narration unavailable");
     }
     const blob = await response.blob();
     if (!blob.type.startsWith("audio/") || blob.size < 100) throw new Error("Invalid narration response");
-    state.tour.providerAvailable = true;
+    if (!audioSrc) state.tour.providerAvailable = true;
     return blob;
   }).catch((error) => {
-    state.tour.audioCache.delete(text);
+    state.tour.audioCache.delete(cacheKey);
     throw error;
   });
-  state.tour.audioCache.set(text, request);
+  state.tour.audioCache.set(cacheKey, request);
   return request;
 }
 
@@ -1875,15 +1887,20 @@ function playAudioNarration(blob, signal) {
   });
 }
 
-async function playTourNarration(text, signal) {
+async function playTourNarration(step, signal) {
+  const text = tourNarration(step);
   if (!state.tour.voiceEnabled || !text) return;
   els.walkthroughVoiceStatus.classList.remove("muted");
-  els.walkthroughVoiceStatus.innerHTML = "<i></i> Preparing ElevenLabs voice…";
+  els.walkthroughVoiceStatus.innerHTML = step.audioSrc
+    ? "<i></i> Loading recorded ElevenLabs voice…"
+    : "<i></i> Preparing live ElevenLabs voice…";
   try {
-    const blob = await fetchTourAudio(text);
+    const blob = await fetchTourAudio(text, step.audioSrc);
     if (signal?.aborted) throw abortException();
     els.walkthroughVoiceStatus.classList.remove("muted");
-    els.walkthroughVoiceStatus.innerHTML = "<i></i> ElevenLabs voice";
+    els.walkthroughVoiceStatus.innerHTML = step.audioSrc
+      ? "<i></i> Recorded ElevenLabs voice"
+      : "<i></i> Live ElevenLabs voice";
     await playAudioNarration(blob, signal);
   } catch (error) {
     if (error?.name === "AbortError") throw error;
@@ -1893,9 +1910,9 @@ async function playTourNarration(text, signal) {
 }
 
 function prefetchTourNarration(index, count = 2) {
-  if (!state.tour.voiceEnabled || state.tour.providerAvailable === false) return;
+  if (!state.tour.voiceEnabled) return;
   tourSteps.slice(index, index + count).forEach((step) => {
-    if (step && typeof step.narration === "string") fetchTourAudio(step.narration).catch(() => {});
+    if (step && typeof step.narration === "string") fetchTourAudio(step.narration, step.audioSrc).catch(() => {});
   });
 }
 
@@ -1915,7 +1932,8 @@ const tourSteps = [
     target: "#overview",
     title: "Meet the live decision system",
     copy: "This is an operating planning dashboard—not a slide sequence. The tour will use its real controls, routes, models and evidence.",
-    narration: "Welcome to Route2Zero. I will operate the live system and show how a city can move from corridor evidence to a defensible pilot shortlist.",
+    narration: TOUR_NARRATION[0].text,
+    audioSrc: TOUR_NARRATION[0].audioSrc,
     perform: async (signal) => {
       await moveTourCursor("#heroRobustCount", "Live analytical result", signal);
       els.walkthroughActionStatus.textContent = "Live dashboard · current build loaded";
@@ -1925,7 +1943,8 @@ const tourSteps = [
     target: ".metrics",
     title: "Start with coverage and uncertainty",
     copy: "The headline metrics separate the historic screening universe, dated map records, robust validation priorities and the active scenario identifier.",
-    narration: "These metrics expose coverage and uncertainty. Historic route records are screened at scale, while current validation and robust priority remain separate claims.",
+    narration: TOUR_NARRATION[1].text,
+    audioSrc: TOUR_NARRATION[1].audioSrc,
     perform: async (signal) => {
       await moveTourCursor("#routesMetric", "Routes screened", signal);
       await moveTourCursor("#validatedMetric", "Dated validations", signal);
@@ -1935,7 +1954,8 @@ const tourSteps = [
     target: "#routeFinder",
     title: "Choose a real corridor at random",
     copy: "Each run selects a different mapped corridor from the current scope, then updates every downstream view.",
-    narration: "I am choosing a mapped corridor at random. This is not a rehearsed flagship route; the dashboard will recalculate the complete route context.",
+    narration: TOUR_NARRATION[2].text,
+    audioSrc: TOUR_NARRATION[2].audioSrc,
     perform: async (signal) => {
       const route = randomTourRoute();
       if (!route) return;
@@ -1948,7 +1968,8 @@ const tourSteps = [
     target: "#corridor-map",
     title: "Trace the corridor on the street network",
     copy: "The selected route zooms into Mapbox street-following geometry. The layer control then switches the whole network to validation status.",
-    narration: "The map zooms to the chosen corridor and follows streets. I will switch the network to validation status so evidence gaps remain visible beside location.",
+    narration: TOUR_NARRATION[3].text,
+    audioSrc: TOUR_NARRATION[3].audioSrc,
     perform: async (signal) => {
       await selectTourValue(els.mapLayer, "validation", "Layer: validation status", signal);
       await moveTourCursor("#map", "Street-following corridor", signal, { x: .5, y: .45 });
@@ -1959,7 +1980,8 @@ const tourSteps = [
     target: "#decisionSummary",
     title: "Read the decision before the detail",
     copy: "The first view answers three questions: where the route ranks, how strong the evidence is, and what the city should validate next.",
-    narration: "The Route Lens starts with a plain decision summary: validation rank, evidence confidence, and the next check that could change the choice.",
+    narration: TOUR_NARRATION[4].text,
+    audioSrc: TOUR_NARRATION[4].audioSrc,
     perform: async (signal) => {
       await moveTourCursor("#routeName", state.tour.randomRouteName || "Selected corridor", signal);
       await moveTourCursor("#decisionSummaryRank", "Validation priority", signal);
@@ -1970,7 +1992,8 @@ const tourSteps = [
     target: "#evidenceSignalDetails > summary",
     title: "Open evidence detail only when needed",
     copy: "The eight supporting signals stay one click away, keeping the main decision readable without hiding assumptions or uncertainty.",
-    narration: "The detailed signals are progressive disclosure, not a wall of badges. I will open them now so climate, equity, charging, operator evidence, robustness, and typology remain inspectable.",
+    narration: TOUR_NARRATION[5].text,
+    audioSrc: TOUR_NARRATION[5].audioSrc,
     perform: async (signal) => {
       if (!els.evidenceSignalDetails.open) await pulseTourClick(els.evidenceSignalDetails.querySelector("summary"), "Open evidence detail", signal, true);
       await focusTourTarget(".lens-grid", signal);
@@ -1983,7 +2006,8 @@ const tourSteps = [
     target: "#feasibility",
     title: "Add an order-of-magnitude feasibility screen",
     copy: "Fleet, chargers and capital remain screening proxies. Financing is marked missing instead of being invented.",
-    narration: "Feasibility adds fleet, charger and capital orders of magnitude without pretending they are quotes. Missing financing terms stay visibly missing.",
+    narration: TOUR_NARRATION[6].text,
+    audioSrc: TOUR_NARRATION[6].audioSrc,
     perform: async (signal) => {
       await moveTourCursor("#fleetProxy", "Fleet proxy", signal);
       await moveTourCursor("#capexProxy", "Capital proxy", signal);
@@ -1993,7 +2017,8 @@ const tourSteps = [
     target: "#scenario-lab",
     title: "Change the policy lens",
     copy: "A real click applies the Equity-first preset, recalculates ranks and produces a new auditable scenario ID.",
-    narration: "Now I will click Equity-first. Human-controlled weights change the ranking and scenario identifier; the language model cannot change either one.",
+    narration: TOUR_NARRATION[7].text,
+    audioSrc: TOUR_NARRATION[7].audioSrc,
     perform: async (signal) => {
       const button = document.querySelector('#scenario-lab [data-preset="equity"]');
       await pulseTourClick(button, "Click Equity-first", signal, true);
@@ -2004,7 +2029,8 @@ const tourSteps = [
     target: () => weightInputs.equity,
     title: "Fine-tune a policy weight",
     copy: "The cursor moves a live slider. All four displayed weights are normalized to 100 percent before scoring.",
-    narration: "Presets are only a starting point. I will raise the equity weight directly, and Route2Zero will normalize the full policy mix before recalculating.",
+    narration: TOUR_NARRATION[8].text,
+    audioSrc: TOUR_NARRATION[8].audioSrc,
     perform: async (signal) => {
       await ensureTourControls(signal);
       await focusTourTarget(weightInputs.equity, signal);
@@ -2019,7 +2045,8 @@ const tourSteps = [
     target: "#phase1-portfolio",
     title: "Set Phase-1 constraints",
     copy: "The tour limits the shortlist to six corridors, requires Grade C evidence or better, and raises the equity floor before rebuilding.",
-    narration: "A pilot shortlist is more than the first six ranks. I will set capacity, evidence and equity constraints, then run the portfolio builder.",
+    narration: TOUR_NARRATION[9].text,
+    audioSrc: TOUR_NARRATION[9].audioSrc,
     perform: async (signal) => {
       await selectTourValue(els.portfolioMax, "6", "Maximum: 6 corridors", signal);
       await selectTourValue(els.portfolioGrade, "C", "Evidence: Grade C or better", signal);
@@ -2032,7 +2059,8 @@ const tourSteps = [
     target: ".portfolio-grid",
     title: "Inspect selections and exclusions",
     copy: "Selected corridors, constraint effects and differences from simple top-N sorting are shown together.",
-    narration: "The result explains what entered, what was excluded and why it differs from top-N sorting. This is a validation portfolio, not a procurement order.",
+    narration: TOUR_NARRATION[10].text,
+    audioSrc: TOUR_NARRATION[10].audioSrc,
     perform: async (signal) => {
       await moveTourCursor("#portfolioList", "Selected corridors", signal);
       await moveTourCursor("#portfolioDelta", "Selection trade-offs", signal);
@@ -2042,7 +2070,8 @@ const tourSteps = [
     target: "#evidenceQueue",
     title: "Prioritize evidence that can reverse the choice",
     copy: "The evidence queue ranks the missing checks with the greatest decision impact, rather than hiding them inside a confidence score.",
-    narration: "The evidence queue focuses fieldwork on assumptions that can reverse rank or portfolio membership. That makes validation effort targeted and auditable.",
+    narration: TOUR_NARRATION[11].text,
+    audioSrc: TOUR_NARRATION[11].audioSrc,
     perform: async (signal) => {
       const first = els.evidenceQueue.querySelector("[data-route-id]") || els.evidenceQueue.firstElementChild;
       await moveTourCursor(first || els.evidenceQueue, "Highest-value validation", signal);
@@ -2071,7 +2100,8 @@ const tourSteps = [
     target: "#method-sources",
     title: "Open methods, safeguards and source health",
     copy: "The evidence boundary, model restraint, sources and build health are available in the dashboard—not buried outside the product.",
-    narration: "Methods and safeguards remain one click away. I will open the claims boundary so a reviewer can inspect what is measured, estimated, proxied or missing.",
+    narration: TOUR_NARRATION[13].text,
+    audioSrc: TOUR_NARRATION[13].audioSrc,
     perform: async (signal) => {
       await pulseTourClick(els.openMethod, "Open evidence boundary", signal, true);
       await tourDelay(320, signal);
@@ -2082,7 +2112,8 @@ const tourSteps = [
     target: () => els.exportPdf,
     title: "Export an audit-ready decision pack",
     copy: "PDF, Word, CSV and JSON outputs carry the active build, model and scenario metadata. The tour highlights them without forcing a download.",
-    narration: "Finally, city teams can export a decision brief, editable report, corridor data and audit manifest. Every output carries the active scenario and build identity.",
+    narration: TOUR_NARRATION[14].text,
+    audioSrc: TOUR_NARRATION[14].audioSrc,
     perform: async (signal) => {
       await ensureTourControls(signal);
       await focusTourTarget(els.exportPdf, signal);
@@ -2169,9 +2200,9 @@ async function runTourStep(index) {
     const action = Promise.resolve(step.perform?.(controller.signal));
     if (step.narrateAfter) {
       await action;
-      await Promise.all([playTourNarration(tourNarration(step), controller.signal), tourDelay(2600, controller.signal, true)]);
+      await Promise.all([playTourNarration(step, controller.signal), tourDelay(2600, controller.signal, true)]);
     } else {
-      await Promise.all([action, playTourNarration(tourNarration(step), controller.signal), tourDelay(3000, controller.signal, true)]);
+      await Promise.all([action, playTourNarration(step, controller.signal), tourDelay(3000, controller.signal, true)]);
     }
     if (!state.tour.running || state.tour.paused || controller.signal.aborted || token !== state.tour.token) return;
     if (state.tourIndex >= tourSteps.length - 1) endWalkthrough(true);

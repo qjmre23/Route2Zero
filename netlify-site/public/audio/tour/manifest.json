@@ -1,0 +1,108 @@
+{
+  "provider": "ElevenLabs",
+  "deterministic_steps": 14,
+  "dynamic_steps": [
+    13
+  ],
+  "generated_at_utc": "2026-08-25T00:19:48.467Z",
+  "files": [
+    {
+      "step": 1,
+      "key": "welcome",
+      "audioSrc": "/audio/tour/01-welcome.mp3",
+      "bytes": 34631,
+      "sha256": "b0c38875eebc3232aa3ded74522d431402f068bc61e7ef33743d6b7e0b668a97"
+    },
+    {
+      "step": 2,
+      "key": "coverage-uncertainty",
+      "audioSrc": "/audio/tour/02-coverage-uncertainty.mp3",
+      "bytes": 39647,
+      "sha256": "d1235b30662b9e474fc3ed96b7ea27167cbb788f91cb36e2a3e890627960031d"
+    },
+    {
+      "step": 3,
+      "key": "random-corridor",
+      "audioSrc": "/audio/tour/03-random-corridor.mp3",
+      "bytes": 34318,
+      "sha256": "42c7fc8552e44808eda920d578d2526abf93fe42c2e2e7c8c20e4574af3022e6"
+    },
+    {
+      "step": 4,
+      "key": "street-network",
+      "audioSrc": "/audio/tour/04-street-network.mp3",
+      "bytes": 37034,
+      "sha256": "42c5f7a74bdf780b18bb21a7f1ba111217bf8d88bed8e0cf6934c4381d959893"
+    },
+    {
+      "step": 5,
+      "key": "decision-summary",
+      "audioSrc": "/audio/tour/05-decision-summary.mp3",
+      "bytes": 30243,
+      "sha256": "fc67c86813f035202afd9048c690259225e55b6218b4e40a17fd73a09ef88c38"
+    },
+    {
+      "step": 6,
+      "key": "evidence-detail",
+      "audioSrc": "/audio/tour/06-evidence-detail.mp3",
+      "bytes": 44662,
+      "sha256": "8be0404c144b5061e72f212443bcd37b8e7fa247be0ad8c48c731ddca336bb8e"
+    },
+    {
+      "step": 7,
+      "key": "feasibility-screen",
+      "audioSrc": "/audio/tour/07-feasibility-screen.mp3",
+      "bytes": 38393,
+      "sha256": "0eaec74b4727ec7905de2e6d45f390654827a61e8ecd990c84e5cc63be6282f5"
+    },
+    {
+      "step": 8,
+      "key": "equity-first",
+      "audioSrc": "/audio/tour/08-equity-first.mp3",
+      "bytes": 36721,
+      "sha256": "aa0bea652a273c6aa91fc8fcb31c5aa036831d321152ee43035952470a4da254"
+    },
+    {
+      "step": 9,
+      "key": "policy-weight",
+      "audioSrc": "/audio/tour/09-policy-weight.mp3",
+      "bytes": 33900,
+      "sha256": "a7a42b2a53525c6af399b896d2cb4211d8902338b4cf0d2ea8cf6fc8b56a8178"
+    },
+    {
+      "step": 10,
+      "key": "portfolio-constraints",
+      "audioSrc": "/audio/tour/10-portfolio-constraints.mp3",
+      "bytes": 30974,
+      "sha256": "cd8c83446936ddc3bf9da0719f0eeec7531c31efc6290d3055c57ec366c98945"
+    },
+    {
+      "step": 11,
+      "key": "selection-tradeoffs",
+      "audioSrc": "/audio/tour/11-selection-tradeoffs.mp3",
+      "bytes": 37661,
+      "sha256": "019527f43f0bd56c897066115de3bd30284a1c63847419dbbaee163117518680"
+    },
+    {
+      "step": 12,
+      "key": "evidence-queue",
+      "audioSrc": "/audio/tour/12-evidence-queue.mp3",
+      "bytes": 37243,
+      "sha256": "87c488f14b28806be2c3424bce84e22eaf4f6cbf37d6d45ceb6b2d66700bac8d"
+    },
+    {
+      "step": 14,
+      "key": "methods-safeguards",
+      "audioSrc": "/audio/tour/14-methods-safeguards.mp3",
+      "bytes": 42050,
+      "sha256": "4b22a2309af4e06dff5a5e90d198d3f6190ed0199baaaea891714a84829b277c"
+    },
+    {
+      "step": 15,
+      "key": "export-decision-pack",
+      "audioSrc": "/audio/tour/15-export-decision-pack.mp3",
+      "bytes": 20212,
+      "sha256": "349a1bc09b41c8b9bf91b18e5bfdeebf9e9a9aa55b1a0022f7e394b68ee7255d"
+    }
+  ]
+}

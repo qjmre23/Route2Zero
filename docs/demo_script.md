@@ -18,7 +18,7 @@ Before recording:
 - confirm the planning assistant returns its verified source label; and
 - add `ELEVENLABS_API_KEY` to Netlify with Functions runtime scope for the production male narration voice.
 
-The walkthrough uses the identified build and its active controls. It is not a video or fixed click track. Dropdown steps visibly open an option menu, move to the exact value, click it and update the real control. It restores the dashboard's starting route, scenario, portfolio controls, question and scroll position when it ends. The opening narration is prewarmed and every spoken step uses the same configured ElevenLabs voice. There is no browser or device-voice substitute; when the provider is unavailable, the visual tour continues silently with a visible status.
+The walkthrough uses the identified build and its active controls. It is not a video or fixed click track. Dropdown steps visibly open an option menu, move to the exact value, click it and update the real control. It restores the dashboard's starting route, scenario, portfolio controls, question and scroll position when it ends. Fourteen deterministic narration steps play committed MP3 recordings made with one ElevenLabs voice. Step 13 is the only live narration request because it reads the varying assistant response. There is no browser or device-voice substitute; when narration is unavailable, the visual tour continues silently with a visible status.
 
 ## Built-in TOUR ME sequence
 
@@ -26,8 +26,8 @@ The walkthrough uses the identified build and its active controls. It is not a v
 2. Reads coverage, validation, robust-priority and scenario metrics.
 3. Randomly selects a mapped route from the active scope.
 4. Zooms Mapbox to the corridor and switches to validation status.
-5. Opens the selected route identity and live priority.
-6. Reads the eight separately labelled decision signals.
+5. Reads the three-part decision summary: validation rank, evidence confidence, and the next check.
+6. Opens the eight supporting signals for detailed inspection.
 7. Reviews fleet, charger and capital feasibility proxies.
 8. Clicks the Equity-first policy preset.
 9. Moves the equity-weight slider and normalizes the policy mix.

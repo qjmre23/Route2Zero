@@ -66,7 +66,7 @@ Route2Zero therefore supports screening, validation design, and stakeholder revi
 | Report export | Produces decision-ready PDF, presentation, document, and structured reporting outputs |
 | TOUR ME | Runs a narrated 15-stage product tour with one consistent ElevenLabs voice, a visible cursor, animated dropdown selections, random mapped-route selection, map zoom, policy and portfolio controls, a live assistant question, methods, and exports; progress is step-based with no countdown timer |
 
-The responsive interface is deployed on Netlify and uses Mapbox GL JS for interactive cartography. Reviewed OSM relations are drawn from observed member-way geometry. Other routes use road-following Mapbox interpretations based on ordered screening coordinates and remain labelled as planning geometry. TOUR ME operates the real interface rather than replaying a fixed recording. Its cursor opens a visible option menu, highlights the chosen value, clicks it, and dispatches the same input and change events used by the dashboard. The tour restores the user's starting controls when it ends, supports pause and voice controls, and provides a reduced-motion mode.
+The responsive interface is deployed on Netlify and uses Mapbox GL JS for interactive cartography. Reviewed OSM relations are drawn from observed member-way geometry. Other routes use road-following Mapbox interpretations based on ordered screening coordinates and remain labelled as planning geometry. TOUR ME operates the real interface rather than replaying a fixed recording. Its cursor opens a visible option menu, highlights the chosen value, clicks it, and dispatches the same input and change events used by the dashboard. Fourteen deterministic narration steps are committed as MP3 files generated with one ElevenLabs voice; only the assistant-response step is synthesized live because its answer changes with the selected route and scenario. The tour restores the user's starting controls when it ends, supports pause and voice controls, and provides a reduced-motion mode.
 
 The static HTML carries the current build summary before JavaScript runs, so link previewers, accessibility tools, slow connections, and no-script fetchers see `1,522` historic records, `20` dated map matches, `9` robust validation priorities, and scenario `scn-e0f12f397e` instead of placeholder zeroes.
 
@@ -108,7 +108,7 @@ Median imputation, standardization, and K-means clustering identify three struct
 | High-Stop-Density Core | 869 |
 | Long Regional Connector | 22 |
 
-Model version typology-v1-ab8203c9 records a silhouette score of 0.3730. Cluster labels describe route structure only. They do not infer poverty, settlement status, vulnerability, demand, or investment value.
+Model version typology-v1-ab8203c9 records a silhouette score of 0.3730, which indicates modest rather than clean cluster separation. The typology is descriptive, not predictive, and is excluded from the policy score. Cluster labels do not infer poverty, settlement status, vulnerability, demand, or investment value.
 
 ### 4. Climate and energy scenarios
 
@@ -290,6 +290,8 @@ The selection rule gives precedence to Phase-1 membership, robust-priority statu
 | Quality assurance | pytest, Node test runner, deterministic checksum contracts |
 | Reporting | PDF, PowerPoint, Word, CSV, GeoJSON, and JSON outputs |
 
+Public read-only outputs are available directly to GIS and analysis tools at `/data/route2zero_scores.geojson` and `/data/route2zero_scores.csv`. A header-only field-observation template is available at `/templates/field_observation_intake.csv`; controlled evidence remains in the validated ledgers and is never inferred from an empty row.
+
 ## Repository
 
     Route2Zero/
@@ -324,6 +326,8 @@ The selection rule gives precedence to Phase-1 membership, robust-priority statu
     Set-Location netlify-site
     npm run check
     npm run build
+
+The CI workflow also runs `python scripts/check_source_freshness.py` on every build and every Monday. Current and mixed snapshots fail after 120 days without refresh; rolling validation ledgers fail after 45 days. Historic inputs are reported but intentionally exempt because their age is part of the disclosed baseline.
 
 The pipeline writes a build manifest with source, configuration, and output checksums; model and scenario identities; fixed random seeds; build time; and analytical source commit. Processed outputs are regenerated from source and configuration rather than edited manually.
 
@@ -422,8 +426,8 @@ The final materials are stored in output/submission:
 - Isaac Marcus
 - Andrei Dela Cruz
 - Russel Mendez
-- TRISTIAN JAMES CABALAR
-- JOHN MICHAEL PALAGANAS
+- Joaquin Sarmiento
+- Prince Marl Mirasol
 - Carl Nueva
 - JOSEPH CLARENCE PARAYAOAN
 

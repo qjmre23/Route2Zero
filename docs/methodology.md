@@ -212,7 +212,7 @@ The present implementation contains the historic-versus-ML fallback. The pilot p
 
 Candidate cluster counts from 3 through 8 are evaluated. A cluster count is viable only when its smallest cluster contains at least 10 routes and at least 1% of the route universe. The viable candidate with the highest silhouette score is selected.
 
-Three clusters are selected with silhouette 0.3730. Human-readable labels are assigned from cluster-centre patterns:
+Three clusters are selected with silhouette 0.3730. This is modest separation, so typology is descriptive rather than predictive and is excluded from the policy score. Human-readable labels are assigned from cluster-centre patterns:
 
 - Dense Urban Trunk;
 - Long Regional Connector;

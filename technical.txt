@@ -1896,8 +1896,8 @@ Build timestamp: 2026-08-24T16:13:03Z
 85.15 Canonical member 2 is Isaac Marcus.
 85.16 Canonical member 3 is Andrei Dela Cruz.
 85.17 Canonical member 4 is Russel Mendez.
-85.18 Canonical member 5 is TRISTIAN JAMES CABALAR.
-85.19 Canonical member 6 is JOHN MICHAEL PALAGANAS.
+85.18 Canonical member 5 is Joaquin Sarmiento.
+85.19 Canonical member 6 is Prince Marl Mirasol.
 85.20 Canonical member 7 is Carl Nueva.
 85.21 Canonical member 8 is JOSEPH CLARENCE PARAYAOAN.
 85.22 Each canonical name appears exactly once in each submission PDF.

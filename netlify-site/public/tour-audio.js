@@ -1,0 +1,17 @@
+export const TOUR_NARRATION = Object.freeze([
+  { step: 1, key: "welcome", text: "Welcome to Route2Zero. I will operate the live system and show how a city can move from corridor evidence to a defensible pilot shortlist.", audioSrc: "/audio/tour/01-welcome.mp3" },
+  { step: 2, key: "coverage-uncertainty", text: "These metrics expose coverage and uncertainty. Historic route records are screened at scale, while current validation and robust priority remain separate claims.", audioSrc: "/audio/tour/02-coverage-uncertainty.mp3" },
+  { step: 3, key: "random-corridor", text: "I am choosing a mapped corridor at random. This is not a rehearsed flagship route; the dashboard will recalculate the complete route context.", audioSrc: "/audio/tour/03-random-corridor.mp3" },
+  { step: 4, key: "street-network", text: "The map zooms to the chosen corridor and follows streets. I will switch the network to validation status so evidence gaps remain visible beside location.", audioSrc: "/audio/tour/04-street-network.mp3" },
+  { step: 5, key: "decision-summary", text: "The Route Lens starts with a plain decision summary: validation rank, evidence confidence, and the next check that could change the choice.", audioSrc: "/audio/tour/05-decision-summary.mp3" },
+  { step: 6, key: "evidence-detail", text: "The detailed signals are progressive disclosure, not a wall of badges. I will open them now so climate, equity, charging, operator evidence, robustness, and typology remain inspectable.", audioSrc: "/audio/tour/06-evidence-detail.mp3" },
+  { step: 7, key: "feasibility-screen", text: "Feasibility adds fleet, charger and capital orders of magnitude without pretending they are quotes. Missing financing terms stay visibly missing.", audioSrc: "/audio/tour/07-feasibility-screen.mp3" },
+  { step: 8, key: "equity-first", text: "Now I will click Equity-first. Human-controlled weights change the ranking and scenario identifier; the language model cannot change either one.", audioSrc: "/audio/tour/08-equity-first.mp3" },
+  { step: 9, key: "policy-weight", text: "Presets are only a starting point. I will raise the equity weight directly, and Route2Zero will normalize the full policy mix before recalculating.", audioSrc: "/audio/tour/09-policy-weight.mp3" },
+  { step: 10, key: "portfolio-constraints", text: "A pilot shortlist is more than the first six ranks. I will set capacity, evidence and equity constraints, then run the portfolio builder.", audioSrc: "/audio/tour/10-portfolio-constraints.mp3" },
+  { step: 11, key: "selection-tradeoffs", text: "The result explains what entered, what was excluded and why it differs from top-N sorting. This is a validation portfolio, not a procurement order.", audioSrc: "/audio/tour/11-selection-tradeoffs.mp3" },
+  { step: 12, key: "evidence-queue", text: "The evidence queue focuses fieldwork on assumptions that can reverse rank or portfolio membership. That makes validation effort targeted and auditable.", audioSrc: "/audio/tour/12-evidence-queue.mp3" },
+  { step: 13, key: "live-assistant", dynamic: true },
+  { step: 14, key: "methods-safeguards", text: "Methods and safeguards remain one click away. I will open the claims boundary so a reviewer can inspect what is measured, estimated, proxied or missing.", audioSrc: "/audio/tour/14-methods-safeguards.mp3" },
+  { step: 15, key: "export-decision-pack", text: "Finally, export a decision pack carrying the active scenario and build ID.", audioSrc: "/audio/tour/15-export-decision-pack.mp3" }
+]);

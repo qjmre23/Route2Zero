@@ -313,6 +313,8 @@ details[open] summary i { transform: rotate(45deg); }
 .method-grid p, .source-health > div { padding: 11px; border-radius: 10px; background: rgba(229, 237, 227, .75); }
 .method-grid strong, .source-health strong { display: block; color: var(--ink); }
 .source-health { display: grid; grid-template-columns: 1fr 1fr; gap: 9px; }
+.template-download { display: inline-flex; margin-top: 12px; padding: 11px 16px; border-radius: 999px; background: var(--navy); color: #fff; font-weight: 800; text-decoration: none; }
+.template-download:hover, .template-download:focus-visible { background: var(--blue); color: #fff; }
 
 footer { display: flex; align-items: center; justify-content: space-between; gap: 20px; padding: 28px 6px 12px; border-top: 1px solid var(--line); }
 .footer-brand { color: var(--ink); }

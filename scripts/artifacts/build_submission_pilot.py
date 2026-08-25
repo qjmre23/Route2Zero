@@ -511,8 +511,8 @@ team = [
     ("Isaac Marcus", "Engineering & Deployment Lead", "Dashboard, scenarios, Netlify, Mapbox, reliability, and deterministic fallbacks."),
     ("Andrei Dela Cruz", "Policy & Responsible AI Lead", "Policy controls, decision rights, workshops, risk controls, and responsible AI."),
     ("Russel Mendez", "Climate & Evidence Lead", "Climate and energy method, source review, evidence confidence, and documentation."),
-    ("TRISTIAN JAMES CABALAR", "Data & ML Lead", "Source registry, feature store, service model, metrics, manifest, and model refresh."),
-    ("JOHN MICHAEL PALAGANAS", "QA & Documentation Lead", "Testing, accessibility, artifact QA, claim checks, and issue tracking."),
+    ("Joaquin Sarmiento", "Data & ML Lead", "Source registry, feature store, service model, metrics, manifest, and model refresh."),
+    ("Prince Marl Mirasol", "QA & Documentation Lead", "Testing, accessibility, artifact QA, claim checks, and issue tracking."),
     ("Carl Nueva", "Geospatial & Infrastructure Analyst", "Geometry review, spatial joins, equity layers, power evidence, and map QA."),
     ("JOSEPH CLARENCE PARAYAOAN", "Field Validation & Partnerships Lead", "Field plans, route checks, operator and partner coordination, and evidence handoff."),
 ]
@@ -533,7 +533,7 @@ table(
     stripe=True,
 )
 section(doc, "Handover and scale", 2)
-body(doc, "Handover: final build, model card, source registry, validation ledgers, scenario library, decision pack, issue register, refresh/retraining runbook, governance notes, and a city owner for each unresolved issue. Scale requires local adapters, recalibration, and validation; the Metro Manila model is not copied unchanged.", 7.3, 0)
+body(doc, "Handover: final build, model card, source registry, field-observation template, validation ledgers, scenario library, decision pack, issue register, scheduled source-freshness check, refresh/retraining runbook, governance notes, and a city owner for each unresolved issue. Scale requires local adapters, recalibration, and validation; the Metro Manila model is not copied unchanged.", 7.3, 0)
 
 OUT.parent.mkdir(parents=True, exist_ok=True)
 doc.core_properties.title = "Team Larpers - Route2Zero Six-Month City Pilot Plan"

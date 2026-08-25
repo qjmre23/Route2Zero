@@ -18,7 +18,7 @@ The evidence anchor is build `r2z-d4c8d4cc709a`, scenario `scn-e0f12f397e`, and 
 | Phase-1 corridors | 8 |
 | Service model | Histogram gradient boosting, version `service-v1-266e0b1d` |
 | Model validation | Grouped five-fold, MAE 267.6992, baseline MAE 4,850.3377 |
-| Typology | Three clusters, silhouette 0.3730 |
+| Typology | Three overlapping descriptive groups, silhouette 0.3730; excluded from policy score |
 | Sensitivity | 5,000 fixed-seed policy-weight scenarios |
 | Portfolio climate range | -8,190.9 to 22,288.0 tCO2e/year |
 | Evidence distribution | 1,519 grade C; 3 grade D |
