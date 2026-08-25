@@ -4,7 +4,7 @@
 
 This matrix maps the Route2Zero implementation to the published judging areas of Relevance, Innovation, Impact, Presentation, Feasibility, and Viability. No numerical weights are assumed because none are encoded in the repository evidence used for this submission.
 
-The evidence anchor is build `r2z-d4c8d4cc709a`, scenario `scn-e0f12f397e`, and portfolio `prt-fd6de9d793`.
+The evidence anchor is build `r2z-a7181752a17d`, scenario `scn-e0f12f397e`, and portfolio `prt-fd6de9d793`.
 
 ## Build facts
 
@@ -186,7 +186,7 @@ Route2Zero can be maintained and transferred because sources, configurations, mo
 
 ### Responsible limitation
 
-The current manifest records analytical source commit `190ade5203cc5cbb02840a39246be46713bebd03`, together with source, configuration, model, scenario, and output checksums.
+The current manifest records analytical source commit `851fab135b3ac0e66548475b124d4b923a191077`, together with source, configuration, model, scenario, and output checksums.
 
 An order-of-magnitude fleet and capital screen is present, but every value is `PROXY`, financing is `MISSING`, and major depot, grid, operating, and finance costs are excluded. Financial viability still requires verified fleet, charging, depot, tariff, and financing inputs during the pilot.
 
@@ -217,7 +217,7 @@ An order-of-magnitude fleet and capital screen is present, but every value is `P
 
 Before submission, confirm that the website, Concept, Demonstration, Pilot Plan, README, and technical reference all use:
 
-- build `r2z-d4c8d4cc709a` or a clearly identified later rebuild;
+- build `r2z-a7181752a17d` or a clearly identified later rebuild;
 - scenario `scn-e0f12f397e` or a clearly identified replacement;
 - portfolio `prt-fd6de9d793` or a clearly identified replacement;
 - 1,522 records;

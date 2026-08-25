@@ -2,7 +2,7 @@
 
 ## Objective
 
-The protocol converts build `r2z-d4c8d4cc709a` from a historic screening baseline into a locally reviewed decision workflow. It defines the minimum evidence needed to validate route status, service intensity, geometry, climate assumptions, equity indicators, charging feasibility, operator readiness, model behavior, rank stability, and portfolio constraints.
+The protocol converts build `r2z-a7181752a17d` from a historic screening baseline into a locally reviewed decision workflow. It defines the minimum evidence needed to validate route status, service intensity, geometry, climate assumptions, equity indicators, charging feasibility, operator readiness, model behavior, rank stability, and portfolio constraints.
 
 The protocol does not authorize procurement. It produces an evidence-backed Phase-1 shortlist and an explicit list of unresolved questions.
 
@@ -356,7 +356,7 @@ Optional scenario metrics include calibrated portfolio CO2e and energy ranges. D
 
 ## Rebuild and approval
 
-Accepted evidence must enter `data/validated/` or versioned configuration. Run the complete pipeline, automated checks, and Netlify build. Compare the new build with `r2z-d4c8d4cc709a` for:
+Accepted evidence must enter `data/validated/` or versioned configuration. Run the complete pipeline, automated checks, and Netlify build. Compare the new build with `r2z-a7181752a17d` for:
 
 - changed sources and checksums;
 - validation statuses;

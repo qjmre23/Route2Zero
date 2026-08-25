@@ -4,7 +4,7 @@
 
 Route2Zero uses deterministic evidence-constrained selection. It is not a financial optimizer, mixed-integer program, cost-benefit model, or procurement recommendation.
 
-The current result is portfolio scenario `prt-fd6de9d793`, derived from policy scenario `scn-e0f12f397e` in build `r2z-d4c8d4cc709a`.
+The current result is portfolio scenario `prt-fd6de9d793`, derived from policy scenario `scn-e0f12f397e` in build `r2z-a7181752a17d`.
 
 ## Purpose
 
@@ -104,7 +104,7 @@ This greedy scan is deterministic for fixed inputs. Its ordering, tie-breaks, el
 | `LTFRB_PUJ1353` | Francisco Homes - Cubao | San Jose del Monte | 1 | Robust priority |
 | `LTFRB_PUJ1241` | Dasmarinas Resettlement Area - Baclaran via Coastal Rd. | Pasay | 2 | Robust priority |
 | `LTFRB_PUJ2083` | Baclaran - Dasmarinas B Bayan | Dasmarinas | 3 | Robust priority |
-| `LTFRB_PUJ1156` | Binangonan - Pasig (TP) | Binan | 6 | Robust priority |
+| `LTFRB_PUJ1156` | Binangonan - Pasig (TP) | Binangonan | 6 | Robust priority |
 | `LTFRB_PUJ1638` | EDSA/Shaw Central - Morong via Antipolo, Theresa | Mandaluyong | 9 | Robust priority |
 | `LTFRB_PUJ1350` | Francisco Homes - Philcoa | San Jose del Monte | 10 | Scenario-dependent |
 | `LTFRB_PUJ1153` | Binangonan - JRC via Angono | Mandaluyong | 11 | Scenario-dependent |
@@ -169,7 +169,7 @@ The current text-derived primary-city distribution is:
 - Mandaluyong: 2;
 - Pasay: 1;
 - Dasmarinas: 1;
-- Binan: 1; and
+- Binangonan: 1; and
 - Caloocan: 1.
 
 This distribution should be recalculated after a boundary-based city adapter or local validation is supplied.

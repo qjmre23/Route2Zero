@@ -66,7 +66,7 @@
         {
           "route_id": "LTFRB_PUJ1156",
           "route_long_name": "Binangonan - Pasig (TP)",
-          "primary_city": "Binan",
+          "primary_city": "Binangonan",
           "priority_score": 75.11,
           "evidence_grade": "C",
           "robustness_label": "ROBUST PRIORITY",
@@ -151,7 +151,7 @@
         "Mandaluyong": 2,
         "Pasay": 1,
         "Dasmarinas": 1,
-        "Binan": 1,
+        "Binangonan": 1,
         "Caloocan": 1
       },
       "binding_constraints": [

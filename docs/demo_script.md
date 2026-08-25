@@ -8,7 +8,7 @@ Use the production application at <https://route2zero.netlify.app/> or the gener
 
 Before recording:
 
-- confirm build `r2z-d4c8d4cc709a` is displayed or documented;
+- confirm build `r2z-a7181752a17d` is displayed or documented;
 - confirm scenario `scn-e0f12f397e`;
 - confirm 1,522 historic routes, 20 dated external map records, 9 robust priorities, and 8 Phase-1 corridors;
 - confirm a mapped route is available in the route selector; TOUR ME chooses one at random on every run;

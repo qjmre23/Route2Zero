@@ -35,9 +35,9 @@ The result is not a static ranking. It is a traceable planning package containin
 | Field | Value |
 |---|---:|
 | Pipeline specification | 2.1.0 |
-| Build ID | r2z-d4c8d4cc709a |
-| Build timestamp | 2026-08-24T16:13:03Z |
-| Analytical source commit | 190ade5203cc5cbb02840a39246be46713bebd03 |
+| Build ID | r2z-a7181752a17d |
+| Build timestamp | 2026-08-25T01:00:14Z |
+| Analytical source commit | 851fab135b3ac0e66548475b124d4b923a191077 |
 | Default policy scenario | scn-e0f12f397e |
 | Phase-1 portfolio scenario | prt-fd6de9d793 |
 | Route-direction records screened | 1,522 |
@@ -66,7 +66,7 @@ Route2Zero therefore supports screening, validation design, and stakeholder revi
 | Report export | Produces decision-ready PDF, presentation, document, and structured reporting outputs |
 | TOUR ME | Runs a narrated 15-stage product tour with one consistent ElevenLabs voice, a visible cursor, animated dropdown selections, random mapped-route selection, map zoom, policy and portfolio controls, a live assistant question, methods, and exports; progress is step-based with no countdown timer |
 
-The responsive interface is deployed on Netlify and uses Mapbox GL JS for interactive cartography. Reviewed OSM relations are drawn from observed member-way geometry. Other routes use road-following Mapbox interpretations based on ordered screening coordinates and remain labelled as planning geometry. TOUR ME operates the real interface rather than replaying a fixed recording. Its cursor opens a visible option menu, highlights the chosen value, clicks it, and dispatches the same input and change events used by the dashboard. Fourteen deterministic narration steps are committed as MP3 files generated with one ElevenLabs voice; only the assistant-response step is synthesized live because its answer changes with the selected route and scenario. The tour restores the user's starting controls when it ends, supports pause and voice controls, and provides a reduced-motion mode.
+The responsive interface is deployed on Netlify and uses Mapbox GL JS for interactive cartography. Reviewed OSM relations are drawn from observed member-way geometry. Other routes use road-following Mapbox interpretations based on ordered screening coordinates and remain labelled as planning geometry. TOUR ME operates the real interface rather than replaying a fixed recording. Its cursor opens a visible option menu, highlights the chosen value, clicks it, and dispatches the same input and change events used by the dashboard. Fourteen deterministic narration steps are committed as MP3 files generated with one ElevenLabs voice; only the assistant-response step is synthesized live because its answer changes with the selected route and scenario. The tour restores the user's starting controls when it ends, supports pause and voice controls, and provides a reduced-motion mode. On compact phones, it reserves a visible stage above the bottom sheet, scrolls within the controls drawer, and repositions labels and dropdowns to keep the demonstrated control in view.
 
 ### What AI contributes
 

@@ -49,6 +49,8 @@ test("phone tour reserves a visible stage and keeps controls usable", async () =
   assert.match(app, /compactTourQuery\.matches \? 3 : 5/);
   assert.match(css, /grid-template-columns: repeat\(6, minmax\(0, 1fr\)\)/);
   assert.match(css, /body\.tour-running \{ scroll-padding-bottom: 46svh; \}/);
+  assert.match(css, /body\.tour-running\.controls-open \.sidebar \{ padding-bottom: calc\(22px \+ min\(43svh, 244px\)\); \}/);
+  assert.match(css, /height: 100dvh; max-height: 100dvh; overflow-y: auto; overscroll-behavior: contain/);
   assert.match(css, /\.tour-cursor\.label-left span/);
   assert.match(css, /@media \(max-width: 360px\), \(max-height: 620px\) and \(max-width: 700px\)/);
 });

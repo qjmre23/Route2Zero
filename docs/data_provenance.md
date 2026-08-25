@@ -4,7 +4,7 @@
 
 Route2Zero treats raw source snapshots as immutable, pilot evidence as controlled input, and processed outputs as reproducible derivatives. Every registered source records its organization, URL, retrieval date, reference period, geography, spatial resolution, license, source type, currentness, notes, local path, requirement status, availability, and SHA-256 checksum when available.
 
-This document describes the source manifest used by build `r2z-d4c8d4cc709a`.
+This document describes the source manifest used by build `r2z-a7181752a17d`.
 
 ## Source inventory
 
@@ -180,7 +180,7 @@ Holds site name, date, coordinates, site-control status, utility-capacity status
 
 Holds stakeholder type, organization, date, route, workflow component, feedback, evidence change, permission to quote, and source reference.
 
-All four controlled ledgers contain headers only in build `r2z-d4c8d4cc709a`. A separate reviewed OSM configuration supplies 20 dated current external route records and observed member-way geometries. The score table still reports zero field-confirmed active-service records, zero observed operator readiness scores, zero verified utility-capacity records, and zero verified charging sites.
+All four controlled ledgers contain headers only in build `r2z-a7181752a17d`. A separate reviewed OSM configuration supplies 20 dated current external route records and observed member-way geometries. The score table still reports zero field-confirmed active-service records, zero observed operator readiness scores, zero verified utility-capacity records, and zero verified charging sites.
 
 ### Reviewed OSM route evidence
 
@@ -259,7 +259,7 @@ A missing required source remains a build error. A missing optional source remai
 
 The build ID is derived from configuration checksums, source checksums, model versions, policy scenario ID, and portfolio scenario ID. It is stable for identical logical inputs. The timestamp is recorded separately.
 
-The current manifest records analytical source commit `190ade5203cc5cbb02840a39246be46713bebd03`. Documentation and submission commits may follow without changing the analytical inputs represented by that manifest.
+The current manifest records analytical source commit `851fab135b3ac0e66548475b124d4b923a191077`. Documentation and submission commits may follow without changing the analytical inputs represented by that manifest.
 
 ## Source-status rules for publication
 

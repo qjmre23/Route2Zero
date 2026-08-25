@@ -133,7 +133,7 @@
       "currentness": "current",
       "notes": "No route-level Metro Manila match was accepted; official-plan status remains MISSING.",
       "available": true,
-      "checksum_sha256": "0e83c9c6290eea37c32ab3be384213505765266152702d1db6c9d5f15a1cdc27",
+      "checksum_sha256": "e028b087580f4e3670e6af63a7151cd9ca03a447c9cad327de89787033e0251e",
       "availability_status": "AVAILABLE"
     },
     {
@@ -190,7 +190,7 @@
       "currentness": "current",
       "notes": "Registered as a validation candidate but not integrated because current route-city attribution is not spatially verified.",
       "available": true,
-      "checksum_sha256": "4912854a0c318dcba4e1f2c1a056e2d2e8c11edf472796ed73050f78552f9e5e",
+      "checksum_sha256": "aac12609c43fb3a79f16e941e31495f087bf17f86d3cf960b7ad82cf208daf08",
       "availability_status": "AVAILABLE"
     },
     {
