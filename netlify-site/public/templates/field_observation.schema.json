@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://route2zero.netlify.app/templates/field_observation.schema.json",
+  "title": "Route2Zero field observation",
+  "description": "One consent-based, dated route observation. Convert each CSV row to this object when validating locally.",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "route_id",
+    "route_long_name",
+    "validation_status",
+    "active_status",
+    "validation_date",
+    "validator",
+    "source_type",
+    "source_reference",
+    "geometry_verified",
+    "evidence_quality"
+  ],
+  "properties": {
+    "route_id": { "type": "string", "minLength": 1, "maxLength": 120, "pattern": "^[A-Za-z0-9_.:-]+$" },
+    "route_long_name": { "type": "string", "minLength": 1, "maxLength": 240 },
+    "validation_status": { "type": "string", "enum": ["historic_only", "current", "desk_checked", "operator_confirmed", "lgu_confirmed", "field_checked", "conflicting_evidence"] },
+    "active_status": { "type": "string", "enum": ["active", "inactive", "uncertain"] },
+    "validation_date": { "type": "string", "pattern": "^[0-9]{4}-[0-9]{2}-[0-9]{2}$" },
+    "validator": { "type": "string", "minLength": 1, "maxLength": 160 },
+    "source_type": { "type": "string", "minLength": 1, "maxLength": 80 },
+    "source_reference": { "type": "string", "minLength": 1, "maxLength": 500 },
+    "notes": { "type": "string", "maxLength": 2000 },
+    "observed_origin": { "type": "string", "maxLength": 240 },
+    "observed_destination": { "type": "string", "maxLength": 240 },
+    "observed_headway_min": { "type": ["number", "null"], "minimum": 0, "maximum": 1440 },
+    "observed_service_window_hrs": { "type": ["number", "null"], "minimum": 0, "maximum": 24 },
+    "geometry_verified": { "type": "boolean" },
+    "operator_name_if_verified": { "type": "string", "maxLength": 200 },
+    "evidence_quality": { "type": "string", "enum": ["historic_only", "osm_desk_observed", "field_observed", "operator_confirmed", "lgu_confirmed", "conflicting"] }
+  }
+}

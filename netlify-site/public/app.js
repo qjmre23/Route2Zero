@@ -1659,6 +1659,39 @@ function trapControlsFocus(event) {
 
 const reducedTourMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 const compactTourQuery = window.matchMedia("(max-width: 700px)");
+let tourInviteAnimation = null;
+
+function stopTourInvite() {
+  tourInviteAnimation?.cancel?.();
+  tourInviteAnimation = null;
+  els.tourCursor.classList.remove("invite");
+  setTourCursorLabel("");
+}
+
+function startTourInvite() {
+  if (!state.dataReady || state.tour.running || reducedTourMotion.matches || !els.tourCursor.animate) return;
+  const target = [compactTourQuery.matches ? els.startWalkthroughTop : els.startWalkthroughHero, els.startWalkthroughHero, els.startWalkthroughTop]
+    .find((button) => button && !button.disabled && button.offsetParent !== null);
+  if (!target) return;
+  const rect = target.getBoundingClientRect();
+  const targetX = Math.max(8, Math.min(window.innerWidth - 36, rect.left + rect.width * .62));
+  const targetY = Math.max(8, Math.min(window.innerHeight - 48, rect.top + rect.height * .52));
+  const startX = Math.max(8, targetX - Math.min(120, Math.max(72, window.innerWidth * .22)));
+  const startY = Math.max(8, Math.min(window.innerHeight - 48, targetY + Math.min(68, Math.max(38, window.innerHeight * .1))));
+  stopTourInvite();
+  state.tour.cursorX = startX;
+  state.tour.cursorY = startY;
+  els.tourCursor.style.setProperty("--cursor-x", `${startX}px`);
+  els.tourCursor.style.setProperty("--cursor-y", `${startY}px`);
+  els.tourCursor.classList.add("invite");
+  els.tourCursor.classList.remove("label-left", "label-up");
+  setTourCursorLabel("Start TOUR ME");
+  tourInviteAnimation = els.tourCursor.animate([
+    { transform: `translate3d(${startX}px, ${startY}px, 0)` },
+    { transform: `translate3d(${targetX}px, ${targetY}px, 0)`, offset: .68 },
+    { transform: `translate3d(${Math.max(8, targetX - 22)}px, ${Math.min(window.innerHeight - 48, targetY + 13)}px, 0)` }
+  ], { duration: compactTourQuery.matches ? 2100 : 2500, iterations: Infinity, easing: "ease-in-out" });
+}
 
 function abortException() {
   return new DOMException("Tour step ended", "AbortError");
@@ -2258,6 +2291,7 @@ async function runTourStep(index) {
 
 function startWalkthrough(event) {
   if (!state.dataReady || state.tour.running) return;
+  stopTourInvite();
   state.tourStarter = event?.currentTarget || document.activeElement;
   state.tour.running = true;
   state.tour.paused = false;
@@ -2285,6 +2319,7 @@ function endWalkthrough(completed = false) {
   state.tour.paused = false;
   document.body.classList.remove("tour-running");
   clearTourFocus();
+  stopTourInvite();
   els.tourCursor.classList.remove("visible", "has-label", "clicking", "label-left", "label-up");
   els.walkthroughPanel.classList.add("hidden");
   restoreTourState();
@@ -2374,6 +2409,7 @@ async function init() {
   state.dataReady = true;
   els.startWalkthroughTop.disabled = false;
   els.startWalkthroughHero.disabled = false;
+  window.setTimeout(startTourInvite, 420);
   const warmFirstTourNarration = () => prefetchTourNarration(0, 1);
   if ("requestIdleCallback" in window) window.requestIdleCallback(warmFirstTourNarration, { timeout: 1200 });
   else window.setTimeout(warmFirstTourNarration, 250);

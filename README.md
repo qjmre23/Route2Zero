@@ -67,7 +67,7 @@ Route2Zero therefore supports screening, validation design, and stakeholder revi
 | Evidence & AI | Generates a bounded explanation from structured facts and identifies unresolved evidence |
 | Method & Sources | Exposes methodology, model versions, source records, build identifiers, and limitations |
 | Report export | Produces decision-ready PDF, presentation, document, and structured reporting outputs |
-| TOUR ME | Runs a narrated 15-stage product tour with one consistent ElevenLabs voice, a visible cursor, animated dropdown selections, random mapped-route selection, map zoom, policy and portfolio controls, a live assistant question, methods, and exports; progress is step-based with no countdown timer |
+| TOUR ME | Runs a narrated 15-stage product tour with one consistent ElevenLabs voice, a moving invitation cursor that points to the launch control, animated dropdown selections, random mapped-route selection, map zoom, policy and portfolio controls, a live assistant question, methods, and exports; progress is step-based with no countdown timer |
 
 The responsive interface is deployed on Netlify and uses Mapbox GL JS for interactive cartography. Reviewed OSM relations are drawn from observed member-way geometry. Other routes use road-following Mapbox interpretations based on ordered screening coordinates and remain labelled as planning geometry. TOUR ME operates the real interface rather than replaying a fixed recording. Its cursor opens a visible option menu, highlights the chosen value, clicks it, and dispatches the same input and change events used by the dashboard. Fourteen deterministic narration steps are committed as MP3 files generated with one ElevenLabs voice; only the assistant-response step is synthesized live because its answer changes with the selected route and scenario. The tour restores the user's starting controls when it ends, supports pause and voice controls, and provides a reduced-motion mode. On compact phones, it reserves a visible stage above the bottom sheet, scrolls within the controls drawer, and repositions labels and dropdowns to keep the demonstrated control in view.
 
@@ -78,6 +78,8 @@ Route2Zero separates analytical assistance from policy authority. A supervised m
 The six-month pilot measures that contribution directly. AI-assisted evidence review is compared with an analyst-only workflow using time-to-first validation brief, missed-evidence rate, factual-error rate, and unsupported-claim rate. Route2Zero claims no productivity gain until that comparison is completed.
 
 The static HTML carries the current build summary before JavaScript runs, so link previewers, accessibility tools, slow connections, and no-script fetchers see `1,522` historic records, `20` dated map matches, `9` robust validation priorities, and scenario `scn-e0f12f397e` instead of placeholder zeroes.
+
+Current-evidence collection is documented in [`docs/field_observation_playbook.md`](docs/field_observation_playbook.md). The dashboard publishes a CSV intake template and JSON Schema; the repository validator checks status values, dates, geometry flags, numeric ranges, and unsupported columns before a reviewed row enters the controlled ledger. The Netlify release procedure is recorded in [`docs/deployment_runbook.md`](docs/deployment_runbook.md).
 
 ## Submission traceability
 

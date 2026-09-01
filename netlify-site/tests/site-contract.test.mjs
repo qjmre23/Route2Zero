@@ -55,6 +55,23 @@ test("phone tour reserves a visible stage and keeps controls usable", async () =
   assert.match(css, /@media \(max-width: 360px\), \(max-height: 620px\) and \(max-width: 700px\)/);
 });
 
+test("tour launch is discoverable and clears its invitation cursor", async () => {
+  const [app, css, html, schema] = await Promise.all([
+    readFile(join(siteRoot, "public", "app.js"), "utf8"),
+    readFile(join(siteRoot, "public", "styles.css"), "utf8"),
+    readFile(join(siteRoot, "public", "index.html"), "utf8"),
+    readFile(join(siteRoot, "public", "templates", "field_observation.schema.json"), "utf8")
+  ]);
+
+  assert.match(html, /id="startWalkthroughHero"/);
+  assert.match(app, /function startTourInvite\(\)/);
+  assert.match(app, /function stopTourInvite\(\)/);
+  assert.match(app, /els\.tourCursor\.classList\.add\("invite"\)/);
+  assert.match(app, /els\.tourCursor\.classList\.remove\("invite"\)/);
+  assert.match(css, /\.tour-cursor\.visible, \.tour-cursor\.invite/);
+  assert.equal(JSON.parse(schema).$id, "https://route2zero.netlify.app/templates/field_observation.schema.json");
+});
+
 test("deterministic tour steps use committed MP3 narration while the live assistant stays dynamic", async () => {
   const recorded = TOUR_NARRATION.filter((entry) => !entry.dynamic);
   const dynamic = TOUR_NARRATION.filter((entry) => entry.dynamic);

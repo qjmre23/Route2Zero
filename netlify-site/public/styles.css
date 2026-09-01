@@ -339,7 +339,7 @@ footer a { font-weight: 700; }
 .walkthrough-actions .button-primary { margin-left: auto; color: #092426; background: var(--lime); }
 .tour-focus { position: relative; z-index: 2; outline: 4px solid rgba(199, 244, 89, .9) !important; outline-offset: 6px; animation: tourGlow 1s ease-in-out infinite alternate; }
 .tour-cursor { --cursor-x: -90px; --cursor-y: -90px; position: fixed; z-index: 230; top: 0; left: 0; width: 23px; height: 29px; opacity: 0; pointer-events: none; transform: translate3d(var(--cursor-x), var(--cursor-y), 0); filter: drop-shadow(0 4px 5px rgba(0, 20, 22, .45)); transition: opacity .18s ease; }
-.tour-cursor.visible { opacity: 1; }
+.tour-cursor.visible, .tour-cursor.invite { opacity: 1; }
 .tour-cursor::before { position: absolute; inset: 0; content: ""; border: 2px solid #092426; background: #fff; clip-path: polygon(0 0, 0 92%, 27% 67%, 43% 100%, 58% 92%, 42% 61%, 78% 61%); }
 .tour-cursor::after { position: absolute; z-index: -1; top: -15px; left: -15px; width: 48px; height: 48px; border: 2px solid rgba(199, 244, 89, .88); border-radius: 50%; content: ""; background: rgba(199, 244, 89, .13); box-shadow: 0 0 0 8px rgba(199, 244, 89, .07); animation: cursorHalo 1s ease-in-out infinite alternate; }
 .tour-cursor.clicking::after { animation: cursorClick .32s ease-out; }
@@ -347,6 +347,8 @@ footer a { font-weight: 700; }
 .tour-cursor.label-left span { right: 8px; left: auto; }
 .tour-cursor.label-up span { top: auto; bottom: 35px; }
 .tour-cursor.has-label span { opacity: 1; transform: translateY(0); }
+.tour-cursor.invite span { border-color: rgba(199, 244, 89, .48); color: #092426; background: var(--lime); }
+.template-links { display: flex; flex-wrap: wrap; gap: 8px 14px; }
 .tour-choice-menu { position: fixed; z-index: 225; max-height: min(310px, 55vh); overflow: hidden; border: 1px solid rgba(199, 244, 89, .46); border-radius: 14px; color: #ecfff8; background: rgba(6, 31, 35, .985); box-shadow: 0 24px 54px rgba(2, 22, 25, .42); transform-origin: top center; animation: tourMenuDrop .22s cubic-bezier(.2,.8,.25,1) both; }
 .tour-choice-menu.opens-up { transform-origin: bottom center; animation-name: tourMenuRise; }
 .tour-choice-menu > span { display: block; padding: 9px 12px 7px; color: #9ec8bf; font-size: .64rem; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; }
@@ -409,7 +411,10 @@ body.tour-running .walkthrough-trigger, body.tour-running #startWalkthroughHero 
 
 @media (max-width: 700px) {
   .topbar { column-gap: 8px; }
-  .brand small, .walkthrough-trigger { display: none; }
+  .brand small { display: none; }
+  .topbar-actions { gap: 5px; }
+  .walkthrough-trigger { display: block; min-height: 40px; padding: 8px 9px; font-size: .68rem; white-space: nowrap; }
+  .topbar nav { max-width: 100vw; }
   .hero { min-height: 0; padding: 31px 21px; border-radius: 23px; }
   .hero h1 { font-size: clamp(2.25rem, 12vw, 3.35rem); }
   .hero-lede { font-size: .93rem; }
