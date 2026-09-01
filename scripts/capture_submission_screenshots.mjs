@@ -49,6 +49,7 @@ await page.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 20000 });
 console.log("Page loaded");
 await page.waitForFunction(() => document.querySelector("#routesMetric")?.textContent?.includes("1,522"));
 await page.waitForTimeout(2500);
+await page.evaluate(() => document.querySelector("#tourCursor")?.classList.remove("invite", "has-label"));
 
 await save("overview.png");
 await page.locator("#mapLayer").selectOption("typology");
@@ -91,6 +92,7 @@ const mobile = await browser.newPage({ viewport: { width: 390, height: 844 }, de
 await mobile.goto(baseUrl, { waitUntil: "domcontentloaded", timeout: 20000 });
 await mobile.waitForFunction(() => document.querySelector("#routesMetric")?.textContent?.includes("1,522"));
 await mobile.waitForTimeout(500);
+await mobile.evaluate(() => document.querySelector("#tourCursor")?.classList.remove("invite", "has-label"));
 const mobileFile = path.join(output, "mobile-overview.png");
 await mobile.screenshot({ path: mobileFile, animations: "disabled" });
 await fs.copyFile(mobileFile, path.join(legacyOutput, "mobile-overview.png"));

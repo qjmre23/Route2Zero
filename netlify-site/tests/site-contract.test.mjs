@@ -68,8 +68,14 @@ test("tour launch is discoverable and clears its invitation cursor", async () =>
   assert.match(app, /function stopTourInvite\(\)/);
   assert.match(app, /els\.tourCursor\.classList\.add\("invite"\)/);
   assert.match(app, /els\.tourCursor\.classList\.remove\("invite"\)/);
+  assert.match(app, /const target = \[els\.startWalkthroughTop, els\.startWalkthroughHero\]/);
   assert.match(css, /\.tour-cursor\.visible, \.tour-cursor\.invite/);
   assert.equal(JSON.parse(schema).$id, "https://route2zero.netlify.app/templates/field_observation.schema.json");
+});
+
+test("climate validation queue preserves scenario claim status", async () => {
+  const app = await readFile(join(siteRoot, "public", "app.js"), "utf8");
+  assert.match(app, /value\.includes\("climate"\) \|\| value\.includes\("efficiency"\) \|\| value\.includes\("emission"\)\) return row\.climate_claim_status \|\| "SCENARIO"/);
 });
 
 test("deterministic tour steps use committed MP3 narration while the live assistant stays dynamic", async () => {

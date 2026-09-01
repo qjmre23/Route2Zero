@@ -926,6 +926,7 @@ function renderEvidenceQueue() {
     const value = String(field || "").toLowerCase();
     if (value.includes("operator") || value.includes("fleet") || value.includes("depot")) return row.operator_claim_status || "NEUTRAL_PRIOR";
     if (value.includes("charging") || value.includes("utility") || value.includes("capacity")) return bool(row.utility_capacity_verified) ? "VERIFIED" : "MISSING";
+    if (value.includes("climate") || value.includes("efficiency") || value.includes("emission")) return row.climate_claim_status || "SCENARIO";
     if (value.includes("geometry")) return row.geometry_claim_status || "DERIVED";
     if (value.includes("service") || value.includes("route") || value.includes("active")) return routeIsCurrent(row) ? "OBSERVED" : "MISSING";
     if (value.includes("equity")) return row.equity_claim_status || "PROXY";
@@ -1670,7 +1671,7 @@ function stopTourInvite() {
 
 function startTourInvite() {
   if (!state.dataReady || state.tour.running || reducedTourMotion.matches || !els.tourCursor.animate) return;
-  const target = [compactTourQuery.matches ? els.startWalkthroughTop : els.startWalkthroughHero, els.startWalkthroughHero, els.startWalkthroughTop]
+  const target = [els.startWalkthroughTop, els.startWalkthroughHero]
     .find((button) => button && !button.disabled && button.offsetParent !== null);
   if (!target) return;
   const rect = target.getBoundingClientRect();
