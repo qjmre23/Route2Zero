@@ -6,6 +6,6 @@
   "scripts": {
     "build": "node scripts/build-netlify.mjs",
     "audio:sync": "node scripts/generate-tour-audio.mjs",
-    "check": "node --check public/app.js && node --check netlify/functions/explain.mjs && node --check netlify/functions/narrate.mjs && node --check scripts/build-netlify.mjs && node --test tests/explain.test.mjs tests/narrate.test.mjs tests/site-contract.test.mjs"
+    "check": "node --check public/app.js && node --check netlify/functions/explain.mjs && node --check netlify/functions/narrate.mjs && node --check netlify/functions/notify-visit.mjs && node --check scripts/build-netlify.mjs && node --test tests/explain.test.mjs tests/narrate.test.mjs tests/notify-visit.test.mjs tests/site-contract.test.mjs"
   }
 }

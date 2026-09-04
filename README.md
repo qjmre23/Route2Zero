@@ -372,8 +372,12 @@ The repository-level netlify.toml sets netlify-site as the build base, runs npm 
 | ELEVENLABS_API_KEY | Netlify Functions | Required for the narrated TOUR ME voice; never exposed to the browser |
 | ELEVENLABS_VOICE_ID | Netlify Functions, optional | Overrides the default male Adam voice (`pNInz6obpgDQGcFmaJgB`) |
 | ELEVENLABS_MODEL_ID | Netlify Functions, optional | Overrides the low-latency narration model (`eleven_flash_v2_5`) |
+| TELEGRAM_BOT_TOKEN | Netlify Functions, optional | Bot token used by the site-open notification; never exposed to the browser |
+| TELEGRAM_CHAT_ID | Netlify Functions, optional | Telegram chat that receives one site-open alert per browser session |
 
 The Mapbox style is mapbox://styles/marwin2323/cmswv687u002u01so2xzd7mrs. Public pk. tokens are browser credentials and remain origin-restricted through the Mapbox account. Server-side provider credentials are never written to browser configuration, committed files, screenshots, or static assets. TOUR ME prewarms its opening narration and prefetches the next steps so every spoken stage uses the same configured ElevenLabs voice. It never switches to browser or device speech. If ElevenLabs is unavailable, the visual tour continues silently and displays the provider status instead of substituting another voice.
+
+When both Telegram variables are configured, the notification function sends a short timestamped alert with the page, locale, and viewport. It is best-effort, rate-limited, and does not include visitor names, IP addresses, or form data in the Telegram message.
 
 ## Quality controls
 

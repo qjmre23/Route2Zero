@@ -78,6 +78,13 @@ test("climate validation queue preserves scenario claim status", async () => {
   assert.match(app, /value\.includes\("climate"\) \|\| value\.includes\("efficiency"\) \|\| value\.includes\("emission"\)\) return row\.climate_claim_status \|\| "SCENARIO"/);
 });
 
+test("site-open notifications stay best effort and use the Netlify function", async () => {
+  const app = await readFile(join(siteRoot, "public", "app.js"), "utf8");
+  assert.match(app, /function notifySiteVisit\(\)/);
+  assert.match(app, /fetch\("\/\.netlify\/functions\/notify-visit"/);
+  assert.match(app, /keepalive: true/);
+});
+
 test("deterministic tour steps use committed MP3 narration while the live assistant stays dynamic", async () => {
   const recorded = TOUR_NARRATION.filter((entry) => !entry.dynamic);
   const dynamic = TOUR_NARRATION.filter((entry) => entry.dynamic);

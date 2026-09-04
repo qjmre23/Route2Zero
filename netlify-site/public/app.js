@@ -2365,6 +2365,30 @@ async function fetchJsonRequired(url) {
   return response.json();
 }
 
+function notifySiteVisit() {
+  const storageKey = "route2zero-visit-notified-v1";
+  try {
+    if (sessionStorage.getItem(storageKey)) return;
+    sessionStorage.setItem(storageKey, "pending");
+  } catch {}
+  const payload = {
+    path: `${window.location.pathname}${window.location.hash}`,
+    locale: navigator.language || "unknown",
+    viewport: `${window.innerWidth}x${window.innerHeight}`
+  };
+  fetch("/.netlify/functions/notify-visit", {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+    keepalive: true
+  }).then((response) => {
+    if (response.ok) return;
+    try { sessionStorage.removeItem(storageKey); } catch {}
+  }).catch(() => {
+    try { sessionStorage.removeItem(storageKey); } catch {}
+  });
+}
+
 async function init() {
   syncControlsA11y();
   const [scoresText, geojson, build, report, portfolios, priorities, plannerCache, plannerSummary, sources, modelMetrics, flagship] = await Promise.all([
@@ -2410,6 +2434,7 @@ async function init() {
   state.dataReady = true;
   els.startWalkthroughTop.disabled = false;
   els.startWalkthroughHero.disabled = false;
+  notifySiteVisit();
   window.setTimeout(startTourInvite, 420);
   const warmFirstTourNarration = () => prefetchTourNarration(0, 1);
   if ("requestIdleCallback" in window) window.requestIdleCallback(warmFirstTourNarration, { timeout: 1200 });
