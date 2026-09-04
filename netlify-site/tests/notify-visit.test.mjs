@@ -34,7 +34,8 @@ test("requires POST and rejects malformed payloads", async () => {
 
 test("does nothing when Telegram configuration is absent", { concurrency: false }, async () => {
   const response = await withEnvironment({ TELEGRAM_BOT_TOKEN: "", TELEGRAM_CHAT_ID: "" }, () => handler(event({}, { "x-forwarded-for": "test-missing-config" })));
-  assert.equal(response.statusCode, 204);
+  assert.equal(response.statusCode, 503);
+  assert.equal(JSON.parse(response.body).notification_status, "not_configured");
 });
 
 test("sends a bounded site-open message through the server-side Telegram API", { concurrency: false }, async () => {
@@ -52,11 +53,28 @@ test("sends a bounded site-open message through the server-side Telegram API", {
       TELEGRAM_CHAT_ID: "7474049767"
     }, () => handler(event({ path: "/#evidence", locale: "en-PH", viewport: "1440x900" }, { "x-forwarded-for": "test-configured" })));
     assert.equal(response.statusCode, 204);
+    assert.equal(response.headers["x-route2zero-telegram-status"], "sent");
     assert.equal(requestUrl, "https://api.telegram.org/bottest-token/sendMessage");
     const body = JSON.parse(requestOptions.body);
     assert.equal(body.chat_id, "7474049767");
     assert.match(body.text, /Route2Zero site opened/);
     assert.match(body.text, /Page: \/#evidence/);
+  } finally {
+    globalThis.fetch = originalFetch;
+  }
+});
+
+test("surfaces Telegram provider failures without exposing credentials", { concurrency: false }, async () => {
+  const originalFetch = globalThis.fetch;
+  globalThis.fetch = async () => new Response("bot token detail", { status: 401 });
+  try {
+    const response = await withEnvironment({
+      TELEGRAM_BOT_TOKEN: "server-secret",
+      TELEGRAM_CHAT_ID: "7474049767"
+    }, () => handler(event({ path: "/", locale: "en-US", viewport: "1280x720" }, { "x-forwarded-for": "test-provider-failure" })));
+    assert.equal(response.statusCode, 502);
+    assert.equal(JSON.parse(response.body).notification_status, "provider_http_401");
+    assert.doesNotMatch(response.body, /server-secret|bot token detail/);
   } finally {
     globalThis.fetch = originalFetch;
   }

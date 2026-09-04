@@ -11,12 +11,13 @@ function json(statusCode, body) {
   return { statusCode, headers: jsonHeaders, body: JSON.stringify(body) };
 }
 
-function noContent() {
+function noContent(statusCode = 204, notificationStatus = "disabled") {
   return {
-    statusCode: 204,
+    statusCode,
     headers: {
       "cache-control": "no-store",
-      "x-content-type-options": "nosniff"
+      "x-content-type-options": "nosniff",
+      "x-route2zero-telegram-status": notificationStatus
     },
     body: ""
   };
@@ -65,14 +66,14 @@ function parsePayload(event) {
 
 export async function handler(event) {
   if (event.httpMethod !== "POST") return json(405, { error: "Use POST." });
-  if (requestIsRateLimited(event)) return noContent();
+  if (requestIsRateLimited(event)) return noContent(429, "rate_limited");
 
   const parsed = parsePayload(event);
   if (parsed.error) return json(400, { error: parsed.error });
 
   const botToken = String(process.env.TELEGRAM_BOT_TOKEN || "").trim();
   const chatId = String(process.env.TELEGRAM_CHAT_ID || "").trim();
-  if (!botToken || !chatId) return noContent();
+  if (!botToken || !chatId) return json(503, { error: "Telegram notification is not configured.", notification_status: "not_configured" });
 
   const { path, locale, viewport } = parsed.value;
   const message = [
@@ -92,11 +93,15 @@ export async function handler(event) {
       headers: { "content-type": "application/json" },
       body: JSON.stringify({ chat_id: chatId, text: message, disable_web_page_preview: true })
     });
-    if (!response.ok) console.error("Telegram visit notification failed", response.status);
+    if (!response.ok) {
+      console.error("Telegram visit notification failed", response.status);
+      return json(502, { error: "Telegram notification failed.", notification_status: "provider_http_" + response.status });
+    }
   } catch (error) {
     console.error("Telegram visit notification failed", error?.name === "AbortError" ? "timeout" : "request error");
+    return json(502, { error: "Telegram notification failed.", notification_status: error?.name === "AbortError" ? "timeout" : "provider_error" });
   } finally {
     clearTimeout(timeout);
   }
-  return noContent();
+  return noContent(204, "sent");
 }
