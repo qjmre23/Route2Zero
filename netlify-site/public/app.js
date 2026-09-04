@@ -2368,7 +2368,7 @@ async function fetchJsonRequired(url) {
 function notifySiteVisit() {
   const storageKey = "route2zero-visit-notified-v1";
   try {
-    if (sessionStorage.getItem(storageKey)) return;
+    if (sessionStorage.getItem(storageKey) === "sent") return;
     sessionStorage.setItem(storageKey, "pending");
   } catch {}
   const payload = {
@@ -2382,7 +2382,10 @@ function notifySiteVisit() {
     body: JSON.stringify(payload),
     keepalive: true
   }).then((response) => {
-    if (response.ok) return;
+    if (response.ok) {
+      try { sessionStorage.setItem(storageKey, "sent"); } catch {}
+      return;
+    }
     try { sessionStorage.removeItem(storageKey); } catch {}
   }).catch(() => {
     try { sessionStorage.removeItem(storageKey); } catch {}

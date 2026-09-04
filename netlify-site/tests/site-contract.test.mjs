@@ -83,6 +83,8 @@ test("site-open notifications stay best effort and use the Netlify function", as
   assert.match(app, /function notifySiteVisit\(\)/);
   assert.match(app, /fetch\("\/\.netlify\/functions\/notify-visit"/);
   assert.match(app, /keepalive: true/);
+  assert.match(app, /sessionStorage\.getItem\(storageKey\) === "sent"/);
+  assert.match(app, /sessionStorage\.setItem\(storageKey, "sent"\)/);
 });
 
 test("deterministic tour steps use committed MP3 narration while the live assistant stays dynamic", async () => {
